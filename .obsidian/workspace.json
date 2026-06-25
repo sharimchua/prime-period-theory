@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "okf/related/rhythmic-grammar.md",
+                "file": "okf/related/AGENTS.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "rhythmic-grammar"
+              "title": "AGENTS"
             }
           }
         ]
@@ -185,7 +185,12 @@
   },
   "active": "c327b305f09e59b5",
   "lastOpenFiles": [
+    "AGENTS.md",
+    "okf/systems/AGENTS.md",
+    "okf/domains/AGENTS.md",
+    "okf/related/AGENTS.md",
     "okf/uniform-solfege/diacritic-system.md",
+    "okf/index.md",
     "okf/related/rhythmic-grammar.md",
     "okf/related/okf-rhythmic-grammar.md",
     "okf/related/okf-rhythm.md",
@@ -194,7 +199,6 @@
     "okf/domains/rhythm.md",
     "okf/domains/okf-rhythm.md",
     "okf/uniform-solfege/geometric-basis.md",
-    "okf/index.md",
     "okf/uniform-solfege/index.md",
     "okf/AGENTS.md",
     "resources/Logo.svg",
@@ -205,7 +209,6 @@
     "okf/foundations/amplitude-time.md",
     "okf/foundations/AGENTS.md",
     "okf/uniform-solfege/AGENTS.md",
-    "AGENTS.md",
     "okf/foundations/prime-families.md",
     "okf/foundations/periodicity.md",
     "okf/periodicity.md",
