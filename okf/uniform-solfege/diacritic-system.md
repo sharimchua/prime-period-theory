@@ -13,7 +13,7 @@ tags:
   - 72-edo
   - notation
   - prime-period-theory
-timestamp: 2026-06-19
+timestamp: 2026-06-26
 ---
 
 # Diacritic System
@@ -152,6 +152,40 @@ This interval is musically significant:
 The X suffix encoding this as a "crossing point" is therefore theoretically
 precise: the axis is where the 5-limit diatonic world crosses into the
 11-limit neutral world.
+
+## Axis in Rhythmic Grammar
+
+The Axis diacritic (`x`) has a secondary role in **Rhythmic Grammar** notation,
+distinct from its microtonal pitch function.
+
+In Rhythmic Grammar, the structural anchor tokens Do and Di are written with
+the Axis suffix — **Dox** (primary tonic anchor) and **Dix** (secondary
+tritone accent anchor) — to visually mark block boundaries within a rhythm
+string:
+
+```
+Dox–Re–Dix–So     (written form of DoReDiSo, a 3+2 pattern)
+Dox–So–Dix–Re–So  (written form of DoSoDiRe, a 2+3 pattern)
+```
+
+The spoken form drops the suffix entirely: Dox is spoken as "Do", Dix as "Di".
+The `x` mark is a notational aid for visual scanning, not a phonetic instruction.
+
+This use is consistent with the Axis diacritic's core semantics as a
+**crossing point** — Dox and Dix are boundaries between rhythmic blocks,
+points where the cadential direction changes. In this context the `x`
+signals structural transition rather than microtonal inflection.
+
+A practical consequence: scanning any written rhythm string for `x` characters
+immediately reveals its block architecture. This is analogous to using `x`
+as a structural flag in a bitmask — the Axis tokens are the accent layer;
+the remaining tokens are the interior chain.
+
+The two uses of `x` (microtonal +3 steps in pitch space; block boundary marker
+in rhythmic grammar) are contextually unambiguous: pitch-space notation uses
+`x` on any base syllable; rhythmic grammar restricts `x` to Do and Di only.
+
+See [Rhythmic Grammar](../related/rhythmic-grammar.md) for the full system specification.
 
 ## Relationship to the geometric character set
 
