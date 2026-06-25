@@ -63,8 +63,8 @@ between them. The X also visually suggests a multiplication or modular
 intersection in the arithmetic sense.
 
 This means the suffix letters are **iconically motivated** — they depict their
-function — rather than arbitrarily assigned. A musician reading `Solb` can
-infer "Sol, lowered" from the letterform before knowing the formal rule.
+function — rather than arbitrarily assigned. A musician reading `Sob` can
+infer "So, lowered" from the letterform before knowing the formal rule.
 
 ## Naming convention
 
@@ -76,7 +76,7 @@ Doeb   — Do, Sub1 (one step flat of Do)
 Do     — Do, Base (standard 12TET position)
 Dop    — Do, Sup1 (one step sharp of Do)
 Doep   — Do, Sup2 (two steps sharp of Do)
-Dox    — Do, Axis (midpoint between Do and Dop/Re)
+Dox    — Do, Axis (midpoint between Do and Ra)
 ```
 
 The same pattern applies to every base position:
@@ -100,11 +100,11 @@ The 31 EDO grid, organised by 12TET interval category:
 |---|---|---|---|
 | Tonic | Do (0) | 0 | Do |
 | | | 1 | Dop |
-| Minor 2nd | Dop/Reb (1) | 2 | Re / Dox |
+| Minor 2nd | Ra (1) | 2 | Ra / Dox |
 | | | 3 | Rep |
 | Major 2nd | Re (2) | 4 | Reep / Re |
 | | | 5 | Rip |
-| Minor 3rd | Meb (3) | 7 | Meb |
+| Minor 3rd | Me (3) | 7 | Me |
 | ... | ... | ... | ... |
 
 *A complete 31-position table appears in [31 EDO](../tuning/31-edo.md).*
@@ -177,8 +177,8 @@ hand notation, organised into five interval rows:
 
 ```
 Row 1 — Tonic / Second   (positions  0– 6):  Do family
-Row 2 — Third            (positions  7–12):  Mi/Meb family  
-Row 3 — Fourth/Tritone/Fifth (positions 13–19): Fa/Sol family
+Row 2 — Third            (positions  7–12):  Mi/Me family  
+Row 3 — Fourth/Tritone/Fifth (positions 13–19): Fa/So family
 Row 4 — Sixth            (positions 20–25):  La family
 Row 5 — Seventh          (positions 26–30):  Ti/Te family
 ```

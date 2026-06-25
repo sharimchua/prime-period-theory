@@ -44,7 +44,7 @@ The arithmetic system. Should cover:
 
 - Solfège syllables as base-12 digits (Do=0 through Ti=11)
 - Addition mod 12 as interval stacking
-- The circle of fifths as repeated +7 (Sol) operations mod 12
+- The circle of fifths as repeated +7 (So) operations mod 12
 - Prime generators as arithmetic operations
 - Worked examples: building scales, transposing, finding complements
 - Extension into 31 EDO using diacritic arithmetic

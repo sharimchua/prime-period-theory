@@ -51,20 +51,20 @@ The key design principles are:
 The twelve chromatic positions and their solfège names, mapped to base-12
 numeral values:
 
-| Position | Syllable | Interval from tonic | Prime family |
-|---|---|---|---|
-| 0 | **Do** | Unison | 2-prime (octave axis) |
-| 1 | **Dop** | Minor 2nd | — |
-| 2 | **Re** | Major 2nd | 3-prime (two fifths) |
-| 3 | **Meb** | Minor 3rd | — |
-| 4 | **Mi** | Major 3rd | 5-prime |
-| 5 | **Fa** | Perfect 4th | 3-prime (inverse fifth) |
-| 6 | **Fix** | Tritone | Axis of symmetry |
-| 7 | **Sol** | Perfect 5th | 3-prime |
-| 8 | **Leb** | Minor 6th | — |
-| 9 | **La** | Major 6th | 5-prime (inverse third) |
-| 10 | **Teb** | Minor 7th | 7-prime (approximation) |
-| 11 | **Ti** | Major 7th | — |
+| Position | Syllable | Variations | Interval from tonic | Prime family |
+|---|---|---|---|---|
+| 0 | **Do** | | Unison | 2-prime (octave axis) |
+| 1 | **Ra** | Di | Minor 2nd | — |
+| 2 | **Re** | | Major 2nd | 3-prime (two fifths) |
+| 3 | **Me** | | Minor 3rd | — |
+| 4 | **Mi** | | Major 3rd | 5-prime |
+| 5 | **Fa** | | Perfect 4th | 3-prime (inverse fifth) |
+| 6 | **Fi** | | Tritone | Axis of symmetry |
+| 7 | **So** | | Perfect 5th | 3-prime |
+| 8 | **Le** | | Minor 6th | — |
+| 9 | **La** | | Major 6th | 5-prime (inverse third) |
+| 10 | **Te** | | Minor 7th | 7-prime (approximation) |
+| 11 | **Ti** | Si | Major 7th | — |
 
 *Note: chromatic positions 1, 3, 6, 8, 10 fall between prime-family
 generators. Their prime-family membership depends on the tuning system and
@@ -76,9 +76,9 @@ In base-12, the solfège syllables function exactly as digits. Arithmetic
 operates as normal, with modular reduction at 12 (Do) for octave equivalence:
 
 ```
-Sol (7) + Fa (5) = Do (12 mod 12 = 0)   — fifth + fourth = octave
-Mi  (4) + Mi (4) = Leb (8)              — third + third = minor sixth
-Sol (7) + Sol (7) = Re (14 mod 12 = 2)  — fifth + fifth = major second
+So (7) + Fa (5) = Do (12 mod 12 = 0)   — fifth + fourth = octave
+Mi  (4) + Mi (4) = Le (8)              — third + third = minor sixth
+So (7) + So (7) = Re (14 mod 12 = 2)  — fifth + fifth = major second
 ```
 
 This means interval arithmetic is clock arithmetic. The Tone Atlas (clock-face
@@ -90,12 +90,12 @@ intervals is rotation around the clock face.
 | Prime | Generator interval | Solfège | Value | Operation |
 |---|---|---|---|---|
 | 2 | Octave | Do | 0 (mod 12) | Identity / modular reset |
-| 3 | Fifth | Sol | 7 | +7 mod 12 |
+| 3 | Fifth | So | 7 | +7 mod 12 |
 | 5 | Major third | Mi | 4 | +4 mod 12 |
-| 7 | Harmonic seventh | Teb | 10 | +10 mod 12 (approx) |
+| 7 | Harmonic seventh | Te | 10 | +10 mod 12 (approx) |
 | 11 | Neutral third | — | ~5.5 | Requires microtonal extension |
 
-Repeated application of a generator cycles through its prime family. Sol
+Repeated application of a generator cycles through its prime family. So
 applied 12 times visits all 12 chromatic positions (the circle of fifths) —
 because 7 and 12 are coprime.
 
@@ -106,7 +106,7 @@ principles related to the chromatic circle, so that:
 
 - **Complementary interval pairs** share visual roots or are mirror images
   (intervals that sum to 12 are visually related)
-- **The tritone** (Fix, position 6) has a visually distinctive symbol
+- **The tritone** (Fi, position 6) has a visually distinctive symbol
   reflecting its unique role as the axis of symmetry
 - **Interval families** (seconds, thirds, fourths/fifths, sixths, sevenths)
   share visual family characteristics within their rows
@@ -147,7 +147,7 @@ See [Diacritic System](diacritic-system.md) for the full specification.
 Uniform Solfège is not a replacement for existing traditions but a
 generalisation. It is designed to be recognisable to practitioners of:
 
-- **Western moveable-do** solfège (Do Re Mi Fa Sol La Ti)
+- **Western moveable-do** solfège (Do Re Mi Fa So La Ti)
 - **Indian sargam** (Sa Re Ga Ma Pa Dha Ni) — the interval relationships
   are equivalent; the syllables differ
 - **Fixed-do** traditions — Uniform Solfège can operate in fixed-do mode
