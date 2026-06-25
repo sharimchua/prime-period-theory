@@ -13,7 +13,7 @@ tags:
   - polyrhythm
   - microtonality
   - 31-edo
-timestamp: 2026-06-19
+timestamp: 2026-06-26
 ---
 
 # Prime Period Theory
