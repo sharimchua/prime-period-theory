@@ -1,5 +1,9 @@
 # Prime Period Theory
 
+<p align="center">
+  <img src="resources/Logo.svg" alt="Prime Period Theory Logo" width="300" />
+</p>
+
 A descriptive framework for musical structure, grounded in the physics of
 amplitude and time, organised through the mathematics of prime-generated
 periodic relationships.
