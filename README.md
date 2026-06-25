@@ -1,8 +1,12 @@
 # Prime Period Theory
 
-<p align="center">
-  <img src="resources/Logo.svg" alt="Prime Period Theory Logo" width="300" />
-</p>
+<table width="100%">
+  <tr>
+    <td bgcolor="white" align="center">
+      <img src="resources/Logo.svg" alt="Prime Period Theory Logo" width="300" />
+    </td>
+  </tr>
+</table>
 
 A descriptive framework for musical structure, grounded in the physics of
 amplitude and time, organised through the mathematics of prime-generated
