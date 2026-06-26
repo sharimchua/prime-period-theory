@@ -4,7 +4,7 @@ import { getCollection } from 'astro:content';
 
 const referenceEntries = await getCollection('reference');
 const topicEntries = await getCollection('topics');
-const base = import.meta.env.BASE_URL;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '') + '/';
 ---
 
 <Layout title="Home">
