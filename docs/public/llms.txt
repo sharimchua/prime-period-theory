@@ -6,10 +6,7 @@ Prime Period Theory is a descriptive music theory framework grounded in prime-ge
 
 The authoritative specification for this framework is formatted as an OKF (Open Knowledge Format) Knowledge Bundle.
 
-The complete bundle is available in raw Markdown format at the `/okf/` path on this site. You can use these files to understand the framework's architecture, concepts, and diacritic system.
+The complete bundle is available as a single unified text file at `/okf-bundle.txt`. This is the recommended entry point for AI agents to ingest the entire theory at once.
 
-- **Entry Point**: [/okf/index.md](/okf/index.md)
-- **Foundations**: [/okf/foundations/index.md](/okf/foundations/index.md)
-- **Uniform Solfège**: [/okf/uniform-solfege/index.md](/okf/uniform-solfege/index.md)
-
-All relative markdown links within these files correspond directly to the `/okf/` path structure.
+- **Unified Spec**: [/okf-bundle.txt](/okf-bundle.txt)
+- **Raw Directory**: You can also browse the individual markdown files starting at [/okf/index.md](/okf/index.md)

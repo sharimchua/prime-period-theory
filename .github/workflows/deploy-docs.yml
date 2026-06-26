@@ -31,7 +31,9 @@ jobs:
         working-directory: docs
         run: npm run build
       - name: Copy OKF bundle for AI agents
-        run: cp -r okf docs/dist/okf
+        run: |
+          cp -r okf docs/dist/okf
+          cat okf/index.md $(find okf -name "*.md" ! -name "index.md") > docs/dist/okf-bundle.txt
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact
