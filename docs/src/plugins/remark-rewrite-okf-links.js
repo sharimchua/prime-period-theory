@@ -29,9 +29,9 @@ export function remarkRewriteOkfLinks() {
             relativeToOkf = relativeToOkf.replace(/\.md(#.*)?$/, '$1');
             
             if (relativeToOkf === 'index') {
-              node.url = '/prime-period-theory/reference';
+              node.url = '/reference';
             } else {
-              node.url = `/prime-period-theory/reference/${relativeToOkf}`;
+              node.url = `/reference/${relativeToOkf}`;
             }
           } else {
             // Just strip .md for other relative links
