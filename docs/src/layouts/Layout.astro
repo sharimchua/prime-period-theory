@@ -159,7 +159,9 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '') + '/';
     background: white;
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     border-radius: 8px;
-    overflow: hidden;
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
   }
 
   th, td {
@@ -182,4 +184,30 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '') + '/';
   tr:hover {
     background-color: #fef0eb;
   }
+
+  /* Mobile Breakpoints */
+  @media (max-width: 600px) {
+    header {
+      flex-direction: column;
+      padding: 1rem;
+      gap: 1rem;
+    }
+    
+    .site-title {
+      font-size: 1.2rem;
+    }
+    
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    nav a {
+      margin-left: 0.5rem;
+      margin-right: 0.5rem;
+    }
+  }
+
 </style>
