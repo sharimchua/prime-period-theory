@@ -26,8 +26,11 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '') + '/';
       <p>An agent and human-readable knowledge bundle structured in the Open Knowledge Format (OKF). Referencing standards like <a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f" target="_blank" rel="noopener">Karpathy's LLMWiki</a> and <a href="https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing" target="_blank" rel="noopener">Google's Open Knowledge Format</a>, this semantic core is browsable as raw concepts or easily importable into any LLM conversation context.</p>
       
       <div class="prompt-box">
-        <h4>Sample LLM Prompt</h4>
-        <code>Please read the Prime Period Theory knowledge bundle at https://ppt.midlifemuso.com/okf-bundle.txt. Reply with a short confirmation that you understand the core concepts, and wait for my next instructions.</code>
+        <div class="prompt-header">
+          <h4>Sample LLM Prompt</h4>
+          <button id="copy-prompt-btn" class="copy-btn" aria-label="Copy prompt">Copy</button>
+        </div>
+        <code id="llm-prompt">Please read the Prime Period Theory knowledge bundle at https://ppt.midlifemuso.com/okf-bundle.txt. Reply with a short confirmation that you understand the core concepts, and wait for my next instructions.</code>
       </div>
 
       <div class="section-links">
@@ -85,13 +88,34 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '') + '/';
     padding: 1rem;
     margin-bottom: 1.5rem;
   }
-  .prompt-box h4 {
-    margin-top: 0;
+  .prompt-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 0.5rem;
+  }
+  .prompt-header h4 {
+    margin: 0;
     font-size: 0.9rem;
     color: #64748b;
     text-transform: uppercase;
     letter-spacing: 0.05em;
+  }
+  .copy-btn {
+    background: #e2e8f0;
+    border: none;
+    border-radius: 4px;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    color: #4a5568;
+    cursor: pointer;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: background-color 0.2s, color 0.2s;
+  }
+  .copy-btn:hover {
+    background: #cbd5e1;
+    color: #1e293b;
   }
   .prompt-box code {
     background: none;
@@ -117,3 +141,23 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '') + '/';
     background: var(--brand-accent);
   }
 </style>
+
+<script>
+  const copyBtn = document.getElementById('copy-prompt-btn');
+  const promptCode = document.getElementById('llm-prompt');
+  
+  if (copyBtn && promptCode) {
+    copyBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(promptCode.textContent || '');
+        const originalText = copyBtn.innerText;
+        copyBtn.innerText = 'Copied!';
+        setTimeout(() => {
+          copyBtn.innerText = originalText;
+        }, 2000);
+      } catch (err) {
+        console.error('Failed to copy text: ', err);
+      }
+    });
+  }
+</script>
