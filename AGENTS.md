@@ -87,6 +87,10 @@ write as though PPT is the only valid framework or that musicians must use it.
 The correct framing: PPT offers a vocabulary for making structural relationships
 more legible — as geometry does for visual art.
 
+## Language conventions
+
+All documentation must use Australian English spelling conventions (e.g., "analyse" instead of "analyze", "colour" instead of "color", "conceptualise" instead of "conceptualize", "metre" instead of "meter"). Ensure this consistency across all `.md` and `.astro` files.
+
 ## Author voice
 
 Content is written in the first person where the author's perspective is

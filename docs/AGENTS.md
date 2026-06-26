@@ -31,7 +31,7 @@ okf_dependencies:
   - okf/path/to/concept.md
 tone: Conversational, non-academic.
 audience: General public.
-instructions: Synthesize the concept of music as expectation based on the OKF.
+instructions: Synthesise the concept of music as expectation based on the OKF.
 -->
 [Agent will replace this block with the generated markdown in the final output file]
 <!-- AGENT_GENERATE_BLOCK_END -->
@@ -40,8 +40,8 @@ instructions: Synthesize the concept of music as expectation based on the OKF.
 **Agent Process for Generating Topics:**
 1. Read the `.mdx` template from `docs/templates/topics/`.
 2. Read all files listed in `okf_dependencies`.
-3. Synthesize the content according to the `tone`, `audience`, and `instructions`.
-4. Output a new `.mdx` file to `docs/src/content/generated_topics/` where the target block has been replaced by the synthesized markdown, leaving the rest of the template exactly as is.
+3. Synthesise the content according to the `tone`, `audience`, and `instructions`.
+4. Output a new `.mdx` file to `docs/src/content/generated_topics/` where the target block has been replaced by the synthesised markdown, leaving the rest of the template exactly as is.
 
 ## Astro Documentation
 

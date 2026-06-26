@@ -19,7 +19,7 @@ timestamp: 2026-06-26
 
 The Musical Tone Atlas is a comprehensive visual map of pitch relationships, designed to put every key, chord, interval, and scale degree into one cohesive, navigable clock-like space. 
 
-Its core pedagogical premise is that music is about relationships, not memorization. By fixing any note at the "Do" (12 o'clock) position, you can see exactly how the relationships change as you move to other tones, without needing to memorize transposition formulas. 
+Its core pedagogical premise is that music is about relationships, not memorisation. By fixing any note at the "Do" (12 o'clock) position, you can see exactly how the relationships change as you move to other tones, without needing to memorise transposition formulas. 
 
 ## The Subclock Navigation System
 

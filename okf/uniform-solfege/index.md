@@ -48,11 +48,11 @@ The key design principles are:
 
 ## The twelve positions
 
-The twelve chromatic positions, their primary solfège names, and color conventions mapped to base-12 numeral values. The bolded syllables represent the **primary naming hierarchy** (b2: Ra, b3: Me, #4: Fi, b6: Le, b7: Te), establishing a principled convention across the system. 
+The twelve chromatic positions, their primary solfège names, and colour conventions mapped to base-12 numeral values. The bolded syllables represent the **primary naming hierarchy** (b2: Ra, b3: Me, #4: Fi, b6: Le, b7: Te), establishing a principled convention across the system. 
 
-The color convention assigns a specific hue to each interval class, aligning with the visual design of the Musical Tone Atlas. Do is anchored to Red (using the primary color from the project logo).
+The colour convention assigns a specific hue to each interval class, aligning with the visual design of the Musical Tone Atlas. Do is anchored to Red (using the primary colour from the project logo).
 
-| Position | Syllable | Variations | Color | Interval from tonic | Prime family |
+| Position | Syllable | Variations | Colour | Interval from tonic | Prime family |
 |---|---|---|---|---|---|
 | 0 | **Do** | | Red | Unison | 2-prime (octave axis) |
 | 1 | **Ra** | Di | Orange | Minor 2nd | — |
@@ -75,7 +75,7 @@ While the primary names above are the default, phonetically different options ar
 - **Di** is often used for the tritone accent.
 - **Si** replaces **Ti** to avoid the use of fricatives (dental T).
 
-The preference for **Le** over Si at position 8 keeps the perfect 5th phoneme ('S' for So) unique within the primary naming set, and aligns visually with the purple color identity of the sixths.
+The preference for **Le** over Si at position 8 keeps the perfect 5th phoneme ('S' for So) unique within the primary naming set, and aligns visually with the purple colour identity of the sixths.
 
 ## As a numeral system
 
