@@ -125,6 +125,7 @@ amplitude or effect envelopes.
 - [Rhythmic Grammar](related/rhythmic-grammar.md) — formal encoding system for rhythmic grouping structure
 - [MusiCoil](related/musicoil.md) — spatial notation system; visual representation of PPT
 - [Tone Atlas](related/tone-atlas.md) — clock-face pitch relationship diagram
+- [Chromatic Clock Geometry](related/chromatic-clock.md) — the 12-tone chromatic circle as a geometric navigation tool
 
 ## Relationship to other theories
 

@@ -48,27 +48,34 @@ The key design principles are:
 
 ## The twelve positions
 
-The twelve chromatic positions and their solfège names, mapped to base-12
-numeral values:
+The twelve chromatic positions, their primary solfège names, and color conventions mapped to base-12 numeral values. The bolded syllables represent the **primary naming hierarchy** (b2: Ra, b3: Me, #4: Fi, b6: Le, b7: Te), establishing a principled convention across the system. 
 
-| Position | Syllable | Variations | Interval from tonic | Prime family |
-|---|---|---|---|---|
-| 0 | **Do** | | Unison | 2-prime (octave axis) |
-| 1 | **Ra** | Di | Minor 2nd | — |
-| 2 | **Re** | | Major 2nd | 3-prime (two fifths) |
-| 3 | **Me** | | Minor 3rd | — |
-| 4 | **Mi** | | Major 3rd | 5-prime |
-| 5 | **Fa** | | Perfect 4th | 3-prime (inverse fifth) |
-| 6 | **Fi** | | Tritone | Axis of symmetry |
-| 7 | **So** | | Perfect 5th | 3-prime |
-| 8 | **Le** | | Minor 6th | — |
-| 9 | **La** | | Major 6th | 5-prime (inverse third) |
-| 10 | **Te** | | Minor 7th | 7-prime (approximation) |
-| 11 | **Ti** | Si | Major 7th | — |
+The color convention assigns a specific hue to each interval class, aligning with the visual design of the Musical Tone Atlas. Do is anchored to Red (using the primary color from the project logo).
 
-*Note: chromatic positions 1, 3, 6, 8, 10 fall between prime-family
-generators. Their prime-family membership depends on the tuning system and
-harmonic context.*
+| Position | Syllable | Variations | Color | Interval from tonic | Prime family |
+|---|---|---|---|---|---|
+| 0 | **Do** | | Red | Unison | 2-prime (octave axis) |
+| 1 | **Ra** | Di | Orange | Minor 2nd | — |
+| 2 | **Re** | | Orange | Major 2nd | 3-prime (two fifths) |
+| 3 | **Me** | | Yellow | Minor 3rd | — |
+| 4 | **Mi** | | Yellow | Major 3rd | 5-prime |
+| 5 | **Fa** | | Green | Perfect 4th | 3-prime (inverse fifth) |
+| 6 | **Fi** | Di (rhythm)| Black | Tritone | Axis of symmetry |
+| 7 | **So** | | Blue | Perfect 5th | 3-prime |
+| 8 | **Le** | | Purple | Minor 6th | — |
+| 9 | **La** | | Purple | Major 6th | 5-prime (inverse third) |
+| 10 | **Te** | | Magenta | Minor 7th | 7-prime (approximation) |
+| 11 | **Ti** | Si | Magenta | Major 7th | — |
+
+*Note: Chromatic positions 1, 3, 6, 8, 10 fall between prime-family generators. Their prime-family membership depends on the tuning system and harmonic context.*
+
+### Context-specific naming variations
+
+While the primary names above are the default, phonetically different options are used in specific contexts. For example, in **Rhythmic Grammar**:
+- **Di** is often used for the tritone accent.
+- **Si** replaces **Ti** to avoid the use of fricatives (dental T).
+
+The preference for **Le** over Si at position 8 keeps the perfect 5th phoneme ('S' for So) unique within the primary naming set, and aligns visually with the purple color identity of the sixths.
 
 ## As a numeral system
 

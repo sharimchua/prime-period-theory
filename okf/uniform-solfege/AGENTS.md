@@ -11,7 +11,7 @@ Documentation for the notation layer of PPT. These pages are more technical and 
 |`index.md`|Complete|System overview, 12 positions, arithmetic examples|
 |`diacritic-system.md`|Complete|Prime family diacritics (Du, Tri, Qui, Sep, UnDec), 4620 LCM grid|
 |`geometric-basis.md`|Complete|Five-family nested polygon construction; the Do glyph; the PPT mark|
-|`base-12-algebra.md`|Missing|Clock arithmetic, interval composition, prime generators|
+|`base-12-algebra.md`|Complete|Clock arithmetic, interval composition, string vs frequency ratio, LCM|
 
 ## Critical conventions — do not change
 
@@ -34,19 +34,6 @@ The geometric construction for the five prime families is also **fixed**, docume
 - 7-prime = irregular mirror-symmetric heptagon, constructed from pentagon edges as alignment guides (NOT from triangle/pentagon intersection — that only produces 5–6 points, never 7)
 - 11-prime = comma-perturbed near-regular 11-gon, nested innermost
 - The Do glyph is the emergent overlap of the enlarged 11-gon and the triangle — do not change this construction without checking the geometric-basis.md rationale first
-
-## Priority pages to create
-
-### `base-12-algebra.md`
-
-The arithmetic system. Should cover:
-
-- Solfège syllables as base-12 digits (Do=0 through Ti=11)
-- Addition mod 12 as interval stacking
-- The circle of fifths as repeated +7 (So) operations mod 12
-- Prime generators as arithmetic operations
-- Worked examples: building scales, transposing, finding complements
-- Extension into 31 EDO using diacritic arithmetic
 
 ## Note on the character set
 

@@ -9,6 +9,7 @@ This directory covers the application domains of Prime Period Theory across pitc
 |File|Status|Description|
 |---|---|---|
 |`rhythm.md`|Complete|Overview of rhythm through the lens of PPT.|
+|`pitch.md`|Complete|Overview of pitch, consonance, and harmonic series psychoacoustics in PPT.|
 
 ## Tone guidance
 

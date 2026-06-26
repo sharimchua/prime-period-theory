@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "okf/related/coil-notation.md",
+                "file": "okf/related/AGENTS.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "coil-notation"
+              "title": "AGENTS"
             }
           }
         ]
@@ -185,12 +185,18 @@
   },
   "active": "c327b305f09e59b5",
   "lastOpenFiles": [
+    "okf/uniform-solfege/AGENTS.md",
+    "okf/domains/AGENTS.md",
+    "okf/domains/pitch.md",
     "okf/ppd/glyph-forms.md",
+    "okf/related/tone-atlas.md",
+    "okf/related/chromatic-clock.md",
+    "okf/uniform-solfege/base-12-algebra.md",
+    "okf/related/coil-notation.md",
     "okf/ppd/index.md",
     "okf/ppd",
     "okf/uniform-solfege/diacritic-system.md",
     "okf/related/musicoil.md",
-    "okf/related/coil-notation.md",
     "docs/public/llms.txt",
     "docs/src/content/generated_topics/README.md",
     "docs/node_modules/axobject-query/lib/etc/objects/WindowRole.js",
@@ -218,12 +224,6 @@
     "docs/node_modules/micromark-extension-gfm-footnote/readme.md",
     "docs/node_modules/micromark-extension-gfm-autolink-literal/readme.md",
     "docs/node_modules/estree-util-visit/readme.md",
-    "docs/node_modules/estree-util-scope/readme.md",
-    "docs/node_modules/micromark-extension-mdxjs-esm/readme.md",
-    "docs/node_modules/micromark-factory-whitespace/readme.md",
-    "docs/node_modules/mdast-util-find-and-replace/readme.md",
-    "docs/node_modules/recma-parse/readme.md",
-    "docs/node_modules/hast-util-to-parse5/readme.md",
     "docs/public/favicon.svg",
     "docs/grateful-galaxy/public/favicon.svg",
     "resources/Logo.svg",
