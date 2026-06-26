@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PPT Components Test</title>
+  
+  <!-- Example of injecting styling guides via CSS variables -->
+  <style>
+    :root {
+      --ppt-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      --ppt-text-color: #2c3e50;
+      --ppt-period-bg: #f8f9fa;
+      --ppt-period-border: 2px solid #3498db;
+      --ppt-panel-bg: rgba(255, 255, 255, 0.95);
+      --ppt-panel-border: 1px solid #3498db;
+      --ppt-panel-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      --ppt-marker-bg: #ecf0f1;
+      --ppt-marker-border: 2px solid #2980b9;
+      --ppt-marker-hover-bg: #3498db;
+    }
+    
+    body {
+      font-family: var(--ppt-font-family);
+      color: var(--ppt-text-color);
+      padding: 2rem;
+      background: #e9ecef;
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+      align-items: center;
+    }
+  </style>
+
+  <!-- Import the components as ES modules directly -->
+  <script type="module" src="./src/index.ts"></script>
+</head>
+<body>
+
+  <h1>PPT Web Components Test</h1>
+
+  <section>
+    <h2>1. Base Period Component (Circle)</h2>
+    <ppt-period shape="circle" panel-align="floating">
+      <span slot="title">Period Container</span>
+      <span slot="body">A simple circular container.</span>
+      <div slot="panel">
+        <strong>Floating Panel</strong>
+        <p>This panel is attached to the component.</p>
+      </div>
+    </ppt-period>
+  </section>
+
+  <section>
+    <h2>2. Base Period Component (Line, Non-interactive)</h2>
+    <!-- Note: We apply interactive="false" -->
+    <ppt-period shape="line" interactive="false" panel-align="right">
+      <span slot="title">Linear Period</span>
+      <span slot="body">This component is entirely non-interactive.</span>
+      <div slot="panel">Right Aligned Panel</div>
+    </ppt-period>
+  </section>
+
+  <section>
+    <h2>3. Extended: Tonal Clock Component</h2>
+    <!-- The tonal clock extends BasePPTComponent and wraps PeriodComponent -->
+    <ppt-tonal-clock radius="200" interactive="true">
+      <span slot="title">Tonal Clock</span>
+      <span slot="body">12 Chromatic Degrees</span>
+      <div slot="panel">
+        <button onclick="alert('Panel button clicked')">Interactive Action</button>
+      </div>
+    </ppt-tonal-clock>
+  </section>
+
+</body>
+</html>

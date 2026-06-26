@@ -14,8 +14,6 @@ const { Content } = await render(entry);
 
 <Layout title={entry.data.title}>
   <article>
-    <h1>{entry.data.title}</h1>
-    {entry.data.description && <p class="description">{entry.data.description}</p>}
     <div class="content">
       <Content />
     </div>

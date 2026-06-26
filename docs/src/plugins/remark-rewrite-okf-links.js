@@ -1,31 +1,36 @@
 import { visit } from 'unist-util-visit';
 import path from 'path';
+import fs from 'fs';
 
 export function remarkRewriteOkfLinks() {
   return function (tree, file) {
-    visit(tree, 'link', (node) => {
-      // Only process relative markdown links
+    visit(tree, 'link', (node, index, parent) => {
       if (node.url && node.url.endsWith('.md') && !node.url.startsWith('http')) {
-        // Strip the .md extension
         let newUrl = node.url.replace(/\.md(#.*)?$/, '$1');
 
-        // Check if the current file is inside the 'okf' or 'docs' directory
-        const filePath = file.history[0] || '';
+        const filePath = (file.history[0] || '').replace(/\\/g, '/');
         
-        // If it's an OKF file, we can convert relative links to absolute site paths
-        // because the browser will mess up relative paths due to trailing slashes
-        if (filePath.includes('okf') || filePath.includes('docs')) {
-          const fileDir = path.dirname(filePath);
+        // Find the absolute path to the okf directory
+        const docsDir = process.cwd();
+        const rootDir = path.resolve(docsDir, '..');
+        const okfDir = path.join(rootDir, 'okf').replace(/\\/g, '/');
+        
+        let physicalFileDir = path.dirname(filePath);
+        
+        // If Astro passes a virtual path for the reference collection
+        if (!filePath.includes('/okf/') && filePath.includes('reference')) {
+            const relPath = filePath.substring(filePath.indexOf('reference') + 10);
+            physicalFileDir = path.dirname(path.join(okfDir, relPath));
+        }
+        
+        if (filePath.includes('/okf/') || filePath.includes('reference') || filePath.includes('docs')) {
+          const urlWithoutHash = node.url.split('#')[0];
+          const targetPath = path.resolve(physicalFileDir, urlWithoutHash).replace(/\\/g, '/');
           
-          // Resolve the link target's absolute path on disk
-          const targetPath = path.resolve(fileDir, node.url);
+          const fileExists = fs.existsSync(targetPath);
           
-          // Find where 'okf' is in the path to determine the relative URL
-          const okfIndex = targetPath.replace(/\\/g, '/').indexOf('/okf/');
-          if (okfIndex !== -1) {
-            // It's a link to another OKF file
-            let relativeToOkf = targetPath.replace(/\\/g, '/').substring(okfIndex + 5);
-            // Strip .md
+          if (targetPath.startsWith(okfDir)) {
+            let relativeToOkf = targetPath.substring(okfDir.length + 1);
             relativeToOkf = relativeToOkf.replace(/\.md(#.*)?$/, '$1');
             
             if (relativeToOkf === 'index') {
@@ -34,8 +39,17 @@ export function remarkRewriteOkfLinks() {
               node.url = `/reference/${relativeToOkf}`;
             }
           } else {
-            // Just strip .md for other relative links
             node.url = newUrl;
+          }
+
+          if (!fileExists) {
+            let text = '';
+            visit(node, 'text', (textNode) => { text += textNode.value; });
+            const htmlNode = {
+              type: 'html',
+              value: `<span class="disabled-link">${text}</span><span class="badge">Coming Soon</span>`
+            };
+            parent.children[index] = htmlNode;
           }
         } else {
           node.url = newUrl;

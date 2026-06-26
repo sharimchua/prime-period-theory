@@ -26,9 +26,9 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '') + '/';
         <a href={base} class="site-title">Prime Period Theory</a>
       </div>
       <nav>
-        <a href={`${base}reference`}>Reference</a>
         <a href={`${base}topics`}>Topics</a>
         <span class="nav-placeholder">Components (Soon)</span>
+        <a href={`${base}reference`}>Reference</a>
       </nav>
     </header>
     <main>
@@ -154,6 +154,27 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '') + '/';
     overflow-x: auto;
     font-size: 0.95rem;
     box-shadow: inset 0 1px 4px rgba(0,0,0,0.1);
+  }
+
+  .badge {
+    font-size: 0.8rem;
+    background: #e2e8f0;
+    color: #4a5568;
+    padding: 0.2rem 0.6rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 0.5rem;
+  }
+
+  .disabled-link {
+    opacity: 0.5;
+    cursor: not-allowed;
+    text-decoration: none;
+    color: inherit;
   }
 
   /* Table Styles */
