@@ -101,16 +101,14 @@ tension that resolves in one of exactly two ways.
 
 | Token | Role | Followed by |
 | ----- | ---- | ----------- |
-| Do    | Primary tonic anchor; block opener | Interior chain tokens or So |
+| Do    | Primary tonic anchor (Sam / "1"); block opener | Interior chain tokens or So |
 | Di    | Secondary tonic anchor (tritone sub); accent opener | Interior chain tokens or So or Do or Di |
 | So    | Cadential penultimate; block closer | Do or Di only |
 | Re, La, Mi, Si, Fi, Ra, ... | Interior chain tokens | Next step in chain toward So |
 
-**Do and Di are phonetically parallel** — both use the dental stop `D`,
-making them naturally percussive and accent-appropriate. This mirrors the
-role of `Ta` in Solkattu. Interior chain tokens (Re, La, Mi, Si, Fi, Ra)
-use liquids and nasals, which flow without demanding attention. So uses a
-fricative, which leads rather than lands — appropriate for a penultimate step.
+### Dental Isolation Principle
+
+Accent syllables (**Do**, **Di**) use dental consonants. All other Rhythmic Grammar syllables use labial, velar, or lateral consonants. This is a deliberate phonetic design: when vocalising rhythm (analogous to konnakol), the accent markers are perceptually salient against the background of non-dental syllables. A performer or teacher can dictate a rhythm verbally and the accent structure is immediately audible.
 
 ## Production rules
 
@@ -158,6 +156,15 @@ The shorthand rule: **write only the meaningful accent points; the grammar
 fills in the obligatory So boundaries.**
 
 ## Pattern reference
+
+### Block Length Families
+
+The Rhythmic Grammar encodes block lengths using Uniform Solfège interval names in two wholetone-scale families:
+
+- **2-multiple family (wholetone scale 1):** DoSo (2), DoLa (4), DoSi (6), DoRa (8), DoMe (10)
+- **Other prime lengths (wholetone scale 2):** DoRe (3), DoMi (5), DoFi (7), DoLe (9), DoLi (11)
+
+*Note: The 2-multiple family mapping to the wholetone scale is not incidental — it reflects PPT's core thesis that equal temporal division and equal pitch division are expressions of the same prime-2 periodicity.*
 
 ### Uniform blocks
 
@@ -223,6 +230,10 @@ Polyrhythm volume accents are a **solfège-wise AND operation** across layers:
 a beat receives maximum volume when it is a block boundary (Dox or Dix) in
 multiple simultaneous layers.
 
+### Polyrhythm in Three-Layer Coil Notation
+
+When multiple rhythm lines are stacked in Three-Layer Coil Notation, all Axis-marked Do/Di symbols across all lines serve as structural comparison points. The visual horizontal alignment of these markers across lines makes the phase relationship between rhythmic cycles directly readable — a 3-against-2 polyrhythm, for example, shows its Do markers offset by one column, making the hemiola structure visible without calculation.
+
 ## Written notation: the Axis diacritic
 
 In written Rhythmic Grammar, the structural anchor tokens Do and Di are
@@ -263,6 +274,10 @@ conventions chosen for phonetic clarity:
   practice (patterns of 8 beats or more are typically chained); Ra (♭2)
   appearing at step 7 is accepted as a compromise to preserve phonetic
   separation from Do/Di
+
+### The Li/Te Homoglyph
+
+**Li** and **Te** share the same Uniform Solfège glyph. In pitch solfège context, **Te** is used (the minor 7th). In Rhythmic Grammar context, **Li** is used to avoid introducing a dental consonant into the non-accent syllable stream. The notation is identical; the phonetic realisation is context-dependent.
 
 The phonetic hierarchy:
 
@@ -316,4 +331,5 @@ rhythm feel has no compact natural-language vocabulary.
 - [Prime Families](../foundations/prime-families.md) — the 2-prime and 3-prime families underlying swing and metre
 - [Diacritic System](../uniform-solfege/diacritic-system.md) — Axis diacritic definition and its secondary role in rhythmic notation
 - [Uniform Solfège Overview](../uniform-solfege/index.md) — the parent symbol system
+- [Three-Layer Coil Notation](coil-notation.md) — paper-writable surface syntax representing rhythmic layers
 - [MusiCoil](musicoil.md) — the spatial notation layer; Rhythmic Grammar as a companion rhythmic encoding

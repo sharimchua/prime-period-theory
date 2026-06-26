@@ -13,7 +13,7 @@ tags:
   - interval
   - clock-arithmetic
   - prime-period-theory
-timestamp: 2026-06-19
+timestamp: 2026-06-26
 ---
 
 # Uniform Solfège
@@ -125,7 +125,11 @@ Uniform Solfège extends into microtonal space through a **prime-family diacriti
 - **Approximation family**: Du (prime 2), a recursive binary subdivision system (e.g. `x` Axis bitmasks).
 - **Exact families**: Tri, Qui, Sep, UnDec (primes 3, 5, 7, 11) — providing exact rational targets.
 
-Each prime family uses distinct marks (triangles for Tri, ticks for Qui, circles for Sep, moons for UnDec) to subdivide the 100¢ semitone space.
+Each prime family uses distinct marks (triangles for Tri, ticks for Qui, circles for Sep, moons for UnDec) to subdivide the 100¢ semitone space. The system natively supports **3, 5, 7, and 11 limit divisions** between each solfège step. This yields a non-uniform but extremely high-resolution pitch lattice:
+
+- **Non-uniformity**: Prime-ratio spacing mirrors harmonic series density (intervals are not equally spaced).
+- **Resolution**: Total addressable pitch points across a full octave exceed 4,000 (12 chromatic positions × multi-limit divisions per step).
+- **Expressiveness**: This allows representation of 12-EDO (no diacritics), 72-EDO (verified multi-limit optimum), just intonation ratios directly, and points between all of these — within a single coherent symbol system.
 
 For example, the Tri (prime 3) family provides a 6-state system (÷6) that tiles the 72 EDO grid:
 
@@ -141,6 +145,19 @@ For example, the Tri (prime 3) family provides a 6-state system (÷6) that tiles
 This precise geometric and logical framework provides perceptually exact notation up to the 11-limit and algebraically complete remainder structures on the 4620 LCM grid.
 
 See [Diacritic System](diacritic-system.md) for the full specification.
+
+## Triple-Context Symbol Usage
+
+Uniform Solfège symbols serve three distinct contextual roles:
+
+1. **Pitch solfège** — standard movable-tonic pitch naming.
+2. **Harmonic notation** — chord roots and subscript alterations in the Three-Layer Coil Notation harmony layer.
+3. **Rhythmic Grammar syllables** — block-length naming (DoSo, DoRe, etc.) with phonetic conventions that diverge from pitch context.
+
+Two key principles govern this multi-context use:
+
+- **Dental isolation principle**: In Rhythmic Grammar, **Do** and **Di** are the only dental-consonant syllables. They are chosen deliberately so that accent markers pop out of the syllable stream when vocalised (analogous to konnakol). All other rhythmic syllables use labial, velar, or lateral consonants.
+- **The Li/Te homoglyph**: These share the same Uniform Solfège glyph but use different phonemes in rhythmic vs pitch context (**Li** in rhythmic grammar to avoid the dental T sound; **Te** in pitch solfège). The same glyph, different register.
 
 ## Relationship to existing solfège traditions
 
@@ -158,6 +175,7 @@ context and preference.
 
 ## See also
 
+- [Three-Layer Coil Notation](../related/coil-notation.md) — paper-writable surface syntax for the full PPT framework
 - [Diacritic System](diacritic-system.md) — microtonal inflection
 - [Geometric Basis](geometric-basis.md) — how symbols encode interval geometry
 - [Base-12 Algebra](base-12-algebra.md) — clock arithmetic and interval composition

@@ -84,6 +84,8 @@ interval relationships visually. The same symbols describe pitch intervals,
 rhythmic ratios, and prime-family relationships, because these are structurally
 the same objects at different timescales.
 
+Three-Layer Coil Notation provides a paper-writable surface syntax for the full PPT framework, making it accessible without digital tools — the handwriting register of the integrated system.
+
 Uniform Solfège is extended into microtonal space via a **six-state diacritic
 system** that tiles the 31 EDO and 72 EDO grids from 12TET anchor positions.
 
@@ -111,6 +113,7 @@ system** that tiles the 31 EDO and 72 EDO grids from 12TET anchor positions.
 - [72 EDO Grid](tuning/72-edo-grid.md) — the reference grid for diacritic placement
 
 ### Related systems
+- [Three-Layer Coil Notation](related/coil-notation.md) — paper-writable surface syntax unifying Uniform Solfège, Rhythmic Grammar, and MusiCoil into a three-layer grid
 - [Rhythmic Grammar](related/rhythmic-grammar.md) — formal encoding system for rhythmic grouping structure
 - [MusiCoil](related/musicoil.md) — spatial notation system; visual representation of PPT
 - [Tone Atlas](related/tone-atlas.md) — clock-face pitch relationship diagram

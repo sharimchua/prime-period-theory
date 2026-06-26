@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "okf/uniform-solfege/diacritic-system.md",
+                "file": "okf/related/coil-notation.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "diacritic-system"
+              "title": "coil-notation"
             }
           }
         ]
@@ -185,6 +185,10 @@
   },
   "active": "c327b305f09e59b5",
   "lastOpenFiles": [
+    "okf/uniform-solfege/diacritic-system.md",
+    "okf/related/musicoil.md",
+    "okf/related/coil-notation.md",
+    "docs/public/llms.txt",
     "docs/src/content/generated_topics/README.md",
     "docs/node_modules/axobject-query/lib/etc/objects/WindowRole.js",
     "docs/node_modules/axobject-query/lib/etc/objects/WebAreaRole.js",
@@ -195,14 +199,12 @@
     "docs/node_modules/axobject-query/lib/etc/objects/TermRole.js",
     "docs/node_modules/axobject-query/lib/etc/objects/TimerRole.js",
     "docs/node_modules/axobject-query/lib/etc/objects/ToolbarRole.js",
-    "docs/node_modules/axobject-query/lib/etc/objects/TreeRole.js",
     "docs/dist/logo.svg",
     "docs/dist/favicon.svg",
     "docs/public/logo.svg",
     "docs/README.md",
     "docs/CLAUDE.md",
     "docs/AGENTS.md",
-    "okf/uniform-solfege/diacritic-system.md",
     "docs/templates/topics/README.md",
     "docs/node_modules/hast-util-to-estree/readme.md",
     "docs/node_modules/parse-latin/readme.md",
@@ -222,7 +224,6 @@
     "docs/node_modules/hast-util-to-parse5/readme.md",
     "docs/node_modules/parse-entities/readme.md",
     "docs/node_modules/hast-util-raw/readme.md",
-    "docs/node_modules/mdast-util-gfm/readme.md",
     "docs/public/favicon.svg",
     "docs/grateful-galaxy/public/favicon.svg",
     "resources/Logo.svg",
