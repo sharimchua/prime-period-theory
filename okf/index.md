@@ -86,8 +86,12 @@ the same objects at different timescales.
 
 Three-Layer Coil Notation provides a paper-writable surface syntax for the full PPT framework, making it accessible without digital tools — the handwriting register of the integrated system.
 
-Uniform Solfège is extended into microtonal space via a **six-state diacritic
-system** that tiles the 31 EDO and 72 EDO grids from 12TET anchor positions.
+Uniform Solfège is extended into microtonal space via **Prime Period
+Diacritics (PPD)**, a standalone diacritic system grounded in prime-ratio
+subdivision of a period. PPD tiles the 72 EDO grid from 12TET anchor
+positions and is specified independently of Uniform Solfège so it can be
+applied to other notational contexts — including rhythmic duration and
+amplitude or effect envelopes.
 
 ## Concept map
 
@@ -106,6 +110,10 @@ system** that tiles the 31 EDO and 72 EDO grids from 12TET anchor positions.
 - [Diacritic System](uniform-solfege/diacritic-system.md) — the six-state microtonal extension
 - [Geometric Basis](uniform-solfege/geometric-basis.md) — how the character set encodes interval geometry
 - [Base-12 Algebra](uniform-solfege/base-12-algebra.md) — clock arithmetic and interval composition
+
+### Prime Period Diacritics
+- [Overview](ppd/index.md) — the standalone diacritic system for prime-ratio period subdivision
+- [Glyph Forms](ppd/glyph-forms.md) — visual specification for all prime families
 
 ### Tuning Systems
 - [Just Intonation](tuning/just-intonation.md) — prime ratios as pure intervals

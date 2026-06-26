@@ -125,6 +125,10 @@ playing techniques associated with blues and barbershop voicing.
 
 See [Timbre](../domains/timbre.md) for the full development.
 
+## Diacritics as prime-family subdivision
+
+The prime families are also the geometric and conceptual foundation for [Prime Period Diacritics](../ppd/index.md) (PPD). Each prime family maps to a distinct diacritic family used to mark fractional subdivisions between base periods, whether applied to pitch (as in Uniform Solfège), rhythmic duration, or other parameters.
+
 ## See also
 
 - [Periodicity](periodicity.md) — the underlying unifying phenomenon

@@ -22,11 +22,16 @@ relates-to:
 
 # Diacritic System
 
+> **Note:** The diacritic system described here is an application of
+> [Prime Period Diacritics (PPD)](../ppd/index.md) to Uniform Solfège pitch
+> space. Refer to PPD for the general specification; this document covers
+> Uniform Solfège-specific mappings only.
+
 ## Overview
 
-The Uniform Solfège diacritic system encodes sub-semitone pitch positions through a set of geometrically distinct, prime-family-specific marks applied to the base chromatic solfège glyphs. Each diacritic family corresponds to a prime number and subdivides the chromatic semitone (100¢) into exact rational intervals — no decimal approximation, no rounding.
+The Uniform Solfège diacritic system encodes sub-semitone pitch positions by applying Prime Period Diacritics (PPD) to the base chromatic solfège glyphs. Each diacritic family corresponds to a prime number and subdivides the chromatic semitone (100¢) into exact rational intervals — no decimal approximation, no rounding.
 
-The system comprises **two functionally distinct families**:
+The system is built on the PPD families: Du (Axis), DuTri, Tri, Qui, Sep, and Undec. It comprises **two functionally distinct groups**:
 
 - **Approximation family**: Du (prime 2), including Fractal Du — a recursive binary subdivision system
 - **Exact families**: Tri, Qui, Sep, UnDec (primes 3, 5, 7, 11) — fixed rational targets
@@ -52,101 +57,48 @@ The full range of any solfège symbol runs from **UnDecSub5** (≈ -90.91¢ from
 
 ---
 
-## Family 1: Du (Prime 2) — Approximation Family
+## Glyph Forms Summary
 
-Du is the prime-2 family. It is structurally distinct from the exact prime families — rather than targeting fixed JI ratios, it provides a **recursive binary subdivision** of the space between chromatic anchors. Du positions are dyadic rationals, which are dense in pitch space and can approximate any pitch to arbitrary precision with sufficient depth.
+For the full visual specification of diacritic shapes, see [PPD Glyph Forms](../ppd/glyph-forms.md). When applied to Uniform Solfège, these forms interact with the specific geometry of the solfège characters (the rotated U with decorated arms):
 
-### Du States
-
-| Name | Position | Description |
-|------|----------|-------------|
-| Base | 0¢ | Exact chromatic anchor — undecorated |
-| Axis | 50¢ | Midpoint — threshold of Du Fractal space |
-
-Axis is the entry point to the Fractal Du system, not a member of the Tri exact family.
-
-### Fractal Du
-
-Fractal Du subdivides the space between Base and Axis (and Axis and the next Base) via binary halving. Each level of subdivision is encoded as a **bitmask** on an extended axis crossbar:
-
-- **0** = flat side (withershins, toward Sub)
-- **1** = sharp side (clockwise, toward Sup)
-
-The path reads from most significant bit (coarsest split) to least significant bit (finest):
-
-```
-Depth 1 (÷4):   0 = 25¢       1 = 75¢
-Depth 2 (÷8):   00 = 12.5¢    01 = 37.5¢    10 = 62.5¢    11 = 87.5¢
-Depth 3 (÷16):  000 = 6.25¢   001 = 18.75¢  ...           111 = 93.75¢
-Depth 4 (÷32):  0000 = 3.125¢ ...                          1111 = 96.875¢
-```
-
-÷32 (depth 4) has precedent in 32nd-note notation and is included for completeness. ÷16 (depth 3) is at or below the threshold of pitch discrimination in most musical contexts (~6¢).
-
-**Bitmask algebraic properties:**
-- Bitwise NOT gives the tritone complement (structurally meaningful — 50¢ is the axis midpoint)
-- Bitwise AND gives the coarsest shared subdivision floor between two positions
-- Bitwise XOR gives the irreducible difference — the minimal ornamentation path
-- Carry propagation maps onto subdivision consolidation (two ⅛ steps = one ¼ step)
-
-**Visual encoding:** the axis crossbar is extended to provide legibility clearance for decorations. Direction is encoded by arrowhead/triangle orientation — clockwise for sharp side, withershins for flat side. Decoration count and position encode binary value, analogous to beam stacking in standard notation.
-
-### Shorthand Notation
-
-Fractal Du positions use the **Dox** shorthand, extending the existing DoAxis (Dox) convention:
-
-| Shorthand | Long form | Position |
-|-----------|-----------|----------|
-| Dox | DoAxis | 50¢ |
-| Doxo | DoAxis0 | 25¢ |
-| Doxi | DoAxis1 | 75¢ |
-| Doxoo | DoAxis00 | 12.5¢ |
-| Doxoi | DoAxis01 | 37.5¢ |
-| Doxio | DoAxis10 | 62.5¢ |
-| Doxii | DoAxis11 | 87.5¢ |
-
-The `x` marks the Axis threshold; `o` = 0 (flat side); `i` = 1 (sharp side). This convention extends to all solfège roots (Sox, Soxo, etc.). No delimiter is needed — solfège syllables terminate at non-numeric characters, preventing parsing conflict with Ra/Ti as chromatic syllables.
+| Family | Forms | Uniform Solfège Specifics |
+|--------|-------|---------------------------|
+| Du (Axis) | Horizontal stroke | Passes through the vertical arms of the base character. Extended for Fractal Du to provide legibility clearance. |
+| Tri / DuTri | Triangles | Attached at the base character perimeter. |
+| Qui | Triangle + T-cross | Pointing away from the base character perimeter. |
+| Sep | Ticks / capped strokes | Placed on the 3 o'clock side (positive) or 9 o'clock side (negative) of the base character. |
+| Undec | Moons | Placed at the cardinal points (3 o'clock or 9 o'clock). |
 
 ---
 
-## Family 2: Tri (Prime 3) — Exact Family
+## Pitch Position Mappings
 
-Tri is the prime-3 family. It is geometrically expressed as **two interlocking triangles** within the semitone, each with three points. Together they produce six evenly-spaced positions per semitone — the ÷6 subdivision required for 72-EDO coverage across all 12 chromatic tones.
+The following tables show how the PPD positions map specifically to cents from the Base chromatic anchor.
 
-**The ÷6 denominator** reflects the LCM of primes 2 and 3, providing the pathway to 72-EDO and 31-EDO support. Each individual triangle is a pure ÷3 structure.
+### Du (Prime 2) — Approximation Family
 
-### Two Triangles
+Fractal Du subdivides the space between Base and Axis via binary halving.
 
-**BaseTri** — triangle rooted at Base (point at 0¢):
-- Sub (−33.33¢ from Base): double-flat equivalent — the honest flat
-- HalfSub (−16.67¢ from Base): half-flat
-- Base (0¢): the chromatic anchor
+| Depth | Shorthand | Position (¢) |
+|-------|-----------|--------------|
+| 1 | Dox | 50¢ |
+| 2 | Doxo / Doxi | 25¢ / 75¢ |
+| 3 | Doxoo / Doxio | 12.5¢ / 62.5¢ |
 
-**AxisTri** — triangle rooted at Axis (point at 50¢):
-- HalfSup (+16.67¢ from Base): half-sharp  
-- Sup (+33.33¢ from Base): double-sharp equivalent — the honest sharp
-- Axis (50¢): Du threshold
+### Tri (Prime 3) — Exact Family
 
-### Full Tri Sequence
+Tri provides six evenly-spaced positions per semitone, combining to tile the 72 EDO grid.
 
-| Position | Triangle | ¢ from Base | Accidental analogy |
-|----------|----------|-------------|-------------------|
-| Sub | BaseTri | −33.33¢ | 𝄫 double flat |
-| HalfSub | AxisTri | −16.67¢ | ♭ flat |
-| Base | — | 0¢ | ♮ natural |
-| HalfSup | AxisTri | +16.67¢ | ♯ sharp |
-| Sup | BaseTri | +33.33¢ | 𝄪 double sharp |
-| Axis | Du | +50¢ | threshold |
+| Position | ¢ from Base | Accidental analogy |
+|----------|-------------|-------------------|
+| Sub | −33.33¢ | 𝄫 double flat |
+| HalfSub | −16.67¢ | ♭ flat |
+| Base | 0¢ | ♮ natural |
+| HalfSup | +16.67¢ | ♯ sharp |
+| Sup | +33.33¢ | 𝄪 double sharp |
+| Axis | +50¢ | threshold |
 
-**Naming rationale:** Sub/Sup are BaseTri members (wider deviation, double accidental weight). HalfSub/HalfSup are AxisTri members (narrower deviation, single accidental weight). The Half prefix directly communicates proximity to Base without requiring knowledge of triangle geometry.
-
-**Musical significance:** BaseTri Sub/Sup at ±33.33¢ are more honest representations of sharps and flats than 12-EDO's equal-tempered approximation. AxisTri HalfSub/HalfSup at ±16.67¢ provide genuine quarter-tone positions as first-class notation rather than extended-notation afterthoughts.
-
----
-
-## Family 3: Qui (Prime 5) — Exact Family
-
-Qui subdivides the semitone into 5 equal parts. Diacritics are built on the DuTri tick system with a crossed-line ornament.
+### Qui (Prime 5) — Exact Family
 
 | Position | ¢ from Base |
 |----------|-------------|
@@ -156,11 +108,7 @@ Qui subdivides the semitone into 5 equal parts. Diacritics are built on the DuTr
 | QuiSup1 / QuiSup | +20¢ |
 | QuiSup2 / HalfQuiSup | +40¢ |
 
----
-
-## Family 4: Sep (Prime 7) — Exact Family
-
-Sep subdivides the semitone into 7 equal parts. Diacritics extend the tick system with circle ornaments.
+### Sep (Prime 7) — Exact Family
 
 | Position | ¢ from Base |
 |----------|-------------|
@@ -172,33 +120,7 @@ Sep subdivides the semitone into 7 equal parts. Diacritics extend the tick syste
 | SepSup2 | +28.57¢ |
 | SepSup3 / HalfSepSup | +42.86¢ |
 
----
-
-## Family 5: UnDec (Prime 11) — Exact Family
-
-UnDec subdivides the semitone into 11 equal parts. Unlike other exact families, UnDec uses a **moon-based diacritic system** rather than tick-derived marks, providing five positions per side from Base.
-
-### Moon Diacritics
-
-The diacritics are constructed from circle and half-circle (moon) primitives placed at the perpendicular cardinal of the glyph:
-
-| Position | Diacritic | Visual |
-|----------|-----------|--------|
-| UnDecSub5 | Two waning moons | Openings toward Base — furthest from Axis |
-| UnDecSub4 | One waning moon | Opening toward Base |
-| UnDecSub3 | Full circle | Midpoint of Sub arc |
-| UnDecSub2 | One waxing moon | Opening toward Axis |
-| UnDecSub1 | Two waxing moons | Openings toward Axis — closest to Base |
-| Base | Undecorated | — |
-| UnDecSup1 | Two waxing moons | Mirror of Sub1 |
-| UnDecSup2 | One waxing moon | Mirror of Sub2 |
-| UnDecSup3 | Full circle | Midpoint of Sup arc |
-| UnDecSup4 | One waning moon | Mirror of Sub4 |
-| UnDecSup5 | Two waning moons | Mirror of Sub5 |
-
-**Waxing/waning direction encodes proximity:** moons opening toward Axis = closer to center; moons opening toward Base = further from center. The full circle at Sub3/Sup3 is the natural midpoint anchor. No conflict with Sep circles or Qui crosses — moon forms are geometrically distinct.
-
-**Boundary note:** UnDecSub5 at −90.91¢ is the first position of any solfège symbol. Its moon openings gesture toward the previous symbol's Axis — directionally honest at the boundary.
+### UnDec (Prime 11) — Exact Family
 
 | Position | ¢ from Base |
 |----------|-------------|
@@ -303,7 +225,6 @@ The system is perceptually complete at the diacritic layer, algebraically comple
 
 - Formal naming and catalogue of all PPT commas derivable from cross-family arithmetic
 - Decimal-place extension convention: notation for nested prime family diacritics as successive approximation digits
-- Complete glyph design specifications for Qui, Sep diacritics (tick variants)
 - FontForge implementation: GSUB lookup structure, GPOS axis-relative mark attachment anchors
 - PUA codepoint block allocation for MusiCoil
 

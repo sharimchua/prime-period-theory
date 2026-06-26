@@ -120,12 +120,12 @@ derivation principles.
 
 ## Microtonal extension
 
-Uniform Solfège extends into microtonal space through a **prime-family diacritic system**. It comprises two functionally distinct families:
+Uniform Solfège extends into microtonal space through a **prime-family diacritic system**. The microtonal extension layer uses [Prime Period Diacritics](../ppd/index.md), a system specified independently of Uniform Solfège and applicable across pitch, rhythm, and other periodic parameters. It comprises two functionally distinct families:
 
 - **Approximation family**: Du (prime 2), a recursive binary subdivision system (e.g. `x` Axis bitmasks).
 - **Exact families**: Tri, Qui, Sep, UnDec (primes 3, 5, 7, 11) — providing exact rational targets.
 
-Each prime family uses distinct marks (triangles for Tri, ticks for Qui, circles for Sep, moons for UnDec) to subdivide the 100¢ semitone space. The system natively supports **3, 5, 7, and 11 limit divisions** between each solfège step. This yields a non-uniform but extremely high-resolution pitch lattice:
+Each prime family uses distinct marks to subdivide the 100¢ semitone space. The system natively supports **3, 5, 7, and 11 limit divisions** between each solfège step. This yields a non-uniform but extremely high-resolution pitch lattice:
 
 - **Non-uniformity**: Prime-ratio spacing mirrors harmonic series density (intervals are not equally spaced).
 - **Resolution**: Total addressable pitch points across a full octave exceed 4,000 (12 chromatic positions × multi-limit divisions per step).
