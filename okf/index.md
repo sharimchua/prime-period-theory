@@ -31,6 +31,18 @@ creative freedom, PPT gives musicians and composers a coherent language for
 understanding the structural relationships in what they make — whether or not
 those words are the ones they would naturally reach for.
 
+This descriptive intent applies to PPT as a theoretical framework — it does
+not claim to replace Schenkerian analysis, Sagittal notation, raga theory,
+or any other system; it is one vantage point among many. The notation systems
+within PPT (Uniform Solfège, Rhythmic Grammar, Prime Period Diacritics) are,
+however, rigorously and necessarily defined. A shared notation is only useful
+as a communication and analytical tool if its conventions are precise and
+stable. "Just precise enough" is the design target: the systems are specified
+to the level of precision needed to be musically actionable and
+pedagogically useful, and no further. Rigour in the notation does not
+contradict the descriptive stance of the theory; it is what makes the theory
+usable.
+
 The framework makes no claim to be the only valid way of describing music. It
 sits alongside Western functional harmony, Schenkerian analysis, Indian raga
 theory, spectral music theory, and other descriptive traditions — each
@@ -143,6 +155,13 @@ PPT is in conversation with, not in competition with:
   operating within 12TET temperament
 
 ## Status
+
+**Scope note:** The prime family system (2, 3, 5, 7, 11) describes the
+intentional interval vocabulary available to a musician — what can be
+reliably produced and perceived as deliberate. It is not a complete
+spectral analysis system. Real instrument timbres contain partials beyond
+the 11-limit; PPT covers these partially and defers to dedicated spectral
+tools for full timbral analysis.
 
 This is a living document representing one person's evolving theoretical
 perspective. It is descriptive, not prescriptive. Contributions, critiques, and

@@ -21,34 +21,42 @@ This file specifies the visual form of each diacritic. The base figure (a circle
 
 Fractal Du depth is encoded as small triangle offsets on the Axis stroke:
 - Depth 1 (±1/2): plain stroke, no triangles
-- Depth 2 (±1/4): one small triangle on stroke, pointing toward nearer pole
-- Depth 3 (±1/8): two small triangles
-- Depth 4 (±1/16): three small triangles
+- Depth 2 (±1/4): one small triangle pointing to the perpendicular cardinal point (left for negative from midpoint, right for positive from midpoint)
+- Depth 3 (±1/8): one small triangle oriented perpendicular to the axis stroke (Up for positive, Down for negative) indicating which side of ±1/4 the position falls
+- Depth 4+ (±1/16, etc.): additional triangles continue to subdivide the space, creating a visual bitmask that navigates a binary tree
 
 ## Tri family
 
-Glyph: equilateral triangle attached at the base character perimeter.
+Glyph: equilateral triangle attached at the base character perimeter. Point at 6 o'clock (Base side, pointing away from Axis).
 
-- **Tri** (+1/3): point-up triangle, 2 ticks on either side of base character
-- **TriInv** (−1/3): point-down (inverted) triangle, 2 ticks
+- **TriSup** (+1/3): 2 ticks on the clockwise side (positive)
+- **TriSub** (−1/3): 2 ticks on the withershins side (negative)
 
-Tick count encodes magnitude: 2 ticks = full Tri distance from base.
+## AxisTri
 
-## DuTri family (fractal compound)
+Glyph: equilateral triangle attached at the base character perimeter. Point at 12 o'clock (Axis side, pointing toward Axis).
 
-Glyph: same triangle forms as Tri, with 1 tick (half the distance).
+- **AxisTriSup** (+1/6): 1 tick on the clockwise side
+- **AxisTriSub** (−1/6): 1 tick on the withershins side
 
-- **DuTri** (+1/6): point-up triangle, 1 tick
-- **DuTriInv** (−1/6): point-down triangle, 1 tick
+Tick count encodes proximity to the period midpoint — fewer ticks indicates closer to centre. This is consistent with the Sep glyph convention.
+
+## DuTri (compound)
+
+DuTri is not a prime family. It is the compound of Tri and AxisTri,
+providing six equal divisions of the period. Its motivation is coverage
+of the 72 EDO grid from 12-tone solfège anchor points. The glyph forms
+for DuTri are the Tri and AxisTri forms used together; there is no
+independent DuTri glyph.
 
 ## Qui family
 
 Glyph: triangle (same orientation encoding as Tri) with an outward-facing T-cross (capital T shape) on the diacritic, pointing away from the base character. Tick count encodes magnitude.
 
-- **Qui** (+1/5): point-up triangle + T-cross, 1 tick
-- **QuiInv** (−1/5): point-down triangle + T-cross, 1 tick
-- **Qui2** (+2/5): point-up triangle + T-cross, 2 ticks
-- **QuiInv2** (−2/5): point-down triangle + T-cross, 2 ticks
+- **QuiSup** (+1/5): point-up triangle + T-cross, 1 tick
+- **QuiSub** (−1/5): point-down triangle + T-cross, 1 tick
+- **QuiSup2** (+2/5): point-up triangle + T-cross, 2 ticks
+- **QuiSub2** (−2/5): point-down triangle + T-cross, 2 ticks
 
 ## Sep family
 

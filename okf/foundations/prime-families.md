@@ -90,6 +90,17 @@ both as a teaching structure and as the basis for [Uniform Solfège's
 geometric character set](../uniform-solfege/geometric-basis.md), which
 encodes each family as a distinct nested geometric form.
 
+This ceiling applies to PPT's description of *intentional musical
+vocabulary* — the pitches, intervals, and rhythmic subdivisions that a
+musician can reliably produce and a listener can perceive as deliberate
+rather than accidental. For spectral and timbral analysis of real
+instrument sounds, partials extend well beyond the 11-limit (13th, 17th,
+19th partials and above are physically present and analytically
+significant). PPT provides a useful partial description of the lowest-
+prime partials in a spectrum, but does not attempt to be a complete
+timbral analysis system. For full spectral work, dedicated spectral
+analysis frameworks are the appropriate tool. PPT is intentionally scoped.
+
 ## Interference and combination across families
 
 When two periodic signals from **the same prime family** interfere — for

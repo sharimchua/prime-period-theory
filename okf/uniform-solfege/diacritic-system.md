@@ -38,6 +38,16 @@ The system is built on the PPD families: Du (Axis), DuTri, Tri, Qui, Sep, and Un
 
 These two families are structurally and semantically separate and should not be conflated.
 
+> **Note on "Axis" across contexts:** The term Axis is used in three distinct
+> ways within the PPT framework. (1) As the Du-family glyph: the horizontal
+> crossbar at 50% of the period, the depth-1 Fractal Du position.
+> (2) As the shared upper boundary of every period symbol's range: 50% is
+> a common reference point across all families; DuTri inherits it as its
+> sixth position. (3) In Rhythmic Grammar: the Axis suffix on Do and Di
+> (written Dox, Dix) marks rhythmic block boundaries. This is a notational
+> convention of Rhythmic Grammar, not a microtonal inflection. The three
+> uses are contextually distinct and do not overlap.
+
 ---
 
 ## Reference Interval
@@ -53,7 +63,7 @@ Each solfège symbol owns a 100¢ space. The boundary conditions are:
 - **Base (0¢)**: the exact chromatic anchor — undecorated glyph
 - **Axis (50¢)**: the midpoint between chromatic anchors — the terminal point of the solfège range and threshold of the Du approximation space
 
-The full range of any solfège symbol runs from **UnDecSub5** (≈ -90.91¢ from the next Base) through to **Axis** (50¢). The first position of any solfège symbol is UnDecSub5, whose moon diacritics open toward the previous symbol's Axis — directionally honest across the boundary.
+The full range of any solfège symbol runs from **UnDecSub5** through to **Axis** (50¢). The widest negative reach of any diacritic is UnDecSub5 at −5/11 of the period (≈ −45.45%). This stays within the valid symbol range of (−50%, +50%] — the period boundary at −50% (the adjacent symbol's Axis) is never crossed or reached. The opening direction of the UnDecSub5 moon glyph (toward the previous symbol's Axis) is directionally honest: it signals proximity to −50%, the territory boundary, without crossing it.
 
 ---
 
@@ -142,31 +152,49 @@ Tri provides six evenly-spaced positions per semitone, combining to tile the 72 
 
 ### LCM Grid
 
-All family denominators taken together:
+The base grid is derived from the LCM of the exact prime family
+denominators: DuTri (÷6), Qui (÷5), Sep (÷7), and Undec (÷11).
+LCM(6, 5, 7, 11) = 2310 units per period. This grid is not per semitone
+specifically — it applies to any defined period: a solfège note's range,
+an octave, a rhythmic cycle, a dynamic envelope. Du and Fractal Du sit
+outside this grid as an approximation family; each depth of Fractal Du
+doubles the grid resolution, extending 2310 to 4620 (depth 1), 9240
+(depth 2), and so on.
 
-**LCM(6, 4, 5, 7, 11) = 4620 units per semitone**
+The exact prime families and their period subdivisions are:
 
-Including Fractal Du ÷32: **LCM × 32/4 = 9240 units per semitone**
+| Family | Subdivision |
+|---|---|
+| DuTri (compound of Tri + AxisTri) | ÷6 |
+| Qui | ÷5 |
+| Sep | ÷7 |
+| Undec | ÷11 |
 
-Every family's positions land exactly on the 4620 grid:
+Each family's step size on this grid:
 
 | Family | Grid units per step |
-|--------|-------------------|
-| DuTri (÷6) | 770 |
-| Fractal Du ÷4 | 1155 |
-| Qui (÷5) | 924 |
-| Sep (÷7) | 660 |
-| UnDec (÷11) | 420 |
+|---|---|
+| DuTri (÷6) | 385 |
+| Qui (÷5) | 462 |
+| Sep (÷7) | 330 |
+| Undec (÷11) | 210 |
+
+| Fractal Du depth | Total grid units per period |
+|---|---|
+| Depth 0 (exact families only) | 2310 |
+| Depth 1 (Axis included, ÷2) | 4620 |
+| Depth 2 (÷4) | 9240 |
+| Depth 3 (÷8) | 18480 |
 
 ### Cross-Family Arithmetic and Remainders
 
 Within-family arithmetic is always closed and exact — n/p ± m/p = (n±m)/p, always the same prime family.
 
-Cross-family arithmetic (e.g. a Qui point ± a Sep point) produces exact rationals on the 4620 grid but with denominators (e.g. 35, 55, 77) not covered by any single diacritic family. These residuals are **PPT commas** — irreducible gaps between prime families, exact and nameable.
+Cross-family arithmetic (e.g. a Qui point ± a Sep point) produces exact rationals on the 2310 grid (or 4620 at Fractal Du depth 1) but with denominators (e.g. 35, 55, 77) not covered by any single diacritic family. These residuals are **PPT commas** — irreducible gaps between prime families, exact and nameable.
 
 **Named commas identified:**
-- **Sep/UnDec comma**: 100/77¢ (≈1.30¢) — appears twice symmetrically around 50¢
-- **Sep/DuTri comma**: 100/42¢ (≈2.38¢)
+- **Sep/UnDec comma**: 1/77 of the period (≈ 1.30¢ per semitone). Derived from the gap between SepSup2 (2/7) and UnDecSup3 (3/11): 2/7 − 3/11 = 1/77. — appears twice symmetrically around 50¢
+- **Sep/DuTri comma**: 1/42 of the period (≈ 2.38¢ per semitone). Derived from the gap between SepSup1 (1/7) and DuTri HalfSup (1/6): 1/6 − 1/7 = 1/42.
 
 ### Do as Remainder Register
 
@@ -196,7 +224,7 @@ This is not a tensor product or direct sum — it is a **partition of rational p
 
 - **Perceptual layer**: primary diacritics to ~6¢ (Fractal Du ÷16)
 - **Performance layer**: Fractal Du ÷32 to ~3¢ — human-articulable in rhythm, audible in sustained pitch
-- **Algebraic layer**: 9240-grid remainders for exact cross-family arithmetic
+- **Algebraic layer**: 2310-grid remainders for exact cross-family arithmetic
 
 The system is perceptually complete at the diacritic layer, algebraically complete at the remainder layer, and theoretically open via decimal extension.
 
