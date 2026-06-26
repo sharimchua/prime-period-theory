@@ -1,0 +1,15 @@
+# Prime Period Theory (PPT)
+
+Prime Period Theory is a descriptive music theory framework grounded in prime-generated periodic relationships.
+
+## AI Agent Instructions
+
+The authoritative specification for this framework is formatted as an OKF (Open Knowledge Format) Knowledge Bundle.
+
+The complete bundle is available in raw Markdown format at the `/okf/` path on this site. You can use these files to understand the framework's architecture, concepts, and diacritic system.
+
+- **Entry Point**: [/okf/index.md](/okf/index.md)
+- **Foundations**: [/okf/foundations/index.md](/okf/foundations/index.md)
+- **Uniform Solfège**: [/okf/uniform-solfege/index.md](/okf/uniform-solfege/index.md)
+
+All relative markdown links within these files correspond directly to the `/okf/` path structure.

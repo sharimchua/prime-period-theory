@@ -30,6 +30,8 @@ jobs:
       - name: Build Astro
         working-directory: docs
         run: npm run build
+      - name: Copy OKF bundle for AI agents
+        run: cp -r okf docs/dist/okf
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact
