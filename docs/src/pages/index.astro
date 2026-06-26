@@ -1,0 +1,64 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const referenceEntries = await getCollection('reference');
+const topicEntries = await getCollection('topics');
+---
+
+<Layout title="Home">
+  <h1>Prime Period Theory Documentation</h1>
+  <p>Welcome to the compiled documentation for the Prime Period Theory (PPT). This site serves two purposes:</p>
+  
+  <div class="grid">
+    <div class="card">
+      <h2>Curated Topics</h2>
+      <p>Pedagogical guides and synthesized lessons.</p>
+      <ul>
+        {topicEntries.map(topic => (
+          <li>
+            <a href={`/topics/${topic.id}`}>{topic.data.title}</a>
+          </li>
+        ))}
+      </ul>
+      {topicEntries.length === 0 && <p><em>No topics generated yet.</em></p>}
+    </div>
+
+    <div class="card">
+      <h2>Reference Knowledge</h2>
+      <p>The canonical 1:1 mapping of the OKF bundle.</p>
+      <ul>
+        {referenceEntries.map(ref => (
+          <li>
+            <a href={`/reference/${ref.id}`}>{ref.data.title}</a>
+          </li>
+        ))}
+      </ul>
+      {referenceEntries.length === 0 && <p><em>No reference entries found.</em></p>}
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  @media (min-width: 768px) {
+    .grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    border: 1px solid #e2e8f0;
+  }
+  .card h2 {
+    margin-top: 0;
+  }
+</style>

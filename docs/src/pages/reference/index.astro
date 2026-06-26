@@ -1,0 +1,35 @@
+---
+import { getEntry, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+// Fetch the index.md from the reference collection
+const entry = await getEntry('reference', 'index');
+
+if (!entry) {
+  throw new Error('Reference index not found. Make sure okf/index.md exists.');
+}
+
+const { Content } = await render(entry);
+---
+
+<Layout title={entry.data.title}>
+  <article>
+    <h1>{entry.data.title}</h1>
+    {entry.data.description && <p class="description">{entry.data.description}</p>}
+    <div class="content">
+      <Content />
+    </div>
+  </article>
+</Layout>
+
+<style>
+  .description {
+    font-size: 1.125rem;
+    color: #475569;
+    margin-bottom: 2rem;
+    font-style: italic;
+  }
+  .content {
+    margin-top: 2rem;
+  }
+</style>

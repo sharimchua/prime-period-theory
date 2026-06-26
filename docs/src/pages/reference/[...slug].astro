@@ -1,0 +1,39 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const referenceEntries = await getCollection('reference');
+  return referenceEntries
+    .filter(entry => entry.id !== 'index')
+    .map(entry => ({
+      params: { slug: entry.id },
+      props: { entry },
+    }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<Layout title={entry.data.title}>
+  <article>
+    <h1>{entry.data.title}</h1>
+    {entry.data.description && <p class="description">{entry.data.description}</p>}
+    <div class="content">
+      <Content />
+    </div>
+  </article>
+</Layout>
+
+<style>
+  .description {
+    font-size: 1.125rem;
+    color: #475569;
+    margin-bottom: 2rem;
+    font-style: italic;
+  }
+  .content {
+    margin-top: 2rem;
+  }
+</style>
