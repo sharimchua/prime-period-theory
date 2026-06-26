@@ -2,233 +2,311 @@
 type: concept
 title: Uniform Solfège — Diacritic System
 description: >
-  The six-state diacritic system extends Uniform Solfège into microtonal
-  space, tiling the 31 EDO and 72 EDO grids from 12TET anchor positions
-  using suffixes that are visually self-documenting.
+  The Uniform Solfège diacritic system encodes sub-semitone pitch positions through a set of geometrically distinct, prime-family-specific marks applied to the base chromatic solfège glyphs.
 tags:
   - uniform-solfege
   - diacritics
   - microtonality
-  - 31-edo
-  - 72-edo
+  - prime-families
   - notation
   - prime-period-theory
 timestamp: 2026-06-26
+status: active
+version: 2.0
+relates-to:
+  - uniform-solfege/geometric-basis
+  - uniform-solfege/base-12-algebra
+  - foundations/prime-families
+  - tuning/72-edo-grid
 ---
 
 # Diacritic System
 
-## Purpose
+## Overview
 
-The twelve base positions of Uniform Solfège anchor the 12TET chromatic
-scale. To reach microtonal positions — the intervals of 31 EDO, 72 EDO, or
-just intonation ratios that fall between 12TET steps — a systematic diacritic
-system extends each base position into a local neighbourhood of six states.
+The Uniform Solfège diacritic system encodes sub-semitone pitch positions through a set of geometrically distinct, prime-family-specific marks applied to the base chromatic solfège glyphs. Each diacritic family corresponds to a prime number and subdivides the chromatic semitone (100¢) into exact rational intervals — no decimal approximation, no rounding.
 
-The design requirement was that the diacritics be **visually self-documenting**:
-the suffix character itself should suggest its function, so that a musician
-encountering an unfamiliar inflected symbol can make an educated guess without
-consulting a reference.
+The system comprises **two functionally distinct families**:
 
-## The six states
+- **Approximation family**: Du (prime 2), including Fractal Du — a recursive binary subdivision system
+- **Exact families**: Tri, Qui, Sep, UnDec (primes 3, 5, 7, 11) — fixed rational targets
 
-Each base solfège position can take one of six states, indicated by a suffix:
+These two families are structurally and semantically separate and should not be conflated.
 
-| Suffix | State name | Direction | Semitone offset | Visual mnemonic |
-|---|---|---|---|---|
-| `b` | Sub2 | ↓↓ | −2 steps | B = notehead with upward tail → sits lower on staff |
-| `eb` | Sub1 | ↓ | −1 step | Between base and Sub2 |
-| *(none)* | Base | — | 0 | The 12TET anchor position |
-| `p` | Sup1 | ↑ | +1 step | P = notehead with downward tail → sits higher on staff |
-| `ep` | Sup2 | ↑↑ | +2 steps | Between base and Axis |
-| `x` | Axis | ⊕ | +3 steps | X = crossing point, equidistant between two 12TET positions |
+---
 
-### On the mnemonic design
+## Reference Interval
 
-The three suffix characters are not arbitrary:
+All diacritics operate within a single chromatic semitone. The reference interval is **100¢** (one semitone), consistent across all prime families. The base solfège syllables (Do, Di, Re, Ri, Me, Mi, Fi, Se, So, Si, La, Ti) are the shared zero-reference points — chromatic anchors common to all families.
 
-**`b` (Sub2 / double-flat):** The letter B, when written, resembles a
-notehead with a stem pointing upward — the typographic convention for a note
-positioned *lower* on a staff. The sub- (flattening) direction is encoded
-in the letterform.
+---
 
-**`p` (Sup1 / sharp):** The letter P, when written, resembles a notehead
-with a stem pointing downward — conventionally *higher* on a staff. The
-sup- (sharpening) direction is encoded in the letterform.
+## Solfège Symbol Range
 
-**`x` (Axis):** The letter X suggests a crossing point, an intersection,
-a boundary between two territories. The axis position is exactly equidistant
-between two adjacent 12TET positions — it belongs to neither, and crosses
-between them. The X also visually suggests a multiplication or modular
-intersection in the arithmetic sense.
+Each solfège symbol owns a 100¢ space. The boundary conditions are:
 
-This means the suffix letters are **iconically motivated** — they depict their
-function — rather than arbitrarily assigned. A musician reading `Sob` can
-infer "So, lowered" from the letterform before knowing the formal rule.
+- **Base (0¢)**: the exact chromatic anchor — undecorated glyph
+- **Axis (50¢)**: the midpoint between chromatic anchors — the terminal point of the solfège range and threshold of the Du approximation space
 
-## Naming convention
+The full range of any solfège symbol runs from **UnDecSub5** (≈ -90.91¢ from the next Base) through to **Axis** (50¢). The first position of any solfège symbol is UnDecSub5, whose moon diacritics open toward the previous symbol's Axis — directionally honest across the boundary.
 
-A fully inflected position is written as `[base][suffix]`:
+---
 
-```
-Dob    — Do, Sub2 (two steps flat of Do)
-Doeb   — Do, Sub1 (one step flat of Do)
-Do     — Do, Base (standard 12TET position)
-Dop    — Do, Sup1 (one step sharp of Do)
-Doep   — Do, Sup2 (two steps sharp of Do)
-Dox    — Do, Axis (midpoint between Do and Ra)
-```
+## Family 1: Du (Prime 2) — Approximation Family
 
-The same pattern applies to every base position:
+Du is the prime-2 family. It is structurally distinct from the exact prime families — rather than targeting fixed JI ratios, it provides a **recursive binary subdivision** of the space between chromatic anchors. Du positions are dyadic rationals, which are dense in pitch space and can approximate any pitch to arbitrary precision with sufficient depth.
+
+### Du States
+
+| Name | Position | Description |
+|------|----------|-------------|
+| Base | 0¢ | Exact chromatic anchor — undecorated |
+| Axis | 50¢ | Midpoint — threshold of Du Fractal space |
+
+Axis is the entry point to the Fractal Du system, not a member of the Tri exact family.
+
+### Fractal Du
+
+Fractal Du subdivides the space between Base and Axis (and Axis and the next Base) via binary halving. Each level of subdivision is encoded as a **bitmask** on an extended axis crossbar:
+
+- **0** = flat side (withershins, toward Sub)
+- **1** = sharp side (clockwise, toward Sup)
+
+The path reads from most significant bit (coarsest split) to least significant bit (finest):
 
 ```
-Reb  Reeb  Re  Rep  Reep  Rex
-Mib  Mieb  Mi  Mip  Miep  Mix
-Fab  Faeb  Fa  Fap  Faep  Fax
-...
+Depth 1 (÷4):   0 = 25¢       1 = 75¢
+Depth 2 (÷8):   00 = 12.5¢    01 = 37.5¢    10 = 62.5¢    11 = 87.5¢
+Depth 3 (÷16):  000 = 6.25¢   001 = 18.75¢  ...           111 = 93.75¢
+Depth 4 (÷32):  0000 = 3.125¢ ...                          1111 = 96.875¢
 ```
 
-## Mapping to 31 EDO
+÷32 (depth 4) has precedent in 32nd-note notation and is included for completeness. ÷16 (depth 3) is at or below the threshold of pitch discrimination in most musical contexts (~6¢).
 
-In 31 EDO, the octave is divided into 31 equal steps. The 12TET chromatic
-scale maps onto 31 EDO with each semitone spanning either 2 or 3 steps
-(since 31 ÷ 12 ≈ 2.58). The diacritic system tiles these steps as follows:
+**Bitmask algebraic properties:**
+- Bitwise NOT gives the tritone complement (structurally meaningful — 50¢ is the axis midpoint)
+- Bitwise AND gives the coarsest shared subdivision floor between two positions
+- Bitwise XOR gives the irreducible difference — the minimal ornamentation path
+- Carry propagation maps onto subdivision consolidation (two ⅛ steps = one ¼ step)
 
-The 31 EDO grid, organised by 12TET interval category:
+**Visual encoding:** the axis crossbar is extended to provide legibility clearance for decorations. Direction is encoded by arrowhead/triangle orientation — clockwise for sharp side, withershins for flat side. Decoration count and position encode binary value, analogous to beam stacking in standard notation.
 
-| Interval | 12TET position | 31 EDO steps | Diacritic states used |
-|---|---|---|---|
-| Tonic | Do (0) | 0 | Do |
-| | | 1 | Dop |
-| Minor 2nd | Ra (1) | 2 | Ra / Dox |
-| | | 3 | Rep |
-| Major 2nd | Re (2) | 4 | Reep / Re |
-| | | 5 | Rip |
-| Minor 3rd | Me (3) | 7 | Me |
-| ... | ... | ... | ... |
+### Shorthand Notation
 
-*A complete 31-position table appears in [31 EDO](../tuning/31-edo.md).*
+Fractal Du positions use the **Dox** shorthand, extending the existing DoAxis (Dox) convention:
 
-The key property is that the six diacritic states are **sufficient** to reach
-every 31 EDO position from the nearest 12TET anchor, without needing
-additional suffixes or a separate naming scheme.
+| Shorthand | Long form | Position |
+|-----------|-----------|----------|
+| Dox | DoAxis | 50¢ |
+| Doxo | DoAxis0 | 25¢ |
+| Doxi | DoAxis1 | 75¢ |
+| Doxoo | DoAxis00 | 12.5¢ |
+| Doxoi | DoAxis01 | 37.5¢ |
+| Doxio | DoAxis10 | 62.5¢ |
+| Doxii | DoAxis11 | 87.5¢ |
 
-## Mapping to 72 EDO
+The `x` marks the Axis threshold; `o` = 0 (flat side); `i` = 1 (sharp side). This convention extends to all solfège roots (Sox, Soxo, etc.). No delimiter is needed — solfège syllables terminate at non-numeric characters, preventing parsing conflict with Ra/Ti as chromatic syllables.
 
-72 EDO divides each 12TET semitone into exactly 6 equal steps. This maps
-perfectly onto the six diacritic states:
+---
 
-```
-[base]b   →  −2/6 semitone  (−33 cents)
-[base]eb  →  −1/6 semitone  (−17 cents)
-[base]    →   0              (0 cents)
-[base]p   →  +1/6 semitone  (+17 cents)
-[base]ep  →  +2/6 semitone  (+33 cents)
-[base]x   →  +3/6 semitone  (+50 cents, the axis)
-```
+## Family 2: Tri (Prime 3) — Exact Family
 
-6 states × 12 positions = **72 positions** — exactly the 72 EDO grid.
+Tri is the prime-3 family. It is geometrically expressed as **two interlocking triangles** within the semitone, each with three points. Together they produce six evenly-spaced positions per semitone — the ÷6 subdivision required for 72-EDO coverage across all 12 chromatic tones.
 
-This is why 72 EDO serves as the reference grid for the diacritic system.
-The six-state system was designed to tile 72 EDO completely, with 31 EDO
-as the primary practical target and 72 EDO as the theoretical reference frame.
+**The ÷6 denominator** reflects the LCM of primes 2 and 3, providing the pathway to 72-EDO and 31-EDO support. Each individual triangle is a pure ÷3 structure.
 
-## The axis position
+### Two Triangles
 
-The axis (suffix `x`) deserves special attention. At +50 cents from the base
-position, it sits at the exact midpoint between two adjacent 12TET semitones.
-It is not a sharpened version of the base note, nor a flattened version of the
-next note — it is equidistant from both.
+**BaseTri** — triangle rooted at Base (point at 0¢):
+- Sub (−33.33¢ from Base): double-flat equivalent — the honest flat
+- HalfSub (−16.67¢ from Base): half-flat
+- Base (0¢): the chromatic anchor
 
-This interval is musically significant:
+**AxisTri** — triangle rooted at Axis (point at 50¢):
+- HalfSup (+16.67¢ from Base): half-sharp  
+- Sup (+33.33¢ from Base): double-sharp equivalent — the honest sharp
+- Axis (50¢): Du threshold
 
-- In 31 EDO, the axis positions correspond to the **neutral intervals** —
-  neutral second, neutral third, neutral sixth, neutral seventh — that appear
-  in Arabic maqam, Turkish makam, and some Indian ragas
-- In just intonation, neutral intervals arise from the **11-prime family**
-  (ratios involving the prime 11, such as 11/8 and 12/11)
-- The axis is therefore the point where the 11-prime family enters the system
+### Full Tri Sequence
 
-The X suffix encoding this as a "crossing point" is therefore theoretically
-precise: the axis is where the 5-limit diatonic world crosses into the
-11-limit neutral world.
+| Position | Triangle | ¢ from Base | Accidental analogy |
+|----------|----------|-------------|-------------------|
+| Sub | BaseTri | −33.33¢ | 𝄫 double flat |
+| HalfSub | AxisTri | −16.67¢ | ♭ flat |
+| Base | — | 0¢ | ♮ natural |
+| HalfSup | AxisTri | +16.67¢ | ♯ sharp |
+| Sup | BaseTri | +33.33¢ | 𝄪 double sharp |
+| Axis | Du | +50¢ | threshold |
 
-## Axis in Rhythmic Grammar
+**Naming rationale:** Sub/Sup are BaseTri members (wider deviation, double accidental weight). HalfSub/HalfSup are AxisTri members (narrower deviation, single accidental weight). The Half prefix directly communicates proximity to Base without requiring knowledge of triangle geometry.
 
-The Axis diacritic (`x`) has a secondary role in **Rhythmic Grammar** notation,
-distinct from its microtonal pitch function.
+**Musical significance:** BaseTri Sub/Sup at ±33.33¢ are more honest representations of sharps and flats than 12-EDO's equal-tempered approximation. AxisTri HalfSub/HalfSup at ±16.67¢ provide genuine quarter-tone positions as first-class notation rather than extended-notation afterthoughts.
 
-In Rhythmic Grammar, the structural anchor tokens Do and Di are written with
-the Axis suffix — **Dox** (primary tonic anchor) and **Dix** (secondary
-tritone accent anchor) — to visually mark block boundaries within a rhythm
-string:
+---
 
-```
-Dox–Re–Dix–So     (written form of DoReDiSo, a 3+2 pattern)
-Dox–So–Dix–Re–So  (written form of DoSoDiRe, a 2+3 pattern)
-```
+## Family 3: Qui (Prime 5) — Exact Family
 
-The spoken form drops the suffix entirely: Dox is spoken as "Do", Dix as "Di".
-The `x` mark is a notational aid for visual scanning, not a phonetic instruction.
+Qui subdivides the semitone into 5 equal parts. Diacritics are built on the DuTri tick system with a crossed-line ornament.
 
-This use is consistent with the Axis diacritic's core semantics as a
-**crossing point** — Dox and Dix are boundaries between rhythmic blocks,
-points where the cadential direction changes. In this context the `x`
-signals structural transition rather than microtonal inflection.
+| Position | ¢ from Base |
+|----------|-------------|
+| QuiSub2 / HalfQuiSub | −40¢ |
+| QuiSub1 / QuiSub | −20¢ |
+| Base | 0¢ |
+| QuiSup1 / QuiSup | +20¢ |
+| QuiSup2 / HalfQuiSup | +40¢ |
 
-A practical consequence: scanning any written rhythm string for `x` characters
-immediately reveals its block architecture. This is analogous to using `x`
-as a structural flag in a bitmask — the Axis tokens are the accent layer;
-the remaining tokens are the interior chain.
+---
 
-The two uses of `x` (microtonal +3 steps in pitch space; block boundary marker
-in rhythmic grammar) are contextually unambiguous: pitch-space notation uses
-`x` on any base syllable; rhythmic grammar restricts `x` to Do and Di only.
+## Family 4: Sep (Prime 7) — Exact Family
 
-See [Rhythmic Grammar](../related/rhythmic-grammar.md) for the full system specification.
+Sep subdivides the semitone into 7 equal parts. Diacritics extend the tick system with circle ornaments.
 
-## Relationship to the geometric character set
+| Position | ¢ from Base |
+|----------|-------------|
+| SepSub3 / HalfSepSub | −42.86¢ |
+| SepSub2 | −28.57¢ |
+| SepSub1 / SepSub | −14.29¢ |
+| Base | 0¢ |
+| SepSup1 / SepSup | +14.29¢ |
+| SepSup2 | +28.57¢ |
+| SepSup3 / HalfSepSup | +42.86¢ |
 
-The diacritics are designed to integrate with the geometric base characters.
-When a base character is inflected:
+---
 
-- The **sub- inflections** (b, eb) visually lower or diminish the base form
-- The **sup- inflections** (p, ep) visually raise or augment the base form  
-- The **axis** (x) adds a crossing or intersection to the base form
+## Family 5: UnDec (Prime 11) — Exact Family
 
-This means the *written form* of an inflected note encodes both the interval
-family (from the base character's geometry) and the direction and degree of
-inflection (from the suffix). A trained reader of Uniform Solfège can parse
-both dimensions of information from the written symbol simultaneously.
+UnDec subdivides the semitone into 11 equal parts. Unlike other exact families, UnDec uses a **moon-based diacritic system** rather than tick-derived marks, providing five positions per side from Base.
 
-See [Geometric Basis](geometric-basis.md) for the full account of how base
-character geometry encodes interval relationships.
+### Moon Diacritics
 
-## 31 EDO as illustrated
+The diacritics are constructed from circle and half-circle (moon) primitives placed at the perpendicular cardinal of the glyph:
 
-The diagram below shows the full 31 EDO grid as drawn in the original
-hand notation, organised into five interval rows:
+| Position | Diacritic | Visual |
+|----------|-----------|--------|
+| UnDecSub5 | Two waning moons | Openings toward Base — furthest from Axis |
+| UnDecSub4 | One waning moon | Opening toward Base |
+| UnDecSub3 | Full circle | Midpoint of Sub arc |
+| UnDecSub2 | One waxing moon | Opening toward Axis |
+| UnDecSub1 | Two waxing moons | Openings toward Axis — closest to Base |
+| Base | Undecorated | — |
+| UnDecSup1 | Two waxing moons | Mirror of Sub1 |
+| UnDecSup2 | One waxing moon | Mirror of Sub2 |
+| UnDecSup3 | Full circle | Midpoint of Sup arc |
+| UnDecSup4 | One waning moon | Mirror of Sub4 |
+| UnDecSup5 | Two waning moons | Mirror of Sub5 |
 
-```
-Row 1 — Tonic / Second   (positions  0– 6):  Do family
-Row 2 — Third            (positions  7–12):  Mi/Me family  
-Row 3 — Fourth/Tritone/Fifth (positions 13–19): Fa/So family
-Row 4 — Sixth            (positions 20–25):  La family
-Row 5 — Seventh          (positions 26–30):  Ti/Te family
-```
+**Waxing/waning direction encodes proximity:** moons opening toward Axis = closer to center; moons opening toward Base = further from center. The full circle at Sub3/Sup3 is the natural midpoint anchor. No conflict with Sep circles or Qui crosses — moon forms are geometrically distinct.
 
-The visual mirroring between Row 1 (Tonic/Second) and Row 5 (Seventh)
-reflects interval complementarity: sevenths and seconds sum to the octave
-(Do). The arch shapes of Row 3 (Fourth/Tritone/Fifth) reflect the
-symmetric position of the tritone as the axis of the chromatic octave.
-This complementarity is a **by-product of the geometric derivation**, not
-an explicit design decision — the geometry of the chromatic circle produces
-these symmetries naturally in the character forms.
+**Boundary note:** UnDecSub5 at −90.91¢ is the first position of any solfège symbol. Its moon openings gesture toward the previous symbol's Axis — directionally honest at the boundary.
 
-## See also
+| Position | ¢ from Base |
+|----------|-------------|
+| UnDecSub5 | −90.91¢ |
+| UnDecSub4 | −81.82¢ |
+| UnDecSub3 | −72.73¢ |
+| UnDecSub2 | −63.64¢ |
+| UnDecSub1 | −54.55¢ |
+| Base | 0¢ |
+| UnDecSup1 | +9.09¢ |
+| UnDecSup2 | +18.18¢ |
+| UnDecSup3 | +27.27¢ |
+| UnDecSup4 | +36.36¢ |
+| UnDecSup5 | +45.45¢ |
 
-- [Uniform Solfège Overview](index.md)
-- [Geometric Basis](geometric-basis.md) — how the base characters encode geometry
-- [31 EDO](../tuning/31-edo.md) — complete position mapping
-- [72 EDO Grid](../tuning/72-edo-grid.md) — the reference grid
-- [Prime Families](../foundations/prime-families.md) — especially the 11-prime / axis relationship
+---
+
+## Universal Grid and Remainder System
+
+### LCM Grid
+
+All family denominators taken together:
+
+**LCM(6, 4, 5, 7, 11) = 4620 units per semitone**
+
+Including Fractal Du ÷32: **LCM × 32/4 = 9240 units per semitone**
+
+Every family's positions land exactly on the 4620 grid:
+
+| Family | Grid units per step |
+|--------|-------------------|
+| DuTri (÷6) | 770 |
+| Fractal Du ÷4 | 1155 |
+| Qui (÷5) | 924 |
+| Sep (÷7) | 660 |
+| UnDec (÷11) | 420 |
+
+### Cross-Family Arithmetic and Remainders
+
+Within-family arithmetic is always closed and exact — n/p ± m/p = (n±m)/p, always the same prime family.
+
+Cross-family arithmetic (e.g. a Qui point ± a Sep point) produces exact rationals on the 4620 grid but with denominators (e.g. 35, 55, 77) not covered by any single diacritic family. These residuals are **PPT commas** — irreducible gaps between prime families, exact and nameable.
+
+**Named commas identified:**
+- **Sep/UnDec comma**: 100/77¢ (≈1.30¢) — appears twice symmetrically around 50¢
+- **Sep/DuTri comma**: 100/42¢ (≈2.38¢)
+
+### Do as Remainder Register
+
+Any cross-family arithmetic remainder is sub-semitone by definition, so it always fits within the diacritic space. **Do (Base) is the canonical remainder register** — remainders are expressed as Do-anchored sub-glyphs regardless of which chromatic syllable hosts the primary diacritic.
+
+This gives a natural **canonical form** for any pitch:
+1. Base chromatic syllable — coarse position
+2. Prime family diacritic — fine position within semitone
+3. Do-anchored remainder sub-glyph — cross-family arithmetic residual (if needed)
+
+The remainder sub-glyph occupies the **descent zone** of the host glyph (see Glyph Architecture). The Do-remainder is always a U-form (Do-oriented arc) since remainders are always Do-anchored — the descent zone is semantically typed, never ambiguous.
+
+---
+
+## Poly-Base Structure
+
+The diacritic families form a **parallel multi-base coordinate system** on the same pitch line, unified at the chromatic anchor points. Key properties:
+
+- Bases are **parallel**, not hierarchical (unlike mixed-radix systems)
+- Moduli (2, 3, 5, 7, 11) are **coprime** — unique reconstruction from residues (cf. Chinese Remainder Theorem)
+- Chromatic anchors are the **common zeros** across all families
+- Diacritics are **mutually exclusive** — each pitch carries one family's diacritic only
+
+This is not a tensor product or direct sum — it is a **partition of rational pitch space by prime family**, unified at the integers. No standard algebraic name exists for this structure; it is defined here as a foundational PPT construct.
+
+### Practical Coverage
+
+- **Perceptual layer**: primary diacritics to ~6¢ (Fractal Du ÷16)
+- **Performance layer**: Fractal Du ÷32 to ~3¢ — human-articulable in rhythm, audible in sustained pitch
+- **Algebraic layer**: 9240-grid remainders for exact cross-family arithmetic
+
+The system is perceptually complete at the diacritic layer, algebraically complete at the remainder layer, and theoretically open via decimal extension.
+
+---
+
+## Applications
+
+**Pitch:** honest representation of blue notes, just intonation chords, shruti positions, spectral partials — without approximation to 12-EDO. C# and D♭ are distinct pitches (BaseTri Sup and next-symbol BaseTri Sub) rather than collapsed into one equal-tempered slot.
+
+**Rhythm:** prime family subdivision applies identically to rhythmic cycles. Tuplets in 5, 7, and 11 are first-class citizens. Polyrhythm across families (5 against 7) is Qui vs Sep subdivision of the same period. The Fractal Du bitmask maps directly onto standard beam notation — the isomorphism is explicit and teachable.
+
+**Interval analysis:** any two pitches have exact rational distance. Cross-family intervals produce PPT commas as algebraic residues.
+
+**Timbre:** harmonic partials are a prime-ratio structure. Spectral analysis uses the same coordinate system as pitch and rhythm.
+
+---
+
+## Relationship to Tuning Systems
+
+- **72-EDO**: the six DuTri positions per semitone (÷6) exactly reproduce 72-EDO within the chromatic space. 72-EDO is an emergent property of the two interlocking Tri triangles, not a design target.
+- **31-EDO**: BaseTri Sub/Sup at ±33.33¢ approximate the 31-EDO enharmonic distinction (~38.71¢) with a gap of ~5.38¢ — a nameable PPT comma. 72-EDO provides a good approximation grid for 31-EDO but not an exact one.
+
+---
+
+## Open Questions
+
+- Formal naming and catalogue of all PPT commas derivable from cross-family arithmetic
+- Decimal-place extension convention: notation for nested prime family diacritics as successive approximation digits
+- Complete glyph design specifications for Qui, Sep diacritics (tick variants)
+- FontForge implementation: GSUB lookup structure, GPOS axis-relative mark attachment anchors
+- PUA codepoint block allocation for MusiCoil
+
+---
+
+*See also: [Geometric Basis](geometric-basis.md) for glyph architecture (three-zone structure, axis-relative remainder placement, rotational identity of the four arc families).*

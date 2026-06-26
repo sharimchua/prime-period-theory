@@ -120,25 +120,25 @@ derivation principles.
 
 ## Microtonal extension
 
-Uniform Solfège extends into microtonal space through a **six-state diacritic
-system** that tiles the 31 EDO and 72 EDO grids from 12TET anchor positions.
+Uniform Solfège extends into microtonal space through a **prime-family diacritic system**. It comprises two functionally distinct families:
 
-Each base position can be inflected by up to two steps in either direction,
-plus an axis position at the exact midpoint between adjacent chromatic
-positions:
+- **Approximation family**: Du (prime 2), a recursive binary subdivision system (e.g. `x` Axis bitmasks).
+- **Exact families**: Tri, Qui, Sep, UnDec (primes 3, 5, 7, 11) — providing exact rational targets.
+
+Each prime family uses distinct marks (triangles for Tri, ticks for Qui, circles for Sep, moons for UnDec) to subdivide the 100¢ semitone space.
+
+For example, the Tri (prime 3) family provides a 6-state system (÷6) that tiles the 72 EDO grid:
 
 ```
-[base]b   →  Sub2  (two steps flat)
-[base]eb  →  Sub1  (one step flat)
-[base]    →  Base  (12TET anchor)
-[base]p   →  Sup1  (one step sharp)
-[base]ep  →  Sup2  (two steps sharp)
-[base]x   →  Axis  (midpoint / crossing)
+[base]Sub      →  −33.33¢
+[base]HalfSub  →  −16.67¢
+[base]         →   0¢
+[base]HalfSup  →  +16.67¢
+[base]Sup      →  +33.33¢
+[base]Axis     →  +50¢
 ```
 
-This six-state system provides 6 × 12 = 72 positions — exactly the 72 EDO
-grid — while also covering all 31 EDO positions when mapped against the
-unequal semitone sizes in 31 EDO.
+This precise geometric and logical framework provides perceptually exact notation up to the 11-limit and algebraically complete remainder structures on the 4620 LCM grid.
 
 See [Diacritic System](diacritic-system.md) for the full specification.
 

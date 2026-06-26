@@ -9,24 +9,23 @@ Documentation for the notation layer of PPT. These pages are more technical and 
 |File|Status|Description|
 |---|---|---|
 |`index.md`|Complete|System overview, 12 positions, arithmetic examples|
-|`diacritic-system.md`|Complete|Six-state suffix system, 31/72 EDO mapping|
+|`diacritic-system.md`|Complete|Prime family diacritics (Du, Tri, Qui, Sep, UnDec), 4620 LCM grid|
 |`geometric-basis.md`|Complete|Five-family nested polygon construction; the Do glyph; the PPT mark|
 |`base-12-algebra.md`|Missing|Clock arithmetic, interval composition, prime generators|
 
 ## Critical conventions — do not change
 
-The diacritic suffix system is **fixed**. Do not introduce new suffixes or modify the existing ones:
+The diacritic suffix system is **fixed** based on exact prime families (Du, Tri, Qui, Sep, UnDec). Do not introduce new suffixes or revert to the legacy system:
 
-|Suffix|State|Direction|
+| Family | Subdivisions | Diacritic Root |
 |---|---|---|
-|`b`|Sub2|−2 steps (double flat)|
-|`eb`|Sub1|−1 step (flat)|
-|_(none)_|Base|0 (12TET anchor)|
-|`p`|Sup1|+1 step (sharp)|
-|`ep`|Sup2|+2 steps (double sharp)|
-|`x`|Axis|+3 steps (50 cent midpoint)|
+| Du (2) | Approximation bitmask | `x` (Axis crossbar) |
+| Tri (3) | ÷6 | `Sub`, `HalfSub`, `Base`, `HalfSup`, `Sup`, `Axis` |
+| Qui (5) | ÷5 | `QuiSub`, `QuiSup` (tick variants) |
+| Sep (7) | ÷7 | `SepSub`, `SepSup` (circle variants) |
+| UnDec (11) | ÷11 | `UnDecSub`, `UnDecSup` (moon variants) |
 
-The mnemonic reasoning (B = notehead up = lower; P = notehead down = higher; X = crossing point) is part of the system design and should be referenced when explaining the suffixes.
+The precise geometric and logical construction of these diacritics is defined in `diacritic-system.md` and `geometric-basis.md`.
 
 The geometric construction for the five prime families is also **fixed**, documented in `geometric-basis.md`:
 
