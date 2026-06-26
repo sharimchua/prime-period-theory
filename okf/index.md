@@ -98,6 +98,7 @@ amplitude or effect envelopes.
 ### Foundations
 - [Amplitude and Time](foundations/amplitude-time.md) — the core physical thesis
 - [Periodicity](foundations/periodicity.md) — the unifying phenomenon across all scales
+- [Information and Expectation](foundations/information-and-expectation.md) — the psychology of predicting patterns
 - [Prime Families](foundations/prime-families.md) — the classification system
 
 ### Domains
