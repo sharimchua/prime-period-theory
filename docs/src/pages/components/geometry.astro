@@ -1,5 +1,6 @@
 ---
 import ComponentLayout from '../../layouts/ComponentLayout.astro';
+import AutoPropsPanel from '../../components/ui/AutoPropsPanel.astro';
 ---
 
 <ComponentLayout title="Geometric Containers">
@@ -16,20 +17,7 @@ import ComponentLayout from '../../layouts/ComponentLayout.astro';
         <h3>Layout Parameters</h3>
         <div id="period-warning" class="compromise-warning" style="display: none;">⚠️ Minimum size reached!</div>
 
-        <div class="form-grid">
-          <div class="control-group">
-            <label for="period-shape">Period Shape</label>
-            <select id="period-shape">
-              <option value="circle">circle</option>
-              <option value="line-horizontal">Line (Horizontal)</option>
-              <option value="line-vertical">Line (Vertical)</option>
-            </select>
-          </div>
-          <div class="control-group">
-            <label for="period-angle">Starting Angle (deg)</label>
-            <input type="number" id="period-angle" value="-90" />
-          </div>
-        </div>
+        <AutoPropsPanel targetId="demo-period" tagName="ppt-period" />
       </div>
 
       <div class="demo-box-wrapper">
@@ -56,36 +44,17 @@ import ComponentLayout from '../../layouts/ComponentLayout.astro';
     
     <div class="live-doc-grid">
       <div class="controls-panel">
-        <h3>Layout Parameters</h3>
-        <div class="form-grid">
-          <div class="control-group">
-            <label for="step-shape">Period Shape</label>
-            <select id="step-shape">
-              <option value="circle">circle</option>
-              <option value="line-horizontal" selected>line-horizontal</option>
-            </select>
-          </div>
-          <div class="control-group">
-            <label for="step-orientation">Line Orientation</label>
-            <select id="step-orientation">
-              <option value="horizontal">horizontal</option>
-              <option value="vertical">vertical</option>
-            </select>
-          </div>
-          <div class="control-group">
-            <label for="step-angle">Starting Angle (deg)</label>
-            <input type="number" id="step-angle" value="-90" />
-          </div>
-        </div>
+        <h3>Parameters (Primary Marker)</h3>
+        <AutoPropsPanel targetId="demo-step-circle" tagName="ppt-period-step-circle" parentTagName="ppt-period" allowedParentProps="shape, starting-angle" />
       </div>
 
       <div class="demo-box-wrapper">
         <div class="demo-box resizable">
           <ppt-container>
             <ppt-period id="demo-step" shape="line-horizontal" starting-angle="-90" min-width="150" min-height="150">
-              <ppt-period-step-circle slot="step">A</ppt-period-step-circle>
-              <ppt-period-step-circle slot="step">B</ppt-period-step-circle>
-              <ppt-period-step-circle slot="step">C</ppt-period-step-circle>
+              <ppt-period-step-circle slot="step" id="demo-step-circle">A</ppt-period-step-circle>
+              <ppt-period-step-circle slot="step" style="opacity: 0.3; filter: grayscale(1);">B</ppt-period-step-circle>
+              <ppt-period-step-circle slot="step" style="opacity: 0.3; filter: grayscale(1);">C</ppt-period-step-circle>
             </ppt-period>
           </ppt-container>
         </div>
@@ -134,60 +103,6 @@ import ComponentLayout from '../../layouts/ComponentLayout.astro';
 
   setupCompromiseListener('demo-period', 'period-warning');
 
-  // Atomic Period Controls
-  const periodComponent = document.getElementById('demo-period');
-  const shapeSelect = document.getElementById('period-shape') as HTMLSelectElement;
-  const angleInput = document.getElementById('period-angle') as HTMLInputElement;
-  const periodCode = document.getElementById('period-code');
-
-  function updatePeriodCode() {
-    if (!periodCode || !shapeSelect || !angleInput) return;
-    const shape = shapeSelect.value;
-    const angle = angleInput.value;
-    periodCode.textContent = `<ppt-period shape="${shape}" starting-angle="${angle}" min-width="150" min-height="150">&lt;/ppt-period>`.replace(/&lt;/g, '<').replace(/&gt;/g, '>');
-  }
-
-  if (periodComponent && shapeSelect && angleInput) {
-    shapeSelect.addEventListener('change', (e) => {
-      periodComponent.setAttribute('shape', (e.target as HTMLSelectElement).value);
-      updatePeriodCode();
-    });
-
-    angleInput.addEventListener('input', (e) => {
-      periodComponent.setAttribute('starting-angle', (e.target as HTMLInputElement).value);
-      updatePeriodCode();
-    });
-  }
-
-  // Step Period Controls
-  const stepComponent = document.getElementById('demo-step');
-  const stepShapeSelect = document.getElementById('step-shape') as HTMLSelectElement;
-  const stepOrientationSelect = document.getElementById('step-orientation') as HTMLSelectElement;
-  const stepAngleInput = document.getElementById('step-angle') as HTMLInputElement;
-  const stepCode = document.getElementById('step-code');
-
-  function updateStepCode() {
-    if (!stepCode || !stepShapeSelect || !stepAngleInput) return;
-    const shape = stepShapeSelect.value;
-    const angle = stepAngleInput.value;
-    stepCode.textContent = `<ppt-period shape="${shape}" starting-angle="${angle}">
-  <ppt-period-step-circle slot="step">A</ppt-period-step-circle>
-  <ppt-period-step-circle slot="step">B</ppt-period-step-circle>
-  <ppt-period-step-circle slot="step">C</ppt-period-step-circle>
-&lt;/ppt-period>`.replace(/&lt;/g, '<').replace(/&gt;/g, '>');
-  }
-
-  if (stepComponent && stepShapeSelect && stepOrientationSelect && stepAngleInput) {
-    stepShapeSelect.addEventListener('change', (e) => {
-      stepComponent.setAttribute('shape', (e.target as HTMLSelectElement).value);
-      updateStepCode();
-    });
-
-    stepAngleInput.addEventListener('input', (e) => {
-      stepComponent.setAttribute('starting-angle', (e.target as HTMLInputElement).value);
-      updateStepCode();
-    });
-  }
 </script>
 
 <style>

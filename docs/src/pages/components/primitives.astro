@@ -1,5 +1,6 @@
 ---
 import ComponentLayout from '../../layouts/ComponentLayout.astro';
+import AutoPropsPanel from '../../components/ui/AutoPropsPanel.astro';
 ---
 
 <ComponentLayout title="Foundational Primitives">
@@ -14,16 +15,7 @@ import ComponentLayout from '../../layouts/ComponentLayout.astro';
     <div class="live-doc-grid">
       <div class="controls-panel">
         <h3>Base Parameters</h3>
-        <div class="form-grid">
-          <div class="control-group checkbox-group">
-            <input type="checkbox" id="base-interactive" checked />
-            <label for="base-interactive">Interactive</label>
-          </div>
-          <div class="control-group checkbox-group">
-            <input type="checkbox" id="base-resizable" checked />
-            <label for="base-resizable">Resizable</label>
-          </div>
-        </div>
+        <AutoPropsPanel targetId="demo-base" tagName="ppt-panel" />
       </div>
 
       <div class="demo-box-wrapper">
@@ -58,12 +50,7 @@ import ComponentLayout from '../../layouts/ComponentLayout.astro';
     <div class="live-doc-grid">
       <div class="controls-panel">
         <h3>Parameters</h3>
-        <div class="form-grid">
-          <div class="control-group">
-            <label for="isolated-title-input">Title Text</label>
-            <input type="text" id="isolated-title-input" value="Hello World!" />
-          </div>
-        </div>
+        <AutoPropsPanel targetId="demo-isolated-title" tagName="ppt-title" />
       </div>
 
       <div class="demo-box-wrapper">
@@ -86,24 +73,7 @@ import ComponentLayout from '../../layouts/ComponentLayout.astro';
     <div class="live-doc-grid">
       <div class="controls-panel">
         <h3>Parameters (Primary Panel)</h3>
-        <div class="form-grid">
-          <div class="control-group">
-            <label for="isolated-panel-align">Alignment</label>
-            <select id="isolated-panel-align">
-              <option value="right" selected>right</option>
-              <option value="left">left</option>
-              <option value="floating">floating</option>
-            </select>
-          </div>
-          <div class="control-group">
-            <label for="isolated-panel-ratio">Ratio (%)</label>
-            <input type="range" id="isolated-panel-ratio" min="10" max="100" value="50" />
-          </div>
-          <div class="control-group">
-            <label for="isolated-panel-input">Content</label>
-            <input type="text" id="isolated-panel-input" value="I am the primary editable panel." />
-          </div>
-        </div>
+        <AutoPropsPanel targetId="demo-isolated-panel" tagName="ppt-panel" />
       </div>
 
       <div class="demo-box-wrapper">
@@ -141,90 +111,6 @@ import ComponentLayout from '../../layouts/ComponentLayout.astro';
       setTimeout(() => btn.textContent = oldText, 2000);
     }
   };
-
-  // Base Component Controls
-  const baseComponent = document.getElementById('demo-base');
-  const baseInteractive = document.getElementById('base-interactive') as HTMLInputElement;
-  const baseResizable = document.getElementById('base-resizable') as HTMLInputElement;
-  const baseCode = document.getElementById('base-code');
-
-  function updateBaseCode() {
-    if (!baseCode || !baseInteractive || !baseResizable) return;
-    const isInteractive = baseInteractive.checked ? 'true' : 'false';
-    const isResizable = baseResizable.checked ? 'true' : 'false';
-    baseCode.textContent = `&lt;ppt-panel panel-align="inline" ratio="100%" interactive="${isInteractive}" resizable="${isResizable}"&gt;
-  &lt;h3 style="margin-top: 0;"&gt;Generic Base Implementation&lt;/h3&gt;
-  &lt;p&gt;I am a generic PPT component (technically a ppt-panel). I inherit all base behaviors.&lt;/p&gt;
-  &lt;p&gt;Try toggling my interactive state or dragging my bottom right corner to resize me.&lt;/p&gt;
-&lt;/ppt-panel&gt;`.replace(/&lt;/g, '<').replace(/&gt;/g, '>');
-  }
-
-  if (baseComponent && baseInteractive && baseResizable) {
-    baseInteractive.addEventListener('change', (e) => {
-      const checked = (e.target as HTMLInputElement).checked;
-      baseComponent.setAttribute('interactive', checked ? 'true' : 'false');
-      updateBaseCode();
-    });
-    baseResizable.addEventListener('change', (e) => {
-      const checked = (e.target as HTMLInputElement).checked;
-      baseComponent.setAttribute('resizable', checked ? 'true' : 'false');
-      updateBaseCode();
-    });
-  }
-
-  // Isolated Title Controls
-  const isolatedTitleComponent = document.getElementById('demo-isolated-title');
-  const isolatedTitleInput = document.getElementById('isolated-title-input') as HTMLInputElement;
-  const titleCode = document.getElementById('title-code');
-
-  function updateTitleCode() {
-    if (!titleCode || !isolatedTitleInput) return;
-    const text = isolatedTitleInput.value;
-    titleCode.textContent = `&lt;ppt-title resizable="true"&gt;${text}&lt;/ppt-title&gt;`.replace(/&lt;/g, '<').replace(/&gt;/g, '>');
-  }
-
-  if (isolatedTitleComponent && isolatedTitleInput) {
-    isolatedTitleInput.addEventListener('input', (e) => {
-      isolatedTitleComponent.textContent = (e.target as HTMLInputElement).value;
-      updateTitleCode();
-    });
-  }
-
-  // Isolated Panel Controls
-  const isolatedPanelComponent = document.getElementById('demo-isolated-panel');
-  const isolatedPanelAlign = document.getElementById('isolated-panel-align') as HTMLSelectElement;
-  const isolatedPanelRatio = document.getElementById('isolated-panel-ratio') as HTMLInputElement;
-  const isolatedPanelInput = document.getElementById('isolated-panel-input') as HTMLInputElement;
-  const isolatedPanelText = document.getElementById('isolated-panel-text');
-  const panelCode = document.getElementById('panel-code');
-
-  function updatePanelCode() {
-    if (!panelCode || !isolatedPanelAlign || !isolatedPanelRatio || !isolatedPanelInput) return;
-    const align = isolatedPanelAlign.value;
-    const ratio = isolatedPanelRatio.value + '%';
-    const text = isolatedPanelInput.value;
-    panelCode.textContent = `&lt;ppt-panel panel-align="${align}" ratio="${ratio}" resizable="true"&gt;
-  &lt;span&gt;${text}&lt;/span&gt;
-&lt;/ppt-panel&gt;`.replace(/&lt;/g, '<').replace(/&gt;/g, '>');
-  }
-
-  if (isolatedPanelComponent && isolatedPanelAlign && isolatedPanelRatio && isolatedPanelInput && isolatedPanelText) {
-    isolatedPanelAlign.addEventListener('change', (e) => {
-      const val = (e.target as HTMLSelectElement).value;
-      isolatedPanelComponent.setAttribute('panel-align', val);
-      updatePanelCode();
-    });
-
-    isolatedPanelRatio.addEventListener('input', (e) => {
-      isolatedPanelComponent.setAttribute('ratio', (e.target as HTMLInputElement).value + '%');
-      updatePanelCode();
-    });
-
-    isolatedPanelInput.addEventListener('input', (e) => {
-      isolatedPanelText.textContent = (e.target as HTMLInputElement).value;
-      updatePanelCode();
-    });
-  }
 </script>
 
 <style>

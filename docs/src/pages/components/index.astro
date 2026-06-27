@@ -1,5 +1,6 @@
 ---
 import ComponentLayout from '../../layouts/ComponentLayout.astro';
+import AutoPropsPanel from '../../components/ui/AutoPropsPanel.astro';
 ---
 
 <ComponentLayout title="Components Showcase">
@@ -22,14 +23,11 @@ import ComponentLayout from '../../layouts/ComponentLayout.astro';
   <section class="component-demo">
     <div class="live-doc-grid">
       <div class="controls-panel">
-        <h3>Parameters</h3>
-        <div id="clock-warning" class="compromise-warning" style="display: none;">⚠️ Minimum size reached!</div>
-        <div class="form-grid">
-          <div class="control-group checkbox-group">
-            <input type="checkbox" id="clock-interactive" checked />
-            <label for="clock-interactive">Interactive</label>
-          </div>
-        </div>
+        <h3>Composition Showcase</h3>
+        <p style="font-size: 14px; color: #64748b; line-height: 1.5; margin-top: 1rem;">
+          This interactive Tonal Clock is built entirely from composable Prime Period Theory web components. 
+          The underlying structure is just a container with a circular period, holding individual pitch elements that calculate their own angular positions automatically.
+        </p>
       </div>
 
       <div class="demo-box-wrapper">
@@ -107,37 +105,6 @@ import ComponentLayout from '../../layouts/ComponentLayout.astro';
 
   setupCompromiseListener('demo-clock', 'clock-warning');
 
-  // Tonal Clock Controls
-  const clockComponent = document.getElementById('demo-clock');
-  const clockInteractive = document.getElementById('clock-interactive') as HTMLInputElement;
-  const clockCode = document.getElementById('clock-code');
-
-  function updateClockCode() {
-    if (!clockCode || !clockInteractive) return;
-    const isInteractive = clockInteractive.checked ? 'true' : 'false';
-    clockCode.textContent = `&lt;ppt-period shape="circle" starting-angle="-90" interactive="${isInteractive}" min-width="200" min-height="200"&gt;
-  &lt;ppt-period-step-circle slot="step" color="var(--solfege-do)" style="--ppt-text-color: #fff; --ppt-marker-border: none;"&gt;Do&lt;/ppt-period-step-circle&gt;
-  &lt;ppt-period-step-circle slot="step" color="var(--solfege-re)" style="--ppt-text-color: #000; --ppt-marker-border: none;"&gt;Ra&lt;/ppt-period-step-circle&gt;
-  &lt;ppt-period-step-circle slot="step" color="var(--solfege-re)" style="--ppt-text-color: #000; --ppt-marker-border: none;"&gt;Re&lt;/ppt-period-step-circle&gt;
-  &lt;ppt-period-step-circle slot="step" color="var(--solfege-mi)" style="--ppt-text-color: #fff; --ppt-marker-border: none;"&gt;Me&lt;/ppt-period-step-circle&gt;
-  &lt;ppt-period-step-circle slot="step" color="var(--solfege-mi)" style="--ppt-text-color: #fff; --ppt-marker-border: none;"&gt;Mi&lt;/ppt-period-step-circle&gt;
-  &lt;ppt-period-step-circle slot="step" color="var(--solfege-fa)" style="--ppt-text-color: #fff; --ppt-marker-border: none;"&gt;Fa&lt;/ppt-period-step-circle&gt;
-  &lt;ppt-period-step-circle slot="step" color="var(--solfege-fi)" style="--ppt-text-color: #fff; --ppt-marker-border: none;"&gt;Fi&lt;/ppt-period-step-circle&gt;
-  &lt;ppt-period-step-circle slot="step" color="var(--solfege-so)" style="--ppt-text-color: #fff; --ppt-marker-border: none;"&gt;So&lt;/ppt-period-step-circle&gt;
-  &lt;ppt-period-step-circle slot="step" color="var(--solfege-la)" style="--ppt-text-color: #fff; --ppt-marker-border: none;"&gt;Le&lt;/ppt-period-step-circle&gt;
-  &lt;ppt-period-step-circle slot="step" color="var(--solfege-la)" style="--ppt-text-color: #fff; --ppt-marker-border: none;"&gt;La&lt;/ppt-period-step-circle&gt;
-  &lt;ppt-period-step-circle slot="step" color="var(--solfege-ti)" style="--ppt-text-color: #fff; --ppt-marker-border: none;"&gt;Te&lt;/ppt-period-step-circle&gt;
-  &lt;ppt-period-step-circle slot="step" color="var(--solfege-ti)" style="--ppt-text-color: #fff; --ppt-marker-border: none;"&gt;Ti&lt;/ppt-period-step-circle&gt;
-&lt;/ppt-period&gt;`.replace(/&lt;/g, '<').replace(/&gt;/g, '>');
-  }
-
-  if (clockComponent && clockInteractive) {
-    clockInteractive.addEventListener('change', (e) => {
-      const checked = (e.target as HTMLInputElement).checked;
-      clockComponent.setAttribute('interactive', checked ? 'true' : 'false');
-      updateClockCode();
-    });
-  }
 </script>
 
 <style>

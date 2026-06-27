@@ -55,16 +55,16 @@ The colour convention assigns a specific hue to each interval class, aligning wi
 | Position | Syllable | Variations | Colour | Interval from tonic | Prime family |
 |---|---|---|---|---|---|
 | 0 | **Do** | | Red (`#E13010`) | Unison | 2-prime (octave axis) |
-| 1 | **Ra** | Di | Yellow (`#E2C432`) | Minor 2nd | — |
-| 2 | **Re** | | Yellow (`#E2C432`) | Major 2nd | 3-prime (two fifths) |
-| 3 | **Me** | | Orange (`#F54321`) | Minor 3rd | — |
-| 4 | **Mi** | | Orange (`#F54321`) | Major 3rd | 5-prime |
+| 1 | **Ra** | Di | Orange (`#F98016`) | Minor 2nd | — |
+| 2 | **Re** | | Orange (`#F98016`) | Major 2nd | 3-prime (two fifths) |
+| 3 | **Me** | Ri | Yellow (`#F5D432`) | Minor 3rd | — |
+| 4 | **Mi** | | Yellow (`#F5D432`) | Major 3rd | 5-prime |
 | 5 | **Fa** | | Green (`#43A440`) | Perfect 4th | 3-prime (inverse fifth) |
-| 6 | **Fi** | Di (rhythm)| Black (`#141414`) | Tritone | Axis of symmetry |
+| 6 | **Fi** | Se | Black (`#141414`) | Tritone | Axis of symmetry |
 | 7 | **So** | | Blue (`#0032A4`) | Perfect 5th | 3-prime |
-| 8 | **Le** | | Purple (`#5300A4`) | Minor 6th | — |
+| 8 | **Le** | Si | Purple (`#5300A4`) | Minor 6th | — |
 | 9 | **La** | | Purple (`#5300A4`) | Major 6th | 5-prime (inverse third) |
-| 10 | **Te** | | Magenta (`#F158A4`) | Minor 7th | 7-prime (approximation) |
+| 10 | **Te** | Li | Magenta (`#F158A4`) | Minor 7th | 7-prime (approximation) |
 | 11 | **Ti** | Si | Magenta (`#F158A4`) | Major 7th | — |
 
 ### Colour Semantics
@@ -72,8 +72,8 @@ The colour convention assigns a specific hue to each interval class, aligning wi
 The colour palette uses seven distinct hues to visually map the interval categories. While designed for visual clarity and harmony, the exact hex values are reverse-engineered to encode core acoustic, mathematical, and tuning references. This grounds the visual styling deeply into the Prime Period Theory philosophy:
 
 - **Red (Do)**: `#E13010` — Earth resonance (130.10Hz).
-- **Yellow (Seconds)**: `#E2C432` — **E2 C 432**: Represents the E2 octave, the C root, and the philosophical 432Hz tuning standard.
-- **Orange (Thirds)**: `#F54321` — **F 5:4 3:2 1**: Encodes the foundational harmonic ratios of the major triad: the Major Third (5:4), the Perfect Fifth (3:2), and the Unison (1/1).
+- **Orange (Seconds)**: `#F98016` — **F 9:8 0 16**: Encodes the foundational ratios for seconds: the Major Second (9:8) and references the Minor Second (16:15).
+- **Yellow (Thirds)**: `#F5D432` — **F5 D4 32**: Encodes the Major Third (5:4) and Perfect Fifth (3:2) which make up the major triad.
 - **Green (Fourths)**: `#43A440` — **4:3 A440**: Encodes the Perfect Fourth ratio (4:3) alongside the international standard pitch A440.
 - **Black (Tritone)**: `#141414` — **1.414**: The square root of 2, which is the exact mathematical center of the octave defining the tritone in equal temperament.
 - **Blue (Fifths)**: `#0032A4` — **3:2 A4**: Encodes the Perfect Fifth ratio (3:2) anchored to the A4 pitch class.
@@ -85,7 +85,7 @@ The colour palette uses seven distinct hues to visually map the interval categor
 ### Context-specific naming variations
 
 While the primary names above are the default, phonetically different options are used in specific contexts. For example, in **Rhythmic Grammar**:
-- **Di** is often used for the tritone accent.
+- **Di** (a variation of Ra, the flat 2) is used as an accent marker, often functioning as a tritone resolution from the upbeat (So).
 - **Si** replaces **Ti** to avoid the use of fricatives (dental T).
 
 The preference for **Le** over Si at position 8 keeps the perfect 5th phoneme ('S' for So) unique within the primary naming set, and aligns visually with the purple colour identity of the sixths.

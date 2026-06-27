@@ -29,8 +29,8 @@ The Solfège color palette maps specific hues to interval categories. The exact 
 | Interval Category | Syllables | CSS Variable | Hex Code | Semantic Rationale |
 |---|---|---|---|---|
 | **Unison** | Do | `--solfege-do` | `#E13010` | Earth resonance (130.10Hz) |
-| **Seconds** | Ra, Re | `--solfege-re` | `#E2C432` | **E2 C 432**: Represents the E2 octave, the C root, and the philosophical 432Hz tuning standard |
-| **Thirds** | Me, Mi | `--solfege-mi` | `#F54321` | **F 5:4 3:2 1**: Encodes the foundational harmonic ratios (Major Third 5:4, Perfect Fifth 3:2, Unison 1) |
+| **Seconds** | Ra, Re | `--solfege-re` | `#F98016` | **F 9:8 0 16**: Encodes the foundational ratios for seconds (Major Second 9:8, Minor Second 16:15) |
+| **Thirds** | Me, Mi | `--solfege-mi` | `#F5D432` | **F5 D4 32**: Encodes the foundational harmonic ratios (Major Third 5:4, Perfect Fifth 3:2) |
 | **Fourths** | Fa | `--solfege-fa` | `#43A440` | **4:3 A440**: Encodes the Perfect Fourth ratio (4:3) and international standard pitch A440 |
 | **Tritone** | Fi | `--solfege-fi` | `#141414` | **1.414**: The square root of 2, the exact mathematical center of the octave in equal temperament |
 | **Fifths** | So | `--solfege-so` | `#0032A4` | **3:2 A4**: Encodes the Perfect Fifth ratio (3:2) anchored to A4 |
