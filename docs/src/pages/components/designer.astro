@@ -1,0 +1,27 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import DesignerApp from '../../components/designer/DesignerApp.astro';
+---
+
+<Layout title="Component Designer Studio" maxWidth="100%">
+  <DesignerApp />
+</Layout>
+
+<style is:global>
+  /* Override default main layout to allow full-width app shell */
+  body {
+    overflow: hidden;
+  }
+  
+  main {
+    padding: 0 !important;
+    height: calc(100vh - 84px); /* Fallback estimate if header height varies */
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Dynamically adjust height to exactly fit the remaining space below header */
+  header {
+    flex-shrink: 0;
+  }
+</style>
