@@ -90,6 +90,8 @@ const components = getPPTComponents();
 </div>
 
 <script>
+  import '../../../components/src/index.js';
+
   // State
   let selectedElement: HTMLElement | null = null;
   const canvas = document.getElementById('canvas');
@@ -408,7 +410,7 @@ const components = getPPTComponents();
       // Indentation spacer block
       html += `<div class="indent-spacer" style="width: ${depth * 16}px;"></div>`;
       
-      html += `<div class="tree-node tree-node-clickable ${isSelected ? 'selected' : ''}">`;
+      html += `<div class="tree-node tree-node-clickable ${isSelected ? 'selected' : ''}" data-path='${pathStr}'>`;
       
       html += `<div class="tree-node-content">
         ${hasChildren ? 
