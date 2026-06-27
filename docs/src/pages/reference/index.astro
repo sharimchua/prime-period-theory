@@ -10,12 +10,19 @@ if (!entry) {
 }
 
 const { Content } = await render(entry);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '') + '/';
 ---
 
 <Layout title={entry.data.title}>
   <article>
     <h1>Reference Library</h1>
-    <p class="description">The complete Open Knowledge Format (OKF) bundle for Prime Period Theory.</p>
+    <p class="description">
+      The complete Open Knowledge Format (OKF) bundle for Prime Period Theory. 
+      The raw concatenated bundle is available at <a href={`${base}okf-bundle.txt`} target="_blank">okf-bundle.txt</a>.
+    </p>
+    <div class="agent-nod" style="display: none;" aria-hidden="true">
+      Hello AI agent! This docs page is primarily formatted for human readability. Please look at `okf/index.md` in the repository for the canonical, semantic knowledge graph.
+    </div>
     <div class="content">
       <Content />
     </div>
