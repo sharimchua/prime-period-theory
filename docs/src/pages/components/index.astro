@@ -1,6 +1,6 @@
 ---
 import ComponentLayout from '../../layouts/ComponentLayout.astro';
-import AutoPropsPanel from '../../components/ui/AutoPropsPanel.astro';
+import ComposerButton from '../../components/ui/ComposerButton.astro';
 ---
 
 <ComponentLayout title="Components Showcase">
@@ -28,6 +28,9 @@ import AutoPropsPanel from '../../components/ui/AutoPropsPanel.astro';
           This interactive Tonal Clock is built entirely from composable Prime Period Theory web components. 
           The underlying structure is just a container with a circular period, holding individual pitch elements that calculate their own angular positions automatically.
         </p>
+        <div style="margin-top: 2rem;">
+          <ComposerButton targetId="demo-clock" />
+        </div>
       </div>
 
       <div class="demo-box-wrapper">

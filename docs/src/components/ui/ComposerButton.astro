@@ -1,0 +1,87 @@
+---
+export interface Props {
+  targetId: string;
+}
+
+const { targetId } = Astro.props;
+---
+
+<button class="btn-composer" data-composer-target={targetId}>
+  Edit in Composer 🎨
+</button>
+
+<script>
+  import { serializePayload, compressPayload } from '../designer/payloadCodec';
+
+  document.querySelectorAll('.btn-composer').forEach(btn => {
+    if (btn.hasAttribute('data-initialized')) return;
+    btn.setAttribute('data-initialized', 'true');
+
+    btn.addEventListener('click', async () => {
+      const targetId = btn.getAttribute('data-composer-target');
+      if (!targetId) return;
+      
+      const targetElement = document.getElementById(targetId);
+      if (!targetElement) return;
+
+      let serializeTarget = targetElement;
+      // Same logic as source code block for determining what to serialize
+      if (targetId === 'demo-step-circle' && targetElement.parentElement) {
+         serializeTarget = targetElement.parentElement;
+      } else if (targetId === 'demo-clock' && targetElement.parentElement) {
+         serializeTarget = targetElement;
+      }
+      
+      try {
+        let rootToSerialize = serializeTarget;
+        
+        // Ensure the component is wrapped in a ppt-container for the Composer
+        if (serializeTarget.tagName.toLowerCase() !== 'ppt-container') {
+           const wrapper = document.createElement('div');
+           const container = document.createElement('ppt-container');
+           container.setAttribute('resizable', 'true');
+           // Set some default dimensions for the container
+           container.style.width = '400px';
+           container.style.height = '400px';
+           
+           // Clone the target so we don't remove it from the docs
+           container.appendChild(serializeTarget.cloneNode(true));
+           wrapper.appendChild(container);
+           rootToSerialize = wrapper;
+        }
+
+        const rawPayload = serializePayload(rootToSerialize);
+        const compressedPayload = await compressPayload(rawPayload);
+        
+        // Construct URL
+        const baseUrl = window.location.origin + window.location.pathname.replace(/\/components.*$/, '/components');
+        const composerUrl = `${baseUrl}/designer?payload=${encodeURIComponent(compressedPayload)}`;
+        window.open(composerUrl, '_blank');
+      } catch (e) {
+        console.error("Failed to generate composition payload", e);
+        alert("Failed to load in Composer.");
+      }
+    });
+  });
+</script>
+
+<style is:global>
+  .btn-composer {
+    background: var(--solfege-so, #0032a4);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: filter 0.2s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+  .btn-composer:hover {
+    filter: brightness(1.2);
+  }
+</style>

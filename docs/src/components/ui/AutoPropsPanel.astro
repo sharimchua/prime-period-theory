@@ -1,0 +1,232 @@
+---
+import { getPPTComponents } from '../../components/designer/parseComponents';
+import { getTargetEntries, getParentEntries, renderControl } from './autoPropsUtils.js';
+import ComposerButton from './ComposerButton.astro';
+
+const components = getPPTComponents();
+const { targetId, tagName, parentTagName, allowedParentProps } = Astro.props;
+
+const comp = components.find((c) => c.tagName === tagName);
+const metadata = comp?.metadata || {};
+
+const parentComp = parentTagName ? components.find((c) => c.tagName === parentTagName) : null;
+const parentMetadata = parentComp?.metadata || {};
+const allowedParentList = allowedParentProps ? allowedParentProps.split(',').map((s) => s.trim()) : [];
+
+const targetEntries = getTargetEntries(metadata);
+const parentEntries = parentTagName ? getParentEntries(parentMetadata, allowedParentList) : [];
+---
+
+<div class="auto-props-panel" data-target={targetId}>
+  <div style="display: flex; justify-content: flex-end; margin-bottom: 12px;">
+    <ComposerButton targetId={targetId} />
+  </div>
+  {parentEntries.length > 0 && (
+    <div class="prop-section">
+      <h4 class="prop-section-title">Parent Container Properties</h4>
+      {parentEntries.map((entry) => <div set:html={renderControl(targetId, entry[0], entry[1], 'parent')}></div>)}
+    </div>
+  )}
+
+  <div class="prop-section">
+    {parentEntries.length > 0 && <h4 class="prop-section-title">Component Properties</h4>}
+    {targetEntries.map((entry) => <div set:html={renderControl(targetId, entry[0], entry[1], 'self')}></div>)}
+  </div>
+</div>
+
+<script>
+  // This script runs client-side to bind the generated inputs to the target Web Component
+  document.querySelectorAll('.auto-props-panel').forEach(panel => {
+    // Only initialize once
+    if (panel.hasAttribute('data-initialized')) return;
+    panel.setAttribute('data-initialized', 'true');
+
+    const targetId = panel.getAttribute('data-target');
+    const targetElement = document.getElementById(targetId);
+    if (!targetElement) return;
+
+    panel.querySelectorAll('.auto-prop-input').forEach((input: any) => {
+      const attr = input.getAttribute('data-attr');
+      const targetType = input.getAttribute('data-target-type');
+      const type = input.getAttribute('type') || input.tagName.toLowerCase();
+      
+      const elToUpdate = targetType === 'parent' ? targetElement.parentElement : targetElement;
+      if (!elToUpdate) return;
+
+      const updateTarget = (e: any) => {
+         let val = e.target.value;
+         if (type === 'checkbox') {
+            if (e.target.checked) elToUpdate.setAttribute(attr, 'true');
+            else elToUpdate.removeAttribute(attr);
+         } else {
+            if (val !== undefined && val !== '') {
+               if (attr === 'textContent') {
+                 elToUpdate.textContent = val;
+               } else {
+                 elToUpdate.setAttribute(attr, val);
+               }
+            } else {
+               elToUpdate.removeAttribute(attr);
+            }
+         }
+      };
+      
+      input.addEventListener('input', updateTarget);
+      input.addEventListener('change', updateTarget);
+      
+      // Auto-sync
+      if (attr === 'textContent') {
+         if (elToUpdate.textContent && elToUpdate.textContent.trim().length > 0) {
+            input.value = elToUpdate.textContent.trim();
+         } else {
+            updateTarget({ target: input });
+         }
+      } else if (elToUpdate.hasAttribute(attr)) {
+         // Sync input to match what's already in the DOM
+         const elVal = elToUpdate.getAttribute(attr);
+         if (type === 'checkbox') {
+            input.checked = elVal === 'true' || elVal === '';
+         } else {
+            input.value = elVal;
+         }
+      } else {
+         // Sync the DOM to match the form's default
+         updateTarget({ target: input });
+      }
+    });
+
+    // Auto-update the "View Source Code" panel if it exists
+    const codeBlockId = targetId.replace('demo-', '') + '-code';
+    let codeBlock = document.getElementById(codeBlockId);
+    
+    // Special handling for the step circle which is nested inside demo-step
+    if (!codeBlock && targetId === 'demo-step-circle') {
+       codeBlock = document.getElementById('step-code');
+    }
+
+    if (codeBlock) {
+      // Find the outermost element to serialize (for step-circle, we want to serialize the parent period)
+      let serializeTarget = targetElement;
+      if (targetId === 'demo-step-circle' && targetElement.parentElement) {
+         serializeTarget = targetElement.parentElement;
+      } else if (targetId === 'demo-isolated-panel' && targetElement.parentElement) {
+         // The panel code block actually only wants the ppt-panel itself, so keep serializeTarget = targetElement
+      } else if (targetId === 'demo-clock' && targetElement.parentElement) {
+         serializeTarget = targetElement;
+      }
+
+      const observer = new MutationObserver(() => {
+        // Simple outerHTML copy
+        codeBlock.textContent = serializeTarget.outerHTML;
+      });
+      observer.observe(targetElement, { attributes: true, characterData: true, childList: true, subtree: true });
+      if (targetElement.parentElement) {
+         observer.observe(targetElement.parentElement, { attributes: true });
+      }
+    }
+  });
+</script>
+
+<style is:global>
+  .auto-props-panel {
+    background: #ffffff;
+    border-radius: 8px;
+  }
+  .prop-section {
+    margin-bottom: 2.5rem;
+  }
+  .prop-section-title {
+    margin-top: 0;
+    font-size: 12px;
+    color: #64748b;
+    font-family: monospace;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .prop-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: flex-start;
+    padding: 1rem 0;
+    border-bottom: 1px dashed #e2e8f0;
+  }
+  .prop-group:last-child {
+    border-bottom: none;
+  }
+  
+  .prop-info-col {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-right: 1rem;
+  }
+  .prop-group label {
+    font-size: 14px;
+    color: #0f172a;
+    font-weight: 600;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+  .prop-desc {
+    font-size: 12.5px;
+    color: #64748b;
+    line-height: 1.5;
+  }
+
+  .prop-control-col {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  .prop-control-col.is-checkbox {
+    justify-content: flex-start;
+  }
+
+  .prop-group input[type="text"], 
+  .prop-group input[type="number"], 
+  .prop-group select, 
+  .prop-group textarea {
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    color: #334155;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-family: monospace;
+    font-size: 13px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: all 0.2s;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.02);
+  }
+  .prop-group input[type="color"] {
+    padding: 0;
+    height: 36px;
+    width: 100%;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    cursor: pointer;
+    overflow: hidden;
+  }
+  .prop-group input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+  }
+  .prop-group input[type="color"]::-webkit-color-swatch {
+    border: none;
+  }
+  .prop-group input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--brand-primary, #0284c7);
+    margin: 0;
+    cursor: pointer;
+  }
+  .prop-group input:focus, .prop-group select:focus, .prop-group textarea:focus {
+    outline: none;
+    border-color: var(--brand-primary, #0284c7);
+    box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.1);
+  }
+</style>

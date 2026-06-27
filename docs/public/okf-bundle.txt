@@ -3926,14 +3926,14 @@ The colour convention assigns a specific hue to each interval class, aligning wi
 | 0 | **Do** | | Red (`#E13010`) | Unison | 2-prime (octave axis) |
 | 1 | **Ra** | Di | Orange (`#F98016`) | Minor 2nd | — |
 | 2 | **Re** | | Orange (`#F98016`) | Major 2nd | 3-prime (two fifths) |
-| 3 | **Me** | | Yellow (`#F5D432`) | Minor 3rd | — |
+| 3 | **Me** | Ri | Yellow (`#F5D432`) | Minor 3rd | — |
 | 4 | **Mi** | | Yellow (`#F5D432`) | Major 3rd | 5-prime |
 | 5 | **Fa** | | Green (`#43A440`) | Perfect 4th | 3-prime (inverse fifth) |
 | 6 | **Fi** | Se | Black (`#141414`) | Tritone | Axis of symmetry |
 | 7 | **So** | | Blue (`#0032A4`) | Perfect 5th | 3-prime |
-| 8 | **Le** | | Purple (`#5300A4`) | Minor 6th | — |
+| 8 | **Le** | Si | Purple (`#5300A4`) | Minor 6th | — |
 | 9 | **La** | | Purple (`#5300A4`) | Major 6th | 5-prime (inverse third) |
-| 10 | **Te** | | Magenta (`#F158A4`) | Minor 7th | 7-prime (approximation) |
+| 10 | **Te** | Li | Magenta (`#F158A4`) | Minor 7th | 7-prime (approximation) |
 | 11 | **Ti** | Si | Magenta (`#F158A4`) | Major 7th | — |
 
 ### Colour Semantics
