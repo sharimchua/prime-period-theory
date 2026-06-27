@@ -54,18 +54,31 @@ The colour convention assigns a specific hue to each interval class, aligning wi
 
 | Position | Syllable | Variations | Colour | Interval from tonic | Prime family |
 |---|---|---|---|---|---|
-| 0 | **Do** | | Red | Unison | 2-prime (octave axis) |
-| 1 | **Ra** | Di | Orange | Minor 2nd | — |
-| 2 | **Re** | | Orange | Major 2nd | 3-prime (two fifths) |
-| 3 | **Me** | | Yellow | Minor 3rd | — |
-| 4 | **Mi** | | Yellow | Major 3rd | 5-prime |
-| 5 | **Fa** | | Green | Perfect 4th | 3-prime (inverse fifth) |
-| 6 | **Fi** | Di (rhythm)| Black | Tritone | Axis of symmetry |
-| 7 | **So** | | Blue | Perfect 5th | 3-prime |
-| 8 | **Le** | | Purple | Minor 6th | — |
-| 9 | **La** | | Purple | Major 6th | 5-prime (inverse third) |
-| 10 | **Te** | | Magenta | Minor 7th | 7-prime (approximation) |
-| 11 | **Ti** | Si | Magenta | Major 7th | — |
+| 0 | **Do** | | Red (`#E13010`) | Unison | 2-prime (octave axis) |
+| 1 | **Ra** | Di | Yellow (`#E2C432`) | Minor 2nd | — |
+| 2 | **Re** | | Yellow (`#E2C432`) | Major 2nd | 3-prime (two fifths) |
+| 3 | **Me** | | Orange (`#F54321`) | Minor 3rd | — |
+| 4 | **Mi** | | Orange (`#F54321`) | Major 3rd | 5-prime |
+| 5 | **Fa** | | Green (`#43A440`) | Perfect 4th | 3-prime (inverse fifth) |
+| 6 | **Fi** | Di (rhythm)| Black (`#141414`) | Tritone | Axis of symmetry |
+| 7 | **So** | | Blue (`#0032A4`) | Perfect 5th | 3-prime |
+| 8 | **Le** | | Purple (`#5300A4`) | Minor 6th | — |
+| 9 | **La** | | Purple (`#5300A4`) | Major 6th | 5-prime (inverse third) |
+| 10 | **Te** | | Magenta (`#F158A4`) | Minor 7th | 7-prime (approximation) |
+| 11 | **Ti** | Si | Magenta (`#F158A4`) | Major 7th | — |
+
+### Colour Semantics
+
+The colour palette uses seven distinct hues to visually map the interval categories. While designed for visual clarity and harmony, the exact hex values are reverse-engineered to encode core acoustic, mathematical, and tuning references. This grounds the visual styling deeply into the Prime Period Theory philosophy:
+
+- **Red (Do)**: `#E13010` — Earth resonance (130.10Hz).
+- **Yellow (Seconds)**: `#E2C432` — **E2 C 432**: Represents the E2 octave, the C root, and the philosophical 432Hz tuning standard.
+- **Orange (Thirds)**: `#F54321` — **F 5:4 3:2 1**: Encodes the foundational harmonic ratios of the major triad: the Major Third (5:4), the Perfect Fifth (3:2), and the Unison (1/1).
+- **Green (Fourths)**: `#43A440` — **4:3 A440**: Encodes the Perfect Fourth ratio (4:3) alongside the international standard pitch A440.
+- **Black (Tritone)**: `#141414` — **1.414**: The square root of 2, which is the exact mathematical center of the octave defining the tritone in equal temperament.
+- **Blue (Fifths)**: `#0032A4` — **3:2 A4**: Encodes the Perfect Fifth ratio (3:2) anchored to the A4 pitch class.
+- **Purple (Sixths)**: `#5300A4` — **5:3 A4**: Encodes the Major Sixth ratio (5:3) anchored to A4.
+- **Magenta (Sevenths)**: `#F158A4` — **F 15:8 A4**: Encodes the Major Seventh ratio (15:8) anchored to A4.
 
 *Note: Chromatic positions 1, 3, 6, 8, 10 fall between prime-family generators. Their prime-family membership depends on the tuning system and harmonic context.*
 

@@ -1,9 +1,10 @@
 ---
 interface Props {
   title: string;
+  maxWidth?: string;
 }
 
-const { title } = Astro.props;
+const { title, maxWidth = '800px' } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '') + '/';
 ---
 
@@ -27,11 +28,11 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '') + '/';
       </div>
       <nav>
         <a href={`${base}topics`}>Topics</a>
-        <span class="nav-placeholder">Components (Soon)</span>
+        <a href={`${base}components`}>Components</a>
         <a href={`${base}reference`}>Reference</a>
       </nav>
     </header>
-    <main>
+    <main style={`--main-max-width: ${maxWidth};`}>
       <slot />
     </main>
   </body>
@@ -118,7 +119,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '') + '/';
   }
 
   main {
-    max-width: 800px;
+    max-width: var(--main-max-width, 800px);
     margin: 0 auto;
     padding: 2rem 1rem;
   }

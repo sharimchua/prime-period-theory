@@ -1,0 +1,359 @@
+---
+import ComponentLayout from '../../layouts/ComponentLayout.astro';
+---
+
+<ComponentLayout title="Geometric Containers">
+  <h1>Geometric Containers</h1>
+  
+  <p>The structural geometry components for Prime Period Theory.</p>
+
+  <section class="component-demo">
+    <h3 id="period-component">Container</h3>
+    <p>The Period component acts as a structural positional wrapper for peripheral elements. Below, we've stripped it down to just its raw shape so you can see how it reacts to shape changes without content.</p>
+    
+    <div class="live-doc-grid">
+      <div class="controls-panel">
+        <h3>Layout Parameters</h3>
+        <div id="period-warning" class="compromise-warning" style="display: none;">⚠️ Minimum size reached!</div>
+
+        <div class="form-grid">
+          <div class="control-group">
+            <label for="period-shape">Period Shape</label>
+            <select id="period-shape">
+              <option value="circle">circle</option>
+              <option value="line">line</option>
+            </select>
+          </div>
+          <div class="control-group">
+            <label for="period-orientation">Line Orientation</label>
+            <select id="period-orientation">
+              <option value="horizontal">horizontal</option>
+              <option value="vertical">vertical</option>
+            </select>
+          </div>
+          <div class="control-group">
+            <label for="period-angle">Starting Angle (deg)</label>
+            <input type="number" id="period-angle" value="-90" />
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-box-wrapper">
+        <div class="demo-box resizable">
+          <script>
+            import '../../../components/src/index.ts';
+          </script>
+          <ppt-container>
+            <ppt-period id="demo-period" shape="circle" starting-angle="-90" line-orientation="horizontal" min-width="150" min-height="150"></ppt-period>
+          </ppt-container>
+        </div>
+      </div>
+
+      <details class="code-panel">
+        <summary>View Source Code <button class="copy-btn" onclick="copyCode('period-code', this)">Copy Code</button></summary>
+        <pre><code id="period-code">&lt;ppt-period shape="circle" starting-angle="-90" line-orientation="horizontal" min-width="150" min-height="150"&gt;&lt;/ppt-period&gt;</code></pre>
+      </details>
+    </div>
+  </section>
+
+  <section class="component-demo">
+    <h3 id="step-circle-component">Step</h3>
+    <p>A semantic marker component that is natively managed by the Period Component's geometry system.</p>
+    
+    <div class="live-doc-grid">
+      <div class="controls-panel">
+        <h3>Layout Parameters</h3>
+        <div class="form-grid">
+          <div class="control-group">
+            <label for="step-shape">Period Shape</label>
+            <select id="step-shape">
+              <option value="circle">circle</option>
+              <option value="line" selected>line</option>
+            </select>
+          </div>
+          <div class="control-group">
+            <label for="step-orientation">Line Orientation</label>
+            <select id="step-orientation">
+              <option value="horizontal">horizontal</option>
+              <option value="vertical">vertical</option>
+            </select>
+          </div>
+          <div class="control-group">
+            <label for="step-angle">Starting Angle (deg)</label>
+            <input type="number" id="step-angle" value="-90" />
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-box-wrapper">
+        <div class="demo-box resizable">
+          <ppt-container>
+            <ppt-period id="demo-step" shape="line" starting-angle="-90" line-orientation="horizontal" min-width="150" min-height="150">
+              <ppt-period-step-circle slot="step">A</ppt-period-step-circle>
+              <ppt-period-step-circle slot="step">B</ppt-period-step-circle>
+              <ppt-period-step-circle slot="step">C</ppt-period-step-circle>
+            </ppt-period>
+          </ppt-container>
+        </div>
+      </div>
+
+      <details class="code-panel">
+        <summary>View Source Code <button class="copy-btn" onclick="copyCode('step-code', this)">Copy Code</button></summary>
+        <pre><code id="step-code">&lt;ppt-period shape="line" starting-angle="-90" line-orientation="horizontal"&gt;
+  &lt;ppt-period-step-circle slot="step"&gt;A&lt;/ppt-period-step-circle&gt;
+  &lt;ppt-period-step-circle slot="step"&gt;B&lt;/ppt-period-step-circle&gt;
+  &lt;ppt-period-step-circle slot="step"&gt;C&lt;/ppt-period-step-circle&gt;
+&lt;/ppt-period&gt;</code></pre>
+      </details>
+    </div>
+  </section>
+
+</ComponentLayout>
+
+<script>
+  window.copyCode = function(targetId, btn) {
+    const code = document.getElementById(targetId)?.textContent;
+    if (code) {
+      navigator.clipboard.writeText(code);
+      const oldText = btn.textContent;
+      btn.textContent = "Copied!";
+      setTimeout(() => btn.textContent = oldText, 2000);
+    }
+  };
+
+  // Setup Compromised Event Listeners
+  function setupCompromiseListener(componentId: string, warningId: string) {
+    const component = document.getElementById(componentId);
+    const warning = document.getElementById(warningId);
+    if (component && warning) {
+      component.addEventListener('ppt-compromised', (e: any) => {
+        if (e.target !== component) return;
+        warning.style.display = 'block';
+        warning.textContent = '⚠️ Compromised (Size: ' + Math.round(e.detail.width) + 'x' + Math.round(e.detail.height) + ')';
+      });
+      component.addEventListener('ppt-restored', (e: any) => {
+        if (e.target !== component) return;
+        warning.style.display = 'none';
+      });
+    }
+  }
+
+  setupCompromiseListener('demo-period', 'period-warning');
+
+  // Atomic Period Controls
+  const periodComponent = document.getElementById('demo-period');
+  const shapeSelect = document.getElementById('period-shape') as HTMLSelectElement;
+  const orientationSelect = document.getElementById('period-orientation') as HTMLSelectElement;
+  const angleInput = document.getElementById('period-angle') as HTMLInputElement;
+  const periodCode = document.getElementById('period-code');
+
+  function updatePeriodCode() {
+    if (!periodCode || !shapeSelect || !orientationSelect || !angleInput) return;
+    const shape = shapeSelect.value;
+    const orientation = orientationSelect.value;
+    const angle = angleInput.value;
+    periodCode.textContent = `<ppt-period shape="${shape}" starting-angle="${angle}" line-orientation="${orientation}" min-width="150" min-height="150">&lt;/ppt-period>`.replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+  }
+
+  if (periodComponent && shapeSelect && orientationSelect && angleInput) {
+    shapeSelect.addEventListener('change', (e) => {
+      periodComponent.setAttribute('shape', (e.target as HTMLSelectElement).value);
+      updatePeriodCode();
+    });
+    
+    orientationSelect.addEventListener('change', (e) => {
+      periodComponent.setAttribute('line-orientation', (e.target as HTMLSelectElement).value);
+      updatePeriodCode();
+    });
+
+    angleInput.addEventListener('input', (e) => {
+      periodComponent.setAttribute('starting-angle', (e.target as HTMLInputElement).value);
+      updatePeriodCode();
+    });
+  }
+
+  // Step Period Controls
+  const stepComponent = document.getElementById('demo-step');
+  const stepShapeSelect = document.getElementById('step-shape') as HTMLSelectElement;
+  const stepOrientationSelect = document.getElementById('step-orientation') as HTMLSelectElement;
+  const stepAngleInput = document.getElementById('step-angle') as HTMLInputElement;
+  const stepCode = document.getElementById('step-code');
+
+  function updateStepCode() {
+    if (!stepCode || !stepShapeSelect || !stepOrientationSelect || !stepAngleInput) return;
+    const shape = stepShapeSelect.value;
+    const orientation = stepOrientationSelect.value;
+    const angle = stepAngleInput.value;
+    stepCode.textContent = `<ppt-period shape="${shape}" starting-angle="${angle}" line-orientation="${orientation}">
+  <ppt-period-step-circle slot="step">A</ppt-period-step-circle>
+  <ppt-period-step-circle slot="step">B</ppt-period-step-circle>
+  <ppt-period-step-circle slot="step">C</ppt-period-step-circle>
+&lt;/ppt-period>`.replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+  }
+
+  if (stepComponent && stepShapeSelect && stepOrientationSelect && stepAngleInput) {
+    stepShapeSelect.addEventListener('change', (e) => {
+      stepComponent.setAttribute('shape', (e.target as HTMLSelectElement).value);
+      updateStepCode();
+    });
+    
+    stepOrientationSelect.addEventListener('change', (e) => {
+      stepComponent.setAttribute('line-orientation', (e.target as HTMLSelectElement).value);
+      updateStepCode();
+    });
+
+    stepAngleInput.addEventListener('input', (e) => {
+      stepComponent.setAttribute('starting-angle', (e.target as HTMLInputElement).value);
+      updateStepCode();
+    });
+  }
+</script>
+
+<style>
+  .component-demo {
+    margin-top: 3rem;
+  }
+  
+  .live-doc-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .controls-panel {
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+
+  .controls-panel h3 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    color: var(--brand-primary);
+    border-bottom: 2px solid var(--brand-secondary);
+    padding-bottom: 0.5rem;
+  }
+
+  .code-panel {
+    margin-top: 0.5rem;
+  }
+  
+  .code-panel summary {
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--brand-primary);
+    padding: 0.5rem 0;
+    user-select: none;
+  }
+
+  .copy-btn {
+    float: right;
+    background: #e2e8f0;
+    border: none;
+    border-radius: 4px;
+    padding: 0.2rem 0.6rem;
+    font-size: 0.8rem;
+    cursor: pointer;
+    color: #475569;
+    font-weight: bold;
+    transition: background 0.2s;
+  }
+  
+  .copy-btn:hover {
+    background: #cbd5e1;
+  }
+
+  .code-panel pre {
+    background: #1e293b;
+    color: #f8fafc;
+    padding: 1rem;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0.5rem 0 0 0;
+  }
+
+  .compromise-warning {
+    background: #fef2f2;
+    color: #b91c1c;
+    border: 1px solid #f87171;
+    padding: 0.5rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    align-items: end;
+  }
+
+  .control-group {
+    margin-bottom: 0;
+  }
+
+  .control-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .control-group select,
+  .control-group input[type="text"],
+  .control-group input[type="number"],
+  .control-group input[type="range"] {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background: #f8fafc;
+    font-family: inherit;
+    box-sizing: border-box;
+  }
+
+  .checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .checkbox-group label {
+    margin-bottom: 0;
+    display: inline;
+  }
+
+  .demo-box-wrapper {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .demo-box {
+    width: 100%;
+    height: 400px;
+    padding: 2rem;
+    border: 2px dashed #94a3b8;
+    border-radius: 8px;
+    background: #f8fafc;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    box-sizing: border-box;
+  }
+  
+  .demo-box.resizable {
+    resize: both;
+    overflow: auto;
+    min-width: 250px;
+    min-height: 250px;
+    max-width: 100%;
+  }
+</style>

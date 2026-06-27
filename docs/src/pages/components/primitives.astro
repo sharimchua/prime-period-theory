@@ -1,0 +1,366 @@
+---
+import ComponentLayout from '../../layouts/ComponentLayout.astro';
+---
+
+<ComponentLayout title="Foundational Primitives">
+  <h1>Foundational Primitives</h1>
+  
+  <p>The base elements of the PPT component library.</p>
+
+  <section class="component-demo">
+    <h3 id="base-component">Base</h3>
+    <p>All PPT components inherit from the Base Component, which provides foundational styling, interactivity flags, and resize observation.</p>
+    
+    <div class="live-doc-grid">
+      <div class="controls-panel">
+        <h3>Base Parameters</h3>
+        <div class="form-grid">
+          <div class="control-group checkbox-group">
+            <input type="checkbox" id="base-interactive" checked />
+            <label for="base-interactive">Interactive</label>
+          </div>
+          <div class="control-group checkbox-group">
+            <input type="checkbox" id="base-resizable" checked />
+            <label for="base-resizable">Resizable</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-box-wrapper">
+        <div class="demo-box">
+          <script>
+            import '../../../components/src/index.ts';
+          </script>
+          
+          <ppt-panel id="demo-base" panel-align="inline" ratio="100%" interactive="true" resizable="true">
+            <h3 style="margin-top: 0;">Generic Base Implementation</h3>
+            <p>I am a generic PPT component (technically a ppt-panel). I inherit all base behaviors.</p>
+            <p>Try toggling my interactive state or dragging my bottom right corner to resize me.</p>
+          </ppt-panel>
+        </div>
+      </div>
+
+      <details class="code-panel">
+        <summary>View Source Code <button class="copy-btn" onclick="copyCode('base-code', this)">Copy Code</button></summary>
+        <pre><code id="base-code">&lt;ppt-panel panel-align="inline" ratio="100%" interactive="true" resizable="true"&gt;
+  &lt;h3 style="margin-top: 0;"&gt;Generic Base Implementation&lt;/h3&gt;
+  &lt;p&gt;I am a generic PPT component (technically a ppt-panel). I inherit all base behaviors.&lt;/p&gt;
+  &lt;p&gt;Try toggling my interactive state or dragging my bottom right corner to resize me.&lt;/p&gt;
+&lt;/ppt-panel&gt;</code></pre>
+      </details>
+    </div>
+  </section>
+
+  <section class="component-demo">
+    <h3 id="title-component">Title</h3>
+    <p>A lightweight, dedicated component for rendering semantic titles. It automatically scales and supports dynamic text.</p>
+    
+    <div class="live-doc-grid">
+      <div class="controls-panel">
+        <h3>Parameters</h3>
+        <div class="form-grid">
+          <div class="control-group">
+            <label for="isolated-title-input">Title Text</label>
+            <input type="text" id="isolated-title-input" value="Hello World!" />
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-box-wrapper">
+        <div class="demo-box resizable" style="align-items: flex-start; height: 150px;">
+          <ppt-title id="demo-isolated-title" resizable="true">Hello World!</ppt-title>
+        </div>
+      </div>
+
+      <details class="code-panel">
+        <summary>View Source Code <button class="copy-btn" onclick="copyCode('title-code', this)">Copy Code</button></summary>
+        <pre><code id="title-code">&lt;ppt-title resizable="true"&gt;Hello World!&lt;/ppt-title&gt;</code></pre>
+      </details>
+    </div>
+  </section>
+
+  <section class="component-demo">
+    <h3 id="panel-component">Panel</h3>
+    <p>A dedicated component for holding textual content. It manages its own alignment and size ratio within a layout. Below we show two panels to demonstrate how they share space.</p>
+    
+    <div class="live-doc-grid">
+      <div class="controls-panel">
+        <h3>Parameters (Primary Panel)</h3>
+        <div class="form-grid">
+          <div class="control-group">
+            <label for="isolated-panel-align">Alignment</label>
+            <select id="isolated-panel-align">
+              <option value="right" selected>right</option>
+              <option value="left">left</option>
+              <option value="floating">floating</option>
+            </select>
+          </div>
+          <div class="control-group">
+            <label for="isolated-panel-ratio">Ratio (%)</label>
+            <input type="range" id="isolated-panel-ratio" min="10" max="100" value="50" />
+          </div>
+          <div class="control-group">
+            <label for="isolated-panel-input">Content</label>
+            <input type="text" id="isolated-panel-input" value="I am the primary editable panel." />
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-box-wrapper">
+        <div class="demo-box resizable">
+          <ppt-container>
+            <ppt-panel id="demo-isolated-panel" panel-align="right" ratio="50%" resizable="true">
+              <span id="isolated-panel-text">I am the primary editable panel.</span>
+            </ppt-panel>
+            
+            <div style="flex: 1; min-width: 0; background: #e2e8f0; border-radius: 8px; padding: 1rem; display: flex; align-items: center; justify-content: center; text-align: center;">
+              I am a responsive sibling element. When the primary panel floats, I will expand to fill all remaining space!
+            </div>
+          </ppt-container>
+        </div>
+      </div>
+
+      <details class="code-panel">
+        <summary>View Source Code <button class="copy-btn" onclick="copyCode('panel-code', this)">Copy Code</button></summary>
+        <pre><code id="panel-code">&lt;ppt-panel panel-align="right" ratio="50%" resizable="true"&gt;
+  &lt;span&gt;I am the primary editable panel.&lt;/span&gt;
+&lt;/ppt-panel&gt;</code></pre>
+      </details>
+    </div>
+  </section>
+
+</ComponentLayout>
+
+<script>
+  window.copyCode = function(targetId, btn) {
+    const code = document.getElementById(targetId)?.textContent;
+    if (code) {
+      navigator.clipboard.writeText(code);
+      const oldText = btn.textContent;
+      btn.textContent = "Copied!";
+      setTimeout(() => btn.textContent = oldText, 2000);
+    }
+  };
+
+  // Base Component Controls
+  const baseComponent = document.getElementById('demo-base');
+  const baseInteractive = document.getElementById('base-interactive') as HTMLInputElement;
+  const baseResizable = document.getElementById('base-resizable') as HTMLInputElement;
+  const baseCode = document.getElementById('base-code');
+
+  function updateBaseCode() {
+    if (!baseCode || !baseInteractive || !baseResizable) return;
+    const isInteractive = baseInteractive.checked ? 'true' : 'false';
+    const isResizable = baseResizable.checked ? 'true' : 'false';
+    baseCode.textContent = `&lt;ppt-panel panel-align="inline" ratio="100%" interactive="${isInteractive}" resizable="${isResizable}"&gt;
+  &lt;h3 style="margin-top: 0;"&gt;Generic Base Implementation&lt;/h3&gt;
+  &lt;p&gt;I am a generic PPT component (technically a ppt-panel). I inherit all base behaviors.&lt;/p&gt;
+  &lt;p&gt;Try toggling my interactive state or dragging my bottom right corner to resize me.&lt;/p&gt;
+&lt;/ppt-panel&gt;`.replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+  }
+
+  if (baseComponent && baseInteractive && baseResizable) {
+    baseInteractive.addEventListener('change', (e) => {
+      const checked = (e.target as HTMLInputElement).checked;
+      baseComponent.setAttribute('interactive', checked ? 'true' : 'false');
+      updateBaseCode();
+    });
+    baseResizable.addEventListener('change', (e) => {
+      const checked = (e.target as HTMLInputElement).checked;
+      baseComponent.setAttribute('resizable', checked ? 'true' : 'false');
+      updateBaseCode();
+    });
+  }
+
+  // Isolated Title Controls
+  const isolatedTitleComponent = document.getElementById('demo-isolated-title');
+  const isolatedTitleInput = document.getElementById('isolated-title-input') as HTMLInputElement;
+  const titleCode = document.getElementById('title-code');
+
+  function updateTitleCode() {
+    if (!titleCode || !isolatedTitleInput) return;
+    const text = isolatedTitleInput.value;
+    titleCode.textContent = `&lt;ppt-title resizable="true"&gt;${text}&lt;/ppt-title&gt;`.replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+  }
+
+  if (isolatedTitleComponent && isolatedTitleInput) {
+    isolatedTitleInput.addEventListener('input', (e) => {
+      isolatedTitleComponent.textContent = (e.target as HTMLInputElement).value;
+      updateTitleCode();
+    });
+  }
+
+  // Isolated Panel Controls
+  const isolatedPanelComponent = document.getElementById('demo-isolated-panel');
+  const isolatedPanelAlign = document.getElementById('isolated-panel-align') as HTMLSelectElement;
+  const isolatedPanelRatio = document.getElementById('isolated-panel-ratio') as HTMLInputElement;
+  const isolatedPanelInput = document.getElementById('isolated-panel-input') as HTMLInputElement;
+  const isolatedPanelText = document.getElementById('isolated-panel-text');
+  const panelCode = document.getElementById('panel-code');
+
+  function updatePanelCode() {
+    if (!panelCode || !isolatedPanelAlign || !isolatedPanelRatio || !isolatedPanelInput) return;
+    const align = isolatedPanelAlign.value;
+    const ratio = isolatedPanelRatio.value + '%';
+    const text = isolatedPanelInput.value;
+    panelCode.textContent = `&lt;ppt-panel panel-align="${align}" ratio="${ratio}" resizable="true"&gt;
+  &lt;span&gt;${text}&lt;/span&gt;
+&lt;/ppt-panel&gt;`.replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+  }
+
+  if (isolatedPanelComponent && isolatedPanelAlign && isolatedPanelRatio && isolatedPanelInput && isolatedPanelText) {
+    isolatedPanelAlign.addEventListener('change', (e) => {
+      const val = (e.target as HTMLSelectElement).value;
+      isolatedPanelComponent.setAttribute('panel-align', val);
+      updatePanelCode();
+    });
+
+    isolatedPanelRatio.addEventListener('input', (e) => {
+      isolatedPanelComponent.setAttribute('ratio', (e.target as HTMLInputElement).value + '%');
+      updatePanelCode();
+    });
+
+    isolatedPanelInput.addEventListener('input', (e) => {
+      isolatedPanelText.textContent = (e.target as HTMLInputElement).value;
+      updatePanelCode();
+    });
+  }
+</script>
+
+<style>
+  .component-demo {
+    margin-top: 3rem;
+  }
+  
+  .live-doc-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .controls-panel {
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+
+  .controls-panel h3 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    color: var(--brand-primary);
+    border-bottom: 2px solid var(--brand-secondary);
+    padding-bottom: 0.5rem;
+  }
+
+  .code-panel {
+    margin-top: 0.5rem;
+  }
+  
+  .code-panel summary {
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--brand-primary);
+    padding: 0.5rem 0;
+    user-select: none;
+  }
+
+  .copy-btn {
+    float: right;
+    background: #e2e8f0;
+    border: none;
+    border-radius: 4px;
+    padding: 0.2rem 0.6rem;
+    font-size: 0.8rem;
+    cursor: pointer;
+    color: #475569;
+    font-weight: bold;
+    transition: background 0.2s;
+  }
+  
+  .copy-btn:hover {
+    background: #cbd5e1;
+  }
+
+  .code-panel pre {
+    background: #1e293b;
+    color: #f8fafc;
+    padding: 1rem;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0.5rem 0 0 0;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    align-items: end;
+  }
+
+  .control-group {
+    margin-bottom: 0;
+  }
+
+  .control-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .control-group select,
+  .control-group input[type="text"],
+  .control-group input[type="number"],
+  .control-group input[type="range"] {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background: #f8fafc;
+    font-family: inherit;
+    box-sizing: border-box;
+  }
+
+  .checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .checkbox-group label {
+    margin-bottom: 0;
+    display: inline;
+  }
+
+  .demo-box-wrapper {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .demo-box {
+    width: 100%;
+    height: 400px;
+    padding: 2rem;
+    border: 2px dashed #94a3b8;
+    border-radius: 8px;
+    background: #f8fafc;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    box-sizing: border-box;
+  }
+  
+  .demo-box.resizable {
+    resize: both;
+    overflow: auto;
+    min-width: 250px;
+    min-height: 250px;
+    max-width: 100%;
+  }
+</style>

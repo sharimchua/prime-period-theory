@@ -1,0 +1,274 @@
+---
+import ComponentLayout from '../../layouts/ComponentLayout.astro';
+---
+
+<ComponentLayout title="Components Showcase">
+  <h1>Interactive Components</h1>
+  
+  <p>This library of framework-agnostic Web Components is designed to bring Prime Period Theory (PPT) to life. These components are highly composable, completely atomic, and independently distributable.</p>
+
+  <p>Explore the component families:</p>
+  <ul>
+    <li><a href="/components/primitives"><strong>Foundational Primitives</strong></a>: The Base Component, Title, and Panel.</li>
+    <li><a href="/components/geometry"><strong>Geometric Containers</strong></a>: The Period and Period Step Components.</li>
+  </ul>
+
+  <h2 id="tonal-clock">Composition Showcase: Tonal Clock</h2>
+  <p>The power of these atomic components comes from composition. Below is an example of the "Tonal Clock", which isn't a single monolithic component, but rather a <code>&lt;ppt-period&gt;</code> container automatically arranging 12 semantic <code>&lt;ppt-period-step-circle&gt;</code> markers!</p>
+
+  <section class="component-demo">
+    <div class="live-doc-grid">
+      <div class="controls-panel">
+        <h3>Parameters</h3>
+        <div id="clock-warning" class="compromise-warning" style="display: none;">⚠️ Minimum size reached!</div>
+        <div class="form-grid">
+          <div class="control-group checkbox-group">
+            <input type="checkbox" id="clock-interactive" checked />
+            <label for="clock-interactive">Interactive</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-box-wrapper">
+        <div class="demo-box resizable">
+          <script>
+            import '../../../components/src/index.ts';
+          </script>
+          <ppt-container>
+            <ppt-period id="demo-clock" shape="circle" starting-angle="-90" interactive="true" min-width="200" min-height="200">
+              <ppt-period-step-circle slot="step" color="#E13010" style="--ppt-text-color: #fff; --ppt-marker-border: none;">Do</ppt-period-step-circle>
+              <ppt-period-step-circle slot="step" color="#E2C432" style="--ppt-text-color: #000; --ppt-marker-border: none;">Ra</ppt-period-step-circle>
+              <ppt-period-step-circle slot="step" color="#E2C432" style="--ppt-text-color: #000; --ppt-marker-border: none;">Re</ppt-period-step-circle>
+              <ppt-period-step-circle slot="step" color="#F54321" style="--ppt-text-color: #fff; --ppt-marker-border: none;">Me</ppt-period-step-circle>
+              <ppt-period-step-circle slot="step" color="#F54321" style="--ppt-text-color: #fff; --ppt-marker-border: none;">Mi</ppt-period-step-circle>
+              <ppt-period-step-circle slot="step" color="#43A440" style="--ppt-text-color: #fff; --ppt-marker-border: none;">Fa</ppt-period-step-circle>
+              <ppt-period-step-circle slot="step" color="#141414" style="--ppt-text-color: #fff; --ppt-marker-border: none;">Fi</ppt-period-step-circle>
+              <ppt-period-step-circle slot="step" color="#0032A4" style="--ppt-text-color: #fff; --ppt-marker-border: none;">So</ppt-period-step-circle>
+              <ppt-period-step-circle slot="step" color="#5300A4" style="--ppt-text-color: #fff; --ppt-marker-border: none;">Le</ppt-period-step-circle>
+              <ppt-period-step-circle slot="step" color="#5300A4" style="--ppt-text-color: #fff; --ppt-marker-border: none;">La</ppt-period-step-circle>
+              <ppt-period-step-circle slot="step" color="#F158A4" style="--ppt-text-color: #fff; --ppt-marker-border: none;">Te</ppt-period-step-circle>
+              <ppt-period-step-circle slot="step" color="#F158A4" style="--ppt-text-color: #fff; --ppt-marker-border: none;">Ti</ppt-period-step-circle>
+            </ppt-period>
+          </ppt-container>
+        </div>
+      </div>
+
+      <details class="code-panel">
+        <summary>View Source Code <button class="copy-btn" onclick="copyCode('clock-code', this)">Copy Code</button></summary>
+        <pre><code id="clock-code">&lt;ppt-period shape="circle" starting-angle="-90" interactive="true" min-width="200" min-height="200"&gt;
+  &lt;ppt-period-step-circle slot="step" color="#E13010" style="--ppt-text-color: #fff; --ppt-marker-border: none;"&gt;Do&lt;/ppt-period-step-circle&gt;
+  &lt;ppt-period-step-circle slot="step" color="#E2C432" style="--ppt-text-color: #000; --ppt-marker-border: none;"&gt;Ra&lt;/ppt-period-step-circle&gt;
+  &lt;ppt-period-step-circle slot="step" color="#E2C432" style="--ppt-text-color: #000; --ppt-marker-border: none;"&gt;Re&lt;/ppt-period-step-circle&gt;
+  &lt;ppt-period-step-circle slot="step" color="#F54321" style="--ppt-text-color: #fff; --ppt-marker-border: none;"&gt;Me&lt;/ppt-period-step-circle&gt;
+  &lt;ppt-period-step-circle slot="step" color="#F54321" style="--ppt-text-color: #fff; --ppt-marker-border: none;"&gt;Mi&lt;/ppt-period-step-circle&gt;
+  &lt;ppt-period-step-circle slot="step" color="#43A440" style="--ppt-text-color: #fff; --ppt-marker-border: none;"&gt;Fa&lt;/ppt-period-step-circle&gt;
+  &lt;ppt-period-step-circle slot="step" color="#141414" style="--ppt-text-color: #fff; --ppt-marker-border: none;"&gt;Fi&lt;/ppt-period-step-circle&gt;
+  &lt;ppt-period-step-circle slot="step" color="#0032A4" style="--ppt-text-color: #fff; --ppt-marker-border: none;"&gt;So&lt;/ppt-period-step-circle&gt;
+  &lt;ppt-period-step-circle slot="step" color="#5300A4" style="--ppt-text-color: #fff; --ppt-marker-border: none;"&gt;Le&lt;/ppt-period-step-circle&gt;
+  &lt;ppt-period-step-circle slot="step" color="#5300A4" style="--ppt-text-color: #fff; --ppt-marker-border: none;"&gt;La&lt;/ppt-period-step-circle&gt;
+  &lt;ppt-period-step-circle slot="step" color="#F158A4" style="--ppt-text-color: #fff; --ppt-marker-border: none;"&gt;Te&lt;/ppt-period-step-circle&gt;
+  &lt;ppt-period-step-circle slot="step" color="#F158A4" style="--ppt-text-color: #fff; --ppt-marker-border: none;"&gt;Ti&lt;/ppt-period-step-circle&gt;
+&lt;/ppt-period&gt;</code></pre>
+      </details>
+    </div>
+  </section>
+
+</ComponentLayout>
+
+<script>
+  window.copyCode = function(targetId, btn) {
+    const code = document.getElementById(targetId)?.textContent;
+    if (code) {
+      navigator.clipboard.writeText(code);
+      const oldText = btn.textContent;
+      btn.textContent = "Copied!";
+      setTimeout(() => btn.textContent = oldText, 2000);
+    }
+  };
+
+  function setupCompromiseListener(componentId: string, warningId: string) {
+    const component = document.getElementById(componentId);
+    const warning = document.getElementById(warningId);
+    if (component && warning) {
+      component.addEventListener('ppt-compromised', (e: any) => {
+        if (e.target !== component) return;
+        warning.style.display = 'block';
+        warning.textContent = '⚠️ Compromised (Size: ' + Math.round(e.detail.width) + 'x' + Math.round(e.detail.height) + ')';
+      });
+      component.addEventListener('ppt-restored', (e: any) => {
+        if (e.target !== component) return;
+        warning.style.display = 'none';
+      });
+    }
+  }
+
+  setupCompromiseListener('demo-clock', 'clock-warning');
+
+  // Tonal Clock Controls
+  const clockComponent = document.getElementById('demo-clock');
+  const clockInteractive = document.getElementById('clock-interactive') as HTMLInputElement;
+  const clockCode = document.getElementById('clock-code');
+
+  function updateClockCode() {
+    if (!clockCode || !clockInteractive) return;
+    const isInteractive = clockInteractive.checked ? 'true' : 'false';
+    clockCode.textContent = `&lt;ppt-period shape="circle" starting-angle="-90" interactive="${isInteractive}" min-width="200" min-height="200"&gt;
+  &lt;ppt-period-step-circle slot="step" color="#E13010" style="--ppt-text-color: #fff; --ppt-marker-border: none;"&gt;Do&lt;/ppt-period-step-circle&gt;
+  &lt;ppt-period-step-circle slot="step" color="#E2C432" style="--ppt-text-color: #000; --ppt-marker-border: none;"&gt;Ra&lt;/ppt-period-step-circle&gt;
+  &lt;ppt-period-step-circle slot="step" color="#E2C432" style="--ppt-text-color: #000; --ppt-marker-border: none;"&gt;Re&lt;/ppt-period-step-circle&gt;
+  &lt;ppt-period-step-circle slot="step" color="#F54321" style="--ppt-text-color: #fff; --ppt-marker-border: none;"&gt;Me&lt;/ppt-period-step-circle&gt;
+  &lt;ppt-period-step-circle slot="step" color="#F54321" style="--ppt-text-color: #fff; --ppt-marker-border: none;"&gt;Mi&lt;/ppt-period-step-circle&gt;
+  &lt;ppt-period-step-circle slot="step" color="#43A440" style="--ppt-text-color: #fff; --ppt-marker-border: none;"&gt;Fa&lt;/ppt-period-step-circle&gt;
+  &lt;ppt-period-step-circle slot="step" color="#141414" style="--ppt-text-color: #fff; --ppt-marker-border: none;"&gt;Fi&lt;/ppt-period-step-circle&gt;
+  &lt;ppt-period-step-circle slot="step" color="#0032A4" style="--ppt-text-color: #fff; --ppt-marker-border: none;"&gt;So&lt;/ppt-period-step-circle&gt;
+  &lt;ppt-period-step-circle slot="step" color="#5300A4" style="--ppt-text-color: #fff; --ppt-marker-border: none;"&gt;Le&lt;/ppt-period-step-circle&gt;
+  &lt;ppt-period-step-circle slot="step" color="#5300A4" style="--ppt-text-color: #fff; --ppt-marker-border: none;"&gt;La&lt;/ppt-period-step-circle&gt;
+  &lt;ppt-period-step-circle slot="step" color="#F158A4" style="--ppt-text-color: #fff; --ppt-marker-border: none;"&gt;Te&lt;/ppt-period-step-circle&gt;
+  &lt;ppt-period-step-circle slot="step" color="#F158A4" style="--ppt-text-color: #fff; --ppt-marker-border: none;"&gt;Ti&lt;/ppt-period-step-circle&gt;
+&lt;/ppt-period&gt;`.replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+  }
+
+  if (clockComponent && clockInteractive) {
+    clockInteractive.addEventListener('change', (e) => {
+      const checked = (e.target as HTMLInputElement).checked;
+      clockComponent.setAttribute('interactive', checked ? 'true' : 'false');
+      updateClockCode();
+    });
+  }
+</script>
+
+<style>
+  .component-demo {
+    margin-top: 3rem;
+  }
+  
+  .live-doc-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .controls-panel {
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+
+  .controls-panel h3 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    color: var(--brand-primary);
+    border-bottom: 2px solid var(--brand-secondary);
+    padding-bottom: 0.5rem;
+  }
+
+  .code-panel {
+    margin-top: 0.5rem;
+  }
+  
+  .code-panel summary {
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--brand-primary);
+    padding: 0.5rem 0;
+    user-select: none;
+  }
+
+  .copy-btn {
+    float: right;
+    background: #e2e8f0;
+    border: none;
+    border-radius: 4px;
+    padding: 0.2rem 0.6rem;
+    font-size: 0.8rem;
+    cursor: pointer;
+    color: #475569;
+    font-weight: bold;
+    transition: background 0.2s;
+  }
+  
+  .copy-btn:hover {
+    background: #cbd5e1;
+  }
+
+  .code-panel pre {
+    background: #1e293b;
+    color: #f8fafc;
+    padding: 1rem;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0.5rem 0 0 0;
+  }
+
+  .compromise-warning {
+    background: #fef2f2;
+    color: #b91c1c;
+    border: 1px solid #f87171;
+    padding: 0.5rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    align-items: end;
+  }
+
+  .control-group {
+    margin-bottom: 0;
+  }
+
+  .control-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .checkbox-group label {
+    margin-bottom: 0;
+    display: inline;
+  }
+
+  .demo-box-wrapper {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .demo-box {
+    width: 100%;
+    height: 400px;
+    padding: 2rem;
+    border: 2px dashed #94a3b8;
+    border-radius: 8px;
+    background: #f8fafc;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    box-sizing: border-box;
+  }
+  
+  .demo-box.resizable {
+    resize: both;
+    overflow: auto;
+    min-width: 150px;
+    min-height: 150px;
+    max-width: 100%;
+  }
+</style>

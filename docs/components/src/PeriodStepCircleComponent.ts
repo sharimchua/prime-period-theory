@@ -1,0 +1,75 @@
+import { BasePPTComponent } from './BasePPTComponent.js';
+
+export class PeriodStepCircleComponent extends BasePPTComponent {
+  static override get observedAttributes() {
+    return [...super.observedAttributes, 'color'];
+  }
+
+  get color() {
+    return this.getAttribute('color') || 'var(--ppt-marker-bg, #fff)';
+  }
+
+  set color(value: string) {
+    this.setAttribute('color', value);
+  }
+
+  override attributeChangedCallback(name: string, _oldValue: string, _newValue: string) {
+    super.attributeChangedCallback(name, _oldValue, _newValue);
+    if (name === 'color') {
+      this.style.setProperty('--step-bg-color', this.color);
+    }
+  }
+
+  override connectedCallback() {
+    super.connectedCallback();
+    this.style.setProperty('--step-bg-color', this.color);
+    this.render();
+  }
+
+  private render() {
+    if (!this.shadowRoot) return;
+
+    this.shadowRoot.innerHTML = `
+      <style>
+        ${this.getBaseStyles()}
+        
+        :host {
+          display: block;
+          position: absolute; /* Will be managed by PeriodComponent */
+          transform: translate(-50%, -50%); /* Centered on its coordinate */
+          width: max(24px, 8cqmin);
+          height: max(24px, 8cqmin);
+          --ppt-interactive-opacity: 1 !important; /* Step circles never fade when muted */
+        }
+
+        .step-marker {
+          width: 100%;
+          height: 100%;
+          background: var(--step-bg-color);
+          border: var(--ppt-marker-border, 1px solid #999);
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-family: var(--ppt-font-family, system-ui, sans-serif);
+          font-size: max(12px, 4cqmin);
+          font-weight: 600;
+          color: var(--ppt-text-color, #333);
+          cursor: pointer;
+          transition: transform 0.2s, background 0.2s;
+        }
+
+        .step-marker:hover {
+          transform: scale(1.2);
+          background: var(--ppt-marker-hover-bg, #e0e0e0);
+        }
+      </style>
+
+      <div class="step-marker">
+        <slot></slot>
+      </div>
+    `;
+  }
+}
+
+customElements.define('ppt-period-step-circle', PeriodStepCircleComponent);

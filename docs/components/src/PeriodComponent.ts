@@ -2,7 +2,7 @@ import { BasePPTComponent } from './BasePPTComponent.js';
 
 export class PeriodComponent extends BasePPTComponent {
   static override get observedAttributes() {
-    return [...super.observedAttributes, 'shape', 'panel-align'];
+    return [...super.observedAttributes, 'shape', 'starting-angle', 'line-orientation'];
   }
 
   get shape() {
@@ -13,24 +13,72 @@ export class PeriodComponent extends BasePPTComponent {
     this.setAttribute('shape', value);
   }
 
-  get panelAlign() {
-    return this.getAttribute('panel-align') || 'floating';
+  get startingAngle() {
+    const val = this.getAttribute('starting-angle');
+    return val ? parseFloat(val) : -90;
   }
 
-  set panelAlign(value: string) {
-    this.setAttribute('panel-align', value);
+  set startingAngle(value: number) {
+    this.setAttribute('starting-angle', value.toString());
+  }
+
+  get lineOrientation() {
+    return this.getAttribute('line-orientation') || 'horizontal';
+  }
+
+  set lineOrientation(value: string) {
+    this.setAttribute('line-orientation', value);
   }
 
   override attributeChangedCallback(name: string, _oldValue: string, _newValue: string) {
     super.attributeChangedCallback(name, _oldValue, _newValue);
-    if (name === 'shape' || name === 'panel-align') {
+    if (name === 'shape' || name === 'starting-angle' || name === 'line-orientation') {
       this.render();
+      this.layoutSteps();
     }
   }
 
   override connectedCallback() {
     super.connectedCallback();
     this.render();
+  }
+
+  private layoutSteps() {
+    if (!this.shadowRoot) return;
+    const slot = this.shadowRoot.querySelector('slot[name="step"]') as HTMLSlotElement;
+    if (!slot) return;
+
+    const steps = slot.assignedElements() as HTMLElement[];
+    if (steps.length === 0) return;
+
+    const count = steps.length;
+    const shape = this.shape;
+
+    steps.forEach((step, i) => {
+      // Ensure step is positioned absolutely within the peripheral container
+      step.style.position = 'absolute';
+
+      if (shape === 'circle') {
+        const angleDeg = this.startingAngle + (i * 360 / count);
+        const angleRad = angleDeg * (Math.PI / 180);
+        
+        const x = 50 + 50 * Math.cos(angleRad);
+        const y = 50 + 50 * Math.sin(angleRad);
+        
+        step.style.left = `${x}%`;
+        step.style.top = `${y}%`;
+      } else if (shape === 'line') {
+        const percent = count === 1 ? 50 : (i / (count - 1)) * 100;
+        
+        if (this.lineOrientation === 'horizontal') {
+          step.style.left = `${percent}%`;
+          step.style.top = `50%`;
+        } else {
+          step.style.left = `50%`;
+          step.style.top = `${percent}%`;
+        }
+      }
+    });
   }
 
   private render() {
@@ -42,88 +90,62 @@ export class PeriodComponent extends BasePPTComponent {
         
         :host {
           display: flex;
+          align-items: center;
+          justify-content: center;
           position: relative;
-          width: var(--ppt-period-size, 300px);
-          height: var(--ppt-period-size, 300px);
-          margin: var(--ppt-period-margin, 2rem auto);
+          box-sizing: border-box;
+          /* The period acts as a CSS container so children can size relative to it */
+          container-type: size;
+          width: 100%;
+          height: 100%;
           font-family: var(--ppt-font-family, system-ui, sans-serif);
           color: var(--ppt-text-color, #333);
+          margin: var(--ppt-period-margin, 0 auto);
         }
 
         :host([shape="line"]) {
-          width: var(--ppt-period-width, 100%);
-          height: var(--ppt-period-height, 100px);
+          display: flex;
           flex-direction: row;
           align-items: center;
         }
 
         .container {
           position: relative;
-          width: 100%;
-          height: 100%;
+          /* Subtract marker size to prevent overflow bleeding */
+          width: calc(100% - max(32px, 10cqmin));
+          height: calc(100% - max(32px, 10cqmin));
+          max-width: calc(100% - max(32px, 10cqmin));
+          max-height: calc(100% - max(32px, 10cqmin));
           background: var(--ppt-period-bg, transparent);
           border: var(--ppt-period-border, 2px solid #ccc);
           display: flex;
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          border-radius: ${this.shape === 'circle' ? '50%' : 'var(--ppt-period-radius, 8px)'};
           transition: all 0.3s ease;
         }
 
-        .content {
-          text-align: center;
-          z-index: 2;
+        /* Default Circle Styles */
+        :host(:not([shape="line"])) .container {
+          aspect-ratio: 1 / 1;
+          border-radius: 50%;
+          max-width: calc(100cqh - max(32px, 10cqmin));
+          max-height: calc(100cqw - max(32px, 10cqmin));
         }
 
-        .title {
-          font-size: var(--ppt-title-size, 1.2rem);
-          font-weight: bold;
-          margin-bottom: 0.5rem;
+        /* Line Styles */
+        :host([shape="line"]) .container {
+          aspect-ratio: auto;
+          height: var(--ppt-period-height, 4px); /* Slimmer for line */
+          border-radius: var(--ppt-period-radius, 2px);
+          width: calc(100% - max(32px, 10cqmin));
+        }
+        
+        :host([shape="line"][line-orientation="vertical"]) .container {
+          width: var(--ppt-period-height, 4px);
+          height: calc(100% - max(32px, 10cqmin));
         }
 
-        .body {
-          font-size: var(--ppt-body-size, 1rem);
-        }
-
-        .panel {
-          position: absolute;
-          z-index: 10;
-          background: var(--ppt-panel-bg, rgba(255, 255, 255, 0.9));
-          border: var(--ppt-panel-border, 1px solid #eee);
-          border-radius: var(--ppt-panel-radius, 4px);
-          padding: var(--ppt-panel-padding, 0.5rem);
-          box-shadow: var(--ppt-panel-shadow, 0 4px 6px rgba(0,0,0,0.1));
-        }
-
-        /* Panel Alignment */
-        :host([panel-align="floating"]) .panel {
-          top: 100%;
-          left: 50%;
-          transform: translate(-50%, 10px);
-        }
-        :host([panel-align="top"]) .panel {
-          bottom: 100%;
-          left: 50%;
-          transform: translate(-50%, -10px);
-        }
-        :host([panel-align="bottom"]) .panel {
-          top: 100%;
-          left: 50%;
-          transform: translate(-50%, 10px);
-        }
-        :host([panel-align="left"]) .panel {
-          right: 100%;
-          top: 50%;
-          transform: translate(-10px, -50%);
-        }
-        :host([panel-align="right"]) .panel {
-          left: 100%;
-          top: 50%;
-          transform: translate(10px, -50%);
-        }
-
-        /* Peripheral attachment point (for clocks, etc) */
         .peripheral {
           position: absolute;
           top: 0; left: 0; right: 0; bottom: 0;
@@ -133,24 +155,21 @@ export class PeriodComponent extends BasePPTComponent {
         .peripheral ::slotted(*) {
           pointer-events: auto; /* Re-enable pointer events for slotted content */
         }
-
       </style>
 
       <div class="container">
-        <div class="content">
-          <div class="title"><slot name="title"></slot></div>
-          <div class="body"><slot name="body"></slot></div>
-        </div>
-        
         <div class="peripheral">
+          <slot name="step"></slot>
           <slot name="peripheral"></slot>
-        </div>
-
-        <div class="panel">
-          <slot name="panel"></slot>
         </div>
       </div>
     `;
+
+    // Re-bind slot change
+    const slot = this.shadowRoot.querySelector('slot[name="step"]') as HTMLSlotElement;
+    if (slot) {
+      slot.addEventListener('slotchange', () => this.layoutSteps());
+    }
   }
 }
 
