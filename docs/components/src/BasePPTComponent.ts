@@ -1,8 +1,10 @@
 export class BasePPTComponent extends HTMLElement {
-  protected _interactive: boolean = true;
+  static get observedAttributes(): string[] {
+    return [];
+  }
 
-  static get observedAttributes() {
-    return ['interactive', 'resizable'];
+  static get pptMetadata(): Record<string, any> {
+    return {};
   }
 
   constructor() {
@@ -10,53 +12,14 @@ export class BasePPTComponent extends HTMLElement {
     this.attachShadow({ mode: 'open' });
   }
 
-  get interactive() {
-    return this._interactive;
-  }
-
-  set interactive(value: boolean) {
-    this._interactive = value;
-    if (value) {
-      this.setAttribute('interactive', 'true');
-    } else {
-      this.removeAttribute('interactive');
-    }
-    this.updateInteractivity();
-    this.propagateInteractivity(value);
-  }
-
-  get resizable() {
-    return this.hasAttribute('resizable') && this.getAttribute('resizable') !== 'false';
-  }
-
-  set resizable(value: boolean) {
-    if (value) {
-      this.setAttribute('resizable', 'true');
-    } else {
-      this.removeAttribute('resizable');
-    }
-    this.updateResizability();
-  }
-
   attributeChangedCallback(name: string, _oldValue: string, newValue: string) {
-    if (name === 'interactive') {
-      const isInteractive = newValue !== null && newValue !== 'false';
-      this._interactive = isInteractive;
-      this.updateInteractivity();
-      this.propagateInteractivity(isInteractive);
-    } else if (name === 'resizable') {
-      this.updateResizability();
-    }
+    // Override in subclasses
   }
 
   protected _resizeObserver: ResizeObserver | null = null;
   protected _isCompromised: boolean = false;
 
   connectedCallback() {
-    // Read initial attributes
-    this._interactive = this.getAttribute('interactive') !== 'false';
-    this.updateInteractivity();
-    this.updateResizability();
     this.setupResizeObserver();
   }
 
@@ -103,54 +66,7 @@ export class BasePPTComponent extends HTMLElement {
     }
   }
 
-  protected updateInteractivity() {
-    if (!this.shadowRoot) return;
-    
-    // Default interactivity logic applied to the host
-    if (!this._interactive) {
-      this.style.setProperty('pointer-events', 'none');
-      this.style.setProperty('user-select', 'none');
-      this.style.setProperty('--ppt-interactive-opacity', '0.6');
-    } else {
-      this.style.removeProperty('pointer-events');
-      this.style.removeProperty('user-select');
-      this.style.setProperty('--ppt-interactive-opacity', '1');
-    }
-  }
 
-  protected updateResizability() {
-    const isResizable = this.hasAttribute('resizable') && this.getAttribute('resizable') !== 'false';
-    if (isResizable) {
-      this.style.setProperty('resize', 'both');
-      this.style.setProperty('overflow', 'auto');
-    } else {
-      this.style.removeProperty('resize');
-      this.style.removeProperty('overflow');
-    }
-  }
-
-  // Propagate interactivity flag to child PPT components within slots or light DOM
-  protected propagateInteractivity(isInteractive: boolean) {
-    // Propagate to slotted elements
-    const slots = this.shadowRoot?.querySelectorAll('slot');
-    slots?.forEach(slot => {
-      const assignedNodes = slot.assignedNodes({ flatten: true });
-      assignedNodes.forEach(node => {
-        if (node instanceof BasePPTComponent) {
-          node.interactive = isInteractive;
-        }
-      });
-    });
-
-    // Propagate to direct children that are PPT components
-    Array.from(this.children).forEach(child => {
-      if (child instanceof BasePPTComponent) {
-        child.interactive = isInteractive;
-      }
-    });
-  }
-
-  // Helper method for applying base styles
   protected getBaseStyles(): string {
     return `
       :host {

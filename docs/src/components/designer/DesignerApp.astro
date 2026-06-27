@@ -4,56 +4,89 @@ import { getPPTComponents } from './parseComponents.js';
 const components = getPPTComponents();
 ---
 
-<div class="designer-app">
-  <!-- Left Pane: Library & Tree -->
-  <aside class="pane pane-left">
-    <div class="pane-header">Library</div>
-    <div class="pane-content">
-      <ul class="component-library" id="library-list">
-        {components.map(comp => (
-          <li class="library-item" draggable="true" data-tag={comp.tagName} data-attributes={JSON.stringify(comp.attributes)}>
-            <span class="tag-name">&lt;{comp.tagName}&gt;</span>
-          </li>
-        ))}
-      </ul>
-      
-      <div class="pane-header" style="margin-top: 1rem;">DOM Tree</div>
-      <div class="pane-content tree-view" id="dom-tree">
-        <!-- Tree populated dynamically -->
+<div class="designer-app" id="designer-app" data-split="50">
+  
+  <!-- Header / Toolbar -->
+  <div class="designer-toolbar">
+    <div class="toolbar-left">
+      <button id="btn-toggle-library" class="toolbar-btn">
+        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
+        Library
+      </button>
+    </div>
+    <div class="toolbar-center">
+      <span class="toolbar-label">Layout Split:</span>
+      <button class="toolbar-btn layout-btn active" data-ratio="75" title="75 / 25">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><rect x="2" y="4" width="14" height="16" rx="2"></rect><rect x="18" y="4" width="4" height="16" rx="1"></rect></svg>
+      </button>
+      <button class="toolbar-btn layout-btn" data-ratio="50" title="50 / 50">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><rect x="2" y="4" width="9" height="16" rx="2"></rect><rect x="13" y="4" width="9" height="16" rx="2"></rect></svg>
+      </button>
+      <button class="toolbar-btn layout-btn" data-ratio="25" title="25 / 75">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><rect x="2" y="4" width="4" height="16" rx="1"></rect><rect x="8" y="4" width="14" height="16" rx="2"></rect></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Grid -->
+  <div class="designer-grid">
+    <!-- Left Pane -->
+    <div class="left-pane">
+      <div class="pane pane-tree">
+        <div class="pane-header">Component Tree</div>
+        <div class="pane-content tree-view" id="dom-tree">
+          <!-- Tree populated dynamically -->
+        </div>
+      </div>
+      <div class="pane pane-props">
+        <div class="pane-header">Properties</div>
+        <div class="pane-content" id="properties-panel">
+          <p class="empty-state">Select a component to edit its properties.</p>
+        </div>
       </div>
     </div>
-  </aside>
-
-  <!-- Center Pane: Canvas -->
-  <main class="pane pane-center">
-    <div class="pane-header">Live Preview Canvas</div>
-    <div class="canvas-wrapper" id="canvas-wrapper">
-      <div class="canvas" id="canvas">
-        <!-- Components are dropped here -->
-        <ppt-period id="demo-period" shape="circle" interactive="true" min-width="200" min-height="200" style="width: 300px; height: 300px; margin: 0 auto;">
-          <ppt-period-step-circle slot="step">A</ppt-period-step-circle>
-          <ppt-period-step-circle slot="step">B</ppt-period-step-circle>
-          <ppt-period-step-circle slot="step">C</ppt-period-step-circle>
-        </ppt-period>
+    
+    <!-- Right Pane (Canvas) -->
+    <div class="right-pane pane pane-center">
+      <div class="pane-header">Preview</div>
+      <div class="canvas-wrapper" id="canvas-wrapper">
+        <div class="canvas" id="canvas">
+          <ppt-period id="demo-period" shape="circle" interactive="true" min-width="200" min-height="200" style="width: 300px; height: 300px; margin: 0 auto;">
+            <ppt-period-step-circle slot="step">A</ppt-period-step-circle>
+            <ppt-period-step-circle slot="step">B</ppt-period-step-circle>
+            <ppt-period-step-circle slot="step">C</ppt-period-step-circle>
+          </ppt-period>
+        </div>
       </div>
     </div>
-  </main>
+  </div>
 
-  <!-- Right Pane: Properties -->
-  <aside class="pane pane-right">
-    <div class="pane-header">Properties</div>
-    <div class="pane-content" id="properties-panel">
-      <p class="empty-state">Select a component to edit its properties.</p>
-    </div>
-  </aside>
-
-  <!-- Bottom Pane: Source Code -->
+  <!-- Bottom Pane (Code) -->
   <footer class="pane pane-bottom">
     <div class="pane-header">Source Code (HTML)</div>
     <div class="pane-content">
       <pre><code id="source-code"></code></pre>
     </div>
   </footer>
+  
+  <!-- Library Drawer -->
+  <div class="library-drawer" id="library-drawer">
+    <div class="drawer-header">
+      Component Library
+      <button id="btn-close-library" class="close-btn">&times;</button>
+    </div>
+    <div class="drawer-content">
+      <p class="drawer-help">Drag components into the Canvas or DOM Tree.</p>
+      <ul class="component-library" id="library-list">
+        {components.map(comp => (
+          <li class="library-item" draggable="true" data-tag={comp.tagName} data-attributes={JSON.stringify(comp.attributes)} data-metadata={JSON.stringify(comp.metadata)}>
+            <span class="tag-name">&lt;{comp.tagName}&gt;</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+  <div class="drawer-overlay" id="drawer-overlay"></div>
 </div>
 
 <script>
@@ -64,21 +97,62 @@ const components = getPPTComponents();
   const propertiesPanel = document.getElementById('properties-panel');
   const sourceCode = document.getElementById('source-code');
   const libraryItems = document.querySelectorAll('.library-item');
+  
+  // Tree expanded state tracking
+  const expandedNodes = new Set<string>();
 
-  // Initial code sync
+  // Layout Controls
+  const designerApp = document.getElementById('designer-app');
+  const layoutBtns = document.querySelectorAll('.layout-btn');
+  
+  // Load split preference from local storage
+  const savedSplit = localStorage.getItem('ppt-designer-split') || '75';
+  if (designerApp) designerApp.setAttribute('data-split', savedSplit);
+  layoutBtns.forEach(btn => {
+    if (btn.getAttribute('data-ratio') === savedSplit) {
+       layoutBtns.forEach(b => b.classList.remove('active'));
+       btn.classList.add('active');
+    }
+    btn.addEventListener('click', () => {
+      layoutBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const ratio = btn.getAttribute('data-ratio');
+      if (designerApp && ratio) {
+        designerApp.setAttribute('data-split', ratio);
+        localStorage.setItem('ppt-designer-split', ratio);
+      }
+    });
+  });
+
+  // Drawer Controls
+  const libraryDrawer = document.getElementById('library-drawer');
+  const drawerOverlay = document.getElementById('drawer-overlay');
+  const btnToggleLibrary = document.getElementById('btn-toggle-library');
+  const btnCloseLibrary = document.getElementById('btn-close-library');
+
+  function toggleDrawer(force?: boolean) {
+    const isOpen = libraryDrawer?.classList.contains('open');
+    if (force === true || (!isOpen && force !== false)) {
+      libraryDrawer?.classList.add('open');
+      drawerOverlay?.classList.add('open');
+    } else {
+      libraryDrawer?.classList.remove('open');
+      drawerOverlay?.classList.remove('open');
+    }
+  }
+
+  btnToggleLibrary?.addEventListener('click', () => toggleDrawer());
+  btnCloseLibrary?.addEventListener('click', () => toggleDrawer(false));
+  drawerOverlay?.addEventListener('click', () => toggleDrawer(false));
+
+  // Sync Code
   function syncCode() {
     if (!canvas || !sourceCode) return;
-    
-    // Simple formatter to add some line breaks
-    let html = canvas.innerHTML
-      .replace(/></g, '>\n  <')
-      .trim();
-    
-    // Ensure standard angle brackets
+    let html = canvas.innerHTML.replace(/></g, '>\n  <').trim();
     sourceCode.textContent = html;
   }
 
-  // MutationObserver for live code sync
+  // MutationObserver
   if (canvas) {
     const observer = new MutationObserver(() => {
       syncCode();
@@ -89,160 +163,291 @@ const components = getPPTComponents();
     renderTree();
   }
 
-  // Handle Selection
-  if (canvas) {
-    canvas.addEventListener('click', (e) => {
-      e.stopPropagation(); // prevent bubbling to canvas container
-      
-      const target = e.target as HTMLElement;
-      if (target === canvas) {
-        selectElement(null);
-      } else {
-        selectElement(target);
-      }
-    });
-  }
+  // Remove click listener from Canvas
+  // Canvas should not be interactive in terms of selection
+  // Handling selection only via Tree or library drag.
 
   function selectElement(el: HTMLElement | null) {
-    // Clear previous selection
     if (selectedElement) {
       selectedElement.classList.remove('designer-selected');
     }
-    
     selectedElement = el;
     
     if (selectedElement) {
       selectedElement.classList.add('designer-selected');
+      // Ensure path to selected element is expanded
+      expandPathToSelected(selectedElement);
       renderProperties(selectedElement);
     } else {
       renderProperties(null);
     }
-    renderTree(); // Highlight in tree
+    renderTree();
   }
 
-  // Render Properties Panel
+  function expandPathToSelected(el: HTMLElement) {
+    // Basic traversal up to canvas to add all paths to expandedNodes
+    let path: number[] = [];
+    let current = el;
+    while (current && current.parentElement && current !== canvas) {
+      const siblings = Array.from(current.parentElement.children);
+      path.unshift(siblings.indexOf(current));
+      current = current.parentElement;
+    }
+    
+    // Now incrementally build paths from root and expand them
+    let runningPath: number[] = [];
+    for (let idx of path) {
+       expandedNodes.add(JSON.stringify(runningPath));
+       runningPath.push(idx);
+    }
+  }
+
+  // Render Properties
   function renderProperties(el: HTMLElement | null) {
     if (!propertiesPanel) return;
-    
     if (!el) {
       propertiesPanel.innerHTML = '<p class="empty-state">Select a component to edit its properties.</p>';
       return;
     }
 
     const tagName = el.tagName.toLowerCase();
-    
-    // Find attributes from the library items data-attributes map
     let allowedAttrs: string[] = [];
+    let metadata: Record<string, any> = {};
     const libItem = document.querySelector(`.library-item[data-tag="${tagName}"]`);
     if (libItem) {
       allowedAttrs = JSON.parse(libItem.getAttribute('data-attributes') || '[]');
+      metadata = JSON.parse(libItem.getAttribute('data-metadata') || '{}');
     }
 
-    // Common HTML attributes that we always allow editing
-    const commonAttrs = ['id', 'class', 'style', 'slot'];
-    const allAttrs = [...new Set([...commonAttrs, ...allowedAttrs])];
+    // Filter out standard HTML attributes as requested
+    const filteredAttrs = allowedAttrs.filter(a => !['id', 'class', 'style', 'slot'].includes(a));
 
-    let html = `<h3>&lt;${tagName}&gt;</h3><div class="prop-form">`;
-    
-    allAttrs.forEach(attr => {
-      const val = el.getAttribute(attr) || '';
-      // We could render sliders for numbers or selects for shapes, but text inputs are a good v1
-      html += `
-        <div class="prop-group">
-          <label>${attr}</label>
-          <input type="text" data-attr="${attr}" value="${val.replace(/"/g, '&quot;')}" />
-        </div>
-      `;
+    let html = `<h3>&lt;${tagName}&gt; Settings</h3><div class="prop-form">`;
+    filteredAttrs.forEach(attr => {
+      const val = el.getAttribute(attr);
+      const meta = metadata[attr] || { type: 'string' };
+      
+      html += `<div class="prop-group">`;
+      html += `<label>${attr}</label>`;
+      
+      if (meta.type === 'boolean') {
+        // For boolean, if it's present and not 'false', or if default is true and not explicitly false
+        const isChecked = val === 'true' || val === '' || (val === null && meta.default === true);
+        html += `<input type="checkbox" data-attr="${attr}" ${isChecked ? 'checked' : ''} />`;
+      } else if (meta.type === 'color') {
+        const displayVal = val || (meta.default !== undefined ? meta.default : '#ffffff');
+        html += `<input type="color" data-attr="${attr}" value="${displayVal}" />`;
+      } else if (meta.type === 'enum' && meta.options) {
+        html += `<select data-attr="${attr}">`;
+        meta.options.forEach((opt: string) => {
+          const isSelected = val === opt || (val === null && meta.default === opt);
+          html += `<option value="${opt}" ${isSelected ? 'selected' : ''}>${opt}</option>`;
+        });
+        html += `</select>`;
+      } else {
+        const displayVal = val || (meta.default !== undefined ? meta.default : '');
+        html += `<input type="text" data-attr="${attr}" value="${String(displayVal).replace(/"/g, '&quot;')}" />`;
+      }
+      
+      html += `</div>`;
     });
-    
     html += '</div>';
-    
-    html += `
-      <div class="prop-actions" style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #ddd;">
-        <button id="btn-delete" class="danger-btn">Delete Component</button>
-      </div>
-    `;
-
     propertiesPanel.innerHTML = html;
 
-    // Attach listeners to inputs
-    const inputs = propertiesPanel.querySelectorAll('input');
+    const inputs = propertiesPanel.querySelectorAll('input, select');
     inputs.forEach(input => {
-      input.addEventListener('input', (e) => {
-        const target = e.target as HTMLInputElement;
+      input.addEventListener('change', (e) => {
+        const target = e.target as HTMLInputElement | HTMLSelectElement;
         const attr = target.getAttribute('data-attr');
         if (attr) {
-          if (target.value) {
-            el.setAttribute(attr, target.value);
+          if (target.type === 'checkbox') {
+            const isChecked = (target as HTMLInputElement).checked;
+            el.setAttribute(attr, isChecked ? 'true' : 'false');
           } else {
-            el.removeAttribute(attr);
+            if (target.value) {
+              el.setAttribute(attr, target.value);
+            } else {
+              el.removeAttribute(attr);
+            }
           }
         }
       });
+      // Also listen to input for text fields for real-time updates
+      if (input.type === 'text') {
+        input.addEventListener('input', (e) => {
+          const target = e.target as HTMLInputElement;
+          const attr = target.getAttribute('data-attr');
+          if (attr && target.value) el.setAttribute(attr, target.value);
+        });
+      }
     });
-
-    // Delete button
-    const delBtn = propertiesPanel.querySelector('#btn-delete');
-    if (delBtn) {
-      delBtn.addEventListener('click', () => {
-        if (el && el.parentNode) {
-          el.parentNode.removeChild(el);
-          selectElement(null);
-        }
-      });
-    }
   }
 
   // Render DOM Tree
   function renderTree() {
     if (!domTree || !canvas) return;
-    
     domTree.innerHTML = buildTreeHTML(canvas, 0);
     
-    // Attach tree listeners
-    const treeItems = domTree.querySelectorAll('.tree-node');
-    treeItems.forEach(item => {
-      item.addEventListener('click', (e) => {
+    // Attach tree node click listeners
+    domTree.querySelectorAll('.tree-node-clickable').forEach(node => {
+      node.addEventListener('click', (e) => {
         e.stopPropagation();
-        const id = item.getAttribute('data-node-id');
-        // Simple way to map tree back to DOM element: adding a temporary id if needed, 
-        // or just re-traversing. For simplicity, we just look up by a path or reference.
-        // As a hack for v1, we can just walk the DOM the exact same way.
-        const pathStr = item.getAttribute('data-path');
+        const pathStr = node.getAttribute('data-path');
         if (pathStr) {
-          const path = JSON.parse(pathStr);
-          let target: any = canvas;
-          for (const idx of path) {
-             target = target.children[idx];
+          const target = getElementByPath(JSON.parse(pathStr));
+          if (target) selectElement(target);
+        }
+      });
+      
+      // Tree drag and drop to append to node
+      node.addEventListener('dragover', (e: any) => {
+        e.preventDefault();
+        e.dataTransfer.dropEffect = 'copy';
+        node.classList.add('drag-over');
+      });
+      node.addEventListener('dragleave', (e: any) => {
+        node.classList.remove('drag-over');
+      });
+      node.addEventListener('drop', (e: any) => {
+        e.preventDefault();
+        e.stopPropagation();
+        node.classList.remove('drag-over');
+        
+        const pathStr = node.getAttribute('data-path');
+        const targetParent = pathStr ? getElementByPath(JSON.parse(pathStr)) : null;
+        
+        if (targetParent && draggedTag) {
+           const newEl = document.createElement(draggedTag);
+           if (draggedTag === 'ppt-period-step-circle' && targetParent.tagName.toLowerCase().includes('ppt-')) {
+             newEl.setAttribute('slot', 'step');
+           }
+           targetParent.appendChild(newEl);
+           
+           // Auto-expand the parent we dropped into
+           expandedNodes.add(pathStr || '[]');
+           
+           selectElement(newEl);
+           draggedTag = null;
+        }
+      });
+    });
+
+    // Attach tree toggle listeners
+    domTree.querySelectorAll('.tree-toggle').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const pathStr = btn.getAttribute('data-path');
+        if (pathStr) {
+          if (expandedNodes.has(pathStr)) {
+            expandedNodes.delete(pathStr);
+          } else {
+            expandedNodes.add(pathStr);
           }
-          if (target) {
-            selectElement(target);
-          }
+          renderTree();
+        }
+      });
+    });
+
+    // Attach tree controls listeners
+    domTree.querySelectorAll('.up-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (selectedElement && selectedElement.previousElementSibling) {
+          selectedElement.parentNode?.insertBefore(selectedElement, selectedElement.previousElementSibling);
+        }
+      });
+    });
+
+    domTree.querySelectorAll('.down-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (selectedElement && selectedElement.nextElementSibling) {
+          selectedElement.parentNode?.insertBefore(selectedElement.nextElementSibling, selectedElement);
+        }
+      });
+    });
+
+    domTree.querySelectorAll('.del-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (selectedElement && selectedElement.parentNode) {
+          selectedElement.parentNode.removeChild(selectedElement);
+          selectElement(null);
         }
       });
     });
   }
 
+  function getElementByPath(path: number[]): HTMLElement | null {
+    if (!canvas) return null;
+    let target: HTMLElement = canvas;
+    for (const idx of path) {
+      if (target.children[idx]) {
+        target = target.children[idx] as HTMLElement;
+      } else {
+        return null;
+      }
+    }
+    return target;
+  }
+
   function buildTreeHTML(node: HTMLElement, depth: number, path: number[] = []): string {
     let html = '';
     const children = Array.from(node.children) as HTMLElement[];
+    const hasChildren = children.length > 0;
     
+    const pathStr = JSON.stringify(path);
+    const isExpanded = depth === 0 || expandedNodes.has(pathStr) || node === canvas; // Canvas always expanded
+
     if (node !== canvas) {
       const isSelected = node === selectedElement;
-      html += `<div class="tree-node ${isSelected ? 'selected' : ''}" style="padding-left: ${depth * 10}px" data-path="${JSON.stringify(path)}">`;
-      html += `&lt;${node.tagName.toLowerCase()}&gt;`;
-      if (node.id) html += ` <span class="tree-id">#${node.id}</span>`;
-      html += `</div>`;
+      
+      html += `<div class="tree-node-wrapper">`;
+      html += `<div class="tree-node-row" data-path='${pathStr}'>`;
+      
+      // Indentation spacer block
+      html += `<div class="indent-spacer" style="width: ${depth * 16}px;"></div>`;
+      
+      html += `<div class="tree-node tree-node-clickable ${isSelected ? 'selected' : ''}">`;
+      
+      html += `<div class="tree-node-content">
+        ${hasChildren ? 
+          `<button class="tree-toggle" data-path='${pathStr}'>${isExpanded ? '▾' : '▸'}</button>` : 
+          `<span class="tree-spacer"></span>`
+        }
+        <span class="tag-name">&lt;${node.tagName.toLowerCase()}&gt;</span>
+      `;
+      
+      if (isSelected) {
+         const isFirst = node.previousElementSibling === null;
+         const isLast = node.nextElementSibling === null;
+         
+         html += `<div class="tree-controls">
+           <button class="tree-btn up-btn" title="Move Up" ${isFirst ? 'disabled' : ''}>↑</button>
+           <button class="tree-btn down-btn" title="Move Down" ${isLast ? 'disabled' : ''}>↓</button>
+           <button class="tree-btn del-btn" title="Delete">✕</button>
+         </div>`;
+      }
+      
+      html += `</div></div></div>`;
     }
 
-    children.forEach((child, index) => {
-      html += buildTreeHTML(child, node === canvas ? 0 : depth + 1, [...path, index]);
-    });
+    if (node === canvas || (hasChildren && isExpanded)) {
+      html += `<div class="tree-children ${node !== canvas ? 'nested' : ''}">`;
+      children.forEach((child, index) => {
+        html += buildTreeHTML(child, node === canvas ? 0 : depth + 1, [...path, index]);
+      });
+      html += `</div>`;
+    }
+    
+    if (node !== canvas) {
+      html += `</div>`;
+    }
 
     return html;
   }
 
-  // Drag and Drop (Library -> Canvas)
+  // Drag and Drop Setup
   let draggedTag: string | null = null;
 
   libraryItems.forEach(item => {
@@ -250,71 +455,93 @@ const components = getPPTComponents();
       draggedTag = item.getAttribute('data-tag');
       e.dataTransfer.setData('text/plain', draggedTag);
       e.dataTransfer.effectAllowed = 'copy';
+      toggleDrawer(false); // Close drawer while dragging
     });
   });
 
-  if (canvas) {
-    canvas.addEventListener('dragover', (e) => {
-      e.preventDefault(); // Necessary to allow dropping
-      e.dataTransfer!.dropEffect = 'copy';
-    });
-
-    canvas.addEventListener('drop', (e) => {
-      e.preventDefault();
-      if (!draggedTag) return;
-
-      const newEl = document.createElement(draggedTag);
-      
-      // If we drop on an existing element inside the canvas, append to it, otherwise append to canvas
-      let target = e.target as HTMLElement;
-      // Don't append to canvas if we drop strictly outside the container logic, but here canvas is the container
-      
-      // Ensure we only drop into elements that support children, like ppt-period.
-      if (target.tagName.toLowerCase().includes('ppt-')) {
-         // Default to slot="step" for dropping into PPT components if it's a step circle
-         if (draggedTag === 'ppt-period-step-circle') {
-            newEl.setAttribute('slot', 'step');
-         }
-         target.appendChild(newEl);
-      } else {
-         canvas.appendChild(newEl);
-      }
-
-      selectElement(newEl);
-      draggedTag = null;
-    });
-  }
+  // Canvas drag and drop removed
+  // We only allow dropping onto the tree or the tree root.
 </script>
 
 <style>
   .designer-app {
-    display: grid;
-    grid-template-columns: 250px 1fr 300px;
-    grid-template-rows: 1fr 200px;
+    display: flex;
+    flex-direction: column;
     height: 100%;
     width: 100%;
     background: #1e1e1e;
     color: #d4d4d4;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     overflow: hidden;
+    --split-left: 50%;
+  }
+
+  .designer-app[data-split="25"] { --split-left: 25%; }
+  .designer-app[data-split="50"] { --split-left: 50%; }
+  .designer-app[data-split="75"] { --split-left: 75%; }
+
+  /* Toolbar */
+  .designer-toolbar {
+    height: 48px;
+    background: #252526;
+    border-bottom: 1px solid #333;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    flex-shrink: 0;
+  }
+
+  .toolbar-btn {
+    background: #333;
+    border: 1px solid #444;
+    color: #ccc;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .toolbar-btn:hover { background: #444; color: #fff; }
+  .toolbar-btn.active { background: #007fd4; border-color: #007fd4; color: #fff; }
+
+  .toolbar-center { display: flex; align-items: center; gap: 8px; }
+  .toolbar-label { font-size: 12px; color: #888; margin-right: 4px; }
+
+  /* Main Grid */
+  .designer-grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: var(--split-left) 1fr;
+    overflow: hidden;
+  }
+
+  .left-pane {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    border-right: 1px solid #333;
+    overflow: hidden;
   }
 
   .pane {
     display: flex;
     flex-direction: column;
-    border: 1px solid #333;
-    background: #252526;
+    background: #1e1e1e;
     overflow: hidden;
   }
+  
+  .pane-tree { border-bottom: 1px solid #333; }
 
   .pane-header {
     background: #2d2d2d;
     padding: 8px 12px;
-    font-size: 12px;
+    font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     font-weight: 600;
-    color: #cccccc;
+    color: #ccc;
     border-bottom: 1px solid #333;
     user-select: none;
   }
@@ -325,151 +552,179 @@ const components = getPPTComponents();
     padding: 12px;
   }
 
-  /* Grid areas */
-  .pane-left { grid-column: 1; grid-row: 1; }
-  .pane-center { grid-column: 2; grid-row: 1; background: #1e1e1e; }
-  .pane-right { grid-column: 3; grid-row: 1; }
-  .pane-bottom { grid-column: 1 / -1; grid-row: 2; }
-
-  /* Library */
-  .component-library {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  /* Library Drawer */
+  .library-drawer {
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    width: 300px;
+    background: #252526;
+    border-right: 1px solid #333;
+    z-index: 1000;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 4px 0 15px rgba(0,0,0,0.5);
   }
+  .library-drawer.open { transform: translateX(0); }
+
+  .drawer-header {
+    height: 48px;
+    border-bottom: 1px solid #333;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    font-weight: bold;
+  }
+
+  .close-btn {
+    background: none; border: none; color: #888;
+    font-size: 20px; cursor: pointer;
+  }
+  .close-btn:hover { color: #fff; }
+
+  .drawer-content { padding: 16px; overflow-y: auto; flex: 1; }
+  .drawer-help { font-size: 12px; color: #888; margin-top: 0; margin-bottom: 16px; }
+
+  .drawer-overlay {
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 999;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  .drawer-overlay.open { opacity: 1; pointer-events: auto; }
+
+  /* Blocks (Library & Tree) */
+  .component-library { list-style: none; padding: 0; margin: 0; }
   
   .library-item {
-    padding: 8px;
     background: #333;
-    margin-bottom: 8px;
-    border-radius: 4px;
-    cursor: grab;
-    font-family: monospace;
-    font-size: 13px;
     border: 1px solid #444;
-  }
-  
-  .library-item:active {
-    cursor: grabbing;
-  }
-
-  .library-item:hover {
-    background: #444;
-  }
-
-  /* Tree View */
-  .tree-node {
+    border-radius: 4px;
     font-family: monospace;
     font-size: 13px;
-    padding: 4px;
-    cursor: pointer;
-    white-space: nowrap;
+    color: #d4d4d4;
+    padding: 10px;
+    margin-bottom: 8px;
+    cursor: grab;
+  }
+  .library-item:active { cursor: grabbing; }
+  .library-item:hover { background: #3a3a3a; }
+
+
+
+  /* Tree Contextual Controls */
+  .tree-controls {
+    margin-left: auto;
+    display: flex;
+    gap: 4px;
+  }
+  .tree-btn {
+    background: #252526;
+    border: 1px solid #555;
+    color: #ccc;
+    width: 24px; height: 24px;
     border-radius: 3px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px;
   }
-  .tree-node:hover {
-    background: #333;
-  }
-  .tree-node.selected {
-    background: #094771;
-    color: #fff;
-  }
-  .tree-id {
-    color: #ce9178;
-  }
+  .tree-btn:hover:not(:disabled) { background: #444; color: #fff; }
+  .tree-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+  .tree-btn.del-btn:hover { background: #8a1a1a; border-color: #a31d1d; }
+
+  .tree-children { display: flex; flex-direction: column; }
 
   /* Canvas */
   .canvas-wrapper {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: auto;
-    padding: 2rem;
-    /* Checkerboard pattern */
+    flex: 1; display: flex; align-items: center; justify-content: center;
+    overflow: auto; padding: 2rem;
     background-color: #e5e5f7;
     background-image:  repeating-linear-gradient(45deg, #d4d4d4 25%, transparent 25%, transparent 75%, #d4d4d4 75%, #d4d4d4), repeating-linear-gradient(45deg, #d4d4d4 25%, #e5e5f7 25%, #e5e5f7 75%, #d4d4d4 75%, #d4d4d4);
-    background-position: 0 0, 10px 10px;
-    background-size: 20px 20px;
+    background-position: 0 0, 10px 10px; background-size: 20px 20px;
   }
-  
   .canvas {
-    background: #fff;
-    width: 100%;
-    min-height: 500px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-    position: relative;
-    color: #000;
-  }
-
-  /* Properties */
-  .empty-state {
-    color: #888;
-    font-style: italic;
-    font-size: 13px;
-  }
-  
-  .prop-form h3 {
-    margin-top: 0;
-    font-size: 14px;
-    color: #fff;
-    font-family: monospace;
-  }
-  
-  .prop-group {
-    margin-bottom: 12px;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .prop-group label {
-    font-size: 11px;
-    margin-bottom: 4px;
-    color: #aaa;
-  }
-  
-  .prop-group input {
-    background: #3c3c3c;
-    border: 1px solid #555;
-    color: #fff;
-    padding: 6px;
-    border-radius: 2px;
-    font-family: monospace;
-  }
-  
-  .prop-group input:focus {
-    outline: none;
-    border-color: #007fd4;
-  }
-
-  .danger-btn {
-    background: #8a1a1a;
-    color: white;
-    border: none;
-    padding: 6px 12px;
-    border-radius: 3px;
-    cursor: pointer;
-    font-size: 12px;
-    width: 100%;
-  }
-  .danger-btn:hover {
-    background: #a31d1d;
+    background: #fff; width: 100%; min-height: 500px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5); position: relative; color: #000;
   }
 
   /* Source Code */
-  .pane-bottom pre {
-    margin: 0;
-    font-family: monospace;
-    font-size: 13px;
-    color: #9cdcfe;
-    white-space: pre-wrap;
-  }
+  .pane-bottom { height: 200px; flex-shrink: 0; border-top: 1px solid #333; }
+  .pane-bottom pre { margin: 0; font-family: monospace; font-size: 13px; color: #9cdcfe; white-space: pre-wrap; }
 
-  /* Canvas Selection Outline (injected globally via ID to avoid scoping issues with web components inside canvas) */
 </style>
 <style is:global>
-  /* Inject standard web components into page for preview to work */
-  .designer-selected {
-    outline: 2px solid #007fd4 !important;
-    outline-offset: 2px;
+  .designer-selected { outline: 2px solid #007fd4 !important; outline-offset: 2px; }
+
+  /* Dynamic Tree View Specifics */
+  .tree-node {
+    background: #333;
+    border: 1px solid #444;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 13px;
+    color: #d4d4d4;
+    padding: 6px 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: background 0.1s;
+    flex-grow: 1;
   }
+  .tag-name { font-weight: 500; color: #9cdcfe; }
+  
+  .tree-node-wrapper { margin-bottom: 4px; }
+  
+  .tree-node-row {
+    display: flex;
+    align-items: center;
+  }
+
+  .indent-spacer { flex-shrink: 0; }
+  
+  .tree-node.selected {
+    background: #094771;
+    border-color: #007fd4;
+  }
+  .tree-node.drag-over {
+    border-color: #4CAF50;
+    background: #1b3d20;
+  }
+
+  .tree-node-content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+
+  .tree-toggle {
+    background: none; border: none; color: #888;
+    font-size: 12px; width: 20px; height: 20px;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    margin-right: 4px; padding: 0;
+  }
+  .tree-toggle:hover { color: #fff; }
+  .tree-spacer { width: 20px; }
+
+  /* Properties */
+  .empty-state { color: #888; font-style: italic; font-size: 13px; text-align: center; margin-top: 2rem; }
+  .prop-form h3 { margin-top: 0; font-size: 13px; color: #9cdcfe; font-family: monospace; border-bottom: 1px solid #333; padding-bottom: 8px; margin-bottom: 16px; }
+  .prop-group { margin-bottom: 12px; display: grid; grid-template-columns: 120px 1fr; align-items: center; gap: 8px; }
+  .prop-group label { font-size: 12px; color: #ccc; font-family: monospace; text-align: right; }
+  .prop-group input[type="text"], .prop-group select, .prop-group input[type="color"] { 
+    background: #3c3c3c; border: 1px solid #555; color: #fff; 
+    padding: 6px; border-radius: 3px; font-family: monospace; font-size: 12px;
+    width: 100%; box-sizing: border-box;
+  }
+  .prop-group input[type="color"] {
+    padding: 0; height: 28px; cursor: pointer;
+  }
+  .prop-group input[type="checkbox"] {
+    width: 16px; height: 16px; accent-color: #007fd4;
+  }
+  .prop-group input:focus, .prop-group select:focus { outline: none; border-color: #007fd4; }
+
+
 </style>

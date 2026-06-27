@@ -1,8 +1,16 @@
 import { BasePPTComponent } from './BasePPTComponent.js';
+import { WithInteractive } from './features/WithInteractive.js';
 
-export class PeriodStepCircleComponent extends BasePPTComponent {
+export class PeriodStepCircleComponent extends WithInteractive(BasePPTComponent) {
   static override get observedAttributes() {
     return [...super.observedAttributes, 'color'];
+  }
+
+  static override get pptMetadata() {
+    return {
+      ...super.pptMetadata,
+      color: { type: 'color', default: '#ffffff' }
+    };
   }
 
   get color() {

@@ -21,14 +21,8 @@ import ComponentLayout from '../../layouts/ComponentLayout.astro';
             <label for="period-shape">Period Shape</label>
             <select id="period-shape">
               <option value="circle">circle</option>
-              <option value="line">line</option>
-            </select>
-          </div>
-          <div class="control-group">
-            <label for="period-orientation">Line Orientation</label>
-            <select id="period-orientation">
-              <option value="horizontal">horizontal</option>
-              <option value="vertical">vertical</option>
+              <option value="line-horizontal">Line (Horizontal)</option>
+              <option value="line-vertical">Line (Vertical)</option>
             </select>
           </div>
           <div class="control-group">
@@ -44,14 +38,14 @@ import ComponentLayout from '../../layouts/ComponentLayout.astro';
             import '../../../components/src/index.ts';
           </script>
           <ppt-container>
-            <ppt-period id="demo-period" shape="circle" starting-angle="-90" line-orientation="horizontal" min-width="150" min-height="150"></ppt-period>
+            <ppt-period id="demo-period" shape="circle" starting-angle="-90" min-width="150" min-height="150"></ppt-period>
           </ppt-container>
         </div>
       </div>
 
       <details class="code-panel">
         <summary>View Source Code <button class="copy-btn" onclick="copyCode('period-code', this)">Copy Code</button></summary>
-        <pre><code id="period-code">&lt;ppt-period shape="circle" starting-angle="-90" line-orientation="horizontal" min-width="150" min-height="150"&gt;&lt;/ppt-period&gt;</code></pre>
+        <pre><code id="period-code">&lt;ppt-period shape="circle" starting-angle="-90" min-width="150" min-height="150"&gt;&lt;/ppt-period&gt;</code></pre>
       </details>
     </div>
   </section>
@@ -68,7 +62,7 @@ import ComponentLayout from '../../layouts/ComponentLayout.astro';
             <label for="step-shape">Period Shape</label>
             <select id="step-shape">
               <option value="circle">circle</option>
-              <option value="line" selected>line</option>
+              <option value="line-horizontal" selected>line-horizontal</option>
             </select>
           </div>
           <div class="control-group">
@@ -88,7 +82,7 @@ import ComponentLayout from '../../layouts/ComponentLayout.astro';
       <div class="demo-box-wrapper">
         <div class="demo-box resizable">
           <ppt-container>
-            <ppt-period id="demo-step" shape="line" starting-angle="-90" line-orientation="horizontal" min-width="150" min-height="150">
+            <ppt-period id="demo-step" shape="line-horizontal" starting-angle="-90" min-width="150" min-height="150">
               <ppt-period-step-circle slot="step">A</ppt-period-step-circle>
               <ppt-period-step-circle slot="step">B</ppt-period-step-circle>
               <ppt-period-step-circle slot="step">C</ppt-period-step-circle>
@@ -99,7 +93,7 @@ import ComponentLayout from '../../layouts/ComponentLayout.astro';
 
       <details class="code-panel">
         <summary>View Source Code <button class="copy-btn" onclick="copyCode('step-code', this)">Copy Code</button></summary>
-        <pre><code id="step-code">&lt;ppt-period shape="line" starting-angle="-90" line-orientation="horizontal"&gt;
+        <pre><code id="step-code">&lt;ppt-period shape="line-horizontal" starting-angle="-90"&gt;
   &lt;ppt-period-step-circle slot="step"&gt;A&lt;/ppt-period-step-circle&gt;
   &lt;ppt-period-step-circle slot="step"&gt;B&lt;/ppt-period-step-circle&gt;
   &lt;ppt-period-step-circle slot="step"&gt;C&lt;/ppt-period-step-circle&gt;
@@ -143,26 +137,19 @@ import ComponentLayout from '../../layouts/ComponentLayout.astro';
   // Atomic Period Controls
   const periodComponent = document.getElementById('demo-period');
   const shapeSelect = document.getElementById('period-shape') as HTMLSelectElement;
-  const orientationSelect = document.getElementById('period-orientation') as HTMLSelectElement;
   const angleInput = document.getElementById('period-angle') as HTMLInputElement;
   const periodCode = document.getElementById('period-code');
 
   function updatePeriodCode() {
-    if (!periodCode || !shapeSelect || !orientationSelect || !angleInput) return;
+    if (!periodCode || !shapeSelect || !angleInput) return;
     const shape = shapeSelect.value;
-    const orientation = orientationSelect.value;
     const angle = angleInput.value;
-    periodCode.textContent = `<ppt-period shape="${shape}" starting-angle="${angle}" line-orientation="${orientation}" min-width="150" min-height="150">&lt;/ppt-period>`.replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+    periodCode.textContent = `<ppt-period shape="${shape}" starting-angle="${angle}" min-width="150" min-height="150">&lt;/ppt-period>`.replace(/&lt;/g, '<').replace(/&gt;/g, '>');
   }
 
-  if (periodComponent && shapeSelect && orientationSelect && angleInput) {
+  if (periodComponent && shapeSelect && angleInput) {
     shapeSelect.addEventListener('change', (e) => {
       periodComponent.setAttribute('shape', (e.target as HTMLSelectElement).value);
-      updatePeriodCode();
-    });
-    
-    orientationSelect.addEventListener('change', (e) => {
-      periodComponent.setAttribute('line-orientation', (e.target as HTMLSelectElement).value);
       updatePeriodCode();
     });
 
@@ -180,11 +167,10 @@ import ComponentLayout from '../../layouts/ComponentLayout.astro';
   const stepCode = document.getElementById('step-code');
 
   function updateStepCode() {
-    if (!stepCode || !stepShapeSelect || !stepOrientationSelect || !stepAngleInput) return;
+    if (!stepCode || !stepShapeSelect || !stepAngleInput) return;
     const shape = stepShapeSelect.value;
-    const orientation = stepOrientationSelect.value;
     const angle = stepAngleInput.value;
-    stepCode.textContent = `<ppt-period shape="${shape}" starting-angle="${angle}" line-orientation="${orientation}">
+    stepCode.textContent = `<ppt-period shape="${shape}" starting-angle="${angle}">
   <ppt-period-step-circle slot="step">A</ppt-period-step-circle>
   <ppt-period-step-circle slot="step">B</ppt-period-step-circle>
   <ppt-period-step-circle slot="step">C</ppt-period-step-circle>
@@ -194,11 +180,6 @@ import ComponentLayout from '../../layouts/ComponentLayout.astro';
   if (stepComponent && stepShapeSelect && stepOrientationSelect && stepAngleInput) {
     stepShapeSelect.addEventListener('change', (e) => {
       stepComponent.setAttribute('shape', (e.target as HTMLSelectElement).value);
-      updateStepCode();
-    });
-    
-    stepOrientationSelect.addEventListener('change', (e) => {
-      stepComponent.setAttribute('line-orientation', (e.target as HTMLSelectElement).value);
       updateStepCode();
     });
 

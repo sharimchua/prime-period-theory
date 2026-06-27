@@ -1,8 +1,17 @@
 import { BasePPTComponent } from './BasePPTComponent.js';
+import { WithInteractive } from './features/WithInteractive.js';
 
-export class PeriodComponent extends BasePPTComponent {
+export class PeriodComponent extends WithInteractive(BasePPTComponent) {
   static override get observedAttributes() {
-    return [...super.observedAttributes, 'shape', 'starting-angle', 'line-orientation'];
+    return [...super.observedAttributes, 'shape', 'starting-angle'];
+  }
+
+  static override get pptMetadata() {
+    return {
+      ...super.pptMetadata,
+      shape: { type: 'enum', options: ['circle', 'line-horizontal', 'line-vertical'], default: 'circle' },
+      'starting-angle': { type: 'number', default: -90 }
+    };
   }
 
   get shape() {
@@ -22,17 +31,9 @@ export class PeriodComponent extends BasePPTComponent {
     this.setAttribute('starting-angle', value.toString());
   }
 
-  get lineOrientation() {
-    return this.getAttribute('line-orientation') || 'horizontal';
-  }
-
-  set lineOrientation(value: string) {
-    this.setAttribute('line-orientation', value);
-  }
-
   override attributeChangedCallback(name: string, _oldValue: string, _newValue: string) {
     super.attributeChangedCallback(name, _oldValue, _newValue);
-    if (name === 'shape' || name === 'starting-angle' || name === 'line-orientation') {
+    if (name === 'shape' || name === 'starting-angle') {
       this.render();
       this.layoutSteps();
     }
@@ -67,10 +68,10 @@ export class PeriodComponent extends BasePPTComponent {
         
         step.style.left = `${x}%`;
         step.style.top = `${y}%`;
-      } else if (shape === 'line') {
+      } else {
         const percent = count === 1 ? 50 : (i / (count - 1)) * 100;
         
-        if (this.lineOrientation === 'horizontal') {
+        if (shape === 'line-horizontal') {
           step.style.left = `${percent}%`;
           step.style.top = `50%`;
         } else {
@@ -103,7 +104,7 @@ export class PeriodComponent extends BasePPTComponent {
           margin: var(--ppt-period-margin, 0 auto);
         }
 
-        :host([shape="line"]) {
+        :host([shape^="line"]) {
           display: flex;
           flex-direction: row;
           align-items: center;
@@ -126,7 +127,7 @@ export class PeriodComponent extends BasePPTComponent {
         }
 
         /* Default Circle Styles */
-        :host(:not([shape="line"])) .container {
+        :host(:not([shape^="line"])) .container {
           aspect-ratio: 1 / 1;
           border-radius: 50%;
           max-width: calc(100cqh - max(32px, 10cqmin));
@@ -134,14 +135,14 @@ export class PeriodComponent extends BasePPTComponent {
         }
 
         /* Line Styles */
-        :host([shape="line"]) .container {
+        :host([shape^="line"]) .container {
           aspect-ratio: auto;
           height: var(--ppt-period-height, 4px); /* Slimmer for line */
           border-radius: var(--ppt-period-radius, 2px);
           width: calc(100% - max(32px, 10cqmin));
         }
         
-        :host([shape="line"][line-orientation="vertical"]) .container {
+        :host([shape="line-vertical"]) .container {
           width: var(--ppt-period-height, 4px);
           height: calc(100% - max(32px, 10cqmin));
         }

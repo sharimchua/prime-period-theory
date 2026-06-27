@@ -1,6 +1,8 @@
 import { BasePPTComponent } from './BasePPTComponent.js';
+import { WithInteractive } from './features/WithInteractive.js';
+import { WithResizable } from './features/WithResizable.js';
 
-export class TitleComponent extends BasePPTComponent {
+export class TitleComponent extends WithResizable(WithInteractive(BasePPTComponent)) {
   override connectedCallback() {
     super.connectedCallback();
     this.render();

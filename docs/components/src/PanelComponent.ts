@@ -1,6 +1,8 @@
 import { BasePPTComponent } from './BasePPTComponent.js';
+import { WithInteractive } from './features/WithInteractive.js';
+import { WithResizable } from './features/WithResizable.js';
 
-export class PanelComponent extends BasePPTComponent {
+export class PanelComponent extends WithResizable(WithInteractive(BasePPTComponent)) {
   static override get observedAttributes() {
     return [...super.observedAttributes, 'panel-align', 'ratio'];
   }
