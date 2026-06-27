@@ -13,7 +13,7 @@ tags:
   - polyrhythm
   - microtonality
   - 31-edo
-timestamp: 2026-06-26
+timestamp: 2026-06-27
 ---
 
 # Prime Period Theory
@@ -108,6 +108,7 @@ amplitude or effect envelopes.
 ## Concept map
 
 ### Foundations
+- [Music as Language](foundations/music-as-language.md) — visual vs auditory classification and the need for a shared grammar
 - [Amplitude and Time](foundations/amplitude-time.md) — the core physical thesis
 - [Periodicity](foundations/periodicity.md) — the unifying phenomenon across all scales
 - [Information and Expectation](foundations/information-and-expectation.md) — the psychology of predicting patterns

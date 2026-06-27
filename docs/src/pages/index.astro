@@ -17,8 +17,11 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '') + '/';
     </div>
 
     <div class="card">
-      <h2>2. Interactive Components <span class="badge">Coming Soon</span></h2>
+      <h2>2. Interactive Components</h2>
       <p>Interactable music reference tools that bring PPT to life. These components are used throughout the documentation to demonstrate theoretical concepts, but are also independently usable by anyone who wants to integrate them into their own projects.</p>
+      <div class="section-links">
+        <a href={`${base}components`} class="action-link">Browse Components &rarr;</a>
+      </div>
     </div>
 
     <div class="card">
@@ -36,6 +39,59 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '') + '/';
       <div class="section-links">
         <a href={`${base}reference`} class="action-link">Browse Reference Library &rarr;</a>
       </div>
+    </div>
+  </div>
+
+  <div class="author-section">
+    <h2>About the Project &amp; Author</h2>
+    <p>
+      Hi, I'm <strong>Sharim Chua</strong>, a multi-instrumentalist and engineering leader based in Melbourne, Australia. Like many, my early musical history was rooted in classical piano training. However, I found it restrictive&mdash;the focus was heavily on rote memorisation and technical drills rather than true expression. It wasn't until I stepped away, learned guitar, and eventually returned to the piano that I discovered a renewed love for music through an ear-first, intuitive approach.
+    </p>
+    <p>
+      Prime Period Theory (PPT) was born out of my desire to apply first-principles systems thinking to my music pedagogy. Drawing on over two decades of experience scaling systems at companies like Amazon and DoorDash (<a href="https://respec.work/" target="_blank" rel="noopener">Respec.work</a>), and my work as a coach at <a href="https://midlifemuso.com/" target="_blank" rel="noopener">Midlife Muso</a>, I wanted to bridge these two worlds. 
+    </p>
+    <p>
+      I approach music as a language. Just as there are immense benefits to understanding the grammar and structure of spoken language, the same holds true for music. From early childhood, we are taught to classify the visual realm with high specificity&mdash;learning shapes, colours, and dimensions. Yet, in the auditory realm, our vocabulary is often limited to basic concepts like loud and soft, or fast and slow.
+    </p>
+    <p>
+      This framework serves as a <strong>descriptive, not prescriptive</strong> scaffold to bridge that gap. My goal is to simplify and scale back traditional notation, instead providing something to anchor core musical concepts onto. PPT is designed to serve as a shared grammar and vocabulary&mdash;a way to understand and communicate the structures of melody, rhythm, and harmony in our listening, playing, and composition, rather than simply inferring them from notes on a page.
+    </p>
+    <h3>Get Involved</h3>
+    <p>
+      Whether you're an educator, a musician, or a technologist, I'd love to hear how you're using PPT or if you'd like to contribute to the framework.
+    </p>
+    <div class="contact-cards">
+      <a href="mailto:sharim@midlifemuso.com" class="contact-card email-card">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+        <div class="contact-info">
+          <span class="contact-label">Email</span>
+          <span class="contact-value">sharim@midlifemuso.com</span>
+        </div>
+      </a>
+
+      <a href="https://github.com/sharimchua/prime-period-theory" target="_blank" rel="noopener" class="contact-card github-card">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg>
+        <div class="contact-info">
+          <span class="contact-label">GitHub Repository</span>
+          <span class="contact-value">sharimchua/prime-period-theory</span>
+        </div>
+      </a>
+
+      <a href="https://midlifemuso.com/" target="_blank" rel="noopener" class="contact-card muso-card">
+        <img src="https://midlifemuso.com/logo.png" alt="Midlife Muso Logo" class="contact-logo" />
+        <div class="contact-info">
+          <span class="contact-label">Music Coaching</span>
+          <span class="contact-value">Midlife Muso</span>
+        </div>
+      </a>
+
+      <a href="https://respec.work/" target="_blank" rel="noopener" class="contact-card respec-card">
+        <img src="https://respec.work/assets/logo.webp" alt="Respec Logo" class="contact-logo respec-logo" />
+        <div class="contact-info">
+          <span class="contact-label">Engineering Leadership</span>
+          <span class="contact-value">Respec.work</span>
+        </div>
+      </a>
     </div>
   </div>
 </Layout>
@@ -130,6 +186,88 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '') + '/';
   .action-link:hover {
     background: var(--brand-accent);
   }
+  .author-section {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e2e8f0;
+  }
+  .author-section h2 {
+    color: #1a202c;
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+  }
+  .author-section h3 {
+    color: #2d3748;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+  }
+  .author-section p {
+    color: #4a5568;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    font-size: 1.05rem;
+  }
+  .contact-cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  @media (min-width: 640px) {
+    .contact-cards {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  .contact-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    background: white;
+  }
+  .contact-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+  }
+  .contact-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #718096;
+  }
+  .contact-value {
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+  
+  /* Email */
+  .email-card:hover { border-color: #cbd5e0; }
+  .email-card .contact-value { color: #2d3748; }
+  .email-card svg { color: #4a5568; }
+
+  /* GitHub */
+  .github-card:hover { border-color: #1a202c; }
+  .github-card .contact-value { color: #1a202c; }
+  .github-card svg { color: #1a202c; }
+
+  /* Midlife Muso */
+  .muso-card:hover { border-color: #f48c06; }
+  .muso-card .contact-value { color: #8e4f00; }
+  .contact-logo { width: 28px; height: 28px; object-fit: contain; }
+
+  /* Respec */
+  .respec-card:hover { border-color: #bada00; }
+  .respec-card .contact-value { color: #181a20; }
 </style>
 
 <script>

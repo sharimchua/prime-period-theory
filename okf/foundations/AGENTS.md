@@ -11,6 +11,7 @@ Core theoretical claims of Prime Period Theory. These pages establish the philos
 |`amplitude-time.md`|Complete|Core thesis: music as amplitude over time; includes forward-pointing note on spacetime|
 |`periodicity.md`|Complete|Periodicity as the unifying phenomenon; 20Hz boundary; tala/ti-hai; overtone series|
 |`prime-families.md`|Complete|The five prime families; prime vs exponent; the 11-limit ceiling|
+|`music-as-language.md`|Complete|Music as a language, visual vs auditory classification, and PPT as the anchor for a shared grammar|
 
 ## Future page — not yet ready to formalise
 
