@@ -113,6 +113,7 @@ amplitude or effect envelopes.
 - [Periodicity](foundations/periodicity.md) — the unifying phenomenon across all scales
 - [Information and Expectation](foundations/information-and-expectation.md) — the psychology of predicting patterns
 - [Prime Families](foundations/prime-families.md) — the classification system
+- [Design System & Color Semantics](design-system.md) — Visual styling and mathematical mapping
 
 ### Domains
 - [Pitch](domains/pitch.md) — micro periodicity; frequency; just intonation
