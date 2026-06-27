@@ -7,7 +7,7 @@
   },
   "scripts": {
     "bundle-okf": "node scripts/build-okf-bundle.js",
-    "dev": "npm run bundle-okf && astro dev",
+    "dev": "npm run bundle-okf && astro dev --force",
     "build": "npm run bundle-okf && astro build && node postbuild.js",
     "preview": "astro preview",
     "astro": "astro"

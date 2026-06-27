@@ -116,14 +116,27 @@ amplitude or effect envelopes.
 ## Concept map
 
 ### Foundations
-- [Music as Language](foundations/music-as-language.md) — visual vs auditory classification and the need for a shared grammar
-- [Amplitude and Time](foundations/amplitude-time.md) — the core physical thesis
-- [Periodicity](foundations/periodicity.md) — the unifying phenomenon across all scales
-- [Information and Expectation](foundations/information-and-expectation.md) — the psychology of predicting patterns
-- [Periodicity Limen](foundations/periodicity-limen.md) — the anchor definition and the boundary between pitch and rhythm
-- [Metric DuPeriod](foundations/metric-duperiod.md) — the coordinate system for logarithmic period mapping
-- [Prime Families](foundations/prime-families.md) — the classification system
-- [Design System & Color Semantics](design-system.md) — Visual styling and mathematical mapping
+- [Amplitude and Time](foundations/amplitude-time.md) — music as amplitude
+  over time; the physical basis for treating pitch and rhythm as one phenomenon
+- [Periodicity](foundations/periodicity.md) — the unifying phenomenon across
+  all scales; consonance as period coincidence; tala and ti-hai
+- [Prime Families](foundations/prime-families.md) — the five prime generators;
+  prime vs exponent; the 11-limit ceiling
+
+### Perception
+- [Information and Expectation](perception/information-and-expectation.md) —
+  pattern recognition, prediction, and the mechanics of musical delight
+- [Auditory Horizon and Agency](perception/auditory-horizon.md) — the agency
+  gradient across the timescale; Periodicity Limen; Metric Induction Limen;
+  cross-domain tolerance budget; cultural transmission asymmetry
+- [Periodicity Limen](perception/periodicity-limen.md) — the anchor definition and the boundary between pitch and rhythm
+
+### Reference
+- [Metric DuPeriod](reference/metric-duperiod.md) — the coordinate system for logarithmic period mapping
+
+### Context
+- [Music as Language](context/music-as-language.md) — music as a language;
+  visual vs auditory classification; PPT as shared grammar and vocabulary
 
 ### Extended
 - [Metric DuPeriod — Extended Range](extended/metric-duperiod-extended.md) — the stratospheric positive metric DuPeriod space and biological periodicity
@@ -146,6 +159,8 @@ amplitude or effect envelopes.
 ### Tuning Systems
 - [Periodicity Limen Reference Tuning](tuning/periodicity-limen-reference-tuning.md) — absolute pitch anchors derived from the Periodicity Limen
 - [Just Intonation](tuning/just-intonation.md) — prime ratios as pure intervals
+- [Pentatonic and Heptatonic Structures](tuning/pentatonic-heptatonic.md) — the geometric generation of the 5 and 7-note scales
+- [12-Tone Equal Temperament (12TET)](tuning/12-tet.md) — the historical compromise and base coordinate grid
 - [31 EDO](tuning/31-edo.md) — the primary microtonal system; 5-limit excellence
 - [72 EDO Grid](tuning/72-edo-grid.md) — the reference grid for diacritic placement
 
@@ -156,10 +171,14 @@ amplitude or effect envelopes.
 - [Tone Atlas](related/tone-atlas.md) — clock-face pitch relationship diagram
 - [Chromatic Clock Geometry](related/chromatic-clock.md) — the 12-tone chromatic circle as a geometric navigation tool
 
-## Systems and Formats
-- [PPT Composition Format (PPT-CF)](systems/composition-format.md) — a concise, structural encoding format for serializing component layouts
+## Specifications
+- [Design System & Color Semantics](specifications/design-system.md) — Visual styling and mathematical mapping
+- [PPT Composition Format (PPT-CF)](specifications/composition-format.md) — a concise, structural encoding format for serializing component layouts
 
 ## Relationship to other theories
+
+<!-- TODO: Consider extracting "Relationship to other theories" to
+context/related-theories.md once the context/ directory is established -->
 
 PPT is in conversation with, not in competition with:
 
@@ -224,7 +243,11 @@ navigating the graph. Make it precise and specific, not generic.
 
 | Directory | Contents | Status |
 |---|---|---|
-| `foundations/` | Core theoretical claims | Partially written |
+| `foundations/` | Core physical and mathematical claims | Partially written |
+| `perception/` | Human perceptual layer and agency | Active |
+| `context/` | Orientation and theoretical motivation | Active |
+| `reference/` | Core coordinate systems and maps | Active |
+| `specifications/` | System-level specifications and formal definitions | Active |
 | `extended/` | Extended ranges and abstract concepts | Partially written |
 | `uniform-solfege/` | Notation system | Partially written |
 | `domains/` | Pitch, rhythm, timbre | Stub only |
@@ -249,6 +272,13 @@ navigating the graph. Make it precise and specific, not generic.
 5. Add the new page to `index.md` under the correct section
 6. Add the new page to the subdirectory's `AGENTS.md` file index
 
+## Modifying or moving concept pages
+
+When renaming, moving, or deleting an existing concept page:
+1. Update all cross-links within the `okf/` directory to point to the new path.
+2. **Crucially**, search the rest of the project (especially the `docs/` directory, such as `docs/templates/topics/`) for references to the old file path (e.g., in `okf_dependencies` frontmatter) and update them. The OKF bundle acts as a dependency for the docs site, and breaking paths will break the site build.
+3. Update `index.md` and the relevant subdirectory `AGENTS.md` files to reflect the change.
+
 ## Tag vocabulary
 
 Use existing tags where possible. Core tags:
@@ -268,60 +298,71 @@ Use existing tags where possible. Core tags:
 
 
 ================================================================================
-FILE: okf/design-system.md
+FILE: okf/context/AGENTS.md
+================================================================================
+
+# Context — Agent Instructions
+
+## Purpose
+
+This directory contains pages that orient the reader to Prime Period Theory
+without making theoretical claims themselves. They explain why the framework
+exists, how it positions itself relative to other traditions, and what kind
+of reader it is written for. They are not part of the theoretical core.
+
+## Current pages
+
+| File | Status | Description |
+|---|---|---|
+| `music-as-language.md` | Complete | Music as language; the asymmetry between visual and auditory classification; PPT as shared grammar |
+
+## Tone guidance
+
+Context pages should be accessible to readers with no prior exposure to PPT.
+They motivate and orient — they do not define or prove. Avoid technical
+precision here; save that for foundations and perception pages. Cross-link
+forward into the theory rather than containing theoretical claims directly.
+
+
+================================================================================
+FILE: okf/context/music-as-language.md
 ================================================================================
 
 ---
 type: concept
-title: Design System & Color Semantics
+title: Music as Language and Auditory Classification
 description: >
-  Formal specification of the visual design language used across Prime Period Theory documentation and components.
+  An exploration of music as a language and the contrast between the high specificity of early visual classification and the relative underdevelopment of auditory vocabulary.
 tags:
-  - design
-  - color-theory
-  - styling
+  - music-as-language
+  - auditory-classification
+  - pedagogy
 timestamp: 2026-06-27
 ---
 
-# PPT Design System
+# Music as Language and Auditory Classification
 
-Prime Period Theory (PPT) utilises a strict, semantically meaningful design system. Visual styling is not purely decorative; it mathematically and acoustically encodes the underlying theory. 
+## The linguistic analogy
 
-## Global Brand Colors
+Prime Period Theory (PPT) approaches music fundamentally as a language. Just as there are immense benefits to understanding the grammar, syntax, and structure of spoken language, the same holds true for music. Without a shared grammar, communication becomes imprecise and learning becomes an exercise in rote memorisation rather than fluent expression.
 
-The foundational brand colors anchor the documentation and generic structural elements.
+When music is treated as a language, the goal of music pedagogy shifts from reproducing a specific sequence of actions (inferring structure from notes on a page) to developing fluency. Fluency requires an underlying framework that explains *why* the language works the way it does, enabling practitioners to construct their own meaning. 
 
-- **Primary Brand (Red)**: `#E13610`
-- **Secondary Brand (Orange)**: `#E17013`
-- **Accent (Bright Red)**: `#E20415`
+## Visual vs. Auditory Classification
 
-## Uniform Solfège Interval Palette
+From early childhood, we are systematically taught to classify the visual realm with high specificity. Children learn to identify shapes (circles, squares, triangles), colours (primary, secondary, gradients), and dimensions (tall, short, wide, narrow). We build a rich, shared vocabulary that allows us to precisely communicate visual information.
 
-The Solfège color palette maps specific hues to interval categories. The exact hex values are reverse-engineered to encode core acoustic, mathematical, and tuning references.
+In contrast, our cultural auditory vocabulary is fundamentally underdeveloped. In the auditory realm, our classification is often limited to rudimentary, binary concepts such as "loud and soft" or "fast and slow". Unless an individual pursues specialised musical training, they often lack the words to describe the structures of melody, rhythm, and harmony they hear every day. 
 
-| Interval Category | Syllables | CSS Variable | Hex Code | Semantic Rationale |
-|---|---|---|---|---|
-| **Unison** | Do | `--solfege-do` | `#E13010` | Earth resonance (130.10Hz) |
-| **Seconds** | Ra, Re | `--solfege-re` | `#F98016` | **F 9:8 0 16**: Encodes the foundational ratios for seconds (Major Second 9:8, Minor Second 16:15) |
-| **Thirds** | Me, Mi | `--solfege-mi` | `#F5D432` | **F5 D4 32**: Encodes the foundational harmonic ratios (Major Third 5:4, Perfect Fifth 3:2) |
-| **Fourths** | Fa | `--solfege-fa` | `#43A440` | **4:3 A440**: Encodes the Perfect Fourth ratio (4:3) and international standard pitch A440 |
-| **Tritone** | Fi | `--solfege-fi` | `#141414` | **1.414**: The square root of 2, the exact mathematical center of the octave in equal temperament |
-| **Fifths** | So | `--solfege-so` | `#0032A4` | **3:2 A4**: Encodes the Perfect Fifth ratio (3:2) anchored to A4 |
-| **Sixths** | Le, La | `--solfege-la` | `#5300A4` | **5:3 A4**: Encodes the Major Sixth ratio (5:3) anchored to A4 |
-| **Sevenths**| Te, Ti | `--solfege-ti` | `#F158A4` | **F 15:8 A4**: Encodes the Major Seventh ratio (15:8) anchored to A4 |
+This asymmetry means that while most people can easily describe a visual scene, they struggle to articulate an auditory experience.
 
-## Prime Family Identity Palette
+## Providing an Anchor
 
-When discussing abstract prime-limit ratios outside of Solfège notation, the following palette is used to uniquely identify prime factors:
+PPT was designed to address this gap. The lack of a shared, intuitive vocabulary for auditory phenomena makes music seem mysterious or exclusively the domain of the naturally "talented". 
 
-| Prime Family | CSS Variable | Hex Code | Visual Association |
-|---|---|---|---|
-| **2-Prime** (Octave) | `--prime-2` | `#6b7280` | Grey |
-| **3-Prime** (Fifths) | `--prime-3` | `#3b82f6` | Blue |
-| **5-Prime** (Thirds) | `--prime-5` | `#22c55e` | Green |
-| **7-Prime** (Septimal) | `--prime-7` | `#f59e0b` | Amber |
-| **11-Prime** (Neutral) | `--prime-11` | `#a855f7` | Purple |
-| **Axis / Midpoint** | `--axis` | `#ec4899` | Pink |
+PPT provides something to anchor core musical concepts onto. It serves as a shared grammar and vocabulary—a way to understand and communicate the structures of melody, rhythm, and harmony in our listening, playing, and composition. 
+
+By treating pitch, rhythm, and timbre as unified expressions of prime-generated periodicity, PPT offers a coherent, descriptive scaffolding. It gives musicians and educators the specific terminology and structural logic needed to classify the auditory realm just as precisely as we classify the visual one.
 
 
 ================================================================================
@@ -657,7 +698,7 @@ timestamp: 2026-06-27
 
 ## Overview
 
-[Metric DuPeriod](../foundations/metric-duperiod.md) documents the coordinate system from
+[Metric DuPeriod](../reference/metric-duperiod.md) documents the coordinate system from
 Metric DuPeriod −10 (Upper Auditory Horizon) through Metric DuPeriod +10
 (movement boundary). This page extends the map upward into the
 **stratospheric positive metric DuPeriod space** — the region above +10
@@ -847,7 +888,7 @@ because it is governed by memory, attention, and hormonal cycles, which
 are continuous variables.
 
 The Metric DuPeriod system accommodates this asymmetry naturally. Precision
-requirements relax with each ascending DuPeriod band (see [Metric DuPeriod](../foundations/metric-duperiod.md)
+requirements relax with each ascending DuPeriod band (see [Metric DuPeriod](../reference/metric-duperiod.md)
 — diacritic precision section), and the meaningful landmarks in the
 stratospheric range are documented as cognitive and physiological zones
 rather than precise threshold values.
@@ -869,9 +910,9 @@ navigable.
 
 ## See also
 
-- [Metric DuPeriod](../foundations/metric-duperiod.md) — the core coordinate system;
+- [Metric DuPeriod](../reference/metric-duperiod.md) — the core coordinate system;
   Metric DuPeriods −10 to +10
-- [Periodicity Limen](../foundations/periodicity-limen.md) — the anchor definition
+- [Periodicity Limen](../perception/periodicity-limen.md) — the anchor definition
 - [Periodicity](../foundations/periodicity.md) — periodicity as the
   unifying phenomenon across all timescales; tala and the ti-hai as
   macro-scale periodicity examples
@@ -887,17 +928,22 @@ FILE: okf/foundations/AGENTS.md
 
 ## Purpose
 
-Core theoretical claims of Prime Period Theory. These pages establish the philosophical and physical basis for everything else in the knowledge bundle. They should be written with more expository care than reference pages — they are the "why" before the "what".
+Core physical and mathematical claims of Prime Period Theory. These pages
+establish what periodic signals are, how they relate through prime ratios,
+and why this structure is the right foundation for a unified theory of music.
+They are the "what is happening in the signal" layer — no psychology, no
+pedagogy, no cultural framing. That material lives in `perception/` and
+`context/` respectively.
+
+Pages here should be confident, dense, and precise. They do not need to
+motivate the reader — that is `context/`'s job. They do not need to explain
+perceptual consequences — that is `perception/`'s job.
 
 ## Current pages
 
 |File|Status|Description|
 |---|---|---|
 |`amplitude-time.md`|Complete|Core thesis: music as amplitude over time; includes forward-pointing note on spacetime|
-|`information-and-expectation.md`|Complete|Music as an information system; expectation and pattern prediction|
-|`metric-duperiod.md`|Complete|The coordinate system from Metric DuPeriod -10 through +10|
-|`music-as-language.md`|Complete|Music as a language, visual vs auditory classification, and PPT as the anchor for a shared grammar|
-|`periodicity-limen.md`|Complete|The 20Hz anchor definition and the boundary between pitch and rhythm|
 |`periodicity.md`|Complete|Periodicity as the unifying phenomenon; 20Hz boundary; tala/ti-hai; overtone series|
 |`prime-families.md`|Complete|The five prime families; prime vs exponent; the 11-limit ceiling|
 
@@ -1083,587 +1129,6 @@ consequences:
 - [Pitch](../domains/pitch.md) — amplitude at the micro scale
 - [Rhythm](../domains/rhythm.md) — amplitude at the macro scale
 - [Timbre](../domains/timbre.md) — amplitude distribution across the overtone series
-
-
-================================================================================
-FILE: okf/foundations/information-and-expectation.md
-================================================================================
-
----
-type: concept
-title: Information and Expectation
-description: >
-  Music as an information system: how the human brain processes periodic signals
-  to establish patterns, make predictions, and experience the delight of 
-  fulfilled or subverted expectations.
-tags:
-  - foundations
-  - information-theory
-  - psychology
-  - expectation
-  - periodicity
-timestamp: 2026-06-26
----
-
-# Information and Expectation
-
-## The core claim
-
-If [Amplitude and Time](amplitude-time.md) describes what music is physically, 
-and [Periodicity](periodicity.md) describes its unifying structure, then this 
-document addresses the cognitive layer: **how we experience those structures**.
-
-Music is fundamentally a system of information. The human brain is a prediction 
-machine, constantly seeking order and pattern in sensory input. When auditory 
-energy organises into a repeating period, it ceases to be noise and becomes 
-*information* that the brain can track, predict, and respond to.
-
-## Establishing the pattern
-
-A single sound event — a crash, a scrape, a bang — provides very little 
-predictive information. But when an event repeats at a consistent interval 
-(a period), a pattern is established. 
-
-Once a pattern is recognized, the listener's brain unconsciously projects that 
-pattern forward in time. We expect the next beat to land *here*; we expect the 
-next cycle of the waveform to cross zero *now*. This predictive model is the 
-foundation of all musical engagement. 
-
-- At the **macro scale** (rhythm), establishing the pattern is often called 
-  "setting the groove" or establishing the metre.
-- At the **micro scale** (pitch), establishing the pattern happens in 
-  milliseconds. The brain locks onto the fundamental frequency and tracks its 
-  continuation.
-
-## The mechanics of delight
-
-The aesthetic experience of music — why it feels good to listen to — is deeply 
-tied to this cycle of expectation. It operates on two primary axes:
-
-### 1. The delight of recognition (The Expected)
-When a pattern resolves exactly as predicted, it provides a visceral payoff. The 
-brain's model of the world is confirmed. This is the satisfaction of a heavy downbeat 
-landing exactly in the pocket, or a complex polyrhythm finally resolving to its 
-shared period (the sam in tala). It is the joy of stability and order.
-
-### 2. The delight of subversion (The Unexpected)
-If music only ever fulfilled expectations, it would act like a ticking clock — 
-predictable to the point of being ignored. The true communicative power of music 
-arises when a pattern is established strongly enough to create an expectation, 
-and then intentionally broken, shifted, or delayed. 
-- A syncopated snare hit arrives a fraction of a second early.
-- A melody lands on a prime-family interval that sits just outside the established tuning grid.
-
-This subversion forces the brain to instantly update its predictive model. The 
-surprise registers as emotional weight, tension, or delight. 
-
-## Expectation across the scales
-
-Because periodicity is scale-invariant, the mechanics of expectation operate at 
-all levels of musical structure simultaneously:
-
-- **Timbral expectation:** We expect a sustained note to maintain its overtone 
-  profile. A sudden change in timbre (like a trumpet applying a mute) subverts 
-  that micro-level expectation.
-- **Harmonic expectation:** We expect two frequencies to eventually reach a 
-  shared period (consonance). When they linger in a complex ratio (dissonance), 
-  the delayed resolution creates tension.
-- **Rhythmic expectation:** We expect the established pulse to continue.
-- **Formal expectation:** We expect a repeated A section to lead to a contrasting 
-  B section.
-
-Prime Period Theory provides the structural vocabulary (ratios, prime families, 
-period lengths) to describe *what* is happening. Information and expectation 
-describe *why* it matters to the listener.
-
-## See also
-
-- [Amplitude and Time](amplitude-time.md) — the physical grounding
-- [Periodicity](periodicity.md) — the structural reality of the patterns
-
-
-================================================================================
-FILE: okf/foundations/metric-duperiod.md
-================================================================================
-
----
-type: concept
-title: Metric DuPeriod
-description: >
-  The Metric DuPeriod system is PPT's unified period-length coordinate system,
-  anchored at the Periodicity Limen (20Hz / Metric DuPeriod 0) and extending
-  in both directions: negative offsets into pitch space, positive offsets
-  into rhythmic space. Solfège positions within each DuPeriod band name
-  period-length ratios continuously across the auditory boundary, making
-  the cross-scale cadential operator numerically explicit.
-tags:
-  - foundations
-  - metric-duperiod
-  - periodicity-limen
-  - auditory-horizon
-  - uniform-solfege
-  - rhythm
-  - pitch
-  - prime-period-theory
-timestamp: 2026-06-27
----
-
-# Metric DuPeriod
-
-## Overview
-
-The **Metric DuPeriod** system is a unified period-length coordinate system
-that extends continuously from deep pitch space through the Periodicity
-Limen and into rhythmic space. It provides a single logarithmic ruler —
-anchored at a perceptually meaningful zero point and graduated in solfège
-positions — that names any period length in musical terms without reference
-to conventional time units.
-
-**Note: Pitch Octave vs. Macro DuPeriod**
-
-While the sub-20Hz pitch space colloquially uses the term "Octave" due to entrenched historical convention, PPT formally designates this periodic doubling in the macro/rhythmic space as the **DuPeriod**. This explicitly grounds the coordinate system in the 2-limit prime family (Du) and provides a scalable nomenclature for exploring form and structure through higher prime lenses (e.g., the TriPeriod or QuiPeriod).
-
-
-The system has three components:
-
-- **The anchor**: Metric DuPeriod 0, defined as the Periodicity Limen
-  (20Hz / 50ms period)
-- **The DuPeriod offset**: a signed integer indicating which doubling band
-  the period falls in; negative for pitch space, positive for rhythmic
-  space
-- **The solfège position**: one of the 12 Uniform Solfège syllables
-  (Do through Ti) indicating the period's ratio position within the band
-
-A complete address takes the form **[Syllable][offset]** — for example,
-**So+4** denotes the So position within Metric DuPeriod +4, a period of
-approximately 600ms, corresponding to approximately 100 BPM.
-
-## The anchor: Metric DuPeriod 0
-
-Metric DuPeriod 0 is not a band but a point: the Periodicity Limen at
-20Hz / 50ms. It is the Do of the entire system — the tonic from which
-all offsets are measured.
-
-This anchor is chosen because it is intrinsic to the perceptual structure
-of the system rather than historically contingent. See
-[Periodicity Limen](periodicity-limen.md) for the full argument.
-
-## DuPeriod bands
-
-Each Metric DuPeriod band spans one 2-prime doubling of period length from
-its Do floor to its Do ceiling (which is the floor of the next band).
-Negative offsets are in pitch space; positive offsets are in rhythmic
-space.
-
-### Pitch space (negative offsets)
-
-```
-Offset  Period range        Frequency range     Domain
-−10     0.050ms → 0.100ms  20kHz → 10kHz       Upper Auditory Horizon
-−9      0.100ms → 0.200ms  10kHz → 5kHz        Pitch (high)
-−8      0.200ms → 0.400ms  5kHz → 2.5kHz       Pitch (high-mid)
-−7      0.400ms → 0.800ms  2.5kHz → 1.25kHz    Pitch (mid-high)
-−6      0.800ms → 1.600ms  1.25kHz → 625Hz     Pitch (mid)
-−5      1.600ms → 3.200ms  625Hz → 312Hz       Pitch (mid-low)
-−4      3.200ms → 6.250ms  312Hz → 160Hz       Pitch (low-mid)
-−3      6.250ms → 12.500ms 160Hz → 80Hz        Pitch (low)
-−2      12.500ms → 25ms    80Hz → 40Hz         Pitch (very low)
-−1      25ms → 50ms        40Hz → 20Hz         Pitch (sub)
- 0      50ms               20Hz                PERIODICITY LIMEN (AH)
-```
-
-The full audible pitch range is contained within Metric DuPeriods −10 to 0.
-Uniform Solfège, Prime Period Diacritics, and 72-EDO already operate in
-this space. The Metric DuPeriod system provides those existing systems with
-an explicit coordinate address relative to the Periodicity Limen anchor.
-
-### Rhythmic space (positive offsets)
-
-```
-Offset  Period range          Approximate BPM   Domain
-+1      50ms → 100ms          600+ BPM          Fast subdivision
-+2      100ms → 200ms         300–600 BPM       Subdivision
-+3      200ms → 400ms         150–300 BPM       Fast tempo
-+4      400ms → 800ms         75–150 BPM        Tempo
-+5      800ms → 1600ms        37–75 BPM         Slow tempo
-+6      1600ms → 3200ms       19–37 BPM         Bar / slow bar
-+7      3200ms → 6400ms       —                 Phrase
-+8      6400ms → 12800ms      —                 Section boundary
-+9      12800ms → 25600ms     —                 Long section
-+10     25600ms → 51200ms     —                 Movement boundary
-```
-
-## Solfège positions within a metric DuPeriod
-
-Within any DuPeriod band, the 12 solfège positions of Uniform Solfège name
-the 12-TET period-length ratios in exactly the same way they name
-frequency ratios in pitch space. The Do of any band is its floor period;
-the Do of the next band (one octave up) is its ceiling.
-
-For Metric DuPeriod +4 (400ms → 800ms, the comfortable tempo range):
-
-```
-Do   400ms   (~150 BPM)   — DuPeriod floor
-Ra   423ms
-Re   449ms
-Me   476ms
-Mi   504ms
-Fa   533ms
-Fi   565ms                — rhythmic tritone (maximum metric tension)
-So   599ms   (~100 BPM)   — 3:2 ratio above floor
-Le   635ms
-La   672ms
-Te   712ms
-Ti   755ms
-Do   800ms   (~75 BPM)    — DuPeriod ceiling / next DuPeriod floor
-```
-
-The So position at approximately 600ms / 100 BPM is not incidental — it
-is the 3-prime landmark, the same structural position as the perfect fifth
-in pitch space, arising from the same 3:2 ratio relationship.
-
-## The Do→So relationship in rhythmic space
-
-In pitch space, Do and So are a perfect fifth apart — a 3:2 frequency
-ratio. The interval is consonant because the LCM of the two frequencies
-is small: 3 cycles of the upper note coincide with 2 of the lower after
-a short period, and the combined waveform returns to its starting point
-quickly.
-
-In rhythmic space within a metric DuPeriod, Do and So stand in the same
-3:2 ratio — but now it is **period lengths** that are in 3:2 relationship,
-not frequencies. The Do pulse and So pulse produce 3 cycles and 2 cycles
-respectively in the same span of time. This is a **3:2 polyrhythm**, and
-it feels stable and consonant for exactly the same reason a perfect fifth
-does: the LCM is small and the resolution point arrives quickly.
-
-This is not an analogy. The Do→So relationship in rhythmic space is the
-same mathematical object as the Do→So relationship in pitch space,
-projected onto a slower timescale.
-
-The full set of solfège interval relationships within a metric DuPeriod
-describes the complete set of polyrhythmic relationships available in
-that band:
-
-| Interval | Ratio | Rhythmic meaning |
-|----------|-------|-----------------|
-| Do → Re  | 9:8   | Fine subdivision shift |
-| Do → Mi  | 5:4   | 5-against-4 polyrhythm |
-| Do → Fa  | 4:3   | 4-against-3 polyrhythm |
-| Do → Fi  | √2:1  | Maximum metric tension — rhythmic tritone |
-| Do → So  | 3:2   | Standard hemiola / triplet feel |
-| Do → La  | 5:3   | 5-against-3 polyrhythm |
-
-## The rhythmic tritone
-
-The tritone (Fi, position 6) is maximally distant from Do on the circle
-of fifths and produces an irrational ratio (√2:1) whose LCM never cleanly
-resolves. In pitch space this is heard as maximal harmonic tension. In
-rhythmic space, a pulse or tempo sitting at the Fi position within a
-metric DuPeriod creates **maximum metric instability** — the point of
-greatest displacement from the metric tonic, implying resolution toward
-So (metric dominant) or Do (metric tonic).
-
-A composed passage that introduces a Fi-ratio cross-pulse against the
-established metric Do and then resolves through So to a clean LCM
-coincidence is a **rhythmic tritone resolution**. The ti-hai in Indian
-classical music is a composed instance of this: maximum metric
-displacement engineered to land precisely on the sam.
-
-## The cross-scale cadential operator
-
-In pitch space, a 2-5-1 cadence is a walk from Re (supertonic tension)
-through So (dominant pull) to Do (tonic resolution) — a directed motion
-toward LCM coincidence along the circle of fifths.
-
-In rhythmic space within a metric DuPeriod, the same walk describes a
-**rhythmic cadence**:
-
-1. **Metric supertonic** — introduce a cross-family polyrhythm (5-prime
-   or 7-prime against the established grid); complex LCM, slow resolution,
-   maximum metric tension
-2. **Metric dominant** — collapse to a 3:2 hemiola against the pulse;
-   simple LCM, fast resolution implied, forward motion toward coincidence
-3. **Metric tonic** — full LCM coincidence; all streams land on the
-   downbeat together
-
-With pitch content locked (static chord or drone), this produces
-**cadential motion implied entirely through rhythmic means**. The listener
-experiences tension and resolution as a purely metric phenomenon, with no
-harmonic movement.
-
-In the Metric DuPeriod system, a pitch 2-5-1 and a rhythmic 2-5-1 are the
-same sequence of solfège positions (Re → So → Do) within the same
-coordinate system, projected onto different regions of the period-length
-space. The cadential operator is scale-invariant; the perceptual
-experience differs because the projection timescale differs.
-
-## Perceptual landmarks in rhythmic space
-
-The meaningful boundaries in positive metric DuPeriod space are predominantly
-cognitive and physiological rather than acoustic. This is a genuine
-structural asymmetry between pitch space (where boundaries are determined
-by acoustic physics) and upper rhythmic space (where boundaries are
-determined by memory, attention, and biological oscillation).
-
-| Offset range | Period range  | Landmark | Source |
-|-------------|---------------|----------|--------|
-| 0           | 50ms          | Periodicity Limen — pitch/rhythm phase transition | Auditory neurology |
-| +1 to +2    | 50–200ms      | Subdivision — felt as texture rather than pulse | Temporal resolution |
-| +3 to +4    | 200–800ms     | Beat — primary pulse; comfortable tempo range | Motor entrainment |
-| +5 to +6    | 800–3200ms    | Bar — metric grouping above beat | Rhythmic cognition |
-| +7          | 3200–6400ms   | Working memory ceiling — ~4–8 seconds | Auditory working memory |
-| +9 to +10   | 12800–51200ms | Gestalt boundary — ~15–50 seconds; expectation resets | Music cognition |
-| −10         | 0.05–0.1ms    | Upper Auditory Horizon (UPL) — 20kHz upper pitch limit | Auditory neurology |
-
-## Diacritic precision across the range
-
-Prime Period Diacritics are available throughout the Metric DuPeriod system,
-but their practical necessity varies with the timescale:
-
-- **Pitch space (negative offsets)**: full 72-EDO diacritic precision is
-  needed and already specified in the PPD system; the ear is sensitive to
-  small deviations at audio rates
-- **Rhythmic space +1 to +3**: diacritics are useful for fine subdivision
-  specification; timing deviations of a few milliseconds are perceptible
-  at fast tempos
-- **Rhythmic space +4 and above**: the 12 base solfège positions are
-  sufficient; perceptual timing tolerance at beat and bar level is wide
-  enough that diacritic precision adds no practical value
-- **Rhythmic space +8 and above**: solfège position is approximate;
-  the relevant unit of description is the DuPeriod band itself rather than
-  the position within it
-
-The precision requirement naturally relaxes as the timescale lengthens —
-a structurally meaningful feature of the system rather than a limitation.
-
-## Conventional units as derived measures
-
-BPM and Hz are translation layers for interfacing with conventional
-instruments, notation systems, and tools. They are not primary
-descriptions within the Metric DuPeriod system.
-
-| Conventional | Metric DuPeriod address | Note |
-|-------------|----------------------|------|
-| 60 BPM (1 beat/sec) | Re+4 (≈449ms) | Near but not on a prime-ratio landmark |
-| 120 BPM | Re+3 (≈449ms in +3 band) | Common reference tempo — not structurally significant |
-| 440Hz (A4) | La−4 (672Hz band) | Standard pitch reference — not on prime-ratio landmark |
-| 432Hz ("natural" tuning) | Between Le−4 and La−4 | No prime-ratio significance |
-
-The clustering of common reference values near but not on prime-ratio
-landmarks confirms that conventional anchors are approximations of
-perceptually convenient positions rather than structurally grounded ones.
-
-## See also
-
-- [Periodicity Limen](periodicity-limen.md) — the anchor definition and
-  the argument for grounding measurement in auditory neurology
-- [Periodicity](../foundations/periodicity.md) — the perceptual rate
-  boundary as a property of human perception
-- [Prime Families](../foundations/prime-families.md) — the ratio
-  relationships that the solfège positions within each octave encode
-- [Rhythm](../domains/rhythm.md) — domain-level context for the positive
-  metric DuPeriod space
-- [Uniform Solfège](../uniform-solfege/index.md) — the solfège position
-  system used within each metric DuPeriod band
-- [Rhythmic Grammar](../related/rhythmic-grammar.md) — the cadential
-  chain system whose structure the metric DuPeriod formalises
-- [Metric DuPeriod — Extended Range](../extended/metric-duperiod-extended.md) — the
-  stratospheric positive metric DuPeriod space above musical form
-
-
-================================================================================
-FILE: okf/foundations/music-as-language.md
-================================================================================
-
----
-type: concept
-title: Music as Language and Auditory Classification
-description: >
-  An exploration of music as a language and the contrast between the high specificity of early visual classification and the relative underdevelopment of auditory vocabulary.
-tags:
-  - music-as-language
-  - auditory-classification
-  - pedagogy
-timestamp: 2026-06-27
----
-
-# Music as Language and Auditory Classification
-
-## The linguistic analogy
-
-Prime Period Theory (PPT) approaches music fundamentally as a language. Just as there are immense benefits to understanding the grammar, syntax, and structure of spoken language, the same holds true for music. Without a shared grammar, communication becomes imprecise and learning becomes an exercise in rote memorisation rather than fluent expression.
-
-When music is treated as a language, the goal of music pedagogy shifts from reproducing a specific sequence of actions (inferring structure from notes on a page) to developing fluency. Fluency requires an underlying framework that explains *why* the language works the way it does, enabling practitioners to construct their own meaning. 
-
-## Visual vs. Auditory Classification
-
-From early childhood, we are systematically taught to classify the visual realm with high specificity. Children learn to identify shapes (circles, squares, triangles), colours (primary, secondary, gradients), and dimensions (tall, short, wide, narrow). We build a rich, shared vocabulary that allows us to precisely communicate visual information.
-
-In contrast, our cultural auditory vocabulary is fundamentally underdeveloped. In the auditory realm, our classification is often limited to rudimentary, binary concepts such as "loud and soft" or "fast and slow". Unless an individual pursues specialised musical training, they often lack the words to describe the structures of melody, rhythm, and harmony they hear every day. 
-
-This asymmetry means that while most people can easily describe a visual scene, they struggle to articulate an auditory experience.
-
-## Providing an Anchor
-
-PPT was designed to address this gap. The lack of a shared, intuitive vocabulary for auditory phenomena makes music seem mysterious or exclusively the domain of the naturally "talented". 
-
-PPT provides something to anchor core musical concepts onto. It serves as a shared grammar and vocabulary—a way to understand and communicate the structures of melody, rhythm, and harmony in our listening, playing, and composition. 
-
-By treating pitch, rhythm, and timbre as unified expressions of prime-generated periodicity, PPT offers a coherent, descriptive scaffolding. It gives musicians and educators the specific terminology and structural logic needed to classify the auditory realm just as precisely as we classify the visual one.
-
-
-================================================================================
-FILE: okf/foundations/periodicity-limen.md
-================================================================================
-
----
-type: concept
-title: Periodicity Limen
-description: >
-  The Periodicity Limen (colloquially: Auditory Horizon) is the perceptual
-  phase transition at approximately 20Hz / 50ms period, at which periodic
-  signals cross the boundary between rhythmic and pitched perception. It
-  serves as the anchor point — Metric DuPeriod 0 — for PPT's unified
-  period-length coordinate system, grounded in human auditory neurology
-  rather than conventional time measurement.
-tags:
-  - foundations
-  - periodicity-limen
-  - auditory-horizon
-  - metric-duperiod
-  - psychoacoustics
-  - prime-period-theory
-timestamp: 2026-06-27
----
-
-# Periodicity Limen
-
-## What it is
-
-The **Periodicity Limen** (colloquially: the **Auditory Horizon**) is the
-perceptual phase transition at approximately 20Hz — a period length of 50ms
-— at which periodic signals cross the boundary between two distinct modes
-of human auditory perception: rhythm and pitch.
-
-Below 20Hz, the ear tracks individual events. The repeating pattern is
-perceived as **rhythm** — discrete pulses with felt intervals between them.
-Above 20Hz, the ear fuses repetitions into a continuous sensation. The
-pattern is perceived as **pitch** — a sustained frequency with a
-recognisable tonal character.
-
-This boundary is not a hard cliff. Psychoacoustic research identifies a
-transition zone between approximately 10Hz and 40Hz, characterised by two
-intermediate perceptual states:
-
-- **Flutter** (~10–20Hz): events too fast to track individually but not
-  yet fused into a stable pitch; a rapid flickering sensation
-- **Roughness** (~20–40Hz): fusion beginning, pitch emerging but unstable,
-  perceived as a coarse or buzzing tone
-
-The Periodicity Limen is defined at 20Hz as the midpoint of this transition
-zone — the point at which perceptual mode is most evenly balanced between
-rhythm and pitch, and therefore the most structurally meaningful single
-value to use as an anchor.
-
-## Why this is the correct anchor
-
-Standard measures of musical time — Hz for frequency, BPM for tempo — are
-derived from the **second**, which is itself a fraction of Earth's rotation
-period: an astronomical unit that became a time unit by historical
-convention. It has no relationship to human perception, acoustic physics,
-or musical structure. The second is to musical time measurement what
-Fahrenheit is to temperature: a unit whose reference points are determined
-by historical contingency rather than the phenomenon being measured.
-
-The Periodicity Limen is determined instead by **human auditory neurology**
-— specifically the temporal resolution limits of the basilar membrane and
-auditory nerve firing rates. It is:
-
-- Not a convention — it is a property of the biological instrument that
-  receives music
-- Not culturally contingent — it is stable across humans regardless of
-  musical tradition or training
-- Not astronomically derived — it is grounded in the perceptual system
-  that music is addressed to
-- Intrinsic to PPT's theoretical structure — the framework already treats
-  the pitch/rhythm boundary as theoretically significant; the Periodicity
-  Limen is the precise location of that boundary
-
-This makes it the correct choice for an anchor in the same sense that
-absolute zero is the correct anchor for temperature measurement in physics:
-it is the structurally meaningful zero point of the phenomenon being
-described, not a convenient approximation of it.
-
-## Relationship to conventional measures
-
-The Periodicity Limen can be expressed in conventional units — 20Hz,
-50ms period, 1200 BPM — but these are **interface translations**, not
-primary descriptions. The theoretical status of 20Hz as an anchor does
-not depend on seconds; the second is available as a translation layer
-when interfacing with conventional tools, instruments, and notation
-systems.
-
-The relationship is analogous to Kelvin and Celsius: Celsius remains
-useful for everyday temperature description, but Kelvin is the
-theoretically correct system because its zero point is grounded in
-molecular physics rather than water's behaviour. BPM and Hz remain
-useful for performance and notation, but the Periodicity Limen coordinate
-system is theoretically correct because its anchor is grounded in
-auditory perception rather than Earth's rotation.
-
-## The upper boundary
-
-A second physiological boundary exists at approximately 20kHz — the upper
-limit of human pitch perception, also determined by basilar membrane
-resolution. This is designated the **Upper Periodicity Limen**
-(colloquially: the **Upper Auditory Horizon**).
-
-The full audible pitch range spans from the Periodicity Limen (20Hz) to
-the Upper Periodicity Limen (20kHz). This range is:
-
-```
-log2(20000 / 20) = log2(1000) ≈ 9.97 octaves
-```
-
-Approximately **10 octaves** — a near-exact decade in base-2 logarithmic
-space. This spans Metric DuPeriods −10 to 0 in PPT's unified coordinate
-system. See [Metric DuPeriod](metric-duperiod.md) for the full coordinate
-definition.
-
-## Dual register
-
-The term **Periodicity Limen** is used in formal, academic, and
-psychoacoustic contexts, consistent with established psychoacoustic
-vocabulary (*limen*: Latin for threshold; cf. absolute limen, difference
-limen).
-
-The colloquial name **Auditory Horizon** is used in pedagogical,
-explanatory, and cross-reference contexts. The horizon metaphor captures
-the character of the boundary: it is not that periodicity ceases to exist
-on either side, but that the *nature of perception* changes — just as a
-horizon changes what can be seen, not what exists.
-
-This dual-register convention follows the pattern established elsewhere
-in PPT: formal specification paired with an accessible working name.
-
-| Register | Term | Abbreviation |
-|----------|------|--------------|
-| Formal / academic | Periodicity Limen | PL |
-| Colloquial / pedagogical | Auditory Horizon | AH |
-| Upper boundary (formal) | Upper Periodicity Limen | UPL |
-| Upper boundary (colloquial) | Upper Auditory Horizon | UAH |
-
-## See also
-
-- [Amplitude and Time](amplitude-time.md) — the physical grounding;
-  the second as astronomical convention
-- [Periodicity](periodicity.md) — the perceptual rate boundary as
-  a property of human perception, not underlying structure
-- [Metric DuPeriod](metric-duperiod.md) — the coordinate system anchored
-  to the Periodicity Limen
-- [Metric DuPeriod — Extended Range](../extended/metric-duperiod-extended.md) — the
-  stratospheric positive metric DuPeriod space above musical form
 
 
 ================================================================================
@@ -1969,6 +1434,529 @@ The prime families are also the geometric and conceptual foundation for [Prime P
 
 
 ================================================================================
+FILE: okf/perception/AGENTS.md
+================================================================================
+
+# Perception — Agent Instructions
+
+## Purpose
+
+This directory covers the human perceptual layer of Prime Period Theory —
+how listeners construct musical experience from periodic signals. It sits
+between the physical foundations (what the signal is doing) and the domains
+(what perception looks like in musical practice). Pages here draw on
+psychoacoustics, cognitive science, and cultural transmission theory.
+
+## Current pages
+
+| File | Status | Description |
+|---|---|---|
+| `information-and-expectation.md` | Complete | Pattern recognition, prediction, and the mechanics of musical delight |
+| `auditory-horizon.md` | Complete | Agency gradient across the timescale; Periodicity Limen; Metric Induction Limen; cross-domain tolerance budget |
+| `periodicity-limen.md` | Complete | The 20Hz anchor definition and the boundary between pitch and rhythm |
+
+## Tone guidance
+
+Perception pages should be grounded in physical reality (link back to
+foundations) but written from the listener's vantage point. They explain
+*why* the structural facts in foundations produce the experiences they do.
+Avoid pure psychology without physical grounding; avoid pure physics without
+connecting to perceptual consequence.
+
+
+================================================================================
+FILE: okf/perception/auditory-horizon.md
+================================================================================
+
+---
+type: concept
+title: Auditory Horizon and Agency
+description: >
+  The Auditory Horizon reframes the Periodicity Limen not as a single
+  perceptual threshold but as part of a continuous agency gradient: listener
+  freedom to choose and interpret period-groupings is highest in the macro
+  (rhythm) domain and approaches zero in the micro (pitch) domain, where
+  the physics of the source resolves period relationships before they reach
+  the ear. Introduces the Metric Induction Limen as the upper-tempo boundary
+  of active grouping agency, and develops the cross-domain tolerance budget
+  and cultural transmission asymmetry that follow from this gradient.
+tags:
+  - perception
+  - periodicity-limen
+  - auditory-horizon
+  - agency
+  - metric-induction
+  - prime-families
+  - rhythm
+  - pitch
+  - psychoacoustics
+  - cultural-transmission
+  - prime-period-theory
+timestamp: 2026-06-28
+---
+
+# Auditory Horizon and Agency
+
+## The Periodicity Limen as one boundary among two
+
+The [Periodicity Limen](../foundations/periodicity.md) — approximately 20Hz,
+the lower bound of pitch perception — is already established in PPT as the
+boundary between rhythm and pitch. Below it, the ear tracks individual events;
+above it, it fuses them into continuous tone. This is a perceptual boundary,
+not a structural one: the underlying phenomenon is periodic signal in both
+cases.
+
+What the Periodicity Limen does not fully describe is the **upper** boundary
+of rhythmic agency — the point at which the period is still perceptible as
+rhythm, but the listener's capacity to actively choose between competing
+period-groupings collapses. This upper boundary is the **Metric Induction
+Limen**, and together with the Periodicity Limen it brackets a zone of full
+metric agency.
+
+**Metric induction** is the cognitive process by which a listener commits to
+a hierarchical grouping of evenly spaced events — hearing a pulse as 3/4
+rather than 4/4, for example. It requires holding at least two or three
+cycles of the candidate period in working memory simultaneously. As the period
+lengthens past roughly 2–4 seconds per beat (below approximately 0.25–0.5 Hz),
+this working-memory requirement becomes unsustainable. The events are still
+perceptible as related, but the felt sense of a metric container dissolves —
+grouping is no longer freely chosen by the listener but instead imposed by
+external cues (dynamics, contour, timbre, ensemble accent) or simply not
+experienced at all.
+
+The Periodicity Limen and the Metric Induction Limen together define a
+**full-agency zone** in the metric DuPeriod scale:
+
+| Zone | Approx. period | Perceptual character |
+|---|---|---|
+| Below Periodicity Limen | < 50ms (~20Hz+) | Fused into pitch; no metric tracking |
+| Periodicity Limen transition | ~50–200ms | Boundary zone; fast rhythm approaching pitch |
+| Full-agency zone | ~200ms–2s | Pulse perceptible; grouping freely chosen |
+| Metric Induction Limen transition | ~2–4s | Pulse weakening; grouping cues external |
+| Above Metric Induction Limen | > 4s per beat | Gesture and phrase; metric agency absent |
+
+Both boundaries are approximate and training-dependent — see
+[Prime Families and the trainable gradient](#prime-families-and-the-trainable-gradient)
+below.
+
+## The Auditory Horizon as an agency gradient
+
+The Periodicity Limen and Metric Induction Limen are most usefully understood
+not as two separate walls but as opposite ends of a single continuous
+**agency gradient** — the **Auditory Horizon**.
+
+The listener is not standing at a fixed point looking across a threshold.
+They are embedded in a space where their degree of interpretive freedom is
+a function of where on the timescale they are operating:
+
+- In the **macro** (slow rhythm, form), the listener has maximum agency over
+  period-grouping. The periods are sparse enough that grouping requires an
+  active constructive act. Multiple grouping interpretations remain available
+  simultaneously, and the listener can choose between them.
+- Approaching the **Metric Induction Limen** from below, this freedom
+  narrows as the working-memory window can no longer span enough cycles to
+  sustain competing grouping hypotheses.
+- Approaching the **Periodicity Limen** from above, the listener's mode of
+  perception shifts from event-tracking to frequency-sensing. The period is
+  no longer *heard as a beat* at all.
+- In the **micro** (pitch), the period is resolved in the physics of the
+  source before it reaches the ear. There is nothing left to choose.
+
+The Auditory Horizon is therefore not primarily a *boundary* — it is a
+*vantage point*. The listener is always in the macro space, looking toward
+the micro. Agency is highest where they stand; it diminishes continuously
+in the direction they are facing.
+
+## The locus of period-resolution
+
+The agency gradient corresponds to a shift in **where period relationships
+are resolved**:
+
+- At macro scales, period-grouping is resolved in the **listener's
+  interpretive layer**. The signal is underdetermined; the listener
+  constructs the grouping.
+- At micro scales, period relationships are resolved in the **physics of
+  the source**. The interference patterns between partials are already
+  settled before the signal reaches the cochlea.
+
+This is not merely a cognitive distinction — it is physically grounded. A
+pure sine tone at 440Hz has a fixed period. There is no grouping ambiguity
+for the listener to exercise, because there is only one periodic stream and
+its period is determined by the source. The pitch-domain cases that *appear*
+to offer grouping ambiguity — the missing fundamental, virtual pitch,
+Shepard tones — all require multiple partials. They are spectral interference
+phenomena, not single-stream period ambiguity. The analogy to metric grouping
+is structurally misleading: a uniform isochronous pulse admits competing
+groupings with no spectral complexity at all; pitch "ambiguity" requires
+engineered multi-stream spectra to exist.
+
+This asymmetry is a structural feature of the Auditory Horizon:
+**single-stream period ambiguity is a macro phenomenon only**. In the micro,
+ambiguity is always a property of interference between streams, not of the
+listener's interpretive freedom over a single stream.
+
+## Prime families and the trainable gradient
+
+The agency gradient interacts with prime families in a way that has direct
+practical consequences.
+
+In the macro space, the prime families available for free grouping-choice
+are predominantly **2 and 3** — the families whose LCM closures are short
+enough and whose cultural repetition is dense enough that the listener has
+fully internalised the grouping patterns as kinesthetic reflex. The
+ambiguity of an even pulse as 3/4 or 4/4 is a 2-vs-3 question.
+
+As prime number increases — **5, 7, 11** — two things happen simultaneously:
+
+First, the **LCM closure time against a duple or ternary background grows**.
+A small timing drift in a 7-beat cycle has more time to compound before the
+structural downbeat resets it. The tolerance budget — the accumulated error
+allowed before a periodicity alignment fails — is consumed faster and
+forgiven less easily. The same is true in pitch: a slight detuning of a
+7-limit interval disturbs more partial relationships simultaneously than a
+3-limit detuning would.
+
+Second, the **cultural transmission of the grouping pattern thins**. Most
+listeners do not have embodied, kinesthetic familiarity with 7-prime metric
+cycles in the way they do with 2 and 3. The distributed cultural grid that
+enables collective error-correction — the shared sense of "where the beat
+is" — does not exist for Septuple metre in most musical cultures. This is
+not a perceptual limitation; it is a training gap.
+
+The Auditory Horizon is therefore not a fixed wall for higher prime families
+— it is a **gradient that training can shift**. Experienced Carnatic
+percussionists and Balkan musicians have internalised 7-prime and 5-prime
+metric cycles to something close to kinesthetic reflex. They have effectively
+moved their Metric Induction Limen for those prime families — not by changing
+their perceptual hardware, but by building the embodied cultural vocabulary
+that 2-prime and 3-prime listeners have had for free since childhood.
+
+The inverse is equally true in pitch. Every listener who has heard a
+naturally produced sound has received 5, 7, and 11-prime interference
+patterns continuously, because they are physically present in virtually
+every instrument's overtone series. The perception is pre-cognitive and
+universal. The harmonic seventh (7-limit) is as familiar to the ear as the
+perfect fifth (3-limit) — it is simply not *named* or *consciously
+navigated* by most Western listeners, because the theoretical vocabulary
+for it was not part of their musical education.
+
+## The mirror: cultural transmission runs in opposite directions
+
+The Auditory Horizon reveals a structural asymmetry in how musical knowledge
+is transmitted across the timescale divide:
+
+**Macro rhythmic norms** propagate **bottom-up**. A child absorbs the 2 and
+3-prime metric cycles through participation — dancing, clapping, playing —
+long before any theoretical framework is available. The understanding is
+embodied and distributed: it lives in the collective kinesthetic memory of
+every culture that has shared musical practice. Correction of timing errors
+is immediate, social, and pre-cognitive. Nobody needs to be taught that
+clapping on the beat is preferable to off it.
+
+**Micro harmonic norms** propagate **top-down**. The pre-cognitive perception
+of 5-limit consonance is universal — the ear hears it without instruction —
+but working with it *intentionally* requires the theoretical scaffolding that
+Western harmony developed over several centuries. Consonance and dissonance
+are felt before they are understood; understanding them well enough to
+produce them deliberately is a learned, culturally specific skill.
+
+This inversion creates the mirror: **we learn to shape in the micro space
+based on commonly-held understanding of what works in the macro space, but
+the direction of pedagogy is reversed**. Rhythm teaches itself through
+immersion; harmony requires explicit instruction. Errors in timing are
+obvious and self-correcting; errors in intonation are obscure and require
+a theoretical vocabulary to even identify, let alone correct.
+
+Higher prime families expose this asymmetry most clearly. The cultural grid
+for 7 and 11-prime rhythm is thin in most Western traditions — so the
+embodied, bottom-up transmission pathway for these families has not been
+built. The pre-cognitive pitch perception of 7 and 11-prime intervals is
+universal — but the top-down theoretical vocabulary for navigating them
+intentionally is also largely absent from Western pedagogy. Both pathways
+are weak for the same prime families, but for opposite reasons.
+
+## Implications for PPT pedagogy
+
+PPT's Rhythmic Grammar system — particularly its use of speakable solfège
+syllable strings inspired by Solkattu/konnakol — is designed precisely to
+address the higher-prime transmission gap in the macro domain. By voicing
+the LCM grid of a 5 or 7-prime cycle as a single speakable, repeatable
+string, the system builds bottom-up kinesthetic familiarity for prime
+families that would otherwise require only top-down theoretical instruction.
+The goal is to push the higher prime families down from the cognitive layer
+toward the pre-cognitive fluency that 2 and 3-prime rhythm — and all pitch
+perception — already have.
+
+Understood through the Auditory Horizon, this is not merely a teaching
+technique. It is an attempt to extend the full-agency zone for higher prime
+families — to make the Metric Induction Limen for 5, 7, and 11 behave
+more like it does for 2 and 3 in trained listeners.
+
+## See also
+
+- [Periodicity](../foundations/periodicity.md) — the physical boundary; pitch
+  vs rhythm as perceptual modes
+- [Prime Families](../foundations/prime-families.md) — the five families and
+  their LCM closure properties
+- [Information and Expectation](information-and-expectation.md) — the cognitive
+  mechanics of pattern and prediction that the agency gradient operates within
+- [Rhythm](../domains/rhythm.md) — macro periodicity; metre as prime-family
+  choice; Rhythmic Grammar as bottom-up transmission tool
+- [Pitch](../domains/pitch.md) — micro periodicity; consonance as period
+  coincidence; ET deviation and the ratio hierarchy
+
+
+================================================================================
+FILE: okf/perception/information-and-expectation.md
+================================================================================
+
+---
+type: concept
+title: Information and Expectation
+description: >
+  Music as an information system: how the human brain processes periodic signals
+  to establish patterns, make predictions, and experience the delight of 
+  fulfilled or subverted expectations.
+tags:
+  - foundations
+  - information-theory
+  - psychology
+  - expectation
+  - periodicity
+timestamp: 2026-06-26
+---
+
+# Information and Expectation
+
+## The core claim
+
+If [Amplitude and Time](../foundations/amplitude-time.md) describes what music is physically, 
+and [Periodicity](../foundations/periodicity.md) describes its unifying structure, then this 
+document addresses the cognitive layer: **how we experience those structures**.
+
+Music is fundamentally a system of information. The human brain is a prediction 
+machine, constantly seeking order and pattern in sensory input. When auditory 
+energy organises into a repeating period, it ceases to be noise and becomes 
+*information* that the brain can track, predict, and respond to.
+
+## Establishing the pattern
+
+A single sound event — a crash, a scrape, a bang — provides very little 
+predictive information. But when an event repeats at a consistent interval 
+(a period), a pattern is established. 
+
+Once a pattern is recognized, the listener's brain unconsciously projects that 
+pattern forward in time. We expect the next beat to land *here*; we expect the 
+next cycle of the waveform to cross zero *now*. This predictive model is the 
+foundation of all musical engagement. 
+
+- At the **macro scale** (rhythm), establishing the pattern is often called 
+  "setting the groove" or establishing the metre.
+- At the **micro scale** (pitch), establishing the pattern happens in 
+  milliseconds. The brain locks onto the fundamental frequency and tracks its 
+  continuation.
+
+## The mechanics of delight
+
+The aesthetic experience of music — why it feels good to listen to — is deeply 
+tied to this cycle of expectation. It operates on two primary axes:
+
+### 1. The delight of recognition (The Expected)
+When a pattern resolves exactly as predicted, it provides a visceral payoff. The 
+brain's model of the world is confirmed. This is the satisfaction of a heavy downbeat 
+landing exactly in the pocket, or a complex polyrhythm finally resolving to its 
+shared period (the sam in tala). It is the joy of stability and order.
+
+### 2. The delight of subversion (The Unexpected)
+If music only ever fulfilled expectations, it would act like a ticking clock — 
+predictable to the point of being ignored. The true communicative power of music 
+arises when a pattern is established strongly enough to create an expectation, 
+and then intentionally broken, shifted, or delayed. 
+- A syncopated snare hit arrives a fraction of a second early.
+- A melody lands on a prime-family interval that sits just outside the established tuning grid.
+
+This subversion forces the brain to instantly update its predictive model. The 
+surprise registers as emotional weight, tension, or delight. 
+
+## Expectation across the scales
+
+Because periodicity is scale-invariant, the mechanics of expectation operate at 
+all levels of musical structure simultaneously:
+
+- **Timbral expectation:** We expect a sustained note to maintain its overtone 
+  profile. A sudden change in timbre (like a trumpet applying a mute) subverts 
+  that micro-level expectation.
+- **Harmonic expectation:** We expect two frequencies to eventually reach a 
+  shared period (consonance). When they linger in a complex ratio (dissonance), 
+  the delayed resolution creates tension.
+- **Rhythmic expectation:** We expect the established pulse to continue.
+- **Formal expectation:** We expect a repeated A section to lead to a contrasting 
+  B section.
+
+Prime Period Theory provides the structural vocabulary (ratios, prime families, 
+period lengths) to describe *what* is happening. Information and expectation 
+describe *why* it matters to the listener.
+
+## See also
+
+- [Amplitude and Time](../foundations/amplitude-time.md) — the physical grounding
+- [Periodicity](../foundations/periodicity.md) — the structural reality of the patterns
+
+
+================================================================================
+FILE: okf/perception/periodicity-limen.md
+================================================================================
+
+---
+type: concept
+title: Periodicity Limen
+description: >
+  The Periodicity Limen (colloquially: Auditory Horizon) is the perceptual
+  phase transition at approximately 20Hz / 50ms period, at which periodic
+  signals cross the boundary between rhythmic and pitched perception. It
+  serves as the anchor point — Metric DuPeriod 0 — for PPT's unified
+  period-length coordinate system, grounded in human auditory neurology
+  rather than conventional time measurement.
+tags:
+  - foundations
+  - periodicity-limen
+  - auditory-horizon
+  - metric-duperiod
+  - psychoacoustics
+  - prime-period-theory
+timestamp: 2026-06-27
+---
+
+# Periodicity Limen
+
+## What it is
+
+The **Periodicity Limen** (colloquially: the **Auditory Horizon**) is the
+perceptual phase transition at approximately 20Hz — a period length of 50ms
+— at which periodic signals cross the boundary between two distinct modes
+of human auditory perception: rhythm and pitch.
+
+Below 20Hz, the ear tracks individual events. The repeating pattern is
+perceived as **rhythm** — discrete pulses with felt intervals between them.
+Above 20Hz, the ear fuses repetitions into a continuous sensation. The
+pattern is perceived as **pitch** — a sustained frequency with a
+recognisable tonal character.
+
+This boundary is not a hard cliff. Psychoacoustic research identifies a
+transition zone between approximately 10Hz and 40Hz, characterised by two
+intermediate perceptual states:
+
+- **Flutter** (~10–20Hz): events too fast to track individually but not
+  yet fused into a stable pitch; a rapid flickering sensation
+- **Roughness** (~20–40Hz): fusion beginning, pitch emerging but unstable,
+  perceived as a coarse or buzzing tone
+
+The Periodicity Limen is defined at 20Hz as the midpoint of this transition
+zone — the point at which perceptual mode is most evenly balanced between
+rhythm and pitch, and therefore the most structurally meaningful single
+value to use as an anchor.
+
+## Why this is the correct anchor
+
+Standard measures of musical time — Hz for frequency, BPM for tempo — are
+derived from the **second**, which is itself a fraction of Earth's rotation
+period: an astronomical unit that became a time unit by historical
+convention. It has no relationship to human perception, acoustic physics,
+or musical structure. The second is to musical time measurement what
+Fahrenheit is to temperature: a unit whose reference points are determined
+by historical contingency rather than the phenomenon being measured.
+
+The Periodicity Limen is determined instead by **human auditory neurology**
+— specifically the temporal resolution limits of the basilar membrane and
+auditory nerve firing rates. It is:
+
+- Not a convention — it is a property of the biological instrument that
+  receives music
+- Not culturally contingent — it is stable across humans regardless of
+  musical tradition or training
+- Not astronomically derived — it is grounded in the perceptual system
+  that music is addressed to
+- Intrinsic to PPT's theoretical structure — the framework already treats
+  the pitch/rhythm boundary as theoretically significant; the Periodicity
+  Limen is the precise location of that boundary
+
+This makes it the correct choice for an anchor in the same sense that
+absolute zero is the correct anchor for temperature measurement in physics:
+it is the structurally meaningful zero point of the phenomenon being
+described, not a convenient approximation of it.
+
+## Relationship to conventional measures
+
+The Periodicity Limen can be expressed in conventional units — 20Hz,
+50ms period, 1200 BPM — but these are **interface translations**, not
+primary descriptions. The theoretical status of 20Hz as an anchor does
+not depend on seconds; the second is available as a translation layer
+when interfacing with conventional tools, instruments, and notation
+systems.
+
+The relationship is analogous to Kelvin and Celsius: Celsius remains
+useful for everyday temperature description, but Kelvin is the
+theoretically correct system because its zero point is grounded in
+molecular physics rather than water's behaviour. BPM and Hz remain
+useful for performance and notation, but the Periodicity Limen coordinate
+system is theoretically correct because its anchor is grounded in
+auditory perception rather than Earth's rotation.
+
+## The upper boundary
+
+A second physiological boundary exists at approximately 20kHz — the upper
+limit of human pitch perception, also determined by basilar membrane
+resolution. This is designated the **Upper Periodicity Limen**
+(colloquially: the **Upper Auditory Horizon**).
+
+The full audible pitch range spans from the Periodicity Limen (20Hz) to
+the Upper Periodicity Limen (20kHz). This range is:
+
+```
+log2(20000 / 20) = log2(1000) ≈ 9.97 octaves
+```
+
+Approximately **10 octaves** — a near-exact decade in base-2 logarithmic
+space. This spans Metric DuPeriods −10 to 0 in PPT's unified coordinate
+system. See [Metric DuPeriod](metric-duperiod.md) for the full coordinate
+definition.
+
+## Dual register
+
+The term **Periodicity Limen** is used in formal, academic, and
+psychoacoustic contexts, consistent with established psychoacoustic
+vocabulary (*limen*: Latin for threshold; cf. absolute limen, difference
+limen).
+
+The colloquial name **Auditory Horizon** is used in pedagogical,
+explanatory, and cross-reference contexts. The horizon metaphor captures
+the character of the boundary: it is not that periodicity ceases to exist
+on either side, but that the *nature of perception* changes — just as a
+horizon changes what can be seen, not what exists.
+
+This dual-register convention follows the pattern established elsewhere
+in PPT: formal specification paired with an accessible working name.
+
+| Register | Term | Abbreviation |
+|----------|------|--------------|
+| Formal / academic | Periodicity Limen | PL |
+| Colloquial / pedagogical | Auditory Horizon | AH |
+| Upper boundary (formal) | Upper Periodicity Limen | UPL |
+| Upper boundary (colloquial) | Upper Auditory Horizon | UAH |
+
+## See also
+
+- [Amplitude and Time](amplitude-time.md) — the physical grounding;
+  the second as astronomical convention
+- [Periodicity](periodicity.md) — the perceptual rate boundary as
+  a property of human perception, not underlying structure
+- [Metric DuPeriod](metric-duperiod.md) — the coordinate system anchored
+  to the Periodicity Limen
+- [Metric DuPeriod — Extended Range](../extended/metric-duperiod-extended.md) — the
+  stratospheric positive metric DuPeriod space above musical form
+
+
+================================================================================
 FILE: okf/ppd/glyph-forms.md
 ================================================================================
 
@@ -2125,6 +2113,313 @@ The Du diacritic (Axis stroke) supports fractal subdivision to four levels, enco
 Fractal depth for non-Du families is theoretically defined but not currently specified in glyph form.
 
 See [Glyph Forms](glyph-forms.md) for visual specifications.
+
+
+================================================================================
+FILE: okf/reference/AGENTS.md
+================================================================================
+
+# Reference — Agent Instructions
+
+## Purpose
+
+This directory contains reference material for the core coordinate systems and maps of Prime Period Theory.
+
+## Current pages
+
+| File | Status | Description |
+|---|---|---|
+| `metric-duperiod.md` | Complete | The coordinate system from Metric DuPeriod -10 through +10 |
+
+
+================================================================================
+FILE: okf/reference/metric-duperiod.md
+================================================================================
+
+---
+type: concept
+title: Metric DuPeriod
+description: >
+  The Metric DuPeriod system is PPT's unified period-length coordinate system,
+  anchored at the Periodicity Limen (20Hz / Metric DuPeriod 0) and extending
+  in both directions: negative offsets into pitch space, positive offsets
+  into rhythmic space. Solfège positions within each DuPeriod band name
+  period-length ratios continuously across the auditory boundary, making
+  the cross-scale cadential operator numerically explicit.
+tags:
+  - foundations
+  - metric-duperiod
+  - periodicity-limen
+  - auditory-horizon
+  - uniform-solfege
+  - rhythm
+  - pitch
+  - prime-period-theory
+timestamp: 2026-06-27
+---
+
+# Metric DuPeriod
+
+## Overview
+
+The **Metric DuPeriod** system is a unified period-length coordinate system
+that extends continuously from deep pitch space through the Periodicity
+Limen and into rhythmic space. It provides a single logarithmic ruler —
+anchored at a perceptually meaningful zero point and graduated in solfège
+positions — that names any period length in musical terms without reference
+to conventional time units.
+
+**Note: Pitch Octave vs. Macro DuPeriod**
+
+While the sub-20Hz pitch space colloquially uses the term "Octave" due to entrenched historical convention, PPT formally designates this periodic doubling in the macro/rhythmic space as the **DuPeriod**. This explicitly grounds the coordinate system in the 2-limit prime family (Du) and provides a scalable nomenclature for exploring form and structure through higher prime lenses (e.g., the TriPeriod or QuiPeriod).
+
+
+The system has three components:
+
+- **The anchor**: Metric DuPeriod 0, defined as the Periodicity Limen
+  (20Hz / 50ms period)
+- **The DuPeriod offset**: a signed integer indicating which doubling band
+  the period falls in; negative for pitch space, positive for rhythmic
+  space
+- **The solfège position**: one of the 12 Uniform Solfège syllables
+  (Do through Ti) indicating the period's ratio position within the band
+
+A complete address takes the form **[Syllable][offset]** — for example,
+**So+4** denotes the So position within Metric DuPeriod +4, a period of
+approximately 600ms, corresponding to approximately 100 BPM.
+
+## The anchor: Metric DuPeriod 0
+
+Metric DuPeriod 0 is not a band but a point: the Periodicity Limen at
+20Hz / 50ms. It is the Do of the entire system — the tonic from which
+all offsets are measured.
+
+This anchor is chosen because it is intrinsic to the perceptual structure
+of the system rather than historically contingent. See
+[Periodicity Limen](periodicity-limen.md) for the full argument.
+
+## DuPeriod bands
+
+Each Metric DuPeriod band spans one 2-prime doubling of period length from
+its Do floor to its Do ceiling (which is the floor of the next band).
+Negative offsets are in pitch space; positive offsets are in rhythmic
+space.
+
+### Pitch space (negative offsets)
+
+```
+Offset  Period range        Frequency range     Domain
+−10     0.050ms → 0.100ms  20kHz → 10kHz       Upper Auditory Horizon
+−9      0.100ms → 0.200ms  10kHz → 5kHz        Pitch (high)
+−8      0.200ms → 0.400ms  5kHz → 2.5kHz       Pitch (high-mid)
+−7      0.400ms → 0.800ms  2.5kHz → 1.25kHz    Pitch (mid-high)
+−6      0.800ms → 1.600ms  1.25kHz → 625Hz     Pitch (mid)
+−5      1.600ms → 3.200ms  625Hz → 312Hz       Pitch (mid-low)
+−4      3.200ms → 6.250ms  312Hz → 160Hz       Pitch (low-mid)
+−3      6.250ms → 12.500ms 160Hz → 80Hz        Pitch (low)
+−2      12.500ms → 25ms    80Hz → 40Hz         Pitch (very low)
+−1      25ms → 50ms        40Hz → 20Hz         Pitch (sub)
+ 0      50ms               20Hz                PERIODICITY LIMEN (AH)
+```
+
+The full audible pitch range is contained within Metric DuPeriods −10 to 0.
+Uniform Solfège, Prime Period Diacritics, and 72-EDO already operate in
+this space. The Metric DuPeriod system provides those existing systems with
+an explicit coordinate address relative to the Periodicity Limen anchor.
+
+### Rhythmic space (positive offsets)
+
+```
+Offset  Period range          Approximate BPM   Domain
++1      50ms → 100ms          600+ BPM          Fast subdivision
++2      100ms → 200ms         300–600 BPM       Subdivision
++3      200ms → 400ms         150–300 BPM       Fast tempo
++4      400ms → 800ms         75–150 BPM        Tempo
++5      800ms → 1600ms        37–75 BPM         Slow tempo
++6      1600ms → 3200ms       19–37 BPM         Bar / slow bar
++7      3200ms → 6400ms       —                 Phrase
++8      6400ms → 12800ms      —                 Section boundary
++9      12800ms → 25600ms     —                 Long section
++10     25600ms → 51200ms     —                 Movement boundary
+```
+
+## Solfège positions within a metric DuPeriod
+
+Within any DuPeriod band, the 12 solfège positions of Uniform Solfège name
+the 12-TET period-length ratios in exactly the same way they name
+frequency ratios in pitch space. The Do of any band is its floor period;
+the Do of the next band (one octave up) is its ceiling.
+
+For Metric DuPeriod +4 (400ms → 800ms, the comfortable tempo range):
+
+```
+Do   400ms   (~150 BPM)   — DuPeriod floor
+Ra   423ms
+Re   449ms
+Me   476ms
+Mi   504ms
+Fa   533ms
+Fi   565ms                — rhythmic tritone (maximum metric tension)
+So   599ms   (~100 BPM)   — 3:2 ratio above floor
+Le   635ms
+La   672ms
+Te   712ms
+Ti   755ms
+Do   800ms   (~75 BPM)    — DuPeriod ceiling / next DuPeriod floor
+```
+
+The So position at approximately 600ms / 100 BPM is not incidental — it
+is the 3-prime landmark, the same structural position as the perfect fifth
+in pitch space, arising from the same 3:2 ratio relationship.
+
+## The Do→So relationship in rhythmic space
+
+In pitch space, Do and So are a perfect fifth apart — a 3:2 frequency
+ratio. The interval is consonant because the LCM of the two frequencies
+is small: 3 cycles of the upper note coincide with 2 of the lower after
+a short period, and the combined waveform returns to its starting point
+quickly.
+
+In rhythmic space within a metric DuPeriod, Do and So stand in the same
+3:2 ratio — but now it is **period lengths** that are in 3:2 relationship,
+not frequencies. The Do pulse and So pulse produce 3 cycles and 2 cycles
+respectively in the same span of time. This is a **3:2 polyrhythm**, and
+it feels stable and consonant for exactly the same reason a perfect fifth
+does: the LCM is small and the resolution point arrives quickly.
+
+This is not an analogy. The Do→So relationship in rhythmic space is the
+same mathematical object as the Do→So relationship in pitch space,
+projected onto a slower timescale.
+
+The full set of solfège interval relationships within a metric DuPeriod
+describes the complete set of polyrhythmic relationships available in
+that band:
+
+| Interval | Ratio | Rhythmic meaning |
+|----------|-------|-----------------|
+| Do → Re  | 9:8   | Fine subdivision shift |
+| Do → Mi  | 5:4   | 5-against-4 polyrhythm |
+| Do → Fa  | 4:3   | 4-against-3 polyrhythm |
+| Do → Fi  | √2:1  | Maximum metric tension — rhythmic tritone |
+| Do → So  | 3:2   | Standard hemiola / triplet feel |
+| Do → La  | 5:3   | 5-against-3 polyrhythm |
+
+## The rhythmic tritone
+
+The tritone (Fi, position 6) is maximally distant from Do on the circle
+of fifths and produces an irrational ratio (√2:1) whose LCM never cleanly
+resolves. In pitch space this is heard as maximal harmonic tension. In
+rhythmic space, a pulse or tempo sitting at the Fi position within a
+metric DuPeriod creates **maximum metric instability** — the point of
+greatest displacement from the metric tonic, implying resolution toward
+So (metric dominant) or Do (metric tonic).
+
+A composed passage that introduces a Fi-ratio cross-pulse against the
+established metric Do and then resolves through So to a clean LCM
+coincidence is a **rhythmic tritone resolution**. The ti-hai in Indian
+classical music is a composed instance of this: maximum metric
+displacement engineered to land precisely on the sam.
+
+## The cross-scale cadential operator
+
+In pitch space, a 2-5-1 cadence is a walk from Re (supertonic tension)
+through So (dominant pull) to Do (tonic resolution) — a directed motion
+toward LCM coincidence along the circle of fifths.
+
+In rhythmic space within a metric DuPeriod, the same walk describes a
+**rhythmic cadence**:
+
+1. **Metric supertonic** — introduce a cross-family polyrhythm (5-prime
+   or 7-prime against the established grid); complex LCM, slow resolution,
+   maximum metric tension
+2. **Metric dominant** — collapse to a 3:2 hemiola against the pulse;
+   simple LCM, fast resolution implied, forward motion toward coincidence
+3. **Metric tonic** — full LCM coincidence; all streams land on the
+   downbeat together
+
+With pitch content locked (static chord or drone), this produces
+**cadential motion implied entirely through rhythmic means**. The listener
+experiences tension and resolution as a purely metric phenomenon, with no
+harmonic movement.
+
+In the Metric DuPeriod system, a pitch 2-5-1 and a rhythmic 2-5-1 are the
+same sequence of solfège positions (Re → So → Do) within the same
+coordinate system, projected onto different regions of the period-length
+space. The cadential operator is scale-invariant; the perceptual
+experience differs because the projection timescale differs.
+
+## Perceptual landmarks in rhythmic space
+
+The meaningful boundaries in positive metric DuPeriod space are predominantly
+cognitive and physiological rather than acoustic. This is a genuine
+structural asymmetry between pitch space (where boundaries are determined
+by acoustic physics) and upper rhythmic space (where boundaries are
+determined by memory, attention, and biological oscillation).
+
+| Offset range | Period range  | Landmark | Source |
+|-------------|---------------|----------|--------|
+| 0           | 50ms          | Periodicity Limen — pitch/rhythm phase transition | Auditory neurology |
+| +1 to +2    | 50–200ms      | Subdivision — felt as texture rather than pulse | Temporal resolution |
+| +3 to +4    | 200–800ms     | Beat — primary pulse; comfortable tempo range | Motor entrainment |
+| +5 to +6    | 800–3200ms    | Bar — metric grouping above beat | Rhythmic cognition |
+| +7          | 3200–6400ms   | Working memory ceiling — ~4–8 seconds | Auditory working memory |
+| +9 to +10   | 12800–51200ms | Gestalt boundary — ~15–50 seconds; expectation resets | Music cognition |
+| −10         | 0.05–0.1ms    | Upper Auditory Horizon (UPL) — 20kHz upper pitch limit | Auditory neurology |
+
+## Diacritic precision across the range
+
+Prime Period Diacritics are available throughout the Metric DuPeriod system,
+but their practical necessity varies with the timescale:
+
+- **Pitch space (negative offsets)**: full 72-EDO diacritic precision is
+  needed and already specified in the PPD system; the ear is sensitive to
+  small deviations at audio rates
+- **Rhythmic space +1 to +3**: diacritics are useful for fine subdivision
+  specification; timing deviations of a few milliseconds are perceptible
+  at fast tempos
+- **Rhythmic space +4 and above**: the 12 base solfège positions are
+  sufficient; perceptual timing tolerance at beat and bar level is wide
+  enough that diacritic precision adds no practical value
+- **Rhythmic space +8 and above**: solfège position is approximate;
+  the relevant unit of description is the DuPeriod band itself rather than
+  the position within it
+
+The precision requirement naturally relaxes as the timescale lengthens —
+a structurally meaningful feature of the system rather than a limitation.
+
+## Conventional units as derived measures
+
+BPM and Hz are translation layers for interfacing with conventional
+instruments, notation systems, and tools. They are not primary
+descriptions within the Metric DuPeriod system.
+
+| Conventional | Metric DuPeriod address | Note |
+|-------------|----------------------|------|
+| 60 BPM (1 beat/sec) | Re+4 (≈449ms) | Near but not on a prime-ratio landmark |
+| 120 BPM | Re+3 (≈449ms in +3 band) | Common reference tempo — not structurally significant |
+| 440Hz (A4) | La−4 (672Hz band) | Standard pitch reference — not on prime-ratio landmark |
+| 432Hz ("natural" tuning) | Between Le−4 and La−4 | No prime-ratio significance |
+
+The clustering of common reference values near but not on prime-ratio
+landmarks confirms that conventional anchors are approximations of
+perceptually convenient positions rather than structurally grounded ones.
+
+## See also
+
+- [Periodicity Limen](periodicity-limen.md) — the anchor definition and
+  the argument for grounding measurement in auditory neurology
+- [Periodicity](../foundations/periodicity.md) — the perceptual rate
+  boundary as a property of human perception
+- [Prime Families](../foundations/prime-families.md) — the ratio
+  relationships that the solfège positions within each octave encode
+- [Rhythm](../domains/rhythm.md) — domain-level context for the positive
+  metric DuPeriod space
+- [Uniform Solfège](../uniform-solfege/index.md) — the solfège position
+  system used within each metric DuPeriod band
+- [Rhythmic Grammar](../related/rhythmic-grammar.md) — the cadential
+  chain system whose structure the metric DuPeriod formalises
+- [Metric DuPeriod — Extended Range](../extended/metric-duperiod-extended.md) — the
+  stratospheric positive metric DuPeriod space above musical form
 
 
 ================================================================================
@@ -2880,22 +3175,25 @@ The visual geometry of the Tone Atlas allows you to navigate this arithmetic spa
 
 
 ================================================================================
-FILE: okf/systems/AGENTS.md
+FILE: okf/specifications/AGENTS.md
 ================================================================================
 
-# Systems — Agent Instructions
+# Specifications — Agent Instructions
 
 ## Purpose
 
-This directory is intended for system-level documentation within Prime Period Theory. Note that tuning systems are typically located in the `tuning/` directory.
+This directory is intended for system-level specifications and formal definitions within Prime Period Theory, such as design systems and component composition formats.
 
 ## Current pages
 
-(No pages currently exist in this directory.)
+| File | Status | Description |
+|---|---|---|
+| `composition-format.md` | Complete | PPT Composition Format (PPT-CF) |
+| `design-system.md` | Complete | Visual styling and mathematical mapping |
 
 
 ================================================================================
-FILE: okf/systems/composition-format.md
+FILE: okf/specifications/composition-format.md
 ================================================================================
 
 ---
@@ -2965,6 +3263,196 @@ If no prefix is provided, the parser may auto-detect the format (e.g., if it con
 
 
 ================================================================================
+FILE: okf/specifications/design-system.md
+================================================================================
+
+---
+type: concept
+title: Design System & Color Semantics
+description: >
+  Formal specification of the visual design language used across Prime Period Theory documentation and components.
+tags:
+  - design
+  - color-theory
+  - styling
+timestamp: 2026-06-27
+---
+
+# PPT Design System
+
+Prime Period Theory (PPT) utilises a strict, semantically meaningful design system. Visual styling is not purely decorative; it mathematically and acoustically encodes the underlying theory. 
+
+## Global Brand Colors
+
+The foundational brand colors anchor the documentation and generic structural elements.
+
+- **Primary Brand (Red)**: `#E13610`
+- **Secondary Brand (Orange)**: `#E17013`
+- **Accent (Bright Red)**: `#E20415`
+
+## Uniform Solfège Interval Palette
+
+The Solfège color palette maps specific hues to interval categories. The exact hex values are reverse-engineered to encode core acoustic, mathematical, and tuning references.
+
+| Interval Category | Syllables | CSS Variable | Hex Code | Semantic Rationale |
+|---|---|---|---|---|
+| **Unison** | Do | `--solfege-do` | `#E13010` | Earth resonance (130.10Hz) |
+| **Seconds** | Ra, Re | `--solfege-re` | `#F98016` | **F 9:8 0 16**: Encodes the foundational ratios for seconds (Major Second 9:8, Minor Second 16:15) |
+| **Thirds** | Me, Mi | `--solfege-mi` | `#F5D432` | **F5 D4 32**: Encodes the foundational harmonic ratios (Major Third 5:4, Perfect Fifth 3:2) |
+| **Fourths** | Fa | `--solfege-fa` | `#43A440` | **4:3 A440**: Encodes the Perfect Fourth ratio (4:3) and international standard pitch A440 |
+| **Tritone** | Fi | `--solfege-fi` | `#141414` | **1.414**: The square root of 2, the exact mathematical center of the octave in equal temperament |
+| **Fifths** | So | `--solfege-so` | `#0032A4` | **3:2 A4**: Encodes the Perfect Fifth ratio (3:2) anchored to A4 |
+| **Sixths** | Le, La | `--solfege-la` | `#5300A4` | **5:3 A4**: Encodes the Major Sixth ratio (5:3) anchored to A4 |
+| **Sevenths**| Te, Ti | `--solfege-ti` | `#F158A4` | **F 15:8 A4**: Encodes the Major Seventh ratio (15:8) anchored to A4 |
+
+## Prime Family Identity Palette
+
+When discussing abstract prime-limit ratios outside of Solfège notation, the following palette is used to uniquely identify prime factors:
+
+| Prime Family | CSS Variable | Hex Code | Visual Association |
+|---|---|---|---|
+| **2-Prime** (Octave) | `--prime-2` | `#6b7280` | Grey |
+| **3-Prime** (Fifths) | `--prime-3` | `#3b82f6` | Blue |
+| **5-Prime** (Thirds) | `--prime-5` | `#22c55e` | Green |
+| **7-Prime** (Septimal) | `--prime-7` | `#f59e0b` | Amber |
+| **11-Prime** (Neutral) | `--prime-11` | `#a855f7` | Purple |
+| **Axis / Midpoint** | `--axis` | `#ec4899` | Pink |
+
+
+================================================================================
+FILE: okf/tuning/12-tet.md
+================================================================================
+
+---
+type: concept
+title: 12-Tone Equal Temperament (12TET)
+description: >
+  Twelve equal divisions of the octave, its historical dominance, and
+  its role as the coarse base grid in Prime Period Theory.
+tags:
+  - tuning
+  - 12-tet
+  - temperament
+timestamp: 2026-06-28
+---
+
+# 12-Tone Equal Temperament (12TET)
+
+## Historical context
+
+12-Tone Equal Temperament (12TET) divides the octave into exactly 12 logarithmically equal steps, with each semitone being exactly 100 cents. 
+
+Historically, 12TET was developed as the ultimate compromise to the "comma drift" problem found in Just Intonation and meantone temperaments. While early theorists like Zhu Zaiyu in China (1584) and Simon Stevin in Europe mathematically defined equal temperament, it didn't become the global standard until the late 19th and early 20th centuries. 
+
+By making every semitone identically sized, 12TET allowed keyboard instruments to modulate freely into any of the 12 keys without encountering a "Wolf Fifth" or requiring retuning. The trade-off was that *no* interval (other than the octave) is acoustically pure. The perfect fifth is slightly flat (~2 cents), which is barely noticeable, but the major third is severely sharp (~14 cents) compared to pure 5-limit Just Intonation, giving 12TET a distinctively bright, restless sound.
+
+## Role in Prime Period Theory
+
+In Prime Period Theory (PPT), 12TET serves as the **anchor grid** or the "coarse resolution" layer. 
+
+PPT acknowledges that 12TET is the dominant acoustic environment of the modern world. Western functional harmony, the layout of the piano keyboard, and the frets on a guitar are all deeply tethered to this 12-note geometric structure. However, PPT treats 12TET not as a ceiling, but as a foundational coordinate system:
+
+1. **The Uniform Solfège Anchor:** The core 12-tone layer of Uniform Solfège (the base-12 notation system) maps directly onto 12TET. The solfège syllables (Do, Di, Re, Ri, etc.) act as the primary coordinate addresses.
+2. **A 3-Limit Approximation:** 12TET is fundamentally a 3-limit tuning system masquerading as a 5-limit one. Its fifths are excellent, making it a highly structurally stable grid for 3-prime (Pythagorean) geometry.
+3. **The Diacritic Base:** When exploring higher prime families (like the 5, 7, and 11-limits), PPT does not abandon the 12-tone grid. Instead, it treats 12TET as the "Base" state (0 cents of deviation) and uses the **Prime Period Diacritic** system (Sub, HalfSub, HalfSup, Sup, Axis) to explicitly measure how far a pure interval deviates from its nearest 12TET anchor.
+
+By framing 12TET as a coarse scaffolding rather than a rigid cage, PPT allows musicians to navigate complex microtonal and just-intonation spaces while retaining the familiar landmarks of the 12-tone chromatic clock.
+
+
+================================================================================
+FILE: okf/tuning/31-edo.md
+================================================================================
+
+---
+type: concept
+title: 31 EDO
+description: >
+  Thirty-one equal divisions of the octave, its historical development, and
+  its role as the primary microtonal system in Prime Period Theory.
+tags:
+  - tuning
+  - 31-edo
+  - microtonality
+  - 5-limit
+timestamp: 2026-06-28
+---
+
+# 31 EDO
+
+## Historical context
+
+Historically, 31 EDO's development is deeply tied to the Renaissance and Baroque quest to solve the problems of meantone temperament. 
+
+In the 16th century, the shift towards triadic, 5-limit harmony (using pure major thirds) led to the adoption of meantone temperaments, particularly quarter-comma meantone. This tuning slightly flattened the perfect fifths so that four stacked fifths produced an exactly pure major third. However, this left a massive geometric gap at the end of the circle of fifths (the Wolf Fifth). To play in more keys, musicians needed more notes per octave.
+
+In 1555, music theorist Nicola Vicentino designed the *archicembalo*, a keyboard instrument with 31 keys per octave, aiming to revive ancient Greek enharmonic and chromatic genera while providing pure major thirds across many keys. Later, in 1691, scientist Christiaan Huygens mathematically codified 31 EDO. He demonstrated that dividing the octave into 31 equal steps naturally produced a closed-cycle approximation of quarter-comma meantone temperament. In the 20th century, physicist Adriaan Fokker revived interest in the system, building a 31-tone organ and developing extensive theory around its harmonic properties.
+
+## Scale Building and Intervals in 31 EDO
+
+31 EDO is generated by stacking fifths, much like 12TET, but its fifths are slightly flatter. A single step in 31 EDO is approximately 38.71 cents.
+Because the octave is divided into 31 parts, the "whole step" is composed of 5 units (diezes), and the diatonic semitone is 3 units, while the chromatic semitone is 2 units. This creates a clear distinction between enharmonic notes (e.g., C# and Db are different pitches in 31 EDO, with C# being lower than Db).
+
+## Role in Prime Period Theory
+
+Within Prime Period Theory (PPT), 31 EDO is designated as the **primary microtonal system**. It bridges the gap between the familiar 12TET landscape and the pure geometries of Just Intonation.
+
+31 EDO holds this privileged position in PPT for several structural reasons:
+
+1. **5-limit excellence:** It provides nearly pure major thirds (deviating by less than a cent from the pure 5:4 ratio) and excellent minor thirds, making it a superior environment for 5-prime relationships compared to 12TET.
+2. **7-limit representation:** It contains a highly accurate harmonic seventh (the 7:4 ratio is represented within ~1 cent of accuracy), unlocking the 7-prime family without requiring an unwieldy number of pitches per octave.
+3. **11-limit utility:** While not perfectly pure, it contains useful approximations of 11-limit neutral intervals (like the neutral third and neutral seventh), functioning as the threshold of the PPT auditory horizon.
+4. **Meantone properties:** Because it is a meantone temperament, it preserves the syntonic comma (the difference between four perfect fifths and a major third is eliminated), making its chordal spellings structurally familiar to musicians accustomed to Western functional harmony.
+
+In PPT, 31 EDO serves as the practical, playable grid for composers and performers who wish to explore the 5-prime and 7-prime families with far greater geometric fidelity than 12TET allows, while remaining within a manageable, cyclic equal temperament that can be played on keyboards and fretted instruments.
+
+
+================================================================================
+FILE: okf/tuning/72-edo-grid.md
+================================================================================
+
+---
+type: concept
+title: 72 EDO Grid
+description: >
+  Seventy-two equal divisions of the octave, its history, and its function
+  as the high-resolution reference grid for the Prime Period Diacritic system.
+tags:
+  - tuning
+  - 72-edo
+  - microtonality
+  - diacritic-system
+timestamp: 2026-06-28
+---
+
+# 72 EDO Grid
+
+## Historical context
+
+72 Equal Divisions of the Octave (72 EDO), dividing the octave into 72 equal steps of exactly 16.66 cents, has historical roots spanning multiple musical traditions and experimental eras.
+
+In the early 20th century, avant-garde composers sought to escape the confines of 12TET. Alois Hába and Ivan Wyschnegradsky prominently explored quarter-tones (24 EDO), third-tones (18 EDO), and sixth-tones (72 EDO). Hába composed extensive theoretical works and music for custom-built 1/6th-tone harmoniums, recognising that 72 EDO acts as the lowest common denominator for 12, 18, 24, and 36 EDO, making it a powerful "meta-tuning" that could host many different microtonal subsystems simultaneously.
+
+Furthermore, 72 EDO has been extensively used by modern theorists to approximate the complex intervallic structures of Byzantine chant and classical maqam. Its high resolution allows for fine, ~16.6-cent distinctions between neutral intervals, Pythagorean tunings, and pure Just Intonation ratios. Because a Syntonic comma is ~21.5 cents, a single step of 72 EDO (16.66 cents) is an excellent perceptual approximation of a comma shift, making it highly useful for mapping out the comma drift of Just Intonation.
+
+## Role in Prime Period Theory
+
+In Prime Period Theory (PPT), 72 EDO is not primarily conceived as a performative tuning for acoustic instruments; rather, it functions as the **mathematical reference grid** for the entire diacritic system.
+
+PPT uses **Prime Period Diacritics (PPD)** to denote microtonal inflections away from standard 12TET anchor positions. These inflections are conceptually derived from prime-ratio subdivisions (such as the 11-limit and 7-limit), but to be communicable and digitizable, they must be mapped to a stable, reproducible coordinate space.
+
+72 EDO provides the perfect underlying grid for PPD because:
+1. **Granularity:** At ~16.6 cents per step, it is near the threshold of human pitch discrimination, providing enough resolution to accurately plot 7-limit and 11-limit relationships without excessive, imperceptible clutter.
+2. **Symmetry:** As a multiple of 12, it perfectly embeds the standard 12TET grid. Each 12TET semitone contains exactly six 72 EDO steps (or 1/6th tones).
+3. **Diacritic Mapping:** The six states of the PPT diacritic system correspond precisely to the internal divisions of the 72 EDO grid between any two 12TET anchors. From a natural note, the inflections are:
+    - **Base:** The 12TET anchor (0 steps)
+    - **HalfSup / HalfSub:** ±1 step (~16.6 cents)
+    - **Sup / Sub:** ±2 steps (~33.3 cents)
+    - **Axis:** ±3 steps (Exactly +50 cents, the quarter-tone midpoint)
+
+While a musician may interpret a diacritic freely by ear according to pure Just Intonation or their own cultural background, the 72 EDO grid ensures that notation software, digital synthesizers, and analytical tools share a unified, exact specification for how that diacritic modifies the base pitch.
+
+
+================================================================================
 FILE: okf/tuning/AGENTS.md
 ================================================================================
 
@@ -2979,10 +3467,139 @@ The `tuning/` directory contains specifications and derivations for how Prime Pe
 |File|Status|Description|
 |---|---|---|
 |`periodicity-limen-reference-tuning.md`|Complete|Derivation of absolute pitch anchors (Do-4 and Do-5) using the Metric DuPeriod coordinate system and the Periodicity Limen.|
+|`just-intonation.md`|Draft|The tuning of musical intervals as whole number ratios, and its role as the pure theoretical anchor for PPT.|
+|`pentatonic-heptatonic.md`|Draft|3-limit scale generation structures.|
+|`12-tet.md`|Draft|The base 12-tone coarse grid.|
+|`31-edo.md`|Draft|Thirty-one equal divisions of the octave, its historical development, and its role as the primary microtonal system in PPT.|
+|`72-edo-grid.md`|Draft|Seventy-two equal divisions of the octave, its history, and its function as the high-resolution reference grid for the diacritic system.|
 
 ## Tone guidance
 
 These documents are highly technical and mathematical. Maintain a precise, objective tone. Ensure that all derivations clearly distinguish between the structural geometry of the intervals (which is fixed) and the absolute pitch projection (which is a single late-binding choice).
+
+
+================================================================================
+FILE: okf/tuning/just-intonation.md
+================================================================================
+
+---
+type: concept
+title: Just Intonation
+description: >
+  The tuning of musical intervals as whole number ratios, and its role as
+  the pure theoretical anchor for Prime Period Theory.
+tags:
+  - tuning
+  - just-intonation
+  - prime-families
+  - history
+timestamp: 2026-06-28
+---
+
+# Just Intonation
+
+## Historical context
+
+Just Intonation (JI) is any musical tuning in which the frequencies of notes are related by whole number ratios. It is one of the oldest approaches to understanding pitch relationships, rooted in the observation that simple string length ratios produce consonant intervals. 
+
+Historically, JI has evolved by expanding its "prime limit"—the largest prime number used in its generating ratios. 
+
+## Scale Building and the 3-Limit
+
+The earliest documented tuning systems, such as **Pythagorean tuning**, operated strictly within the **3-limit**. In this system, scales are built entirely by stacking pure perfect fifths (the 3:2 ratio) and reducing them by octaves (the 2:1 ratio).
+
+Starting from a base frequency, moving up a fifth multiplies the frequency by 3/2. Doing this 12 times produces a sequence of 12 notes (the "Circle of Fifths"). Mathematically, this yields (3/2)<sup>12</sup>, which equals exactly 129.746. 
+
+However, moving up exactly 7 octaves gives a multiplier of 2<sup>7</sup>, which is exactly 128. 
+
+Because 3<sup>12</sup> does not equal 2<sup>19</sup> (or any power of 2), a cycle of pure 3:2 fifths *never* closes perfectly at an octave. 
+
+### The Pythagorean Comma and the Wolf Fifth
+
+The discrepancy between 12 pure fifths and 7 octaves is known as the **Pythagorean comma** — a microtonal interval of about 23.46 cents. 
+
+If an instrument like a harpsichord is tuned strictly by stacking 11 pure fifths, the final "leftover" interval needed to close the 12-note cycle will be horribly out of tune — 23.46 cents flatter than a pure fifth. This severely dissonant, howling interval became known as the **Wolf Fifth**. Any music modulating into keys that relied on this Wolf Fifth would sound jarring and broken.
+
+## The 5-Limit and the Syntonic Comma
+
+As Western music evolved towards triadic harmony in the Renaissance, the **5-limit (Ptolemaic tuning)** was introduced. This added the pure major third (5:4) and minor third (6:5).
+
+While pure 5-limit thirds sound incredibly resonant and beatless, they introduce a new mathematical contradiction: the **Syntonic comma**. 
+If you stack four pure 3-limit fifths (e.g., C -> G -> D -> A -> E) and reduce them by two octaves, the resulting major third (81:64) is notably sharper than the pure 5-limit major third (5:4, which equals 80:64). The geometric difference between the two (81/80) is the Syntonic comma, approximately 21.5 cents.
+
+You cannot have a geometric tuning system that maintains both pure 3:2 fifths and pure 5:4 major thirds across all keys. 
+
+## Temperament: The Compromise
+
+These mathematical contradictions—the inability of primes 3 and 5 to cleanly map onto prime 2—mean that a fixed-pitch instrument (like a piano) tuned to pure Just Intonation can only effectively play in one key. Modulating to distant keys leads to severe dissonance as the commas accumulate.
+
+To solve this, musicians invented **temperaments** (like Meantone, Well Temperament, and eventually 12-Tone Equal Temperament). Temperament intentionally detunes ("tempers") the pure prime ratios slightly to close the geometric gaps, distributing the comma across multiple intervals so that no single interval becomes a "Wolf."
+
+## Role in Prime Period Theory
+
+In Prime Period Theory (PPT), Just Intonation is not merely a historical tuning system; it is the **pure mathematical geometry of pitch**. 
+
+PPT posits that musical relationships are fundamentally ratio relationships between periodic signals. Just Intonation represents these ratios in their pure, uncompromised form, prior to any temperament being applied.
+
+The prime families of PPT map directly to the prime limits of JI:
+- **2-prime:** The octave equivalence (2:1).
+- **3-prime:** The structural scaffolding of fifths and fourths.
+- **5-prime:** The "colour" layer of major/minor thirds.
+- **7-prime:** The harmonic seventh and subminor intervals.
+- **11-prime:** The neutral intervals, representing the perceptual ceiling of deliberate harmonic intent in PPT.
+
+While musicians rarely perform in pure, unyielding JI across multiple keys, JI remains the descriptive anchor. All temperaments and microtonal grids (such as 31 EDO and 72 EDO) in PPT are evaluated based on how effectively they represent or approximate these pure prime-ratio relationships.
+
+
+================================================================================
+FILE: okf/tuning/pentatonic-heptatonic.md
+================================================================================
+
+---
+type: concept
+title: Pentatonic and Heptatonic Structures
+description: >
+  The geometric generation of the 5-note and 7-note scales through the 3-limit,
+  and their structural universality in human music.
+tags:
+  - tuning
+  - scales
+  - 3-limit
+  - pentatonic
+  - heptatonic
+timestamp: 2026-06-28
+---
+
+# Pentatonic and Heptatonic Structures
+
+## Historical and cultural context
+
+The pentatonic (5-note) and heptatonic (7-note) scales are the most ubiquitous melodic structures in human history. From ancient Chinese guqins and West African koras to Celtic folk songs and Western classical music, these specific groupings of pitches appear independently across isolated cultures worldwide.
+
+This universality is not an accident of culture, but a direct consequence of acoustic geometry and the harmonic series—specifically, the **3-limit** (the prime family of the perfect fifth, or 3:2 ratio).
+
+## Geometric Generation (The Stack of Fifths)
+
+In Prime Period Theory (PPT), tuning systems and scales are not arbitrary collections of notes, but structures generated by prime-ratio intervals. 
+
+If you begin with a fundamental pitch and iteratively stack pure 3:2 perfect fifths, the geometric structure naturally "clumps" into distinct, highly stable scale forms before the intervals begin clashing:
+
+1. **The Pentatonic Scale (5 notes):** 
+   Stacking four perfect fifths (e.g., C - G - D - A - E) and collapsing them into a single octave creates the major pentatonic scale. This structure has no semitones (no half-steps), meaning it lacks highly dissonant intervals like the minor second or tritone. This makes the pentatonic scale acoustically "safe" and deeply resonant, explaining its widespread use in folk music globally.
+   
+2. **The Heptatonic Diatonic Scale (7 notes):** 
+   Continuing the stack for two more fifths (e.g., F - C - G - D - A - E - B) yields the 7-note diatonic scale (the white keys of the piano). This introduces two semitones (E-F and B-C) and one tritone (F-B). These new, more "tense" intervals provide the structural gravity necessary for functional harmony and leading-tone resolutions.
+
+3. **The Chromatic Scale (12 notes):** 
+   Stacking fifths until the cycle roughly closes (12 notes) generates the full chromatic scale, which is the foundational grid for 12TET and Uniform Solfège.
+
+## Role in Prime Period Theory
+
+In PPT, Pentatonic and Heptatonic scales are not treated merely as "modes" or "keys," but as **geometric subsets of the 3-limit**. 
+
+They represent different resolutions of the same underlying periodic structure. When analyzing a melody, PPT views the shift from a pentatonic vocabulary to a heptatonic one as an increase in geometric complexity and harmonic tension. The pentatonic scale provides an open, stable 3-prime scaffold, while the heptatonic scale introduces the structural friction required to drive a phrase forward. 
+
+Because these scales are generated purely by the 3-limit, they exist independently of any specific temperament. They can be tuned in Just Intonation, 12TET, or 31 EDO, but their underlying geometric shape—a contiguous chain of fifths—remains identical.
 
 
 ================================================================================
@@ -3016,8 +3633,8 @@ timestamp: 2026-06-27
 
 This document is not a foundational page. It is a tuning reference that
 applies the foundational principles established in
-[Periodicity Limen](../foundations/periodicity-limen.md) and
-[Metric DuPeriod](../foundations/metric-duperiod.md) to derive structurally
+[Periodicity Limen](../perception/periodicity-limen.md) and
+[Metric DuPeriod](../reference/metric-duperiod.md) to derive structurally
 grounded pitch anchor values from PPT first principles.
 
 Its central question is: **if you refused to accept any conventional pitch
@@ -3203,7 +3820,7 @@ projection step:
 
 **The one external input**: the Periodicity Limen at 20Hz. This is
 not arbitrary — it is a perceptual constant grounded in human auditory
-neurology (see [Periodicity Limen](../foundations/periodicity-limen.md)).
+neurology (see [Periodicity Limen](../perception/periodicity-limen.md)).
 It is the only value in the system that must be taken as given rather
 than derived.
 
@@ -3302,9 +3919,9 @@ parameter.
 
 ## See also
 
-- [Periodicity Limen](../foundations/periodicity-limen.md) — the
+- [Periodicity Limen](../perception/periodicity-limen.md) — the
   perceptual anchor and its derivation
-- [Metric DuPeriod](../foundations/metric-duperiod.md) — the coordinate
+- [Metric DuPeriod](../reference/metric-duperiod.md) — the coordinate
   system from which pitch addresses are derived
 - [Just Intonation](just-intonation.md) — pure prime-ratio intervals
   applied from the PPT-derived anchor

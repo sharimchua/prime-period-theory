@@ -26,10 +26,9 @@ export function remarkRewriteOkfLinks() {
         if (filePath.includes('/okf/') || filePath.includes('reference') || filePath.includes('docs')) {
           const urlWithoutHash = node.url.split('#')[0];
           const targetPath = path.resolve(physicalFileDir, urlWithoutHash).replace(/\\/g, '/');
-          
           const fileExists = fs.existsSync(targetPath);
           
-          if (targetPath.startsWith(okfDir)) {
+          if (targetPath.toLowerCase().startsWith(okfDir.toLowerCase())) {
             let relativeToOkf = targetPath.substring(okfDir.length + 1);
             relativeToOkf = relativeToOkf.replace(/\.md(#.*)?$/, '$1');
             
