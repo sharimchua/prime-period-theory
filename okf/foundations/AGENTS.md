@@ -9,9 +9,12 @@ Core theoretical claims of Prime Period Theory. These pages establish the philos
 |File|Status|Description|
 |---|---|---|
 |`amplitude-time.md`|Complete|Core thesis: music as amplitude over time; includes forward-pointing note on spacetime|
+|`information-and-expectation.md`|Complete|Music as an information system; expectation and pattern prediction|
+|`metric-duperiod.md`|Complete|The coordinate system from Metric DuPeriod -10 through +10|
+|`music-as-language.md`|Complete|Music as a language, visual vs auditory classification, and PPT as the anchor for a shared grammar|
+|`periodicity-limen.md`|Complete|The 20Hz anchor definition and the boundary between pitch and rhythm|
 |`periodicity.md`|Complete|Periodicity as the unifying phenomenon; 20Hz boundary; tala/ti-hai; overtone series|
 |`prime-families.md`|Complete|The five prime families; prime vs exponent; the 11-limit ceiling|
-|`music-as-language.md`|Complete|Music as a language, visual vs auditory classification, and PPT as the anchor for a shared grammar|
 
 ## Future page — not yet ready to formalise
 

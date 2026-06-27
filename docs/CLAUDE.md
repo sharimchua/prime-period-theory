@@ -54,3 +54,20 @@ Consult these guides before working on related tasks:
 - [Adding or managing content](https://docs.astro.build/en/guides/content-collections/)
 - [Adding styles or using Tailwind](https://docs.astro.build/en/guides/styling/)
 - [Supporting multiple languages](https://docs.astro.build/en/guides/internationalization/)
+
+## Component Composer
+
+The `docs/src/components/designer/DesignerApp.astro` file orchestrates the Component Composer, a visual tool to assemble PPT Web Components.
+
+**Composer Architecture:**
+- **Toolbar & Layout:** Supports four split views (Designer Focused 75%, Split 50/50, Preview Focused 25%, and Preview Only 0%).
+- **Component Library (`library-list`):** Iterates over registered Web Components to provide draggable elements.
+- **Component Tree:** Synchronizes with the visual canvas to display the DOM hierarchy. Allows rearranging (up/down) and deleting elements.
+- **Properties Panel:** Parses `pptMetadata` from the component definition to dynamically generate editing controls (color pickers, enums, textareas for `textContent`, etc.).
+- **Source Code Pane:** Resizable/collapsible footer panel displaying formatted HTML representation of the canvas.
+- **Persistence (Payloads):** Generates and loads compressed base64 gzip payloads containing the raw HTML composition.
+
+**Important Note for Composer Development:**
+- Web Components in the designer MUST protect their `attributeChangedCallback` and `slotchange` handlers to prevent destructive re-renders (using flags like `_isRendered`).
+- The Composer uses `pptMetadata` mapped to data attributes to configure the UI. Ensure `parseComponents.ts` correctly extracts properties.
+- The root `ppt-container` node is locked from deletion, dragging, and the library to enforce a single master canvas layout.

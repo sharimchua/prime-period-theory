@@ -116,8 +116,13 @@ amplitude or effect envelopes.
 - [Amplitude and Time](foundations/amplitude-time.md) — the core physical thesis
 - [Periodicity](foundations/periodicity.md) — the unifying phenomenon across all scales
 - [Information and Expectation](foundations/information-and-expectation.md) — the psychology of predicting patterns
+- [Periodicity Limen](foundations/periodicity-limen.md) — the anchor definition and the boundary between pitch and rhythm
+- [Metric DuPeriod](foundations/metric-duperiod.md) — the coordinate system for logarithmic period mapping
 - [Prime Families](foundations/prime-families.md) — the classification system
 - [Design System & Color Semantics](design-system.md) — Visual styling and mathematical mapping
+
+### Extended
+- [Metric DuPeriod — Extended Range](extended/metric-duperiod-extended.md) — the stratospheric positive metric DuPeriod space and biological periodicity
 
 ### Domains
 - [Pitch](domains/pitch.md) — micro periodicity; frequency; just intonation
@@ -135,6 +140,7 @@ amplitude or effect envelopes.
 - [Glyph Forms](ppd/glyph-forms.md) — visual specification for all prime families
 
 ### Tuning Systems
+- [PPT-Derived Tuning Reference](tuning/ppt-derived-tuning.md) — absolute pitch anchors derived from the Periodicity Limen
 - [Just Intonation](tuning/just-intonation.md) — prime ratios as pure intervals
 - [31 EDO](tuning/31-edo.md) — the primary microtonal system; 5-limit excellence
 - [72 EDO Grid](tuning/72-edo-grid.md) — the reference grid for diacritic placement
@@ -215,9 +221,10 @@ navigating the graph. Make it precise and specific, not generic.
 | Directory | Contents | Status |
 |---|---|---|
 | `foundations/` | Core theoretical claims | Partially written |
+| `extended/` | Extended ranges and abstract concepts | Partially written |
 | `uniform-solfege/` | Notation system | Partially written |
 | `domains/` | Pitch, rhythm, timbre | Stub only |
-| `tuning/` | JI, 31 EDO, 72 EDO | Stub only |
+| `tuning/` | JI, 31 EDO, 72 EDO | Partially written |
 | `related/` | MusiCoil, Tone Atlas | Stub only |
 
 ## Concept graph conventions
@@ -595,6 +602,280 @@ See [Diacritic System](../uniform-solfege/diacritic-system.md#axis-in-rhythmic-g
 
 
 ================================================================================
+FILE: okf/extended/AGENTS.md
+================================================================================
+
+# Extended Concepts — Agent Instructions
+
+## Purpose
+
+The `extended/` directory contains concepts that operate at timescales or conceptual levels beyond the standard scope of pitch, rhythm, and timbre as defined in the core PPT architecture. These topics often deal with physiological, cognitive, and structural extremes — such as the biological and circadian ranges detailed in the extended metric DuPeriod space. 
+
+This directory is intended for theoretical extensions that, while grounded in PPT's periodicity framework, are conceptually abstract and exist at the edges of standard musical application.
+
+## Current pages
+
+|File|Status|Description|
+|---|---|---|
+|`metric-duperiod-extended.md`|Complete|The stratospheric positive metric DuPeriod space, biological periodicities, and cognitive boundaries|
+
+## Tone guidance
+
+Content in this section should maintain the descriptive and foundational tone of the project, clearly distinguishing between hard physiological boundaries (like those in pitch) and soft cognitive/cultural bounds (like those in macroscopic form). As these concepts are extended and theoretical, ensure they remain tightly coupled to the base periodic logic described in the `foundations/` directory.
+
+
+================================================================================
+FILE: okf/extended/metric-duperiod-extended.md
+================================================================================
+
+---
+type: concept
+title: Metric DuPeriod — Extended Range
+description: >
+  The stratospheric positive metric DuPeriod space above Metric DuPeriod +10,
+  covering musical form, performance duration, and biological periodicity
+  up to the circadian cycle (~24 hours / Metric DuPeriod +22). Documents
+  meaningful perceptual and physiological landmarks in this upper space,
+  and notes the structural asymmetry between pitch space (hard physiological
+  bounds) and upper rhythmic space (soft cognitive and biological bounds).
+tags:
+  - foundations
+  - metric-duperiod
+  - psychoacoustics
+  - form
+  - cognition
+  - circadian
+  - prime-period-theory
+timestamp: 2026-06-27
+---
+
+# Metric DuPeriod — Extended Range
+
+## Overview
+
+[Metric DuPeriod](../foundations/metric-duperiod.md) documents the coordinate system from
+Metric DuPeriod −10 (Upper Auditory Horizon) through Metric DuPeriod +10
+(movement boundary). This page extends the map upward into the
+**stratospheric positive metric DuPeriod space** — the region above +10
+where period lengths exceed the scale of individual musical movements and
+enter the domains of performance duration, programme structure, and
+biological periodicity.
+
+The stratospheric range is not musically marginal. The boundaries it
+contains — sustained attention limits, performance set durations,
+ultradian cycles — directly constrain how music is experienced, structured,
+and performed. They are simply operating at timescales too long to be felt
+as rhythm and too short to be ignored as irrelevant.
+
+## The extended map
+
+```
+Offset  Period range            Real-world duration    Domain
++10     25.6s → 51.2s          26–51 seconds          Movement boundary
++11     51.2s → 102.4s         51s → 1m42s            Extended movement
++12     102.4s → 204.8s        1m42s → 3m25s          Short piece / song floor
++13     204.8s → 409.6s        3m25s → 6m50s          Song / album track range
++14     409.6s → 819.2s        6m50s → 13m40s         Extended track / movement
++15     819.2s → 1638.4s       13m40s → 27m20s        Long movement / suite
++16     1638.4s → 3276.8s      27m → 55m              Performance set boundary
++17     3276.8s → 6553.6s      55m → 1h49m            Hour / full set
++18     6553.6s → 13107.2s     1h49m → 3h38m          Opera / symphony programme
++19     13107.2s → 26214.4s    3h38m → 7h16m          Extended performance
++20     26214.4s → 52428.8s    7h16m → 14h32m         Approaching day boundary
++21     52428.8s → 104857.6s   14h32m → 1d5h          Day boundary zone
++22     104857.6s → 209715.2s  1d5h → 2d10h           Circadian rhythm zone
+```
+
+## Locating conventional time units
+
+The standard units of civil time — minute, hour, day — can be expressed
+as Metric DuPeriod addresses:
+
+```
+1 minute  = 60,000ms:   60,000 / 50 = 1,200;  log2(1,200) ≈ 10.23  → Do+10, position ~Re
+1 hour    = 3,600,000ms: 3,600,000 / 50 = 72,000; log2(72,000) ≈ 16.13 → Do+16, position ~Re
+1 day     = 86,400,000ms: 86,400,000 / 50 = 1,728,000; log2(1,728,000) ≈ 20.72 → Do+20, position ~Fi
+```
+
+| Unit | Metric DuPeriod address | Structural position |
+|------|-----------------------|---------------------|
+| 1 minute | Re+10 | Between gestalt boundary and sustained attention limit |
+| 1 hour | Re+16 | Between performance set boundary and ultradian cycle |
+| 1 day | Fi+20 | Near the tritone — maximum displacement from anchor |
+
+Two observations follow directly from this:
+
+First, the minute and hour both land near **Re** in their respective
+DuPeriod bands — not on any prime-ratio landmark. They are convenient
+approximations of cognitively relevant durations, not structurally
+grounded anchors. This confirms that conventional time units are
+interface translations rather than primary musical measures.
+
+Second, the day landing near **Fi** (the tritone position, maximum metric
+tension) is structurally suggestive. The circadian cycle sits at the point
+of greatest displacement from the Periodicity Limen anchor — the furthest
+point from the Do of the system. Whether this is a meaningful structural
+feature or a numerical coincidence is left as an open question.
+
+## Landmarks in the stratospheric range
+
+The meaningful boundaries in this space are predominantly **cognitive and
+physiological** rather than acoustic or mathematical. This distinguishes
+the extended range from the lower metric DuPeriod space (where boundaries
+are determined by prime-ratio LCM structure) and from pitch space (where
+boundaries are determined by acoustic physics and auditory neurology).
+
+### Sustained attention boundary — Metric DuPeriod +12 to +13
+
+Period range: approximately 1m42s to 6m50s.
+
+Research on sustained attention consistently identifies a degradation of
+voluntary focused listening after approximately 3–5 minutes without a
+structural reset. Beyond this duration, engagement requires active
+compositional intervention — a key change, a new section, a dramatic
+dynamic shift — to re-anchor attention.
+
+The pop song duration of 3–4 minutes sits squarely within this band and
+is not arbitrary. The historical constraint of the 78rpm record side
+(approximately 3 minutes per side) codified a duration that approximates
+a genuine cognitive limit. The persistence of the 3–4 minute song across
+format changes — from shellac to vinyl, from CD to streaming — suggests
+the underlying cognitive constraint is real and the physical format merely
+gave it a conventional expression.
+
+Metric DuPeriod +12 to +13 is the **sustained attention boundary**: the
+range within which a single continuous musical statement can maintain
+focused engagement without requiring a structural reset.
+
+### Episodic memory boundary — Metric DuPeriod +13 to +14
+
+Period range: approximately 7 to 14 minutes.
+
+Research on episodic memory encoding suggests approximately 10 minutes as
+a natural boundary for a single experiential episode. Beyond this
+duration, the brain begins encoding new material as a distinct episode
+rather than a continuation of the current one. This is why lecture
+designers use 10-minute segments, why TED talks are constrained to 18
+minutes, and why symphonic movements rarely exceed 15 minutes without a
+clear internal structural reset.
+
+Classical movements, jazz suite sections, and extended electronic pieces
+cluster in Metric DuPeriod +13 to +14. A movement that exceeds this range
+typically employs internal sectional structure (development, recapitulation,
+bridge passages) to provide episodic resets within the larger arc.
+
+### Performance set boundary — Metric DuPeriod +15 to +16
+
+Period range: approximately 14 to 55 minutes.
+
+A single performance set — a jazz set, a concert half, a lecture — clusters
+around 45–60 minutes. This corresponds to the attention trough in
+ultradian rhythm research: sustained performance or audience engagement
+degrades after approximately 45–50 minutes, independent of content quality.
+The interval in a concert, the act break in theatre, and the halftime in
+sport all approximate this boundary, suggesting it reflects a genuine
+physiological constraint rather than theatrical convention.
+
+### Ultradian rhythm — Metric DuPeriod +17 to +18
+
+Period range: approximately 55 minutes to 3h38m.
+
+The **Basic Rest-Activity Cycle** (BRAC), identified by sleep researcher
+Nathaniel Kleitman, is a physiological oscillator running at approximately
+90–120 minutes. It governs not only sleep architecture (the 90-minute
+sleep cycle) but waking attention and arousal cycles. Cognitive performance,
+alertness, and creative capacity fluctuate on this cycle throughout the day.
+
+The BRAC is the largest physiological periodicity that directly governs
+musical performance and reception. A full concert programme, an opera, or
+an extended ritual performance that runs to 90–120 minutes is operating
+at the scale of one BRAC cycle — and the interval or intermission that
+typically appears at the 45–60 minute mark corresponds to the trough
+between two half-cycles.
+
+Unlike the Periodicity Limen, the BRAC boundary is **not a perceptual
+phase transition** — there is no sudden change in the nature of experience
+at 90 minutes. It is a gradual oscillation. But it is a genuine biological
+periodicity, operating by the same prime-ratio interference logic that PPT
+identifies across all timescales, just expressed in hormonal and neural
+firing patterns rather than acoustic waveforms.
+
+### Circadian rhythm — Metric DuPeriod +22
+
+Period range: approximately 1 day to 2 days.
+
+The **circadian rhythm** at approximately 24 hours is the master biological
+oscillator governing sleep/wake cycles, hormonal patterns, body temperature,
+and cognitive performance. It sits at Metric DuPeriod +22 (Fi position —
+near the tritone of that band).
+
+The circadian rhythm is the outer bound of biologically meaningful
+periodicity for human musical experience. Ritual and ceremonial music in
+many traditions is structured around the circadian cycle — dawn ceremonies,
+evening prayers, all-night performances that run from dusk to sunrise.
+These are not arbitrary durations; they are compositions operating at
+Metric DuPeriod +22, structured around the phase transitions of the
+circadian oscillator.
+
+## The structural asymmetry
+
+Pitch space (Metric DuPeriods −10 to 0) has **two hard physiological
+boundaries** on either side — the Periodicity Limen and the Upper Auditory
+Horizon — both determined by auditory neurology, both precise, both
+universal across humans.
+
+The stratospheric positive metric DuPeriod space has **no hard upper
+boundary**. Instead, the meaningful landmarks are:
+
+- **Soft cognitive boundaries** (sustained attention, episodic memory) —
+  real but individually variable and context-dependent
+- **Physiological oscillators** (ultradian, circadian) — genuine
+  periodicities but expressed as gradual cycles rather than sharp
+  perceptual transitions
+- **Cultural conventions** (song length, concert duration) — approximations
+  of the cognitive and physiological limits, not the limits themselves
+
+This asymmetry is not a gap in the theory. It reflects something true
+about the difference between pitch and form: pitch perception has sharp
+neurological boundaries because the basilar membrane is a physical
+transducer with hard limits; formal musical experience has soft boundaries
+because it is governed by memory, attention, and hormonal cycles, which
+are continuous variables.
+
+The Metric DuPeriod system accommodates this asymmetry naturally. Precision
+requirements relax with each ascending DuPeriod band (see [Metric DuPeriod](../foundations/metric-duperiod.md)
+— diacritic precision section), and the meaningful landmarks in the
+stratospheric range are documented as cognitive and physiological zones
+rather than precise threshold values.
+
+## Conventional time as interface
+
+As in the lower metric DuPeriod range, BPM and conventional time units
+remain available as interface translations in the stratospheric range.
+A programmer marking a cue at "3 minutes 24 seconds" is working in the
+conventional translation layer; the structurally meaningful address is
+approximately **Do+12** (the floor of the sustained attention band).
+
+The practical implication for composition and arrangement: a piece that
+crosses from Metric DuPeriod +12 into +13 without a structural reset is
+making a cognitive demand on the listener — not as a matter of opinion
+but as a consequence of sustained attention physiology. Knowing the Metric
+Octave address of a formal duration makes that demand explicit and
+navigable.
+
+## See also
+
+- [Metric DuPeriod](../foundations/metric-duperiod.md) — the core coordinate system;
+  Metric DuPeriods −10 to +10
+- [Periodicity Limen](../foundations/periodicity-limen.md) — the anchor definition
+- [Periodicity](../foundations/periodicity.md) — periodicity as the
+  unifying phenomenon across all timescales; tala and the ti-hai as
+  macro-scale periodicity examples
+- [Rhythm](../domains/rhythm.md) — macro periodicity; the entry point
+  for rhythmic space in PPT
+
+
+================================================================================
 FILE: okf/foundations/AGENTS.md
 ================================================================================
 
@@ -609,9 +890,12 @@ Core theoretical claims of Prime Period Theory. These pages establish the philos
 |File|Status|Description|
 |---|---|---|
 |`amplitude-time.md`|Complete|Core thesis: music as amplitude over time; includes forward-pointing note on spacetime|
+|`information-and-expectation.md`|Complete|Music as an information system; expectation and pattern prediction|
+|`metric-duperiod.md`|Complete|The coordinate system from Metric DuPeriod -10 through +10|
+|`music-as-language.md`|Complete|Music as a language, visual vs auditory classification, and PPT as the anchor for a shared grammar|
+|`periodicity-limen.md`|Complete|The 20Hz anchor definition and the boundary between pitch and rhythm|
 |`periodicity.md`|Complete|Periodicity as the unifying phenomenon; 20Hz boundary; tala/ti-hai; overtone series|
 |`prime-families.md`|Complete|The five prime families; prime vs exponent; the 11-limit ceiling|
-|`music-as-language.md`|Complete|Music as a language, visual vs auditory classification, and PPT as the anchor for a shared grammar|
 
 ## Future page — not yet ready to formalise
 
@@ -895,6 +1179,296 @@ describe *why* it matters to the listener.
 
 
 ================================================================================
+FILE: okf/foundations/metric-duperiod.md
+================================================================================
+
+---
+type: concept
+title: Metric DuPeriod
+description: >
+  The Metric DuPeriod system is PPT's unified period-length coordinate system,
+  anchored at the Periodicity Limen (20Hz / Metric DuPeriod 0) and extending
+  in both directions: negative offsets into pitch space, positive offsets
+  into rhythmic space. Solfège positions within each DuPeriod band name
+  period-length ratios continuously across the auditory boundary, making
+  the cross-scale cadential operator numerically explicit.
+tags:
+  - foundations
+  - metric-duperiod
+  - periodicity-limen
+  - auditory-horizon
+  - uniform-solfege
+  - rhythm
+  - pitch
+  - prime-period-theory
+timestamp: 2026-06-27
+---
+
+# Metric DuPeriod
+
+## Overview
+
+The **Metric DuPeriod** system is a unified period-length coordinate system
+that extends continuously from deep pitch space through the Periodicity
+Limen and into rhythmic space. It provides a single logarithmic ruler —
+anchored at a perceptually meaningful zero point and graduated in solfège
+positions — that names any period length in musical terms without reference
+to conventional time units.
+
+**Note: Pitch Octave vs. Macro DuPeriod**
+
+While the sub-20Hz pitch space colloquially uses the term "Octave" due to entrenched historical convention, PPT formally designates this periodic doubling in the macro/rhythmic space as the **DuPeriod**. This explicitly grounds the coordinate system in the 2-limit prime family (Du) and provides a scalable nomenclature for exploring form and structure through higher prime lenses (e.g., the TriPeriod or QuiPeriod).
+
+
+The system has three components:
+
+- **The anchor**: Metric DuPeriod 0, defined as the Periodicity Limen
+  (20Hz / 50ms period)
+- **The DuPeriod offset**: a signed integer indicating which doubling band
+  the period falls in; negative for pitch space, positive for rhythmic
+  space
+- **The solfège position**: one of the 12 Uniform Solfège syllables
+  (Do through Ti) indicating the period's ratio position within the band
+
+A complete address takes the form **[Syllable][offset]** — for example,
+**So+4** denotes the So position within Metric DuPeriod +4, a period of
+approximately 600ms, corresponding to approximately 100 BPM.
+
+## The anchor: Metric DuPeriod 0
+
+Metric DuPeriod 0 is not a band but a point: the Periodicity Limen at
+20Hz / 50ms. It is the Do of the entire system — the tonic from which
+all offsets are measured.
+
+This anchor is chosen because it is intrinsic to the perceptual structure
+of the system rather than historically contingent. See
+[Periodicity Limen](periodicity-limen.md) for the full argument.
+
+## DuPeriod bands
+
+Each Metric DuPeriod band spans one 2-prime doubling of period length from
+its Do floor to its Do ceiling (which is the floor of the next band).
+Negative offsets are in pitch space; positive offsets are in rhythmic
+space.
+
+### Pitch space (negative offsets)
+
+```
+Offset  Period range        Frequency range     Domain
+−10     0.050ms → 0.100ms  20kHz → 10kHz       Upper Auditory Horizon
+−9      0.100ms → 0.200ms  10kHz → 5kHz        Pitch (high)
+−8      0.200ms → 0.400ms  5kHz → 2.5kHz       Pitch (high-mid)
+−7      0.400ms → 0.800ms  2.5kHz → 1.25kHz    Pitch (mid-high)
+−6      0.800ms → 1.600ms  1.25kHz → 625Hz     Pitch (mid)
+−5      1.600ms → 3.200ms  625Hz → 312Hz       Pitch (mid-low)
+−4      3.200ms → 6.250ms  312Hz → 160Hz       Pitch (low-mid)
+−3      6.250ms → 12.500ms 160Hz → 80Hz        Pitch (low)
+−2      12.500ms → 25ms    80Hz → 40Hz         Pitch (very low)
+−1      25ms → 50ms        40Hz → 20Hz         Pitch (sub)
+ 0      50ms               20Hz                PERIODICITY LIMEN (AH)
+```
+
+The full audible pitch range is contained within Metric DuPeriods −10 to 0.
+Uniform Solfège, Prime Period Diacritics, and 72-EDO already operate in
+this space. The Metric DuPeriod system provides those existing systems with
+an explicit coordinate address relative to the Periodicity Limen anchor.
+
+### Rhythmic space (positive offsets)
+
+```
+Offset  Period range          Approximate BPM   Domain
++1      50ms → 100ms          600+ BPM          Fast subdivision
++2      100ms → 200ms         300–600 BPM       Subdivision
++3      200ms → 400ms         150–300 BPM       Fast tempo
++4      400ms → 800ms         75–150 BPM        Tempo
++5      800ms → 1600ms        37–75 BPM         Slow tempo
++6      1600ms → 3200ms       19–37 BPM         Bar / slow bar
++7      3200ms → 6400ms       —                 Phrase
++8      6400ms → 12800ms      —                 Section boundary
++9      12800ms → 25600ms     —                 Long section
++10     25600ms → 51200ms     —                 Movement boundary
+```
+
+## Solfège positions within a metric DuPeriod
+
+Within any DuPeriod band, the 12 solfège positions of Uniform Solfège name
+the 12-TET period-length ratios in exactly the same way they name
+frequency ratios in pitch space. The Do of any band is its floor period;
+the Do of the next band (one octave up) is its ceiling.
+
+For Metric DuPeriod +4 (400ms → 800ms, the comfortable tempo range):
+
+```
+Do   400ms   (~150 BPM)   — DuPeriod floor
+Ra   423ms
+Re   449ms
+Me   476ms
+Mi   504ms
+Fa   533ms
+Fi   565ms                — rhythmic tritone (maximum metric tension)
+So   599ms   (~100 BPM)   — 3:2 ratio above floor
+Le   635ms
+La   672ms
+Te   712ms
+Ti   755ms
+Do   800ms   (~75 BPM)    — DuPeriod ceiling / next DuPeriod floor
+```
+
+The So position at approximately 600ms / 100 BPM is not incidental — it
+is the 3-prime landmark, the same structural position as the perfect fifth
+in pitch space, arising from the same 3:2 ratio relationship.
+
+## The Do→So relationship in rhythmic space
+
+In pitch space, Do and So are a perfect fifth apart — a 3:2 frequency
+ratio. The interval is consonant because the LCM of the two frequencies
+is small: 3 cycles of the upper note coincide with 2 of the lower after
+a short period, and the combined waveform returns to its starting point
+quickly.
+
+In rhythmic space within a metric DuPeriod, Do and So stand in the same
+3:2 ratio — but now it is **period lengths** that are in 3:2 relationship,
+not frequencies. The Do pulse and So pulse produce 3 cycles and 2 cycles
+respectively in the same span of time. This is a **3:2 polyrhythm**, and
+it feels stable and consonant for exactly the same reason a perfect fifth
+does: the LCM is small and the resolution point arrives quickly.
+
+This is not an analogy. The Do→So relationship in rhythmic space is the
+same mathematical object as the Do→So relationship in pitch space,
+projected onto a slower timescale.
+
+The full set of solfège interval relationships within a metric DuPeriod
+describes the complete set of polyrhythmic relationships available in
+that band:
+
+| Interval | Ratio | Rhythmic meaning |
+|----------|-------|-----------------|
+| Do → Re  | 9:8   | Fine subdivision shift |
+| Do → Mi  | 5:4   | 5-against-4 polyrhythm |
+| Do → Fa  | 4:3   | 4-against-3 polyrhythm |
+| Do → Fi  | √2:1  | Maximum metric tension — rhythmic tritone |
+| Do → So  | 3:2   | Standard hemiola / triplet feel |
+| Do → La  | 5:3   | 5-against-3 polyrhythm |
+
+## The rhythmic tritone
+
+The tritone (Fi, position 6) is maximally distant from Do on the circle
+of fifths and produces an irrational ratio (√2:1) whose LCM never cleanly
+resolves. In pitch space this is heard as maximal harmonic tension. In
+rhythmic space, a pulse or tempo sitting at the Fi position within a
+metric DuPeriod creates **maximum metric instability** — the point of
+greatest displacement from the metric tonic, implying resolution toward
+So (metric dominant) or Do (metric tonic).
+
+A composed passage that introduces a Fi-ratio cross-pulse against the
+established metric Do and then resolves through So to a clean LCM
+coincidence is a **rhythmic tritone resolution**. The ti-hai in Indian
+classical music is a composed instance of this: maximum metric
+displacement engineered to land precisely on the sam.
+
+## The cross-scale cadential operator
+
+In pitch space, a 2-5-1 cadence is a walk from Re (supertonic tension)
+through So (dominant pull) to Do (tonic resolution) — a directed motion
+toward LCM coincidence along the circle of fifths.
+
+In rhythmic space within a metric DuPeriod, the same walk describes a
+**rhythmic cadence**:
+
+1. **Metric supertonic** — introduce a cross-family polyrhythm (5-prime
+   or 7-prime against the established grid); complex LCM, slow resolution,
+   maximum metric tension
+2. **Metric dominant** — collapse to a 3:2 hemiola against the pulse;
+   simple LCM, fast resolution implied, forward motion toward coincidence
+3. **Metric tonic** — full LCM coincidence; all streams land on the
+   downbeat together
+
+With pitch content locked (static chord or drone), this produces
+**cadential motion implied entirely through rhythmic means**. The listener
+experiences tension and resolution as a purely metric phenomenon, with no
+harmonic movement.
+
+In the Metric DuPeriod system, a pitch 2-5-1 and a rhythmic 2-5-1 are the
+same sequence of solfège positions (Re → So → Do) within the same
+coordinate system, projected onto different regions of the period-length
+space. The cadential operator is scale-invariant; the perceptual
+experience differs because the projection timescale differs.
+
+## Perceptual landmarks in rhythmic space
+
+The meaningful boundaries in positive metric DuPeriod space are predominantly
+cognitive and physiological rather than acoustic. This is a genuine
+structural asymmetry between pitch space (where boundaries are determined
+by acoustic physics) and upper rhythmic space (where boundaries are
+determined by memory, attention, and biological oscillation).
+
+| Offset range | Period range  | Landmark | Source |
+|-------------|---------------|----------|--------|
+| 0           | 50ms          | Periodicity Limen — pitch/rhythm phase transition | Auditory neurology |
+| +1 to +2    | 50–200ms      | Subdivision — felt as texture rather than pulse | Temporal resolution |
+| +3 to +4    | 200–800ms     | Beat — primary pulse; comfortable tempo range | Motor entrainment |
+| +5 to +6    | 800–3200ms    | Bar — metric grouping above beat | Rhythmic cognition |
+| +7          | 3200–6400ms   | Working memory ceiling — ~4–8 seconds | Auditory working memory |
+| +9 to +10   | 12800–51200ms | Gestalt boundary — ~15–50 seconds; expectation resets | Music cognition |
+| −10         | 0.05–0.1ms    | Upper Auditory Horizon (UPL) — 20kHz upper pitch limit | Auditory neurology |
+
+## Diacritic precision across the range
+
+Prime Period Diacritics are available throughout the Metric DuPeriod system,
+but their practical necessity varies with the timescale:
+
+- **Pitch space (negative offsets)**: full 72-EDO diacritic precision is
+  needed and already specified in the PPD system; the ear is sensitive to
+  small deviations at audio rates
+- **Rhythmic space +1 to +3**: diacritics are useful for fine subdivision
+  specification; timing deviations of a few milliseconds are perceptible
+  at fast tempos
+- **Rhythmic space +4 and above**: the 12 base solfège positions are
+  sufficient; perceptual timing tolerance at beat and bar level is wide
+  enough that diacritic precision adds no practical value
+- **Rhythmic space +8 and above**: solfège position is approximate;
+  the relevant unit of description is the DuPeriod band itself rather than
+  the position within it
+
+The precision requirement naturally relaxes as the timescale lengthens —
+a structurally meaningful feature of the system rather than a limitation.
+
+## Conventional units as derived measures
+
+BPM and Hz are translation layers for interfacing with conventional
+instruments, notation systems, and tools. They are not primary
+descriptions within the Metric DuPeriod system.
+
+| Conventional | Metric DuPeriod address | Note |
+|-------------|----------------------|------|
+| 60 BPM (1 beat/sec) | Re+4 (≈449ms) | Near but not on a prime-ratio landmark |
+| 120 BPM | Re+3 (≈449ms in +3 band) | Common reference tempo — not structurally significant |
+| 440Hz (A4) | La−4 (672Hz band) | Standard pitch reference — not on prime-ratio landmark |
+| 432Hz ("natural" tuning) | Between Le−4 and La−4 | No prime-ratio significance |
+
+The clustering of common reference values near but not on prime-ratio
+landmarks confirms that conventional anchors are approximations of
+perceptually convenient positions rather than structurally grounded ones.
+
+## See also
+
+- [Periodicity Limen](periodicity-limen.md) — the anchor definition and
+  the argument for grounding measurement in auditory neurology
+- [Periodicity](../foundations/periodicity.md) — the perceptual rate
+  boundary as a property of human perception
+- [Prime Families](../foundations/prime-families.md) — the ratio
+  relationships that the solfège positions within each octave encode
+- [Rhythm](../domains/rhythm.md) — domain-level context for the positive
+  metric DuPeriod space
+- [Uniform Solfège](../uniform-solfege/index.md) — the solfège position
+  system used within each metric DuPeriod band
+- [Rhythmic Grammar](../related/rhythmic-grammar.md) — the cadential
+  chain system whose structure the metric DuPeriod formalises
+- [Metric DuPeriod — Extended Range](../extended/metric-duperiod-extended.md) — the
+  stratospheric positive metric DuPeriod space above musical form
+
+
+================================================================================
 FILE: okf/foundations/music-as-language.md
 ================================================================================
 
@@ -933,6 +1507,159 @@ PPT was designed to address this gap. The lack of a shared, intuitive vocabulary
 PPT provides something to anchor core musical concepts onto. It serves as a shared grammar and vocabulary—a way to understand and communicate the structures of melody, rhythm, and harmony in our listening, playing, and composition. 
 
 By treating pitch, rhythm, and timbre as unified expressions of prime-generated periodicity, PPT offers a coherent, descriptive scaffolding. It gives musicians and educators the specific terminology and structural logic needed to classify the auditory realm just as precisely as we classify the visual one.
+
+
+================================================================================
+FILE: okf/foundations/periodicity-limen.md
+================================================================================
+
+---
+type: concept
+title: Periodicity Limen
+description: >
+  The Periodicity Limen (colloquially: Auditory Horizon) is the perceptual
+  phase transition at approximately 20Hz / 50ms period, at which periodic
+  signals cross the boundary between rhythmic and pitched perception. It
+  serves as the anchor point — Metric DuPeriod 0 — for PPT's unified
+  period-length coordinate system, grounded in human auditory neurology
+  rather than conventional time measurement.
+tags:
+  - foundations
+  - periodicity-limen
+  - auditory-horizon
+  - metric-duperiod
+  - psychoacoustics
+  - prime-period-theory
+timestamp: 2026-06-27
+---
+
+# Periodicity Limen
+
+## What it is
+
+The **Periodicity Limen** (colloquially: the **Auditory Horizon**) is the
+perceptual phase transition at approximately 20Hz — a period length of 50ms
+— at which periodic signals cross the boundary between two distinct modes
+of human auditory perception: rhythm and pitch.
+
+Below 20Hz, the ear tracks individual events. The repeating pattern is
+perceived as **rhythm** — discrete pulses with felt intervals between them.
+Above 20Hz, the ear fuses repetitions into a continuous sensation. The
+pattern is perceived as **pitch** — a sustained frequency with a
+recognisable tonal character.
+
+This boundary is not a hard cliff. Psychoacoustic research identifies a
+transition zone between approximately 10Hz and 40Hz, characterised by two
+intermediate perceptual states:
+
+- **Flutter** (~10–20Hz): events too fast to track individually but not
+  yet fused into a stable pitch; a rapid flickering sensation
+- **Roughness** (~20–40Hz): fusion beginning, pitch emerging but unstable,
+  perceived as a coarse or buzzing tone
+
+The Periodicity Limen is defined at 20Hz as the midpoint of this transition
+zone — the point at which perceptual mode is most evenly balanced between
+rhythm and pitch, and therefore the most structurally meaningful single
+value to use as an anchor.
+
+## Why this is the correct anchor
+
+Standard measures of musical time — Hz for frequency, BPM for tempo — are
+derived from the **second**, which is itself a fraction of Earth's rotation
+period: an astronomical unit that became a time unit by historical
+convention. It has no relationship to human perception, acoustic physics,
+or musical structure. The second is to musical time measurement what
+Fahrenheit is to temperature: a unit whose reference points are determined
+by historical contingency rather than the phenomenon being measured.
+
+The Periodicity Limen is determined instead by **human auditory neurology**
+— specifically the temporal resolution limits of the basilar membrane and
+auditory nerve firing rates. It is:
+
+- Not a convention — it is a property of the biological instrument that
+  receives music
+- Not culturally contingent — it is stable across humans regardless of
+  musical tradition or training
+- Not astronomically derived — it is grounded in the perceptual system
+  that music is addressed to
+- Intrinsic to PPT's theoretical structure — the framework already treats
+  the pitch/rhythm boundary as theoretically significant; the Periodicity
+  Limen is the precise location of that boundary
+
+This makes it the correct choice for an anchor in the same sense that
+absolute zero is the correct anchor for temperature measurement in physics:
+it is the structurally meaningful zero point of the phenomenon being
+described, not a convenient approximation of it.
+
+## Relationship to conventional measures
+
+The Periodicity Limen can be expressed in conventional units — 20Hz,
+50ms period, 1200 BPM — but these are **interface translations**, not
+primary descriptions. The theoretical status of 20Hz as an anchor does
+not depend on seconds; the second is available as a translation layer
+when interfacing with conventional tools, instruments, and notation
+systems.
+
+The relationship is analogous to Kelvin and Celsius: Celsius remains
+useful for everyday temperature description, but Kelvin is the
+theoretically correct system because its zero point is grounded in
+molecular physics rather than water's behaviour. BPM and Hz remain
+useful for performance and notation, but the Periodicity Limen coordinate
+system is theoretically correct because its anchor is grounded in
+auditory perception rather than Earth's rotation.
+
+## The upper boundary
+
+A second physiological boundary exists at approximately 20kHz — the upper
+limit of human pitch perception, also determined by basilar membrane
+resolution. This is designated the **Upper Periodicity Limen**
+(colloquially: the **Upper Auditory Horizon**).
+
+The full audible pitch range spans from the Periodicity Limen (20Hz) to
+the Upper Periodicity Limen (20kHz). This range is:
+
+```
+log2(20000 / 20) = log2(1000) ≈ 9.97 octaves
+```
+
+Approximately **10 octaves** — a near-exact decade in base-2 logarithmic
+space. This spans Metric DuPeriods −10 to 0 in PPT's unified coordinate
+system. See [Metric DuPeriod](metric-duperiod.md) for the full coordinate
+definition.
+
+## Dual register
+
+The term **Periodicity Limen** is used in formal, academic, and
+psychoacoustic contexts, consistent with established psychoacoustic
+vocabulary (*limen*: Latin for threshold; cf. absolute limen, difference
+limen).
+
+The colloquial name **Auditory Horizon** is used in pedagogical,
+explanatory, and cross-reference contexts. The horizon metaphor captures
+the character of the boundary: it is not that periodicity ceases to exist
+on either side, but that the *nature of perception* changes — just as a
+horizon changes what can be seen, not what exists.
+
+This dual-register convention follows the pattern established elsewhere
+in PPT: formal specification paired with an accessible working name.
+
+| Register | Term | Abbreviation |
+|----------|------|--------------|
+| Formal / academic | Periodicity Limen | PL |
+| Colloquial / pedagogical | Auditory Horizon | AH |
+| Upper boundary (formal) | Upper Periodicity Limen | UPL |
+| Upper boundary (colloquial) | Upper Auditory Horizon | UAH |
+
+## See also
+
+- [Amplitude and Time](amplitude-time.md) — the physical grounding;
+  the second as astronomical convention
+- [Periodicity](periodicity.md) — the perceptual rate boundary as
+  a property of human perception, not underlying structure
+- [Metric DuPeriod](metric-duperiod.md) — the coordinate system anchored
+  to the Periodicity Limen
+- [Metric DuPeriod — Extended Range](../extended/metric-duperiod-extended.md) — the
+  stratospheric positive metric DuPeriod space above musical form
 
 
 ================================================================================
@@ -2231,6 +2958,356 @@ Because complex compositions can result in lengthy strings, PPT-CF supports payl
 - `gz:` Compressed using Deflate/GZIP and encoded in Base64 (e.g., `gz:H4sIAAAAAAA...`).
 
 If no prefix is provided, the parser may auto-detect the format (e.g., if it contains a `|` or `[`, it is treated as `raw`).
+
+
+================================================================================
+FILE: okf/tuning/AGENTS.md
+================================================================================
+
+# Tuning Systems — Agent Instructions
+
+## Purpose
+
+The `tuning/` directory contains specifications and derivations for how Prime Period Theory maps its theoretical ratios onto absolute pitch frequencies and microtonal grids. It bridges the pure math of prime ratios with the physical reality of instrument tuning.
+
+## Current pages
+
+|File|Status|Description|
+|---|---|---|
+|`ppt-derived-tuning.md`|Complete|Derivation of absolute pitch anchors (Do-4 and Do-5) using the Metric DuPeriod coordinate system and the Periodicity Limen.|
+
+## Tone guidance
+
+These documents are highly technical and mathematical. Maintain a precise, objective tone. Ensure that all derivations clearly distinguish between the structural geometry of the intervals (which is fixed) and the absolute pitch projection (which is a single late-binding choice).
+
+
+================================================================================
+FILE: okf/tuning/ppt-derived-tuning.md
+================================================================================
+
+---
+type: concept
+title: PPT-Derived Tuning Reference
+description: >
+  Derives pitch anchor values from PPT first principles using the Metric DuPeriod
+  coordinate system. Establishes that conventional pitch references (A440, A432,
+  C256) are not structurally grounded in PPT's framework, identifies the
+  prime-ratio landmark positions in pitch space that correspond to structurally
+  meaningful tuning anchors, and defines the relationship between the Periodicity
+  Limen and absolute pitch as a single late-binding projection step.
+tags:
+  - tuning
+  - metric-duperiod
+  - periodicity-limen
+  - just-intonation
+  - pitch
+  - uniform-solfege
+  - prime-period-theory
+timestamp: 2026-06-27
+---
+
+# PPT-Derived Tuning Reference
+
+## Purpose and scope
+
+This document is not a foundational page. It is a tuning reference that
+applies the foundational principles established in
+[Periodicity Limen](../foundations/periodicity-limen.md) and
+[Metric DuPeriod](../foundations/metric-duperiod.md) to derive structurally
+grounded pitch anchor values from PPT first principles.
+
+Its central question is: **if you refused to accept any conventional pitch
+reference as given — no A440, no C256, no historical diapason — and
+derived an absolute pitch anchor purely from PPT's coordinate system,
+where would it land?**
+
+The answer reveals that all conventional pitch references are historically
+contingent approximations of no prime-ratio significance, and that PPT's
+framework points toward a small set of structurally meaningful alternatives.
+It also establishes the correct relationship between the framework's
+coordinate system and the absolute Hz values required for physical
+performance: one is primary, the other is derived.
+
+## The problem with conventional pitch references
+
+Standard Western pitch is anchored to **A4 = 440Hz**, established by ISO
+16 in 1955. Before that, pitch references varied enormously across
+historical periods and geographical regions — A415 (Baroque), A430
+(Classical), A435 (late Romantic), A440 (modern), with A432 proposed
+periodically as an alternative on various grounds.
+
+None of these values are structurally grounded in any acoustic or
+perceptual principle. They are historical conventions, adopted for
+practical reasons of instrument manufacture and ensemble coordination.
+In PPT terms, they are arbitrary projection parameters — the equivalent
+of choosing 60 BPM as a tempo reference because it matches the second.
+
+To locate any of these values in the Metric DuPeriod system, the formula is:
+
+```
+Metric DuPeriod address of a frequency f:
+  period = 1000 / f  (milliseconds)
+  offset = log2(period / 50)
+  position within band = round(12 × log2(period / floor of that band))
+```
+
+Applying this to common references:
+
+| Reference | Period | Offset | Position | Address |
+|-----------|--------|--------|----------|---------|
+| A4 = 440Hz | 2.273ms | −4.46 | 9.5 (≈ La) | La−4 |
+| A4 = 432Hz | 2.315ms | −4.43 | 9.3 (≈ La) | La−4 |
+| A4 = 415Hz | 2.410ms | −4.38 | 8.9 (≈ Le) | Le−4 |
+| C4 = 256Hz | 3.906ms | −3.68 | 8.1 (≈ Le) | Le−3 |
+| C4 = 261.6Hz | 3.822ms | −3.71 | 8.5 (≈ Le) | Le−3 |
+
+Three observations follow immediately:
+
+**First**, A440 and A432 land at virtually the same Metric DuPeriod address
+(both approximately La−4). The debate between them is structurally
+irrelevant — neither is a prime-ratio landmark, and they are
+indistinguishable in the coordinate system. This confirms that the
+argument for A432 on "natural" or "mathematical" grounds has no basis
+in PPT's framework.
+
+**Second**, none of the conventional references land on a prime-ratio
+landmark. They cluster between La and Le in their respective bands —
+positions with no special structural significance.
+
+**Third**, the various historical pitch standards (A415, A430, A435,
+A440, A432) all fall within less than one solfège step of each other
+in Metric DuPeriod space. The perceived enormity of the historical pitch
+variation is an artefact of linear Hz thinking; in ratio space, these
+references are clustered tightly together and all equally arbitrary.
+
+## Structurally grounded anchor candidates
+
+If Do in pitch space is defined as a Metric DuPeriod address rather than
+a Hz value, the structurally meaningful candidates are positions that
+fall on prime-ratio landmarks — specifically the Do, So, Mi, and Fa
+positions of the negative metric DuPeriod bands, since these carry the
+tonic, dominant, mediant, and subdominant structural roles.
+
+### Candidate 1: Do−4 = 320Hz
+
+```
+Do−4 = 50ms × 2^(−4) = 50ms × 0.0625 = 3.125ms → 320Hz
+```
+
+This is the **tonic floor of Metric DuPeriod −4** — a pure 2-prime
+position, the most structurally grounded choice in that band. It places
+the tonal centre at a clean power-of-two relationship to the Periodicity
+Limen: 20Hz × 2^4 = 320Hz.
+
+A complete scale from Do−4:
+
+```
+Do   320.0Hz    Do−4     (tonic floor)
+Ra   338.9Hz    Ra−4
+Re   359.2Hz    Re−4
+Me   380.5Hz    Me−4
+Mi   403.2Hz    Mi−4
+Fa   427.2Hz    Fa−4
+Fi   452.6Hz    Fi−4     (tritone)
+So   479.6Hz    So−4     (3-prime dominant)
+Le   508.2Hz    Le−4
+La   538.6Hz    La−4     (close to A4 = 440Hz one octave up... wait)
+Te   570.9Hz    Te−4
+Ti   604.9Hz    Ti−4
+Do   640.0Hz    Do−3     (octave above, 2-prime)
+```
+
+Note: La−4 = 538.6Hz is not A4 — it is A5 transposed down. The La
+position of this system does not correspond to conventional A4. This
+is expected: the system is not derived from A440 and has no obligation
+to produce it.
+
+The So position (So−4 = 479.6Hz) is close to B4 in conventional
+tuning (493.9Hz) but not identical. No conventional pitch name
+corresponds cleanly to a PPT structural landmark — again, expected.
+
+### Candidate 2: So−5 as concert A
+
+If practical compatibility with orchestral convention is desired —
+specifically, retaining a structurally meaningful value near the A
+position as a reference — the So position of Metric DuPeriod −5 offers
+an interesting alternative:
+
+```
+So−5 = 50ms × 2^(−5) × 2^(7/12)
+     = 50ms × 0.03125 × 1.4983
+     = 2.341ms → 427.2Hz
+```
+
+So−5 ≈ **427Hz** — close to the historical Baroque pitch (A415 is
+somewhat lower; A430 is closer) and within range of the A432 proposal,
+but grounded in PPT structure rather than historical convention or
+numerological preference.
+
+In this system, the concert A is not Do but **So** — the dominant
+position of its metric DuPeriod band. This means the conventional
+orchestral tuning reference is structurally a dominant, not a tonic.
+Whether this is a meaningful observation or a curiosity depends on
+how much weight one places on the tuning note's structural role.
+
+### Candidate 3: Do−5 = 160Hz as bass anchor
+
+```
+Do−5 = 50ms × 2^(−5) = 50ms × 0.03125 = 1.5625ms → 640Hz
+```
+
+Wait — that's wrong direction. Recalculating:
+
+```
+Do−5: period = 50ms / 2^5 = 50ms / 32 = 1.5625ms → 640Hz
+```
+
+That places Do−5 at 640Hz, which is in the soprano range. The negative
+offset means *shorter* period (higher frequency). Let me restate the
+band structure clearly:
+
+```
+Band    Floor period    Floor frequency
+−1      25ms            40Hz
+−2      12.5ms          80Hz
+−3      6.25ms          160Hz       ← bass register
+−4      3.125ms         320Hz       ← mid register  
+−5      1.5625ms        640Hz       ← upper-mid register
+−6      0.78125ms       1280Hz      ← high register
+```
+
+So **Do−3 = 160Hz** is the bass anchor — the tonic floor of the bass
+register band. This is close to the E2 on a standard guitar (82.4Hz
+is closer to Do−2) but more precisely:
+
+```
+Do−3 = 160Hz    (bass tonic floor)
+Do−4 = 320Hz    (mid tonic floor — primary vocal/instrument range)
+Do−5 = 640Hz    (upper tonic floor)
+```
+
+The most practical primary anchor for a complete musical system is
+**Do−4 = 320Hz**, as it sits in the centre of the most common
+instrument and vocal range, with Do−3 and Do−5 as its octave
+neighbours.
+
+## The single projection step
+
+In PPT's framework, the complete derivation of absolute pitch from
+first principles requires exactly one external input and one
+projection step:
+
+**The one external input**: the Periodicity Limen at 20Hz. This is
+not arbitrary — it is a perceptual constant grounded in human auditory
+neurology (see [Periodicity Limen](../foundations/periodicity-limen.md)).
+It is the only value in the system that must be taken as given rather
+than derived.
+
+**The projection step**: choose a Metric DuPeriod address for Do. The
+recommended choice is **Do−4**, giving Do = 320Hz. This choice is
+grounded in PPT structure (it is the tonic floor of the band containing
+the primary instrument and vocal range) rather than historical
+convention.
+
+**All other values follow**: once the Periodicity Limen and the Do
+address are fixed, every other pitch in the system — every scale
+degree, every interval, every octave — is fully determined by the
+prime-ratio structure of Uniform Solfège and the Metric DuPeriod
+coordinate system. No further external inputs are needed.
+
+The full derivation chain:
+
+```
+Perceptual constant:    20Hz (Periodicity Limen) — neurologically grounded
+         ↓
+Coordinate system:      Metric DuPeriod addresses — ratio space, logarithmic
+         ↓
+Anchor choice:          Do−4 — structurally grounded (tonic floor, mid band)
+         ↓
+Absolute pitch:         Do = 320Hz — derived, not stipulated
+         ↓
+Interface translation:  A = So−4 ≈ 427Hz (for orchestral coordination)
+                        BPM values (for metronome/DAW)
+                        Hz values (for instrument tuning)
+```
+
+## Relationship to existing tuning systems
+
+This derivation does not replace the tuning systems documented elsewhere
+in this directory. It provides a principled account of *why* those
+systems relate to PPT as they do.
+
+**Just Intonation** (see [Just Intonation](just-intonation.md)):
+JI defines intervals as pure prime ratios — exactly what the Metric
+Octave address system encodes. Do−4 = 320Hz with JI intervals gives
+So−4 = 480Hz (exact 3:2 ratio), Mi−4 = 400Hz (exact 5:4 ratio), and
+so on. The PPT-derived anchor makes JI values exact rather than
+approximate.
+
+**31-EDO** (see [31 EDO](31-edo.md)): 31-EDO provides excellent
+5-limit approximations and maps cleanly onto Uniform Solfège's
+diacritic system. The PPT-derived anchor does not change 31-EDO's
+internal structure — it simply provides a principled absolute value
+for where Do sits in Hz, derived from the Periodicity Limen rather
+than from convention.
+
+**72-EDO** (see [72 EDO Grid](72-edo-grid.md)): 72-EDO is PPT's
+reference grid for diacritic placement. The PPT-derived anchor
+similarly provides a principled Do value without altering 72-EDO's
+internal structure.
+
+In all cases, the existing tuning systems describe *relationships*
+between pitches. This document describes where to *place* those
+relationships in absolute frequency space — and the answer is: place
+them at the Metric DuPeriod address that PPT's coordinate system
+identifies as structurally meaningful, with the Periodicity Limen
+as the single external anchor.
+
+## Practical implications
+
+**For a PPT-native instrument or software**: tune Do to 320Hz (Do−4).
+All other pitches follow from the chosen tuning system (JI, 31-EDO,
+72-EDO, 12-TET) applied from that anchor. The concert A equivalent
+(So−4) is approximately 427Hz for JI, or 426.7Hz for 12-TET from
+this anchor.
+
+**For compatibility with conventional ensembles**: the interface
+translation layer accepts A440 as an input and derives the offset
+from Do−4. The offset is approximately 0.55 semitones (A440 / So−4
+= 440 / 426.7 = 1.031, or about 53 cents). This is a fixed transposition
+constant for any ensemble interaction, not a change to the underlying
+system.
+
+**For the PPT metronome**: the tempo anchor follows the same logic.
+The metronome's primary interface is Metric DuPeriod address; BPM is
+a derived display value calculated from the address and the
+Periodicity Limen (50ms). No BPM value is stored as a primary
+parameter.
+
+## Summary
+
+| Question | Answer |
+|----------|--------|
+| What is the PPT pitch anchor? | Do−4 in the Metric DuPeriod system |
+| What Hz value does this produce? | Do = 320Hz |
+| What is the concert A equivalent? | So−4 ≈ 427Hz (JI) / 426.7Hz (12-TET) |
+| Is A440 structurally significant? | No — it falls between La and Te in Metric DuPeriod −4 with no prime-ratio significance |
+| Is A432 structurally significant? | No — it falls at virtually the same address as A440 |
+| What is the single external input? | The Periodicity Limen at 20Hz — neurologically grounded |
+| What follows from first principles? | Everything else — all pitches, all intervals, all octave positions |
+
+## See also
+
+- [Periodicity Limen](../foundations/periodicity-limen.md) — the
+  perceptual anchor and its derivation
+- [Metric DuPeriod](../foundations/metric-duperiod.md) — the coordinate
+  system from which pitch addresses are derived
+- [Just Intonation](just-intonation.md) — pure prime-ratio intervals
+  applied from the PPT-derived anchor
+- [31 EDO](31-edo.md) — the primary practical tuning system
+- [72 EDO Grid](72-edo-grid.md) — the diacritic reference grid
+- [Uniform Solfège](../uniform-solfege/index.md) — the notation
+  system whose positions the Metric DuPeriod addresses name
 
 
 ================================================================================

@@ -35,6 +35,8 @@ export function remarkRewriteOkfLinks() {
             
             if (relativeToOkf === 'index') {
               node.url = '/reference';
+            } else if (relativeToOkf.endsWith('/index')) {
+              node.url = `/reference/${relativeToOkf.slice(0, -6)}`;
             } else {
               node.url = `/reference/${relativeToOkf}`;
             }

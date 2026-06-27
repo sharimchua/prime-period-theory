@@ -32,9 +32,10 @@ navigating the graph. Make it precise and specific, not generic.
 | Directory | Contents | Status |
 |---|---|---|
 | `foundations/` | Core theoretical claims | Partially written |
+| `extended/` | Extended ranges and abstract concepts | Partially written |
 | `uniform-solfege/` | Notation system | Partially written |
 | `domains/` | Pitch, rhythm, timbre | Stub only |
-| `tuning/` | JI, 31 EDO, 72 EDO | Stub only |
+| `tuning/` | JI, 31 EDO, 72 EDO | Partially written |
 | `related/` | MusiCoil, Tone Atlas | Stub only |
 
 ## Concept graph conventions

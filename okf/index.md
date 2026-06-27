@@ -88,6 +88,10 @@ out-of-tune.
 | 7 | Septuple — Balkan, Carnatic | Harmonic seventh, blue notes |
 | 11 | Neutral — Messiaen-adjacent | Neutral intervals, maqam |
 
+## Universal anchors
+
+Where possible, PPT actively shifts perspective to avoid arbitrary values adopted for cultural or historical reasons (such as A=440Hz or arbitrary beats-per-minute). Instead, the system anchors itself in universal prime components and biological limits — boundaries defined by the physical properties of sound intersecting with human hearing (such as the Periodicity Limen).
+
 ## Notation: Uniform Solfège
 
 PPT uses **Uniform Solfège** as its notation layer — a base-12 numeral system
@@ -112,8 +116,13 @@ amplitude or effect envelopes.
 - [Amplitude and Time](foundations/amplitude-time.md) — the core physical thesis
 - [Periodicity](foundations/periodicity.md) — the unifying phenomenon across all scales
 - [Information and Expectation](foundations/information-and-expectation.md) — the psychology of predicting patterns
+- [Periodicity Limen](foundations/periodicity-limen.md) — the anchor definition and the boundary between pitch and rhythm
+- [Metric DuPeriod](foundations/metric-duperiod.md) — the coordinate system for logarithmic period mapping
 - [Prime Families](foundations/prime-families.md) — the classification system
 - [Design System & Color Semantics](design-system.md) — Visual styling and mathematical mapping
+
+### Extended
+- [Metric DuPeriod — Extended Range](extended/metric-duperiod-extended.md) — the stratospheric positive metric DuPeriod space and biological periodicity
 
 ### Domains
 - [Pitch](domains/pitch.md) — micro periodicity; frequency; just intonation
@@ -131,6 +140,7 @@ amplitude or effect envelopes.
 - [Glyph Forms](ppd/glyph-forms.md) — visual specification for all prime families
 
 ### Tuning Systems
+- [Periodicity Limen Reference Tuning](tuning/periodicity-limen-reference-tuning.md) — absolute pitch anchors derived from the Periodicity Limen
 - [Just Intonation](tuning/just-intonation.md) — prime ratios as pure intervals
 - [31 EDO](tuning/31-edo.md) — the primary microtonal system; 5-limit excellence
 - [72 EDO Grid](tuning/72-edo-grid.md) — the reference grid for diacritic placement
