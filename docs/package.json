@@ -6,8 +6,9 @@
     "node": ">=22.12.0"
   },
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build && node postbuild.js",
+    "bundle-okf": "node scripts/build-okf-bundle.js",
+    "dev": "npm run bundle-okf && astro dev",
+    "build": "npm run bundle-okf && astro build && node postbuild.js",
     "preview": "astro preview",
     "astro": "astro"
   },
