@@ -11,7 +11,9 @@ This directory is intended for theoretical extensions that, while grounded in PP
 |File|Status|Description|
 |---|---|---|
 |`metric-duperiod-extended.md`|Complete|The stratospheric positive metric DuPeriod space, biological periodicities, and cognitive boundaries|
-|`amplitude-ratios.md`|Stub|Inquiry into geometric and prime-ratio governance of amplitude differences|
+|`geometric-amplitude-ratios.md`|Draft|Inquiry into geometric and prime-ratio governance of amplitude differences|
+|`amplitude-trajectories.md`|Stub|Amplitude as change over Metric DuPeriod time|
+|`spectral-dynamic-coupling.md`|Stub|Modulation of spectral content by amplitude trajectories|
 
 ## Tone guidance
 
