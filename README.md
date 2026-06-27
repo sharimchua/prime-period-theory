@@ -25,65 +25,64 @@ serve visual artists — without constraining what music can be or mean.
 
 ## Repository structure
 
-```
-okf/                    # OKF knowledge bundle (AI-readable, human-browsable)
-│
+This repository houses the entire PPT ecosystem:
+
+```text
+okf/                    # The Open Knowledge Format bundle (AI-readable semantic core)
 ├── index.md            # Entry point and concept map
-│
-├── foundations/        # Core theoretical claims
-│   ├── amplitude-time.md
-│   ├── periodicity.md
-│   └── prime-families.md
-│
-├── uniform-solfege/    # The notation layer
-│   ├── index.md
-│   ├── diacritic-system.md
-│   ├── geometric-basis.md
-│   └── base-12-algebra.md
-│
-├── domains/            # The three domains of application
-│   ├── pitch.md
-│   ├── rhythm.md
-│   └── timbre.md
-│
-├── tuning/             # Tuning systems
-│   ├── just-intonation.md
-│   ├── 31-edo.md
-│   └── 72-edo-grid.md
-│
-└── related/            # Connected systems
-    ├── musicoil.md
-    └── tone-atlas.md
+├── foundations/        # Core theoretical claims (periodicity, prime families, etc.)
+├── uniform-solfege/    # The base-12 notation layer
+├── domains/            # Application domains (pitch, rhythm, timbre)
+├── tuning/             # Tuning systems (31 EDO, 72 EDO, just intonation)
+└── related/            # Connected systems (MusiCoil, Rhythmic Grammar)
 
-docs/                   # GitHub Pages (interactive components)
-└── components/
-    ├── circle-of-fifths/
-    ├── tone-atlas/
-    ├── keyboard/
-    ├── fretboard/
-    └── harmonic-geometry/
+docs/                   # The Astro-powered Documentation Website
+├── components/         # Independent Vanilla JS Web Components (the PPT toolkit)
+│   └── src/            # Component source files (Period, Title, Panel, etc.)
+├── src/                # Astro site source code
+│   ├── layouts/        # Global page layouts and CSS variables
+│   ├── pages/          # Site routes (Home, Components, Reference, Topics)
+│   └── content/        # Markdown collections for the site
+└── public/             # Static assets
+
+resources/              # Brand assets and logos
+AGENTS.md               # DOX instruction rules for autonomous AI agents
 ```
 
-## The OKF bundle
+## Interactive Web Components
 
-The `okf/` directory is a conformant
-[Open Knowledge Format (OKF) v0.1](https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing)
-bundle. Each file is a markdown concept document with YAML frontmatter. The
-documents link to each other, forming a knowledge graph that is both
-human-readable and AI-agent-consumable.
+Beyond static theory, PPT provides a library of framework-agnostic **Web Components** built with Vanilla JavaScript and encapsulated using Shadow DOM. These components allow anyone to build interactive musical diagrams (like Tonal Clocks and Harmonic Geometries) by simply writing semantic HTML tags like `<ppt-period>` and `<ppt-period-step-circle>`.
 
-Start at [`okf/index.md`](okf/index.md).
+See the `docs/components/` directory for the source code, or explore the [interactive component showcase](https://ppt.midlifemuso.com/components) on the live documentation site.
 
-## Related projects
+## The OKF Bundle
 
-- **MusiCoil** — a spatial music notation and pedagogy system; the visual
-  representation layer for PPT concepts
-- **Tone Atlas** — a clock-face pitch relationship diagram
+The `okf/` directory is a conformant [Open Knowledge Format (OKF) v0.1](https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing) bundle. 
+
+Each file is a markdown concept document with YAML frontmatter. The documents link to each other, forming a semantic knowledge graph that is both human-readable and designed to be effortlessly ingested by AI agents. Start at [`okf/index.md`](okf/index.md).
+
+## Local Development
+
+If you'd like to run the interactive documentation site and component sandbox locally:
+
+```bash
+cd docs
+npm install
+npm run dev
+```
+
+## Licensing & Open Source
+
+This project uses a dual-licensing model to keep the framework open and accessible while allowing free integration of the tools:
+
+- **Theoretical Framework & OKF Bundle**: Licensed under **[Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/)**. You are free to use, share, adapt, and build upon these concepts for any purpose, provided you give appropriate attribution.
+- **Web Components & Site Source Code**: Licensed under the **[MIT License](https://opensource.org/licenses/MIT)**, allowing you to freely integrate the interactive tools into your own projects.
 
 ## Status
 
-Early-stage theoretical notes. Living document. Not a finished theory.
+**Active Development.** This is an evolving, living project that continuously refines the theoretical concepts while expanding the interactive toolset.
 
 ## Author
 
-Sharim — Melbourne, Australia
+**Sharim Chua** — Melbourne, Australia  
+[Midlife Muso](https://midlifemuso.com/) | [Respec.work](https://respec.work/)

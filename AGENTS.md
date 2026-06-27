@@ -59,11 +59,13 @@ Before ANY edit:
 1. Read this file
 2. Read the child `AGENTS.md` in the target directory
 3. Read `okf/index.md` to understand current concept map state
+4. Read `README.md` to ensure you understand the overarching project scope
 
 After ANY meaningful change:
 1. Update `okf/index.md` if a new concept page was added or renamed
 2. Update the local `AGENTS.md` if directory structure changed
 3. Update `timestamp` in the frontmatter of any modified OKF file
+4. Update `README.md` to reflect any major additions, new tooling, or structural changes to the project
 
 ## Core terminology (do not redefine without author approval)
 
