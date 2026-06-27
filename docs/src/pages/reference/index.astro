@@ -30,4 +30,8 @@ const { Content } = await render(entry);
   .content {
     margin-top: 2rem;
   }
+  /* Hide the top-level markdown H1 since it's redundant with the site header */
+  .content :global(h1:first-of-type) {
+    display: none;
+  }
 </style>
