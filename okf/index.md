@@ -129,6 +129,7 @@ amplitude or effect envelopes.
 
 ### Reference
 - [Metric DuPeriod](reference/metric-duperiod.md) — the coordinate system for logarithmic period mapping
+- [Envelopes and Amplitude Shaping](reference/envelopes.md) — ADSR scaling from macro crescendos to micro transients
 
 ### Context
 - [Music as Language](context/music-as-language.md) — music as a language;
@@ -136,11 +137,13 @@ amplitude or effect envelopes.
 
 ### Extended
 - [Metric DuPeriod — Extended Range](extended/metric-duperiod-extended.md) — the stratospheric positive metric DuPeriod space and biological periodicity
+- [Geometric Amplitude Ratios](extended/amplitude-ratios.md) — inquiry into prime-number governance of amplitude differences
 
 ### Domains
 - [Pitch](domains/pitch.md) — micro periodicity; frequency; just intonation
 - [Rhythm](domains/rhythm.md) — macro periodicity; metre; polyrhythm; tala
 - [Timbre](domains/timbre.md) — spectral periodicity; overtones; harmonic series
+- [Dynamics](domains/dynamics.md) — amplitude periodicity; accents; groove
 
 ### Uniform Solfège
 - [Overview](uniform-solfege/index.md) — the notation system and its design principles
