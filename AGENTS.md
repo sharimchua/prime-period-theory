@@ -112,3 +112,13 @@ notebook.
   concept page explaining the underlying theory
 - Do not rewrite existing OKF pages wholesale — prefer additive edits and
   new linked pages for new content
+
+## GitHub Issue Workflow
+
+When asked to iterate on new concepts generally, agents may work directly on the `main` branch. 
+
+However, when explicitly asked to execute a **GitHub Issue**, agents must follow this workflow:
+1. Use the GitHub CLI to read the issue details (e.g., `gh issue view [number]`). Pay close attention to any "Agent Instructions" pasted into the issue description.
+2. Create and checkout a new branch named `issue-[number]-[brief-description]`.
+3. Execute the work according to the issue's instructions and project guidelines.
+4. Commit the changes and use `gh pr create` to submit a Pull Request that references the issue for the author to review before it is closed.
