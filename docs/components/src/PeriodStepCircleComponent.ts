@@ -2,6 +2,15 @@ import { BasePPTComponent } from './BasePPTComponent.js';
 import { WithInteractive } from './features/WithInteractive.js';
 
 export class PeriodStepCircleComponent extends WithInteractive(BasePPTComponent) {
+  static override get componentDef() {
+    return {
+      displayName: 'Step Circle',
+      familyColor: '#2ecc71',
+      acceptsChildren: [],
+      canNestIn: ['ppt-period']
+    };
+  }
+
   static override get observedAttributes() {
     return [...super.observedAttributes, 'color'];
   }
@@ -9,7 +18,8 @@ export class PeriodStepCircleComponent extends WithInteractive(BasePPTComponent)
   static override get pptMetadata() {
     return {
       ...super.pptMetadata,
-      color: { type: 'color', default: '#ffffff' }
+      color: { type: 'color', default: '#ffffff', description: 'The fill color of the step circle.' },
+      textContent: { type: 'string', default: '', description: 'Text label displayed inside the step circle (e.g., degree or prime marker).' }
     };
   }
 

@@ -49,9 +49,11 @@ resources/              # Brand assets and logos
 AGENTS.md               # DOX instruction rules for autonomous AI agents
 ```
 
-## Interactive Web Components
+## Interactive Web Components & Composer
 
 Beyond static theory, PPT provides a library of framework-agnostic **Web Components** built with Vanilla JavaScript and encapsulated using Shadow DOM. These components allow anyone to build interactive musical diagrams (like Tonal Clocks and Harmonic Geometries) by simply writing semantic HTML tags like `<ppt-period>` and `<ppt-period-step-circle>`.
+
+To make building these diagrams even easier, the repository includes a visual **Component Composer** (`/components/designer` in the docs). This tool offers a drag-and-drop workspace, properties panel, DOM tree editor, and real-time HTML/Payload generation, allowing you to design diagrams without writing code by hand.
 
 See the `docs/components/` directory for the source code, or explore the [interactive component showcase](https://ppt.midlifemuso.com/components) on the live documentation site.
 

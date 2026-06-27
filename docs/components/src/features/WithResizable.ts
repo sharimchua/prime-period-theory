@@ -16,7 +16,7 @@ export function WithResizable<TBase extends Constructor<HTMLElement>>(Base: TBas
     static get pptMetadata() {
       return {
         ...((Base as any).pptMetadata || {}),
-        resizable: { type: 'boolean', default: false }
+        resizable: { type: 'boolean', default: false, description: 'Allows the user to resize this component interactively by dragging its bottom-right corner.' }
       };
     }
 

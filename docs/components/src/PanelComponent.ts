@@ -3,6 +3,15 @@ import { WithInteractive } from './features/WithInteractive.js';
 import { WithResizable } from './features/WithResizable.js';
 
 export class PanelComponent extends WithResizable(WithInteractive(BasePPTComponent)) {
+  static override get componentDef() {
+    return {
+      displayName: 'Panel',
+      familyColor: '#e67e22',
+      acceptsChildren: [],
+      canNestIn: ['ppt-container']
+    };
+  }
+
   static override get observedAttributes() {
     return [...super.observedAttributes, 'panel-align', 'ratio'];
   }

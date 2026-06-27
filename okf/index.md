@@ -142,6 +142,9 @@ amplitude or effect envelopes.
 - [Tone Atlas](related/tone-atlas.md) — clock-face pitch relationship diagram
 - [Chromatic Clock Geometry](related/chromatic-clock.md) — the 12-tone chromatic circle as a geometric navigation tool
 
+## Systems and Formats
+- [PPT Composition Format (PPT-CF)](systems/composition-format.md) — a concise, structural encoding format for serializing component layouts
+
 ## Relationship to other theories
 
 PPT is in conversation with, not in competition with:

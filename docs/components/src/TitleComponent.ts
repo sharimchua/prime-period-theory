@@ -3,6 +3,22 @@ import { WithInteractive } from './features/WithInteractive.js';
 import { WithResizable } from './features/WithResizable.js';
 
 export class TitleComponent extends WithResizable(WithInteractive(BasePPTComponent)) {
+  static override get componentDef() {
+    return {
+      displayName: 'Title',
+      familyColor: '#2ecc71',
+      acceptsChildren: [],
+      canNestIn: ['ppt-container', 'ppt-panel']
+    };
+  }
+
+  static override get pptMetadata() {
+    return {
+      ...super.pptMetadata,
+      textContent: { type: 'string', default: 'Title' }
+    };
+  }
+
   override connectedCallback() {
     super.connectedCallback();
     this.render();

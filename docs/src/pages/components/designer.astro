@@ -3,7 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import DesignerApp from '../../components/designer/DesignerApp.astro';
 ---
 
-<Layout title="Component Designer Studio" maxWidth="100%">
+<Layout title="Component Designer Studio" maxWidth="100%" hideHeader={true}>
   <DesignerApp />
 </Layout>
 
@@ -15,7 +15,7 @@ import DesignerApp from '../../components/designer/DesignerApp.astro';
   
   main {
     padding: 0 !important;
-    height: calc(100vh - 84px); /* Fallback estimate if header height varies */
+    height: 100vh;
     display: flex;
     flex-direction: column;
   }

@@ -3,6 +3,15 @@ import { WithInteractive } from './features/WithInteractive.js';
 import { WithResizable } from './features/WithResizable.js';
 
 export class ContainerComponent extends WithResizable(WithInteractive(BasePPTComponent)) {
+  static override get componentDef() {
+    return {
+      displayName: 'Container',
+      familyColor: '#e67e22',
+      acceptsChildren: ['*'],
+      canNestIn: ['*']
+    };
+  }
+
   override connectedCallback() {
     super.connectedCallback();
     this.render();

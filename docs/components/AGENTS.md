@@ -33,3 +33,7 @@ When building or modifying components in this directory, agents must strictly ad
 ### 5. Extensibility
 - **Base Classes:** Share common logic (like handling the `interactive` flag, `ResizeObserver`, and default styles) via a base class (e.g., `BasePPTComponent`).
 - **Slots:** Use `<slot>` elements to provide attachment points for nested components (e.g., titles, body text, panels).
+
+### 6. Composer Compatibility
+- **Non-Destructive Rendering:** Components MUST protect their `attributeChangedCallback` and `slotchange` handlers to prevent destructive Shadow DOM recreation. If a component resets its entire innerHTML every time an attribute changes, it acts as a "kill switch" for any programmatically injected child slots and event listeners inside the Component Composer. Use an `_isRendered` flag to ensure the core Shadow DOM structure is built only once in `connectedCallback`.
+- **Metadata:** Define `pptMetadata` as a static getter to expose customizable properties (e.g., colors, enums, booleans) to the Component Composer's Properties Panel. Specify property `type`, `options`, `default`, and `description`.

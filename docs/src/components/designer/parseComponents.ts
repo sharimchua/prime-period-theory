@@ -7,11 +7,19 @@ export interface ComponentMetadata {
   default?: any;
 }
 
+export interface ComponentDef {
+  displayName: string;
+  familyColor: string;
+  acceptsChildren: string[];
+  canNestIn: string[];
+}
+
 export interface ComponentMeta {
   tagName: string;
   className: string;
   attributes: string[];
   metadata: Record<string, ComponentMetadata>;
+  componentDef: ComponentDef;
 }
 
 export function getPPTComponents(): ComponentMeta[] {
@@ -26,9 +34,10 @@ export function getPPTComponents(): ComponentMeta[] {
 
   // Parse BasePPTComponent first to inherit metadata
   let baseMetadata: Record<string, ComponentMetadata> = {};
+  let baseContent = '';
   const baseContentPath = path.join(srcDir, 'BasePPTComponent.ts');
   if (fs.existsSync(baseContentPath)) {
-    const baseContent = fs.readFileSync(baseContentPath, 'utf-8');
+    baseContent = fs.readFileSync(baseContentPath, 'utf-8');
     const metaMatch = baseContent.match(/pptMetadata[^{]*{.*?return\s*({[\s\S]*?})\s*;\s*}/s);
     if (metaMatch) {
       try {
@@ -66,12 +75,32 @@ export function getPPTComponents(): ComponentMeta[] {
     const className = defineMatch[2];
 
     // Extract attributes
-    let attributes: string[] = ['interactive', 'resizable', 'min-width', 'min-height'];
+    let attributes: string[] = [];
+    // Always include attributes from BasePPTComponent (already parsed but we'll extract them similarly, or just merge them)
     const attrMatch = content.match(/observedAttributes[^{]*{\s*return\s*\[(.*?)\];/s);
     if (attrMatch) {
       const attrStr = attrMatch[1];
       const extracted = [...attrStr.matchAll(/['"]([^'"]+)['"]/g)].map(m => m[1]);
       attributes = [...new Set([...attributes, ...extracted])];
+    }
+    
+    // Merge base attributes
+    if (baseContent && !file.includes('BasePPTComponent')) {
+        const baseAttrMatch = baseContent.match(/observedAttributes[^{]*{\s*return\s*\[(.*?)\];/s);
+        if (baseAttrMatch) {
+            const attrStr = baseAttrMatch[1];
+            const extracted = [...attrStr.matchAll(/['"]([^'"]+)['"]/g)].map(m => m[1]);
+            attributes = [...new Set([...attributes, ...extracted])];
+        }
+    }
+    
+    // Merge mixin attributes
+    for (const mixin in mixinMetadata) {
+      if (content.includes(mixin)) {
+         // Assuming mixins have their own observedAttributes but we can just derive it from their metadata keys
+         const mixinKeys = Object.keys(mixinMetadata[mixin]);
+         attributes = [...new Set([...attributes, ...mixinKeys])];
+      }
     }
 
     // Extract pptMetadata
@@ -95,7 +124,20 @@ export function getPPTComponents(): ComponentMeta[] {
       }
     }
 
-    components.push({ tagName, className, attributes, metadata });
+    let componentDef: ComponentDef = {
+      displayName: className,
+      familyColor: '#888888',
+      acceptsChildren: ['*'],
+      canNestIn: ['*']
+    };
+    const defMatch = content.match(/componentDef[^{]*{.*?return\s*({[\s\S]*?})\s*;\s*}/s);
+    if (defMatch) {
+      try {
+        componentDef = { ...componentDef, ...new Function(`return ${defMatch[1]}`)() };
+      } catch (e) {}
+    }
+
+    components.push({ tagName, className, attributes, metadata, componentDef });
   }
 
   return components;

@@ -2,6 +2,15 @@ import { BasePPTComponent } from './BasePPTComponent.js';
 import { WithInteractive } from './features/WithInteractive.js';
 
 export class PeriodComponent extends WithInteractive(BasePPTComponent) {
+  static override get componentDef() {
+    return {
+      displayName: 'Period',
+      familyColor: '#9b59b6',
+      acceptsChildren: ['ppt-period-step-circle'],
+      canNestIn: ['ppt-container', 'ppt-panel']
+    };
+  }
+
   static override get observedAttributes() {
     return [...super.observedAttributes, 'shape', 'starting-angle'];
   }
@@ -9,8 +18,8 @@ export class PeriodComponent extends WithInteractive(BasePPTComponent) {
   static override get pptMetadata() {
     return {
       ...super.pptMetadata,
-      shape: { type: 'enum', options: ['circle', 'line-horizontal', 'line-vertical'], default: 'circle' },
-      'starting-angle': { type: 'number', default: -90 }
+      shape: { type: 'enum', options: ['circle', 'line-horizontal', 'line-vertical'], default: 'circle', description: 'The visual rendering format of the period wrapper.' },
+      'starting-angle': { type: 'number', default: -90, description: 'Angle (in degrees) where the first step is placed on a circular period. -90 is 12 o\'clock.' }
     };
   }
 
@@ -31,10 +40,13 @@ export class PeriodComponent extends WithInteractive(BasePPTComponent) {
     this.setAttribute('starting-angle', value.toString());
   }
 
+  private _isRendered = false;
+
   override attributeChangedCallback(name: string, _oldValue: string, _newValue: string) {
     super.attributeChangedCallback(name, _oldValue, _newValue);
     if (name === 'shape' || name === 'starting-angle') {
-      this.render();
+      // Don't call render() here, it destroys the DOM and existing slots
+      // The CSS handles the visual changes automatically via :host attributes
       this.layoutSteps();
     }
   }
@@ -83,7 +95,8 @@ export class PeriodComponent extends WithInteractive(BasePPTComponent) {
   }
 
   private render() {
-    if (!this.shadowRoot) return;
+    if (!this.shadowRoot || this._isRendered) return;
+    this._isRendered = true;
 
     this.shadowRoot.innerHTML = `
       <style>
@@ -170,6 +183,8 @@ export class PeriodComponent extends WithInteractive(BasePPTComponent) {
     const slot = this.shadowRoot.querySelector('slot[name="step"]') as HTMLSlotElement;
     if (slot) {
       slot.addEventListener('slotchange', () => this.layoutSteps());
+      // Trigger layout immediately for programmatically added children where slotchange may not fire
+      requestAnimationFrame(() => this.layoutSteps());
     }
   }
 }

@@ -2,9 +2,10 @@
 interface Props {
   title: string;
   maxWidth?: string;
+  hideHeader?: boolean;
 }
 
-const { title, maxWidth = '800px' } = Astro.props;
+const { title, maxWidth = '800px', hideHeader = false } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '') + '/';
 ---
 
@@ -19,19 +20,21 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '') + '/';
     <title>{title} | Prime Period Theory</title>
   </head>
   <body>
-    <header>
-      <div class="logo-container">
-        <a href={base}>
-          <img src={`${base}logo.svg`} alt="Prime Period Theory Logo" class="logo" />
-        </a>
-        <a href={base} class="site-title">Prime Period Theory</a>
-      </div>
-      <nav>
-        <a href={`${base}topics`}>Topics</a>
-        <a href={`${base}components`}>Components</a>
-        <a href={`${base}reference`}>Reference</a>
-      </nav>
-    </header>
+    {!hideHeader && (
+      <header>
+        <div class="logo-container">
+          <a href={base}>
+            <img src={`${base}logo.svg`} alt="Prime Period Theory Logo" class="logo" />
+          </a>
+          <a href={base} class="site-title">Prime Period Theory</a>
+        </div>
+        <nav>
+          <a href={`${base}topics`}>Topics</a>
+          <a href={`${base}components`}>Components</a>
+          <a href={`${base}reference`}>Reference</a>
+        </nav>
+      </header>
+    )}
     <main style={`--main-max-width: ${maxWidth};`}>
       <slot />
     </main>

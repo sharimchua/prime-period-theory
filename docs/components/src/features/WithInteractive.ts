@@ -16,7 +16,7 @@ export function WithInteractive<TBase extends Constructor<HTMLElement>>(Base: TB
     static get pptMetadata() {
       return {
         ...((Base as any).pptMetadata || {}),
-        interactive: { type: 'boolean', default: true }
+        interactive: { type: 'boolean', default: true, description: 'Controls whether the component responds to mouse/touch events. Disabling this applies 60% opacity and pointer-events: none.' }
       };
     }
 

@@ -1,10 +1,22 @@
 export class BasePPTComponent extends HTMLElement {
   static get observedAttributes(): string[] {
-    return [];
+    return ['min-width', 'min-height'];
   }
 
   static get pptMetadata(): Record<string, any> {
-    return {};
+    return {
+      'min-width': { type: 'number', default: 100, description: 'Minimum width before the component signals it is compromised visually.' },
+      'min-height': { type: 'number', default: 100, description: 'Minimum height before the component signals it is compromised visually.' }
+    };
+  }
+
+  static get componentDef(): Record<string, any> {
+    return {
+      displayName: 'Base Component',
+      familyColor: '#888888',
+      acceptsChildren: ['*'],
+      canNestIn: ['*']
+    };
   }
 
   constructor() {

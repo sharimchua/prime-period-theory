@@ -2,28 +2,36 @@
 import { getPPTComponents } from './parseComponents.js';
 
 const components = getPPTComponents();
+const base = import.meta.env.BASE_URL.replace(/\/$/, '') + '/';
 ---
 
 <div class="designer-app" id="designer-app" data-split="50">
   
   <!-- Header / Toolbar -->
   <div class="designer-toolbar">
-    <div class="toolbar-left">
-      <button id="btn-toggle-library" class="toolbar-btn">
-        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
-        Library
-      </button>
+    <div class="toolbar-left" style="display: flex; align-items: center; gap: 8px; padding-left: 8px;">
+      <a href={base} style="display: flex; align-items: center; text-decoration: none; padding-right: 4px;" title="Back to Prime Period Theory">
+        <img src={`${base}logo.svg`} alt="Prime Period Theory" style="height: 24px; width: auto;" />
+      </a>
+      <span style="font-weight: 600; font-size: 15px; color: #fff;">Component Composer</span>
     </div>
     <div class="toolbar-center">
       <span class="toolbar-label">Layout Split:</span>
-      <button class="toolbar-btn layout-btn active" data-ratio="75" title="75 / 25">
+      <button class="toolbar-btn layout-btn active" data-ratio="75" title="Designer Focused">
         <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><rect x="2" y="4" width="14" height="16" rx="2"></rect><rect x="18" y="4" width="4" height="16" rx="1"></rect></svg>
       </button>
-      <button class="toolbar-btn layout-btn" data-ratio="50" title="50 / 50">
+      <button class="toolbar-btn layout-btn" data-ratio="50" title="Split 50/50">
         <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><rect x="2" y="4" width="9" height="16" rx="2"></rect><rect x="13" y="4" width="9" height="16" rx="2"></rect></svg>
       </button>
-      <button class="toolbar-btn layout-btn" data-ratio="25" title="25 / 75">
+      <button class="toolbar-btn layout-btn" data-ratio="25" title="Preview Focused">
         <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><rect x="2" y="4" width="4" height="16" rx="1"></rect><rect x="8" y="4" width="14" height="16" rx="2"></rect></svg>
+      </button>
+      <button class="toolbar-btn layout-btn" data-ratio="0" title="Preview Only">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><rect x="2" y="4" width="20" height="16" rx="2"></rect></svg>
+      </button>
+      <div style="width: 1px; height: 20px; background: #555; margin: 0 8px;"></div>
+      <button id="btn-load-payload" class="toolbar-btn" style="padding: 2px 12px; font-weight: 500;">
+        Load Payload
       </button>
     </div>
   </div>
@@ -33,7 +41,13 @@ const components = getPPTComponents();
     <!-- Left Pane -->
     <div class="left-pane">
       <div class="pane pane-tree">
-        <div class="pane-header">Component Tree</div>
+        <div class="pane-header" style="display: flex; justify-content: space-between; align-items: center;">
+          <span>Component Tree</span>
+          <button id="btn-toggle-library" class="toolbar-btn" style="padding: 2px 8px; font-size: 11px; height: 22px;">
+            <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" stroke-width="2" fill="none" style="margin-right: 4px;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
+            Library
+          </button>
+        </div>
         <div class="pane-content tree-view" id="dom-tree">
           <!-- Tree populated dynamically -->
         </div>
@@ -51,19 +65,31 @@ const components = getPPTComponents();
       <div class="pane-header">Preview</div>
       <div class="canvas-wrapper" id="canvas-wrapper">
         <div class="canvas" id="canvas">
-          <ppt-period id="demo-period" shape="circle" interactive="true" min-width="200" min-height="200" style="width: 300px; height: 300px; margin: 0 auto;">
-            <ppt-period-step-circle slot="step">A</ppt-period-step-circle>
-            <ppt-period-step-circle slot="step">B</ppt-period-step-circle>
-            <ppt-period-step-circle slot="step">C</ppt-period-step-circle>
-          </ppt-period>
+          <ppt-container id="demo-container" resizable="true" style="width: 400px; height: 400px;">
+            <ppt-period id="demo-period" shape="circle" interactive="true" min-width="200" min-height="200">
+              <ppt-period-step-circle slot="step">A</ppt-period-step-circle>
+              <ppt-period-step-circle slot="step">B</ppt-period-step-circle>
+              <ppt-period-step-circle slot="step">C</ppt-period-step-circle>
+            </ppt-period>
+          </ppt-container>
         </div>
       </div>
     </div>
   </div>
 
+  <div class="resizer-horizontal" id="resizer-bottom"></div>
   <!-- Bottom Pane (Code) -->
-  <footer class="pane pane-bottom">
-    <div class="pane-header">Source Code (HTML)</div>
+  <footer class="pane pane-bottom" id="pane-bottom">
+    <div class="pane-header" style="display: flex; justify-content: space-between; align-items: center; cursor: pointer; user-select: none;" id="btn-toggle-code">
+      <span style="display: flex; align-items: center; gap: 6px;">
+        <svg id="icon-collapse-code" viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" style="transition: transform 0.2s;"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        Source Code
+      </span>
+      <div style="display: flex; gap: 8px;" onclick="event.stopPropagation()">
+        <button id="btn-copy-html" class="toolbar-btn" style="padding: 2px 8px; font-size: 11px; height: 22px;">Copy HTML</button>
+        <button id="btn-copy-payload" class="toolbar-btn" style="padding: 2px 8px; font-size: 11px; height: 22px;">Copy Payload</button>
+      </div>
+    </div>
     <div class="pane-content">
       <pre><code id="source-code"></code></pre>
     </div>
@@ -78,15 +104,49 @@ const components = getPPTComponents();
     <div class="drawer-content">
       <p class="drawer-help">Drag components into the Canvas or DOM Tree.</p>
       <ul class="component-library" id="library-list">
-        {components.map(comp => (
-          <li class="library-item" draggable="true" data-tag={comp.tagName} data-attributes={JSON.stringify(comp.attributes)} data-metadata={JSON.stringify(comp.metadata)}>
-            <span class="tag-name">&lt;{comp.tagName}&gt;</span>
-          </li>
-        ))}
+        {components.map(comp => {
+          const getConstraintBg = (constraints: string[]) => {
+            if (!constraints || constraints.length === 0) return 'dashed';
+            if (constraints.includes('*')) return '#888';
+            const colors = constraints.map((tag: string) => {
+              const c = components.find(x => x.tagName === tag);
+              return c?.componentDef?.familyColor || '#888';
+            });
+            if (colors.length === 1) return colors[0];
+            return `linear-gradient(to bottom, ${colors.join(', ')})`;
+          };
+          const parentBg = getConstraintBg(comp.componentDef?.canNestIn || []);
+          const childBg = getConstraintBg(comp.componentDef?.acceptsChildren || []);
+          const isContainer = comp.tagName === 'ppt-container';
+
+          return (
+            <li class="library-item" draggable="true" 
+                style={isContainer ? 'display: none;' : ''}
+                data-tag={comp.tagName} 
+                data-attributes={JSON.stringify(comp.attributes || [])}
+                data-metadata={JSON.stringify(comp.metadata || {})}
+                data-component-def={JSON.stringify(comp.componentDef || {})}>
+              <div class={`constraint-left ${parentBg === 'dashed' ? 'constraint-dashed' : ''}`} style={parentBg !== 'dashed' ? `background: ${parentBg};` : ''} title={`Nests in: ${comp.componentDef?.canNestIn?.join(', ')}`}></div>
+              
+              <div class="library-item-content" style="display: flex; align-items: center; justify-content: space-between;">
+                <div style="display: flex; align-items: center;">
+                  <span class="color-swatch" style={`background-color: ${comp.componentDef?.familyColor || '#888'}; width: 10px; height: 10px; display: inline-block; margin-right: 8px; border-radius: 2px;`}></span>
+                  <span class="display-name" style="font-weight: bold; color: #fff;">{comp.componentDef?.displayName || comp.tagName}</span>
+                </div>
+              </div>
+              
+              <div class={`constraint-right ${childBg === 'dashed' ? 'constraint-dashed' : ''}`} style={childBg !== 'dashed' ? `background: ${childBg};` : ''} title={`Accepts: ${comp.componentDef?.acceptsChildren?.join(', ')}`}></div>
+            </li>
+          );
+        })}
       </ul>
     </div>
   </div>
   <div class="drawer-overlay" id="drawer-overlay"></div>
+  
+  <div class="context-menu" id="add-child-menu">
+    <!-- Populated dynamically -->
+  </div>
 </div>
 
 <script>
@@ -102,6 +162,97 @@ const components = getPPTComponents();
   
   // Tree expanded state tracking
   const expandedNodes = new Set<string>();
+
+  // Constraint Helpers
+  function getComponentDef(tagName: string) {
+    if (!tagName) return null;
+    const libItem = document.querySelector(`.library-item[data-tag="${tagName.toLowerCase()}"]`);
+    if (libItem) {
+      const defStr = libItem.getAttribute('data-component-def');
+      if (defStr) {
+         try { return JSON.parse(defStr); } catch(e){}
+      }
+    }
+    return null;
+  }
+  
+  function isValidDrop(parentTag: string, childTag: string) {
+    const parentDef = getComponentDef(parentTag);
+    const childDef = getComponentDef(childTag);
+    
+    if (parentDef) {
+       if (parentDef.acceptsChildren.length === 0) return false;
+       if (!parentDef.acceptsChildren.includes('*') && !parentDef.acceptsChildren.includes(childTag)) return false;
+    }
+    if (childDef) {
+       if (childDef.canNestIn.length === 0) return false;
+       if (!childDef.canNestIn.includes('*') && !childDef.canNestIn.includes(parentTag)) return false;
+    }
+    return true;
+  }
+
+  // Context Menu
+  const contextMenu = document.getElementById('add-child-menu');
+
+  document.addEventListener('click', (e) => {
+    if (contextMenu && !contextMenu.contains(e.target as Node)) {
+      contextMenu.classList.remove('show');
+    }
+  });
+
+  function showContextMenu(x: number, y: number, targetNode: HTMLElement) {
+    if (!contextMenu || !targetNode) return;
+    contextMenu.innerHTML = '';
+    
+    const parentTag = targetNode.tagName.toLowerCase();
+    const validChildren: any[] = [];
+    
+    libraryItems.forEach(item => {
+      const childTag = item.getAttribute('data-tag');
+      if (childTag === 'ppt-container') return;
+      if (childTag && isValidDrop(parentTag, childTag)) {
+        const defStr = item.getAttribute('data-component-def');
+        let displayName = childTag;
+        let color = '#888';
+        if (defStr) {
+           try { 
+             const def = JSON.parse(defStr);
+             displayName = def.displayName || childTag;
+             color = def.familyColor || color;
+           } catch(e){}
+        }
+        validChildren.push({ tag: childTag, displayName, color });
+      }
+    });
+    
+    if (validChildren.length === 0) {
+       contextMenu.innerHTML = `<div class="context-menu-empty">No valid children</div>`;
+    } else {
+       validChildren.forEach(child => {
+          const div = document.createElement('div');
+          div.className = 'context-menu-item';
+          div.innerHTML = `<span class="color-swatch" style="background-color: ${child.color}; width: 10px; height: 10px; display: inline-block; border-radius: 2px;"></span>${child.displayName}`;
+          div.addEventListener('click', () => {
+             const newEl = document.createElement(child.tag);
+             if (child.tag === 'ppt-period-step-circle' && targetNode.tagName.toLowerCase().includes('ppt-')) {
+               newEl.setAttribute('slot', 'step');
+             }
+             targetNode.appendChild(newEl);
+             // Auto-expand the parent we dropped into
+             const pathStr = targetNode.getAttribute('data-path') || '[]';
+             expandedNodes.add(pathStr);
+             selectElement(newEl);
+             contextMenu.classList.remove('show');
+          });
+          contextMenu.appendChild(div);
+       });
+    }
+    
+    // Position menu
+    contextMenu.style.left = `${x}px`;
+    contextMenu.style.top = `${y}px`;
+    contextMenu.classList.add('show');
+  }
 
   // Layout Controls
   const designerApp = document.getElementById('designer-app');
@@ -147,12 +298,365 @@ const components = getPPTComponents();
   btnCloseLibrary?.addEventListener('click', () => toggleDrawer(false));
   drawerOverlay?.addEventListener('click', () => toggleDrawer(false));
 
+  // Bottom Pane Controls
+  const paneBottom = document.getElementById('pane-bottom');
+  const resizerBottom = document.getElementById('resizer-bottom');
+  const btnToggleCode = document.getElementById('btn-toggle-code');
+  const iconCollapseCode = document.getElementById('icon-collapse-code');
+  let isResizingBottom = false;
+
+  btnToggleCode?.addEventListener('click', () => {
+    paneBottom?.classList.toggle('collapsed');
+    if (paneBottom?.classList.contains('collapsed')) {
+      if (iconCollapseCode) iconCollapseCode.style.transform = 'rotate(-90deg)';
+    } else {
+      if (iconCollapseCode) iconCollapseCode.style.transform = 'rotate(0deg)';
+    }
+  });
+
+  resizerBottom?.addEventListener('mousedown', (e) => {
+    e.preventDefault();
+    isResizingBottom = true;
+    document.body.style.cursor = 'row-resize';
+    resizerBottom.classList.add('active');
+  });
+
+  document.addEventListener('mousemove', (e) => {
+    if (!isResizingBottom || !paneBottom) return;
+    paneBottom.classList.remove('collapsed');
+    if (iconCollapseCode) iconCollapseCode.style.transform = 'rotate(0deg)';
+    const offsetBottom = document.body.offsetHeight - e.clientY;
+    paneBottom.style.height = `${Math.max(40, offsetBottom)}px`;
+  });
+
+  document.addEventListener('mouseup', () => {
+    isResizingBottom = false;
+    document.body.style.cursor = '';
+    resizerBottom?.classList.remove('active');
+  });
+
+  // Source Code Formatting
+  function formatHTML(htmlStr: string) {
+    let formatted = '';
+    let indent = 0;
+    const tab = '  ';
+    htmlStr = htmlStr.replace(/\n/g, '').replace(/>\s*</g, '><');
+    htmlStr.split(/(<\/?[^>]+>)/g).forEach(node => {
+      if (!node.trim()) return;
+      if (node.match(/^\s*<\//)) {
+        indent--;
+        formatted += tab.repeat(Math.max(0, indent)) + node + '\n';
+      } else if (node.match(/^\s*<[^/]/)) {
+        formatted += tab.repeat(Math.max(0, indent)) + node + '\n';
+        if (!node.match(/\/>$/) && !node.match(new RegExp('</.*>'))) indent++;
+      } else {
+        formatted += tab.repeat(Math.max(0, indent)) + node.trim() + '\n';
+      }
+    });
+    return formatted.trim();
+  }
+
+  function highlightHTML(htmlStr: string) {
+    return htmlStr
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/([a-zA-Z0-9-]+)(=)("[^"]*")/g, '<span class="hl-attr">$1</span>$2<span class="hl-val">$3</span>')
+      .replace(/(&lt;\/?)([a-zA-Z0-9-]+)/g, '$1<span class="hl-tag">$2</span>')
+      .replace(/(&lt;!--[\\s\\S]*?--&gt;)/g, '<span class="hl-comment">$1</span>');
+  }
+
+  function generateCleanHTML(node: Element): string {
+    let html = '';
+    Array.from(node.children).forEach(child => {
+      let tag = child.tagName.toLowerCase();
+      if (!tag.startsWith('ppt-')) return;
+      
+      let attrStr = '';
+      const libItem = document.querySelector(`.library-item[data-tag="${tag}"]`);
+      let meta: Record<string, any> = {};
+      if (libItem) {
+        meta = JSON.parse(libItem.getAttribute('data-metadata') || '{}');
+      }
+      
+      Array.from(child.attributes).forEach(attr => {
+         const name = attr.name;
+         if (['class', 'draggable'].includes(name) || name.startsWith('data-astro-cid') || name === 'id') return;
+         
+         let val = attr.value;
+         if (name === 'style') {
+             let elStyle = (child as HTMLElement).style;
+             let styleStr = '';
+             if (elStyle.width) styleStr += `width: ${elStyle.width}; `;
+             if (elStyle.height) styleStr += `height: ${elStyle.height}; `;
+             if (elStyle.flex) styleStr += `flex: ${elStyle.flex}; `;
+             if (!styleStr.trim()) return;
+             val = styleStr.trim();
+         }
+         
+         const m = meta[name];
+         if (m && m.default !== undefined) {
+            if (String(m.default) === val || (m.type === 'boolean' && val === 'true' && m.default === true)) return;
+         }
+         attrStr += ` ${name}="${val}"`;
+      });
+      
+      let inner = '';
+      if (child.children.length > 0) {
+          inner = generateCleanHTML(child);
+      } else if (child.textContent && child.textContent.trim()) {
+          inner = child.textContent.trim();
+      }
+      
+      html += `<${tag}${attrStr}>${inner}</${tag}>`;
+    });
+    return html;
+  }
+
   // Sync Code
   function syncCode() {
     if (!canvas || !sourceCode) return;
-    let html = canvas.innerHTML.replace(/></g, '>\n  <').trim();
-    sourceCode.textContent = html;
+    let cleanHTML = generateCleanHTML(canvas);
+    let formatted = formatHTML(cleanHTML);
+    sourceCode.innerHTML = highlightHTML(formatted);
   }
+
+  // Copy Handlers
+  document.getElementById('btn-copy-html')?.addEventListener('click', () => {
+    if (canvas) {
+      navigator.clipboard.writeText(formatHTML(generateCleanHTML(canvas)));
+      alert('HTML copied to clipboard!');
+    }
+  });
+
+  function serializePayload(rootEl: HTMLElement): string {
+    let componentsUsed = new Set<string>();
+    let idCounter = 0;
+    
+    function gatherTags(node: Element) {
+      if (node.tagName && node.tagName.toLowerCase().startsWith('ppt-')) {
+        componentsUsed.add(node.tagName.toLowerCase());
+      }
+      for (let child of Array.from(node.children)) gatherTags(child);
+    }
+    gatherTags(rootEl);
+    
+    let tagToChar: Record<string, string> = {};
+    let charToTag: Record<string, string> = {};
+    let charCode = 65; // 'A'
+    Array.from(componentsUsed).sort().forEach(tag => {
+      let char = String.fromCharCode(charCode++);
+      tagToChar[tag] = char;
+      charToTag[char] = tag;
+    });
+    
+    let headerStr = Object.entries(charToTag).map(([char, tag]) => `${char}:${tag}`).join(',');
+    
+    let attrMap: string[] = [];
+    let instanceIndex = 0;
+    
+    function buildNode(node: Element): string {
+      if (node.tagName && node.tagName.toLowerCase().startsWith('ppt-')) {
+        let tag = node.tagName.toLowerCase();
+        let char = tagToChar[tag];
+        
+        let overrides: Record<string, string> = {};
+        const libItem = document.querySelector(`.library-item[data-tag="${tag}"]`);
+        let meta: Record<string, any> = {};
+        if (libItem) {
+          meta = JSON.parse(libItem.getAttribute('data-metadata') || '{}');
+        }
+        
+        Array.from(node.attributes).forEach(attr => {
+           if (['id', 'class', 'draggable'].includes(attr.name)) return;
+           if (attr.name === 'style') {
+               let elStyle = (node as HTMLElement).style;
+               let styleStr = '';
+               if (elStyle.width) styleStr += `width: ${elStyle.width}; `;
+               if (elStyle.height) styleStr += `height: ${elStyle.height}; `;
+               if (elStyle.flex) styleStr += `flex: ${elStyle.flex}; `;
+               if (styleStr.trim()) overrides['style'] = styleStr.trim();
+               return;
+           }
+           const val = attr.value;
+           const m = meta[attr.name];
+           if (m && m.default !== undefined) {
+              if (String(m.default) === val || (m.type === 'boolean' && val === 'true' && m.default === true)) return;
+           }
+           overrides[attr.name] = val;
+        });
+        
+        if (node.textContent && node.textContent.trim() && node.children.length === 0) {
+           overrides['textContent'] = node.textContent.trim();
+        }
+        
+        if (Object.keys(overrides).length > 0) {
+           let attrStr = Object.entries(overrides).map(([k,v]) => `${k}:${encodeURIComponent(v)}`).join(',');
+           attrMap.push(`${instanceIndex}:{${attrStr}}`);
+        }
+        
+        instanceIndex++;
+        
+        let childrenStr = '';
+        if (node.children.length > 0) {
+           let childParts: string[] = [];
+           for (let child of Array.from(node.children)) {
+              let childStr = buildNode(child);
+              if (childStr) childParts.push(childStr);
+           }
+           if (childParts.length > 0) childrenStr = `[${childParts.join(',')}]`;
+        }
+        return `${char}${childrenStr}`;
+      }
+      return '';
+    }
+    
+    let structureStr = Array.from(rootEl.children).map(c => buildNode(c)).filter(Boolean).join(',');
+    let attrStr = attrMap.join(',');
+    
+    return `${headerStr}|${attrStr}|${structureStr}`;
+  }
+
+  function deserializePayload(rawPayload: string, targetEl: HTMLElement) {
+    if (!rawPayload) return;
+    const parts = rawPayload.split('|');
+    if (parts.length !== 3) return;
+    const [headerStr, attrStr, structureStr] = parts;
+    
+    const charToTag: Record<string, string> = {};
+    headerStr.split(',').forEach(part => {
+       const [char, tag] = part.split(':');
+       if (char && tag) charToTag[char] = tag;
+    });
+    
+    const attrOverrides: Record<string, Record<string, string>> = {};
+    if (attrStr) {
+        const regex = /(\d+):{([^}]+)}/g;
+        let match;
+        while ((match = regex.exec(attrStr)) !== null) {
+            const idx = match[1];
+            const propsStr = match[2];
+            const props: Record<string, string> = {};
+            propsStr.split(',').forEach(p => {
+                const [k, v] = p.split(':');
+                props[k] = decodeURIComponent(v);
+            });
+            attrOverrides[idx] = props;
+        }
+    }
+    
+    let currentIdx = 0;
+    
+    function parseStructure(str: string) {
+       let currentContainer: any = { children: [] };
+       let stack: any[] = [currentContainer];
+       let i = 0;
+       
+       while (i < str.length) {
+          const char = str[i];
+          if (charToTag[char]) {
+             let node = { tag: charToTag[char], idx: currentIdx++, children: [] };
+             stack[stack.length - 1].children.push(node);
+             if (i + 1 < str.length && str[i+1] === '[') {
+                 stack.push(node);
+                 i++;
+             }
+          } else if (char === ']') {
+             stack.pop();
+          }
+          i++;
+       }
+       return currentContainer.children;
+    }
+    
+    function buildDOM(nodes: any[]) {
+       let frag = document.createDocumentFragment();
+       nodes.forEach(n => {
+           let el = document.createElement(n.tag);
+           if (attrOverrides[n.idx]) {
+               for (let [k, v] of Object.entries(attrOverrides[n.idx])) {
+                   if (k === 'textContent') el.textContent = v as string;
+                   else el.setAttribute(k, v as string);
+               }
+           }
+           if (n.children.length > 0) {
+               el.appendChild(buildDOM(n.children));
+           }
+           frag.appendChild(el);
+       });
+       return frag;
+    }
+    
+    const nodes = parseStructure(structureStr);
+    targetEl.innerHTML = '';
+    targetEl.appendChild(buildDOM(nodes));
+  }
+
+  // Compression Utilities
+  async function compressPayload(text: string): Promise<string> {
+    if (typeof CompressionStream === 'undefined') return 'raw:' + text; // Fallback
+    const stream = new Blob([text]).stream().pipeThrough(new CompressionStream('deflate'));
+    const compressedResponse = await new Response(stream).arrayBuffer();
+    const uint8Array = new Uint8Array(compressedResponse);
+    // Convert to base64
+    let binary = '';
+    for (let i = 0; i < uint8Array.byteLength; i++) {
+      binary += String.fromCharCode(uint8Array[i]);
+    }
+    return 'gz:' + btoa(binary);
+  }
+
+  async function decompressPayload(payload: string): Promise<string> {
+    if (payload.startsWith('raw:')) return payload.substring(4);
+    if (!payload.startsWith('gz:')) {
+       // Auto-detect: if it has pipes, it's raw
+       if (payload.includes('|')) return payload;
+       return payload; // Unknown format
+    }
+    
+    const base64 = payload.substring(3);
+    const binaryStr = atob(base64);
+    const uint8Array = new Uint8Array(binaryStr.length);
+    for (let i = 0; i < binaryStr.length; i++) {
+       uint8Array[i] = binaryStr.charCodeAt(i);
+    }
+    
+    if (typeof DecompressionStream === 'undefined') throw new Error("DecompressionStream not supported");
+    const stream = new Blob([uint8Array]).stream().pipeThrough(new DecompressionStream('deflate'));
+    return await new Response(stream).text();
+  }
+
+  document.getElementById('btn-copy-payload')?.addEventListener('click', async () => {
+    if (canvas) {
+      const rawPayload = serializePayload(canvas);
+      const compressedPayload = await compressPayload(rawPayload);
+      navigator.clipboard.writeText(compressedPayload);
+      alert('Composition payload copied to clipboard!');
+    }
+  });
+
+  document.getElementById('btn-load-payload')?.addEventListener('click', () => {
+    const payload = prompt("Paste your Composition Payload:");
+    if (payload && payload.trim()) {
+      const url = new URL(window.location.href);
+      url.searchParams.set('payload', payload.trim());
+      window.location.href = url.toString();
+    }
+  });
+  
+  // On load, check for payload
+  window.addEventListener('DOMContentLoaded', async () => {
+    const params = new URLSearchParams(window.location.search);
+    let payload = params.get('payload') || params.get('slug'); // Fallback to slug for backward compatibility
+    if (payload && canvas) {
+      try {
+        const rawPayload = await decompressPayload(payload);
+        deserializePayload(rawPayload, canvas);
+      } catch (e) {
+        console.error("Failed to decompress or parse payload", e);
+      }
+    }
+  });
 
   // MutationObserver
   if (canvas) {
@@ -215,25 +719,40 @@ const components = getPPTComponents();
     const tagName = el.tagName.toLowerCase();
     let allowedAttrs: string[] = [];
     let metadata: Record<string, any> = {};
+    let componentDef: Record<string, any> = {};
     const libItem = document.querySelector(`.library-item[data-tag="${tagName}"]`);
     if (libItem) {
       allowedAttrs = JSON.parse(libItem.getAttribute('data-attributes') || '[]');
       metadata = JSON.parse(libItem.getAttribute('data-metadata') || '{}');
+      componentDef = JSON.parse(libItem.getAttribute('data-component-def') || '{}');
     }
 
     // Filter out standard HTML attributes as requested
     const filteredAttrs = allowedAttrs.filter(a => !['id', 'class', 'style', 'slot'].includes(a));
+    if (metadata['textContent']) {
+      filteredAttrs.push('textContent');
+    }
 
-    let html = `<h3>&lt;${tagName}&gt; Settings</h3><div class="prop-form">`;
+    // Sort textContent to the end for better UX
+    filteredAttrs.sort((a, b) => {
+      if (a === 'textContent') return 1;
+      if (b === 'textContent') return -1;
+      return 0;
+    });
+
+    let html = `<div class="prop-form">`;
     filteredAttrs.forEach(attr => {
-      const val = el.getAttribute(attr);
+      let val = el.getAttribute(attr);
+      if (attr === 'textContent') {
+         val = el.textContent;
+      }
       const meta = metadata[attr] || { type: 'string' };
       
       html += `<div class="prop-group">`;
+      html += `<div class="prop-control-col">`;
       html += `<label>${attr}</label>`;
       
       if (meta.type === 'boolean') {
-        // For boolean, if it's present and not 'false', or if default is true and not explicitly false
         const isChecked = val === 'true' || val === '' || (val === null && meta.default === true);
         html += `<input type="checkbox" data-attr="${attr}" ${isChecked ? 'checked' : ''} />`;
       } else if (meta.type === 'color') {
@@ -246,22 +765,35 @@ const components = getPPTComponents();
           html += `<option value="${opt}" ${isSelected ? 'selected' : ''}>${opt}</option>`;
         });
         html += `</select>`;
+      } else if (attr === 'textContent') {
+        const displayVal = val || (meta.default !== undefined ? meta.default : '');
+        html += `<textarea data-attr="${attr}" rows="3" style="width: 100%; resize: vertical;">${String(displayVal).replace(/</g, '&lt;').replace(/>/g, '&gt;')}</textarea>`;
       } else {
         const displayVal = val || (meta.default !== undefined ? meta.default : '');
         html += `<input type="text" data-attr="${attr}" value="${String(displayVal).replace(/"/g, '&quot;')}" />`;
       }
       
-      html += `</div>`;
+      html += `</div>`; // end prop-control-col
+      
+      html += `<div class="prop-desc-col">`;
+      html += meta.description ? meta.description : '';
+      html += `</div>`; // end prop-desc-col
+      
+      html += `</div>`; // end prop-group
     });
     html += '</div>';
     propertiesPanel.innerHTML = html;
 
-    const inputs = propertiesPanel.querySelectorAll('input, select');
+    const inputs = propertiesPanel.querySelectorAll('input, select, textarea');
     inputs.forEach(input => {
       input.addEventListener('change', (e) => {
-        const target = e.target as HTMLInputElement | HTMLSelectElement;
+        const target = e.target as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
         const attr = target.getAttribute('data-attr');
         if (attr) {
+          if (attr === 'textContent') {
+             el.textContent = target.value;
+             return;
+          }
           if (target.type === 'checkbox') {
             const isChecked = (target as HTMLInputElement).checked;
             el.setAttribute(attr, isChecked ? 'true' : 'false');
@@ -275,10 +807,14 @@ const components = getPPTComponents();
         }
       });
       // Also listen to input for text fields for real-time updates
-      if (input.type === 'text') {
+      if (input.type === 'text' || input.tagName.toLowerCase() === 'textarea') {
         input.addEventListener('input', (e) => {
-          const target = e.target as HTMLInputElement;
+          const target = e.target as HTMLInputElement | HTMLTextAreaElement;
           const attr = target.getAttribute('data-attr');
+          if (attr && attr === 'textContent') {
+             el.textContent = target.value;
+             return;
+          }
           if (attr && target.value) el.setAttribute(attr, target.value);
         });
       }
@@ -301,8 +837,30 @@ const components = getPPTComponents();
         }
       });
       
+      // Right-click Context Menu
+      node.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const pathStr = node.getAttribute('data-path');
+        if (pathStr) {
+          const target = getElementByPath(JSON.parse(pathStr));
+          if (target) {
+            selectElement(target);
+            showContextMenu(e.clientX, e.clientY, target);
+          }
+        }
+      });
+
       // Tree drag and drop to append to node
       node.addEventListener('dragover', (e: any) => {
+        if (!draggedTag) return;
+        const pathStr = node.getAttribute('data-path');
+        const targetParent = pathStr ? getElementByPath(JSON.parse(pathStr)) : null;
+        if (targetParent) {
+           const parentTag = targetParent.tagName.toLowerCase();
+           if (!isValidDrop(parentTag, draggedTag)) return; // Reject drop
+        }
+        
         e.preventDefault();
         e.dataTransfer.dropEffect = 'copy';
         node.classList.add('drag-over');
@@ -319,6 +877,12 @@ const components = getPPTComponents();
         const targetParent = pathStr ? getElementByPath(JSON.parse(pathStr)) : null;
         
         if (targetParent && draggedTag) {
+           const parentTag = targetParent.tagName.toLowerCase();
+           if (!isValidDrop(parentTag, draggedTag)) {
+             alert(`Cannot nest <${draggedTag}> inside <${parentTag}> based on component constraints.`);
+             return;
+           }
+
            const newEl = document.createElement(draggedTag);
            if (draggedTag === 'ppt-period-step-circle' && targetParent.tagName.toLowerCase().includes('ppt-')) {
              newEl.setAttribute('slot', 'step');
@@ -351,6 +915,16 @@ const components = getPPTComponents();
     });
 
     // Attach tree controls listeners
+    domTree.querySelectorAll('.add-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const rect = btn.getBoundingClientRect();
+        if (selectedElement) {
+          showContextMenu(rect.left, rect.bottom + 4, selectedElement);
+        }
+      });
+    });
+
     domTree.querySelectorAll('.up-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -399,39 +973,94 @@ const components = getPPTComponents();
     const hasChildren = children.length > 0;
     
     const pathStr = JSON.stringify(path);
-    const isExpanded = depth === 0 || expandedNodes.has(pathStr) || node === canvas; // Canvas always expanded
+    const tagName = node.tagName.toLowerCase();
+    const isExpanded = depth === 0 || expandedNodes.has(pathStr) || node === canvas || tagName === 'ppt-container';
 
     if (node !== canvas) {
       const isSelected = node === selectedElement;
       
       html += `<div class="tree-node-wrapper">`;
-      html += `<div class="tree-node-row" data-path='${pathStr}'>`;
+      html += `<div class="tree-node-row tree-node-clickable ${isSelected ? 'selected-row' : ''}" data-path='${pathStr}'>`;
       
-      // Indentation spacer block
-      html += `<div class="indent-spacer" style="width: ${depth * 16}px;"></div>`;
+      // Calculate constraint backgrounds for Tree Node
+      const getConstraintBg = (constraints: string[]) => {
+        if (!constraints || constraints.length === 0) return 'dashed';
+        if (constraints.includes('*')) return '#888';
+        const colors = constraints.map((tag: string) => {
+          const libItem = document.querySelector(`.library-item[data-tag="${tag.toLowerCase()}"]`);
+          if (libItem) {
+            const defStr = libItem.getAttribute('data-component-def');
+            if (defStr) {
+               try { return JSON.parse(defStr).familyColor || '#888'; } catch(e){}
+            }
+          }
+          return '#888';
+        });
+        if (colors.length === 1) return colors[0];
+        return `linear-gradient(to bottom, ${colors.join(', ')})`;
+      };
       
-      html += `<div class="tree-node tree-node-clickable ${isSelected ? 'selected' : ''}" data-path='${pathStr}'>`;
+      const libItem = document.querySelector(`.library-item[data-tag="${tagName}"]`);
+      let compDef: any = null;
+      if (libItem) {
+        const defStr = libItem.getAttribute('data-component-def');
+        if (defStr) {
+          try { compDef = JSON.parse(defStr); } catch(e){}
+        }
+      }
       
+      const displayName = compDef?.displayName || `<${tagName}>`;
+      const color = compDef?.familyColor || '#888';
+
+      const parentBg = getConstraintBg(compDef?.canNestIn || []);
+      const childBg = getConstraintBg(compDef?.acceptsChildren || []);
+
+      html += `<div class="tree-node" data-path='${pathStr}'>`;
+      
+      html += `<div class="constraint-left ${parentBg === 'dashed' ? 'constraint-dashed' : ''}" style="${parentBg !== 'dashed' ? `background: ${parentBg};` : ''}"></div>`;
+
       html += `<div class="tree-node-content">
-        ${hasChildren ? 
+        ${hasChildren && tagName !== 'ppt-container' ? 
           `<button class="tree-toggle" data-path='${pathStr}'>${isExpanded ? '▾' : '▸'}</button>` : 
           `<span class="tree-spacer"></span>`
         }
-        <span class="tag-name">&lt;${node.tagName.toLowerCase()}&gt;</span>
-      `;
+        <span class="color-swatch" style="background-color: ${color}; width: 10px; height: 10px; display: inline-block; margin-right: 6px; border-radius: 2px;"></span>
+        <span class="tag-name" title="${tagName}" style="font-weight: bold; color: #fff;">${displayName}</span>`;
+        
+      if (!hasChildren && node.textContent && node.textContent.trim().length > 0) {
+        let text = node.textContent.trim();
+        if (text.length > 15) text = text.substring(0, 15) + '...';
+        html += `<span class="content-preview" style="color: #888; font-style: italic; font-weight: normal; margin-left: 8px;">"${text}"</span>`;
+      }
+      
+      html += `</div>`; // Close tree-node-content
+      html += `<div class="constraint-right ${childBg === 'dashed' ? 'constraint-dashed' : ''}" style="${childBg !== 'dashed' ? `background: ${childBg};` : ''}"></div>`;
+      html += `</div>`; // Close tree-node
       
       if (isSelected) {
          const isFirst = node.previousElementSibling === null;
          const isLast = node.nextElementSibling === null;
+         const disableAdd = compDef?.acceptsChildren?.length === 0;
          
          html += `<div class="tree-controls">
-           <button class="tree-btn up-btn" title="Move Up" ${isFirst ? 'disabled' : ''}>↑</button>
-           <button class="tree-btn down-btn" title="Move Down" ${isLast ? 'disabled' : ''}>↓</button>
-           <button class="tree-btn del-btn" title="Delete">✕</button>
+           <button class="tree-btn add-btn" title="Add Child" ${disableAdd ? 'disabled' : ''}>
+             <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+           </button>
+           <button class="tree-btn up-btn" title="Move Up" ${isFirst ? 'disabled' : ''}>
+             <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="12,6 4,18 20,18"></polygon></svg>
+           </button>
+           <button class="tree-btn down-btn" title="Move Down" ${isLast ? 'disabled' : ''}>
+             <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="12,18 4,6 20,6"></polygon></svg>
+           </button>
+           ${tagName !== 'ppt-container' ? `
+           <button class="tree-btn del-btn" title="Delete">
+             <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"></path><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+           </button>
+           ` : ''}
          </div>`;
       }
       
-      html += `</div></div></div>`;
+      html += `</div>`; // Close tree-node-row
     }
 
     if (node === canvas || (hasChildren && isExpanded)) {
@@ -467,10 +1096,10 @@ const components = getPPTComponents();
 
 <style>
   .designer-app {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
     display: flex;
     flex-direction: column;
-    height: 100%;
-    width: 100%;
     background: #1e1e1e;
     color: #d4d4d4;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -478,9 +1107,13 @@ const components = getPPTComponents();
     --split-left: 50%;
   }
 
+  .designer-app[data-split="0"] { --split-left: 0%; }
   .designer-app[data-split="25"] { --split-left: 25%; }
   .designer-app[data-split="50"] { --split-left: 50%; }
   .designer-app[data-split="75"] { --split-left: 75%; }
+
+  .designer-app[data-split="0"] .designer-grid { grid-template-columns: 1fr; }
+  .designer-app[data-split="0"] .left-pane { display: none; }
 
   /* Toolbar */
   .designer-toolbar {
@@ -608,14 +1241,104 @@ const components = getPPTComponents();
     font-family: monospace;
     font-size: 13px;
     color: #d4d4d4;
-    padding: 10px;
+    padding: 10px 14px;
     margin-bottom: 8px;
     cursor: grab;
+    position: relative;
+    overflow: hidden;
   }
   .library-item:active { cursor: grabbing; }
   .library-item:hover { background: #3a3a3a; }
 
 
+
+  /* Canvas */
+  .canvas-wrapper {
+    flex: 1; display: flex; align-items: center; justify-content: center;
+    overflow: auto; padding: 2rem;
+    background-color: #fff;
+  }
+  .canvas {
+    width: 100%; min-height: 500px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; color: #000;
+  }
+
+  /* Source Code */
+  .resizer-horizontal {
+    height: 4px;
+    background: #333;
+    cursor: row-resize;
+    flex-shrink: 0;
+    transition: background 0.2s;
+  }
+  .resizer-horizontal:hover, .resizer-horizontal.active {
+    background: #007fd4;
+  }
+
+  .pane-bottom { height: 200px; flex-shrink: 0; border-top: 1px solid #333; position: relative; }
+  .pane-bottom.collapsed { height: 39px !important; }
+  .pane-bottom.collapsed .pane-content { display: none; }
+  .pane-bottom pre { margin: 0; font-family: monospace; font-size: 13px; color: #d4d4d4; white-space: pre-wrap; }
+
+</style>
+<style is:global>
+  /* Syntax Highlighting */
+  .hl-tag { color: #569cd6; }
+  .hl-attr { color: #9cdcfe; }
+  .hl-val { color: #ce9178; }
+  .hl-comment { color: #6a9955; }
+
+  .constraint-left, .constraint-right {
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 4px;
+  }
+  .constraint-left { left: 0; }
+  .constraint-right { right: 0; }
+
+  .constraint-dashed {
+    background: transparent !important;
+    border-right: 1px dashed #777;
+    width: 1px;
+  }
+  .constraint-left.constraint-dashed { left: 3px; border-right: none; border-left: 1px dashed #777; }
+  .constraint-right.constraint-dashed { right: 3px; }
+
+  /* Context Menu */
+  .context-menu {
+    position: absolute;
+    background: #2d2d2d;
+    border: 1px solid #444;
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    padding: 6px 0;
+    display: none;
+    flex-direction: column;
+    z-index: 1000;
+    min-width: 150px;
+  }
+  .context-menu.show { display: flex; }
+  
+  .context-menu-item {
+    padding: 6px 16px;
+    cursor: pointer;
+    font-size: 13px;
+    color: #d4d4d4;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .context-menu-item:hover {
+    background: #0060a0;
+    color: #fff;
+  }
+  .context-menu-empty {
+    padding: 6px 16px;
+    font-size: 13px;
+    color: #888;
+    font-style: italic;
+  }
 
   /* Tree Contextual Controls */
   .tree-controls {
@@ -639,25 +1362,6 @@ const components = getPPTComponents();
 
   .tree-children { display: flex; flex-direction: column; }
 
-  /* Canvas */
-  .canvas-wrapper {
-    flex: 1; display: flex; align-items: center; justify-content: center;
-    overflow: auto; padding: 2rem;
-    background-color: #e5e5f7;
-    background-image:  repeating-linear-gradient(45deg, #d4d4d4 25%, transparent 25%, transparent 75%, #d4d4d4 75%, #d4d4d4), repeating-linear-gradient(45deg, #d4d4d4 25%, #e5e5f7 25%, #e5e5f7 75%, #d4d4d4 75%, #d4d4d4);
-    background-position: 0 0, 10px 10px; background-size: 20px 20px;
-  }
-  .canvas {
-    background: #fff; width: 100%; min-height: 500px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.5); position: relative; color: #000;
-  }
-
-  /* Source Code */
-  .pane-bottom { height: 200px; flex-shrink: 0; border-top: 1px solid #333; }
-  .pane-bottom pre { margin: 0; font-family: monospace; font-size: 13px; color: #9cdcfe; white-space: pre-wrap; }
-
-</style>
-<style is:global>
   .designer-selected { outline: 2px solid #007fd4 !important; outline-offset: 2px; }
 
   /* Dynamic Tree View Specifics */
@@ -668,38 +1372,66 @@ const components = getPPTComponents();
     font-family: monospace;
     font-size: 13px;
     color: #d4d4d4;
-    padding: 6px 10px;
-    cursor: pointer;
+    padding: 6px 14px;
     display: flex;
     align-items: center;
     transition: background 0.1s;
-    flex-grow: 1;
+    position: relative;
+    overflow: hidden;
+    min-width: 250px;
   }
   .tag-name { font-weight: 500; color: #9cdcfe; }
   
-  .tree-node-wrapper { margin-bottom: 4px; }
+  .tree-node-wrapper { 
+    margin-bottom: 8px; 
+    position: relative;
+  }
   
   .tree-node-row {
     display: flex;
     align-items: center;
+    border-radius: 4px;
+    transition: background 0.1s;
+    padding: 2px 4px;
+    cursor: pointer;
+  }
+  .tree-node-row:hover {
+    background: #3a3a3a;
+  }
+  .tree-node-row.selected-row {
+    background: rgba(0, 127, 212, 0.15);
+    outline: 1px solid rgba(0, 127, 212, 0.5);
   }
 
-  .indent-spacer { flex-shrink: 0; }
-  
-  .tree-node.selected {
-    background: #094771;
-    border-color: #007fd4;
+  /* Tree Lines */
+  .tree-children.nested {
+    border-left: 1px solid #555;
+    margin-left: 20px;
+    padding-left: 16px;
+    position: relative;
   }
-  .tree-node.drag-over {
-    border-color: #4CAF50;
+  .tree-children.nested .tree-node-wrapper::before {
+    content: '';
+    position: absolute;
+    left: -16px;
+    top: 18px; /* Approx half height of node */
+    width: 16px;
+    border-top: 1px solid #555;
+  }
+  
+  .tree-node-row.drag-over {
     background: #1b3d20;
+    outline: 1px solid #4CAF50;
   }
 
   .tree-node-content {
     display: flex;
     align-items: center;
     width: 100%;
+    flex-wrap: nowrap;
+    min-width: 0;
   }
+  .tag-name { font-weight: 500; color: #9cdcfe; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex-grow: 1; }
 
   .tree-toggle {
     background: none; border: none; color: #888;
@@ -713,8 +1445,10 @@ const components = getPPTComponents();
   /* Properties */
   .empty-state { color: #888; font-style: italic; font-size: 13px; text-align: center; margin-top: 2rem; }
   .prop-form h3 { margin-top: 0; font-size: 13px; color: #9cdcfe; font-family: monospace; border-bottom: 1px solid #333; padding-bottom: 8px; margin-bottom: 16px; }
-  .prop-group { margin-bottom: 12px; display: grid; grid-template-columns: 120px 1fr; align-items: center; gap: 8px; }
-  .prop-group label { font-size: 12px; color: #ccc; font-family: monospace; text-align: right; }
+  .prop-group { margin-bottom: 20px; display: grid; grid-template-columns: 1fr 1.5fr; align-items: start; gap: 16px; border-bottom: 1px dashed #333; padding-bottom: 16px; }
+  .prop-control-col { display: flex; flex-direction: column; gap: 6px; }
+  .prop-desc-col { font-size: 12px; color: #999; line-height: 1.4; padding-top: 22px; }
+  .prop-group label { font-size: 13px; color: #ccc; font-family: monospace; text-align: left; font-weight: bold; }
   .prop-group input[type="text"], .prop-group select, .prop-group input[type="color"] { 
     background: #3c3c3c; border: 1px solid #555; color: #fff; 
     padding: 6px; border-radius: 3px; font-family: monospace; font-size: 12px;
@@ -724,9 +1458,12 @@ const components = getPPTComponents();
     padding: 0; height: 28px; cursor: pointer;
   }
   .prop-group input[type="checkbox"] {
-    width: 16px; height: 16px; accent-color: #007fd4;
+    width: 16px; height: 16px; accent-color: #007fd4; margin: 0;
   }
   .prop-group input:focus, .prop-group select:focus { outline: none; border-color: #007fd4; }
 
-
+  /* Container boundaries */
+  #canvas ppt-container {
+    border: 1px dashed #ccc;
+  }
 </style>
