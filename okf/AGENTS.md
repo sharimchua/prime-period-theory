@@ -31,7 +31,11 @@ navigating the graph. Make it precise and specific, not generic.
 
 | Directory | Contents | Status |
 |---|---|---|
-| `foundations/` | Core theoretical claims | Partially written |
+| `foundations/` | Core physical and mathematical claims | Partially written |
+| `perception/` | Human perceptual layer and agency | Active |
+| `context/` | Orientation and theoretical motivation | Active |
+| `reference/` | Core coordinate systems and maps | Active |
+| `specifications/` | System-level specifications and formal definitions | Active |
 | `extended/` | Extended ranges and abstract concepts | Partially written |
 | `uniform-solfege/` | Notation system | Partially written |
 | `domains/` | Pitch, rhythm, timbre | Stub only |
@@ -55,6 +59,13 @@ navigating the graph. Make it precise and specific, not generic.
 4. Add a `## See also` section linking to related pages
 5. Add the new page to `index.md` under the correct section
 6. Add the new page to the subdirectory's `AGENTS.md` file index
+
+## Modifying or moving concept pages
+
+When renaming, moving, or deleting an existing concept page:
+1. Update all cross-links within the `okf/` directory to point to the new path.
+2. **Crucially**, search the rest of the project (especially the `docs/` directory, such as `docs/templates/topics/`) for references to the old file path (e.g., in `okf_dependencies` frontmatter) and update them. The OKF bundle acts as a dependency for the docs site, and breaking paths will break the site build.
+3. Update `index.md` and the relevant subdirectory `AGENTS.md` files to reflect the change.
 
 ## Tag vocabulary
 

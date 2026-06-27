@@ -23,7 +23,7 @@ timestamp: 2026-06-27
 
 ## Overview
 
-[Metric DuPeriod](../foundations/metric-duperiod.md) documents the coordinate system from
+[Metric DuPeriod](../reference/metric-duperiod.md) documents the coordinate system from
 Metric DuPeriod −10 (Upper Auditory Horizon) through Metric DuPeriod +10
 (movement boundary). This page extends the map upward into the
 **stratospheric positive metric DuPeriod space** — the region above +10
@@ -213,7 +213,7 @@ because it is governed by memory, attention, and hormonal cycles, which
 are continuous variables.
 
 The Metric DuPeriod system accommodates this asymmetry naturally. Precision
-requirements relax with each ascending DuPeriod band (see [Metric DuPeriod](../foundations/metric-duperiod.md)
+requirements relax with each ascending DuPeriod band (see [Metric DuPeriod](../reference/metric-duperiod.md)
 — diacritic precision section), and the meaningful landmarks in the
 stratospheric range are documented as cognitive and physiological zones
 rather than precise threshold values.
@@ -235,9 +235,9 @@ navigable.
 
 ## See also
 
-- [Metric DuPeriod](../foundations/metric-duperiod.md) — the core coordinate system;
+- [Metric DuPeriod](../reference/metric-duperiod.md) — the core coordinate system;
   Metric DuPeriods −10 to +10
-- [Periodicity Limen](../foundations/periodicity-limen.md) — the anchor definition
+- [Periodicity Limen](../perception/periodicity-limen.md) — the anchor definition
 - [Periodicity](../foundations/periodicity.md) — periodicity as the
   unifying phenomenon across all timescales; tala and the ti-hai as
   macro-scale periodicity examples

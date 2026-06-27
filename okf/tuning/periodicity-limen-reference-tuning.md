@@ -25,8 +25,8 @@ timestamp: 2026-06-27
 
 This document is not a foundational page. It is a tuning reference that
 applies the foundational principles established in
-[Periodicity Limen](../foundations/periodicity-limen.md) and
-[Metric DuPeriod](../foundations/metric-duperiod.md) to derive structurally
+[Periodicity Limen](../perception/periodicity-limen.md) and
+[Metric DuPeriod](../reference/metric-duperiod.md) to derive structurally
 grounded pitch anchor values from PPT first principles.
 
 Its central question is: **if you refused to accept any conventional pitch
@@ -212,7 +212,7 @@ projection step:
 
 **The one external input**: the Periodicity Limen at 20Hz. This is
 not arbitrary — it is a perceptual constant grounded in human auditory
-neurology (see [Periodicity Limen](../foundations/periodicity-limen.md)).
+neurology (see [Periodicity Limen](../perception/periodicity-limen.md)).
 It is the only value in the system that must be taken as given rather
 than derived.
 
@@ -311,9 +311,9 @@ parameter.
 
 ## See also
 
-- [Periodicity Limen](../foundations/periodicity-limen.md) — the
+- [Periodicity Limen](../perception/periodicity-limen.md) — the
   perceptual anchor and its derivation
-- [Metric DuPeriod](../foundations/metric-duperiod.md) — the coordinate
+- [Metric DuPeriod](../reference/metric-duperiod.md) — the coordinate
   system from which pitch addresses are derived
 - [Just Intonation](just-intonation.md) — pure prime-ratio intervals
   applied from the PPT-derived anchor

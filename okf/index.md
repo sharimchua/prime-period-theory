@@ -112,14 +112,27 @@ amplitude or effect envelopes.
 ## Concept map
 
 ### Foundations
-- [Music as Language](foundations/music-as-language.md) — visual vs auditory classification and the need for a shared grammar
-- [Amplitude and Time](foundations/amplitude-time.md) — the core physical thesis
-- [Periodicity](foundations/periodicity.md) — the unifying phenomenon across all scales
-- [Information and Expectation](foundations/information-and-expectation.md) — the psychology of predicting patterns
-- [Periodicity Limen](foundations/periodicity-limen.md) — the anchor definition and the boundary between pitch and rhythm
-- [Metric DuPeriod](foundations/metric-duperiod.md) — the coordinate system for logarithmic period mapping
-- [Prime Families](foundations/prime-families.md) — the classification system
-- [Design System & Color Semantics](design-system.md) — Visual styling and mathematical mapping
+- [Amplitude and Time](foundations/amplitude-time.md) — music as amplitude
+  over time; the physical basis for treating pitch and rhythm as one phenomenon
+- [Periodicity](foundations/periodicity.md) — the unifying phenomenon across
+  all scales; consonance as period coincidence; tala and ti-hai
+- [Prime Families](foundations/prime-families.md) — the five prime generators;
+  prime vs exponent; the 11-limit ceiling
+
+### Perception
+- [Information and Expectation](perception/information-and-expectation.md) —
+  pattern recognition, prediction, and the mechanics of musical delight
+- [Auditory Horizon and Agency](perception/auditory-horizon.md) — the agency
+  gradient across the timescale; Periodicity Limen; Metric Induction Limen;
+  cross-domain tolerance budget; cultural transmission asymmetry
+- [Periodicity Limen](perception/periodicity-limen.md) — the anchor definition and the boundary between pitch and rhythm
+
+### Reference
+- [Metric DuPeriod](reference/metric-duperiod.md) — the coordinate system for logarithmic period mapping
+
+### Context
+- [Music as Language](context/music-as-language.md) — music as a language;
+  visual vs auditory classification; PPT as shared grammar and vocabulary
 
 ### Extended
 - [Metric DuPeriod — Extended Range](extended/metric-duperiod-extended.md) — the stratospheric positive metric DuPeriod space and biological periodicity
@@ -152,10 +165,14 @@ amplitude or effect envelopes.
 - [Tone Atlas](related/tone-atlas.md) — clock-face pitch relationship diagram
 - [Chromatic Clock Geometry](related/chromatic-clock.md) — the 12-tone chromatic circle as a geometric navigation tool
 
-## Systems and Formats
-- [PPT Composition Format (PPT-CF)](systems/composition-format.md) — a concise, structural encoding format for serializing component layouts
+## Specifications
+- [Design System & Color Semantics](specifications/design-system.md) — Visual styling and mathematical mapping
+- [PPT Composition Format (PPT-CF)](specifications/composition-format.md) — a concise, structural encoding format for serializing component layouts
 
 ## Relationship to other theories
+
+<!-- TODO: Consider extracting "Relationship to other theories" to
+context/related-theories.md once the context/ directory is established -->
 
 PPT is in conversation with, not in competition with:
 

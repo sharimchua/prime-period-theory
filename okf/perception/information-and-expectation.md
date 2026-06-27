@@ -18,8 +18,8 @@ timestamp: 2026-06-26
 
 ## The core claim
 
-If [Amplitude and Time](amplitude-time.md) describes what music is physically, 
-and [Periodicity](periodicity.md) describes its unifying structure, then this 
+If [Amplitude and Time](../foundations/amplitude-time.md) describes what music is physically, 
+and [Periodicity](../foundations/periodicity.md) describes its unifying structure, then this 
 document addresses the cognitive layer: **how we experience those structures**.
 
 Music is fundamentally a system of information. The human brain is a prediction 
@@ -87,5 +87,5 @@ describe *why* it matters to the listener.
 
 ## See also
 
-- [Amplitude and Time](amplitude-time.md) — the physical grounding
-- [Periodicity](periodicity.md) — the structural reality of the patterns
+- [Amplitude and Time](../foundations/amplitude-time.md) — the physical grounding
+- [Periodicity](../foundations/periodicity.md) — the structural reality of the patterns
