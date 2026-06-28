@@ -178,7 +178,7 @@ amplitude or effect envelopes.
 - [Chromatic Clock Geometry](related/chromatic-clock.md) — the 12-tone chromatic circle as a geometric navigation tool
 
 ## Specifications
-- [Design System & Color Semantics](specifications/design-system.md) — Visual styling and mathematical mapping
+- [Design System & Colour Semantics](specifications/design-system.md) — Visual styling and mathematical mapping
 - [PPT Composition Format (PPT-CF)](specifications/composition-format.md) — a concise, structural encoding format for serializing component layouts
 
 ## Relationship to other theories
@@ -210,7 +210,10 @@ tools for full timbral analysis.
 This is a living document representing one person's evolving theoretical
 perspective. It is descriptive, not prescriptive. Contributions, critiques, and
 parallel frameworks are welcome.
-
+  
+ 
+      
+ 
 
 ================================================================================
 FILE: okf/AGENTS.md
@@ -477,7 +480,7 @@ In Prime Period Theory, pitch is not a fundamentally different phenomenon from r
 
 When a physical body (like a string or a column of air) vibrates, it rarely vibrates at a single frequency. It vibrates in fractions: halves, thirds, quarters, and fifths. This produces a composite wave made up of a fundamental frequency and a series of overtones, or **partials**.
 
-The human auditory system evolved to recognize this composite wave as a single "sound." Consonance and dissonance are largely determined by how well the partials of two different notes overlap.
+The human auditory system evolved to recognise this composite wave as a single "sound." Consonance and dissonance are largely determined by how well the partials of two different notes overlap.
 
 ### Partial overlap as a consonance mechanism
 When you play two notes together, their overtone series interact. 
@@ -514,7 +517,7 @@ The **Lowest Common Multiple (LCM)** of `5:4` is 20, whereas the LCM of `5:3` is
 
 The centricity of the major third is a product of **cultural loading**. Western tertian harmony, which builds chords by stacking thirds, is a historically contingent system that developed over the last ~600 years. It elevated the third (and its 5-limit geometry) to the structural core of its grammar. 
 
-Other musical systems recognize the physical primacy of the sixth. In many non-Western traditions, or in earlier Western polyphony, intervals like the sixth and fourth hold different structural weight than they do in standard Classical theory. 
+Other musical systems recognise the physical primacy of the sixth. In many non-Western traditions, or in earlier Western polyphony, intervals like the sixth and fourth hold different structural weight than they do in standard Classical theory.
 
 ### Raga vs Tala distinction
 This cultural weighting highlights the distinction between pitch (Raga) and rhythm (Tala) that PPT seeks to bridge. Western music heavily developed the 5-limit (thirds) in pitch space while leaving rhythm largely confined to the 2-prime and 3-prime families. In contrast, Indian classical traditions developed complex prime-limit structures in rhythm (Tala) while maintaining a drone-based pitch space (Raga) that often prioritizes different interval relationships. 
@@ -835,7 +838,7 @@ timestamp: 2026-06-28
 
 ## Overview
 
-Amplitude is not merely a static ratio but a dynamic trajectory—change over Metric DuPeriod time. In PPT, envelopes (attack, decay, sustain, release) are analyzed as trajectories that scale self-similarly from micro-transients to macro-dynamics and form arcs. 
+Amplitude is not merely a static ratio but a dynamic trajectory—change over Metric DuPeriod time. In PPT, envelopes (attack, decay, sustain, release) are analysed as trajectories that scale self-similarly from micro-transients to macro-dynamics and form arcs.
 
 ## Planned topics
 - Amplitude as change over Metric DuPeriod time (envelopes as trajectories).
@@ -877,7 +880,7 @@ This extended inquiry asks whether specific ratio or prime-number observations c
 
 ## Static and Dynamic Amplitude Ratios
 
-In traditional acoustic analysis, amplitude is often treated linearly or logarithmically (via decibels) without reference to simple integer ratios. PPT hypothesises that our perception of "balanced" or "characteristic" amplitudes—whether the mix of partials in a tone or the hierarchy of accents in a metre—may be governed by the same prime families that organize pitch and time.
+In traditional acoustic analysis, amplitude is often treated linearly or logarithmically (via decibels) without reference to simple integer ratios. PPT hypothesises that our perception of "balanced" or "characteristic" amplitudes—whether the mix of partials in a tone or the hierarchy of accents in a metre—may be governed by the same prime families that organise pitch and time.
 
 - **Static ratios** describe the fixed proportional relationships between simultaneous elements (e.g., the amplitude of the fundamental relative to the 3rd partial).
 - **Dynamic ratios** describe how these proportions change over a Metric DuPeriod (e.g., an envelope's rate of attack versus decay, or the fluctuating amplitude of a beat over a measure).
@@ -890,7 +893,7 @@ The characteristic sound of an instrument (its macro-timbre) is fundamentally a 
 
 ## Hypotheses on Common Amplitude Ratios
 
-If amplitude organizes hierarchically like pitch and rhythm, we can hypothesise standard ratios for amplitude contrast:
+If amplitude organises hierarchically like pitch and rhythm, we can hypothesise standard ratios for amplitude contrast:
 - **DuPrime (2:1)**: The foundational ratio of contrast. In rhythmic accents, a 2:1 amplitude ratio between strong and weak beats may provide the clearest, most stable binary hierarchy, establishing the primary "pulse" envelope.
 - **TriPrime & QuinPrime (3:2, 5:4)**: Just as these families introduce colour and swing in pitch and time, subtle amplitude ratios like 3:2 or 5:4 might govern the characteristic "lilt" or "swing" of an inner groove, offering nuance without destabilising the DuPrime hierarchy.
 
@@ -1179,7 +1182,7 @@ Amplitude trajectories are rarely isolated; they are deeply coupled with spectra
 
 ## Planned topics
 - How amplitude trajectories modulate spectral content (and vice versa).
-- Instrument-specific envelope behaviors in DuPeriod space.
+- Instrument-specific envelope behaviours in DuPeriod space.
 - Implications for synthesis, orchestration, and live performance.
 
 ## See also
@@ -2012,7 +2015,7 @@ A single sound event — a crash, a scrape, a bang — provides very little
 predictive information. But when an event repeats at a consistent interval 
 (a period), a pattern is established. 
 
-Once a pattern is recognized, the listener's brain unconsciously projects that 
+Once a pattern is recognised, the listener's brain unconsciously projects that
 pattern forward in time. We expect the next beat to land *here*; we expect the 
 next cycle of the waveform to cross zero *now*. This predictive model is the 
 foundation of all musical engagement. 
@@ -3608,12 +3611,12 @@ FILE: okf/specifications/design-system.md
 
 ---
 type: concept
-title: Design System & Color Semantics
+title: Design System & Colour Semantics
 description: >
   Formal specification of the visual design language used across Prime Period Theory documentation and components.
 tags:
   - design
-  - color-theory
+  - colour-theory
   - styling
 timestamp: 2026-06-27
 ---
@@ -3622,9 +3625,9 @@ timestamp: 2026-06-27
 
 Prime Period Theory (PPT) utilises a strict, semantically meaningful design system. Visual styling is not purely decorative; it mathematically and acoustically encodes the underlying theory. 
 
-## Global Brand Colors
+## Global Brand Colours
 
-The foundational brand colors anchor the documentation and generic structural elements.
+The foundational brand colours anchor the documentation and generic structural elements.
 
 - **Primary Brand (Red)**: `#E13610`
 - **Secondary Brand (Orange)**: `#E17013`
@@ -3632,7 +3635,7 @@ The foundational brand colors anchor the documentation and generic structural el
 
 ## Uniform Solfège Interval Palette
 
-The Solfège color palette maps specific hues to interval categories. The exact hex values are reverse-engineered to encode core acoustic, mathematical, and tuning references.
+The Solfège colour palette maps specific hues to interval categories. The exact hex values are reverse-engineered to encode core acoustic, mathematical, and tuning references.
 
 | Interval Category | Syllables | CSS Variable | Hex Code | Semantic Rationale |
 |---|---|---|---|---|
@@ -3640,7 +3643,7 @@ The Solfège color palette maps specific hues to interval categories. The exact 
 | **Seconds** | Ra, Re | `--solfege-re` | `#F98016` | **F 9:8 0 16**: Encodes the foundational ratios for seconds (Major Second 9:8, Minor Second 16:15) |
 | **Thirds** | Me, Mi | `--solfege-mi` | `#F5D432` | **F5 D4 32**: Encodes the foundational harmonic ratios (Major Third 5:4, Perfect Fifth 3:2) |
 | **Fourths** | Fa | `--solfege-fa` | `#43A440` | **4:3 A440**: Encodes the Perfect Fourth ratio (4:3) and international standard pitch A440 |
-| **Tritone** | Fi | `--solfege-fi` | `#141414` | **1.414**: The square root of 2, the exact mathematical center of the octave in equal temperament |
+| **Tritone** | Fi | `--solfege-fi` | `#141414` | **1.414**: The square root of 2, the exact mathematical centre of the octave in equal temperament |
 | **Fifths** | So | `--solfege-so` | `#0032A4` | **3:2 A4**: Encodes the Perfect Fifth ratio (3:2) anchored to A4 |
 | **Sixths** | Le, La | `--solfege-la` | `#5300A4` | **5:3 A4**: Encodes the Major Sixth ratio (5:3) anchored to A4 |
 | **Sevenths**| Te, Ti | `--solfege-ti` | `#F158A4` | **F 15:8 A4**: Encodes the Major Seventh ratio (15:8) anchored to A4 |
@@ -3937,7 +3940,7 @@ If you begin with a fundamental pitch and iteratively stack pure 3:2 perfect fif
 
 In PPT, Pentatonic and Heptatonic scales are not treated merely as "modes" or "keys," but as **geometric subsets of the 3-limit**. 
 
-They represent different resolutions of the same underlying periodic structure. When analyzing a melody, PPT views the shift from a pentatonic vocabulary to a heptatonic one as an increase in geometric complexity and harmonic tension. The pentatonic scale provides an open, stable 3-prime scaffold, while the heptatonic scale introduces the structural friction required to drive a phrase forward. 
+They represent different resolutions of the same underlying periodic structure. When analysing a melody, PPT views the shift from a pentatonic vocabulary to a heptatonic one as an increase in geometric complexity and harmonic tension. The pentatonic scale provides an open, stable 3-prime scaffold, while the heptatonic scale introduces the structural friction required to drive a phrase forward.
 
 Because these scales are generated purely by the 3-limit, they exist independently of any specific temperament. They can be tuned in Just Intonation, 12TET, or 31 EDO, but their underlying geometric shape—a contiguous chain of fifths—remains identical.
 
@@ -4901,7 +4904,7 @@ The colour palette uses seven distinct hues to visually map the interval categor
 - **Orange (Seconds)**: `#F98016` — **F 9:8 0 16**: Encodes the foundational ratios for seconds: the Major Second (9:8) and references the Minor Second (16:15).
 - **Yellow (Thirds)**: `#F5D432` — **F5 D4 32**: Encodes the Major Third (5:4) and Perfect Fifth (3:2) which make up the major triad.
 - **Green (Fourths)**: `#43A440` — **4:3 A440**: Encodes the Perfect Fourth ratio (4:3) alongside the international standard pitch A440.
-- **Black (Tritone)**: `#141414` — **1.414**: The square root of 2, which is the exact mathematical center of the octave defining the tritone in equal temperament.
+- **Black (Tritone)**: `#141414` — **1.414**: The square root of 2, which is the exact mathematical centre of the octave defining the tritone in equal temperament.
 - **Blue (Fifths)**: `#0032A4` — **3:2 A4**: Encodes the Perfect Fifth ratio (3:2) anchored to the A4 pitch class.
 - **Purple (Sixths)**: `#5300A4` — **5:3 A4**: Encodes the Major Sixth ratio (5:3) anchored to A4.
 - **Magenta (Sevenths)**: `#F158A4` — **F 15:8 A4**: Encodes the Major Seventh ratio (15:8) anchored to A4.

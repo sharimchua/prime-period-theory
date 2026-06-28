@@ -2,34 +2,6 @@ import fs from 'node:fs';
 import path from 'node:path';
 import * as acorn from 'acorn';
 
-<<<<<<< HEAD
-function evaluateAST(node: any): any {
-  if (node.type === 'Literal') {
-    return node.value;
-  } else if (node.type === 'Identifier') {
-    return node.name;
-  } else if (node.type === 'ObjectExpression') {
-    const obj: any = {};
-    for (const prop of node.properties) {
-      const key = prop.key.type === 'Identifier' ? prop.key.name : prop.key.value;
-      obj[key] = evaluateAST(prop.value);
-    }
-    return obj;
-  } else if (node.type === 'ArrayExpression') {
-    return node.elements.map(evaluateAST);
-  } else if (node.type === 'UnaryExpression' && node.operator === '-') {
-    return -evaluateAST(node.argument);
-  } else if (node.type === 'UnaryExpression' && node.operator === '+') {
-    return +evaluateAST(node.argument);
-  }
-  throw new Error(`Unsupported node type: ${node.type}`);
-}
-
-function parseObjectLiteral(str: string): any {
-  const ast = acorn.parse(`(${str})`, { ecmaVersion: 2020 });
-  const expr = (ast as any).body[0].expression;
-  return evaluateAST(expr);
-=======
 function parseSafeMetadata(objStr: string): any {
   const ast = acorn.parse(`(${objStr})`, { ecmaVersion: 2020 });
 
@@ -58,7 +30,6 @@ function parseSafeMetadata(objStr: string): any {
   }
 
   return evaluate((ast as any).body[0].expression);
->>>>>>> origin/main
 }
 
 export interface ComponentMetadata {
