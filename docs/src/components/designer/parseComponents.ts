@@ -1,5 +1,18 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import JSON5 from 'json5';
+
+function safeParseJSON5(objStr: string) {
+  if (!objStr || !objStr.trim()) return {};
+  let wrappedStr = objStr.trim();
+  if (!wrappedStr.startsWith('{')) {
+      wrappedStr = '{' + wrappedStr;
+  }
+  if (!wrappedStr.endsWith('}')) {
+      wrappedStr = wrappedStr + '}';
+  }
+  return JSON5.parse(wrappedStr);
+}
 
 export interface ComponentMetadata {
   type: 'string' | 'number' | 'boolean' | 'enum' | 'color';
@@ -41,7 +54,7 @@ export function getPPTComponents(): ComponentMeta[] {
     const metaMatch = baseContent.match(/pptMetadata[^{]*{.*?return\s*({[\s\S]*?})\s*;\s*}/s);
     if (metaMatch) {
       try {
-        baseMetadata = new Function(`return ${metaMatch[1]}`)();
+        baseMetadata = safeParseJSON5(metaMatch[1]);
       } catch (e) {}
     }
   }
@@ -57,7 +70,7 @@ export function getPPTComponents(): ComponentMeta[] {
       if (metaMatch) {
         try {
           let objStr = metaMatch[1].replace(/\.\.\.\(\(Base as any\)\.pptMetadata\s*\|\|\s*\{\}\),?/, '');
-          mixinMetadata[f.replace('.ts', '')] = new Function(`return ${objStr}`)();
+          mixinMetadata[f.replace('.ts', '')] = safeParseJSON5(objStr);
         } catch (e) {}
       }
     }
@@ -117,7 +130,7 @@ export function getPPTComponents(): ComponentMeta[] {
       let objStr = metaMatch[1];
       objStr = objStr.replace(/\.\.\.super\.pptMetadata\s*,?/, '');
       try {
-        const parsed = new Function(`return ${objStr}`)();
+        const parsed = safeParseJSON5(objStr);
         metadata = { ...metadata, ...parsed };
       } catch (e) {
         console.warn(`Failed to parse metadata for ${className}`);
@@ -133,7 +146,7 @@ export function getPPTComponents(): ComponentMeta[] {
     const defMatch = content.match(/componentDef[^{]*{.*?return\s*({[\s\S]*?})\s*;\s*}/s);
     if (defMatch) {
       try {
-        componentDef = { ...componentDef, ...new Function(`return ${defMatch[1]}`)() };
+        componentDef = { ...componentDef, ...safeParseJSON5(defMatch[1]) };
       } catch (e) {}
     }
 
