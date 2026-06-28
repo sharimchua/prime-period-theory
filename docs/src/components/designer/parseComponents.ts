@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import * as acorn from 'acorn';
 
-function parseSafeMetadata(objStr: string): any {
+export function parseSafeMetadata(objStr: string): any {
   const ast = acorn.parse(`(${objStr})`, { ecmaVersion: 2020 });
 
   function evaluate(node: any): any {
