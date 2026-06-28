@@ -13,7 +13,7 @@ tags:
   - polyrhythm
   - microtonality
   - 31-edo
-timestamp: 2026-06-27
+timestamp: 2026-06-28
 ---
 
 # Prime Period Theory
@@ -133,6 +133,7 @@ amplitude or effect envelopes.
 - [Amplitude Notation](reference/amplitude-notation.md) — extending PPT notation for dynamic amplitude
 
 ### Context
+- [Core Tenets](context/tenets.md) — the five foundational principles and methodological commitments of the framework
 - [Music as Language](context/music-as-language.md) — music as a language;
   visual vs auditory classification; PPT as shared grammar and vocabulary
 
@@ -206,7 +207,3 @@ tools for full timbral analysis.
 This is a living document representing one person's evolving theoretical
 perspective. It is descriptive, not prescriptive. Contributions, critiques, and
 parallel frameworks are welcome.
-  
- 
-      
- 

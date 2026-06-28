@@ -11,6 +11,7 @@ of reader it is written for. They are not part of the theoretical core.
 
 | File | Status | Description |
 |---|---|---|
+| `tenets.md` | Complete | The five foundational principles and methodological commitments of the framework |
 | `music-as-language.md` | Complete | Music as language; the asymmetry between visual and auditory classification; PPT as shared grammar |
 
 ## Tone guidance
