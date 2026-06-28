@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import JSON5 from 'json5';
 
 export interface ComponentMetadata {
   type: 'string' | 'number' | 'boolean' | 'enum' | 'color';
@@ -41,7 +42,7 @@ export function getPPTComponents(): ComponentMeta[] {
     const metaMatch = baseContent.match(/pptMetadata[^{]*{.*?return\s*({[\s\S]*?})\s*;\s*}/s);
     if (metaMatch) {
       try {
-        baseMetadata = new Function(`return ${metaMatch[1]}`)();
+        baseMetadata = JSON5.parse(metaMatch[1]);
       } catch (e) {}
     }
   }
@@ -57,7 +58,7 @@ export function getPPTComponents(): ComponentMeta[] {
       if (metaMatch) {
         try {
           let objStr = metaMatch[1].replace(/\.\.\.\(\(Base as any\)\.pptMetadata\s*\|\|\s*\{\}\),?/, '');
-          mixinMetadata[f.replace('.ts', '')] = new Function(`return ${objStr}`)();
+          mixinMetadata[f.replace('.ts', '')] = JSON5.parse(objStr);
         } catch (e) {}
       }
     }
@@ -117,7 +118,7 @@ export function getPPTComponents(): ComponentMeta[] {
       let objStr = metaMatch[1];
       objStr = objStr.replace(/\.\.\.super\.pptMetadata\s*,?/, '');
       try {
-        const parsed = new Function(`return ${objStr}`)();
+        const parsed = JSON5.parse(objStr);
         metadata = { ...metadata, ...parsed };
       } catch (e) {
         console.warn(`Failed to parse metadata for ${className}`);
@@ -133,8 +134,10 @@ export function getPPTComponents(): ComponentMeta[] {
     const defMatch = content.match(/componentDef[^{]*{.*?return\s*({[\s\S]*?})\s*;\s*}/s);
     if (defMatch) {
       try {
-        componentDef = { ...componentDef, ...new Function(`return ${defMatch[1]}`)() };
-      } catch (e) {}
+        componentDef = { ...componentDef, ...JSON5.parse(defMatch[1]) };
+      } catch (e) {
+        console.warn(`Failed to parse componentDef for ${className}`);
+      }
     }
 
     components.push({ tagName, className, attributes, metadata, componentDef });
