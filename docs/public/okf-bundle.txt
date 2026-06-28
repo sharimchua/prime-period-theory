@@ -536,7 +536,7 @@ To capture these dynamic trajectories systematically, PPT extends existing notat
 - **Axis Diacritics**: By extending the diacritic system used for microtonal pitch (e.g., Sub, Sup, Axis), we can systematically notate the exact geometric amplitude ratio of an accented beat relative to its unaccented neighbour.
 
 ## See also
-- [Timbre](../foundations/timbre.md)
+- [Timbre](timbre.md)
 - [Metric DuPeriod](../reference/metric-duperiod.md)
 - [Geometric Amplitude Ratios](../extended/geometric-amplitude-ratios.md)
 
@@ -989,7 +989,7 @@ If amplitude organises hierarchically like pitch and rhythm, we can hypothesise 
 - **TriPrime & QuinPrime (3:2, 5:4)**: Just as these families introduce colour and swing in pitch and time, subtle amplitude ratios like 3:2 or 5:4 might govern the characteristic "lilt" or "swing" of an inner groove, offering nuance without destabilising the DuPrime hierarchy.
 
 ## See also
-- [Timbre](../foundations/timbre.md)
+- [Timbre](../domains/timbre.md)
 - [Dynamics](../domains/dynamics.md)
 - [Prime Families](../foundations/prime-families.md)
 
@@ -1277,7 +1277,7 @@ Amplitude trajectories are rarely isolated; they are deeply coupled with spectra
 - Implications for synthesis, orchestration, and live performance.
 
 ## See also
-- [Timbre](../foundations/timbre.md)
+- [Timbre](../domains/timbre.md)
 - [Amplitude Trajectories](amplitude-trajectories.md)
 
 
@@ -2279,7 +2279,7 @@ log2(20000 / 20) = log2(1000) ≈ 9.97 octaves
 
 Approximately **10 octaves** — a near-exact decade in base-2 logarithmic
 space. This spans Metric DuPeriods −10 to 0 in PPT's unified coordinate
-system. See [Metric DuPeriod](metric-duperiod.md) for the full coordinate
+system. See [Metric DuPeriod](../reference/metric-duperiod.md) for the full coordinate
 definition.
 
 ## Dual register
@@ -2307,11 +2307,11 @@ in PPT: formal specification paired with an accessible working name.
 
 ## See also
 
-- [Amplitude and Time](amplitude-time.md) — the physical grounding;
+- [Amplitude and Time](../foundations/amplitude-time.md) — the physical grounding;
   the second as astronomical convention
-- [Periodicity](periodicity.md) — the perceptual rate boundary as
+- [Periodicity](../foundations/periodicity.md) — the perceptual rate boundary as
   a property of human perception, not underlying structure
-- [Metric DuPeriod](metric-duperiod.md) — the coordinate system anchored
+- [Metric DuPeriod](../reference/metric-duperiod.md) — the coordinate system anchored
   to the Periodicity Limen
 - [Metric DuPeriod — Extended Range](../extended/metric-duperiod-extended.md) — the
   stratospheric positive metric DuPeriod space above musical form
@@ -2630,7 +2630,7 @@ all offsets are measured.
 
 This anchor is chosen because it is intrinsic to the perceptual structure
 of the system rather than historically contingent. See
-[Periodicity Limen](periodicity-limen.md) for the full argument.
+[Periodicity Limen](../perception/periodicity-limen.md) for the full argument.
 
 ## DuPeriod bands
 
@@ -2840,7 +2840,7 @@ perceptually convenient positions rather than structurally grounded ones.
 
 ## See also
 
-- [Periodicity Limen](periodicity-limen.md) — the anchor definition and
+- [Periodicity Limen](../perception/periodicity-limen.md) — the anchor definition and
   the argument for grounding measurement in auditory neurology
 - [Periodicity](../foundations/periodicity.md) — the perceptual rate
   boundary as a property of human perception

@@ -41,6 +41,6 @@ If amplitude organises hierarchically like pitch and rhythm, we can hypothesise 
 - **TriPrime & QuinPrime (3:2, 5:4)**: Just as these families introduce colour and swing in pitch and time, subtle amplitude ratios like 3:2 or 5:4 might govern the characteristic "lilt" or "swing" of an inner groove, offering nuance without destabilising the DuPrime hierarchy.
 
 ## See also
-- [Timbre](../foundations/timbre.md)
+- [Timbre](../domains/timbre.md)
 - [Dynamics](../domains/dynamics.md)
 - [Prime Families](../foundations/prime-families.md)
