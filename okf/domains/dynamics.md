@@ -42,6 +42,6 @@ To capture these dynamic trajectories systematically, PPT extends existing notat
 - **Axis Diacritics**: By extending the diacritic system used for microtonal pitch (e.g., Sub, Sup, Axis), we can systematically notate the exact geometric amplitude ratio of an accented beat relative to its unaccented neighbour.
 
 ## See also
-- [Timbre](timbre.md)
+- [Timbre](../domains/timbre.md)
 - [Metric DuPeriod](../reference/metric-duperiod.md)
 - [Geometric Amplitude Ratios](../extended/geometric-amplitude-ratios.md)
