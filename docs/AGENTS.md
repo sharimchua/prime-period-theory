@@ -63,7 +63,7 @@ The `docs/src/components/designer/DesignerApp.astro` file orchestrates the Compo
 - **Toolbar & Layout:** Supports four split views (Designer Focused 75%, Split 50/50, Preview Focused 25%, and Preview Only 0%).
 - **Component Library (`library-list`):** Iterates over registered Web Components to provide draggable elements.
 - **Component Tree:** Synchronizes with the visual canvas to display the DOM hierarchy. Allows rearranging (up/down) and deleting elements.
-- **Properties Panel:** Parses `pptMetadata` from the component definition to dynamically generate editing controls (color pickers, enums, textareas for `textContent`, etc.).
+- **Properties Panel:** Parses `pptMetadata` from the component definition to dynamically generate editing controls (colour pickers, enums, textareas for `textContent`, etc.).
 - **Source Code Pane:** Resizable/collapsible footer panel displaying formatted HTML representation of the canvas.
 - **Persistence (Payloads):** Generates and loads compressed base64 gzip payloads containing the raw HTML composition.
 

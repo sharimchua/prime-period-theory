@@ -22,7 +22,7 @@ Amplitude trajectories are rarely isolated; they are deeply coupled with spectra
 
 ## Planned topics
 - How amplitude trajectories modulate spectral content (and vice versa).
-- Instrument-specific envelope behaviors in DuPeriod space.
+- Instrument-specific envelope behaviours in DuPeriod space.
 - Implications for synthesis, orchestration, and live performance.
 
 ## See also

@@ -75,7 +75,7 @@ The colour palette uses seven distinct hues to visually map the interval categor
 - **Orange (Seconds)**: `#F98016` — **F 9:8 0 16**: Encodes the foundational ratios for seconds: the Major Second (9:8) and references the Minor Second (16:15).
 - **Yellow (Thirds)**: `#F5D432` — **F5 D4 32**: Encodes the Major Third (5:4) and Perfect Fifth (3:2) which make up the major triad.
 - **Green (Fourths)**: `#43A440` — **4:3 A440**: Encodes the Perfect Fourth ratio (4:3) alongside the international standard pitch A440.
-- **Black (Tritone)**: `#141414` — **1.414**: The square root of 2, which is the exact mathematical center of the octave defining the tritone in equal temperament.
+- **Black (Tritone)**: `#141414` — **1.414**: The square root of 2, which is the exact mathematical centre of the octave defining the tritone in equal temperament.
 - **Blue (Fifths)**: `#0032A4` — **3:2 A4**: Encodes the Perfect Fifth ratio (3:2) anchored to the A4 pitch class.
 - **Purple (Sixths)**: `#5300A4` — **5:3 A4**: Encodes the Major Sixth ratio (5:3) anchored to A4.
 - **Magenta (Sevenths)**: `#F158A4` — **F 15:8 A4**: Encodes the Major Seventh ratio (15:8) anchored to A4.

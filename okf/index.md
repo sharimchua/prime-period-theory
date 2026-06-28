@@ -174,7 +174,7 @@ amplitude or effect envelopes.
 - [Chromatic Clock Geometry](related/chromatic-clock.md) — the 12-tone chromatic circle as a geometric navigation tool
 
 ## Specifications
-- [Design System & Color Semantics](specifications/design-system.md) — Visual styling and mathematical mapping
+- [Design System & Colour Semantics](specifications/design-system.md) — Visual styling and mathematical mapping
 - [PPT Composition Format (PPT-CF)](specifications/composition-format.md) — a concise, structural encoding format for serializing component layouts
 
 ## Relationship to other theories
@@ -206,5 +206,6 @@ tools for full timbral analysis.
 This is a living document representing one person's evolving theoretical
 perspective. It is descriptive, not prescriptive. Contributions, critiques, and
 parallel frameworks are welcome.
-   
+  
+ 
  

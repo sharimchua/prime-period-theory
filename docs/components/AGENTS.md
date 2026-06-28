@@ -13,11 +13,11 @@ When building or modifying components in this directory, agents must strictly ad
 ### 2. Styling Strategy
 - **Shadow DOM:** All components must use Shadow DOM (`mode: 'open'`) to encapsulate their styles and prevent leakage.
 - **Injectable Styles (CSS Variables):** Component styling should be driven by CSS Custom Properties (Variables) defined in the `:host` selector. This allows the styling guides from the PPT docs to serve as defaults, while allowing any parent application to independently style the components by overriding the variables in their context.
-- **No Hardcoded Colors/Fonts:** Always fall back to a CSS variable. E.g., `color: var(--ppt-text-color, #333);`
+- **No Hardcoded Colours/Fonts:** Always fall back to a CSS variable. E.g., `color: var(--ppt-text-color, #333);`
 
 ### 3. Interactivity & Inheritance
 - **Interactive Flag:** Components must support an `interactive` boolean attribute/property.
-- **Behavior when `interactive=false`:**
+- **Behaviour when `interactive=false`:**
   - The component must ignore pointer events (`pointer-events: none;`).
   - The component must ignore text cursor events (`user-select: none;`).
   - The component must visually indicate a static/disabled state if applicable.
@@ -36,4 +36,4 @@ When building or modifying components in this directory, agents must strictly ad
 
 ### 6. Composer Compatibility
 - **Non-Destructive Rendering:** Components MUST protect their `attributeChangedCallback` and `slotchange` handlers to prevent destructive Shadow DOM recreation. If a component resets its entire innerHTML every time an attribute changes, it acts as a "kill switch" for any programmatically injected child slots and event listeners inside the Component Composer. Use an `_isRendered` flag to ensure the core Shadow DOM structure is built only once in `connectedCallback`.
-- **Metadata:** Define `pptMetadata` as a static getter to expose customizable properties (e.g., colors, enums, booleans) to the Component Composer's Properties Panel. Specify property `type`, `options`, `default`, and `description`.
+- **Metadata:** Define `pptMetadata` as a static getter to expose customizable properties (e.g., colours, enums, booleans) to the Component Composer's Properties Panel. Specify property `type`, `options`, `default`, and `description`.

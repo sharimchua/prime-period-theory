@@ -134,6 +134,7 @@ amplitude or effect envelopes.
 ### Reference
 - [Metric DuPeriod](reference/metric-duperiod.md) — the coordinate system for logarithmic period mapping
 - [Envelopes and Amplitude Shaping](reference/envelopes.md) — ADSR scaling from macro crescendos to micro transients
+- [Amplitude Notation](reference/amplitude-notation.md) — extending PPT notation for dynamic amplitude
 
 ### Context
 - [Music as Language](context/music-as-language.md) — music as a language;
@@ -141,7 +142,9 @@ amplitude or effect envelopes.
 
 ### Extended
 - [Metric DuPeriod — Extended Range](extended/metric-duperiod-extended.md) — the stratospheric positive metric DuPeriod space and biological periodicity
-- [Geometric Amplitude Ratios](extended/amplitude-ratios.md) — inquiry into prime-number governance of amplitude differences
+- [Geometric Amplitude Ratios](extended/geometric-amplitude-ratios.md) — inquiry into prime-number governance of amplitude differences
+- [Amplitude Trajectories](extended/amplitude-trajectories.md) — amplitude as change over Metric DuPeriod time
+- [Spectral Dynamic Coupling](extended/spectral-dynamic-coupling.md) — modulation of spectral content by amplitude trajectories
 
 ### Domains
 - [Pitch](domains/pitch.md) — micro periodicity; frequency; just intonation
@@ -412,18 +415,36 @@ timestamp: 2026-06-28
 
 # Dynamics as Amplitude Periodicity
 
-> **Stub Notice:** This page is a conceptual stub to be expanded in a future update.
-
 ## Overview
 
 In Prime Period Theory (PPT), dynamics (accents, fortes, pianos) are not simply subjective performance instructions. They are expressions of **amplitude periodicity** at the macro scale. 
 
-Just as relative amplitude differences between micro-scale acoustic partials create "tone colour" (timbre), relative amplitude differences between macro-scale beats (accents) create "groove." This section will explore accented polyrhythms and how dynamics act as the macro-scale equivalent of timbre across the Periodicity Limen.
+Just as relative amplitude differences between micro-scale acoustic partials create "tone colour" (timbre), relative amplitude differences between macro-scale beats (accents) create "groove." This section explores accented polyrhythms and how dynamics act as the macro-scale equivalent of timbre across the Periodicity Limen.
 
-## Planned topics
-- Accents as amplitude-weighted polyrhythms
-- The structural equivalency between groove and tone colour
-- Notating relative amplitude in PPT
+## Accents and Groove as Macro-Timbre
+
+When a musician accents every second beat, they are creating an amplitude envelope that cycles at half the frequency of the main pulse. This is a 2:1 amplitude relationship. 
+
+PPT posits a direct structural equivalency:
+- **Timbre (Micro)**: The amplitude envelope across high-frequency periodic pitch signals.
+- **Groove (Macro)**: The amplitude envelope across low-frequency periodic rhythmic signals.
+
+## DuPrime in Loud/Soft Contrasts
+
+The most fundamental dynamic contrast is loud vs. soft. In PPT, this binary hierarchy is an expression of the **DuPrime (2)** family. A standard 4/4 drum pattern with heavy accents on beats 1 and 3 is utilizing a 2:1 DuPrime amplitude envelope to provide structural stability.
+
+When we introduce more complex accents—such as accenting every 3rd 16th note against a 4/4 pulse—we are engaging in **cross-family amplitude polyrhythms**. The amplitude peaks are governed by the TriPrime (3) family, while the foundational metric grid remains DuPrime (2).
+
+## Notating Relative Amplitude
+
+To capture these dynamic trajectories systematically, PPT extends existing notation frameworks:
+- **Rhythmic Grammar**: Captures the placement and weighting of accents relative to the Metric DuPeriod.
+- **Axis Diacritics**: By extending the diacritic system used for microtonal pitch (e.g., Sub, Sup, Axis), we can systematically notate the exact geometric amplitude ratio of an accented beat relative to its unaccented neighbour.
+
+## See also
+- [Timbre](../foundations/timbre.md)
+- [Metric DuPeriod](../reference/metric-duperiod.md)
+- [Geometric Amplitude Ratios](../extended/geometric-amplitude-ratios.md)
 
 
 ================================================================================
@@ -781,7 +802,9 @@ This directory is intended for theoretical extensions that, while grounded in PP
 |File|Status|Description|
 |---|---|---|
 |`metric-duperiod-extended.md`|Complete|The stratospheric positive metric DuPeriod space, biological periodicities, and cognitive boundaries|
-|`amplitude-ratios.md`|Stub|Inquiry into geometric and prime-ratio governance of amplitude differences|
+|`geometric-amplitude-ratios.md`|Draft|Inquiry into geometric and prime-ratio governance of amplitude differences|
+|`amplitude-trajectories.md`|Stub|Amplitude as change over Metric DuPeriod time|
+|`spectral-dynamic-coupling.md`|Stub|Modulation of spectral content by amplitude trajectories|
 
 ## Tone guidance
 
@@ -789,7 +812,44 @@ Content in this section should maintain the descriptive and foundational tone of
 
 
 ================================================================================
-FILE: okf/extended/amplitude-ratios.md
+FILE: okf/extended/amplitude-trajectories.md
+================================================================================
+
+---
+type: concept
+title: Amplitude Trajectories
+description: >
+  An exploration of amplitude as change over Metric DuPeriod time (envelopes as trajectories), featuring self-similar scaling.
+tags:
+  - amplitude
+  - trajectories
+  - envelopes
+  - metric-duperiod
+  - prime-period-theory
+timestamp: 2026-06-28
+---
+
+# Amplitude Trajectories
+
+> **Stub Notice:** This page represents an exploratory frontier of Prime Period Theory and is currently a stub.
+
+## Overview
+
+Amplitude is not merely a static ratio but a dynamic trajectory—change over Metric DuPeriod time. In PPT, envelopes (attack, decay, sustain, release) are analyzed as trajectories that scale self-similarly from micro-transients to macro-dynamics and form arcs. 
+
+## Planned topics
+- Amplitude as change over Metric DuPeriod time (envelopes as trajectories).
+- Self-similar scaling: micro-transients ↔ macro-dynamics ↔ form arcs.
+- Observable phenomena: envelope interference, fractal phrasing, and amplitude cadences (parallel to pitch/rhythmic 2-5-1).
+- Ties to auditory-horizon agency and perception pages.
+
+## See also
+- [Foundations: Amplitude & Time](../foundations/amplitude-time.md)
+- [Perception: Auditory Horizon](../perception/auditory-horizon.md)
+
+
+================================================================================
+FILE: okf/extended/geometric-amplitude-ratios.md
 ================================================================================
 
 ---
@@ -809,18 +869,35 @@ timestamp: 2026-06-28
 
 # Geometric Amplitude Ratios
 
-> **Stub Notice:** This page represents an exploratory frontier of Prime Period Theory and is currently a stub.
-
 ## Overview
 
 If prime-ratio frequencies govern the structures of pitch and rhythm, do mathematically significant relationships govern the *amplitude differences* between those periodic signals?
 
-This extended inquiry asks whether specific ratio or prime-number observations can be made about the amplitude differences between different "sounds" (e.g., partials in a timbre or accented beats in a polyrhythm) that determine their perceived character.
+This extended inquiry asks whether specific ratio or prime-number observations can be made about the amplitude differences between different "sounds" (e.g., partials in a timbre or accented beats in a polyrhythm) that determine their perceived character. Amplitude in Prime Period Theory is not merely a static volume level, but a dynamic, ratio-governed trajectory scaling across micro (timbre) and macro (accents/groove) horizons.
 
-## Planned topics
-- Framing "suppression" and "emphasis" as specific geometric amplitude functions
-- Investigating known pleasing dynamic ratios
-- Hypothetical mapping of prime families to amplitude scaling
+## Static and Dynamic Amplitude Ratios
+
+In traditional acoustic analysis, amplitude is often treated linearly or logarithmically (via decibels) without reference to simple integer ratios. PPT hypothesises that our perception of "balanced" or "characteristic" amplitudes—whether the mix of partials in a tone or the hierarchy of accents in a metre—may be governed by the same prime families that organize pitch and time.
+
+- **Static ratios** describe the fixed proportional relationships between simultaneous elements (e.g., the amplitude of the fundamental relative to the 3rd partial).
+- **Dynamic ratios** describe how these proportions change over a Metric DuPeriod (e.g., an envelope's rate of attack versus decay, or the fluctuating amplitude of a beat over a measure).
+
+## Prime-Family Amplitude Weighting in Timbre
+
+The characteristic sound of an instrument (its macro-timbre) is fundamentally a question of amplitude weighting across its harmonic spectrum. PPT interprets these weightings through prime families:
+- **Odd-Prime Emphasis**: A clarinet's characteristic hollow sound is often attributed to the strong presence of odd harmonics (3-prime, 5-prime). In PPT terms, the amplitude envelope heavily suppresses DuPrime (even) partials in favour of higher prime families.
+- **Full Spectrum Presence**: A bowed violin string features a much fuller, more linear decay across its partials, allowing the DuPrime structural elements to ground the complex, high-prime acoustic noise generated by the bow.
+
+## Hypotheses on Common Amplitude Ratios
+
+If amplitude organizes hierarchically like pitch and rhythm, we can hypothesise standard ratios for amplitude contrast:
+- **DuPrime (2:1)**: The foundational ratio of contrast. In rhythmic accents, a 2:1 amplitude ratio between strong and weak beats may provide the clearest, most stable binary hierarchy, establishing the primary "pulse" envelope.
+- **TriPrime & QuinPrime (3:2, 5:4)**: Just as these families introduce colour and swing in pitch and time, subtle amplitude ratios like 3:2 or 5:4 might govern the characteristic "lilt" or "swing" of an inner groove, offering nuance without destabilising the DuPrime hierarchy.
+
+## See also
+- [Timbre](../foundations/timbre.md)
+- [Dynamics](../domains/dynamics.md)
+- [Prime Families](../foundations/prime-families.md)
 
 
 ================================================================================
@@ -1072,6 +1149,42 @@ navigable.
   macro-scale periodicity examples
 - [Rhythm](../domains/rhythm.md) — macro periodicity; the entry point
   for rhythmic space in PPT
+
+
+================================================================================
+FILE: okf/extended/spectral-dynamic-coupling.md
+================================================================================
+
+---
+type: concept
+title: Spectral Dynamic Coupling
+description: >
+  Examines how amplitude trajectories modulate spectral content and vice versa in DuPeriod space.
+tags:
+  - spectral-dynamics
+  - amplitude
+  - envelopes
+  - timbre
+  - prime-period-theory
+timestamp: 2026-06-28
+---
+
+# Spectral Dynamic Coupling
+
+> **Stub Notice:** This page represents an exploratory frontier of Prime Period Theory and is currently a stub for future collaboration.
+
+## Overview
+
+Amplitude trajectories are rarely isolated; they are deeply coupled with spectral content. As an envelope changes dynamically across DuPeriod space, the relative amplitude ratios of the underlying prime families shift, fundamentally altering the perceived timbre over time.
+
+## Planned topics
+- How amplitude trajectories modulate spectral content (and vice versa).
+- Instrument-specific envelope behaviors in DuPeriod space.
+- Implications for synthesis, orchestration, and live performance.
+
+## See also
+- [Timbre](../foundations/timbre.md)
+- [Amplitude Trajectories](amplitude-trajectories.md)
 
 
 ================================================================================
@@ -2285,6 +2398,41 @@ This directory contains reference material for the core coordinate systems and m
 |---|---|---|
 | `metric-duperiod.md` | Complete | The coordinate system from Metric DuPeriod -10 through +10 |
 | `envelopes.md` | Stub | ADSR envelope scaling and amplitude shaping across the DuPeriod |
+| `amplitude-notation.md` | Stub | Extending PPT notation for dynamic amplitude |
+
+
+================================================================================
+FILE: okf/reference/amplitude-notation.md
+================================================================================
+
+---
+type: reference
+title: Amplitude Notation
+description: >
+  Reference for extending Uniform Solfège/PPD and Coil Notation for dynamic amplitude.
+tags:
+  - notation
+  - amplitude
+  - uniform-solfege
+  - prime-period-theory
+timestamp: 2026-06-28
+---
+
+# Amplitude Notation
+
+> **Stub Notice:** This page represents an exploratory frontier of Prime Period Theory and is currently a stub.
+
+## Overview
+
+Standard music notation provides limited, subjective tools for amplitude (`p`, `mf`, `f`, accents). PPT seeks to formally extend its notation systems (Uniform Solfège, PPD, and MusiCoil) to capture exact dynamic trajectories and geometric amplitude ratios.
+
+## Planned topics
+- Extensions to Uniform Solfège/PPD and Coil Notation for dynamic amplitude (e.g., diacritics on envelopes, trajectory symbols).
+- Integration with Rhythmic Grammar for accented dynamics.
+
+## See also
+- [Uniform Solfège](../uniform-solfege/index.md)
+- [Geometric Amplitude Ratios](../extended/geometric-amplitude-ratios.md)
 
 
 ================================================================================

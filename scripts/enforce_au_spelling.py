@@ -25,6 +25,13 @@ AMERICAN_TO_AUSTRALIAN = {
     "modeling": "modelling"
 }
 
+MD_ONLY_WORDS = {
+    "color": "colour",
+    "behavior": "behaviour",
+    "center": "centre",
+    "colorful": "colourful"
+}
+
 def check_file(filepath):
     errors = []
     with open(filepath, 'r', encoding='utf-8') as f:
@@ -34,22 +41,41 @@ def check_file(filepath):
             return errors
             
     lines = content.split('\n')
+    is_md = filepath.endswith('.md')
+    in_code_block = False
+    
     for i, line in enumerate(lines):
-        for us_word, au_word in AMERICAN_TO_AUSTRALIAN.items():
+        # Track markdown code blocks
+        if is_md and line.strip().startswith('```'):
+            in_code_block = not in_code_block
+            continue
+            
+        # Skip checking inside markdown code blocks entirely
+        if in_code_block:
+            continue
+            
+        # Remove inline code `...` before checking so we don't flag `color: red;`
+        text_to_check = re.sub(r'`[^`]*`', '', line)
+        
+        words_to_check = dict(AMERICAN_TO_AUSTRALIAN)
+        if is_md:
+            words_to_check.update(MD_ONLY_WORDS)
+
+        for us_word, au_word in words_to_check.items():
             pattern = r'\b' + us_word + r'\b'
-            if re.search(pattern, line, re.IGNORECASE):
+            if re.search(pattern, text_to_check, re.IGNORECASE):
                 errors.append(f"Line {i+1}: Found American spelling '{us_word}'. Use '{au_word}' instead.")
                 
             pattern_s = r'\b' + us_word + r's\b'
-            if re.search(pattern_s, line, re.IGNORECASE):
+            if re.search(pattern_s, text_to_check, re.IGNORECASE):
                 errors.append(f"Line {i+1}: Found American spelling '{us_word}s'. Use '{au_word}s' instead.")
                 
             if us_word.endswith('e'):
                 pattern_ed = r'\b' + us_word + r'd\b'
                 pattern_ing = r'\b' + us_word[:-1] + r'ing\b'
-                if re.search(pattern_ed, line, re.IGNORECASE):
+                if re.search(pattern_ed, text_to_check, re.IGNORECASE):
                     errors.append(f"Line {i+1}: Found American spelling '{us_word}d'. Use '{au_word}d' instead.")
-                if re.search(pattern_ing, line, re.IGNORECASE):
+                if re.search(pattern_ing, text_to_check, re.IGNORECASE):
                     errors.append(f"Line {i+1}: Found American spelling '{us_word[:-1]}ing'. Use '{au_word[:-1]}ing' instead.")
                     
     return errors
