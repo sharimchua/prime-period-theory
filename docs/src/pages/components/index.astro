@@ -97,7 +97,7 @@ import AutoPropsPanel from '../../components/ui/AutoPropsPanel.astro';
       <div class="demo-box-wrapper">
         <div class="demo-box resizable">
           <ppt-container id="demo-metronome-container">
-            <ppt-control-panel panel-align="left" ratio="200px" label="Sequencer Controls">
+            <ppt-control-panel panel-align="floating" ratio="200px" label="Sequencer Controls">
               <ppt-control-boolean bind-id="metronome-play" label="Play"></ppt-control-boolean>
               <ppt-control-integer bind-id="metronome-tempo" label="Tempo (BPM)" value="120" min="40" max="300"></ppt-control-integer>
             </ppt-control-panel>
@@ -114,7 +114,7 @@ import AutoPropsPanel from '../../components/ui/AutoPropsPanel.astro';
 
       <details class="code-panel">
         <summary>View Source Code <button class="copy-btn" onclick="copyCode('metronome-code', this)">Copy Code</button></summary>
-        <pre><code id="metronome-code">&lt;ppt-control-panel panel-align="left" ratio="200px" label="Sequencer Controls"&gt;
+        <pre><code id="metronome-code">&lt;ppt-control-panel panel-align="floating" ratio="200px" label="Sequencer Controls"&gt;
   &lt;ppt-control-boolean bind-id="metronome-play" label="Play"&gt;&lt;/ppt-control-boolean&gt;
   &lt;ppt-control-integer bind-id="metronome-tempo" label="Tempo (BPM)" value="120" min="40" max="300"&gt;&lt;/ppt-control-integer&gt;
 &lt;/ppt-control-panel&gt;
