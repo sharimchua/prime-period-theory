@@ -206,3 +206,5 @@ tools for full timbral analysis.
 This is a living document representing one person's evolving theoretical
 perspective. It is descriptive, not prescriptive. Contributions, critiques, and
 parallel frameworks are welcome.
+   
+ 
