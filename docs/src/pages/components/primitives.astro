@@ -15,7 +15,7 @@ import AutoPropsPanel from '../../components/ui/AutoPropsPanel.astro';
     <div class="live-doc-grid">
       <div class="controls-panel">
         <h3>Base Parameters</h3>
-        <AutoPropsPanel targetId="demo-base" tagName="ppt-panel" />
+        <AutoPropsPanel targetId="demo-base" tagName="ppt-text-panel" />
       </div>
 
       <div class="demo-box-wrapper">
@@ -24,21 +24,25 @@ import AutoPropsPanel from '../../components/ui/AutoPropsPanel.astro';
             import '../../../components/src/index.ts';
           </script>
           
-          <ppt-panel id="demo-base" panel-align="inline" ratio="100%" interactive="true" resizable="true">
-            <h3 style="margin-top: 0;">Generic Base Implementation</h3>
-            <p>I am a generic PPT component (technically a ppt-panel). I inherit all base behaviors.</p>
-            <p>Try toggling my interactive state or dragging my bottom right corner to resize me.</p>
-          </ppt-panel>
+          <ppt-container>
+            <ppt-text-panel id="demo-base" panel-align="inline" ratio="100%" interactive="true" resizable="true">
+              <h3 style="margin-top: 0;">Generic Base Implementation</h3>
+              <p>I am a generic PPT component (technically a ppt-text-panel). I inherit all base behaviors.</p>
+              <p>Try toggling my interactive state or dragging my bottom right corner to resize me.</p>
+            </ppt-text-panel>
+          </ppt-container>
         </div>
       </div>
 
       <details class="code-panel">
         <summary>View Source Code <button class="copy-btn" onclick="copyCode('base-code', this)">Copy Code</button></summary>
-        <pre><code id="base-code">&lt;ppt-panel panel-align="inline" ratio="100%" interactive="true" resizable="true"&gt;
-  &lt;h3 style="margin-top: 0;"&gt;Generic Base Implementation&lt;/h3&gt;
-  &lt;p&gt;I am a generic PPT component (technically a ppt-panel). I inherit all base behaviors.&lt;/p&gt;
-  &lt;p&gt;Try toggling my interactive state or dragging my bottom right corner to resize me.&lt;/p&gt;
-&lt;/ppt-panel&gt;</code></pre>
+        <pre><code id="base-code">&lt;ppt-container&gt;
+  &lt;ppt-text-panel panel-align="inline" ratio="100%" interactive="true" resizable="true"&gt;
+    &lt;h3 style="margin-top: 0;"&gt;Generic Base Implementation&lt;/h3&gt;
+    &lt;p&gt;I am a generic PPT component (technically a ppt-text-panel). I inherit all base behaviors.&lt;/p&gt;
+    &lt;p&gt;Try toggling my interactive state or dragging my bottom right corner to resize me.&lt;/p&gt;
+  &lt;/ppt-text-panel&gt;
+&lt;/ppt-container&gt;</code></pre>
       </details>
     </div>
   </section>
@@ -55,13 +59,17 @@ import AutoPropsPanel from '../../components/ui/AutoPropsPanel.astro';
 
       <div class="demo-box-wrapper">
         <div class="demo-box resizable" style="align-items: flex-start; height: 150px;">
-          <ppt-title id="demo-isolated-title" resizable="true">Hello World!</ppt-title>
+          <ppt-container>
+            <ppt-title id="demo-isolated-title" resizable="true">Hello World!</ppt-title>
+          </ppt-container>
         </div>
       </div>
 
       <details class="code-panel">
         <summary>View Source Code <button class="copy-btn" onclick="copyCode('title-code', this)">Copy Code</button></summary>
-        <pre><code id="title-code">&lt;ppt-title resizable="true"&gt;Hello World!&lt;/ppt-title&gt;</code></pre>
+        <pre><code id="title-code">&lt;ppt-container&gt;
+  &lt;ppt-title resizable="true"&gt;Hello World!&lt;/ppt-title&gt;
+&lt;/ppt-container&gt;</code></pre>
       </details>
     </div>
   </section>
@@ -73,15 +81,15 @@ import AutoPropsPanel from '../../components/ui/AutoPropsPanel.astro';
     <div class="live-doc-grid">
       <div class="controls-panel">
         <h3>Parameters (Primary Panel)</h3>
-        <AutoPropsPanel targetId="demo-isolated-panel" tagName="ppt-panel" />
+        <AutoPropsPanel targetId="demo-isolated-panel" tagName="ppt-text-panel" />
       </div>
 
       <div class="demo-box-wrapper">
         <div class="demo-box resizable">
           <ppt-container>
-            <ppt-panel id="demo-isolated-panel" panel-align="right" ratio="50%" resizable="true">
+            <ppt-text-panel id="demo-isolated-panel" panel-align="right" ratio="50%" resizable="true">
               <span id="isolated-panel-text">I am the primary editable panel.</span>
-            </ppt-panel>
+            </ppt-text-panel>
             
             <div style="flex: 1; min-width: 0; background: #e2e8f0; border-radius: 8px; padding: 1rem; display: flex; align-items: center; justify-content: center; text-align: center;">
               I am a responsive sibling element. When the primary panel floats, I will expand to fill all remaining space!
@@ -92,9 +100,11 @@ import AutoPropsPanel from '../../components/ui/AutoPropsPanel.astro';
 
       <details class="code-panel">
         <summary>View Source Code <button class="copy-btn" onclick="copyCode('panel-code', this)">Copy Code</button></summary>
-        <pre><code id="panel-code">&lt;ppt-panel panel-align="right" ratio="50%" resizable="true"&gt;
-  &lt;span&gt;I am the primary editable panel.&lt;/span&gt;
-&lt;/ppt-panel&gt;</code></pre>
+        <pre><code id="panel-code">&lt;ppt-container&gt;
+  &lt;ppt-text-panel panel-align="right" ratio="50%" resizable="true"&gt;
+    &lt;span&gt;I am the primary editable panel.&lt;/span&gt;
+  &lt;/ppt-text-panel&gt;
+&lt;/ppt-container&gt;</code></pre>
       </details>
     </div>
   </section>

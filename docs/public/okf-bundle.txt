@@ -517,7 +517,7 @@ The **Lowest Common Multiple (LCM)** of `5:4` is 20, whereas the LCM of `5:3` is
 
 The centricity of the major third is a product of **cultural loading**. Western tertian harmony, which builds chords by stacking thirds, is a historically contingent system that developed over the last ~600 years. It elevated the third (and its 5-limit geometry) to the structural core of its grammar. 
 
-Other musical systems recognise the physical primacy of the sixth. In many non-Western traditions, or in earlier Western polyphony, intervals like the sixth and fourth hold different structural weight than they do in standard Classical theory.
+Other musical systems recognise the physical primacy of the sixth. In many non-Western traditions, or in earlier Western polyphony, intervals like the sixth and fourth hold different structural weight than they do in standard Classical theory. 
 
 ### Raga vs Tala distinction
 This cultural weighting highlights the distinction between pitch (Raga) and rhythm (Tala) that PPT seeks to bridge. Western music heavily developed the 5-limit (thirds) in pitch space while leaving rhythm largely confined to the 2-prime and 3-prime families. In contrast, Indian classical traditions developed complex prime-limit structures in rhythm (Tala) while maintaining a drone-based pitch space (Raga) that often prioritizes different interval relationships. 
@@ -838,7 +838,7 @@ timestamp: 2026-06-28
 
 ## Overview
 
-Amplitude is not merely a static ratio but a dynamic trajectory—change over Metric DuPeriod time. In PPT, envelopes (attack, decay, sustain, release) are analysed as trajectories that scale self-similarly from micro-transients to macro-dynamics and form arcs.
+Amplitude is not merely a static ratio but a dynamic trajectory—change over Metric DuPeriod time. In PPT, envelopes (attack, decay, sustain, release) are analysed as trajectories that scale self-similarly from micro-transients to macro-dynamics and form arcs. 
 
 ## Planned topics
 - Amplitude as change over Metric DuPeriod time (envelopes as trajectories).
@@ -2015,7 +2015,7 @@ A single sound event — a crash, a scrape, a bang — provides very little
 predictive information. But when an event repeats at a consistent interval 
 (a period), a pattern is established. 
 
-Once a pattern is recognised, the listener's brain unconsciously projects that
+Once a pattern is recognised, the listener's brain unconsciously projects that 
 pattern forward in time. We expect the next beat to land *here*; we expect the 
 next cycle of the waveform to cross zero *now*. This predictive model is the 
 foundation of all musical engagement. 
@@ -3940,7 +3940,7 @@ If you begin with a fundamental pitch and iteratively stack pure 3:2 perfect fif
 
 In PPT, Pentatonic and Heptatonic scales are not treated merely as "modes" or "keys," but as **geometric subsets of the 3-limit**. 
 
-They represent different resolutions of the same underlying periodic structure. When analysing a melody, PPT views the shift from a pentatonic vocabulary to a heptatonic one as an increase in geometric complexity and harmonic tension. The pentatonic scale provides an open, stable 3-prime scaffold, while the heptatonic scale introduces the structural friction required to drive a phrase forward.
+They represent different resolutions of the same underlying periodic structure. When analysing a melody, PPT views the shift from a pentatonic vocabulary to a heptatonic one as an increase in geometric complexity and harmonic tension. The pentatonic scale provides an open, stable 3-prime scaffold, while the heptatonic scale introduces the structural friction required to drive a phrase forward. 
 
 Because these scales are generated purely by the 3-limit, they exist independently of any specific temperament. They can be tuned in Just Intonation, 12TET, or 31 EDO, but their underlying geometric shape—a contiguous chain of fifths—remains identical.
 

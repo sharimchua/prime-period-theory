@@ -168,7 +168,9 @@ export function getPPTComponents(): ComponentMeta[] {
     const defMatch = content.match(/componentDef[^{]*{.*?return\s*({[\s\S]*?})\s*;\s*}/s);
     if (defMatch) {
       try {
-        componentDef = { ...componentDef, ...parseSafeMetadata(defMatch[1]) };
+        let objStr = defMatch[1];
+        objStr = objStr.replace(/\s+as\s+[a-zA-Z0-9_\[\]]+/g, '');
+        componentDef = { ...componentDef, ...parseSafeMetadata(objStr) };
       } catch (e) {
         console.warn(`Failed to parse componentDef for ${className}:`, e);
       }

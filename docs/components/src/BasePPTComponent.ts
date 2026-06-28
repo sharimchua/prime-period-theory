@@ -24,7 +24,7 @@ export class BasePPTComponent extends HTMLElement {
     this.attachShadow({ mode: 'open' });
   }
 
-  attributeChangedCallback(name: string, _oldValue: string, newValue: string) {
+  attributeChangedCallback(_name: string, _oldValue: string, _newValue: string) {
     // Override in subclasses
   }
 

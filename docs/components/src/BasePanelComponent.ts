@@ -2,12 +2,12 @@ import { BasePPTComponent } from './BasePPTComponent.js';
 import { WithInteractive } from './features/WithInteractive.js';
 import { WithResizable } from './features/WithResizable.js';
 
-export class PanelComponent extends WithResizable(WithInteractive(BasePPTComponent)) {
+export class BasePanelComponent extends WithResizable(WithInteractive(BasePPTComponent)) {
   static override get componentDef() {
     return {
-      displayName: 'Panel',
+      displayName: 'Base Panel',
       familyColor: '#e67e22',
-      acceptsChildren: [],
+      acceptsChildren: [] as string[],
       canNestIn: ['ppt-container']
     };
   }
@@ -134,18 +134,27 @@ export class PanelComponent extends WithResizable(WithInteractive(BasePPTCompone
     this.style.setProperty('transform', `translate3d(${this.currentX}px, ${this.currentY}px, 0)`);
   }
 
+  protected getPanelStyles() {
+    return `
+      :host {
+        display: block;
+        font-family: var(--ppt-font-family, system-ui, sans-serif);
+        color: var(--ppt-text-color, #333);
+      }
+    `;
+  }
+
+  protected getPanelContent() {
+    return `<slot></slot>`;
+  }
+
   private render() {
     if (!this.shadowRoot) return;
 
     this.shadowRoot.innerHTML = `
       <style>
         ${this.getBaseStyles()}
-        
-        :host {
-          display: block;
-          font-family: var(--ppt-font-family, system-ui, sans-serif);
-          color: var(--ppt-text-color, #333);
-        }
+        ${this.getPanelStyles()}
 
         .panel-inner {
           background: var(--ppt-panel-bg, rgba(255, 255, 255, 0.95));
@@ -172,10 +181,8 @@ export class PanelComponent extends WithResizable(WithInteractive(BasePPTCompone
       </style>
 
       <div class="panel-inner">
-        <slot></slot>
+        ${this.getPanelContent()}
       </div>
     `;
   }
 }
-
-customElements.define('ppt-panel', PanelComponent);

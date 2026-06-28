@@ -465,11 +465,26 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '') + '/';
 
   // MutationObserver
   if (canvas) {
-    const observer = new MutationObserver(() => {
-      syncCode();
-      renderTree();
+    const observer = new MutationObserver((mutations) => {
+      let needsTreeRender = false;
+      let needsCodeSync = false;
+
+      for (const mutation of mutations) {
+        if (mutation.type === 'childList' || mutation.type === 'characterData') {
+          needsTreeRender = true;
+          needsCodeSync = true;
+        } else if (mutation.type === 'attributes') {
+          needsCodeSync = true;
+          if (mutation.target === selectedElement) {
+            updatePropertiesValues(selectedElement);
+          }
+        }
+      }
+
+      if (needsCodeSync) syncCode();
+      if (needsTreeRender) renderTree();
     });
-    observer.observe(canvas, { childList: true, subtree: true, attributes: true });
+    observer.observe(canvas, { childList: true, subtree: true, attributes: true, characterData: true });
     syncCode();
     renderTree();
   }
@@ -622,6 +637,36 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '') + '/';
           }
           if (attr && target.value) el.setAttribute(attr, target.value);
         });
+      }
+    });
+  }
+
+  function updatePropertiesValues(el: HTMLElement) {
+    if (!propertiesPanel || !el) return;
+    const inputs = propertiesPanel.querySelectorAll('input, select, textarea');
+    inputs.forEach(input => {
+      if (document.activeElement === input) return;
+      const target = input as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
+      const attr = target.getAttribute('data-attr');
+      if (!attr) return;
+      
+      if (attr === 'textContent') {
+         if (target.value !== el.textContent) target.value = el.textContent || '';
+         return;
+      }
+      
+      const val = el.getAttribute(attr);
+      if (target.type === 'checkbox') {
+         const boolInput = target as HTMLInputElement;
+         const newChecked = val === 'true' || val === '';
+         if (boolInput.checked !== newChecked) {
+           boolInput.checked = newChecked;
+         }
+      } else {
+         const newVal = val || '';
+         if (target.value !== newVal) {
+           target.value = newVal;
+         }
       }
     });
   }
@@ -1059,13 +1104,14 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '') + '/';
 
   /* Canvas */
   .canvas-wrapper {
-    flex: 1; display: flex; align-items: center; justify-content: center;
+    flex: 1; display: flex; align-items: stretch; justify-content: stretch;
     overflow: auto; padding: 2rem;
     background-color: #fff;
   }
   .canvas {
-    width: 100%; min-height: 500px;
-    display: flex; align-items: center; justify-content: center;
+    flex: 1; min-height: 500px;
+    display: flex; align-items: stretch; justify-content: stretch;
+    flex-direction: column;
     position: relative; color: #000;
   }
 
@@ -1270,5 +1316,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '') + '/';
   /* Container boundaries */
   #canvas ppt-container {
     border: 1px dashed #ccc;
+    flex: 1;
+    width: 100%;
   }
 </style>

@@ -61,7 +61,8 @@ export class PeriodComponent extends WithInteractive(BasePPTComponent) {
     const slot = this.shadowRoot.querySelector('slot[name="step"]') as HTMLSlotElement;
     if (!slot) return;
 
-    const steps = slot.assignedElements() as HTMLElement[];
+    const allSteps = slot.assignedElements() as HTMLElement[];
+    const steps = allSteps.filter(step => !(step as any).isHiddenComponent);
     if (steps.length === 0) return;
 
     const count = steps.length;

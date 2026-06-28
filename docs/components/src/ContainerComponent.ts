@@ -68,10 +68,10 @@ export class ContainerComponent extends WithResizable(WithInteractive(BasePPTCom
           min-height: 0;
         }
 
-        ::slotted(ppt-panel[panel-align="left"]) {
+        ::slotted(*[panel-align="left"]) {
           order: -1;
         }
-        ::slotted(ppt-panel[panel-align="right"]) {
+        ::slotted(*[panel-align="right"]) {
           order: 1;
         }
 

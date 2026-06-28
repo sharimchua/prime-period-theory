@@ -33,14 +33,16 @@ import AutoPropsPanel from '../../components/ui/AutoPropsPanel.astro';
 
       <details class="code-panel">
         <summary>View Source Code <button class="copy-btn" onclick="copyCode('period-code', this)">Copy Code</button></summary>
-        <pre><code id="period-code">&lt;ppt-period shape="circle" starting-angle="-90" min-width="150" min-height="150"&gt;&lt;/ppt-period&gt;</code></pre>
+        <pre><code id="period-code">&lt;ppt-container&gt;
+  &lt;ppt-period shape="circle" starting-angle="-90" min-width="150" min-height="150"&gt;&lt;/ppt-period&gt;
+&lt;/ppt-container&gt;</code></pre>
       </details>
     </div>
   </section>
 
   <section class="component-demo">
     <h3 id="step-circle-component">Step</h3>
-    <p>A semantic marker component that is natively managed by the Period Component's geometry system.</p>
+    <p>A semantic marker component that is natively managed by the Period Component's geometry system. Step circles can have an assigned <code>pitch</code>. Clicking the circle will play the tone, and if a MIDI keyboard is connected, playing the corresponding note will visually highlight the circle.</p>
     
     <div class="live-doc-grid">
       <div class="controls-panel">
@@ -62,15 +64,55 @@ import AutoPropsPanel from '../../components/ui/AutoPropsPanel.astro';
 
       <details class="code-panel">
         <summary>View Source Code <button class="copy-btn" onclick="copyCode('step-code', this)">Copy Code</button></summary>
-        <pre><code id="step-code">&lt;ppt-period shape="line-horizontal" starting-angle="-90"&gt;
-  &lt;ppt-period-step-circle slot="step"&gt;A&lt;/ppt-period-step-circle&gt;
-  &lt;ppt-period-step-circle slot="step"&gt;B&lt;/ppt-period-step-circle&gt;
-  &lt;ppt-period-step-circle slot="step"&gt;C&lt;/ppt-period-step-circle&gt;
-&lt;/ppt-period&gt;</code></pre>
+        <pre><code id="step-code">&lt;ppt-container&gt;
+  &lt;ppt-period shape="line-horizontal" starting-angle="-90" min-width="150" min-height="150"&gt;
+    &lt;ppt-period-step-circle slot="step"&gt;A&lt;/ppt-period-step-circle&gt;
+    &lt;ppt-period-step-circle slot="step"&gt;B&lt;/ppt-period-step-circle&gt;
+    &lt;ppt-period-step-circle slot="step"&gt;C&lt;/ppt-period-step-circle&gt;
+  &lt;/ppt-period&gt;
+&lt;/ppt-container&gt;</code></pre>
       </details>
     </div>
   </section>
 
+  <section class="component-demo">
+    <h3 id="sequencer-component">Sequencer</h3>
+    <p>A non-visual component (visible as a badge in designer mode) that lives inside a Period and automatically iterates through its siblings (like Step Circles) to play their sounds at a specified tempo.</p>
+    
+    <div class="live-doc-grid">
+      <div class="controls-panel">
+        <h3>Parameters</h3>
+        <AutoPropsPanel targetId="demo-sequencer" tagName="ppt-period-sequencer" parentTagName="ppt-period" allowedParentProps="shape, starting-angle" />
+      </div>
+
+      <div class="demo-box-wrapper">
+        <div class="demo-box resizable">
+          <ppt-container>
+            <ppt-period id="demo-seq-period" shape="circle" starting-angle="-90" min-width="150" min-height="150">
+              <ppt-period-sequencer slot="step" id="demo-sequencer" tempo="120" is-playing="false"></ppt-period-sequencer>
+              <ppt-period-step-circle slot="step" pitch="C4">C4</ppt-period-step-circle>
+              <ppt-period-step-circle slot="step" pitch="E4">E4</ppt-period-step-circle>
+              <ppt-period-step-circle slot="step" pitch="G4">G4</ppt-period-step-circle>
+              <ppt-period-step-circle slot="step" pitch="C5">C5</ppt-period-step-circle>
+            </ppt-period>
+          </ppt-container>
+        </div>
+      </div>
+
+      <details class="code-panel">
+        <summary>View Source Code <button class="copy-btn" onclick="copyCode('seq-code', this)">Copy Code</button></summary>
+        <pre><code id="seq-code">&lt;ppt-container&gt;
+  &lt;ppt-period shape="circle" starting-angle="-90" min-width="150" min-height="150"&gt;
+    &lt;ppt-period-sequencer slot="step" tempo="120" is-playing="false"&gt;&lt;/ppt-period-sequencer&gt;
+    &lt;ppt-period-step-circle slot="step" pitch="C4"&gt;C4&lt;/ppt-period-step-circle&gt;
+    &lt;ppt-period-step-circle slot="step" pitch="E4"&gt;E4&lt;/ppt-period-step-circle&gt;
+    &lt;ppt-period-step-circle slot="step" pitch="G4"&gt;G4&lt;/ppt-period-step-circle&gt;
+    &lt;ppt-period-step-circle slot="step" pitch="C5"&gt;C5&lt;/ppt-period-step-circle&gt;
+  &lt;/ppt-period&gt;
+&lt;/ppt-container&gt;</code></pre>
+      </details>
+    </div>
+  </section>
 </ComponentLayout>
 
 <script>

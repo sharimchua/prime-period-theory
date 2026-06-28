@@ -1,4 +1,5 @@
-type Constructor<T = {}> = new (...args: any[]) => T;
+import { type CustomElement } from './WithInteractive.js';
+type Constructor<T = CustomElement> = new (...args: any[]) => T;
 
 export interface ResizableElement extends HTMLElement {
   resizable: boolean;
@@ -36,8 +37,8 @@ export function WithResizable<TBase extends Constructor<HTMLElement>>(Base: TBas
     }
 
     attributeChangedCallback(name: string, oldValue: string, newValue: string) {
-      if (super['attributeChangedCallback']) {
-        (super['attributeChangedCallback'] as any)(name, oldValue, newValue);
+      if (typeof (Base.prototype as any).attributeChangedCallback === 'function') {
+        (Base.prototype as any).attributeChangedCallback.call(this, name, oldValue, newValue);
       }
       
       if (name === 'resizable') {
@@ -50,8 +51,8 @@ export function WithResizable<TBase extends Constructor<HTMLElement>>(Base: TBas
     }
 
     connectedCallback() {
-      if (super['connectedCallback']) {
-        (super['connectedCallback'] as any)();
+      if (typeof (Base.prototype as any).connectedCallback === 'function') {
+        (Base.prototype as any).connectedCallback.call(this);
       }
       this._resizable = this.hasAttribute('resizable') && this.getAttribute('resizable') !== 'false';
       this._triggerResizableUpdate(this._resizable);

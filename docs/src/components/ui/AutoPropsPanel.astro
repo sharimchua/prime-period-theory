@@ -105,14 +105,10 @@ const parentEntries = parentTagName ? getParentEntries(parentMetadata, allowedPa
     }
 
     if (codeBlock) {
-      // Find the outermost element to serialize (for step-circle, we want to serialize the parent period)
-      let serializeTarget = targetElement;
-      if (targetId === 'demo-step-circle' && targetElement.parentElement) {
-         serializeTarget = targetElement.parentElement;
-      } else if (targetId === 'demo-isolated-panel' && targetElement.parentElement) {
-         // The panel code block actually only wants the ppt-panel itself, so keep serializeTarget = targetElement
-      } else if (targetId === 'demo-clock' && targetElement.parentElement) {
-         serializeTarget = targetElement;
+      // Always try to serialize the closest container, otherwise fall back to the element itself
+      let serializeTarget = targetElement.closest('ppt-container') || targetElement;
+      if (targetId === 'demo-isolated-panel' && !targetElement.closest('ppt-container')) {
+         // fallback
       }
 
       const observer = new MutationObserver(() => {

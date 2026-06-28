@@ -1,4 +1,9 @@
-type Constructor<T = {}> = new (...args: any[]) => T;
+export interface CustomElement extends HTMLElement {
+  connectedCallback?(): void;
+  disconnectedCallback?(): void;
+  attributeChangedCallback?(name: string, oldValue: string, newValue: string): void;
+}
+type Constructor<T = CustomElement> = new (...args: any[]) => T;
 
 export interface InteractiveElement extends HTMLElement {
   interactive: boolean;
@@ -36,11 +41,8 @@ export function WithInteractive<TBase extends Constructor<HTMLElement>>(Base: TB
     }
 
     attributeChangedCallback(name: string, oldValue: string, newValue: string) {
-      if (typeof (super.prototype as any)?.attributeChangedCallback === 'function' || typeof (Base.prototype as any).attributeChangedCallback === 'function') {
-         // Using standard method for mixins to call super
-         if (super['attributeChangedCallback']) {
-           (super['attributeChangedCallback'] as any)(name, oldValue, newValue);
-         }
+      if (typeof (Base.prototype as any).attributeChangedCallback === 'function') {
+        (Base.prototype as any).attributeChangedCallback.call(this, name, oldValue, newValue);
       }
       
       if (name === 'interactive') {
@@ -53,8 +55,8 @@ export function WithInteractive<TBase extends Constructor<HTMLElement>>(Base: TB
     }
 
     connectedCallback() {
-      if (super['connectedCallback']) {
-        (super['connectedCallback'] as any)();
+      if (typeof (Base.prototype as any).connectedCallback === 'function') {
+        (Base.prototype as any).connectedCallback.call(this);
       }
       this._interactive = this.getAttribute('interactive') !== 'false';
       this._triggerInteractiveUpdate(this._interactive);

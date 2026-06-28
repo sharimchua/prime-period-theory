@@ -1,7 +1,12 @@
 import { BasePPTComponent } from './BasePPTComponent.js';
 import { WithInteractive } from './features/WithInteractive.js';
+import { WithSound } from './features/WithSound.js';
+import { WithPitch } from './features/WithPitch.js';
+import { WithHighlight } from './features/WithHighlight.js';
+import { WithMidi } from './features/WithMidi.js';
+import * as Tone from 'tone';
 
-export class PeriodStepCircleComponent extends WithInteractive(BasePPTComponent) {
+export class PeriodStepCircleComponent extends WithMidi(WithHighlight(WithPitch(WithSound(WithInteractive(BasePPTComponent))))) {
   static override get componentDef() {
     return {
       displayName: 'Step Circle',
@@ -42,6 +47,29 @@ export class PeriodStepCircleComponent extends WithInteractive(BasePPTComponent)
     super.connectedCallback();
     this.style.setProperty('--step-bg-color', this.color);
     this.render();
+
+    const marker = this.shadowRoot?.querySelector('.step-marker');
+    marker?.addEventListener('click', () => {
+      if (this.interactive) {
+        this.playSound(this.pitch);
+        this.highlight();
+        setTimeout(() => this.unhighlight(), 200);
+      }
+    });
+  }
+
+  onMidiMessage(event: any) {
+    if (!this.pitch) return;
+    try {
+      const targetMidi = Tone.Frequency(this.pitch).toMidi();
+      if (event.type === 'noteon' && event.note === targetMidi) {
+        this.highlight();
+      } else if (event.type === 'noteoff' && event.note === targetMidi) {
+        this.unhighlight();
+      }
+    } catch (e) {
+      // invalid pitch string
+    }
   }
 
   private render() {
@@ -54,7 +82,7 @@ export class PeriodStepCircleComponent extends WithInteractive(BasePPTComponent)
         :host {
           display: block;
           position: absolute; /* Will be managed by PeriodComponent */
-          transform: translate(-50%, -50%); /* Centered on its coordinate */
+          translate: -50% -50%; /* Centered on its coordinate */
           width: max(24px, 8cqmin);
           height: max(24px, 8cqmin);
           --ppt-interactive-opacity: 1 !important; /* Step circles never fade when muted */
