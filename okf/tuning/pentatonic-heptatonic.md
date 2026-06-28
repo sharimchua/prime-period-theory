@@ -40,6 +40,6 @@ If you begin with a fundamental pitch and iteratively stack pure 3:2 perfect fif
 
 In PPT, Pentatonic and Heptatonic scales are not treated merely as "modes" or "keys," but as **geometric subsets of the 3-limit**. 
 
-They represent different resolutions of the same underlying periodic structure. When analyzing a melody, PPT views the shift from a pentatonic vocabulary to a heptatonic one as an increase in geometric complexity and harmonic tension. The pentatonic scale provides an open, stable 3-prime scaffold, while the heptatonic scale introduces the structural friction required to drive a phrase forward. 
+They represent different resolutions of the same underlying periodic structure. When analysing a melody, PPT views the shift from a pentatonic vocabulary to a heptatonic one as an increase in geometric complexity and harmonic tension. The pentatonic scale provides an open, stable 3-prime scaffold, while the heptatonic scale introduces the structural friction required to drive a phrase forward. 
 
 Because these scales are generated purely by the 3-limit, they exist independently of any specific temperament. They can be tuned in Just Intonation, 12TET, or 31 EDO, but their underlying geometric shape—a contiguous chain of fifths—remains identical.

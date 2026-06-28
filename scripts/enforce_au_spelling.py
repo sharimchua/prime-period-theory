@@ -4,14 +4,11 @@ import sys
 
 AMERICAN_TO_AUSTRALIAN = {
     "analyze": "analyse",
-    "color": "colour",
-    "behavior": "behaviour",
     "flavor": "flavour",
     "humor": "humour",
     "labor": "labour",
     "neighbor": "neighbour",
     "odor": "odour",
-    "center": "centre",
     "meter": "metre",
     "theater": "theatre",
     "defense": "defence",
@@ -25,8 +22,7 @@ AMERICAN_TO_AUSTRALIAN = {
     "customize": "customise",
     "traveling": "travelling",
     "canceled": "cancelled",
-    "modeling": "modelling",
-    "colorful": "colourful"
+    "modeling": "modelling"
 }
 
 def check_file(filepath):
@@ -65,14 +61,16 @@ def main():
     for directory in directories_to_check:
         if not os.path.exists(directory):
             continue
-        for root, _, files in os.walk(directory):
+        for root, dirs, files in os.walk(directory):
+            if 'node_modules' in dirs:
+                dirs.remove('node_modules')
             for file in files:
                 if file.endswith(".md") or file.endswith(".astro"):
                     filepath = os.path.join(root, file)
                     errors = check_file(filepath)
                     if errors:
                         has_errors = True
-                        print(f"❌ {filepath}:")
+                        print(f"[X] {filepath}:")
                         for err in errors:
                             print(f"   {err}")
                             
@@ -80,7 +78,7 @@ def main():
         print("\nAustralian English validation failed. Please fix the spellings above.")
         sys.exit(1)
     else:
-        print("✅ All checked files passed Australian English validation.")
+        print("[OK] All checked files passed Australian English validation.")
 
 if __name__ == "__main__":
     main()

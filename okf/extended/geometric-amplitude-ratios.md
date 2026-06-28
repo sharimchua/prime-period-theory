@@ -23,7 +23,7 @@ This extended inquiry asks whether specific ratio or prime-number observations c
 
 ## Static and Dynamic Amplitude Ratios
 
-In traditional acoustic analysis, amplitude is often treated linearly or logarithmically (via decibels) without reference to simple integer ratios. PPT hypothesises that our perception of "balanced" or "characteristic" amplitudes—whether the mix of partials in a tone or the hierarchy of accents in a metre—may be governed by the same prime families that organize pitch and time.
+In traditional acoustic analysis, amplitude is often treated linearly or logarithmically (via decibels) without reference to simple integer ratios. PPT hypothesises that our perception of "balanced" or "characteristic" amplitudes—whether the mix of partials in a tone or the hierarchy of accents in a metre—may be governed by the same prime families that organise pitch and time.
 
 - **Static ratios** describe the fixed proportional relationships between simultaneous elements (e.g., the amplitude of the fundamental relative to the 3rd partial).
 - **Dynamic ratios** describe how these proportions change over a Metric DuPeriod (e.g., an envelope's rate of attack versus decay, or the fluctuating amplitude of a beat over a measure).
@@ -36,7 +36,7 @@ The characteristic sound of an instrument (its macro-timbre) is fundamentally a 
 
 ## Hypotheses on Common Amplitude Ratios
 
-If amplitude organizes hierarchically like pitch and rhythm, we can hypothesise standard ratios for amplitude contrast:
+If amplitude organises hierarchically like pitch and rhythm, we can hypothesise standard ratios for amplitude contrast:
 - **DuPrime (2:1)**: The foundational ratio of contrast. In rhythmic accents, a 2:1 amplitude ratio between strong and weak beats may provide the clearest, most stable binary hierarchy, establishing the primary "pulse" envelope.
 - **TriPrime & QuinPrime (3:2, 5:4)**: Just as these families introduce colour and swing in pitch and time, subtle amplitude ratios like 3:2 or 5:4 might govern the characteristic "lilt" or "swing" of an inner groove, offering nuance without destabilising the DuPrime hierarchy.
 

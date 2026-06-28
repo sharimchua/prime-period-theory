@@ -18,7 +18,7 @@ timestamp: 2026-06-28
 
 ## Overview
 
-Amplitude is not merely a static ratio but a dynamic trajectory—change over Metric DuPeriod time. In PPT, envelopes (attack, decay, sustain, release) are analyzed as trajectories that scale self-similarly from micro-transients to macro-dynamics and form arcs. 
+Amplitude is not merely a static ratio but a dynamic trajectory—change over Metric DuPeriod time. In PPT, envelopes (attack, decay, sustain, release) are analysed as trajectories that scale self-similarly from micro-transients to macro-dynamics and form arcs. 
 
 ## Planned topics
 - Amplitude as change over Metric DuPeriod time (envelopes as trajectories).

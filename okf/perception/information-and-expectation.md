@@ -33,7 +33,7 @@ A single sound event — a crash, a scrape, a bang — provides very little
 predictive information. But when an event repeats at a consistent interval 
 (a period), a pattern is established. 
 
-Once a pattern is recognized, the listener's brain unconsciously projects that 
+Once a pattern is recognised, the listener's brain unconsciously projects that 
 pattern forward in time. We expect the next beat to land *here*; we expect the 
 next cycle of the waveform to cross zero *now*. This predictive model is the 
 foundation of all musical engagement. 

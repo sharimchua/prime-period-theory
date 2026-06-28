@@ -24,7 +24,7 @@ In Prime Period Theory, pitch is not a fundamentally different phenomenon from r
 
 When a physical body (like a string or a column of air) vibrates, it rarely vibrates at a single frequency. It vibrates in fractions: halves, thirds, quarters, and fifths. This produces a composite wave made up of a fundamental frequency and a series of overtones, or **partials**.
 
-The human auditory system evolved to recognize this composite wave as a single "sound." Consonance and dissonance are largely determined by how well the partials of two different notes overlap.
+The human auditory system evolved to recognise this composite wave as a single "sound." Consonance and dissonance are largely determined by how well the partials of two different notes overlap.
 
 ### Partial overlap as a consonance mechanism
 When you play two notes together, their overtone series interact. 
@@ -61,7 +61,7 @@ The **Lowest Common Multiple (LCM)** of `5:4` is 20, whereas the LCM of `5:3` is
 
 The centricity of the major third is a product of **cultural loading**. Western tertian harmony, which builds chords by stacking thirds, is a historically contingent system that developed over the last ~600 years. It elevated the third (and its 5-limit geometry) to the structural core of its grammar. 
 
-Other musical systems recognize the physical primacy of the sixth. In many non-Western traditions, or in earlier Western polyphony, intervals like the sixth and fourth hold different structural weight than they do in standard Classical theory. 
+Other musical systems recognise the physical primacy of the sixth. In many non-Western traditions, or in earlier Western polyphony, intervals like the sixth and fourth hold different structural weight than they do in standard Classical theory. 
 
 ### Raga vs Tala distinction
 This cultural weighting highlights the distinction between pitch (Raga) and rhythm (Tala) that PPT seeks to bridge. Western music heavily developed the 5-limit (thirds) in pitch space while leaving rhythm largely confined to the 2-prime and 3-prime families. In contrast, Indian classical traditions developed complex prime-limit structures in rhythm (Tala) while maintaining a drone-based pitch space (Raga) that often prioritizes different interval relationships. 
