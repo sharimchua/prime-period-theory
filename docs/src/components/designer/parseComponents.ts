@@ -1,17 +1,35 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import JSON5 from 'json5';
+import * as acorn from 'acorn';
 
-function safeParseJSON5(objStr: string) {
-  if (!objStr || !objStr.trim()) return {};
-  let wrappedStr = objStr.trim();
-  if (!wrappedStr.startsWith('{')) {
-      wrappedStr = '{' + wrappedStr;
+function parseSafeMetadata(objStr: string): any {
+  const ast = acorn.parse(`(${objStr})`, { ecmaVersion: 2020 });
+
+  function evaluate(node: any): any {
+    if (node.type === 'ObjectExpression') {
+      const obj: any = {};
+      for (const prop of node.properties) {
+        if (prop.type !== 'Property') throw new Error('Unsupported property type: ' + prop.type);
+        const key = prop.key.type === 'Identifier' ? prop.key.name : prop.key.value;
+        obj[key] = evaluate(prop.value);
+      }
+      return obj;
+    } else if (node.type === 'ArrayExpression') {
+      return node.elements.map(evaluate);
+    } else if (node.type === 'Literal') {
+      return node.value;
+    } else if (node.type === 'Identifier') {
+      if (node.name === 'undefined') return undefined;
+      throw new Error(`Unsupported identifier: ${node.name}`);
+    } else if (node.type === 'UnaryExpression' && node.operator === '-') {
+      const arg = evaluate(node.argument);
+      if (typeof arg === 'number') return -arg;
+      throw new Error(`Unsupported unary expression`);
+    }
+    throw new Error(`Unsupported AST node type: ${node.type}`);
   }
-  if (!wrappedStr.endsWith('}')) {
-      wrappedStr = wrappedStr + '}';
-  }
-  return JSON5.parse(wrappedStr);
+
+  return evaluate((ast as any).body[0].expression);
 }
 
 export interface ComponentMetadata {
@@ -54,7 +72,7 @@ export function getPPTComponents(): ComponentMeta[] {
     const metaMatch = baseContent.match(/pptMetadata[^{]*{.*?return\s*({[\s\S]*?})\s*;\s*}/s);
     if (metaMatch) {
       try {
-        baseMetadata = safeParseJSON5(metaMatch[1]);
+        baseMetadata = parseSafeMetadata(metaMatch[1]);
       } catch (e) {}
     }
   }
@@ -70,7 +88,7 @@ export function getPPTComponents(): ComponentMeta[] {
       if (metaMatch) {
         try {
           let objStr = metaMatch[1].replace(/\.\.\.\(\(Base as any\)\.pptMetadata\s*\|\|\s*\{\}\),?/, '');
-          mixinMetadata[f.replace('.ts', '')] = safeParseJSON5(objStr);
+          mixinMetadata[f.replace('.ts', '')] = parseSafeMetadata(objStr);
         } catch (e) {}
       }
     }
@@ -130,7 +148,7 @@ export function getPPTComponents(): ComponentMeta[] {
       let objStr = metaMatch[1];
       objStr = objStr.replace(/\.\.\.super\.pptMetadata\s*,?/, '');
       try {
-        const parsed = safeParseJSON5(objStr);
+        const parsed = parseSafeMetadata(objStr);
         metadata = { ...metadata, ...parsed };
       } catch (e) {
         console.warn(`Failed to parse metadata for ${className}`);
@@ -146,7 +164,7 @@ export function getPPTComponents(): ComponentMeta[] {
     const defMatch = content.match(/componentDef[^{]*{.*?return\s*({[\s\S]*?})\s*;\s*}/s);
     if (defMatch) {
       try {
-        componentDef = { ...componentDef, ...safeParseJSON5(defMatch[1]) };
+        componentDef = { ...componentDef, ...parseSafeMetadata(defMatch[1]) };
       } catch (e) {}
     }
 
