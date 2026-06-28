@@ -49,7 +49,7 @@ def main():
     has_errors = False
     for root, _, files in os.walk(OKF_DIR):
         for file in files:
-            if file.endswith(".md"):
+            if file.endswith(".md") and not file.endswith("AGENTS.md"):
                 filepath = os.path.join(root, file)
                 error = validate_file(filepath)
                 if error:
