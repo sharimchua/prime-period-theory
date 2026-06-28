@@ -9,7 +9,7 @@ tags:
   - envelopes
   - timbre
   - prime-period-theory
-timestamp: 2026-06-28
+timestamp: 2026-06-29
 ---
 
 # Spectral Dynamic Coupling
@@ -26,5 +26,5 @@ Amplitude trajectories are rarely isolated; they are deeply coupled with spectra
 - Implications for synthesis, orchestration, and live performance.
 
 ## See also
-- [Timbre](../foundations/timbre.md)
+- [Timbre](../domains/timbre.md)
 - [Amplitude Trajectories](amplitude-trajectories.md)

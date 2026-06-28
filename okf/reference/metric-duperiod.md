@@ -17,7 +17,7 @@ tags:
   - rhythm
   - pitch
   - prime-period-theory
-timestamp: 2026-06-27
+timestamp: 2026-06-29
 ---
 
 # Metric DuPeriod
@@ -58,7 +58,7 @@ all offsets are measured.
 
 This anchor is chosen because it is intrinsic to the perceptual structure
 of the system rather than historically contingent. See
-[Periodicity Limen](periodicity-limen.md) for the full argument.
+[Periodicity Limen](../perception/periodicity-limen.md) for the full argument.
 
 ## DuPeriod bands
 
@@ -268,7 +268,7 @@ perceptually convenient positions rather than structurally grounded ones.
 
 ## See also
 
-- [Periodicity Limen](periodicity-limen.md) — the anchor definition and
+- [Periodicity Limen](../perception/periodicity-limen.md) — the anchor definition and
   the argument for grounding measurement in auditory neurology
 - [Periodicity](../foundations/periodicity.md) — the perceptual rate
   boundary as a property of human perception

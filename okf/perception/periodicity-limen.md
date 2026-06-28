@@ -15,7 +15,7 @@ tags:
   - metric-duperiod
   - psychoacoustics
   - prime-period-theory
-timestamp: 2026-06-27
+timestamp: 2026-06-29
 ---
 
 # Periodicity Limen
@@ -109,7 +109,7 @@ log2(20000 / 20) = log2(1000) ≈ 9.97 octaves
 
 Approximately **10 octaves** — a near-exact decade in base-2 logarithmic
 space. This spans Metric DuPeriods −10 to 0 in PPT's unified coordinate
-system. See [Metric DuPeriod](metric-duperiod.md) for the full coordinate
+system. See [Metric DuPeriod](../reference/metric-duperiod.md) for the full coordinate
 definition.
 
 ## Dual register
@@ -137,11 +137,11 @@ in PPT: formal specification paired with an accessible working name.
 
 ## See also
 
-- [Amplitude and Time](amplitude-time.md) — the physical grounding;
+- [Amplitude and Time](../foundations/amplitude-time.md) — the physical grounding;
   the second as astronomical convention
-- [Periodicity](periodicity.md) — the perceptual rate boundary as
+- [Periodicity](../foundations/periodicity.md) — the perceptual rate boundary as
   a property of human perception, not underlying structure
-- [Metric DuPeriod](metric-duperiod.md) — the coordinate system anchored
+- [Metric DuPeriod](../reference/metric-duperiod.md) — the coordinate system anchored
   to the Periodicity Limen
 - [Metric DuPeriod — Extended Range](../extended/metric-duperiod-extended.md) — the
   stratospheric positive metric DuPeriod space above musical form
