@@ -1,0 +1,24 @@
+name: Validate OKF Frontmatter
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'okf/**/*.md'
+  pull_request:
+    paths:
+      - 'okf/**/*.md'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Install dependencies
+        run: pip install pyyaml
+      - name: Run OKF Validator
+        run: python scripts/validate_okf.py

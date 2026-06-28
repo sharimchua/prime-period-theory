@@ -1,0 +1,36 @@
+name: Auto-Update OKF Timestamps
+
+on:
+  pull_request:
+    paths:
+      - 'okf/**/*.md'
+
+jobs:
+  update-timestamps:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+      
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v42
+        with:
+          files: |
+            okf/**/*.md
+            
+      - name: Update Timestamps
+        if: steps.changed-files.outputs.any_changed == 'true'
+        run: |
+          chmod +x scripts/update_timestamps.sh
+          ./scripts/update_timestamps.sh ${{ steps.changed-files.outputs.all_changed_files }}
+          
+      - name: Commit changes
+        if: steps.changed-files.outputs.any_changed == 'true'
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: update timestamps for modified OKF files"
+          file_pattern: "okf/**/*.md"

@@ -1,0 +1,26 @@
+name: Enforce Australian English
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'okf/**/*.md'
+      - 'docs/**/*.astro'
+      - 'docs/**/*.md'
+  pull_request:
+    paths:
+      - 'okf/**/*.md'
+      - 'docs/**/*.astro'
+      - 'docs/**/*.md'
+
+jobs:
+  spellcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Run AU Spelling Validator
+        run: python scripts/enforce_au_spelling.py
