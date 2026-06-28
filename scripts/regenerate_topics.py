@@ -17,13 +17,13 @@ def get_mtime(path):
 
 def generate_content(instructions, deps_content):
     if not HAS_OPENAI:
-        print("  WARNING: openai package not installed. Using placeholder for generation.")
-        return "[Agent Generated Content]"
+        print("  WARNING: openai package not installed. Skipping generation to prevent overwriting valid files.")
+        return None
 
     api_key = os.environ.get("OPENAI_API_KEY")
     if not api_key:
-        print("  WARNING: OPENAI_API_KEY environment variable not set. Using placeholder for generation.")
-        return "[Agent Generated Content]"
+        print("  WARNING: OPENAI_API_KEY environment variable not set. Skipping generation to prevent overwriting valid files.")
+        return None
 
     try:
         client = openai.OpenAI(api_key=api_key)
@@ -38,7 +38,7 @@ def generate_content(instructions, deps_content):
         return response.choices[0].message.content.strip()
     except Exception as e:
         print(f"  WARNING: OpenAI API generation failed: {e}")
-        return "[Agent Generated Content]"
+        return None
 
 def process_template(template_path):
     print(f"Checking template: {template_path}")
@@ -63,19 +63,9 @@ def process_template(template_path):
     deps = config.get('okf_dependencies', [])
     instructions = config.get('instructions', '')
 
-    # We replace 'docs/templates/' with 'docs/src/content/generated_topics/'
-    generated_path = template_path.replace('docs/templates/', 'docs/src/content/generated_topics/')
-    # Wait, the user prompt says: "docs/src/content/generated_topics/". If a file is in `docs/templates/topics/a.mdx`, it becomes `docs/src/content/generated_topics/topics/a.mdx` or `docs/src/content/generated_topics/a.mdx`? Let's check `docs/templates/topics/patterns-in-time.mdx` and its generated output path.
-    # The output path was `docs/src/content/generated_topics/patterns-in-time.mdx`.
-    # Let's fix the replacement logic: If we search in `docs/templates`, we might want to map it directly to `docs/src/content/generated_topics` without keeping inner folder structure?
-    # Actually, `docs/templates/topics/patterns-in-time.mdx` corresponds to `docs/src/content/generated_topics/patterns-in-time.mdx`.
-    # So `docs/templates/topics/` maps to `docs/src/content/generated_topics/`.
     if 'docs/templates/topics/' in template_path:
         generated_path = template_path.replace('docs/templates/topics/', 'docs/src/content/generated_topics/')
     else:
-        # Fallback to replacing just templates folder and hoping for the best, or dropping the intermediate folder.
-        # Let's assume docs/templates maps to generated_topics in general, but since topics is special, we'll handle both.
-        # Let's get basename.
         base_name = os.path.basename(template_path)
         generated_path = os.path.join('docs/src/content/generated_topics', base_name)
 
@@ -107,6 +97,11 @@ def process_template(template_path):
             print(f"  Warning: Dependency {dep} not found.")
 
     new_generated_content = generate_content(instructions, deps_content)
+
+    # If generation was skipped or failed, do not write the file
+    if new_generated_content is None:
+        print("  Generation aborted.")
+        return
 
     end_pattern = re.compile(r'(<!--|\{/\*)\s*AGENT_GENERATE_BLOCK_END\s*(-->|\*/\})')
     end_match = end_pattern.search(content, match.end())
