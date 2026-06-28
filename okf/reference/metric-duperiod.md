@@ -17,7 +17,7 @@ tags:
   - rhythm
   - pitch
   - prime-period-theory
-timestamp: 2026-06-27
+timestamp: 2026-06-29
 ---
 
 # Metric DuPeriod

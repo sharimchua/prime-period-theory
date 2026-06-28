@@ -10,7 +10,7 @@ tags:
   - prime-families
   - geometric-ratios
   - prime-period-theory
-timestamp: 2026-06-28
+timestamp: 2026-06-29
 ---
 
 # Geometric Amplitude Ratios

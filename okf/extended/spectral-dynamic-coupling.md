@@ -9,7 +9,7 @@ tags:
   - envelopes
   - timbre
   - prime-period-theory
-timestamp: 2026-06-28
+timestamp: 2026-06-29
 ---
 
 # Spectral Dynamic Coupling

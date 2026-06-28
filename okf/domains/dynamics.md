@@ -10,7 +10,7 @@ tags:
   - accents
   - polyrhythm
   - prime-period-theory
-timestamp: 2026-06-28
+timestamp: 2026-06-29
 ---
 
 # Dynamics as Amplitude Periodicity
