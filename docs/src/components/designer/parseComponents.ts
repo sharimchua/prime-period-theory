@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import * as acorn from 'acorn';
 
+<<<<<<< HEAD
 function evaluateAST(node: any): any {
   if (node.type === 'Literal') {
     return node.value;
@@ -28,6 +29,36 @@ function parseObjectLiteral(str: string): any {
   const ast = acorn.parse(`(${str})`, { ecmaVersion: 2020 });
   const expr = (ast as any).body[0].expression;
   return evaluateAST(expr);
+=======
+function parseSafeMetadata(objStr: string): any {
+  const ast = acorn.parse(`(${objStr})`, { ecmaVersion: 2020 });
+
+  function evaluate(node: any): any {
+    if (node.type === 'ObjectExpression') {
+      const obj: any = {};
+      for (const prop of node.properties) {
+        if (prop.type !== 'Property') throw new Error('Unsupported property type: ' + prop.type);
+        const key = prop.key.type === 'Identifier' ? prop.key.name : prop.key.value;
+        obj[key] = evaluate(prop.value);
+      }
+      return obj;
+    } else if (node.type === 'ArrayExpression') {
+      return node.elements.map(evaluate);
+    } else if (node.type === 'Literal') {
+      return node.value;
+    } else if (node.type === 'Identifier') {
+      if (node.name === 'undefined') return undefined;
+      throw new Error(`Unsupported identifier: ${node.name}`);
+    } else if (node.type === 'UnaryExpression' && node.operator === '-') {
+      const arg = evaluate(node.argument);
+      if (typeof arg === 'number') return -arg;
+      throw new Error(`Unsupported unary expression`);
+    }
+    throw new Error(`Unsupported AST node type: ${node.type}`);
+  }
+
+  return evaluate((ast as any).body[0].expression);
+>>>>>>> origin/main
 }
 
 export interface ComponentMetadata {
@@ -70,7 +101,7 @@ export function getPPTComponents(): ComponentMeta[] {
     const metaMatch = baseContent.match(/pptMetadata[^{]*{.*?return\s*({[\s\S]*?})\s*;\s*}/s);
     if (metaMatch) {
       try {
-        baseMetadata = parseObjectLiteral(metaMatch[1]);
+        baseMetadata = parseSafeMetadata(metaMatch[1]);
       } catch (e) {
         console.warn('Failed to parse baseMetadata:', e);
       }
@@ -88,7 +119,7 @@ export function getPPTComponents(): ComponentMeta[] {
       if (metaMatch) {
         try {
           let objStr = metaMatch[1].replace(/\.\.\.\(\(Base as any\)\.pptMetadata\s*\|\|\s*\{\}\),?/, '');
-          mixinMetadata[f.replace('.ts', '')] = parseObjectLiteral(objStr);
+          mixinMetadata[f.replace('.ts', '')] = parseSafeMetadata(objStr);
         } catch (e) {
           console.warn(`Failed to parse mixinMetadata for ${f}:`, e);
         }
@@ -150,7 +181,7 @@ export function getPPTComponents(): ComponentMeta[] {
       let objStr = metaMatch[1];
       objStr = objStr.replace(/\.\.\.super\.pptMetadata\s*,?/, '');
       try {
-        const parsed = parseObjectLiteral(objStr);
+        const parsed = parseSafeMetadata(objStr);
         metadata = { ...metadata, ...parsed };
       } catch (e) {
         console.warn(`Failed to parse metadata for ${className}:`, e);
@@ -166,7 +197,7 @@ export function getPPTComponents(): ComponentMeta[] {
     const defMatch = content.match(/componentDef[^{]*{.*?return\s*({[\s\S]*?})\s*;\s*}/s);
     if (defMatch) {
       try {
-        componentDef = { ...componentDef, ...parseObjectLiteral(defMatch[1]) };
+        componentDef = { ...componentDef, ...parseSafeMetadata(defMatch[1]) };
       } catch (e) {
         console.warn(`Failed to parse componentDef for ${className}:`, e);
       }
