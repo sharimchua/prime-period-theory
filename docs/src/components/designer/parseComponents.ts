@@ -73,7 +73,9 @@ export function getPPTComponents(): ComponentMeta[] {
     if (metaMatch) {
       try {
         baseMetadata = parseSafeMetadata(metaMatch[1]);
-      } catch (e) {}
+      } catch (e) {
+        console.warn('Failed to parse baseMetadata:', e);
+      }
     }
   }
 
@@ -89,7 +91,9 @@ export function getPPTComponents(): ComponentMeta[] {
         try {
           let objStr = metaMatch[1].replace(/\.\.\.\(\(Base as any\)\.pptMetadata\s*\|\|\s*\{\}\),?/, '');
           mixinMetadata[f.replace('.ts', '')] = parseSafeMetadata(objStr);
-        } catch (e) {}
+        } catch (e) {
+          console.warn(`Failed to parse mixinMetadata for ${f}:`, e);
+        }
       }
     }
   }
@@ -151,7 +155,7 @@ export function getPPTComponents(): ComponentMeta[] {
         const parsed = parseSafeMetadata(objStr);
         metadata = { ...metadata, ...parsed };
       } catch (e) {
-        console.warn(`Failed to parse metadata for ${className}`);
+        console.warn(`Failed to parse metadata for ${className}:`, e);
       }
     }
 
@@ -165,7 +169,9 @@ export function getPPTComponents(): ComponentMeta[] {
     if (defMatch) {
       try {
         componentDef = { ...componentDef, ...parseSafeMetadata(defMatch[1]) };
-      } catch (e) {}
+      } catch (e) {
+        console.warn(`Failed to parse componentDef for ${className}:`, e);
+      }
     }
 
     components.push({ tagName, className, attributes, metadata, componentDef });
