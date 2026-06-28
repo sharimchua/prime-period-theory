@@ -12,6 +12,15 @@ export class PanelComponent extends WithResizable(WithInteractive(BasePPTCompone
     };
   }
 
+  static override get pptMetadata() {
+    return {
+      ...super.pptMetadata,
+      'panel-align': { type: 'enum', options: ['floating', 'left', 'right', 'top', 'bottom'], default: 'right', description: 'Alignment of the panel' },
+      ratio: { type: 'string', default: '50%', description: 'Width or height ratio when docked' },
+      textContent: { type: 'string', default: '', description: 'Content displayed inside the panel' }
+    };
+  }
+
   static override get observedAttributes() {
     return [...super.observedAttributes, 'panel-align', 'ratio'];
   }
