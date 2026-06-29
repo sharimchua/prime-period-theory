@@ -163,12 +163,12 @@ export class UniformSolfegeComponent extends BasePPTComponent {
     }
 
     const colorFamilyMap: Record<string, string> = {
-      do: 'do', di: 'do',
-      ra: 're', re: 're', ri: 're',
+      do: 'do', di: 're',
+      ra: 're', re: 're', ri: 'mi',
       me: 'mi', mi: 'mi',
       fa: 'fa', fi: 'fi',
       so: 'so',
-      le: 'la', la: 'la', se: 'la',
+      le: 'la', la: 'la', se: 'ti',
       te: 'ti', si: 'ti', ti: 'ti'
     };
     const family = colorFamilyMap[normalized] || 'fi';
