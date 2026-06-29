@@ -15,7 +15,7 @@ import ComposerButton from '../../../components/ui/ComposerButton.astro';
             import '../../../../components/src/index.ts';
           </script>
           <ppt-container id="demo-metronome-container">
-            <ppt-control-panel panel-align="floating" ratio="200px" label="Sequencer Controls">
+            <ppt-control-panel floating label="Sequencer Controls" style="width: 200px; top: 1rem; right: 1rem;">
               <ppt-control-boolean bind-id="metronome-play" label="Play"></ppt-control-boolean>
               <ppt-control-integer bind-id="metronome-tempo" label="Tempo (BPM)" value="120" min="40" max="300"></ppt-control-integer>
             </ppt-control-panel>
@@ -38,7 +38,7 @@ import ComposerButton from '../../../components/ui/ComposerButton.astro';
             <button class="copy-btn" onclick="copyCode('metronome-code', this)">Copy Code</button>
           </span>
         </summary>
-        <pre><code id="metronome-code">&lt;ppt-control-panel panel-align="floating" ratio="200px" label="Sequencer Controls"&gt;
+        <pre><code id="metronome-code">&lt;ppt-control-panel floating label="Sequencer Controls" style="width: 200px; top: 1rem; right: 1rem;"&gt;
   &lt;ppt-control-boolean bind-id="metronome-play" label="Play"&gt;&lt;/ppt-control-boolean&gt;
   &lt;ppt-control-integer bind-id="metronome-tempo" label="Tempo (BPM)" value="120" min="40" max="300"&gt;&lt;/ppt-control-integer&gt;
 &lt;/ppt-control-panel&gt;

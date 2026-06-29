@@ -24,7 +24,7 @@ import AutoPropsPanel from '../../components/ui/AutoPropsPanel.astro';
             import '../../../components/src/index.ts';
           </script>
           <ppt-container>
-            <ppt-control-panel id="demo-control-panel" panel-align="inline" ratio="100%" label="My Custom Controls">
+            <ppt-control-panel id="demo-control-panel" label="My Custom Controls">
               <span style="font-size: 13px; color: #666; margin-left: 0.5rem;">Controls go here...</span>
             </ppt-control-panel>
           </ppt-container>
@@ -34,7 +34,7 @@ import AutoPropsPanel from '../../components/ui/AutoPropsPanel.astro';
       <details class="code-panel">
         <summary>View Source Code <button class="copy-btn" onclick="copyCode('panel-code', this)">Copy Code</button></summary>
         <pre><code id="panel-code">&lt;ppt-container&gt;
-  &lt;ppt-control-panel panel-align="inline" ratio="100%" label="My Custom Controls"&gt;
+  &lt;ppt-control-panel label="My Custom Controls"&gt;
   &lt;/ppt-control-panel&gt;
 &lt;/ppt-container&gt;</code></pre>
       </details>
@@ -54,7 +54,7 @@ import AutoPropsPanel from '../../components/ui/AutoPropsPanel.astro';
       <div class="demo-box-wrapper">
         <div class="demo-box">
           <ppt-container>
-            <ppt-control-panel panel-align="inline" ratio="100%" label="Boolean Demo">
+            <ppt-control-panel label="Boolean Demo">
               <ppt-control-boolean id="demo-bool" label="Enable Feature" value="false" bind-id="demo-bool-bus"></ppt-control-boolean>
             </ppt-control-panel>
           </ppt-container>
@@ -64,7 +64,7 @@ import AutoPropsPanel from '../../components/ui/AutoPropsPanel.astro';
       <details class="code-panel">
         <summary>View Source Code <button class="copy-btn" onclick="copyCode('bool-code', this)">Copy Code</button></summary>
         <pre><code id="bool-code">&lt;ppt-container&gt;
-  &lt;ppt-control-panel panel-align="inline" ratio="100%" label="Boolean Demo"&gt;
+  &lt;ppt-control-panel label="Boolean Demo"&gt;
     &lt;ppt-control-boolean label="Enable Feature" value="false" bind-id="demo-bool-bus"&gt;&lt;/ppt-control-boolean&gt;
   &lt;/ppt-control-panel&gt;
 &lt;/ppt-container&gt;</code></pre>
@@ -85,7 +85,7 @@ import AutoPropsPanel from '../../components/ui/AutoPropsPanel.astro';
       <div class="demo-box-wrapper">
         <div class="demo-box">
           <ppt-container>
-            <ppt-control-panel panel-align="inline" ratio="100%" label="Integer Demo">
+            <ppt-control-panel label="Integer Demo">
               <ppt-control-integer id="demo-int" label="Tempo (BPM)" value="120" min="40" max="240" bind-id="demo-int-bus"></ppt-control-integer>
             </ppt-control-panel>
           </ppt-container>
@@ -95,7 +95,7 @@ import AutoPropsPanel from '../../components/ui/AutoPropsPanel.astro';
       <details class="code-panel">
         <summary>View Source Code <button class="copy-btn" onclick="copyCode('int-code', this)">Copy Code</button></summary>
         <pre><code id="int-code">&lt;ppt-container&gt;
-  &lt;ppt-control-panel panel-align="inline" ratio="100%" label="Integer Demo"&gt;
+  &lt;ppt-control-panel label="Integer Demo"&gt;
     &lt;ppt-control-integer label="Tempo (BPM)" value="120" min="40" max="240" bind-id="demo-int-bus"&gt;&lt;/ppt-control-integer&gt;
   &lt;/ppt-control-panel&gt;
 &lt;/ppt-container&gt;</code></pre>

@@ -25,7 +25,7 @@ import AutoPropsPanel from '../../components/ui/AutoPropsPanel.astro';
           </script>
           
           <ppt-container>
-            <ppt-text-panel id="demo-base" panel-align="inline" ratio="100%" interactive="true" resizable="true">
+            <ppt-text-panel id="demo-base" interactive="true" resizable="true">
               <h3 style="margin-top: 0;">Generic Base Implementation</h3>
               <p>I am a generic PPT component (technically a ppt-text-panel). I inherit all base behaviors.</p>
               <p>Try toggling my interactive state or dragging my bottom right corner to resize me.</p>
@@ -37,7 +37,7 @@ import AutoPropsPanel from '../../components/ui/AutoPropsPanel.astro';
       <details class="code-panel">
         <summary>View Source Code <button class="copy-btn" onclick="copyCode('base-code', this)">Copy Code</button></summary>
         <pre><code id="base-code">&lt;ppt-container&gt;
-  &lt;ppt-text-panel panel-align="inline" ratio="100%" interactive="true" resizable="true"&gt;
+  &lt;ppt-text-panel interactive="true" resizable="true"&gt;
     &lt;h3 style="margin-top: 0;"&gt;Generic Base Implementation&lt;/h3&gt;
     &lt;p&gt;I am a generic PPT component (technically a ppt-text-panel). I inherit all base behaviors.&lt;/p&gt;
     &lt;p&gt;Try toggling my interactive state or dragging my bottom right corner to resize me.&lt;/p&gt;
@@ -87,7 +87,7 @@ import AutoPropsPanel from '../../components/ui/AutoPropsPanel.astro';
       <div class="demo-box-wrapper">
         <div class="demo-box resizable">
           <ppt-container>
-            <ppt-text-panel id="demo-isolated-panel" panel-align="right" ratio="50%" resizable="true">
+            <ppt-text-panel id="demo-isolated-panel" resizable="true" style="width: 50%;">
               <span id="isolated-panel-text">I am the primary editable panel.</span>
             </ppt-text-panel>
             
@@ -101,7 +101,7 @@ import AutoPropsPanel from '../../components/ui/AutoPropsPanel.astro';
       <details class="code-panel">
         <summary>View Source Code <button class="copy-btn" onclick="copyCode('panel-code', this)">Copy Code</button></summary>
         <pre><code id="panel-code">&lt;ppt-container&gt;
-  &lt;ppt-text-panel panel-align="right" ratio="50%" resizable="true"&gt;
+  &lt;ppt-text-panel resizable="true" style="width: 50%;"&gt;
     &lt;span&gt;I am the primary editable panel.&lt;/span&gt;
   &lt;/ppt-text-panel&gt;
 &lt;/ppt-container&gt;</code></pre>

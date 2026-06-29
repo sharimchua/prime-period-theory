@@ -68,14 +68,7 @@ export class ContainerComponent extends WithResizable(WithInteractive(BasePPTCom
           min-height: 0;
         }
 
-        ::slotted(*[panel-align="left"]) {
-          order: -1;
-        }
-        ::slotted(*[panel-align="right"]) {
-          order: 1;
-        }
-
-        /* If developer puts a panel with panel-align="top" or "bottom", we should probably 
+        /* If developer puts a panel with layout="vertical", we should probably 
            switch to column layout if they want a vertical stack */
         :host([layout="vertical"]) {
           flex-direction: column;

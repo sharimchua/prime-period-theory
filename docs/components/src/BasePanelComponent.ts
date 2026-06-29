@@ -15,30 +15,25 @@ export class BasePanelComponent extends WithResizable(WithInteractive(BasePPTCom
   static override get pptMetadata() {
     return {
       ...super.pptMetadata,
-      'panel-align': { type: 'enum', options: ['floating', 'left', 'right', 'top', 'bottom'], default: 'right', description: 'Alignment of the panel' },
-      ratio: { type: 'string', default: '50%', description: 'Width or height ratio when docked' },
+      floating: { type: 'boolean', default: false, description: 'If true, the panel floats as a draggable overlay instead of being placed inline.' },
       textContent: { type: 'string', default: '', description: 'Content displayed inside the panel' }
     };
   }
 
   static override get observedAttributes() {
-    return [...super.observedAttributes, 'panel-align', 'ratio'];
+    return [...super.observedAttributes, 'floating'];
   }
 
-  get panelAlign() {
-    return this.getAttribute('panel-align') || 'right';
+  get floating() {
+    return this.hasAttribute('floating') && this.getAttribute('floating') !== 'false';
   }
 
-  set panelAlign(value: string) {
-    this.setAttribute('panel-align', value);
-  }
-
-  get ratio() {
-    return this.getAttribute('ratio') || '50%';
-  }
-
-  set ratio(value: string) {
-    this.setAttribute('ratio', value);
+  set floating(value: boolean) {
+    if (value) {
+      this.setAttribute('floating', 'true');
+    } else {
+      this.removeAttribute('floating');
+    }
   }
 
   private isDragging = false;
@@ -55,8 +50,9 @@ export class BasePanelComponent extends WithResizable(WithInteractive(BasePPTCom
 
   override attributeChangedCallback(name: string, _oldValue: string, _newValue: string) {
     super.attributeChangedCallback(name, _oldValue, _newValue);
-    if (name === 'panel-align' || name === 'ratio') {
+    if (name === 'floating') {
       this.updateStyles();
+      this.setupDragging();
       // Notify parent container that layout might need recalculation
       this.dispatchEvent(new CustomEvent('ppt-panel-updated', { bubbles: true, composed: true }));
     }
@@ -70,12 +66,9 @@ export class BasePanelComponent extends WithResizable(WithInteractive(BasePPTCom
   }
 
   private updateStyles() {
-    if (this.panelAlign === 'floating') {
+    if (this.floating) {
       this.style.setProperty('position', 'absolute');
       this.style.setProperty('z-index', '10');
-      this.style.removeProperty('flex');
-      this.style.removeProperty('width');
-      this.style.removeProperty('height');
       // Reset transform if switching back to floating
       this.style.setProperty('transform', `translate3d(${this.xOffset}px, ${this.yOffset}px, 0)`);
     } else {
@@ -84,16 +77,6 @@ export class BasePanelComponent extends WithResizable(WithInteractive(BasePPTCom
       this.style.removeProperty('transform');
       this.style.removeProperty('top');
       this.style.removeProperty('left');
-      
-      // Inline flex sizing
-      this.style.setProperty('flex', `0 0 ${this.ratio}`);
-      if (this.panelAlign === 'left' || this.panelAlign === 'right') {
-        this.style.setProperty('height', '100%');
-        this.style.setProperty('width', this.ratio);
-      } else {
-        this.style.setProperty('width', '100%');
-        this.style.setProperty('height', this.ratio);
-      }
     }
   }
 
@@ -101,8 +84,14 @@ export class BasePanelComponent extends WithResizable(WithInteractive(BasePPTCom
     const panel = this.shadowRoot?.querySelector('.panel-inner') as HTMLElement;
     if (!panel) return;
 
-    panel.addEventListener('mousedown', this._onDragStart);
-    panel.addEventListener('touchstart', this._onDragStart, { passive: true });
+    // Clean up any existing listeners first
+    panel.removeEventListener('mousedown', this._onDragStart);
+    panel.removeEventListener('touchstart', this._onDragStart);
+
+    if (this.floating) {
+      panel.addEventListener('mousedown', this._onDragStart);
+      panel.addEventListener('touchstart', this._onDragStart, { passive: true });
+    }
   }
 
   override disconnectedCallback() {
@@ -121,7 +110,7 @@ export class BasePanelComponent extends WithResizable(WithInteractive(BasePPTCom
   }
 
   private dragStart(e: MouseEvent | TouchEvent) {
-    if (this.panelAlign !== 'floating' || !this.interactive) return;
+    if (!this.floating || !this.interactive) return;
 
     const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
     const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY;
@@ -207,14 +196,14 @@ export class BasePanelComponent extends WithResizable(WithInteractive(BasePPTCom
           box-sizing: border-box;
         }
 
-        :host([panel-align="floating"]) .panel-inner {
+        :host([floating]) .panel-inner {
           cursor: grab;
           height: auto;
           width: max-content;
           min-width: 200px;
         }
 
-        :host([panel-align="floating"]) .panel-inner:active {
+        :host([floating]) .panel-inner:active {
           cursor: grabbing;
         }
       </style>
