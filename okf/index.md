@@ -147,6 +147,7 @@ amplitude or effect envelopes.
 - [Pitch](domains/pitch.md) — micro periodicity; frequency; just intonation
 - [Rhythm](domains/rhythm.md) — macro periodicity; metre; polyrhythm; tala
 - [Rhythmic Overtone Series](domains/rhythmic-overtone-series.md) — the inter-onset ratio spectrum of a rhythmic phrase; identity with the harmonic series across the Periodicity Limen
+- [Rhythmic Phase Coherence](domains/rhythmic-phase-coherence.md) — stability of inter-onset ratio relationships across time; distinguishes expressive deviation from instability; the groove-meter
 - [Timbre](domains/timbre.md) — spectral periodicity; overtones; harmonic series
 - [Dynamics](domains/dynamics.md) — amplitude periodicity; accents; groove
 
