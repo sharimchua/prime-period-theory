@@ -75,31 +75,31 @@ export class ControlTextComponent extends WithEmit(BasePPTComponent) {
         
         :host {
           display: flex;
-          align-items: center;
-          justify-content: space-between;
+          flex-direction: column;
+          align-items: stretch;
           padding: 8px;
           background: #2a2a2a;
           border-radius: 4px;
           border-left: 4px solid ${ControlTextComponent.componentDef.familyColor};
           width: 100%;
           box-sizing: border-box;
-          gap: 10px;
+          gap: 6px;
         }
 
         .control-label {
           font-family: inherit;
           font-size: 0.9em;
           color: #e0e0e0;
-          white-space: nowrap;
-          flex-shrink: 0;
+          align-self: flex-start;
         }
 
         .control-input {
-          flex-grow: 1;
+          width: 100%;
+          box-sizing: border-box;
           background: #1e1e1e;
           border: 1px solid #444;
           color: #ffffff;
-          padding: 4px 8px;
+          padding: 6px 8px;
           border-radius: 3px;
           font-family: inherit;
           font-size: 0.9em;

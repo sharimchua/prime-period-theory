@@ -5,7 +5,7 @@ export class ControlPanelComponent extends BasePanelComponent {
     return {
       displayName: 'Control Panel',
       familyColor: '#f39c12',
-      acceptsChildren: ['ppt-control-boolean', 'ppt-control-integer'],
+      acceptsChildren: ['ppt-control-boolean', 'ppt-control-integer', 'ppt-control-text'],
       canNestIn: ['ppt-container']
     };
   }
