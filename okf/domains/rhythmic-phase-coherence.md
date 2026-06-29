@@ -133,25 +133,27 @@ internal consistency of the ensemble's shared ratio field.
 
 ## Formal definition
 
-Given a rhythmic phrase of $n$ beats with onset times $t_1, t_2, \ldots, t_n$,
-the **inter-onset ratio** at distance $d$ between beats $i$ and $j = i + d$ is:
+Given a rhythmic phrase of `n` beats with onset times `t1, t2, ... tn`,
+the **inter-onset ratio** at distance `d` between beats `i` and `j = i + d` is:
 
-$$r(i, d) = \frac{t_{i+d} - t_i}{t_{i+1} - t_i}$$
+```
+r(i, d) = (t[i+d] − t[i]) / (t[i+1] − t[i])
+```
 
-This expresses the span of $d$ beats as a ratio to the unit beat span at that
+This expresses the span of `d` beats as a ratio to the unit beat span at that
 local position.
 
-For a perfectly even phrase, $r(i, d) = d$ for all $i$ and all $d$. In
-performance, $r(i, d)$ will deviate from integer values, residing at a
+For a perfectly even phrase, `r(i, d) = d` for all `i` and all `d`. In
+performance, `r(i, d)` will deviate from integer values, residing at a
 diacritic position within the [Prime Period Diacritic](../ppd/index.md) system
 relative to the nearest pure prime ratio.
 
-**Phase coherence at distance $d$** is the variance of $r(i, d)$ across all
-positions $i$ and across successive repetitions of the phrase. Low variance =
+**Phase coherence at distance `d`** is the variance of `r(i, d)` across all
+positions `i` and across successive repetitions of the phrase. Low variance =
 high coherence. High variance = low coherence.
 
 The **phase coherence profile** of a performance is the set of coherence
-values across all distances $d$ in the phrase's [Rhythmic Overtone Series](rhythmic-overtone-series.md).
+values across all distances `d` in the phrase's [Rhythmic Overtone Series](rhythmic-overtone-series.md).
 
 ## Diacritic deviation: coherent vs incoherent
 
