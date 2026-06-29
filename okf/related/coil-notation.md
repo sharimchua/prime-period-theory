@@ -18,9 +18,10 @@ tags:
 related:
   - related/musicoil.md
   - related/rhythmic-grammar.md
+  - related/melodic-grammar.md
   - uniform-solfege/index.md
   - foundations/prime-families.md
-timestamp: 2026-06-26
+timestamp: 2026-06-29
 ---
 
 # Three-Layer Coil Notation
@@ -45,7 +46,7 @@ Unlike standard Western notation, which can be too precise, overly Eurocentric, 
 
 ### Melody Layer
 - **Indicator**: Written above the harmony layer.
-- **Function**: One or more voice lines, each showing melodic contour via Uniform Solfège pitch symbols.
+- **Function**: One or more voice lines, each showing melodic contour or intervallic paths via Uniform Solfège pitch symbols (see [Melodic Grammar](melodic-grammar.md) for the full specification).
 - **Precision**: Does not prescribe every note. It uses signpost pitches only — the key notes that define the shape of the phrase.
 - **Interpretation**: The performer interprets freely between signposts, consistent with the harmonic and rhythmic context.
 - **Flexibility**: Multiple melody lines serve several purposes: polyphony (e.g. vocal harmony), multiple instrument parts, or analytical comparison (e.g. vocal melody vs guitar riff showing rhythmic unison vs call-and-response relationships).
@@ -97,6 +98,7 @@ Three-Layer Coil Notation is not a separate system but the **handwriting registe
 | **PPT** | Theoretical foundation — prime-ratio periodicity explains why the rhythmic block lengths, harmonic intervals, and melodic relationships are structurally the same objects at different timescales. |
 | **Uniform Solfège** | Symbol vocabulary for pitch, harmony roots, subscript alterations, and microtonal extensions. |
 | **Rhythmic Grammar** | Rhythm syllables and block-length logic that define the column grid. |
+| **Melodic Grammar** | Interpretive modes (absolute vs interval) and gesture neumes governing melodic contours (see [Melodic Grammar](melodic-grammar.md)). |
 | **MusiCoil** | Compositional grammar — normalisation, coil reuse, non-Eurocentric structure. |
 
 ## Non-Eurocentric Design
@@ -121,5 +123,6 @@ The system was explicitly designed to escape the constraints of Western staff no
 
 - [MusiCoil](musicoil.md) — The spatial notation system and digital expansion counterpart
 - [Rhythmic Grammar](rhythmic-grammar.md) — The foundation for the rhythm layer
+- [Melodic Grammar](melodic-grammar.md) — The melodic layer convention for Three-Layer Coil Notation
 - [Uniform Solfège Overview](../uniform-solfege/index.md) — Symbol vocabulary for pitch and harmony
 - [Prime Families](../foundations/prime-families.md) — The generating intervals behind the framework

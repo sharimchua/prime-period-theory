@@ -38,7 +38,7 @@ okf/                    OKF knowledge bundle — see okf/AGENTS.md
 ├── uniform-solfege/    Notation system — see okf/uniform-solfege/AGENTS.md
 ├── domains/            Three application domains — see okf/domains/AGENTS.md
 ├── tuning/             Tuning system specs — see okf/tuning/AGENTS.md
-└── related/            Adjacent systems (MusiCoil, Tone Atlas)
+└── related/            Adjacent systems (MusiCoil, Tone Atlas, Melodic Grammar)
 
 docs/                   GitHub Pages — see docs/AGENTS.md
 ├── index.html          Site entry point

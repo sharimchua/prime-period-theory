@@ -14,7 +14,7 @@ tags:
   - metronome
   - solkattu
   - prime-period-theory
-timestamp: 2026-06-26
+timestamp: 2026-06-29
 ---
 
 # Rhythmic Grammar
@@ -370,4 +370,5 @@ rhythm feel has no compact natural-language vocabulary.
 - [Diacritic System](../uniform-solfege/diacritic-system.md) — Axis diacritic definition and its secondary role in rhythmic notation
 - [Uniform Solfège Overview](../uniform-solfege/index.md) — the parent symbol system
 - [Three-Layer Coil Notation](coil-notation.md) — paper-writable surface syntax representing rhythmic layers
+- [Melodic Grammar](melodic-grammar.md) — parallel grammar system for the melody layer
 - [MusiCoil](musicoil.md) — the spatial notation layer; Rhythmic Grammar as a companion rhythmic encoding

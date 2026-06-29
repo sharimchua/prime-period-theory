@@ -11,7 +11,7 @@ tags:
   - psychoacoustics
   - harmonic-series
   - prime-period-theory
-timestamp: 2026-06-26
+timestamp: 2026-06-29
 ---
 
 # Pitch and Consonance
@@ -77,4 +77,5 @@ The human ear is a categorisation engine. When it hears a 12TET major third, it 
 ## See also
 - [Amplitude and Time](../foundations/amplitude-time.md) — the foundational thesis linking pitch and rhythm
 - [Base-12 Algebra](../uniform-solfege/base-12-algebra.md) — LCM calculation and interval mathematics
+- [Melodic Grammar](../related/melodic-grammar.md) — absolute vs intervallic melodic navigation in Uniform Solfège
 - [Rhythm](rhythm.md) — macro periodicity
