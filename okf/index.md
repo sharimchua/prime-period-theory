@@ -172,6 +172,7 @@ amplitude or effect envelopes.
 ### Related systems
 - [Three-Layer Coil Notation](related/coil-notation.md) — paper-writable surface syntax unifying Uniform Solfège, Rhythmic Grammar, and MusiCoil into a three-layer grid
 - [Rhythmic Grammar](related/rhythmic-grammar.md) — formal encoding system for rhythmic grouping structure
+- [Melodic Grammar](related/melodic-grammar.md) — the melodic layer convention for Three-Layer Coil Notation, encoding absolute or intervallic pitch movement
 - [MusiCoil](related/musicoil.md) — spatial notation system; visual representation of PPT
 - [Tone Atlas](related/tone-atlas.md) — clock-face pitch relationship diagram
 - [Chromatic Clock Geometry](related/chromatic-clock.md) — the 12-tone chromatic circle as a geometric navigation tool

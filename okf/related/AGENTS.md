@@ -9,6 +9,7 @@ This directory contains concept pages for adjacent frameworks or systems that in
 |File|Status|Description|
 |---|---|---|
 |`rhythmic-grammar.md`|Complete|A formal encoding system for rhythmic grouping structure.|
+|`melodic-grammar.md`|Complete|The melodic layer convention for Three-Layer Coil Notation, encoding absolute/intervallic pitch movement.|
 |`musicoil.md`|Complete|Spatial notation system; visual representation of PPT.|
 |`coil-notation.md`|Complete|Paper-writable surface syntax unifying Uniform Solfège, Rhythmic Grammar, and MusiCoil.|
 |`tone-atlas.md`|Complete|Clock-face pitch relationship diagram and navigation system.|

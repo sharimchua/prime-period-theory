@@ -13,8 +13,9 @@ tags:
   - prime-period-theory
 related:
   - related/coil-notation.md
+  - related/melodic-grammar.md
   - uniform-solfege/index.md
-timestamp: 2026-06-26
+timestamp: 2026-06-29
 ---
 
 # MusiCoil
@@ -45,4 +46,5 @@ Coil boundaries replace barlines entirely: a Coil ends where a musical phrase en
 ## See also
 
 - [Three-Layer Coil Notation](coil-notation.md) — the paper-writable surface syntax
+- [Melodic Grammar](melodic-grammar.md) — the melodic layer convention for Three-Layer Coil Notation, inheriting MusiCoil node/path concepts
 - [Uniform Solfège](../uniform-solfege/index.md) — the symbol vocabulary
