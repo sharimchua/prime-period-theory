@@ -19,6 +19,10 @@ export class MidiOrchestrator {
     return MidiOrchestrator.instance;
   }
 
+  static init() {
+    MidiOrchestrator.getInstance().initialize();
+  }
+
   async initialize() {
     if (this.initialized) return;
     if (navigator.requestMIDIAccess) {
