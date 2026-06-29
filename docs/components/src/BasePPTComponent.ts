@@ -1,83 +1,30 @@
 export class BasePPTComponent extends HTMLElement {
-  static get observedAttributes(): string[] {
-    return ['min-width', 'min-height'];
-  }
-
-  static get pptMetadata(): Record<string, any> {
-    return {
-      'min-width': { type: 'number', default: 100, description: 'Minimum width before the component signals it is compromised visually.' },
-      'min-height': { type: 'number', default: 100, description: 'Minimum height before the component signals it is compromised visually.' }
-    };
-  }
-
-  static get componentDef(): Record<string, any> {
-    return {
-      displayName: 'Base Component',
-      familyColor: '#888888',
-      acceptsChildren: ['*'],
-      canNestIn: ['*']
-    };
-  }
-
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
   }
 
-  attributeChangedCallback(_name: string, _oldValue: string, _newValue: string) {
-    // Override in subclasses
+  static get componentDef() {
+    return {
+      displayName: 'Base Component',
+      familyColor: '#888888',
+      acceptsChildren: ['*'] as string[],
+      canNestIn: ['*'] as string[]
+    };
   }
 
-  protected _resizeObserver: ResizeObserver | null = null;
-  protected _isCompromised: boolean = false;
-
-  connectedCallback() {
-    this.setupResizeObserver();
+  static get observedAttributes(): string[] {
+    return [];
   }
 
-  disconnectedCallback() {
-    if (this._resizeObserver) {
-      this._resizeObserver.disconnect();
-    }
+  static get pptMetadata(): Record<string, any> {
+    return {};
   }
 
-  protected setupResizeObserver() {
-    this._resizeObserver = new ResizeObserver((entries) => {
-      for (const entry of entries) {
-        // Use contentRect for inner size, or target.getBoundingClientRect() for outer size
-        // We will use borderBoxSize if available, otherwise fallback to contentRect
-        const width = entry.borderBoxSize ? entry.borderBoxSize[0].inlineSize : entry.contentRect.width;
-        const height = entry.borderBoxSize ? entry.borderBoxSize[0].blockSize : entry.contentRect.height;
-        this.checkCompromiseState(width, height);
-      }
-    });
-    this._resizeObserver.observe(this);
-  }
-
-  protected checkCompromiseState(width: number, height: number) {
-    // Default to 100px minimum threshold unless specified
-    const minW = Number(this.getAttribute('min-width')) || 100;
-    const minH = Number(this.getAttribute('min-height')) || 100;
-    
-    const compromised = width > 0 && height > 0 && (width < minW || height < minH);
-    
-    if (compromised && !this._isCompromised) {
-      this._isCompromised = true;
-      this.dispatchEvent(new CustomEvent('ppt-compromised', { 
-        detail: { width, height, minWidth: minW, minHeight: minH },
-        bubbles: true,
-        composed: true // Allows event to pass through Shadow DOM boundaries
-      }));
-    } else if (!compromised && this._isCompromised) {
-      this._isCompromised = false;
-      this.dispatchEvent(new CustomEvent('ppt-restored', {
-        detail: { width, height },
-        bubbles: true,
-        composed: true
-      }));
-    }
-  }
-
+  // Fallback lifecycle methods so subclasses can safely call super
+  attributeChangedCallback(_name: string, _oldValue: string, _newValue: string) {}
+  connectedCallback() {}
+  disconnectedCallback() {}
 
   protected getBaseStyles(): string {
     return `

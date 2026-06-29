@@ -21,10 +21,10 @@ import ComposerButton from '../../../components/ui/ComposerButton.astro';
             </ppt-control-panel>
             <ppt-period id="demo-metronome" shape="circle" starting-angle="-90" min-width="250" min-height="250">
               <ppt-period-sequencer slot="step" listen-id="metronome-play, metronome-tempo" id="demo-metronome-sequencer" tempo="120" is-playing="false"></ppt-period-sequencer>
-              <ppt-period-step-circle slot="step" pitch="C5" color="#e74c3c" style="--ppt-text-color: #fff; --ppt-marker-border: none;">1</ppt-period-step-circle>
-              <ppt-period-step-circle slot="step" pitch="C4" color="#95a5a6" style="--ppt-text-color: #fff; --ppt-marker-border: none;">2</ppt-period-step-circle>
-              <ppt-period-step-circle slot="step" pitch="C4" color="#95a5a6" style="--ppt-text-color: #fff; --ppt-marker-border: none;">3</ppt-period-step-circle>
-              <ppt-period-step-circle slot="step" pitch="C4" color="#95a5a6" style="--ppt-text-color: #fff; --ppt-marker-border: none;">4</ppt-period-step-circle>
+              <ppt-period-step-circle slot="step" label="1" pitch="C5" color="#e74c3c" style="--ppt-text-color: #fff; --ppt-marker-border: none;"></ppt-period-step-circle>
+              <ppt-period-step-circle slot="step" label="2" pitch="C4" color="#95a5a6" style="--ppt-text-color: #fff; --ppt-marker-border: none;"></ppt-period-step-circle>
+              <ppt-period-step-circle slot="step" label="3" pitch="C4" color="#95a5a6" style="--ppt-text-color: #fff; --ppt-marker-border: none;"></ppt-period-step-circle>
+              <ppt-period-step-circle slot="step" label="4" pitch="C4" color="#95a5a6" style="--ppt-text-color: #fff; --ppt-marker-border: none;"></ppt-period-step-circle>
             </ppt-period>
           </ppt-container>
         </div>
@@ -45,10 +45,10 @@ import ComposerButton from '../../../components/ui/ComposerButton.astro';
 
 &lt;ppt-period shape="circle" starting-angle="-90" min-width="250" min-height="250"&gt;
   &lt;ppt-period-sequencer slot="step" listen-id="metronome-play, metronome-tempo" tempo="120" is-playing="false"&gt;&lt;/ppt-period-sequencer&gt;
-  &lt;ppt-period-step-circle slot="step" pitch="C5" color="#e74c3c" style="--ppt-text-color: #fff; --ppt-marker-border: none;"&gt;1&lt;/ppt-period-step-circle&gt;
-  &lt;ppt-period-step-circle slot="step" pitch="C4" color="#95a5a6" style="--ppt-text-color: #fff; --ppt-marker-border: none;"&gt;2&lt;/ppt-period-step-circle&gt;
-  &lt;ppt-period-step-circle slot="step" pitch="C4" color="#95a5a6" style="--ppt-text-color: #fff; --ppt-marker-border: none;"&gt;3&lt;/ppt-period-step-circle&gt;
-  &lt;ppt-period-step-circle slot="step" pitch="C4" color="#95a5a6" style="--ppt-text-color: #fff; --ppt-marker-border: none;"&gt;4&lt;/ppt-period-step-circle&gt;
+  &lt;ppt-period-step-circle slot="step" label="1" pitch="C5" color="#e74c3c" style="--ppt-text-color: #fff; --ppt-marker-border: none;"&gt;&lt;/ppt-period-step-circle&gt;
+  &lt;ppt-period-step-circle slot="step" label="2" pitch="C4" color="#95a5a6" style="--ppt-text-color: #fff; --ppt-marker-border: none;"&gt;&lt;/ppt-period-step-circle&gt;
+  &lt;ppt-period-step-circle slot="step" label="3" pitch="C4" color="#95a5a6" style="--ppt-text-color: #fff; --ppt-marker-border: none;"&gt;&lt;/ppt-period-step-circle&gt;
+  &lt;ppt-period-step-circle slot="step" label="4" pitch="C4" color="#95a5a6" style="--ppt-text-color: #fff; --ppt-marker-border: none;"&gt;&lt;/ppt-period-step-circle&gt;
 &lt;/ppt-period&gt;</code></pre>
       </details>
 

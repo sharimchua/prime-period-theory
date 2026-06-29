@@ -67,9 +67,9 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '') + '/';
         <div class="canvas" id="canvas">
           <ppt-container id="demo-container" resizable="true" style="width: 400px; height: 400px;">
             <ppt-period id="demo-period" shape="circle" interactive="true" min-width="200" min-height="200">
-              <ppt-period-step-circle slot="step">A</ppt-period-step-circle>
-              <ppt-period-step-circle slot="step">B</ppt-period-step-circle>
-              <ppt-period-step-circle slot="step">C</ppt-period-step-circle>
+              <ppt-period-step-circle slot="step" label="A"></ppt-period-step-circle>
+              <ppt-period-step-circle slot="step" label="B"></ppt-period-step-circle>
+              <ppt-period-step-circle slot="step" label="C"></ppt-period-step-circle>
             </ppt-period>
           </ppt-container>
         </div>

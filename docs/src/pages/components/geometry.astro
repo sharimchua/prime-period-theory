@@ -54,9 +54,9 @@ import AutoPropsPanel from '../../components/ui/AutoPropsPanel.astro';
         <div class="demo-box resizable">
           <ppt-container>
             <ppt-period id="demo-step" shape="line-horizontal" starting-angle="-90" min-width="150" min-height="150">
-              <ppt-period-step-circle slot="step" id="demo-step-circle">A</ppt-period-step-circle>
-              <ppt-period-step-circle slot="step" style="opacity: 0.3; filter: grayscale(1);">B</ppt-period-step-circle>
-              <ppt-period-step-circle slot="step" style="opacity: 0.3; filter: grayscale(1);">C</ppt-period-step-circle>
+              <ppt-period-step-circle slot="step" id="demo-step-circle" label="A"></ppt-period-step-circle>
+              <ppt-period-step-circle slot="step" label="B" style="opacity: 0.3; filter: grayscale(1);"></ppt-period-step-circle>
+              <ppt-period-step-circle slot="step" label="C" style="opacity: 0.3; filter: grayscale(1);"></ppt-period-step-circle>
             </ppt-period>
           </ppt-container>
         </div>
@@ -66,9 +66,9 @@ import AutoPropsPanel from '../../components/ui/AutoPropsPanel.astro';
         <summary>View Source Code <button class="copy-btn" onclick="copyCode('step-code', this)">Copy Code</button></summary>
         <pre><code id="step-code">&lt;ppt-container&gt;
   &lt;ppt-period shape="line-horizontal" starting-angle="-90" min-width="150" min-height="150"&gt;
-    &lt;ppt-period-step-circle slot="step"&gt;A&lt;/ppt-period-step-circle&gt;
-    &lt;ppt-period-step-circle slot="step"&gt;B&lt;/ppt-period-step-circle&gt;
-    &lt;ppt-period-step-circle slot="step"&gt;C&lt;/ppt-period-step-circle&gt;
+    &lt;ppt-period-step-circle slot="step" label="A"&gt;&lt;/ppt-period-step-circle&gt;
+    &lt;ppt-period-step-circle slot="step" label="B"&gt;&lt;/ppt-period-step-circle&gt;
+    &lt;ppt-period-step-circle slot="step" label="C"&gt;&lt;/ppt-period-step-circle&gt;
   &lt;/ppt-period&gt;
 &lt;/ppt-container&gt;</code></pre>
       </details>
@@ -90,10 +90,10 @@ import AutoPropsPanel from '../../components/ui/AutoPropsPanel.astro';
           <ppt-container>
             <ppt-period id="demo-seq-period" shape="circle" starting-angle="-90" min-width="150" min-height="150">
               <ppt-period-sequencer slot="step" id="demo-sequencer" tempo="120" is-playing="false"></ppt-period-sequencer>
-              <ppt-period-step-circle slot="step" pitch="C4">C4</ppt-period-step-circle>
-              <ppt-period-step-circle slot="step" pitch="E4">E4</ppt-period-step-circle>
-              <ppt-period-step-circle slot="step" pitch="G4">G4</ppt-period-step-circle>
-              <ppt-period-step-circle slot="step" pitch="C5">C5</ppt-period-step-circle>
+              <ppt-period-step-circle slot="step" label="C4" pitch="C4"></ppt-period-step-circle>
+              <ppt-period-step-circle slot="step" label="E4" pitch="E4"></ppt-period-step-circle>
+              <ppt-period-step-circle slot="step" label="G4" pitch="G4"></ppt-period-step-circle>
+              <ppt-period-step-circle slot="step" label="C5" pitch="C5"></ppt-period-step-circle>
             </ppt-period>
           </ppt-container>
         </div>
@@ -104,10 +104,10 @@ import AutoPropsPanel from '../../components/ui/AutoPropsPanel.astro';
         <pre><code id="seq-code">&lt;ppt-container&gt;
   &lt;ppt-period shape="circle" starting-angle="-90" min-width="150" min-height="150"&gt;
     &lt;ppt-period-sequencer slot="step" tempo="120" is-playing="false"&gt;&lt;/ppt-period-sequencer&gt;
-    &lt;ppt-period-step-circle slot="step" pitch="C4"&gt;C4&lt;/ppt-period-step-circle&gt;
-    &lt;ppt-period-step-circle slot="step" pitch="E4"&gt;E4&lt;/ppt-period-step-circle&gt;
-    &lt;ppt-period-step-circle slot="step" pitch="G4"&gt;G4&lt;/ppt-period-step-circle&gt;
-    &lt;ppt-period-step-circle slot="step" pitch="C5"&gt;C5&lt;/ppt-period-step-circle&gt;
+    &lt;ppt-period-step-circle slot="step" label="C4" pitch="C4"&gt;&lt;/ppt-period-step-circle&gt;
+    &lt;ppt-period-step-circle slot="step" label="E4" pitch="E4"&gt;&lt;/ppt-period-step-circle&gt;
+    &lt;ppt-period-step-circle slot="step" label="G4" pitch="G4"&gt;&lt;/ppt-period-step-circle&gt;
+    &lt;ppt-period-step-circle slot="step" label="C5" pitch="C5"&gt;&lt;/ppt-period-step-circle&gt;
   &lt;/ppt-period&gt;
 &lt;/ppt-container&gt;</code></pre>
       </details>

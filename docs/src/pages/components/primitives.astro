@@ -60,7 +60,7 @@ import AutoPropsPanel from '../../components/ui/AutoPropsPanel.astro';
       <div class="demo-box-wrapper">
         <div class="demo-box resizable" style="align-items: flex-start; height: 150px;">
           <ppt-container>
-            <ppt-title id="demo-isolated-title" resizable="true">Hello World!</ppt-title>
+            <ppt-title id="demo-isolated-title" text="Hello World!"></ppt-title>
           </ppt-container>
         </div>
       </div>
@@ -68,7 +68,7 @@ import AutoPropsPanel from '../../components/ui/AutoPropsPanel.astro';
       <details class="code-panel">
         <summary>View Source Code <button class="copy-btn" onclick="copyCode('title-code', this)">Copy Code</button></summary>
         <pre><code id="title-code">&lt;ppt-container&gt;
-  &lt;ppt-title resizable="true"&gt;Hello World!&lt;/ppt-title&gt;
+  &lt;ppt-title text="Hello World!"&gt;&lt;/ppt-title&gt;
 &lt;/ppt-container&gt;</code></pre>
       </details>
     </div>

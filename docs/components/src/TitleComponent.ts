@@ -1,8 +1,7 @@
 import { BasePPTComponent } from './BasePPTComponent.js';
 import { WithInteractive } from './features/WithInteractive.js';
-import { WithResizable } from './features/WithResizable.js';
 
-export class TitleComponent extends WithResizable(WithInteractive(BasePPTComponent)) {
+export class TitleComponent extends WithInteractive(BasePPTComponent) {
   static override get componentDef() {
     return {
       displayName: 'Title',
@@ -12,11 +11,31 @@ export class TitleComponent extends WithResizable(WithInteractive(BasePPTCompone
     };
   }
 
+  static override get observedAttributes() {
+    return [...super.observedAttributes, 'text'];
+  }
+
   static override get pptMetadata() {
     return {
       ...super.pptMetadata,
-      textContent: { type: 'string', default: 'Title' }
+      text: { type: 'string', default: 'Title', description: 'The text displayed as the title.' }
     };
+  }
+
+  get text() {
+    return this.getAttribute('text') || 'Title';
+  }
+
+  set text(value: string) {
+    this.setAttribute('text', value);
+  }
+
+  override attributeChangedCallback(name: string, _oldValue: string, newValue: string) {
+    super.attributeChangedCallback(name, _oldValue, newValue);
+    if (name === 'text') {
+      const titleEl = this.shadowRoot?.querySelector('.title');
+      if (titleEl) titleEl.textContent = newValue;
+    }
   }
 
   override connectedCallback() {
@@ -50,9 +69,7 @@ export class TitleComponent extends WithResizable(WithInteractive(BasePPTCompone
         }
       </style>
 
-      <h2 class="title">
-        <slot></slot>
-      </h2>
+      <h2 class="title">${this.text}</h2>
     `;
   }
 }

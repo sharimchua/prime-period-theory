@@ -17,14 +17,14 @@ export class PeriodStepCircleComponent extends WithMidi(WithHighlight(WithPitch(
   }
 
   static override get observedAttributes() {
-    return [...super.observedAttributes, 'color'];
+    return [...super.observedAttributes, 'color', 'label'];
   }
 
   static override get pptMetadata() {
     return {
       ...super.pptMetadata,
       color: { type: 'color', default: '#ffffff', description: 'The fill color of the step circle.' },
-      textContent: { type: 'string', default: '', description: 'Text label displayed inside the step circle (e.g., degree or prime marker).' }
+      label: { type: 'string', default: '', description: 'Text label displayed inside the step circle (e.g., degree or step number).' }
     };
   }
 
@@ -36,10 +36,21 @@ export class PeriodStepCircleComponent extends WithMidi(WithHighlight(WithPitch(
     this.setAttribute('color', value);
   }
 
-  override attributeChangedCallback(name: string, _oldValue: string, _newValue: string) {
-    super.attributeChangedCallback(name, _oldValue, _newValue);
+  get label() {
+    return this.getAttribute('label') || '';
+  }
+
+  set label(value: string) {
+    this.setAttribute('label', value);
+  }
+
+  override attributeChangedCallback(name: string, _oldValue: string, newValue: string) {
+    super.attributeChangedCallback(name, _oldValue, newValue);
     if (name === 'color') {
       this.style.setProperty('--step-bg-color', this.color);
+    } else if (name === 'label') {
+      const textEl = this.shadowRoot?.querySelector('.step-marker');
+      if (textEl) textEl.textContent = newValue;
     }
   }
 
@@ -112,7 +123,7 @@ export class PeriodStepCircleComponent extends WithMidi(WithHighlight(WithPitch(
       </style>
 
       <div class="step-marker">
-        <slot></slot>
+        ${this.label}
       </div>
     `;
   }

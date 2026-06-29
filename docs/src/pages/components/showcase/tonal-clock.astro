@@ -16,18 +16,18 @@ import ComposerButton from '../../../components/ui/ComposerButton.astro';
           </script>
           <ppt-container id="demo-clock-container">
             <ppt-period id="demo-clock" shape="circle" starting-angle="-90" interactive="true" min-width="200" min-height="200">
-              <ppt-period-step-circle slot="step" color="var(--solfege-do)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="C4">Do</ppt-period-step-circle>
-              <ppt-period-step-circle slot="step" color="var(--solfege-re)" style="--ppt-text-color: #000; --ppt-marker-border: none;" pitch="Db4">Ra</ppt-period-step-circle>
-              <ppt-period-step-circle slot="step" color="var(--solfege-re)" style="--ppt-text-color: #000; --ppt-marker-border: none;" pitch="D4">Re</ppt-period-step-circle>
-              <ppt-period-step-circle slot="step" color="var(--solfege-mi)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="Eb4">Me</ppt-period-step-circle>
-              <ppt-period-step-circle slot="step" color="var(--solfege-mi)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="E4">Mi</ppt-period-step-circle>
-              <ppt-period-step-circle slot="step" color="var(--solfege-fa)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="F4">Fa</ppt-period-step-circle>
-              <ppt-period-step-circle slot="step" color="var(--solfege-fi)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="Gb4">Fi</ppt-period-step-circle>
-              <ppt-period-step-circle slot="step" color="var(--solfege-so)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="G4">So</ppt-period-step-circle>
-              <ppt-period-step-circle slot="step" color="var(--solfege-la)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="Ab4">Le</ppt-period-step-circle>
-              <ppt-period-step-circle slot="step" color="var(--solfege-la)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="A4">La</ppt-period-step-circle>
-              <ppt-period-step-circle slot="step" color="var(--solfege-ti)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="Bb4">Te</ppt-period-step-circle>
-              <ppt-period-step-circle slot="step" color="var(--solfege-ti)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="B4">Ti</ppt-period-step-circle>
+              <ppt-period-step-circle slot="step" label="Do" color="var(--solfege-do)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="C4"></ppt-period-step-circle>
+              <ppt-period-step-circle slot="step" label="Ra" color="var(--solfege-re)" style="--ppt-text-color: #000; --ppt-marker-border: none;" pitch="Db4"></ppt-period-step-circle>
+              <ppt-period-step-circle slot="step" label="Re" color="var(--solfege-re)" style="--ppt-text-color: #000; --ppt-marker-border: none;" pitch="D4"></ppt-period-step-circle>
+              <ppt-period-step-circle slot="step" label="Me" color="var(--solfege-mi)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="Eb4"></ppt-period-step-circle>
+              <ppt-period-step-circle slot="step" label="Mi" color="var(--solfege-mi)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="E4"></ppt-period-step-circle>
+              <ppt-period-step-circle slot="step" label="Fa" color="var(--solfege-fa)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="F4"></ppt-period-step-circle>
+              <ppt-period-step-circle slot="step" label="Fi" color="var(--solfege-fi)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="Gb4"></ppt-period-step-circle>
+              <ppt-period-step-circle slot="step" label="So" color="var(--solfege-so)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="G4"></ppt-period-step-circle>
+              <ppt-period-step-circle slot="step" label="Le" color="var(--solfege-la)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="Ab4"></ppt-period-step-circle>
+              <ppt-period-step-circle slot="step" label="La" color="var(--solfege-la)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="A4"></ppt-period-step-circle>
+              <ppt-period-step-circle slot="step" label="Te" color="var(--solfege-ti)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="Bb4"></ppt-period-step-circle>
+              <ppt-period-step-circle slot="step" label="Ti" color="var(--solfege-ti)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="B4"></ppt-period-step-circle>
             </ppt-period>
           </ppt-container>
         </div>
@@ -42,18 +42,18 @@ import ComposerButton from '../../../components/ui/ComposerButton.astro';
           </span>
         </summary>
         <pre><code id="clock-code">&lt;ppt-period shape="circle" starting-angle="-90" interactive="true" min-width="200" min-height="200"&gt;
-  &lt;ppt-period-step-circle slot="step" color="var(--solfege-do)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="C4"&gt;Do&lt;/ppt-period-step-circle&gt;
-  &lt;ppt-period-step-circle slot="step" color="var(--solfege-re)" style="--ppt-text-color: #000; --ppt-marker-border: none;" pitch="Db4"&gt;Ra&lt;/ppt-period-step-circle&gt;
-  &lt;ppt-period-step-circle slot="step" color="var(--solfege-re)" style="--ppt-text-color: #000; --ppt-marker-border: none;" pitch="D4"&gt;Re&lt;/ppt-period-step-circle&gt;
-  &lt;ppt-period-step-circle slot="step" color="var(--solfege-mi)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="Eb4"&gt;Me&lt;/ppt-period-step-circle&gt;
-  &lt;ppt-period-step-circle slot="step" color="var(--solfege-mi)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="E4"&gt;Mi&lt;/ppt-period-step-circle&gt;
-  &lt;ppt-period-step-circle slot="step" color="var(--solfege-fa)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="F4"&gt;Fa&lt;/ppt-period-step-circle&gt;
-  &lt;ppt-period-step-circle slot="step" color="var(--solfege-fi)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="Gb4"&gt;Fi&lt;/ppt-period-step-circle&gt;
-  &lt;ppt-period-step-circle slot="step" color="var(--solfege-so)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="G4"&gt;So&lt;/ppt-period-step-circle&gt;
-  &lt;ppt-period-step-circle slot="step" color="var(--solfege-la)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="Ab4"&gt;Le&lt;/ppt-period-step-circle&gt;
-  &lt;ppt-period-step-circle slot="step" color="var(--solfege-la)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="A4"&gt;La&lt;/ppt-period-step-circle&gt;
-  &lt;ppt-period-step-circle slot="step" color="var(--solfege-ti)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="Bb4"&gt;Te&lt;/ppt-period-step-circle&gt;
-  &lt;ppt-period-step-circle slot="step" color="var(--solfege-ti)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="B4"&gt;Ti&lt;/ppt-period-step-circle&gt;
+  &lt;ppt-period-step-circle slot="step" label="Do" color="var(--solfege-do)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="C4"&gt;&lt;/ppt-period-step-circle&gt;
+  &lt;ppt-period-step-circle slot="step" label="Ra" color="var(--solfege-re)" style="--ppt-text-color: #000; --ppt-marker-border: none;" pitch="Db4"&gt;&lt;/ppt-period-step-circle&gt;
+  &lt;ppt-period-step-circle slot="step" label="Re" color="var(--solfege-re)" style="--ppt-text-color: #000; --ppt-marker-border: none;" pitch="D4"&gt;&lt;/ppt-period-step-circle&gt;
+  &lt;ppt-period-step-circle slot="step" label="Me" color="var(--solfege-mi)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="Eb4"&gt;&lt;/ppt-period-step-circle&gt;
+  &lt;ppt-period-step-circle slot="step" label="Mi" color="var(--solfege-mi)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="E4"&gt;&lt;/ppt-period-step-circle&gt;
+  &lt;ppt-period-step-circle slot="step" label="Fa" color="var(--solfege-fa)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="F4"&gt;&lt;/ppt-period-step-circle&gt;
+  &lt;ppt-period-step-circle slot="step" label="Fi" color="var(--solfege-fi)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="Gb4"&gt;&lt;/ppt-period-step-circle&gt;
+  &lt;ppt-period-step-circle slot="step" label="So" color="var(--solfege-so)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="G4"&gt;&lt;/ppt-period-step-circle&gt;
+  &lt;ppt-period-step-circle slot="step" label="Le" color="var(--solfege-la)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="Ab4"&gt;&lt;/ppt-period-step-circle&gt;
+  &lt;ppt-period-step-circle slot="step" label="La" color="var(--solfege-la)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="A4"&gt;&lt;/ppt-period-step-circle&gt;
+  &lt;ppt-period-step-circle slot="step" label="Te" color="var(--solfege-ti)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="Bb4"&gt;&lt;/ppt-period-step-circle&gt;
+  &lt;ppt-period-step-circle slot="step" label="Ti" color="var(--solfege-ti)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="B4"&gt;&lt;/ppt-period-step-circle&gt;
 &lt;/ppt-period&gt;</code></pre>
       </details>
 
