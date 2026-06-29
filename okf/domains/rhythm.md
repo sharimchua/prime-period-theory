@@ -13,7 +13,7 @@ tags:
   - prime-families
   - rhythmic-grammar
   - prime-period-theory
-timestamp: 2026-06-26
+timestamp: 2026-06-29
 ---
 
 # Rhythm
@@ -163,5 +163,6 @@ See [Diacritic System](../uniform-solfege/diacritic-system.md#axis-in-rhythmic-g
 - [Periodicity](../foundations/periodicity.md) — the unifying phenomenon across scales
 - [Prime Families](../foundations/prime-families.md) — especially the 2-prime and 3-prime rhythm entries
 - [Rhythmic Grammar](../related/rhythmic-grammar.md) — full grammar specification
+- [Rhythmic Overtone Series](rhythmic-overtone-series.md) — the inter-onset ratio spectrum of a phrase; identity with the harmonic series
 - [Pitch](pitch.md) — the micro-periodicity domain; pitch and rhythm as the same structure at different scales
 - [Diacritic System](../uniform-solfege/diacritic-system.md) — Axis diacritic in rhythmic notation context
