@@ -211,7 +211,7 @@ of ratio relationships over time and registers instability as roughness,
 beating, or incoherence. The Periodicity Limen separates the perceptual
 register (pitch vs rhythm) but not the underlying mechanism.
 
-A useful pedagogical frame: *phase coherence is the groove-meter*. It measures
+A useful pedagogical frame: *phase coherence is the groove-metre*. It measures
 not how close you are to the click, but how consistent you are with yourself.
 
 ## The consistency mirror concept
