@@ -11,7 +11,7 @@ const { targetId } = Astro.props;
 </button>
 
 <script>
-  import { serializePayload, compressPayload } from '../designer/payloadCodec';
+  import { generateComposerUrl } from '../designer/composerIntegration';
 
   document.querySelectorAll('.btn-composer').forEach(btn => {
     if (btn.hasAttribute('data-initialized')) return;
@@ -24,38 +24,13 @@ const { targetId } = Astro.props;
       const targetElement = document.getElementById(targetId);
       if (!targetElement) return;
 
-      let serializeTarget = targetElement;
-      // Same logic as source code block for determining what to serialize
-      if (targetId === 'demo-step-circle' && targetElement.parentElement) {
-         serializeTarget = targetElement.parentElement;
-      } else if (targetId === 'demo-clock' && targetElement.parentElement) {
-         serializeTarget = targetElement;
-      }
-      
       try {
-        let rootToSerialize = serializeTarget;
-        
-        // Ensure the component is wrapped in a ppt-container for the Composer
-        if (serializeTarget.tagName.toLowerCase() !== 'ppt-container') {
-           const wrapper = document.createElement('div');
-           const container = document.createElement('ppt-container');
-           container.setAttribute('resizable', 'true');
-           // Set some default dimensions for the container
-           container.style.width = '400px';
-           container.style.height = '400px';
-           
-           // Clone the target so we don't remove it from the docs
-           container.appendChild(serializeTarget.cloneNode(true));
-           wrapper.appendChild(container);
-           rootToSerialize = wrapper;
-        }
-
-        const rawPayload = serializePayload(rootToSerialize);
-        const compressedPayload = await compressPayload(rawPayload);
-        
-        // Construct URL
-        const baseUrl = window.location.origin + window.location.pathname.replace(/\/components.*$/, '/components');
-        const composerUrl = `${baseUrl}/designer?payload=${encodeURIComponent(compressedPayload)}`;
+        const composerUrl = await generateComposerUrl(
+          targetElement,
+          targetId,
+          window.location.origin,
+          window.location.pathname
+        );
         window.open(composerUrl, '_blank');
       } catch (e) {
         console.error("Failed to generate composition payload", e);

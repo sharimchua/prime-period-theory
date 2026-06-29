@@ -429,7 +429,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '') + '/';
     }
   });
 
-  import { serializePayload, deserializePayload, compressPayload, decompressPayload } from './payloadCodec';
+  import { serializePayload, compressPayload } from './payloadCodec';
+  import { loadPayloadIntoCanvas } from './composerIntegration';
 
   document.getElementById('btn-copy-payload')?.addEventListener('click', async () => {
     if (canvas) {
@@ -456,9 +457,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '') + '/';
     let payload = params.get('payload') || params.get('slug'); // Fallback to slug for backward compatibility
     if (payload && canvas) {
       try {
-        const rawPayload = await decompressPayload(payload);
-        deserializePayload(rawPayload, canvas);
-        updateTree();
+        await loadPayloadIntoCanvas(payload, canvas);
+        renderTree();
       } catch (e) {
         console.error("Failed to decompress or parse payload", e);
       }
