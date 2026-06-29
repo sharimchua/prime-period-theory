@@ -88,9 +88,7 @@ import ComposerButton from '../../../components/ui/ComposerButton.astro';
       Each syllable names a <em>prime family</em>: the ratio relationship a given point bears
       to the period origin (Do), expressed in terms of the prime numbers that generate it.
       Do is the origin (1/1); Re belongs to the 3-prime family at 9/8; So is the 3-prime
-      dominant at 3/2; Mi is the 5-prime at 5/4. The colour-coding in the glyph system
-      encodes prime family directly, so structural relationships are visible without
-      needing to read the syllable names.
+      dominant at 3/2; Mi is the 5-prime at 5/4.
     </p>
     <p>
       The most familiar context for Uniform Solfège is the pitch domain, where
@@ -106,101 +104,123 @@ import ComposerButton from '../../../components/ui/ComposerButton.astro';
     <p>
       Enter any combination of syllables into the phrase input above to see them rendered.
     </p>
+    <p>
+      The <strong>Colour</strong> column reflects a perceptual grouping system independent of
+      prime family. Four structurally significant interval relationships—the period origin (Do),
+      the perfect fourth (Fa), the tritone axis (Fi), and the perfect fifth (So)—each carry a
+      unique colour. The remaining eight syllables are grouped in pairs by interval family
+      (seconds, thirds, sixths, sevenths), sharing a colour within each pair. This produces a
+      warm-to-cool gradient traversing the chromatic period and closing back on red at the
+      octave, providing navigational landmarks without implying equal spacing between positions.
+    </p>
 
     <div class="syllable-table-wrapper">
       <table class="syllable-table">
         <thead>
           <tr>
             <th>Syllable</th>
-            <th>Prime Family</th>
             <th>Ratio</th>
+            <th>Prime Family</th>
             <th>Colour</th>
+            <th>Group</th>
             <th>Pitch example (Do = C)</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td><code>Do</code></td>
-            <td>Octave (2-prime)</td>
             <td>1/1</td>
+            <td>2-prime</td>
             <td><span class="swatch swatch-do"></span> Red</td>
+            <td>Octave</td>
             <td>C — the period origin</td>
           </tr>
           <tr>
             <td><code>Ra</code> / <code>Di</code></td>
-            <td>Seconds (3-prime)</td>
             <td>16/15</td>
+            <td>5-prime</td>
             <td><span class="swatch swatch-re"></span> Orange</td>
-            <td>C♯ / D♭ — minor second (Di = raised Do)</td>
+            <td>Seconds</td>
+            <td>C♯ / D♭ — chromatic semitone (Di = raised Do)</td>
           </tr>
           <tr>
             <td><code>Re</code></td>
-            <td>Seconds (3-prime)</td>
             <td>9/8</td>
+            <td>3-prime</td>
             <td><span class="swatch swatch-re"></span> Orange</td>
+            <td>Seconds</td>
             <td>D — Pythagorean whole tone</td>
           </tr>
           <tr>
             <td><code>Me</code> / <code>Ri</code></td>
-            <td>Thirds (5-prime)</td>
             <td>6/5</td>
+            <td>5-prime</td>
             <td><span class="swatch swatch-mi"></span> Yellow</td>
+            <td>Thirds</td>
             <td>E♭ — minor third (Ri = raised Re)</td>
           </tr>
           <tr>
             <td><code>Mi</code></td>
-            <td>Thirds (5-prime)</td>
             <td>5/4</td>
+            <td>5-prime</td>
             <td><span class="swatch swatch-mi"></span> Yellow</td>
+            <td>Thirds</td>
             <td>E — just major third</td>
           </tr>
           <tr>
             <td><code>Fa</code></td>
-            <td>Fourths (3-prime)</td>
             <td>4/3</td>
+            <td>3-prime</td>
             <td><span class="swatch swatch-fa"></span> Green</td>
+            <td>Fourths</td>
             <td>F — perfect fourth</td>
           </tr>
           <tr>
             <td><code>Fi</code></td>
-            <td>Tritone</td>
-            <td>√2 / 1</td>
+            <td>11/8</td>
+            <td>11-prime</td>
             <td><span class="swatch swatch-fi"></span> Teal</td>
-            <td>F♯ / G♭ — equidistant axis of the octave</td>
+            <td>Tritone</td>
+            <td>F♯ / G♭ — neutral tritone; the 11-prime axis of the period</td>
           </tr>
           <tr>
             <td><code>So</code></td>
-            <td>Fifths (3-prime)</td>
             <td>3/2</td>
+            <td>3-prime</td>
             <td><span class="swatch swatch-so"></span> Blue</td>
+            <td>Fifths</td>
             <td>G — perfect fifth</td>
           </tr>
           <tr>
             <td><code>Le</code></td>
-            <td>Sixths (5-prime)</td>
             <td>8/5</td>
+            <td>5-prime</td>
             <td><span class="swatch swatch-la"></span> Indigo</td>
+            <td>Sixths</td>
             <td>A♭ — minor sixth</td>
           </tr>
           <tr>
             <td><code>La</code></td>
-            <td>Sixths (5-prime)</td>
             <td>5/3</td>
+            <td>5-prime</td>
             <td><span class="swatch swatch-la"></span> Indigo</td>
+            <td>Sixths</td>
             <td>A — just major sixth</td>
           </tr>
           <tr>
             <td><code>Te</code> / <code>Se</code></td>
-            <td>Sevenths (7-prime)</td>
             <td>7/4</td>
+            <td>7-prime</td>
             <td><span class="swatch swatch-ti"></span> Purple</td>
-            <td>B♭ — harmonic minor seventh (Se is PPT rhythmic variant)</td>
+            <td>Sevenths</td>
+            <td>B♭ — harmonic seventh (Se is PPT rhythmic variant)</td>
           </tr>
           <tr>
             <td><code>Ti</code> / <code>Si</code></td>
-            <td>Sevenths (7-prime)</td>
             <td>15/8</td>
+            <td>5-prime</td>
             <td><span class="swatch swatch-ti"></span> Purple</td>
+            <td>Sevenths</td>
             <td>B — leading tone (Si is PPT rhythmic variant)</td>
           </tr>
         </tbody>
@@ -237,11 +257,14 @@ import ComposerButton from '../../../components/ui/ComposerButton.astro';
 
     <h2>Diacritics — Subdividing the Period</h2>
     <p>
-      Each syllable marks a point in the period. Diacritics subdivide the space around that
-      point: each diacritic places a non-uniform position within ±50% of the base syllable's
-      position, allowing the notation to reach ratios that sit between the twelve base anchors.
-      In a pitch context this is fine-grained tuning; in rhythm it is a subdivision offset;
-      the mechanism is the same in every domain.
+      Each syllable marks a semantic anchor point in the period. The twelve syllables make no
+      claim about equal spacing between positions — they name musically meaningful ratio
+      relationships to Do, and the distances between adjacent anchors are uneven by design.
+      Diacritics navigate the metric space that the syllables deliberately leave unspecified:
+      each diacritic places a position within the neighbourhood of its base syllable, allowing
+      the notation to reach ratios that sit between the twelve anchors. In a pitch context this
+      is fine-grained just intonation tuning; in rhythm it is a subdivision offset; the
+      mechanism is the same in every domain.
     </p>
     <p>
       Diacritics are appended directly to the syllable with no separator. The base syllable is
@@ -267,7 +290,7 @@ import ComposerButton from '../../../components/ui/ComposerButton.astro';
             <td>Sub</td>
             <td>↓ Lowered</td>
             <td><code>DoSub</code></td>
-            <td>Maximum downward deviation within the prime family.</td>
+            <td>Maximum downward deviation within the syllable's neighbourhood.</td>
           </tr>
           <tr>
             <td><code>HalfSub</code></td>
@@ -288,7 +311,7 @@ import ComposerButton from '../../../components/ui/ComposerButton.astro';
             <td>Sup</td>
             <td>↑ Raised</td>
             <td><code>SoSup</code></td>
-            <td>Maximum upward deviation within the prime family.</td>
+            <td>Maximum upward deviation within the syllable's neighbourhood.</td>
           </tr>
           <tr>
             <td><code>Axis</code> / <code>x</code></td>
@@ -296,9 +319,11 @@ import ComposerButton from '../../../components/ui/ComposerButton.astro';
             <td>⊕ Midpoint</td>
             <td><code>DoAxis</code> / <code>Dox</code></td>
             <td>
-              The midpoint between two adjacent period positions — in a pitch context, +50 cents
-              from the 12TET anchor. This is the entry point for the 11-prime family and
-              marks the threshold of the Du approximation space.
+              The midpoint between two adjacent period positions. This is the entry point for
+              the 11-prime family: Fi itself is the canonical 11-prime interval at 11/8, and
+              the Axis diacritic on adjacent syllables reaches toward that same prime space.
+              Note that the distance represented by Axis varies between syllable pairs, as the
+              neighbourhoods are uneven.
               <code>x</code> is accepted as a shorthand for <code>Axis</code>.
             </td>
           </tr>
@@ -308,8 +333,8 @@ import ComposerButton from '../../../components/ui/ComposerButton.astro';
 
     <p>
       Diacritics are rendered as SVG overlays on the base glyph. They do not change the
-      syllable's colour family — only the precise position within it. The mark direction
-      (pointing up or down) indicates the direction of deviation from the base position.
+      syllable's colour — only the precise position within its neighbourhood. The mark direction
+      (pointing up or down) indicates the direction of deviation from the base anchor.
     </p>
 
     <p class="explainer-note">
