@@ -9,6 +9,15 @@ export interface ResizableElement extends HTMLElement {
 export function WithResizable<TBase extends Constructor<HTMLElement>>(Base: TBase) {
   return class extends Base implements ResizableElement {
     private _resizable: boolean = false;
+    private _isResizing = false;
+    private _initialWidth = 0;
+    private _initialHeight = 0;
+    private _startX = 0;
+    private _startY = 0;
+
+    private _onStartResizeBind = this._onStartResize.bind(this);
+    private _onResizeBind = this._onResize.bind(this);
+    private _onEndResizeBind = this._onEndResize.bind(this);
 
     static get observedAttributes() {
       return [...((Base as any).observedAttributes || []), 'resizable'];
@@ -56,25 +65,99 @@ export function WithResizable<TBase extends Constructor<HTMLElement>>(Base: TBas
       }
       this._resizable = this.hasAttribute('resizable') && this.getAttribute('resizable') !== 'false';
       this._triggerResizableUpdate(this._resizable);
+
+      this.addEventListener('mousedown', this._onStartResizeBind);
+      this.addEventListener('touchstart', this._onStartResizeBind, { passive: false });
+    }
+
+    disconnectedCallback() {
+      if (typeof (Base.prototype as any).disconnectedCallback === 'function') {
+        (Base.prototype as any).disconnectedCallback.call(this);
+      }
+      this.removeEventListener('mousedown', this._onStartResizeBind);
+      this.removeEventListener('touchstart', this._onStartResizeBind);
+      
+      document.removeEventListener('mousemove', this._onResizeBind);
+      document.removeEventListener('touchmove', this._onResizeBind);
+      document.removeEventListener('mouseup', this._onEndResizeBind);
+      document.removeEventListener('touchend', this._onEndResizeBind);
+    }
+
+    private _onStartResize(e: MouseEvent | TouchEvent) {
+      if (!this._resizable) return;
+
+      const rect = this.getBoundingClientRect();
+      const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
+      const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY;
+
+      // Check if click/touch is in bottom-right corner (within 24px touch target)
+      const handleSize = 24;
+      const isBottomRight = (clientX >= rect.right - handleSize) && (clientY >= rect.bottom - handleSize);
+
+      if (isBottomRight) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        this._isResizing = true;
+        this._initialWidth = rect.width;
+        this._initialHeight = rect.height;
+        this._startX = clientX;
+        this._startY = clientY;
+
+        document.addEventListener('mousemove', this._onResizeBind);
+        document.addEventListener('touchmove', this._onResizeBind, { passive: false });
+        document.addEventListener('mouseup', this._onEndResizeBind);
+        document.addEventListener('touchend', this._onEndResizeBind);
+      }
+    }
+
+    private _onResize(e: MouseEvent | TouchEvent) {
+      if (!this._isResizing) return;
+
+      if ('touches' in e) {
+        e.preventDefault(); // Prevent scrolling
+      }
+
+      const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
+      const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY;
+
+      const deltaX = clientX - this._startX;
+      const deltaY = clientY - this._startY;
+
+      const newWidth = Math.max(50, this._initialWidth + deltaX);
+      const newHeight = Math.max(50, this._initialHeight + deltaY);
+
+      this.style.width = `${newWidth}px`;
+      this.style.height = `${newHeight}px`;
+
+      this.dispatchEvent(new CustomEvent('ppt-resized', {
+        detail: { width: newWidth, height: newHeight },
+        bubbles: true,
+        composed: true
+      }));
+    }
+
+    private _onEndResize() {
+      if (this._isResizing) {
+        this._isResizing = false;
+        document.removeEventListener('mousemove', this._onResizeBind);
+        document.removeEventListener('touchmove', this._onResizeBind);
+        document.removeEventListener('mouseup', this._onEndResizeBind);
+        document.removeEventListener('touchend', this._onEndResizeBind);
+      }
     }
 
     private _triggerResizableUpdate(isResizable: boolean) {
-      // 1. Let component define its own behavior
       if (typeof (this as any).onResizableChanged === 'function') {
         (this as any).onResizableChanged(isResizable);
       } else {
-        // Default behavior if not defined
         if (isResizable) {
-          this.style.setProperty('resize', 'both');
           this.style.setProperty('overflow', 'auto');
         } else {
-          this.style.removeProperty('resize');
           this.style.removeProperty('overflow');
         }
       }
 
-      // 2. Cascade to children (resizability might not strictly cascade logically like interactive, 
-      // but we adhere to the contract "functionality and features should be cascaded").
       this.propagateResizability(isResizable);
     }
 

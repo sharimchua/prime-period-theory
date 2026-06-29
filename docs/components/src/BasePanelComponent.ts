@@ -49,6 +49,10 @@ export class BasePanelComponent extends WithResizable(WithInteractive(BasePPTCom
   private xOffset = 0;
   private yOffset = 0;
 
+  private _onDragStart = this.dragStart.bind(this);
+  private _onDrag = this.drag.bind(this);
+  private _onDragEnd = this.dragEnd.bind(this);
+
   override attributeChangedCallback(name: string, _oldValue: string, _newValue: string) {
     super.attributeChangedCallback(name, _oldValue, _newValue);
     if (name === 'panel-align' || name === 'ratio') {
@@ -97,31 +101,66 @@ export class BasePanelComponent extends WithResizable(WithInteractive(BasePPTCom
     const panel = this.shadowRoot?.querySelector('.panel-inner') as HTMLElement;
     if (!panel) return;
 
-    panel.addEventListener('mousedown', this.dragStart.bind(this));
-    document.addEventListener('mouseup', this.dragEnd.bind(this));
-    document.addEventListener('mousemove', this.drag.bind(this));
+    panel.addEventListener('mousedown', this._onDragStart);
+    panel.addEventListener('touchstart', this._onDragStart, { passive: true });
   }
 
-  private dragStart(e: MouseEvent) {
+  override disconnectedCallback() {
+    if (typeof (super.disconnectedCallback) === 'function') {
+      super.disconnectedCallback();
+    }
+    const panel = this.shadowRoot?.querySelector('.panel-inner') as HTMLElement;
+    if (panel) {
+      panel.removeEventListener('mousedown', this._onDragStart);
+      panel.removeEventListener('touchstart', this._onDragStart);
+    }
+    document.removeEventListener('mousemove', this._onDrag);
+    document.removeEventListener('touchmove', this._onDrag);
+    document.removeEventListener('mouseup', this._onDragEnd);
+    document.removeEventListener('touchend', this._onDragEnd);
+  }
+
+  private dragStart(e: MouseEvent | TouchEvent) {
     if (this.panelAlign !== 'floating' || !this.interactive) return;
 
-    this.initialX = e.clientX - this.xOffset;
-    this.initialY = e.clientY - this.yOffset;
+    const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
+    const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY;
+
+    this.initialX = clientX - this.xOffset;
+    this.initialY = clientY - this.yOffset;
     this.isDragging = true;
+
+    document.addEventListener('mousemove', this._onDrag);
+    document.addEventListener('touchmove', this._onDrag, { passive: false });
+    document.addEventListener('mouseup', this._onDragEnd);
+    document.addEventListener('touchend', this._onDragEnd);
   }
 
   private dragEnd() {
-    this.initialX = this.currentX;
-    this.initialY = this.currentY;
-    this.isDragging = false;
+    if (this.isDragging) {
+      this.initialX = this.currentX;
+      this.initialY = this.currentY;
+      this.isDragging = false;
+
+      document.removeEventListener('mousemove', this._onDrag);
+      document.removeEventListener('touchmove', this._onDrag);
+      document.removeEventListener('mouseup', this._onDragEnd);
+      document.removeEventListener('touchend', this._onDragEnd);
+    }
   }
 
-  private drag(e: MouseEvent) {
+  private drag(e: MouseEvent | TouchEvent) {
     if (!this.isDragging) return;
-    e.preventDefault();
+    
+    if ('touches' in e) {
+      e.preventDefault();
+    }
 
-    this.currentX = e.clientX - this.initialX;
-    this.currentY = e.clientY - this.initialY;
+    const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
+    const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY;
+
+    this.currentX = clientX - this.initialX;
+    this.currentY = clientY - this.initialY;
 
     // Constrain to parent boundaries
     const parent = this.parentElement;

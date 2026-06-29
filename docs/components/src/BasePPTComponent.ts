@@ -93,6 +93,21 @@ export class BasePPTComponent extends HTMLElement {
       *, *::before, *::after {
         box-sizing: inherit;
       }
+      :host([resizable]) {
+        position: relative !important;
+      }
+      :host([resizable])::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 16px;
+        height: 16px;
+        cursor: se-resize;
+        background: linear-gradient(135deg, transparent 40%, #94a3b8 40%, #94a3b8 50%, transparent 50%, transparent 60%, #94a3b8 60%);
+        z-index: 9999;
+        pointer-events: none;
+      }
     `;
   }
 }
