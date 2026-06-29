@@ -73,7 +73,7 @@ export class UniformSolfegeComponent extends BasePPTComponent {
       'annotation-align': { type: 'enum', options: ['none', 'top', 'bottom'], default: 'none', description: 'Alignment of the solfege annotation text' },
       'annotation-color': { type: 'color', default: '', description: 'Override annotation color' },
       'annotation-padding': { type: 'string', default: '-0.4em', description: 'Padding between glyph and annotation' },
-      'superscript-offset-x': { type: 'string', default: '0.1em', description: 'Horizontal offset for superscript' },
+      'superscript-offset-x': { type: 'string', default: '0.25em', description: 'Horizontal offset for superscript' },
       'superscript-offset-y': { type: 'string', default: '-0.4em', description: 'Vertical offset for superscript' },
       'size': { type: 'string', default: '1em', description: 'Size of the solfege glyph' }
     };
@@ -86,9 +86,54 @@ export class UniformSolfegeComponent extends BasePPTComponent {
     }
   }
 
+  private _resizeObserver: ResizeObserver | null = null;
+
   override connectedCallback() {
     super.connectedCallback();
     this.render();
+    this.setupResizeObserver();
+  }
+
+  override disconnectedCallback() {
+    super.disconnectedCallback();
+    if (this._resizeObserver) {
+      this._resizeObserver.disconnect();
+    }
+  }
+
+  private setupResizeObserver() {
+    if (typeof ResizeObserver === 'undefined') return;
+    this._resizeObserver = new ResizeObserver(() => {
+      this.adjustAnnotationScale();
+    });
+    this._resizeObserver.observe(this);
+  }
+
+  private adjustAnnotationScale() {
+    if (!this.shadowRoot) return;
+    const annotation = this.shadowRoot.querySelector('.solfege-annotation') as HTMLElement;
+    const core = this.shadowRoot.querySelector('.solfege-core') as HTMLElement;
+    if (!annotation || !core) return;
+
+    annotation.style.transform = '';
+
+    const annoWidth = annotation.getBoundingClientRect().width;
+    const coreWidth = core.getBoundingClientRect().width;
+
+    if (annoWidth > 0 && coreWidth > 0 && annoWidth > coreWidth) {
+      let scale = coreWidth / annoWidth;
+      
+      // Enforce a minimum visual font size of 9px to keep it legible
+      const computedStyle = window.getComputedStyle(annotation);
+      const computedFontSize = parseFloat(computedStyle.fontSize);
+      if (computedFontSize > 0) {
+        const minScale = 9 / computedFontSize;
+        if (scale < minScale) {
+          scale = minScale;
+        }
+      }
+      annotation.style.transform = `scale(${scale})`;
+    }
   }
 
   private render() {
@@ -131,8 +176,9 @@ export class UniformSolfegeComponent extends BasePPTComponent {
     const defaultColor = this.getAttribute('color') || `var(--solfege-${family}, var(--solfege-fi, #141414))`;
     const diacriticColor = this.getAttribute('diacritic-color');
     const annotationColor = this.getAttribute('annotation-color');
-    const annotationPadding = this.getAttribute('annotation-padding') || '-0.4em';
-    const superscriptOffsetX = this.getAttribute('superscript-offset-x') || '0.1em';
+    const defaultPadding = annotationAlign === 'top' ? '-0.2em' : '-0.4em';
+    const annotationPadding = this.getAttribute('annotation-padding') || defaultPadding;
+    const superscriptOffsetX = this.getAttribute('superscript-offset-x') || '0.25em';
     const superscriptOffsetY = this.getAttribute('superscript-offset-y') || '-0.4em';
     const size = this.getAttribute('size') || '1em';
 
@@ -187,10 +233,12 @@ export class UniformSolfegeComponent extends BasePPTComponent {
 
         .solfege-annotation.align-top {
           bottom: 100%;
+          transform-origin: bottom center;
         }
 
         .solfege-annotation.align-bottom {
           top: 100%;
+          transform-origin: top center;
         }
 
         .solfege-core {
@@ -231,13 +279,17 @@ export class UniformSolfegeComponent extends BasePPTComponent {
 
         .superscript-wrapper {
           position: absolute;
-          font-size: 0.5em;
+          font-size: 0.4em;
           pointer-events: none;
         }
       </style>
 
       ${html}
     `;
+
+    requestAnimationFrame(() => {
+      this.adjustAnnotationScale();
+    });
   }
 }
 
