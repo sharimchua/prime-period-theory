@@ -13,7 +13,7 @@ const parentComp = parentTagName ? components.find((c) => c.tagName === parentTa
 const parentMetadata = parentComp?.metadata || {};
 const allowedParentList = allowedParentProps ? allowedParentProps.split(',').map((s) => s.trim()) : [];
 
-const targetEntries = getTargetEntries(metadata);
+const targetEntries = getTargetEntries(metadata, tagName);
 const parentEntries = parentTagName ? getParentEntries(parentMetadata, allowedParentList) : [];
 ---
 
@@ -45,6 +45,47 @@ const parentEntries = parentTagName ? getParentEntries(parentMetadata, allowedPa
     const targetElement = document.getElementById(targetId);
     if (!targetElement) return;
 
+    panel.querySelectorAll('.auto-prop-override').forEach((overrideToggle: any) => {
+      const attr = overrideToggle.getAttribute('data-attr');
+      const targetType = overrideToggle.getAttribute('data-target-type');
+      const targetInputId = overrideToggle.getAttribute('data-target-input');
+      const input = document.getElementById(targetInputId) as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
+      
+      const elToUpdate = targetType === 'parent' ? targetElement.parentElement : targetElement;
+      if (!elToUpdate || !input) return;
+
+      // Initial sync
+      const hasAttr = attr === 'textContent' ? !!(elToUpdate.textContent && elToUpdate.textContent.trim().length > 0) : elToUpdate.hasAttribute(attr);
+      overrideToggle.checked = hasAttr;
+      input.disabled = !hasAttr;
+
+      overrideToggle.addEventListener('change', (e: any) => {
+        const isChecked = e.target.checked;
+        input.disabled = !isChecked;
+        
+        if (isChecked) {
+          // Re-apply current input value
+          const val = input.value;
+          if (input.type === 'checkbox') {
+             elToUpdate.setAttribute(attr, (input as HTMLInputElement).checked ? 'true' : 'false');
+          } else {
+             if (attr === 'textContent') {
+                elToUpdate.textContent = val;
+             } else {
+                elToUpdate.setAttribute(attr, val);
+             }
+          }
+        } else {
+          // Remove attribute
+          if (attr === 'textContent') {
+             elToUpdate.textContent = '';
+          } else {
+             elToUpdate.removeAttribute(attr);
+          }
+        }
+      });
+    });
+
     panel.querySelectorAll('.auto-prop-input').forEach((input: any) => {
       const attr = input.getAttribute('data-attr');
       const targetType = input.getAttribute('data-target-type');
@@ -53,7 +94,10 @@ const parentEntries = parentTagName ? getParentEntries(parentMetadata, allowedPa
       const elToUpdate = targetType === 'parent' ? targetElement.parentElement : targetElement;
       if (!elToUpdate) return;
 
+      const overrideToggle = panel.querySelector(`.auto-prop-override[data-target-input="${input.id}"]`) as HTMLInputElement;
+
       const updateTarget = (e: any) => {
+         if (overrideToggle && !overrideToggle.checked) return; // Don't update if override is false
          let val = e.target.value;
          if (type === 'checkbox') {
             if (e.target.checked) elToUpdate.setAttribute(attr, 'true');
@@ -74,15 +118,16 @@ const parentEntries = parentTagName ? getParentEntries(parentMetadata, allowedPa
       input.addEventListener('input', updateTarget);
       input.addEventListener('change', updateTarget);
       
-      // Auto-sync
+      // Auto-sync value from DOM (not override status, that's done above)
       if (attr === 'textContent') {
          if (elToUpdate.textContent && elToUpdate.textContent.trim().length > 0) {
             input.value = elToUpdate.textContent.trim();
          } else {
-            updateTarget({ target: input });
+            // we don't automatically populate DOM from default here if override is false,
+            // but we can set the input value.
+            if (overrideToggle && overrideToggle.checked) updateTarget({ target: input });
          }
       } else if (elToUpdate.hasAttribute(attr)) {
-         // Sync input to match what's already in the DOM
          const elVal = elToUpdate.getAttribute(attr);
          if (type === 'checkbox') {
             input.checked = elVal === 'true' || elVal === '';
@@ -90,8 +135,7 @@ const parentEntries = parentTagName ? getParentEntries(parentMetadata, allowedPa
             input.value = elVal;
          }
       } else {
-         // Sync the DOM to match the form's default
-         updateTarget({ target: input });
+         if (overrideToggle && overrideToggle.checked) updateTarget({ target: input });
       }
     });
 

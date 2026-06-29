@@ -28,7 +28,7 @@ The Solfège colour palette maps specific hues to interval categories. The exact
 
 | Interval Category | Syllables | CSS Variable | Hex Code | Semantic Rationale |
 |---|---|---|---|---|
-| **Unison** | Do | `--solfege-do` | `#E13010` | Earth resonance (130.10Hz) |
+| **Unison** | Do | `--solfege-do` | `#E13610` | Earth resonance (136.10Hz) |
 | **Seconds** | Ra, Re | `--solfege-re` | `#F98016` | **F 9:8 0 16**: Encodes the foundational ratios for seconds (Major Second 9:8, Minor Second 16:15) |
 | **Thirds** | Me, Mi | `--solfege-mi` | `#F5D432` | **F5 D4 32**: Encodes the foundational harmonic ratios (Major Third 5:4, Perfect Fifth 3:2) |
 | **Fourths** | Fa | `--solfege-fa` | `#43A440` | **4:3 A440**: Encodes the Perfect Fourth ratio (4:3) and international standard pitch A440 |

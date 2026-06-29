@@ -6,6 +6,7 @@ export * from './TitleComponent.js';
 export * from './ContainerComponent.js';
 export * from './PeriodStepCircleComponent.js';
 export * from './BoxComponent.js';
+export * from './FlexComponent.js';
 export * from './TextComponent.js';
 export * from './PeriodSequencerComponent.js';
 export * from './features/WithSound.js';
@@ -20,3 +21,12 @@ export * from './features/EventBus.js';
 export * from './ControlPanelComponent.js';
 export * from './ControlBooleanComponent.js';
 export * from './ControlIntegerComponent.js';
+export * from './ControlTextComponent.js';
+export * from './EventBindingComponent.js';
+export * from './UniformSolfegeComponent.js';
+export * from './SolfegePhraseComponent.js';
+export * from './SolfegePhrasePanelComponent.js';
+
+// Feature Registration for components that need external libraries
+import { MidiOrchestrator } from './features/MidiOrchestrator.js';
+MidiOrchestrator.init();

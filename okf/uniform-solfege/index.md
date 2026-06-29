@@ -54,7 +54,7 @@ The colour convention assigns a specific hue to each interval class, aligning wi
 
 | Position | Syllable | Variations | Colour | Interval from tonic | Prime family |
 |---|---|---|---|---|---|
-| 0 | **Do** | | Red (`#E13010`) | Unison | 2-prime (octave axis) |
+| 0 | **Do** | | Red (`#E13610`) | Unison | 2-prime (octave axis) |
 | 1 | **Ra** | Di | Orange (`#F98016`) | Minor 2nd | — |
 | 2 | **Re** | | Orange (`#F98016`) | Major 2nd | 3-prime (two fifths) |
 | 3 | **Me** | Ri | Yellow (`#F5D432`) | Minor 3rd | — |
@@ -71,7 +71,7 @@ The colour convention assigns a specific hue to each interval class, aligning wi
 
 The colour palette uses seven distinct hues to visually map the interval categories. While designed for visual clarity and harmony, the exact hex values are reverse-engineered to encode core acoustic, mathematical, and tuning references. This grounds the visual styling deeply into the Prime Period Theory philosophy:
 
-- **Red (Do)**: `#E13010` — Earth resonance (130.10Hz).
+- **Red (Do)**: `#E13610` — Earth resonance (136.10Hz).
 - **Orange (Seconds)**: `#F98016` — **F 9:8 0 16**: Encodes the foundational ratios for seconds: the Major Second (9:8) and references the Minor Second (16:15).
 - **Yellow (Thirds)**: `#F5D432` — **F5 D4 32**: Encodes the Major Third (5:4) and Perfect Fifth (3:2) which make up the major triad.
 - **Green (Fourths)**: `#43A440` — **4:3 A440**: Encodes the Perfect Fourth ratio (4:3) alongside the international standard pitch A440.

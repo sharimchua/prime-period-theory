@@ -1,0 +1,209 @@
+---
+import ComponentLayout from '../../../layouts/ComponentLayout.astro';
+import ComposerButton from '../../../components/ui/ComposerButton.astro';
+---
+
+<ComponentLayout title="Tonal Clock — PPT Composition Showcase">
+  <h1 id="tonal-clock">Composition Showcase: Tonal Clock</h1>
+
+  <section class="component-demo">
+    <div class="live-doc-grid">
+
+      <div class="demo-box-wrapper">
+        <div class="demo-box resizable">
+          <script>
+            import '../../../../components/src/index.ts';
+          </script>
+          <ppt-container id="demo-clock-container">
+            <ppt-period id="demo-clock" shape="circle" starting-angle="-90" interactive="true" min-width="200" min-height="200">
+              <ppt-period-step-circle slot="step" color="var(--solfege-do)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="C4">Do</ppt-period-step-circle>
+              <ppt-period-step-circle slot="step" color="var(--solfege-re)" style="--ppt-text-color: #000; --ppt-marker-border: none;" pitch="Db4">Ra</ppt-period-step-circle>
+              <ppt-period-step-circle slot="step" color="var(--solfege-re)" style="--ppt-text-color: #000; --ppt-marker-border: none;" pitch="D4">Re</ppt-period-step-circle>
+              <ppt-period-step-circle slot="step" color="var(--solfege-mi)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="Eb4">Me</ppt-period-step-circle>
+              <ppt-period-step-circle slot="step" color="var(--solfege-mi)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="E4">Mi</ppt-period-step-circle>
+              <ppt-period-step-circle slot="step" color="var(--solfege-fa)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="F4">Fa</ppt-period-step-circle>
+              <ppt-period-step-circle slot="step" color="var(--solfege-fi)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="Gb4">Fi</ppt-period-step-circle>
+              <ppt-period-step-circle slot="step" color="var(--solfege-so)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="G4">So</ppt-period-step-circle>
+              <ppt-period-step-circle slot="step" color="var(--solfege-la)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="Ab4">Le</ppt-period-step-circle>
+              <ppt-period-step-circle slot="step" color="var(--solfege-la)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="A4">La</ppt-period-step-circle>
+              <ppt-period-step-circle slot="step" color="var(--solfege-ti)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="Bb4">Te</ppt-period-step-circle>
+              <ppt-period-step-circle slot="step" color="var(--solfege-ti)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="B4">Ti</ppt-period-step-circle>
+            </ppt-period>
+          </ppt-container>
+        </div>
+      </div>
+
+      <details class="code-panel">
+        <summary>
+          View Source Code
+          <span class="summary-actions">
+            <ComposerButton targetId="demo-clock-container" />
+            <button class="copy-btn" onclick="copyCode('clock-code', this)">Copy Code</button>
+          </span>
+        </summary>
+        <pre><code id="clock-code">&lt;ppt-period shape="circle" starting-angle="-90" interactive="true" min-width="200" min-height="200"&gt;
+  &lt;ppt-period-step-circle slot="step" color="var(--solfege-do)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="C4"&gt;Do&lt;/ppt-period-step-circle&gt;
+  &lt;ppt-period-step-circle slot="step" color="var(--solfege-re)" style="--ppt-text-color: #000; --ppt-marker-border: none;" pitch="Db4"&gt;Ra&lt;/ppt-period-step-circle&gt;
+  &lt;ppt-period-step-circle slot="step" color="var(--solfege-re)" style="--ppt-text-color: #000; --ppt-marker-border: none;" pitch="D4"&gt;Re&lt;/ppt-period-step-circle&gt;
+  &lt;ppt-period-step-circle slot="step" color="var(--solfege-mi)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="Eb4"&gt;Me&lt;/ppt-period-step-circle&gt;
+  &lt;ppt-period-step-circle slot="step" color="var(--solfege-mi)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="E4"&gt;Mi&lt;/ppt-period-step-circle&gt;
+  &lt;ppt-period-step-circle slot="step" color="var(--solfege-fa)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="F4"&gt;Fa&lt;/ppt-period-step-circle&gt;
+  &lt;ppt-period-step-circle slot="step" color="var(--solfege-fi)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="Gb4"&gt;Fi&lt;/ppt-period-step-circle&gt;
+  &lt;ppt-period-step-circle slot="step" color="var(--solfege-so)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="G4"&gt;So&lt;/ppt-period-step-circle&gt;
+  &lt;ppt-period-step-circle slot="step" color="var(--solfege-la)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="Ab4"&gt;Le&lt;/ppt-period-step-circle&gt;
+  &lt;ppt-period-step-circle slot="step" color="var(--solfege-la)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="A4"&gt;La&lt;/ppt-period-step-circle&gt;
+  &lt;ppt-period-step-circle slot="step" color="var(--solfege-ti)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="Bb4"&gt;Te&lt;/ppt-period-step-circle&gt;
+  &lt;ppt-period-step-circle slot="step" color="var(--solfege-ti)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="B4"&gt;Ti&lt;/ppt-period-step-circle&gt;
+&lt;/ppt-period&gt;</code></pre>
+      </details>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- Contextual explanation section                              -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <section class="showcase-explainer">
+    <h2>What is the Tonal Clock?</h2>
+    <p>
+      The Tonal Clock is not a single component — it is a <em>composition</em>. What you see above
+      is a <code>&lt;ppt-period&gt;</code> container configured with a circular shape, holding twelve
+      individual <code>&lt;ppt-period-step-circle&gt;</code> markers. Each marker calculates its own
+      angular position automatically based on its slot index and the total number of steps in the
+      container. There is no layout arithmetic in the source — the geometry emerges from the structure.
+    </p>
+    <p>
+      Click any marker to hear its corresponding pitch. The interactive mode on
+      <code>ppt-period</code> enables this without any additional event wiring.
+    </p>
+
+    <h2>Why a Clock Layout?</h2>
+    <p>
+      The clock metaphor for pitch space has a long tradition — most famously in
+      representations of the circle of fifths. PPT repurposes it for a different purpose:
+      mapping all twelve <strong>chromatic pitch classes by their proximity relationships within
+      an octave period</strong>, rather than by fifth-based distance.
+    </p>
+    <p>
+      Arranged clockwise starting at 12 o'clock (Do), each step is one equal-tempered
+      semitone from its neighbours. The colour of each marker is drawn from the
+      <strong>Uniform Solfège colour system</strong>, where hue encodes prime family:
+    </p>
+    <ul>
+      <li><strong>Red</strong> — Do (tonic, 2-prime / octave family)</li>
+      <li><strong>Orange</strong> — Ra, Re (2nds, 3-prime)</li>
+      <li><strong>Yellow</strong> — Me, Mi (3rds, 5-prime)</li>
+      <li><strong>Green</strong> — Fa (4th, 3-prime subdominant)</li>
+      <li><strong>Teal</strong> — Fi (tritone, equidistant axis)</li>
+      <li><strong>Blue</strong> — So (5th, 3-prime dominant)</li>
+      <li><strong>Indigo</strong> — Le, La (6ths, 5-prime)</li>
+      <li><strong>Purple</strong> — Te, Ti (7ths, 7-prime)</li>
+    </ul>
+    <p>
+      The result is that <strong>prime families cluster visually</strong>. Tonal regions —
+      major triads, minor triads, pentatonic sets, whole-tone collections — appear as
+      distinct colour groupings on the clock face rather than as abstract interval counts.
+    </p>
+
+    <h2>Composition, Not Configuration</h2>
+    <p>
+      The key PPT design principle on display here is that <em>the twelve pitches are not
+      hard-coded properties of a "Tonal Clock" component</em>. You can place any number of steps
+      in any order, use any pitches, and apply any colours. The same <code>&lt;ppt-period&gt;</code>
+      primitive drives the circular metronome in the next showcase — the only difference is
+      what you put inside it.
+    </p>
+    <p class="explainer-note">
+      Try opening the composition in the Designer to add, remove, or reorder pitch markers and
+      observe how the geometry self-organises. You could build a pentatonic clock (5 steps),
+      a whole-tone clock (6 steps), or a microtonal 24-step layout with the same underlying
+      component.
+    </p>
+  </section>
+
+  <script is:inline>
+    window.copyCode = function(targetId, btn) {
+      const code = document.getElementById(targetId)?.textContent;
+      if (code) {
+        navigator.clipboard.writeText(code);
+        const oldText = btn.textContent;
+        btn.textContent = "Copied!";
+        setTimeout(() => btn.textContent = oldText, 2000);
+      }
+    };
+
+    function setupCompromiseListener(componentId, warningId) {
+      const component = document.getElementById(componentId);
+      const warning = document.getElementById(warningId);
+      if (component && warning) {
+        component.addEventListener('ppt-compromised', (e) => {
+          if (e.target !== component) return;
+          warning.style.display = 'block';
+          warning.textContent = '⚠️ Compromised (Size: ' + Math.round(e.detail.width) + 'x' + Math.round(e.detail.height) + ')';
+        });
+        component.addEventListener('ppt-restored', (e) => {
+          if (e.target !== component) return;
+          warning.style.display = 'none';
+        });
+      }
+    }
+
+    setupCompromiseListener('demo-clock', 'clock-warning');
+  </script>
+
+  <style>
+    .code-panel summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .summary-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* ── Explainer section ─────────────────────────────────────── */
+    .showcase-explainer {
+      margin-top: 3rem;
+      border-top: 2px solid var(--brand-secondary, #e2e8f0);
+      padding-top: 2rem;
+    }
+
+    .showcase-explainer h2 {
+      font-size: 1.3rem;
+      color: var(--brand-primary, #1e293b);
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .showcase-explainer h2:first-child {
+      margin-top: 0;
+    }
+
+    .showcase-explainer p,
+    .showcase-explainer ul {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: #334155;
+    }
+
+    .showcase-explainer ul {
+      padding-left: 1.5rem;
+    }
+
+    .showcase-explainer li {
+      margin-bottom: 0.4rem;
+    }
+
+    .explainer-note {
+      background: #f1f5f9;
+      border-left: 3px solid var(--brand-secondary, #94a3b8);
+      padding: 0.75rem 1rem;
+      border-radius: 0 6px 6px 0;
+      font-size: 0.9rem !important;
+      color: #475569 !important;
+    }
+  </style>
+</ComponentLayout>

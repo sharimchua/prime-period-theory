@@ -1,0 +1,186 @@
+---
+import ComponentLayout from '../../../layouts/ComponentLayout.astro';
+import ComposerButton from '../../../components/ui/ComposerButton.astro';
+---
+
+<ComponentLayout title="Metronome — PPT Composition Showcase">
+  <h1 id="metronome">Composition Showcase: Metronome</h1>
+
+  <section class="component-demo">
+    <div class="live-doc-grid">
+
+      <div class="demo-box-wrapper">
+        <div class="demo-box resizable">
+          <script>
+            import '../../../../components/src/index.ts';
+          </script>
+          <ppt-container id="demo-metronome-container">
+            <ppt-control-panel panel-align="floating" ratio="200px" label="Sequencer Controls">
+              <ppt-control-boolean bind-id="metronome-play" label="Play"></ppt-control-boolean>
+              <ppt-control-integer bind-id="metronome-tempo" label="Tempo (BPM)" value="120" min="40" max="300"></ppt-control-integer>
+            </ppt-control-panel>
+            <ppt-period id="demo-metronome" shape="circle" starting-angle="-90" min-width="250" min-height="250">
+              <ppt-period-sequencer slot="step" listen-id="metronome-play, metronome-tempo" id="demo-metronome-sequencer" tempo="120" is-playing="false"></ppt-period-sequencer>
+              <ppt-period-step-circle slot="step" pitch="C5" color="#e74c3c" style="--ppt-text-color: #fff; --ppt-marker-border: none;">1</ppt-period-step-circle>
+              <ppt-period-step-circle slot="step" pitch="C4" color="#95a5a6" style="--ppt-text-color: #fff; --ppt-marker-border: none;">2</ppt-period-step-circle>
+              <ppt-period-step-circle slot="step" pitch="C4" color="#95a5a6" style="--ppt-text-color: #fff; --ppt-marker-border: none;">3</ppt-period-step-circle>
+              <ppt-period-step-circle slot="step" pitch="C4" color="#95a5a6" style="--ppt-text-color: #fff; --ppt-marker-border: none;">4</ppt-period-step-circle>
+            </ppt-period>
+          </ppt-container>
+        </div>
+      </div>
+
+      <details class="code-panel">
+        <summary>
+          View Source Code
+          <span class="summary-actions">
+            <ComposerButton targetId="demo-metronome-container" />
+            <button class="copy-btn" onclick="copyCode('metronome-code', this)">Copy Code</button>
+          </span>
+        </summary>
+        <pre><code id="metronome-code">&lt;ppt-control-panel panel-align="floating" ratio="200px" label="Sequencer Controls"&gt;
+  &lt;ppt-control-boolean bind-id="metronome-play" label="Play"&gt;&lt;/ppt-control-boolean&gt;
+  &lt;ppt-control-integer bind-id="metronome-tempo" label="Tempo (BPM)" value="120" min="40" max="300"&gt;&lt;/ppt-control-integer&gt;
+&lt;/ppt-control-panel&gt;
+
+&lt;ppt-period shape="circle" starting-angle="-90" min-width="250" min-height="250"&gt;
+  &lt;ppt-period-sequencer slot="step" listen-id="metronome-play, metronome-tempo" tempo="120" is-playing="false"&gt;&lt;/ppt-period-sequencer&gt;
+  &lt;ppt-period-step-circle slot="step" pitch="C5" color="#e74c3c" style="--ppt-text-color: #fff; --ppt-marker-border: none;"&gt;1&lt;/ppt-period-step-circle&gt;
+  &lt;ppt-period-step-circle slot="step" pitch="C4" color="#95a5a6" style="--ppt-text-color: #fff; --ppt-marker-border: none;"&gt;2&lt;/ppt-period-step-circle&gt;
+  &lt;ppt-period-step-circle slot="step" pitch="C4" color="#95a5a6" style="--ppt-text-color: #fff; --ppt-marker-border: none;"&gt;3&lt;/ppt-period-step-circle&gt;
+  &lt;ppt-period-step-circle slot="step" pitch="C4" color="#95a5a6" style="--ppt-text-color: #fff; --ppt-marker-border: none;"&gt;4&lt;/ppt-period-step-circle&gt;
+&lt;/ppt-period&gt;</code></pre>
+      </details>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- Contextual explanation section                              -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <section class="showcase-explainer">
+    <h2>Rhythm as Periodicity</h2>
+    <p>
+      The metronome is one of the clearest demonstrations of the central claim of Prime Period Theory:
+      that <strong>pitch, rhythm, and timbre are all manifestations of the same underlying
+      phenomenon — periodicity</strong>. A metronome beat is a periodic event in time, exactly as a
+      musical pitch is a periodic vibration in air pressure. PPT treats these as the same kind of
+      structural object, differing only in their frequency domain.
+    </p>
+    <p>
+      This metronome is built from the same <code>&lt;ppt-period&gt;</code> container used in the
+      Tonal Clock. There is no separate "Metronome component" — only the same circular period
+      primitive, now holding a <code>&lt;ppt-period-sequencer&gt;</code> that advances through the
+      steps at a tempo-driven rate.
+    </p>
+
+    <h2>How It Works</h2>
+    <p>
+      Toggle <strong>Play</strong> in the floating control panel to start the sequencer. It will
+      step through each beat marker in turn, triggering the pitch assigned to that step.
+      Beat 1 is assigned a higher-pitched accent (C5, red) while beats 2, 3, and 4 use a softer
+      tone (C4, grey) — the classic 4/4 pulse pattern.
+    </p>
+    <p>
+      The sequencer itself (<code>&lt;ppt-period-sequencer&gt;</code>) is a non-visual slot
+      component — it occupies a slot position in the period but renders nothing. Its sole
+      responsibility is to fire the sequential step-highlight events that cause each
+      <code>&lt;ppt-period-step-circle&gt;</code> to animate in turn.
+    </p>
+    <p>
+      The floating control panel demonstrates the <strong>event bus</strong> pattern: the Play
+      and Tempo controls emit named events (<code>metronome-play</code>, <code>metronome-tempo</code>)
+      which the sequencer listens for via its <code>listen-id</code> attribute. No JavaScript
+      event wiring is required — the binding is purely declarative in HTML.
+    </p>
+
+    <h2>The Periodicity Connection</h2>
+    <p>
+      In PPT, a four-beat bar is understood as a period of length 4. The downbeat accent on beat 1
+      is the "Do" equivalent in the rhythmic domain — the tonic point from which the sub-periods
+      (beats 2, 3, 4) are measured. Changing the number of steps changes the metre: remove a step
+      for 3/4, add one for 5/4.
+    </p>
+    <p>
+      This isomorphism between pitch and rhythm is not merely metaphorical in PPT. Both are
+      modelled using the same <code>&lt;ppt-period&gt;</code> container with the same
+      auto-positioning logic. The only structural difference is whether you attach pitch
+      information or timing information to the steps.
+    </p>
+
+    <p class="explainer-note">
+      Open in the Designer to experiment with different step counts. A 3-step period produces a
+      waltz; a 5-step period creates an asymmetric pulse similar to Dave Brubeck's <em>Take Five</em>.
+      Try adding a second sequencer on a nested period to explore polyrhythm as overlapping
+      period lengths.
+    </p>
+  </section>
+
+  <script is:inline>
+    window.copyCode = function(targetId, btn) {
+      const code = document.getElementById(targetId)?.textContent;
+      if (code) {
+        navigator.clipboard.writeText(code);
+        const oldText = btn.textContent;
+        btn.textContent = "Copied!";
+        setTimeout(() => btn.textContent = oldText, 2000);
+      }
+    };
+  </script>
+
+  <style>
+    .code-panel summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .summary-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* ── Explainer section ─────────────────────────────────────── */
+    .showcase-explainer {
+      margin-top: 3rem;
+      border-top: 2px solid var(--brand-secondary, #e2e8f0);
+      padding-top: 2rem;
+    }
+
+    .showcase-explainer h2 {
+      font-size: 1.3rem;
+      color: var(--brand-primary, #1e293b);
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .showcase-explainer h2:first-child {
+      margin-top: 0;
+    }
+
+    .showcase-explainer p,
+    .showcase-explainer ul {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: #334155;
+    }
+
+    .showcase-explainer ul {
+      padding-left: 1.5rem;
+    }
+
+    .showcase-explainer li {
+      margin-bottom: 0.4rem;
+    }
+
+    .explainer-note {
+      background: #f1f5f9;
+      border-left: 3px solid var(--brand-secondary, #94a3b8);
+      padding: 0.75rem 1rem;
+      border-radius: 0 6px 6px 0;
+      font-size: 0.9rem !important;
+      color: #475569 !important;
+    }
+  </style>
+</ComponentLayout>

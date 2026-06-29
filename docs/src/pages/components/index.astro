@@ -1,7 +1,5 @@
 ---
 import ComponentLayout from '../../layouts/ComponentLayout.astro';
-import ComposerButton from '../../components/ui/ComposerButton.astro';
-import AutoPropsPanel from '../../components/ui/AutoPropsPanel.astro';
 ---
 
 <ComponentLayout title="Components Showcase">
@@ -12,290 +10,109 @@ import AutoPropsPanel from '../../components/ui/AutoPropsPanel.astro';
   <p>Explore the component families:</p>
   <ul>
     <li><a href="/components/primitives"><strong>Foundational Primitives</strong></a>: The Base Component, Title, Container, and Text Panels.</li>
+    <li><a href="/components/notation"><strong>Notation Components</strong></a>: The Uniform Solfege glyph and the Solfege Phrase Panel.</li>
     <li><a href="/components/geometry"><strong>Geometric Containers</strong></a>: The Period, Period Step, and Sequencer Components.</li>
-    <li><a href="/components/controls"><strong>Interactive Controls & Event Bus</strong></a>: Control Panels, Boolean Toggles, and Integer Inputs that communicate via a shared EventBus (as seen in the Metronome showcase below).</li>
+    <li><a href="/components/controls"><strong>Interactive Controls & Event Bus</strong></a>: Control Panels, Boolean Toggles, and Integer Inputs that communicate via a shared EventBus.</li>
   </ul>
 
-  <h2 id="designer-studio">✨ Component Designer Studio (WIP)</h2>
-  <p>The <a href="/components/designer">Component Designer Studio</a> is an experimental, work-in-progress visual workspace. Its primary intention is to help users intuitively understand how to navigate, configure, and compose the various PPT components together. While not a fully-featured HTML editor, it provides a simple drag and drop editor with a live preview canvas, a hierarchical DOM tree, and the ability to export the underlying source code of the design.</p>
+  <h2 id="showcases" style="margin-top: 3rem;">Compositions & Showcases</h2>
+  <p>The true power of these atomic components comes from how they can be composed together. Explore these showcases to see the components in action.</p>
 
-  <h2 id="tonal-clock">Composition Showcase: Tonal Clock</h2>
-  <p>The power of these atomic components comes from composition. Below is an example of the "Tonal Clock", which isn't a single monolithic component, but rather a <code>&lt;ppt-period&gt;</code> container automatically arranging 12 semantic <code>&lt;ppt-period-step-circle&gt;</code> markers!</p>
-
-  <section class="component-demo">
-    <div class="live-doc-grid">
-      <div class="controls-panel">
-        <h3>Composition Showcase</h3>
-        <p style="font-size: 14px; color: #64748b; line-height: 1.5; margin-top: 1rem;">
-          This interactive Tonal Clock is built entirely from composable Prime Period Theory web components. 
-          The underlying structure is just a container with a circular period, holding individual pitch elements that calculate their own angular positions automatically.
-        </p>
-        <div style="margin-top: 2rem;">
-          <ComposerButton targetId="demo-clock-container" />
-        </div>
+  <div class="showcase-grid">
+    <a href="/components/showcase/tonal-clock" class="showcase-card">
+      <div class="card-thumb" style="background: linear-gradient(135deg, var(--prime-3), var(--prime-5));">
+        <span style="font-size: 3rem;">⏱️</span>
       </div>
-
-      <div class="demo-box-wrapper">
-        <div class="demo-box resizable">
-          <script>
-            import '../../../components/src/index.ts';
-          </script>
-          <ppt-container id="demo-clock-container">
-            <ppt-period id="demo-clock" shape="circle" starting-angle="-90" interactive="true" min-width="200" min-height="200">
-              <ppt-period-step-circle slot="step" color="var(--solfege-do)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="C4">Do</ppt-period-step-circle>
-              <ppt-period-step-circle slot="step" color="var(--solfege-re)" style="--ppt-text-color: #000; --ppt-marker-border: none;" pitch="Db4">Ra</ppt-period-step-circle>
-              <ppt-period-step-circle slot="step" color="var(--solfege-re)" style="--ppt-text-color: #000; --ppt-marker-border: none;" pitch="D4">Re</ppt-period-step-circle>
-              <ppt-period-step-circle slot="step" color="var(--solfege-mi)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="Eb4">Me</ppt-period-step-circle>
-              <ppt-period-step-circle slot="step" color="var(--solfege-mi)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="E4">Mi</ppt-period-step-circle>
-              <ppt-period-step-circle slot="step" color="var(--solfege-fa)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="F4">Fa</ppt-period-step-circle>
-              <ppt-period-step-circle slot="step" color="var(--solfege-fi)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="Gb4">Fi</ppt-period-step-circle>
-              <ppt-period-step-circle slot="step" color="var(--solfege-so)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="G4">So</ppt-period-step-circle>
-              <ppt-period-step-circle slot="step" color="var(--solfege-la)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="Ab4">Le</ppt-period-step-circle>
-              <ppt-period-step-circle slot="step" color="var(--solfege-la)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="A4">La</ppt-period-step-circle>
-              <ppt-period-step-circle slot="step" color="var(--solfege-ti)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="Bb4">Te</ppt-period-step-circle>
-              <ppt-period-step-circle slot="step" color="var(--solfege-ti)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="B4">Ti</ppt-period-step-circle>
-            </ppt-period>
-          </ppt-container>
-        </div>
+      <div class="card-content">
+        <h3>Tonal Clock</h3>
+        <p>A circular period arranging 12 semantic pitch elements.</p>
       </div>
+    </a>
 
-      <details class="code-panel">
-        <summary>View Source Code <button class="copy-btn" onclick="copyCode('clock-code', this)">Copy Code</button></summary>
-        <pre><code id="clock-code">&lt;ppt-period shape="circle" starting-angle="-90" interactive="true" min-width="200" min-height="200"&gt;
-  &lt;ppt-period-step-circle slot="step" color="var(--solfege-do)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="C4"&gt;Do&lt;/ppt-period-step-circle&gt;
-  &lt;ppt-period-step-circle slot="step" color="var(--solfege-re)" style="--ppt-text-color: #000; --ppt-marker-border: none;" pitch="Db4"&gt;Ra&lt;/ppt-period-step-circle&gt;
-  &lt;ppt-period-step-circle slot="step" color="var(--solfege-re)" style="--ppt-text-color: #000; --ppt-marker-border: none;" pitch="D4"&gt;Re&lt;/ppt-period-step-circle&gt;
-  &lt;ppt-period-step-circle slot="step" color="var(--solfege-mi)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="Eb4"&gt;Me&lt;/ppt-period-step-circle&gt;
-  &lt;ppt-period-step-circle slot="step" color="var(--solfege-mi)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="E4"&gt;Mi&lt;/ppt-period-step-circle&gt;
-  &lt;ppt-period-step-circle slot="step" color="var(--solfege-fa)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="F4"&gt;Fa&lt;/ppt-period-step-circle&gt;
-  &lt;ppt-period-step-circle slot="step" color="var(--solfege-fi)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="Gb4"&gt;Fi&lt;/ppt-period-step-circle&gt;
-  &lt;ppt-period-step-circle slot="step" color="var(--solfege-so)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="G4"&gt;So&lt;/ppt-period-step-circle&gt;
-  &lt;ppt-period-step-circle slot="step" color="var(--solfege-la)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="Ab4"&gt;Le&lt;/ppt-period-step-circle&gt;
-  &lt;ppt-period-step-circle slot="step" color="var(--solfege-la)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="A4"&gt;La&lt;/ppt-period-step-circle&gt;
-  &lt;ppt-period-step-circle slot="step" color="var(--solfege-ti)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="Bb4"&gt;Te&lt;/ppt-period-step-circle&gt;
-  &lt;ppt-period-step-circle slot="step" color="var(--solfege-ti)" style="--ppt-text-color: #fff; --ppt-marker-border: none;" pitch="B4"&gt;Ti&lt;/ppt-period-step-circle&gt;
-&lt;/ppt-period&gt;</code></pre>
-      </details>
-    </div>
-  </section>
-
-  <h2 id="metronome">Composition Showcase: Metronome</h2>
-  <p>By combining a Period Container in a linear shape, Step Circles for beats, and the non-visual Sequencer component, you can build a working metronome right in the browser.</p>
-
-  <section class="component-demo">
-    <div class="live-doc-grid">
-      <div class="controls-panel">
-        <h3 id="metronome">Metronome</h3>
-        <p style="font-size: 14px; color: #64748b; line-height: 1.5; margin-top: 1rem;">
-          Click the step circles to hear their tones, or toggle the "Play" state on the sequencer to hear the metronome count out a simple 4/4 rhythm automatically.
-        </p>
-        <div style="margin-top: 2rem;">
-          <ComposerButton targetId="demo-metronome-container" />
-        </div>
+    <a href="/components/showcase/metronome" class="showcase-card">
+      <div class="card-thumb" style="background: linear-gradient(135deg, var(--prime-2), var(--prime-7));">
+        <span style="font-size: 3rem;">🎛️</span>
       </div>
-
-      <div class="demo-box-wrapper">
-        <div class="demo-box resizable">
-          <ppt-container id="demo-metronome-container">
-            <ppt-control-panel panel-align="floating" ratio="200px" label="Sequencer Controls">
-              <ppt-control-boolean bind-id="metronome-play" label="Play"></ppt-control-boolean>
-              <ppt-control-integer bind-id="metronome-tempo" label="Tempo (BPM)" value="120" min="40" max="300"></ppt-control-integer>
-            </ppt-control-panel>
-            <ppt-period id="demo-metronome" shape="circle" starting-angle="-90" min-width="250" min-height="250">
-              <ppt-period-sequencer slot="step" listen-id="metronome-play, metronome-tempo" id="demo-metronome-sequencer" tempo="120" is-playing="false"></ppt-period-sequencer>
-              <ppt-period-step-circle slot="step" pitch="C5" color="#e74c3c" style="--ppt-text-color: #fff; --ppt-marker-border: none;">1</ppt-period-step-circle>
-              <ppt-period-step-circle slot="step" pitch="C4" color="#95a5a6" style="--ppt-text-color: #fff; --ppt-marker-border: none;">2</ppt-period-step-circle>
-              <ppt-period-step-circle slot="step" pitch="C4" color="#95a5a6" style="--ppt-text-color: #fff; --ppt-marker-border: none;">3</ppt-period-step-circle>
-              <ppt-period-step-circle slot="step" pitch="C4" color="#95a5a6" style="--ppt-text-color: #fff; --ppt-marker-border: none;">4</ppt-period-step-circle>
-            </ppt-period>
-          </ppt-container>
-        </div>
+      <div class="card-content">
+        <h3>Metronome</h3>
+        <p>A working metronome built with a linear period and sequencer.</p>
       </div>
+    </a>
 
-      <details class="code-panel">
-        <summary>View Source Code <button class="copy-btn" onclick="copyCode('metronome-code', this)">Copy Code</button></summary>
-        <pre><code id="metronome-code">&lt;ppt-control-panel panel-align="floating" ratio="200px" label="Sequencer Controls"&gt;
-  &lt;ppt-control-boolean bind-id="metronome-play" label="Play"&gt;&lt;/ppt-control-boolean&gt;
-  &lt;ppt-control-integer bind-id="metronome-tempo" label="Tempo (BPM)" value="120" min="40" max="300"&gt;&lt;/ppt-control-integer&gt;
-&lt;/ppt-control-panel&gt;
+    <a href="/components/showcase/solfege-writer" class="showcase-card">
+      <div class="card-thumb" style="background: linear-gradient(135deg, var(--solfege-mi), var(--solfege-so));">
+        <span style="font-size: 3rem;">✍️</span>
+      </div>
+      <div class="card-content">
+        <h3>Solfege Writer</h3>
+        <p>An interactive environment to experiment with Uniform Solfege kerning and layout.</p>
+      </div>
+    </a>
 
-&lt;ppt-period shape="circle" starting-angle="-90" min-width="250" min-height="250"&gt;
-  &lt;ppt-period-sequencer slot="step" listen-id="metronome-play, metronome-tempo" tempo="120" is-playing="false"&gt;&lt;/ppt-period-sequencer&gt;
-  &lt;ppt-period-step-circle slot="step" pitch="C5" color="#e74c3c" style="--ppt-text-color: #fff; --ppt-marker-border: none;"&gt;1&lt;/ppt-period-step-circle&gt;
-  &lt;ppt-period-step-circle slot="step" pitch="C4" color="#95a5a6" style="--ppt-text-color: #fff; --ppt-marker-border: none;"&gt;2&lt;/ppt-period-step-circle&gt;
-  &lt;ppt-period-step-circle slot="step" pitch="C4" color="#95a5a6" style="--ppt-text-color: #fff; --ppt-marker-border: none;"&gt;3&lt;/ppt-period-step-circle&gt;
-  &lt;ppt-period-step-circle slot="step" pitch="C4" color="#95a5a6" style="--ppt-text-color: #fff; --ppt-marker-border: none;"&gt;4&lt;/ppt-period-step-circle&gt;
-&lt;/ppt-period&gt;</code></pre>
-      </details>
-    </div>
-  </section>
-
+    <a href="/components/designer" class="showcase-card">
+      <div class="card-thumb" style="background: linear-gradient(135deg, var(--brand-primary), var(--brand-accent));">
+        <span style="font-size: 3rem;">✨</span>
+      </div>
+      <div class="card-content">
+        <h3>Designer Studio</h3>
+        <p>A drag-and-drop workspace to visually compose PPT components.</p>
+      </div>
+    </a>
+  </div>
 
 </ComponentLayout>
 
-<script>
-  window.copyCode = function(targetId, btn) {
-    const code = document.getElementById(targetId)?.textContent;
-    if (code) {
-      navigator.clipboard.writeText(code);
-      const oldText = btn.textContent;
-      btn.textContent = "Copied!";
-      setTimeout(() => btn.textContent = oldText, 2000);
-    }
-  };
-
-  function setupCompromiseListener(componentId: string, warningId: string) {
-    const component = document.getElementById(componentId);
-    const warning = document.getElementById(warningId);
-    if (component && warning) {
-      component.addEventListener('ppt-compromised', (e: any) => {
-        if (e.target !== component) return;
-        warning.style.display = 'block';
-        warning.textContent = '⚠️ Compromised (Size: ' + Math.round(e.detail.width) + 'x' + Math.round(e.detail.height) + ')';
-      });
-      component.addEventListener('ppt-restored', (e: any) => {
-        if (e.target !== component) return;
-        warning.style.display = 'none';
-      });
-    }
-  }
-
-  setupCompromiseListener('demo-clock', 'clock-warning');
-
-</script>
-
 <style>
-  .component-demo {
-    margin-top: 3rem;
+  .showcase-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 4rem;
   }
-  
-  .live-doc-grid {
+  .showcase-card {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
-    margin-top: 1.5rem;
-  }
-
-  .controls-panel {
-    background: #ffffff;
-    border: 1px solid var(--border-color);
+    background: #fff;
+    border: 1px solid var(--border-color, #e2e8f0);
     border-radius: 8px;
-    padding: 1.5rem;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
-
-  .controls-panel h3 {
-    margin-top: 0;
-    margin-bottom: 1.5rem;
-    font-size: 1.1rem;
-    color: var(--brand-primary);
-    border-bottom: 2px solid var(--brand-secondary);
-    padding-bottom: 0.5rem;
-  }
-
-  .code-panel {
-    margin-top: 0.5rem;
-  }
-  
-  .code-panel summary {
-    font-weight: 600;
-    cursor: pointer;
-    color: var(--brand-primary);
-    padding: 0.5rem 0;
-    user-select: none;
-  }
-
-  .copy-btn {
-    float: right;
-    background: #e2e8f0;
-    border: none;
-    border-radius: 4px;
-    padding: 0.2rem 0.6rem;
-    font-size: 0.8rem;
-    cursor: pointer;
-    color: #475569;
-    font-weight: bold;
-    transition: background 0.2s;
-  }
-  
-  .copy-btn:hover {
-    background: #cbd5e1;
-  }
-
-  .code-panel pre {
+  html.dark .showcase-card {
     background: #1e293b;
-    color: #f8fafc;
-    padding: 1rem;
-    border-radius: 6px;
-    overflow-x: auto;
-    font-size: 0.9rem;
-    line-height: 1.5;
-    margin: 0.5rem 0 0 0;
+    border-color: #334155;
   }
-
-  .compromise-warning {
-    background: #fef2f2;
-    color: #b91c1c;
-    border: 1px solid #f87171;
-    padding: 0.5rem;
-    border-radius: 4px;
-    font-size: 0.85rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
+  .showcase-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   }
-
-  .form-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
-    align-items: end;
-  }
-
-  .control-group {
-    margin-bottom: 0;
-  }
-
-  .control-group label {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    font-size: 0.9rem;
-  }
-
-  .checkbox-group {
+  .card-thumb {
+    height: 160px;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-  }
-
-  .checkbox-group label {
-    margin-bottom: 0;
-    display: inline;
-  }
-
-  .demo-box-wrapper {
-    display: flex;
-    align-items: flex-start;
-  }
-
-  .demo-box {
-    width: 100%;
-    height: 400px;
-    padding: 2rem;
-    border: 2px dashed #94a3b8;
-    border-radius: 8px;
-    background: #f8fafc;
-    display: flex;
     justify-content: center;
-    align-items: stretch;
-    box-sizing: border-box;
+    border-bottom: 1px solid var(--border-color, #e2e8f0);
   }
-  
-  .demo-box.resizable {
-    resize: both;
-    overflow: auto;
-    min-width: 150px;
-    min-height: 150px;
-    max-width: 100%;
+  html.dark .card-thumb {
+    border-bottom-color: #334155;
+  }
+  .card-content {
+    padding: 1.5rem;
+  }
+  .card-content h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.25rem;
+  }
+  .card-content p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #64748b;
+    line-height: 1.5;
+  }
+  html.dark .card-content p {
+    color: #94a3b8;
   }
 </style>

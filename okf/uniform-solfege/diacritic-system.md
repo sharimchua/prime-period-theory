@@ -50,6 +50,30 @@ These two families are structurally and semantically separate and should not be 
 
 ---
 
+## Romanized Notation Standard
+
+To ensure machine parsability and consistent written communication, Uniform Solfège uses a standardized romanized string format to represent syllables, diacritics, and superscripts.
+
+A full solfège token is constructed as a single continuous string without spaces, following these rules:
+
+1. **Base Solfège**: Must be exactly two characters in title case (`[A-Z][a-z]`), matching the twelve base chromatic syllables (e.g., `Do`, `Re`, `Fi`).
+2. **Diacritic Suffix**: If a diacritic is applied, it immediately follows the base syllable in title case. The standard suffixes are:
+   - `Sub`: Withershins (negative Tri)
+   - `HalfSub`: Withershins (negative DuTri)
+   - `HalfSup`: Deosil (positive DuTri)
+   - `Sup`: Deosil (positive Tri)
+   - `Axis`: The 50¢ Du boundary
+   - `x`: A convenient shorthand for `Axis` (e.g., `Dox` is exactly equivalent to `DoAxis`)
+3. **Superscript Concatenation**: Superscripts (used for remainder sub-glyphs or cross-family notation) are concatenated using the caret (`^`) symbol. The string following the caret is parsed as its own complete solfège token.
+
+**Examples:**
+- `Do` — Base chromatic syllable
+- `ReSub` — Re with a negative Tri diacritic (withershins)
+- `Dox` or `DoAxis` — Do with the Axis diacritic (50¢)
+- `Dox^ReSub` — Do with the Axis diacritic, hosting a superscript of `ReSub`
+
+---
+
 ## Reference Interval
 
 All diacritics operate within a single chromatic semitone. The reference interval is **100¢** (one semitone), consistent across all prime families. The base solfège syllables (Do, Di, Re, Ri, Me, Mi, Fi, Se, So, Si, La, Ti) are the shared zero-reference points — chromatic anchors common to all families.

@@ -55,6 +55,11 @@ Consult these guides before working on related tasks:
 - [Adding styles or using Tailwind](https://docs.astro.build/en/guides/styling/)
 - [Supporting multiple languages](https://docs.astro.build/en/guides/internationalization/)
 
+### Navigation Updates
+**IMPORTANT**: When creating new pages or components, ALWAYS update the sidebar navigation tree.
+- For component showcases and reference pages, update `docs/src/layouts/ComponentLayout.astro` (the `drawer-sidebar` nav tree).
+- Missing sidebar links make newly created pages undiscoverable to the user.
+
 ## Component Composer
 
 The `docs/src/components/designer/DesignerApp.astro` file orchestrates the Component Composer, a visual tool to assemble PPT Web Components.

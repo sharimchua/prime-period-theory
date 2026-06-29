@@ -450,18 +450,22 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '') + '/';
   });
   
   // On load, check for payload
-  window.addEventListener('DOMContentLoaded', async () => {
-    const params = new URLSearchParams(window.location.search);
+  const initDesigner = async () => {
+    const url = new URL(window.location.href);
+    const params = url.searchParams;
     let payload = params.get('payload') || params.get('slug'); // Fallback to slug for backward compatibility
     if (payload && canvas) {
       try {
         const rawPayload = await decompressPayload(payload);
         deserializePayload(rawPayload, canvas);
+        updateTree();
       } catch (e) {
         console.error("Failed to decompress or parse payload", e);
       }
     }
-  });
+  };
+  
+  initDesigner();
 
   // MutationObserver
   if (canvas) {
@@ -549,8 +553,15 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '') + '/';
 
     // Filter out standard HTML attributes as requested
     const filteredAttrs = allowedAttrs.filter(a => !['id', 'class', 'style', 'slot'].includes(a));
+    
+    if (!metadata['textContent'] && tagName !== 'ppt-solfege-phrase' && tagName !== 'ppt-uniform-solfege') {
+      metadata['textContent'] = { type: 'string', description: 'Inner text content' };
+    }
+    
     if (metadata['textContent']) {
-      filteredAttrs.push('textContent');
+      if (!filteredAttrs.includes('textContent')) {
+        filteredAttrs.push('textContent');
+      }
     }
 
     // Sort textContent to the end for better UX
@@ -570,16 +581,19 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '') + '/';
       
       html += `<div class="prop-group">`;
       html += `<div class="prop-control-col">`;
+      html += `<input type="checkbox" class="prop-override-toggle" data-attr="${attr}" title="Toggle to define/override this property" style="width: 14px; height: 14px; margin-right: 6px;" ${el.hasAttribute(attr) || (attr === 'textContent' && val) ? 'checked' : ''} />`;
       html += `<label>${attr}</label>`;
       
+      const isDisabled = !(el.hasAttribute(attr) || (attr === 'textContent' && val)) ? 'disabled' : '';
+
       if (meta.type === 'boolean') {
         const isChecked = val === 'true' || val === '' || (val === null && meta.default === true);
-        html += `<input type="checkbox" data-attr="${attr}" ${isChecked ? 'checked' : ''} />`;
+        html += `<input type="checkbox" class="prop-input" data-attr="${attr}" ${isChecked ? 'checked' : ''} ${isDisabled} />`;
       } else if (meta.type === 'color') {
         const displayVal = val || (meta.default !== undefined ? meta.default : '#ffffff');
-        html += `<input type="color" data-attr="${attr}" value="${displayVal}" />`;
+        html += `<input type="color" class="prop-input" data-attr="${attr}" value="${displayVal}" ${isDisabled} />`;
       } else if (meta.type === 'enum' && meta.options) {
-        html += `<select data-attr="${attr}">`;
+        html += `<select class="prop-input" data-attr="${attr}" ${isDisabled}>`;
         meta.options.forEach((opt: string) => {
           const isSelected = val === opt || (val === null && meta.default === opt);
           html += `<option value="${opt}" ${isSelected ? 'selected' : ''}>${opt}</option>`;
@@ -587,10 +601,10 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '') + '/';
         html += `</select>`;
       } else if (attr === 'textContent') {
         const displayVal = val || (meta.default !== undefined ? meta.default : '');
-        html += `<textarea data-attr="${attr}" rows="3" style="width: 100%; resize: vertical;">${String(displayVal).replace(/</g, '&lt;').replace(/>/g, '&gt;')}</textarea>`;
+        html += `<textarea class="prop-input" data-attr="${attr}" rows="3" style="width: 100%; resize: vertical;" ${isDisabled}>${String(displayVal).replace(/</g, '&lt;').replace(/>/g, '&gt;')}</textarea>`;
       } else {
         const displayVal = val || (meta.default !== undefined ? meta.default : '');
-        html += `<input type="text" data-attr="${attr}" value="${String(displayVal).replace(/"/g, '&quot;')}" />`;
+        html += `<input type="text" class="prop-input" data-attr="${attr}" value="${String(displayVal).replace(/"/g, '&quot;')}" ${isDisabled} />`;
       }
       
       html += `</div>`; // end prop-control-col
@@ -604,10 +618,41 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '') + '/';
     html += '</div>';
     propertiesPanel.innerHTML = html;
 
-    const inputs = propertiesPanel.querySelectorAll('input, select, textarea');
+    const overrideToggles = propertiesPanel.querySelectorAll('.prop-override-toggle');
+    overrideToggles.forEach(toggle => {
+      toggle.addEventListener('change', (e) => {
+        const target = e.target as HTMLInputElement;
+        const attr = target.getAttribute('data-attr');
+        if (!attr) return;
+        
+        const input = propertiesPanel.querySelector(`.prop-input[data-attr="${attr}"]`) as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
+        if (!input) return;
+
+        input.disabled = !target.checked;
+        if (target.checked) {
+          if (attr === 'textContent') {
+             el.textContent = input.value;
+          } else if (input.type === 'checkbox') {
+             el.setAttribute(attr, (input as HTMLInputElement).checked ? 'true' : 'false');
+          } else {
+             el.setAttribute(attr, input.value);
+          }
+        } else {
+          if (attr === 'textContent') {
+             el.textContent = '';
+          } else {
+             el.removeAttribute(attr);
+          }
+        }
+      });
+    });
+
+    const inputs = propertiesPanel.querySelectorAll('.prop-input');
     inputs.forEach(input => {
       input.addEventListener('change', (e) => {
         const target = e.target as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
+        if (target.disabled) return;
+        
         const attr = target.getAttribute('data-attr');
         if (attr) {
           if (attr === 'textContent') {
@@ -630,6 +675,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '') + '/';
       if (input.type === 'text' || input.tagName.toLowerCase() === 'textarea') {
         input.addEventListener('input', (e) => {
           const target = e.target as HTMLInputElement | HTMLTextAreaElement;
+          if (target.disabled) return;
           const attr = target.getAttribute('data-attr');
           if (attr && attr === 'textContent') {
              el.textContent = target.value;
@@ -643,7 +689,24 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '') + '/';
 
   function updatePropertiesValues(el: HTMLElement) {
     if (!propertiesPanel || !el) return;
-    const inputs = propertiesPanel.querySelectorAll('input, select, textarea');
+    
+    // First, update the override toggles
+    const overrideToggles = propertiesPanel.querySelectorAll('.prop-override-toggle');
+    overrideToggles.forEach(toggle => {
+      const target = toggle as HTMLInputElement;
+      const attr = target.getAttribute('data-attr');
+      if (!attr) return;
+      
+      const hasAttr = attr === 'textContent' ? !!(el.textContent && el.textContent.trim().length > 0) : el.hasAttribute(attr);
+      target.checked = hasAttr;
+      
+      const input = propertiesPanel.querySelector(`.prop-input[data-attr="${attr}"]`) as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
+      if (input) {
+         input.disabled = !hasAttr;
+      }
+    });
+
+    const inputs = propertiesPanel.querySelectorAll('.prop-input');
     inputs.forEach(input => {
       if (document.activeElement === input) return;
       const target = input as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;

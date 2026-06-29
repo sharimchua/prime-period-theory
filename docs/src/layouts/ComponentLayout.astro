@@ -41,11 +41,14 @@ function isActive(path: string) {
         <details open>
           <summary>Showcases</summary>
           <ul>
-            <li><a href={`${base}components#tonal-clock`}>Tonal Clock</a></li>
-            <li><a href={`${base}components#designer-studio`}>Designer Studio</a></li>
-            <li><a href={`${base}components#metronome`}>Metronome</a></li>
+            <li><a href={`${base}components/showcase/tonal-clock`}>Tonal Clock</a></li>
+            <li><a href={`${base}components/showcase/metronome`}>Metronome</a></li>
+            <li><a href={`${base}components/showcase/solfege-writer`}>Solfege Writer</a></li>
+            <li><a href={`${base}components/designer`}>Designer Studio</a></li>
           </ul>
         </details>
+
+        <hr style="margin: 1rem 0; border: none; border-top: 1px solid var(--border-color, #e2e8f0);" />
 
         <details open>
           <summary>Core</summary>
@@ -59,6 +62,14 @@ function isActive(path: string) {
           <ul>
             <li><a href={`${base}components/primitives#title-component`}>Title</a></li>
             <li><a href={`${base}components/primitives#panel-component`}>Panel</a></li>
+          </ul>
+        </details>
+
+        <details open>
+          <summary>Notation</summary>
+          <ul>
+            <li><a href={`${base}components/notation#uniform-solfege-component`}>Uniform Solfege</a></li>
+            <li><a href={`${base}components/notation#solfege-phrase-panel`}>Solfege Phrase</a></li>
           </ul>
         </details>
 
@@ -311,5 +322,102 @@ function isActive(path: string) {
       padding: 0.75rem 1.25rem;
       box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
+  }
+</style>
+
+<style is:global>
+  /* Global Showcase Styling */
+  .component-demo {
+    margin-top: 3rem;
+  }
+  
+  .live-doc-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .controls-panel {
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+
+  .controls-panel h3 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    color: var(--brand-primary);
+    border-bottom: 2px solid var(--brand-secondary);
+    padding-bottom: 0.5rem;
+  }
+
+  .code-panel {
+    margin-top: 0.5rem;
+  }
+  
+  .code-panel summary {
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--brand-primary);
+    padding: 0.5rem 0;
+    user-select: none;
+  }
+
+  .copy-btn {
+    float: right;
+    background: #e2e8f0;
+    border: none;
+    border-radius: 4px;
+    padding: 0.2rem 0.6rem;
+    font-size: 0.8rem;
+    cursor: pointer;
+    color: #475569;
+    font-weight: bold;
+    transition: background 0.2s;
+  }
+  
+  .copy-btn:hover {
+    background: #cbd5e1;
+  }
+
+  .code-panel pre {
+    background: #1e293b;
+    color: #f8fafc;
+    padding: 1rem;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0.5rem 0 0 0;
+  }
+
+  .demo-box-wrapper {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .demo-box {
+    width: 100%;
+    height: 300px;
+    padding: 2rem;
+    border: 2px dashed #94a3b8;
+    border-radius: 8px;
+    background: #f8fafc;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    box-sizing: border-box;
+  }
+  
+  .demo-box.resizable {
+    resize: both;
+    overflow: auto;
+    min-width: 250px;
+    min-height: 150px;
+    max-width: 100%;
   }
 </style>

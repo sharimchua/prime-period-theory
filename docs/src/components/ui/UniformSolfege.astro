@@ -1,0 +1,171 @@
+---
+import doSvgRaw from '../../assets/solfege-svgs/solfege_glyph_do.svg?raw';
+import raSvgRaw from '../../assets/solfege-svgs/solfege_glyph_ra.svg?raw';
+import tiSvgRaw from '../../assets/solfege-svgs/solfege_glyph_ti.svg?raw';
+
+import axisSvgRaw from '../../assets/solfege-svgs/solfege_diacritic_axis.svg?raw';
+import dDutriSvgRaw from '../../assets/solfege-svgs/solfege_diacritic_d_dutri.svg?raw';
+import dTriSvgRaw from '../../assets/solfege-svgs/solfege_diacritic_d_tri.svg?raw';
+import wDutriSvgRaw from '../../assets/solfege-svgs/solfege_diacritic_w_dutri.svg?raw';
+import wTriSvgRaw from '../../assets/solfege-svgs/solfege_diacritic_w_tri.svg?raw';
+
+export interface SolfegeProps {
+  solfege: string;
+  diacritic?: 'w_tri' | 'w_dutri' | 'd_dutri' | 'd_tri' | 'axis' | '';
+  color?: string;
+  diacriticColor?: string;
+  labelAlign?: 'top' | 'bottom' | 'none';
+  superscript?: SolfegeProps;
+}
+
+const { 
+  solfege, 
+  diacritic = '', 
+  color, 
+  diacriticColor, 
+  labelAlign = 'none',
+  superscript
+} = Astro.props as SolfegeProps;
+
+// Define solfege character mapping
+const map: Record<string, { svg: string, rot: number }> = {
+  do: { svg: doSvgRaw, rot: 0 },
+  di: { svg: raSvgRaw, rot: 0 },
+  ra: { svg: raSvgRaw, rot: 0 },
+  re: { svg: tiSvgRaw, rot: 90 },
+  ri: { svg: doSvgRaw, rot: 90 },
+  me: { svg: doSvgRaw, rot: 90 },
+  mi: { svg: raSvgRaw, rot: 90 },
+  fa: { svg: tiSvgRaw, rot: 180 },
+  fi: { svg: doSvgRaw, rot: 180 },
+  so: { svg: raSvgRaw, rot: 180 },
+  le: { svg: tiSvgRaw, rot: 270 },
+  la: { svg: doSvgRaw, rot: 270 },
+  se: { svg: raSvgRaw, rot: 270 },
+  te: { svg: raSvgRaw, rot: 270 },
+  si: { svg: tiSvgRaw, rot: 0 },
+  ti: { svg: tiSvgRaw, rot: 0 }
+};
+
+const normalizedSolfege = (solfege || '').toLowerCase();
+const glyphInfo = map[normalizedSolfege] || { svg: doSvgRaw, rot: 0 };
+
+const diacriticMap: Record<string, string> = {
+  w_tri: wTriSvgRaw,
+  w_dutri: wDutriSvgRaw,
+  d_dutri: dDutriSvgRaw,
+  d_tri: dTriSvgRaw,
+  axis: axisSvgRaw
+};
+
+const colorFamilyMap: Record<string, string> = {
+  do: 'do', di: 'do',
+  ra: 're', re: 're', ri: 're',
+  me: 'mi', mi: 'mi',
+  fa: 'fa', fi: 'fi',
+  so: 'so',
+  le: 'la', la: 'la', se: 'la',
+  te: 'ti', si: 'ti', ti: 'ti'
+};
+const family = colorFamilyMap[normalizedSolfege] || 'fi';
+
+const diacriticSvg = diacritic ? diacriticMap[diacritic] : null;
+
+// Determine colors
+const finalColor = color || `var(--solfege-${family}, var(--solfege-fi, currentColor))`;
+const finalDiacriticColor = diacriticColor || finalColor;
+
+// Helper to prepare SVG string
+function processSvg(raw: string) {
+  if (!raw) return '';
+  return raw
+    .replace(/fill="#000000"/gi, 'fill="currentColor"')
+    .replace(/fill:#000000/gi, 'fill:currentColor')
+    .replace(/stroke="#000000"/gi, 'stroke="currentColor"')
+    .replace(/stroke:#000000/gi, 'stroke:currentColor')
+    .replace(/width="\d+"/gi, 'width="100%"')
+    .replace(/height="\d+"/gi, 'height="100%"');
+}
+---
+
+<div class={`uniform-solfege-wrapper ${labelAlign !== 'none' ? 'has-label' : ''}`} title={solfege}>
+  {labelAlign === 'top' && <div class="solfege-label">{solfege}</div>}
+  
+  <div class="solfege-core" style={`--glyph-color: ${finalColor}; --diacritic-color: ${finalDiacriticColor};`}>
+    <div class="svg-container" style={`transform: rotate(${glyphInfo.rot}deg);`}>
+      <div class="base-glyph" set:html={processSvg(glyphInfo.svg)} />
+      {diacriticSvg && (
+        <div class="diacritic-glyph" set:html={processSvg(diacriticSvg)} />
+      )}
+    </div>
+    
+    {superscript && (
+      <div class="superscript-container">
+        <Astro.self {...superscript} />
+      </div>
+    )}
+  </div>
+
+  {labelAlign === 'bottom' && <div class="solfege-label">{solfege}</div>}
+</div>
+
+<style>
+  .uniform-solfege-wrapper {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    vertical-align: middle;
+  }
+  
+  .solfege-core {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1em;
+    height: 1em;
+  }
+
+  .svg-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-origin: center center;
+    /* Ensure child layers stack properly */
+    display: grid;
+  }
+
+  .base-glyph, .diacritic-glyph {
+    grid-area: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  .base-glyph {
+    color: var(--glyph-color);
+  }
+
+  .diacritic-glyph {
+    color: var(--diacritic-color);
+  }
+
+  .superscript-container {
+    position: absolute;
+    top: -0.3em;
+    right: -0.5em;
+    font-size: 0.5em; /* 50% scale for superscript */
+    pointer-events: none;
+  }
+
+  .solfege-label {
+    font-size: 0.7em;
+    line-height: 1;
+    opacity: 0.8;
+    margin: 0.2em 0;
+  }
+</style>

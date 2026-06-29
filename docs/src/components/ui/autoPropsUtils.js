@@ -1,5 +1,9 @@
-export function getTargetEntries(metadata) {
-  return Object.entries(metadata || {}).sort((a, b) => {
+export function getTargetEntries(metadata, tagName) {
+  const meta = { ...metadata };
+  if (!meta.textContent && tagName !== 'ppt-solfege-phrase' && tagName !== 'ppt-uniform-solfege') {
+    meta.textContent = { type: 'string', description: 'Inner text content' };
+  }
+  return Object.entries(meta).sort((a, b) => {
     if (a[0] === 'textContent') return 1;
     if (b[0] === 'textContent') return -1;
     return 0;
@@ -32,6 +36,9 @@ export function renderControl(targetId, key, meta, prefix) {
     controlHtml = `<input type="${inputType}" id="${targetId}-${prefix}-${key}" class="auto-prop-input" data-target-type="${prefix}" data-attr="${key}" value="${meta.default || ''}" />`;
   }
 
+  // Adding the override checkbox
+  const overrideCheckbox = `<input type="checkbox" class="auto-prop-override" data-target-input="${targetId}-${prefix}-${key}" data-attr="${key}" data-target-type="${prefix}" title="Toggle to define/override this property" checked style="width: 14px; height: 14px; margin-right: 6px;" />`;
+
   return `
     <div class="prop-group">
       <div class="prop-info-col">
@@ -39,8 +46,10 @@ export function renderControl(targetId, key, meta, prefix) {
         ${meta.description ? `<div class="prop-desc">${meta.description}</div>` : ''}
       </div>
       <div class="prop-control-col ${meta.type === 'boolean' ? 'is-checkbox' : ''}">
+        ${overrideCheckbox}
         ${controlHtml}
       </div>
     </div>
   `;
 }
+

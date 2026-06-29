@@ -1,0 +1,56 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import UniformSolfege from '../../components/ui/UniformSolfege.astro';
+
+const solfegeList = ['Do', 'Di', 'Ra', 'Re', 'Ri', 'Me', 'Mi', 'Fa', 'Fi', 'So', 'Le', 'La', 'Se', 'Te', 'Si', 'Ti'];
+const diacritics = ['w_tri', 'w_dutri', 'd_dutri', 'd_tri', 'axis'] as const;
+---
+
+<Layout title="Uniform Solfege Test">
+  <div class="max-w-4xl mx-auto py-12 px-4">
+    <h1 class="text-3xl font-bold mb-8">Uniform Solfege Component Test</h1>
+    
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">Base Glyphs</h2>
+      <div class="flex flex-wrap gap-8 text-4xl">
+        {solfegeList.map(s => (
+          <div class="p-4 border rounded shadow flex flex-col items-center">
+            <UniformSolfege solfege={s} labelAlign="bottom" />
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">With Diacritics (e.g. Fi + various)</h2>
+      <div class="flex flex-wrap gap-8 text-4xl">
+        {diacritics.map(d => (
+          <div class="p-4 border rounded shadow flex flex-col items-center">
+            <UniformSolfege solfege="Fi" diacritic={d} diacriticColor="#ef4444" labelAlign="bottom" />
+            <span class="text-xs mt-2">{d}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">Superscript Test</h2>
+      <div class="flex flex-wrap gap-8 text-4xl">
+        <div class="p-4 border rounded shadow flex flex-col items-center">
+          <UniformSolfege 
+            solfege="Do" 
+            superscript={{ solfege: 'Ti', diacritic: 'axis' }} 
+            labelAlign="bottom" 
+          />
+        </div>
+        <div class="p-4 border rounded shadow flex flex-col items-center">
+          <UniformSolfege 
+            solfege="Re" 
+            superscript={{ solfege: 'Fi' }} 
+            labelAlign="bottom" 
+          />
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>

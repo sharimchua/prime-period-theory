@@ -1,0 +1,451 @@
+---
+import ComponentLayout from '../../../layouts/ComponentLayout.astro';
+import ComposerButton from '../../../components/ui/ComposerButton.astro';
+---
+
+<ComponentLayout title="Solfege Writer — PPT Composition Showcase">
+  <h1 id="solfege-writer">Composition Showcase: Solfege Writer</h1>
+
+  <section class="component-demo">
+    <div class="live-doc-grid">
+
+      <div class="demo-box-wrapper">
+        <div class="demo-box resizable" style="min-height: 420px; height: auto;">
+          <script>
+            import '../../../../components/src/index.ts';
+          </script>
+          <ppt-container id="demo-writer-container" style="height: 100%; min-height: 100%;">
+            <ppt-flex direction="column" width="100%" height="100%">
+              <!-- Top area: Solfege Phrase -->
+              <ppt-flex flex="1" align="stretch" justify="center" padding="2rem">
+                <ppt-solfege-phrase phrase="Do Ra Re Me Mi Fa Fi So Le La Te Ti" size="4em" annotation-align="bottom">
+                  <!-- Phrase binding -->
+                  <ppt-event-binding listen-id="phrase-input" target-attr="phrase"></ppt-event-binding>
+                  <!-- Annotation label toggle binding -->
+                  <ppt-event-binding listen-id="show-labels" target-attr="annotation-align" value-true="bottom" value-false="none"></ppt-event-binding>
+                </ppt-solfege-phrase>
+              </ppt-flex>
+
+              <!-- Bottom area: Control Panel -->
+              <ppt-flex width="100%">
+                <ppt-control-panel title="Phrase Controls">
+                  <ppt-control-text label="Type phrase:" value="Do Ra Re Me Mi Fa Fi So Le La Te Ti" bind-id="phrase-input"></ppt-control-text>
+                  <ppt-control-boolean label="Show syllable labels" value bind-id="show-labels"></ppt-control-boolean>
+                </ppt-control-panel>
+              </ppt-flex>
+            </ppt-flex>
+          </ppt-container>
+        </div>
+      </div>
+
+      <details class="code-panel">
+        <summary>
+          View Source Code
+          <span class="summary-actions">
+            <ComposerButton targetId="demo-writer-container" />
+            <button class="copy-btn" onclick="copyCode('binding-code', this)">Copy Code</button>
+          </span>
+        </summary>
+        <pre><code id="binding-code">&lt;ppt-container style="height: 100%;"&gt;
+  &lt;ppt-flex direction="column" width="100%" height="100%"&gt;
+
+    &lt;!-- Top area: Solfege Phrase --&gt;
+    &lt;ppt-flex flex="1" align="stretch" justify="center" padding="2rem"&gt;
+      &lt;ppt-solfege-phrase phrase="Do Ra Re Me Mi Fa" size="4em" annotation-align="bottom"&gt;
+        &lt;ppt-event-binding listen-id="phrase-input" target-attr="phrase"&gt;&lt;/ppt-event-binding&gt;
+        &lt;ppt-event-binding listen-id="show-labels" target-attr="annotation-align"
+          value-true="bottom" value-false="none"&gt;&lt;/ppt-event-binding&gt;
+      &lt;/ppt-solfege-phrase&gt;
+    &lt;/ppt-flex&gt;
+
+    &lt;!-- Bottom area: Control Panel --&gt;
+    &lt;ppt-flex width="100%"&gt;
+      &lt;ppt-control-panel title="Phrase Controls"&gt;
+        &lt;ppt-control-text label="Type phrase:" value="Do Ra Re Me Mi Fa" bind-id="phrase-input"&gt;&lt;/ppt-control-text&gt;
+        &lt;ppt-control-boolean label="Show syllable labels" value bind-id="show-labels"&gt;&lt;/ppt-control-boolean&gt;
+      &lt;/ppt-control-panel&gt;
+    &lt;/ppt-flex&gt;
+
+  &lt;/ppt-flex&gt;
+&lt;/ppt-container&gt;</code></pre>
+      </details>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- Contextual explanation section                              -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <section class="showcase-explainer">
+    <h2>What is Uniform Solfège?</h2>
+    <p>
+      Uniform Solfège is a base-12 numeral system using solfège syllables as digits.
+      Its geometric character set encodes interval relationships visually, and the same
+      symbols describe pitch intervals, rhythmic ratios, and prime-family relationships—because
+      these are structurally the same objects at different timescales.
+    </p>
+    <p>
+      Each syllable names a <em>prime family</em>: the ratio relationship a given point bears
+      to the period origin (Do), expressed in terms of the prime numbers that generate it.
+      Do is the origin (1/1); Re belongs to the 3-prime family at 9/8; So is the 3-prime
+      dominant at 3/2; Mi is the 5-prime at 5/4. The colour-coding in the glyph system
+      encodes prime family directly, so structural relationships are visible without
+      needing to read the syllable names.
+    </p>
+    <p>
+      The most familiar context for Uniform Solfège is the pitch domain, where
+      a period is an octave and base-12 reflects the prevalence of twelve-division in
+      Western harmonic analysis. The table below frames each syllable in that context.
+      The same system applies wherever periodic ratio relationships need to be named—
+      rhythmic subdivisions, amplitude ratios, or any other domain PPT addresses.
+      Note that PPT introduces specific variants (<strong>Se</strong> and <strong>Si</strong>)
+      to avoid dental "T" consonants, reserving them for rhythmic accent markers.
+    </p>
+
+    <h2>The Twelve Syllables</h2>
+    <p>
+      Enter any combination of syllables into the phrase input above to see them rendered.
+    </p>
+
+    <div class="syllable-table-wrapper">
+      <table class="syllable-table">
+        <thead>
+          <tr>
+            <th>Syllable</th>
+            <th>Prime Family</th>
+            <th>Ratio</th>
+            <th>Colour</th>
+            <th>Pitch example (Do = C)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>Do</code></td>
+            <td>Octave (2-prime)</td>
+            <td>1/1</td>
+            <td><span class="swatch swatch-do"></span> Red</td>
+            <td>C — the period origin</td>
+          </tr>
+          <tr>
+            <td><code>Ra</code> / <code>Di</code></td>
+            <td>Seconds (3-prime)</td>
+            <td>16/15</td>
+            <td><span class="swatch swatch-re"></span> Orange</td>
+            <td>C♯ / D♭ — minor second (Di = raised Do)</td>
+          </tr>
+          <tr>
+            <td><code>Re</code></td>
+            <td>Seconds (3-prime)</td>
+            <td>9/8</td>
+            <td><span class="swatch swatch-re"></span> Orange</td>
+            <td>D — Pythagorean whole tone</td>
+          </tr>
+          <tr>
+            <td><code>Me</code> / <code>Ri</code></td>
+            <td>Thirds (5-prime)</td>
+            <td>6/5</td>
+            <td><span class="swatch swatch-mi"></span> Yellow</td>
+            <td>E♭ — minor third (Ri = raised Re)</td>
+          </tr>
+          <tr>
+            <td><code>Mi</code></td>
+            <td>Thirds (5-prime)</td>
+            <td>5/4</td>
+            <td><span class="swatch swatch-mi"></span> Yellow</td>
+            <td>E — just major third</td>
+          </tr>
+          <tr>
+            <td><code>Fa</code></td>
+            <td>Fourths (3-prime)</td>
+            <td>4/3</td>
+            <td><span class="swatch swatch-fa"></span> Green</td>
+            <td>F — perfect fourth</td>
+          </tr>
+          <tr>
+            <td><code>Fi</code></td>
+            <td>Tritone</td>
+            <td>√2 / 1</td>
+            <td><span class="swatch swatch-fi"></span> Teal</td>
+            <td>F♯ / G♭ — equidistant axis of the octave</td>
+          </tr>
+          <tr>
+            <td><code>So</code></td>
+            <td>Fifths (3-prime)</td>
+            <td>3/2</td>
+            <td><span class="swatch swatch-so"></span> Blue</td>
+            <td>G — perfect fifth</td>
+          </tr>
+          <tr>
+            <td><code>Le</code></td>
+            <td>Sixths (5-prime)</td>
+            <td>8/5</td>
+            <td><span class="swatch swatch-la"></span> Indigo</td>
+            <td>A♭ — minor sixth</td>
+          </tr>
+          <tr>
+            <td><code>La</code></td>
+            <td>Sixths (5-prime)</td>
+            <td>5/3</td>
+            <td><span class="swatch swatch-la"></span> Indigo</td>
+            <td>A — just major sixth</td>
+          </tr>
+          <tr>
+            <td><code>Te</code> / <code>Se</code></td>
+            <td>Sevenths (7-prime)</td>
+            <td>7/4</td>
+            <td><span class="swatch swatch-ti"></span> Purple</td>
+            <td>B♭ — harmonic minor seventh (Se is PPT rhythmic variant)</td>
+          </tr>
+          <tr>
+            <td><code>Ti</code> / <code>Si</code></td>
+            <td>Sevenths (7-prime)</td>
+            <td>15/8</td>
+            <td><span class="swatch swatch-ti"></span> Purple</td>
+            <td>B — leading tone (Si is PPT rhythmic variant)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Phrase Notation Syntax</h2>
+    <p>
+      The Solfege Writer accepts a space-separated sequence of syllables. Three additional
+      conventions apply within the phrase string:
+    </p>
+    <ul>
+      <li>
+        <strong>Half-sized glyphs</strong> — wrap a syllable in square brackets to render it at
+        half size within its grid cell: <code>[Re]</code>. Two consecutive bracketed syllables
+        are automatically stacked into a single shared cell: <code>[Re] [Mi]</code> collapses
+        into one column. This feature was originally designed for the harmony line in
+        three-layer coil notation, where altered harmonics are notated at reduced scale, but the
+        component supports it generally as a layout primitive.
+      </li>
+      <li>
+        <strong>Superscript syllable</strong> — append a caret and a syllable to attach a
+        superscript glyph to its parent: <code>Do^Ti</code>. The superscript renders at half size
+        in the upper-right corner of the main glyph. Conventionally this is reserved for octave
+        offsets and other positional qualifiers, though the component places no semantic
+        restriction on its use.
+      </li>
+      <li>
+        <strong>Annotations</strong> — when <em>Show syllable labels</em> is toggled on, the
+        romanised syllable name appears beneath each glyph. Useful for learning the system or
+        documentation; turn it off for clean notation display.
+      </li>
+    </ul>
+
+    <h2>Diacritics — Subdividing the Period</h2>
+    <p>
+      Each syllable marks a point in the period. Diacritics subdivide the space around that
+      point: each diacritic places a non-uniform position within ±50% of the base syllable's
+      position, allowing the notation to reach ratios that sit between the twelve base anchors.
+      In a pitch context this is fine-grained tuning; in rhythm it is a subdivision offset;
+      the mechanism is the same in every domain.
+    </p>
+    <p>
+      Diacritics are appended directly to the syllable with no separator. The base syllable is
+      always two characters—the first uppercase, the second lowercase (<code>[A-Z][a-z]</code>);
+      everything after is the diacritic suffix. <code>Axis</code> has the shorthand <code>x</code>,
+      useful in dense notation:
+    </p>
+
+    <div class="syllable-table-wrapper diacritic-table-wrapper">
+      <table class="syllable-table">
+        <thead>
+          <tr>
+            <th>Suffix</th>
+            <th>Name</th>
+            <th>Direction</th>
+            <th>Example</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>Sub</code></td>
+            <td>Sub</td>
+            <td>↓ Lowered</td>
+            <td><code>DoSub</code></td>
+            <td>Maximum downward deviation within the prime family.</td>
+          </tr>
+          <tr>
+            <td><code>HalfSub</code></td>
+            <td>HalfSub</td>
+            <td>↓ Slightly lowered</td>
+            <td><code>ReHalfSub</code></td>
+            <td>Half-step downward; occupies the space between natural and Sub.</td>
+          </tr>
+          <tr>
+            <td><code>HalfSup</code></td>
+            <td>HalfSup</td>
+            <td>↑ Slightly raised</td>
+            <td><code>MiHalfSup</code></td>
+            <td>Half-step upward; occupies the space between natural and Sup.</td>
+          </tr>
+          <tr>
+            <td><code>Sup</code></td>
+            <td>Sup</td>
+            <td>↑ Raised</td>
+            <td><code>SoSup</code></td>
+            <td>Maximum upward deviation within the prime family.</td>
+          </tr>
+          <tr>
+            <td><code>Axis</code> / <code>x</code></td>
+            <td>Axis</td>
+            <td>⊕ Midpoint</td>
+            <td><code>DoAxis</code> / <code>Dox</code></td>
+            <td>
+              The midpoint between two adjacent period positions — in a pitch context, +50 cents
+              from the 12TET anchor. This is the entry point for the 11-prime family and
+              marks the threshold of the Du approximation space.
+              <code>x</code> is accepted as a shorthand for <code>Axis</code>.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>
+      Diacritics are rendered as SVG overlays on the base glyph. They do not change the
+      syllable's colour family — only the precise position within it. The mark direction
+      (pointing up or down) indicates the direction of deviation from the base position.
+    </p>
+
+    <p class="explainer-note">
+      Try phrases like <code>Do Mi So</code> (major triad), <code>Do Me So</code> (minor triad),
+      or <code>Do Ra Me Fi Le Te</code> (whole-tone–adjacent cluster) to explore how prime
+      families cluster visually by colour. Type <code>DoSub ReHalfSub Dox</code> to
+      see diacritics rendered.
+    </p>
+  </section>
+
+  <script is:inline>
+    window.copyCode = function(targetId, btn) {
+      const code = document.getElementById(targetId)?.textContent;
+      if (code) {
+        navigator.clipboard.writeText(code);
+        const oldText = btn.textContent;
+        btn.textContent = "Copied!";
+        setTimeout(() => btn.textContent = oldText, 2000);
+      }
+    };
+  </script>
+
+  <style>
+    /* Summary bar with actions on the right */
+    .code-panel summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .summary-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* ── Explainer section ─────────────────────────────────────── */
+    .showcase-explainer {
+      margin-top: 3rem;
+      border-top: 2px solid var(--brand-secondary, #e2e8f0);
+      padding-top: 2rem;
+    }
+
+    .showcase-explainer h2 {
+      font-size: 1.3rem;
+      color: var(--brand-primary, #1e293b);
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .showcase-explainer h2:first-child {
+      margin-top: 0;
+    }
+
+    .showcase-explainer p,
+    .showcase-explainer ul {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: #334155;
+    }
+
+    .showcase-explainer ul {
+      padding-left: 1.5rem;
+    }
+
+    .showcase-explainer li {
+      margin-bottom: 0.5rem;
+    }
+
+    .explainer-note {
+      background: #f1f5f9;
+      border-left: 3px solid var(--brand-secondary, #94a3b8);
+      padding: 0.75rem 1rem;
+      border-radius: 0 6px 6px 0;
+      font-size: 0.9rem !important;
+      color: #475569 !important;
+    }
+
+    /* ── Syllable table ─────────────────────────────────────────── */
+    .syllable-table-wrapper {
+      overflow-x: auto;
+      margin: 1.25rem 0 2rem;
+    }
+
+    .syllable-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+
+    .syllable-table th {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      padding: 0.5rem 0.75rem;
+      text-align: left;
+      font-weight: 600;
+      color: var(--brand-primary, #1e293b);
+      white-space: nowrap;
+    }
+
+    .syllable-table td {
+      border: 1px solid #e2e8f0;
+      padding: 0.45rem 0.75rem;
+      vertical-align: middle;
+      color: #334155;
+    }
+
+    .syllable-table tr:nth-child(even) td {
+      background: #f8fafc;
+    }
+
+    .syllable-table code {
+      font-size: 0.95em;
+      font-weight: 700;
+      color: var(--brand-accent, #0f172a);
+    }
+
+    /* Colour swatches */
+    .swatch {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin-right: 0.4rem;
+      vertical-align: middle;
+      border: 1px solid rgba(0,0,0,0.1);
+    }
+
+    .swatch-do  { background: var(--solfege-do,  #C0392B); }
+    .swatch-re  { background: var(--solfege-re,  #F98016); }
+    .swatch-mi  { background: var(--solfege-mi,  #E2B714); }
+    .swatch-fa  { background: var(--solfege-fa,  #27AE60); }
+    .swatch-fi  { background: var(--solfege-fi,  #16A085); }
+    .swatch-so  { background: var(--solfege-so,  #2980B9); }
+    .swatch-la  { background: var(--solfege-la,  #4B5AA8); }
+    .swatch-ti  { background: var(--solfege-ti,  #7D3C98); }
+  </style>
+</ComponentLayout>
