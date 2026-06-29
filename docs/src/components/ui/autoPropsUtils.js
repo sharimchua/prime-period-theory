@@ -37,7 +37,7 @@ export function renderControl(targetId, key, meta, prefix) {
   }
 
   // Adding the override checkbox
-  const overrideCheckbox = `<input type="checkbox" class="auto-prop-override" data-target-input="${targetId}-${prefix}-${key}" data-attr="${key}" data-target-type="${prefix}" title="Toggle to define/override this property" checked style="width: 14px; height: 14px; margin-right: 6px;" />`;
+  const overrideCheckbox = `<input type="checkbox" class="auto-prop-override" data-target-input="${targetId}-${prefix}-${key}" data-attr="${key}" data-target-type="${prefix}" title="Toggle to define/override this property" checked />`;
 
   return `
     <div class="prop-group">
