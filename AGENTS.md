@@ -112,6 +112,12 @@ notebook.
   concept page explaining the underlying theory
 - Do not rewrite existing OKF pages wholesale — prefer additive edits and
   new linked pages for new content
+- Do not use LaTeX notation (`$...$`, `$$...$$`) in OKF `.md` files — the
+  site has no LaTeX renderer. Use plain-text math notation instead: code
+  blocks for formulas (e.g. `r(i,d) = (t[i+d] − t[i]) / (t[i+1] − t[i])`),
+  and backtick-wrapped variable names inline (e.g. `n`, `d`, `r(i, d)`).
+  The conventions used in `rhythmic-overtone-series.md` are the reference standard.
+
 
 ## GitHub Issue Workflow
 
