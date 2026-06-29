@@ -73,7 +73,7 @@ export class UniformSolfegeComponent extends BasePPTComponent {
       'annotation-align': { type: 'enum', options: ['none', 'top', 'bottom'], default: 'none', description: 'Alignment of the solfege annotation text' },
       'annotation-color': { type: 'color', default: '', description: 'Override annotation color' },
       'annotation-padding': { type: 'string', default: '-0.4em', description: 'Padding between glyph and annotation' },
-      'superscript-offset-x': { type: 'string', default: '0.25em', description: 'Horizontal offset for superscript' },
+      'superscript-offset-x': { type: 'string', default: '-0.8em', description: 'Horizontal offset for superscript (applied as left offset)' },
       'superscript-offset-y': { type: 'string', default: '-0.4em', description: 'Vertical offset for superscript' },
       'size': { type: 'string', default: '1em', description: 'Size of the solfege glyph' }
     };
@@ -178,7 +178,7 @@ export class UniformSolfegeComponent extends BasePPTComponent {
     const annotationColor = this.getAttribute('annotation-color');
     const defaultPadding = annotationAlign === 'top' ? '-0.2em' : '-0.4em';
     const annotationPadding = this.getAttribute('annotation-padding') || defaultPadding;
-    const superscriptOffsetX = this.getAttribute('superscript-offset-x') || '0.25em';
+    const superscriptOffsetX = this.getAttribute('superscript-offset-x') || '-0.8em';
     const superscriptOffsetY = this.getAttribute('superscript-offset-y') || '-0.4em';
     const size = this.getAttribute('size') || '1em';
 
@@ -193,7 +193,7 @@ export class UniformSolfegeComponent extends BasePPTComponent {
             ${diacriticSvgs.map(svg => `<div class="diacritic-glyph">${processSvg(svg)}</div>`).join('')}
           </div>
           ${superscriptObj ? `
-            <div class="superscript-wrapper" style="top: ${superscriptOffsetY}; right: ${superscriptOffsetX};">
+            <div class="superscript-wrapper" style="top: ${superscriptOffsetY}; left: ${superscriptOffsetX};">
               <ppt-uniform-solfege 
                 solfege="${parsed.superscriptStr || ''}" 
                 ${diacriticColor ? `diacritic-color="${diacriticColor}"` : ''}
