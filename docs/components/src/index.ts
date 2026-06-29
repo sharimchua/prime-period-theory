@@ -1,5 +1,5 @@
 export * from './BasePPTComponent.js';
-export * from './BasePanelComponent.js';
+export * from './features/WithPanel.js';
 export * from './TextPanelComponent.js';
 export * from './PeriodComponent.js';
 export * from './TitleComponent.js';

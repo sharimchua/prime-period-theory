@@ -11,24 +11,29 @@ export class TextComponent extends BasePPTComponent {
   }
   
   static override get observedAttributes() {
-    return [...super.observedAttributes, 'color', 'size', 'weight'];
+    return [...super.observedAttributes, 'color', 'size', 'weight', 'text'];
   }
 
   static override get pptMetadata() {
     return {
       ...super.pptMetadata,
-      textContent: { type: 'string', default: 'Text', description: 'The inner text content of this element.' },
+      text: { type: 'string', default: 'Text', isContent: true, description: 'The inner text content of this element.' },
       color: { type: 'color', default: '#333333', description: 'Text color.' },
       size: { type: 'string', default: '1em', description: 'Font size.' },
       weight: { type: 'enum', options: ['normal', 'bold', '100', '200', '300', '400', '500', '600', '700', '800', '900'], default: 'normal', description: 'Font weight.' }
     };
   }
 
-  override attributeChangedCallback(name: string, _oldValue: string, _newValue: string) {
-    super.attributeChangedCallback(name, _oldValue, _newValue);
-    if (name === 'color') this.style.color = _newValue;
-    if (name === 'size') this.style.fontSize = _newValue;
-    if (name === 'weight') this.style.fontWeight = _newValue;
+  override attributeChangedCallback(name: string, _oldValue: string, newValue: string) {
+    super.attributeChangedCallback(name, _oldValue, newValue);
+    if (name === 'color') this.style.color = newValue;
+    if (name === 'size') this.style.fontSize = newValue;
+    if (name === 'weight') this.style.fontWeight = newValue;
+    if (name === 'text') {
+      if (this.textContent !== newValue) {
+        this.textContent = newValue;
+      }
+    }
   }
 
   override connectedCallback() {

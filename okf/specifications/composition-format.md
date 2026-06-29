@@ -3,7 +3,7 @@ type: concept
 title: PPT Composition Format (PPT-CF)
 description: A concise structural encoding format for serializing Prime Period Theory component layouts.
 tags: [systems, web, architecture, serialization]
-timestamp: 2026-06-27
+timestamp: 2026-06-29
 ---
 
 # PPT Composition Format (PPT-CF)
@@ -30,21 +30,21 @@ A comma-separated dictionary mapping a short, single-character alphabetical key 
 
 ### 2. Component Map (Attribute Overrides)
 A concise mapping of non-default attributes for specific instances. Instances in the structural layout are referenced by their order of appearance (0-indexed).
-`1:{shape:circle,interactive:true},2:{textContent:X}`
+`1:{shape:circle,interactive:true},2:{label:X}`
 
 ### 3. Structural Layout (Nesting)
 A bracket-based string defining the parent-child hierarchy using the keys from the Header Index.
 `A[B[C,C,C]]`
 
 ### Complete Example Payload
-`A:ppt-container,B:ppt-period,C:ppt-period-step-circle|1:{shape:circle},2:{textContent:1},3:{textContent:2}|A[B[C,C]]`
+`A:ppt-container,B:ppt-period,C:ppt-period-step-circle|1:{shape:circle},2:{label:1},3:{label:2}|A[B[C,C]]`
 
 This payload translates to:
 ```html
 <ppt-container>
   <ppt-period shape="circle">
-    <ppt-period-step-circle textContent="1"></ppt-period-step-circle>
-    <ppt-period-step-circle textContent="2"></ppt-period-step-circle>
+    <ppt-period-step-circle label="1"></ppt-period-step-circle>
+    <ppt-period-step-circle label="2"></ppt-period-step-circle>
   </ppt-period>
 </ppt-container>
 ```

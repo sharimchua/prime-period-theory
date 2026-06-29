@@ -1,6 +1,7 @@
-import { BasePanelComponent } from './BasePanelComponent.js';
+import { BasePPTComponent } from './BasePPTComponent.js';
+import { WithPanel } from './features/WithPanel.js';
 
-export class ControlPanelComponent extends BasePanelComponent {
+export class ControlPanelComponent extends WithPanel(BasePPTComponent) {
   static override get componentDef() {
     return {
       displayName: 'Control Panel',
@@ -28,8 +29,6 @@ export class ControlPanelComponent extends BasePanelComponent {
   set label(value: string) {
     this.setAttribute('label', value);
   }
-
-
 
   override attributeChangedCallback(name: string, _oldValue: string, _newValue: string) {
     super.attributeChangedCallback(name, _oldValue, _newValue);

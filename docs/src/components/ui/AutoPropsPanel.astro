@@ -50,12 +50,13 @@ const parentEntries = parentTagName ? getParentEntries(parentMetadata, allowedPa
       const targetType = overrideToggle.getAttribute('data-target-type');
       const targetInputId = overrideToggle.getAttribute('data-target-input');
       const input = document.getElementById(targetInputId) as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
+      const isContent = overrideToggle.getAttribute('data-is-content') === 'true';
       
       const elToUpdate = targetType === 'parent' ? targetElement.parentElement : targetElement;
       if (!elToUpdate || !input) return;
 
       // Initial sync
-      const hasAttr = attr === 'textContent' ? !!(elToUpdate.textContent && elToUpdate.textContent.trim().length > 0) : elToUpdate.hasAttribute(attr);
+      const hasAttr = isContent ? !!(elToUpdate.textContent && elToUpdate.textContent.trim().length > 0) : elToUpdate.hasAttribute(attr);
       overrideToggle.checked = hasAttr;
       input.disabled = !hasAttr;
 
@@ -69,7 +70,7 @@ const parentEntries = parentTagName ? getParentEntries(parentMetadata, allowedPa
           if (input.type === 'checkbox') {
              elToUpdate.setAttribute(attr, (input as HTMLInputElement).checked ? 'true' : 'false');
           } else {
-             if (attr === 'textContent') {
+             if (isContent) {
                 elToUpdate.textContent = val;
              } else {
                 elToUpdate.setAttribute(attr, val);
@@ -77,7 +78,7 @@ const parentEntries = parentTagName ? getParentEntries(parentMetadata, allowedPa
           }
         } else {
           // Remove attribute
-          if (attr === 'textContent') {
+          if (isContent) {
              elToUpdate.textContent = '';
           } else {
              elToUpdate.removeAttribute(attr);
@@ -90,6 +91,7 @@ const parentEntries = parentTagName ? getParentEntries(parentMetadata, allowedPa
       const attr = input.getAttribute('data-attr');
       const targetType = input.getAttribute('data-target-type');
       const type = input.getAttribute('type') || input.tagName.toLowerCase();
+      const isContent = input.getAttribute('data-is-content') === 'true';
       
       const elToUpdate = targetType === 'parent' ? targetElement.parentElement : targetElement;
       if (!elToUpdate) return;
@@ -104,13 +106,17 @@ const parentEntries = parentTagName ? getParentEntries(parentMetadata, allowedPa
             else elToUpdate.removeAttribute(attr);
          } else {
             if (val !== undefined && val !== '') {
-               if (attr === 'textContent') {
+               if (isContent) {
                  elToUpdate.textContent = val;
                } else {
                  elToUpdate.setAttribute(attr, val);
                }
             } else {
-               elToUpdate.removeAttribute(attr);
+               if (isContent) {
+                 elToUpdate.textContent = '';
+               } else {
+                 elToUpdate.removeAttribute(attr);
+               }
             }
          }
       };
@@ -119,7 +125,7 @@ const parentEntries = parentTagName ? getParentEntries(parentMetadata, allowedPa
       input.addEventListener('change', updateTarget);
       
       // Auto-sync value from DOM (not override status, that's done above)
-      if (attr === 'textContent') {
+      if (isContent) {
          if (elToUpdate.textContent && elToUpdate.textContent.trim().length > 0) {
             input.value = elToUpdate.textContent.trim();
          } else {

@@ -554,59 +554,48 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '') + '/';
     // Filter out standard HTML attributes as requested
     const filteredAttrs = allowedAttrs.filter(a => !['id', 'class', 'style', 'slot'].includes(a));
     
-    if (!metadata['textContent'] && tagName !== 'ppt-solfege-phrase' && tagName !== 'ppt-uniform-solfege') {
-      metadata['textContent'] = { type: 'string', description: 'Inner text content' };
-    }
-    
-    if (metadata['textContent']) {
-      if (!filteredAttrs.includes('textContent')) {
-        filteredAttrs.push('textContent');
-      }
-    }
-
-    // Sort textContent to the end for better UX
+    // Sort text content properties to the end for better UX
     filteredAttrs.sort((a, b) => {
-      if (a === 'textContent') return 1;
-      if (b === 'textContent') return -1;
+      if (metadata[a]?.isContent) return 1;
+      if (metadata[b]?.isContent) return -1;
       return 0;
     });
 
     let html = `<div class="prop-form">`;
     filteredAttrs.forEach(attr => {
-      let val = el.getAttribute(attr);
-      if (attr === 'textContent') {
-         val = el.textContent;
-      }
       const meta = metadata[attr] || { type: 'string' };
+      const isContent = meta.isContent === true;
+      const isContentAttr = isContent ? 'data-is-content="true"' : '';
+      let val = isContent ? el.textContent : el.getAttribute(attr);
       
       html += `<div class="prop-group">`;
       html += `<div class="prop-control-col">`;
       html += `<div style="display: flex; align-items: center; justify-content: space-between; width: 100%; margin-bottom: 6px;">`;
       html += `<label style="margin: 0; cursor: pointer;" for="opt-${attr}">${attr}</label>`;
-      html += `<input type="checkbox" id="opt-${attr}" class="prop-override-toggle" data-attr="${attr}" title="Toggle to define/override this property" ${el.hasAttribute(attr) || (attr === 'textContent' && val) ? 'checked' : ''} />`;
+      html += `<input type="checkbox" id="opt-${attr}" class="prop-override-toggle" data-attr="${attr}" ${isContentAttr} title="Toggle to define/override this property" ${el.hasAttribute(attr) || (isContent && val) ? 'checked' : ''} />`;
       html += `</div>`;
       
-      const isDisabled = !(el.hasAttribute(attr) || (attr === 'textContent' && val)) ? 'disabled' : '';
+      const isDisabled = !(el.hasAttribute(attr) || (isContent && val)) ? 'disabled' : '';
 
       if (meta.type === 'boolean') {
         const isChecked = val === 'true' || val === '' || (val === null && meta.default === true);
-        html += `<input type="checkbox" class="prop-input" data-attr="${attr}" ${isChecked ? 'checked' : ''} ${isDisabled} />`;
+        html += `<input type="checkbox" class="prop-input" data-attr="${attr}" ${isContentAttr} ${isChecked ? 'checked' : ''} ${isDisabled} />`;
       } else if (meta.type === 'color') {
         const displayVal = val || (meta.default !== undefined ? meta.default : '#ffffff');
-        html += `<input type="color" class="prop-input" data-attr="${attr}" value="${displayVal}" ${isDisabled} />`;
+        html += `<input type="color" class="prop-input" data-attr="${attr}" ${isContentAttr} value="${displayVal}" ${isDisabled} />`;
       } else if (meta.type === 'enum' && meta.options) {
-        html += `<select class="prop-input" data-attr="${attr}" ${isDisabled}>`;
+        html += `<select class="prop-input" data-attr="${attr}" ${isContentAttr} ${isDisabled}>`;
         meta.options.forEach((opt: string) => {
           const isSelected = val === opt || (val === null && meta.default === opt);
           html += `<option value="${opt}" ${isSelected ? 'selected' : ''}>${opt}</option>`;
         });
         html += `</select>`;
-      } else if (attr === 'textContent') {
+      } else if (isContent) {
         const displayVal = val || (meta.default !== undefined ? meta.default : '');
-        html += `<textarea class="prop-input" data-attr="${attr}" rows="3" style="width: 100%; resize: vertical;" ${isDisabled}>${String(displayVal).replace(/</g, '&lt;').replace(/>/g, '&gt;')}</textarea>`;
+        html += `<textarea class="prop-input" data-attr="${attr}" ${isContentAttr} rows="3" style="width: 100%; resize: vertical;" ${isDisabled}>${String(displayVal).replace(/</g, '&lt;').replace(/>/g, '&gt;')}</textarea>`;
       } else {
         const displayVal = val || (meta.default !== undefined ? meta.default : '');
-        html += `<input type="text" class="prop-input" data-attr="${attr}" value="${String(displayVal).replace(/"/g, '&quot;')}" ${isDisabled} />`;
+        html += `<input type="text" class="prop-input" data-attr="${attr}" ${isContentAttr} value="${String(displayVal).replace(/"/g, '&quot;')}" ${isDisabled} />`;
       }
       
       html += `</div>`; // end prop-control-col
@@ -630,9 +619,11 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '') + '/';
         const input = propertiesPanel.querySelector(`.prop-input[data-attr="${attr}"]`) as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
         if (!input) return;
 
+        const isContent = target.getAttribute('data-is-content') === 'true';
+
         input.disabled = !target.checked;
         if (target.checked) {
-          if (attr === 'textContent') {
+          if (isContent) {
              el.textContent = input.value;
           } else if (input.type === 'checkbox') {
              el.setAttribute(attr, (input as HTMLInputElement).checked ? 'true' : 'false');
@@ -640,7 +631,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '') + '/';
              el.setAttribute(attr, input.value);
           }
         } else {
-          if (attr === 'textContent') {
+          if (isContent) {
              el.textContent = '';
           } else {
              el.removeAttribute(attr);
@@ -657,7 +648,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '') + '/';
         
         const attr = target.getAttribute('data-attr');
         if (attr) {
-          if (attr === 'textContent') {
+          const isContent = target.getAttribute('data-is-content') === 'true';
+          if (isContent) {
              el.textContent = target.value;
              return;
           }
@@ -679,11 +671,14 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '') + '/';
           const target = e.target as HTMLInputElement | HTMLTextAreaElement;
           if (target.disabled) return;
           const attr = target.getAttribute('data-attr');
-          if (attr && attr === 'textContent') {
-             el.textContent = target.value;
-             return;
+          if (attr) {
+            const isContent = target.getAttribute('data-is-content') === 'true';
+            if (isContent) {
+               el.textContent = target.value;
+               return;
+            }
+            if (target.value) el.setAttribute(attr, target.value);
           }
-          if (attr && target.value) el.setAttribute(attr, target.value);
         });
       }
     });
@@ -699,7 +694,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '') + '/';
       const attr = target.getAttribute('data-attr');
       if (!attr) return;
       
-      const hasAttr = attr === 'textContent' ? !!(el.textContent && el.textContent.trim().length > 0) : el.hasAttribute(attr);
+      const isContent = target.getAttribute('data-is-content') === 'true';
+      const hasAttr = isContent ? !!(el.textContent && el.textContent.trim().length > 0) : el.hasAttribute(attr);
       target.checked = hasAttr;
       
       const input = propertiesPanel.querySelector(`.prop-input[data-attr="${attr}"]`) as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
@@ -715,7 +711,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '') + '/';
       const attr = target.getAttribute('data-attr');
       if (!attr) return;
       
-      if (attr === 'textContent') {
+      const isContent = target.getAttribute('data-is-content') === 'true';
+      if (isContent) {
          if (target.value !== el.textContent) target.value = el.textContent || '';
          return;
       }

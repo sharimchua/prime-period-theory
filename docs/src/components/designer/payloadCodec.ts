@@ -54,7 +54,10 @@ export function serializePayload(rootEl: HTMLElement): string {
            overrides[attr.name] = val;
         });
         
-        if (node.textContent && node.textContent.trim() && node.children.length === 0) {
+        const contentKey = Object.keys(meta).find(k => meta[k]?.isContent === true);
+        if (contentKey && node.textContent && node.textContent.trim() && node.children.length === 0) {
+           overrides[contentKey] = node.textContent.trim();
+        } else if (node.textContent && node.textContent.trim() && node.children.length === 0) {
            overrides['textContent'] = node.textContent.trim();
         }
         
@@ -121,7 +124,6 @@ export function deserializePayload(rawPayload: string, targetEl: HTMLElement) {
     }
     
     let currentIdx = 0;
-    
     function parseStructure(str: string) {
        let currentContainer: any = { children: [] };
        let stack: any[] = [currentContainer];
@@ -148,10 +150,20 @@ export function deserializePayload(rawPayload: string, targetEl: HTMLElement) {
        let frag = document.createDocumentFragment();
        nodes.forEach(n => {
            let el = document.createElement(n.tag);
+           
+           const libItem = document.querySelector(`.library-item[data-tag="${n.tag}"]`);
+           let compMeta: Record<string, any> = {};
+           if (libItem) {
+              compMeta = JSON.parse(libItem.getAttribute('data-metadata') || '{}');
+           }
+
            if (attrOverrides[n.idx]) {
                for (let [k, v] of Object.entries(attrOverrides[n.idx])) {
-                   if (k === 'textContent') el.textContent = v as string;
-                   else el.setAttribute(k, v as string);
+                   if (compMeta[k]?.isContent === true || k === 'textContent') {
+                       el.textContent = v as string;
+                   } else {
+                       el.setAttribute(k, v as string);
+                   }
                }
            }
            if (n.children.length > 0) {
@@ -181,22 +193,16 @@ export async function compressPayload(text: string): Promise<string> {
     return 'gz:' + btoa(binary);
 }
 
-export async function decompressPayload(payload: string): Promise<string> {
-    if (payload.startsWith('raw:')) return payload.substring(4);
-    if (!payload.startsWith('gz:')) {
-       // Auto-detect: if it has pipes, it's raw
-       if (payload.includes('|')) return payload;
-       return payload; // Unknown format
+export async function decompressPayload(compressed: string): Promise<string> {
+    if (compressed.startsWith('raw:')) return compressed.slice(4);
+    if (!compressed.startsWith('gz:')) throw new Error('Unknown payload format');
+    if (typeof DecompressionStream === 'undefined') throw new Error('DecompressionStream is not supported');
+    const binary = atob(compressed.slice(3));
+    const uint8Array = new Uint8Array(binary.length);
+    for (let i = 0; i < binary.length; i++) {
+      uint8Array[i] = binary.charCodeAt(i);
     }
-    
-    const base64 = payload.substring(3);
-    const binaryStr = atob(base64);
-    const uint8Array = new Uint8Array(binaryStr.length);
-    for (let i = 0; i < binaryStr.length; i++) {
-       uint8Array[i] = binaryStr.charCodeAt(i);
-    }
-    
-    if (typeof DecompressionStream === 'undefined') throw new Error("DecompressionStream not supported");
     const stream = new Blob([uint8Array]).stream().pipeThrough(new DecompressionStream('deflate'));
-    return await new Response(stream).text();
+    const decompressedResponse = await new Response(stream).text();
+    return decompressedResponse;
 }

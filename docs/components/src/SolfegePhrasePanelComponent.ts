@@ -1,6 +1,7 @@
-import { BasePanelComponent } from './BasePanelComponent.js';
+import { BasePPTComponent } from './BasePPTComponent.js';
+import { WithPanel } from './features/WithPanel.js';
 
-export class SolfegePhrasePanelComponent extends BasePanelComponent {
+export class SolfegePhrasePanelComponent extends WithPanel(BasePPTComponent) {
   static override get componentDef() {
     return {
       displayName: 'Solfege Phrase Panel',

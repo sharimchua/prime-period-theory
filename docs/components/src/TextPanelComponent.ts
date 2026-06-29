@@ -1,6 +1,7 @@
-import { BasePanelComponent } from './BasePanelComponent.js';
+import { BasePPTComponent } from './BasePPTComponent.js';
+import { WithPanel } from './features/WithPanel.js';
 
-export class TextPanelComponent extends BasePanelComponent {
+export class TextPanelComponent extends WithPanel(BasePPTComponent) {
   static override get componentDef() {
     return {
       displayName: 'Text Panel',
