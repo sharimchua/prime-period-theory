@@ -71,14 +71,14 @@ describe('parseComponents', () => {
 
     it('should parse files and extract component metadata successfully', () => {
       vi.mocked(fs.default.existsSync).mockImplementation((pathStr) => {
-         const p = pathStr.toString();
+         const p = pathStr.toString().replace(/\\/g, '/');
          if (p.includes('components/src')) return true;
          if (p.includes('features')) return true; // Mixins dir
          return false;
       });
 
       vi.mocked(fs.default.readdirSync).mockImplementation((pathStr) => {
-         const p = pathStr.toString();
+         const p = pathStr.toString().replace(/\\/g, '/');
          if (p.endsWith('components/src')) {
             return ['BasePPTComponent.ts', 'TestComponent.ts', 'index.ts'] as any;
          }
@@ -162,13 +162,13 @@ describe('parseComponents', () => {
 
     it('should handle missing baseMetadata or mixinMetadata gracefully', () => {
       vi.mocked(fs.default.existsSync).mockImplementation((pathStr) => {
-         const p = pathStr.toString();
+         const p = pathStr.toString().replace(/\\/g, '/');
          if (p.includes('components/src')) return true;
          return false; // Features dir doesn't exist
       });
 
       vi.mocked(fs.default.readdirSync).mockImplementation((pathStr) => {
-         const p = pathStr.toString();
+         const p = pathStr.toString().replace(/\\/g, '/');
          if (p.endsWith('components/src')) {
             return ['TestComponent2.ts'] as any;
          }
@@ -203,14 +203,14 @@ describe('parseComponents', () => {
 
     it('should handle parent class metadata inheritance when parent is not BasePPTComponent', () => {
       vi.mocked(fs.default.existsSync).mockImplementation((pathStr) => {
-         const p = pathStr.toString();
+         const p = pathStr.toString().replace(/\\/g, '/');
          if (p.includes('components/src')) return true;
          if (p.includes('ParentComponent.ts')) return true;
          return false;
       });
 
       vi.mocked(fs.default.readdirSync).mockImplementation((pathStr) => {
-         const p = pathStr.toString();
+         const p = pathStr.toString().replace(/\\/g, '/');
          if (p.endsWith('components/src')) {
             return ['ChildComponent.ts'] as any;
          }

@@ -17,7 +17,7 @@ tags:
   - combinatorics
   - melakarta
   - prime-period-theory
-timestamp: 2026-06-30
+timestamp: 2026-07-01
 ---
 
 # Tetrachord-Pair Generation of Heptatonic Scales
@@ -89,12 +89,12 @@ and its rotations):
 | Re-Ra-Re | 2-1-2 | Minor tetrachord |
 | Ra-Re-Re | 1-2-2 | Phrygian tetrachord |
 
-A fourth family, built from **Ma** (3 semitones, minor third) and **Ra**,
-also spans Fa: Ma-Ra-Ra, Ra-Ma-Ra, Ra-Ra-Ma. Of these three permutations,
-only **Ra-Ma-Ra** (the augmented second flanked symmetrically by
+A fourth family, built from **Me** (3 semitones, minor third) and **Ra**,
+also spans Fa: Me-Ra-Ra, Ra-Me-Ra, Ra-Ra-Me. Of these three permutations,
+only **Ra-Me-Ra** (the augmented second flanked symmetrically by
 semitones) produces named scales in combination with the Re-Re-Ra family
 under a Re join — it functions as the generative "harmonic" tetrachord.
-Ma-Ra-Ra and Ra-Ra-Ma, with the augmented second at an edge rather than
+Me-Ra-Ra and Ra-Ra-Me, with the augmented second at an edge rather than
 centred, do not combine productively under a Re join (see Combinatorial
 results, below).
 
@@ -112,11 +112,11 @@ several scales with established names outside the Western canon:
 | Re-Ra-Re | Re-Ra-Re | Dorian |
 | Re-Ra-Re | Ra-Re-Re | Aeolian (natural minor) |
 | Ra-Re-Re | Ra-Re-Re | Phrygian |
-| Re-Re-Ra | Ra-Ma-Ra | Acoustic / Lydian dominant |
-| Re-Ra-Re | Ra-Ma-Ra | Harmonic minor |
-| Ra-Ma-Ra | Re-Re-Ra | Neapolitan major |
-| Ra-Ma-Ra | Ra-Re-Re | Phrygian dominant |
-| Ra-Ma-Ra | Ra-Ma-Ra | Double harmonic major (Byzantine / Hijaz Kar) |
+| Re-Re-Ra | Ra-Me-Ra | Acoustic / Lydian dominant |
+| Re-Ra-Re | Ra-Me-Ra | Harmonic minor |
+| Ra-Me-Ra | Re-Re-Ra | Neapolitan major |
+| Ra-Me-Ra | Ra-Re-Re | Phrygian dominant |
+| Ra-Me-Ra | Ra-Me-Ra | Double harmonic major (Byzantine / Hijaz Kar) |
 | Ra-Re-Re | Re-Re-Ra | Neapolitan minor |
 
 Lydian and Locrian do not appear in this table. Both have a tritone (six
@@ -159,11 +159,11 @@ Uniform Solfège interval syllables, are:
 
 | Lower span | Upper span | Sum + Ra join |
 |---|---|---|
-| Ma (3) | Le (8) | 3 + 1 + 8 = 12 |
+| Me (3) | Le (8) | 3 + 1 + 8 = 12 |
 | Mi (4) | So (7) | 4 + 1 + 7 = 12 |
 | Fa (5) | Fi (6) | 5 + 1 + 6 = 12 |
 
-(Each pair also has its mirror: Le+Ma, So+Mi, Fi+Fa.)
+(Each pair also has its mirror: Le+Me, So+Mi, Fi+Fa.)
 
 ### Fill enumeration
 
@@ -175,7 +175,7 @@ positive integer parts, which equals **C(N−1, 2)** — a triangular number:
 
 | Span | Semitones | Valid fills |
 |---|---|---|
-| Ma | 3 | 1 |
+| Me | 3 | 1 |
 | Mi | 4 | 3 |
 | Fa | 5 | 6 |
 | Fi | 6 | 10 |
@@ -183,11 +183,11 @@ positive integer parts, which equals **C(N−1, 2)** — a triangular number:
 | Le | 8 | 21 |
 
 This produces 252 total combinations across the six asymmetric span pairs
-(18 + 18 for Mi/So, 42 + 42 for Fa/Fi, 3 + 3 for Ma/Le). Critically, this
-enumeration does not restrict individual fill intervals to {Ra, Re, Ma} —
+(18 + 18 for Mi/So, 42 + 42 for Fa/Fi, 3 + 3 for Me/Le). Critically, this
+enumeration does not restrict individual fill intervals to {Ra, Re, Me} —
 once a span exceeds Fa, larger single intervals (Mi, Fa, Fi themselves)
 become valid components of a fill. A Le-span tetrachord of **Fi-Ra-Ra**
-(6+1+1=8) is as structurally valid as **Re-Ma-Ma** (2+3+3=8); both are
+(6+1+1=8) is as structurally valid as **Re-Me-Me** (2+3+3=8); both are
 three-interval compositions of Le with a minimum part of Ra.
 
 ### Status and relationship to existing systems
@@ -254,7 +254,7 @@ for identifying the key of a piece by ear — testing whether a given
 tetrachord shape fits a passage narrows the key candidates to two (the
 lower-half or upper-half position of that tetrachord within the octave),
 after which one or two further notes resolve the ambiguity. Different
-tetrachord forms (major, minor, phrygian, the Ra-Ma-Ra harmonic form) act
+tetrachord forms (major, minor, phrygian, the Ra-Me-Ra harmonic form) act
 as probes with different false-positive risk profiles depending on the
 repertoire — the major tetrachord, for instance, also appears
 non-diagnostically inside harmonic minor and is therefore a weaker probe
@@ -269,7 +269,7 @@ notation-first learning.
   3-limit fifth-stacking generative method; the complementary derivation
   this page extends
 - [Uniform Solfège — Overview](../uniform-solfege/index.md) — the
-  interval syllable system (Ra, Re, Ma, Mi, Fa, Fi, So, Le) used
+  interval syllable system (Ra, Re, Me, Mi, Fa, Fi, So, Le) used
   throughout this page
 - [Base-12 Algebra](../uniform-solfege/base-12-algebra.md) — the clock
   arithmetic underlying span and join summation
