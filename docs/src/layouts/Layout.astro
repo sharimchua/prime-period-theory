@@ -238,20 +238,39 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '') + '/';
 
   /* Replaced Solfege Text Wrappers */
   .ppt-solfege-text-replaced {
-    display: inline-flex;
-    align-items: center;
-    line-height: 1;
-    vertical-align: -0.15em;
+    display: inline;
     user-select: text;
     margin: 0 0.15em;
   }
 
+  /* Override global .sr-only for inline elements to avoid absolute positioning newlines when copying */
+  .ppt-solfege-text-replaced .sr-only {
+    position: static;
+    display: inline-block;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    color: transparent;
+    vertical-align: bottom;
+    white-space: nowrap;
+    padding: 0;
+    margin: 0;
+    border: none;
+    clip: auto;
+  }
+
   .ppt-solfege-text-replaced ppt-uniform-solfege {
+    display: inline-block;
     width: 1.15em;
     height: 1.15em;
     flex-shrink: 0;
     pointer-events: none;
-    user-select: none;
+    vertical-align: -0.15em;
+  }
+
+  /* Selection highlight for decorated solfege glyphs */
+  .ppt-solfege-text-replaced ppt-uniform-solfege::selection {
+    background-color: rgba(225, 54, 16, 0.25); /* soft brand red selection background */
   }
 
   main {
