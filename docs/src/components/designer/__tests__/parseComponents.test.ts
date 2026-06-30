@@ -261,5 +261,79 @@ describe('parseComponents', () => {
       expect(comp.metadata.childProp).toEqual({ type: 'number', default: 42 });
     });
 
+    it('should catch parsing errors for metadata and componentDef', () => {
+      const consoleWarnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+
+      vi.mocked(fs.default.existsSync).mockImplementation((pathStr) => {
+         const p = pathStr.toString();
+         if (p.includes('components/src')) return true;
+         if (p.includes('features')) return true; // Mixins dir
+         return false;
+      });
+
+      vi.mocked(fs.default.readdirSync).mockImplementation((pathStr) => {
+         const p = pathStr.toString();
+         if (p.endsWith('components/src')) {
+            return ['BasePPTComponent.ts', 'ErrorComponent.ts'] as any;
+         }
+         if (p.endsWith('features')) {
+            return ['WithErrorMixin.ts'] as any;
+         }
+         return [] as any;
+      });
+
+      vi.mocked(fs.default.readFileSync).mockImplementation((pathStr) => {
+         const p = pathStr.toString();
+         if (p.endsWith('BasePPTComponent.ts')) {
+            return `
+              export class BasePPTComponent {
+                 static get pptMetadata() {
+                    return { invalidBase: someVar };
+                 }
+              }
+            `;
+         }
+         if (p.endsWith('ErrorComponent.ts')) {
+            return `
+              export class ErrorComponent extends BasePPTComponent {
+                 static get pptMetadata() {
+                    return {
+                       invalidProp: invalidVar
+                    };
+                 }
+                 static get componentDef() {
+                    return { invalidDef: () => {} };
+                 }
+              }
+              customElements.define('ppt-error', ErrorComponent);
+            `;
+         }
+         if (p.endsWith('WithErrorMixin.ts')) {
+            return `
+              export function WithErrorMixin(Base) {
+                 return class extends Base {
+                    static get pptMetadata() {
+                       return {
+                          invalidMixin: -'string'
+                       };
+                    }
+                 }
+              }
+            `;
+         }
+         return '';
+      });
+
+      const components = getPPTComponents();
+
+      expect(components).toHaveLength(1);
+      expect(consoleWarnSpy).toHaveBeenCalledWith('Failed to parse baseMetadata:', expect.any(Error));
+      expect(consoleWarnSpy).toHaveBeenCalledWith('Failed to parse mixinMetadata for WithErrorMixin.ts:', expect.any(Error));
+      expect(consoleWarnSpy).toHaveBeenCalledWith('Failed to parse metadata for ErrorComponent:', expect.any(Error));
+      expect(consoleWarnSpy).toHaveBeenCalledWith('Failed to parse componentDef for ErrorComponent:', expect.any(Error));
+
+      consoleWarnSpy.mockRestore();
+    });
+
   });
 });
