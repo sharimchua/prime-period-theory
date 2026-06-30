@@ -106,7 +106,8 @@ export function decorateSolfege(container: HTMLElement) {
         fragment.appendChild(document.createTextNode(text.substring(lastIndex, matchIndex)));
       }
 
-      const isAppendMode = !!(parent.closest('.solfege-append') || parent.closest('[data-solfege-append]'));
+      const parentEl = node.parentElement;
+      const isAppendMode = !!(parentEl && (parentEl.closest('.solfege-append') || parentEl.closest('[data-solfege-append]')));
 
       // Create accessible wrapper
       const wrapper = document.createElement('span');
