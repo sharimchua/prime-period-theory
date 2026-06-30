@@ -295,7 +295,7 @@ The phonetic hierarchy:
 
 | Class | Tokens | Consonant type | Grammatical role |
 | ----- | ------ | -------------- | ---------------- |
-| Accent | <span class="solfege-append">Do, Di</span> | Dental stop (D) | Block openers |
+| Accent | <span class="solfege-append">Dox, Dix</span> | Dental stop (D) | Block openers |
 | Penultimate | <span class="solfege-append">So</span> | Fricative (S) | Block closer / decision point |
 | Interior | <span class="solfege-append">Re, La, Mi, Si, Fi, Ra</span> | Liquids and nasals | Chain fill |
 
