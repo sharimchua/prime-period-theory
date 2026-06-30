@@ -40,6 +40,9 @@ navigating the graph. Make it precise and specific, not generic.
 | `uniform-solfege/` | Notation system | Partially written |
 | `domains/` | Pitch, rhythm, timbre | Stub only |
 | `tuning/` | JI, 31 EDO, 72 EDO | Partially written |
+| `pedagogy/` | Learning paths and pedagogy principles | Active |
+| `applications/` | Tool design philosophy and workflows | Active |
+| `implementations/` | Precursor and canonical tool registry | Active |
 | `related/` | MusiCoil, Tone Atlas, Melodic Grammar | Active |
 
 ## Concept graph conventions

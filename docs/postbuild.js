@@ -34,8 +34,17 @@ function processHtmlFiles(dir) {
             targetPath = path.join(__dirname, 'dist', cleanPath, 'index.html');
           }
 
-          if (!fs.existsSync(targetPath)) {
-            console.log("MISSING:", linkPath, "->", targetPath);
+          let exists = fs.existsSync(targetPath);
+          if (!exists && !cleanPath.endsWith('.html')) {
+            const altPath = path.join(__dirname, 'dist', cleanPath + '.html');
+            if (fs.existsSync(altPath)) {
+              exists = true;
+              targetPath = altPath;
+            }
+          }
+
+          if (!exists) {
+            console.log("MISSING in", filePath, ":", linkPath, "->", targetPath);
             changed = true;
             return `<span class="disabled-link">${text}</span><span class="badge">Coming Soon</span>`;
           }

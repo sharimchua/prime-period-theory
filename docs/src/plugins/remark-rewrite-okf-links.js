@@ -8,7 +8,7 @@ export function remarkRewriteOkfLinks() {
       if (node.url && node.url.endsWith('.md') && !node.url.startsWith('http')) {
         let newUrl = node.url.replace(/\.md(#.*)?$/, '$1');
 
-        const filePath = (file.history[0] || '').replace(/\\/g, '/');
+        const filePath = (file.path || file.history[0] || '').replace(/\\/g, '/');
         
         // Find the absolute path to the okf directory
         const docsDir = process.cwd();

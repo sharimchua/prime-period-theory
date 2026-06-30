@@ -34,6 +34,9 @@ okf/                    # The Open Knowledge Format bundle (AI-readable semantic
 ├── uniform-solfege/    # The base-12 notation layer
 ├── domains/            # Application domains (pitch, rhythm, timbre)
 ├── tuning/             # Tuning systems (31 EDO, 72 EDO, just intonation)
+├── pedagogy/           # Pedagogy and learning paths
+├── applications/       # Unified tool architecture philosophy
+├── implementations/    # Interactive tool registry
 └── related/            # Connected systems (MusiCoil, Rhythmic/Melodic Grammar)
 
 docs/                   # The Astro-powered Documentation Website

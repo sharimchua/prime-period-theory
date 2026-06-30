@@ -177,6 +177,27 @@ amplitude or effect envelopes.
 - [Tone Atlas](related/tone-atlas.md) — clock-face pitch relationship diagram
 - [Chromatic Clock Geometry](related/chromatic-clock.md) — the 12-tone chromatic circle as a geometric navigation tool
 
+### Pedagogy
+- [Overview](pedagogy/index.md) — learning path map and core pedagogical principles
+- [Learning Paths](pedagogy/learning-paths.md) — the four paths and their rationale
+- [Ear-First Pedagogy](pedagogy/ear-first.md) — perceptual grounding before symbolic notation
+- [Cross-Domain Transfer](pedagogy/cross-domain-transfer.md) — transfer as the test of understanding
+- [Progressive Complexity](pedagogy/progressive-complexity.md) — developmental arc through prime families
+
+### Applications
+- [Overview](applications/index.md) — the bridge between theory and tools
+- [Component Philosophy](applications/component-philosophy.md) — one primitive for pitch and rhythm
+- [Visualisation](applications/visualisation.md) — PPT ratio visualisation across Metric DuPeriods
+- [Play-Along Feedback](applications/play-along.md) — three feedback models
+- [Transcription](applications/transcription.md) — melody-first → progressive specification
+
+### Implementations
+- [Register](implementations/index.md) — all existing tools and their PPT coverage
+- [PPT Component Library](implementations/ppt-components.md) — canonical active development
+- [Harmonic Geometry](implementations/harmonic-geometry.md) — precursor tool
+- [Note Navigation](implementations/note-navigation.md) — precursor tool
+- [Frequency Perception](implementations/frequency-perception.md) — precursor tool
+
 ## Specifications
 - [Design System & Colour Semantics](specifications/design-system.md) — Visual styling and mathematical mapping
 - [PPT Composition Format (PPT-CF)](specifications/composition-format.md) — a concise, structural encoding format for serializing component layouts
