@@ -106,17 +106,28 @@ export function decorateSolfege(container: HTMLElement) {
         fragment.appendChild(document.createTextNode(text.substring(lastIndex, matchIndex)));
       }
 
+      const isAppendMode = !!(parent.closest('.solfege-append') || parent.closest('[data-solfege-append]'));
+
       // Create accessible wrapper
       const wrapper = document.createElement('span');
       wrapper.className = 'ppt-solfege-text-replaced';
       wrapper.setAttribute('data-original-text', matchText);
       wrapper.setAttribute('title', matchText);
+      if (isAppendMode) {
+        wrapper.setAttribute('data-append-mode', 'true');
+      }
 
-      // Visually hidden plain text for copy-paste and screen readers
-      const srText = document.createElement('span');
-      srText.className = 'sr-only';
-      srText.textContent = matchText;
-      wrapper.appendChild(srText);
+      if (isAppendMode) {
+        // In append mode, keep the original text visible
+        const textNode = document.createTextNode(matchText);
+        wrapper.appendChild(textNode);
+      } else {
+        // Visually hidden plain text for copy-paste and screen readers
+        const srText = document.createElement('span');
+        srText.className = 'sr-only';
+        srText.textContent = matchText;
+        wrapper.appendChild(srText);
+      }
 
       // Web component glyph
       const glyph = document.createElement('ppt-uniform-solfege');

@@ -275,6 +275,11 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '') + '/';
     background-color: rgba(225, 54, 16, 0.25); /* soft brand red selection background */
   }
 
+  /* Spacing in append mode (text followed by glyph) */
+  .ppt-solfege-text-replaced[data-append-mode="true"] ppt-uniform-solfege {
+    margin-left: 0.25em;
+  }
+
   main {
     max-width: var(--main-max-width, 800px);
     margin: 0 auto;

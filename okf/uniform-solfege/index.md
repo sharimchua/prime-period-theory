@@ -54,18 +54,18 @@ The colour convention assigns a specific hue to each interval class, aligning wi
 
 | Position | Syllable | Variations | Colour | Interval from tonic | Prime family |
 |---|---|---|---|---|---|
-| 0 | **Do** | | Red (`#E13610`) | Unison | 2-prime (octave axis) |
-| 1 | **Ra** | Di | Orange (`#F98016`) | Minor 2nd | — |
-| 2 | **Re** | | Orange (`#F98016`) | Major 2nd | 3-prime (two fifths) |
-| 3 | **Me** | Ri | Yellow (`#F5D432`) | Minor 3rd | — |
-| 4 | **Mi** | | Yellow (`#F5D432`) | Major 3rd | 5-prime |
-| 5 | **Fa** | | Green (`#43A440`) | Perfect 4th | 3-prime (inverse fifth) |
-| 6 | **Fi** | Se | Black (`#141414`) | Tritone | Axis of symmetry |
-| 7 | **So** | | Blue (`#0032A4`) | Perfect 5th | 3-prime |
-| 8 | **Le** | Si | Purple (`#5300A4`) | Minor 6th | — |
-| 9 | **La** | | Purple (`#5300A4`) | Major 6th | 5-prime (inverse third) |
-| 10 | **Te** | Li | Magenta (`#F158A4`) | Minor 7th | 7-prime (approximation) |
-| 11 | **Ti** | Si | Magenta (`#F158A4`) | Major 7th | — |
+| 0 | <span class="solfege-append">**Do**</span> | | Red (`#E13610`) | Unison | 2-prime (octave axis) |
+| 1 | <span class="solfege-append">**Ra**</span> | <span class="solfege-append">Di</span> | Orange (`#F98016`) | Minor 2nd | — |
+| 2 | <span class="solfege-append">**Re**</span> | | Orange (`#F98016`) | Major 2nd | 3-prime (two fifths) |
+| 3 | <span class="solfege-append">**Me**</span> | <span class="solfege-append">Ri</span> | Yellow (`#F5D432`) | Minor 3rd | — |
+| 4 | <span class="solfege-append">**Mi**</span> | | Yellow (`#F5D432`) | Major 3rd | 5-prime |
+| 5 | <span class="solfege-append">**Fa**</span> | | Green (`#43A440`) | Perfect 4th | 3-prime (inverse fifth) |
+| 6 | <span class="solfege-append">**Fi**</span> | <span class="solfege-append">Se</span> | Black (`#141414`) | Tritone | Axis of symmetry |
+| 7 | <span class="solfege-append">**So**</span> | | Blue (`#0032A4`) | Perfect 5th | 3-prime |
+| 8 | <span class="solfege-append">**Le**</span> | <span class="solfege-append">Si</span> | Purple (`#5300A4`) | Minor 6th | — |
+| 9 | <span class="solfege-append">**La**</span> | | Purple (`#5300A4`) | Major 6th | 5-prime (inverse third) |
+| 10 | <span class="solfege-append">**Te**</span> | <span class="solfege-append">Li</span> | Magenta (`#F158A4`) | Minor 7th | 7-prime (approximation) |
+| 11 | <span class="solfege-append">**Ti**</span> | <span class="solfege-append">Si</span> | Magenta (`#F158A4`) | Major 7th | — |
 
 ### Colour Semantics
 

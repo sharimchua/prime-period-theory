@@ -132,7 +132,7 @@ The full 36-combination space (all six tetrachord forms paired against all
 six, under a Re join) was cross-checked against the 72 Carnatic
 **melakarta** scales. Every combination not already named in Western
 theory corresponds to a documented melakarta (or a mode of one),
-including the combinations using **Ma-Ra-Ra** and **Ra-Ra-Ma**, which
+including the combinations using **Me-Ra-Ra** and **Ra-Ra-Me**, which
 produce no Western-named result. This is a striking convergence: the
 melakarta system, developed independently within Carnatic theory using
 its own generative logic (fixing the lower tetrachord and varying the
