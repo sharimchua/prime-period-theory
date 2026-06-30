@@ -42,10 +42,10 @@ These two families are structurally and semantically separate and should not be 
 
 The tritone position (Fi, position 6) is structurally unique in the system. While the 11-limit prime family natively yields an over-tritone (11:8) and an under-tritone (16:11), Uniform Solfège intentionally collapses this neighborhood into a single cardinal position mapped to the irrational geometric mean (square root of 2 over 1). 
 
-This hybrid design delivers a "closed" geometric axis of symmetry for multi-domain base-12 algebra while gracefully acting as a structural proxy for the 11-limit tritone family. When strict acoustic realism or specific prime-limit alignments are required, the system utilizes the Undecimal diacritics as rational offsets from this geometric center:
+This hybrid design delivers a "closed" geometric axis of symmetry for multi-domain base-12 algebra while gracefully acting as a structural proxy for the 11-limit tritone family. When strict acoustic realism or specific prime-limit alignments are required, the system utilizes the Undecimal diacritics as rational offsets from this geometric centre:
 
-* **FiUnDecSub1** (or a customized Sub-inflection): Pulls the square root of 2 axis downward to approximate the pure acoustic resonance of the over-tritone (11:8).
-* **FiUnDecSup1** (or a customized Sup-inflection): Pushes the square root of 2 axis upward to approximate the pure acoustic resonance of the under-tritone (16:11).
+* **FiUnDecSub1** (or a customised Sub-inflection): Pulls the square root of 2 axis downward to approximate the pure acoustic resonance of the lesser-tritone (11:8).
+* **FiUnDecSup1** (or a customised Sup-inflection): Pushes the square root of 2 axis upward to approximate the pure acoustic resonance of the greater-tritone (16:11).
 
 > **Note on "Axis" across contexts:** The term Axis is used in three distinct
 > ways within the PPT framework. (1) As the Du-family glyph: the horizontal

@@ -180,9 +180,9 @@ coincidence is a **rhythmic tritone resolution**. The ti-hai in Indian
 classical music is a composed instance of this: maximum metric
 displacement engineered to land precisely on the sam.
 
-### Multi-Domain Structural Defense
+### Multi-Domain Structural Defence
 When scaled to macro dimensions (rhythm, form, envelopes), the choice of an irrational midpoint (square root of 2) instead of a split rational pitch pair is uniquely defensible:
-1. **Universal Symbology**: It guarantees that a single visual character remains the absolute "Geometric Center of the Period" across all parameters of music, preventing the symbol from splitting into separate over/under characters in non-pitch domains.
+1. **Universal Symbology**: It guarantees that a single visual character remains the absolute "Geometric Centre of the Period" across all parameters of music, preventing the symbol from splitting into separate over/under characters in non-pitch domains.
 2. **The Boundary of Precision**: While natural acoustics spiral infinitely through prime ratios, human structural architecture demands a closed frame. Using the square root of 2 as the ultimate "comma tamer" at the axis caps the system, providing a clean boundary line where geometry and prime-limit arithmetic shake hands.
 
 ## The cross-scale cadential operator
