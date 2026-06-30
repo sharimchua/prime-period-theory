@@ -14,7 +14,7 @@ tags:
   - metronome
   - solkattu
   - prime-period-theory
-timestamp: 2026-06-29
+timestamp: 2026-07-01
 ---
 
 # Rhythmic Grammar
@@ -65,7 +65,7 @@ last N steps of that chain:
 - Step 2 before Do: **Re**
 - Step 3 before Do: **La**
 - Step 4 before Do: **Mi**
-- Step 5 before Do: **Si** (preferred over Ti; see [Token conventions](#token-conventions))
+- Step 5 before Do: **Si** (where `Si` is preferred over `Ti`; see [Token conventions](#token-conventions))
 - Step 6 before Do: **Fi**
 - Step 7 before Do: **Ra**
 
@@ -300,29 +300,29 @@ human readers and parsers.
 Rhythmic Grammar uses only the 12 base solfège syllables, with the following
 conventions chosen for phonetic clarity:
 
-- **Si** preferred over **Ti** for the ♮7 degree — Si uses a fricative
-  (soft), while Ti uses a dental stop that could be confused with Do/Di
+- `Si` preferred over `Ti` for the ♮7 degree — `Si` uses a fricative
+  (soft), while `Ti` uses a dental stop that could be confused with `Do`/`Di`
   (the reserved accent consonant class)
-- **Di** preferred over **Ra** as the tritone accent marker — Di (#1) implies
-  upward chromatic tension away from Do, whereas Ra (♭2) implies descending
-  resolution toward Do; for an accent marker, tension is correct
-- **Di** preferred over **Se** as the tritone marker — Se is already defined
-  as ♭5 in Uniform Solfège; Di preserves enharmonic semantic clarity
-- **Li** (♯6) used for step 7 of the chain if required — this is rare in
-  practice (patterns of 8 beats or more are typically chained); Ra (♭2)
+- `Di` preferred over `Ra` as the tritone accent marker — `Di` (#1) implies
+  upward chromatic tension away from `Do`, whereas `Ra` (♭2) implies descending
+  resolution toward `Do`; for an accent marker, tension is correct
+- `Di` preferred over `Se` as the tritone marker — `Se` is already defined
+  as ♭5 in Uniform Solfège; `Di` preserves enharmonic semantic clarity
+- `Li` (♯6) used for step 7 of the chain if required — this is rare in
+  practice (patterns of 8 beats or more are typically chained); `Ra` (♭2)
   appearing at step 7 is accepted as a compromise to preserve phonetic
-  separation from Do/Di
+  separation from `Do`/`Di`
 
 ### The Li/Te Homoglyph
 
-**Li** and **Te** share the same Uniform Solfège glyph. In pitch solfège context, **Te** is used (the minor 7th). In Rhythmic Grammar context, **Li** is used to avoid introducing a dental consonant into the non-accent syllable stream. The notation is identical; the phonetic realisation is context-dependent.
+`Li` and `Te` share the same Uniform Solfège glyph. In pitch solfège context, `Te` is used (the minor 7th). In Rhythmic Grammar context, `Li` is used to avoid introducing a dental consonant into the non-accent syllable stream. The notation is identical; the phonetic realisation is context-dependent.
 
 The phonetic hierarchy:
 
 | Class | Tokens | Consonant type | Grammatical role |
 | ----- | ------ | -------------- | ---------------- |
-| Accent | Do, Di | Dental stop (D) | Block openers |
-| Penultimate | So | Fricative (S) | Block closer / decision point |
+| Accent | `Do`, `Di` | Dental stop (D) | Block openers |
+| Penultimate | `So` | Fricative (S) | Block closer / decision point |
 | Interior | Re, La, Mi, Si, Fi, Ra | Liquids and nasals | Chain fill |
 
 ## Relationship to Uniform Solfège

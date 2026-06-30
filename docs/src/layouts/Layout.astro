@@ -32,12 +32,27 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '') + '/';
           <a href={`${base}topics`}>Topics</a>
           <a href={`${base}components`}>Components</a>
           <a href={`${base}reference`}>Reference</a>
+          <button 
+            id="solfege-glyph-toggle" 
+            class="solfege-toggle-button" 
+            aria-pressed="false" 
+            title="Toggle Uniform Solfège notation (Fi: standard text, Do: uniform glyphs)"
+          >
+            <div class="glyph-wrapper">
+              <ppt-uniform-solfege class="toggle-glyph glyph-fi" solfege="Fi" size="1.2em" aria-hidden="true"></ppt-uniform-solfege>
+              <ppt-uniform-solfege class="toggle-glyph glyph-do" solfege="Do" size="1.2em" aria-hidden="true" color="var(--solfege-do)"></ppt-uniform-solfege>
+            </div>
+          </button>
         </nav>
       </header>
     )}
     <main style={`--main-max-width: ${maxWidth};`}>
       <slot />
     </main>
+    <script>
+      import '../../components/src/UniformSolfegeComponent.ts';
+      import '../scripts/solfegeDecorator.ts';
+    </script>
   </body>
 </html>
 
@@ -127,8 +142,116 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '') + '/';
     cursor: not-allowed;
   }
 
+  nav {
+    display: flex;
+    align-items: center;
+  }
+
   nav a:hover {
     color: var(--brand-accent);
+  }
+
+  /* Solfege Toggle Button */
+  .solfege-toggle-button {
+    margin-left: 2rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 50%;
+    background: #f1f5f9;
+    border: 1.5px solid var(--border-color);
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+    user-select: none;
+    padding: 0;
+    flex-shrink: 0;
+  }
+
+  .solfege-toggle-button:hover {
+    background: #e2e8f0;
+    transform: scale(1.05);
+  }
+
+  .solfege-toggle-button:active {
+    transform: scale(0.95);
+  }
+
+  .glyph-wrapper {
+    position: relative;
+    width: 1.2em;
+    height: 1.2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .toggle-glyph {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Off State (Fi is visible) */
+  .solfege-toggle-button[aria-pressed="false"] .glyph-fi {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(0deg) scale(1);
+  }
+  .solfege-toggle-button[aria-pressed="false"] .glyph-do {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(-180deg) scale(0.5);
+    pointer-events: none;
+  }
+
+  /* On State (Do is visible, styled red) */
+  .solfege-toggle-button[aria-pressed="true"] .glyph-fi {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(180deg) scale(0.5);
+    pointer-events: none;
+  }
+  .solfege-toggle-button[aria-pressed="true"] .glyph-do {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(0deg) scale(1);
+  }
+  .solfege-toggle-button[aria-pressed="true"] {
+    background: #fef2f2;
+    border-color: #fca5a5;
+  }
+
+  /* Screen Reader Only text styling */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  /* Replaced Solfege Text Wrappers */
+  .ppt-solfege-text-replaced {
+    display: inline-flex;
+    align-items: center;
+    line-height: 1;
+    vertical-align: -0.15em;
+    user-select: text;
+    margin: 0 0.15em;
+  }
+
+  .ppt-solfege-text-replaced ppt-uniform-solfege {
+    width: 1.15em;
+    height: 1.15em;
+    flex-shrink: 0;
+    pointer-events: none;
+    user-select: none;
   }
 
   main {
@@ -253,6 +376,10 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '') + '/';
     nav a, nav .nav-placeholder {
       margin-left: 0.5rem;
       margin-right: 0.5rem;
+    }
+
+    .solfege-toggle-button {
+      margin-left: 0.5rem;
     }
   }
 

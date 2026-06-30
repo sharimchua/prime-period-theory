@@ -12,7 +12,7 @@ tags:
   - ear-training
   - notation
   - prime-period-theory
-timestamp: 2026-06-30
+timestamp: 2026-07-01
 ---
 
 # Ear-First Pedagogy
@@ -82,7 +82,7 @@ progressive specification system supports each stage computationally.
 
 ## The solfège dimension
 
-Moveable-do solfège is ear-first notation by design. The syllable Do
+Moveable-do solfège is ear-first notation by design. The syllable `Do`
 names the tonal centre — the note the ear is organising around — not
 a fixed frequency. This makes solfège inherently relative: the same
 syllable describes the same perceptual function in every key.

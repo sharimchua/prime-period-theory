@@ -13,7 +13,7 @@ tags:
   - interval
   - clock-arithmetic
   - prime-period-theory
-timestamp: 2026-06-29
+timestamp: 2026-07-01
 ---
 
 # Uniform Solfège
@@ -85,10 +85,10 @@ The colour palette uses seven distinct hues to visually map the interval categor
 ### Context-specific naming variations
 
 While the primary names above are the default, phonetically different options are used in specific contexts. For example, in **Rhythmic Grammar**:
-- **Di** (a variation of Ra, the flat 2) is used as an accent marker, often functioning as a tritone resolution from the upbeat (So).
-- **Si** replaces **Ti** to avoid the use of fricatives (dental T).
+- The syllable `Di` (a variation of `Ra`, the flat 2) is used as an accent marker, often functioning as a tritone resolution from the upbeat (`So`).
+- The syllable `Si` replaces `Ti` to avoid the use of fricatives (dental T).
 
-The preference for **Le** over Si at position 8 keeps the perfect 5th phoneme ('S' for So) unique within the primary naming set, and aligns visually with the purple colour identity of the sixths.
+The preference for `Le` over `Si` at position 8 keeps the perfect 5th phoneme ('S' for `So`) unique within the primary naming set, and aligns visually with the purple colour identity of the sixths.
 
 ## As a numeral system
 
@@ -176,19 +176,19 @@ Uniform Solfège symbols serve three distinct contextual roles:
 
 Two key principles govern this multi-context use:
 
-- **Dental isolation principle**: In Rhythmic Grammar, **Do** and **Di** are the only dental-consonant syllables. They are chosen deliberately so that accent markers pop out of the syllable stream when vocalised (analogous to konnakol). All other rhythmic syllables use labial, velar, or lateral consonants.
-- **The Li/Te homoglyph**: These share the same Uniform Solfège glyph but use different phonemes in rhythmic vs pitch context (**Li** in rhythmic grammar to avoid the dental T sound; **Te** in pitch solfège). The same glyph, different register.
+- **Dental isolation principle**: In Rhythmic Grammar, the syllables `Do` and `Di` are the only dental-consonant syllables. They are chosen deliberately so that accent markers pop out of the syllable stream when vocalised (analogous to konnakol). All other rhythmic syllables use labial, velar, or lateral consonants.
+- **The Li/Te homoglyph**: These share the same Uniform Solfège glyph but use different phonemes in rhythmic vs pitch context (`Li` in rhythmic grammar to avoid the dental T sound; `Te` in pitch solfège). The same glyph, different register.
 
 ## Relationship to existing solfège traditions
 
 Uniform Solfège is not a replacement for existing traditions but a
 generalisation. It is designed to be recognisable to practitioners of:
 
-- **Western moveable-do** solfège (Do Re Mi Fa So La Ti)
-- **Indian sargam** (Sa Re Ga Ma Pa Dha Ni) — the interval relationships
+- **Western moveable-do** solfège (`Do Re Mi Fa So La Ti`)
+- **Indian sargam** (`Sa Re Ga Ma Pa Dha Ni`) — the interval relationships
   are equivalent; the syllables differ
 - **Fixed-do** traditions — Uniform Solfège can operate in fixed-do mode
-  (Do always = C) or moveable-do mode (Do always = tonic)
+  (where `Do` always = C) or moveable-do mode (where `Do` always = tonic)
 
 The algebraic properties work in either mode; the choice is a matter of
 context and preference.

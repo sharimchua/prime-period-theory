@@ -10,7 +10,7 @@ tags:
   - notation
   - interval
   - prime-period-theory
-timestamp: 2026-06-26
+timestamp: 2026-07-01
 ---
 
 # Tone Atlas
@@ -41,13 +41,13 @@ The Tone Atlas assumes a **moveable-do** reading convention by default.
 
 As you move around the clock, you inevitably encounter positions where the standard 12-tone grid requires a choice between enharmonically equivalent names (e.g., C# vs. Db). The Tone Atlas uses the **primary naming hierarchy** established in Uniform Solfège to resolve these ambiguities cleanly:
 
-- b2: **Ra** (preferred over Di in harmonic contexts)
-- b3: **Me**
-- #4: **Fi** 
-- b6: **Le** 
-- b7: **Te**
+- b2: `Ra` (preferred over `Di` in harmonic contexts)
+- b3: `Me`
+- #4: `Fi` 
+- b6: `Le` 
+- b7: `Te`
 
-The preference for Le over Si at position 8 ensures that the perfect 5th phoneme ('S' for So) remains unique within the primary naming set, providing a clearer phonetic landscape when reading the clock aloud.
+The preference for `Le` over `Si` at position 8 ensures that the perfect 5th phoneme ('S' for `So`) remains unique within the primary naming set, providing a clearer phonetic landscape when reading the clock aloud.
 
 ## The Fractal Clock Property
 
