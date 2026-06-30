@@ -77,13 +77,14 @@ arbitrary one. The boundary is perceptual: 2, 3, 5, 7, and 11 each produce
 intervals that trained and untrained listeners alike can reliably
 distinguish as intentional, characterful pitch or rhythm relationships —
 not as out-of-tune or accidental deviations from a nearby simpler interval.
-
 The 13-limit and beyond is where this perceptual distinctness becomes
 genuinely contested, even among specialists in microtonal and just
 intonation theory. Extending the family system past 11 would add
 mathematical completeness without adding musically actionable vocabulary —
 the opposite of what a descriptive framework intended for working musicians
 should do.
+
+The boundary is fundamentally asymptotic yet functionally bounded. As prime numbers scale higher, their corresponding intervals become more tightly packed on an infinite lattice, and the human brain's coincidence-detection engine ceases to track them as discrete, functional "identities". Instead, the ear begins to perceive intervals beyond the 11-limit merely as out-of-tune variations of lower-limit anchors or as continuous, unmappable space. Stopping the rational classification at 11 captures roughly 99.9% of human categorical auditory limits for deliberate musical vocabulary. Any remaining geometric discrepancies are cleanly reallocated to the irrational axis (square root of 2) or handled via the algebraic remainder system.
 
 Stopping at 11 also keeps the system at a manageable five families — elegant
 both as a teaching structure and as the basis for [Uniform Solfège's

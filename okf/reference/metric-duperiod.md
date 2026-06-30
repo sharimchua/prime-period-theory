@@ -169,18 +169,21 @@ that band:
 ## The rhythmic tritone
 
 The tritone (Fi, position 6) is maximally distant from Do on the circle
-of fifths and produces an irrational ratio (√2:1) whose LCM never cleanly
+of fifths and produces an irrational ratio (square root of 2 over 1) whose LCM never cleanly
 resolves. In pitch space this is heard as maximal harmonic tension. In
 rhythmic space, a pulse or tempo sitting at the Fi position within a
 metric DuPeriod creates **maximum metric instability** — the point of
 greatest displacement from the metric tonic, implying resolution toward
-So (metric dominant) or Do (metric tonic).
-
-A composed passage that introduces a Fi-ratio cross-pulse against the
+So (metric dominant) or Do (metric tonic). A composed passage that introduces a Fi-ratio cross-pulse against the
 established metric Do and then resolves through So to a clean LCM
 coincidence is a **rhythmic tritone resolution**. The ti-hai in Indian
 classical music is a composed instance of this: maximum metric
 displacement engineered to land precisely on the sam.
+
+### Multi-Domain Structural Defense
+When scaled to macro dimensions (rhythm, form, envelopes), the choice of an irrational midpoint (square root of 2) instead of a split rational pitch pair is uniquely defensible:
+1. **Universal Symbology**: It guarantees that a single visual character remains the absolute "Geometric Center of the Period" across all parameters of music, preventing the symbol from splitting into separate over/under characters in non-pitch domains.
+2. **The Boundary of Precision**: While natural acoustics spiral infinitely through prime ratios, human structural architecture demands a closed frame. Using the square root of 2 as the ultimate "comma tamer" at the axis caps the system, providing a clean boundary line where geometry and prime-limit arithmetic shake hands.
 
 ## The cross-scale cadential operator
 

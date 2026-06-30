@@ -71,7 +71,7 @@ from working with the right information. PPT aims to strip away notation
 conventions, tuning compromises, and cultural assumptions to find the
 underlying structure that is both physically grounded and musically
 actionable. That is the level where analysis and creation become genuinely
-powerful.
+powerful. By stabilizing the center of any periodic continuum with a geometric, irrational midpoint (square root of 2) while mapping its internal contents via an 11-limit prime lattice, the framework provides a scale-invariant grammar that unifies the atom (pitch) and the galaxy (macro-form) of musical time.
 
 ---
 

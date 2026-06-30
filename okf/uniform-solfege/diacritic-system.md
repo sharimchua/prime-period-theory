@@ -38,11 +38,21 @@ The system is built on the PPD families: Du (Axis), DuTri, Tri, Qui, Sep, and Un
 
 These two families are structurally and semantically separate and should not be conflated.
 
+### The Tritone Axis and 11-Limit Convergence
+
+The tritone position (Fi, position 6) is structurally unique in the system. While the 11-limit prime family natively yields an over-tritone (11:8) and an under-tritone (16:11), Uniform Solfège intentionally collapses this neighborhood into a single cardinal position mapped to the irrational geometric mean (square root of 2 over 1). 
+
+This hybrid design delivers a "closed" geometric axis of symmetry for multi-domain base-12 algebra while gracefully acting as a structural proxy for the 11-limit tritone family. When strict acoustic realism or specific prime-limit alignments are required, the system utilizes the Undecimal diacritics as rational offsets from this geometric center:
+
+* **FiUnDecSub1** (or a customized Sub-inflection): Pulls the square root of 2 axis downward to approximate the pure acoustic resonance of the over-tritone (11:8).
+* **FiUnDecSup1** (or a customized Sup-inflection): Pushes the square root of 2 axis upward to approximate the pure acoustic resonance of the under-tritone (16:11).
+
 > **Note on "Axis" across contexts:** The term Axis is used in three distinct
 > ways within the PPT framework. (1) As the Du-family glyph: the horizontal
 > crossbar at 50% of the period, the depth-1 Fractal Du position.
 > (2) As the shared upper boundary of every period symbol's range: 50% is
-> a common reference point across all families; DuTri inherits it as its
+> a common reference point across all families;
+> DuTri inherits it as its
 > sixth position. (3) In Rhythmic Grammar: the Axis suffix on Do and Di
 > (written Dox, Dix) marks rhythmic block boundaries. This is a notational
 > convention of Rhythmic Grammar, not a microtonal inflection. The three
