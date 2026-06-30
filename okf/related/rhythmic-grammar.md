@@ -42,9 +42,9 @@ grouping information.
 
 - **Chain** — the top-level repeatable structure. A chain contains exactly one
   primary block followed by zero or more secondary blocks. Chains are cyclical:
-  the end of the last block resolves back to the opening Do of the chain on
+  the end of the last block resolves back to the opening Dox of the chain on
   the next cycle.
-- **Primary block** — opens with Do. There is exactly one primary block per
+- **Primary block** — opens with Dox. There is exactly one primary block per
   chain, and it is always first.
 - **Secondary block** — opens with Dix. A chain may contain any number of
   secondary blocks.
@@ -61,30 +61,30 @@ sense of harmonic gravity — each step feels pulled toward the next, and Do
 feels like resolution. A sequence of N beats is constructed by taking the
 last N steps of that chain:
 
-- Step 1 before Do: **So**
-- Step 2 before Do: **Re**
-- Step 3 before Do: **La**
-- Step 4 before Do: **Mi**
-- Step 5 before Do: **Si** (where `Si` is preferred over `Ti`; see [Token conventions](#token-conventions))
-- Step 6 before Do: **Fi**
-- Step 7 before Do: **Ra**
+- Step 1 before Dox: **So**
+- Step 2 before Dox: **Re**
+- Step 3 before Dox: **La**
+- Step 4 before Dox: **Mi**
+- Step 5 before Dox: **Si** (where `Si` is preferred over `Ti`; see [Token conventions](#token-conventions))
+- Step 6 before Dox: **Fi**
+- Step 7 before Dox: **Ra**
 
 The rule for any N-beat uniform block:
 
-1. **Beat 1** = Do (always; the tonic anchor)
+1. **Beat 1** = Dox (always; the tonic anchor)
 2. **Beat N** = So (always; the cadential penultimate)
 3. **Beats 2 through N-1** = the descending-fifths chain, working inward
-   from So toward Do
+   from So toward Dox
 
 | Beats | Uniform sequence     |
 | ----- | -------------------- |
-| 1     | Do                   |
-| 2     | Do – So              |
-| 3     | Do – Re – So         |
-| 4     | Do – La – Re – So    |
-| 5     | Do – Mi – La – Re – So |
-| 6     | Do – Si – Mi – La – Re – So |
-| 7     | Do – Fi – Si – Mi – La – Re – So |
+| 1     | Dox                   |
+| 2     | Dox – So              |
+| 3     | Dox – Re – So         |
+| 4     | Dox – La – Re – So    |
+| 5     | Dox – Mi – La – Re – So |
+| 6     | Dox – Si – Mi – La – Re – So |
+| 7     | Dox – Fi – Si – Mi – La – Re – So |
 
 Blocks of 7 beats or fewer cover the practical range of most musical
 contexts. Longer chains are better expressed as **chained blocks** (see
@@ -146,87 +146,65 @@ Additional rules:
    to whatever follows it
 4. **Dox alone** is the degenerate 1-beat block — no interior chain, no <span class="solfege">So</span>
 
-## Shorthand expansion
-
-Rhythm strings may be written in shorthand, omitting the <span class="solfege">So</span> that must
-precede a Dix boundary. The parser expands these automatically:
-
-- A Dix not preceded by <span class="solfege">So</span> implies a missing <span class="solfege">So</span> for the preceding block
-- A chain that does not end with <span class="solfege">So</span> implies a missing <span class="solfege">So</span> before the
-  next cycle's Dox
-
-Examples:
-
-| Shorthand   | Expanded form         | Grouping |
-| ----------- | --------------------- | -------- |
-| DoReDiSo    | Do–Re–**So**–Di–So    | 3+2      |
-| DoSoDiRe    | Do–So–Di–Re–**So**    | 2+3      |
-| DoReDi      | Do–Re–So–Di–(**Do**) | 3+1 (backdoor) |
-| DoReDiDi    | Do–Re–So–Di–Di–(**Do**) | 3+1+1  |
-| DoSoDiSo    | Do–So–Di–So           | 2+2      |
-
-The shorthand rule: **write only the meaningful accent points; the grammar
-fills in the obligatory So boundaries.**
-
 ## Chain reference
 
 ### Block Length Families
 
 The Rhythmic Grammar encodes block lengths using Uniform Solfège interval names in two wholetone-scale families:
 
-- **2-multiple family (wholetone scale 1):** DoSo (2), DoLa (4), DoSi (6), DoRa (8), DoMe (10)
-- **Other prime lengths (wholetone scale 2):** DoRe (3), DoMi (5), DoFi (7), DoLe (9), DoLi (11)
+- **2-multiple family (wholetone scale 1):** Dox So (2), Dox La (4), Dox Si (6), Dox Ra (8), Dox Me (10)
+- **Other prime lengths (wholetone scale 2):** Dox Re (3), Dox Mi (5), Dox Fi (7), Dox Le (9), Dox Li (11)
 
 *Note: The 2-multiple family mapping to the wholetone scale is not incidental — it reflects PPT's core thesis that equal temporal division and equal pitch division are expressions of the same prime-2 periodicity.*
 
 ### Shorthand Expansion Rule
 
-Given `DoX` or `DiX`, expand by filling the descending-fifths interior from X to Re, then append So.
+Given `Dox X` or `Dix X`, expand by filling the descending-fifths interior from X to Re, then append So.
 
-The block length shorthand `Do` + [first interior token] is deterministically
+The block length shorthand Dox + [first interior token] is deterministically
 expandable to the full block, because:
 
 1. The interior chain is always the descending-fifths sequence ending at So.
 2. The first interior token determines how many steps before So we begin.
 3. So is always the penultimate token of the block.
 
-Therefore: given `DoX`, the full expansion is `Do [all descending-fifths
+Therefore: given `Do X`, the full expansion is `Do [all descending-fifths
 tokens from X to Re] So`. The beat count equals the number of tokens in
 the expanded block.
 
 Examples:
-- `DoRe` → `Do Re So` (3 beats): Re is one step before So.
-- `DoLa` → `Do La Re So` (4 beats): La is two steps before So.
-- `DoMi` → `Do Mi La Re So` (5 beats): Mi is three steps before So.
-- `DoSi` → `Do Si Mi La Re So` (6 beats).
-- `DoFi` → `Do Fi Si Mi La Re So` (7 beats).
+- Dox Re → Dox Re So (3 beats): Re is one step before So.
+- Dox La → Dox La Re So (4 beats): La is two steps before So.
+- Dox Mi → Dox Mi La Re So (5 beats): Mi is three steps before So.
+- Dox Si → Dox Si Mi La Re So (6 beats).
+- Dox Fi → Dox Fi Si Mi La Re So (7 beats).
 
-The same rule applies to Di-opened secondary blocks: `DiRe` → `Di Re So`
+The same rule applies to Dix opened secondary blocks: Dix Re → Dix Re So
 (3-beat secondary block).
 
 ### Uniform blocks
 
 | String        | Grouping | Notes                        |
 | ------------- | -------- | ---------------------------- |
-| Do            | 1        | Atomic; pure downbeat        |
-| DoSo          | 2        | Primary 2-beat               |
-| DiSo          | 2        | Secondary 2-beat             |
-| DoReSo        | 3        | Uniform triple               |
-| DoLaReSo      | 4        | Uniform quadruple            |
-| DoMiLaReSo    | 5        | Uniform quintuple            |
-| DoSiMiLaReSo  | 6        | Uniform sextuple             |
-| DoFiSiMiLaReSo | 7       | Uniform septuple             |
+| Dox            | 1        | Atomic; pure downbeat        |
+| Dox So          | 2        | Primary 2-beat               |
+| Dix So          | 2        | Secondary 2-beat             |
+| Dox Re So        | 3        | Uniform triple               |
+| Dox La Re So      | 4        | Uniform quadruple            |
+| Dox Mi La Re So    | 5        | Uniform quintuple            |
+| Dox Si Mi La Re So  | 6        | Uniform sextuple             |
+| Dox FiSiMiLaReSo | 7       | Uniform septuple             |
 
 ### Asymmetric blocks (common blocks)
 
 | String      | Expanded             | Grouping | Musical context              |
 | ----------- | -------------------- | -------- | ---------------------------- |
-| DoReDiSo    | Do–Re–So–Di–So       | 3+2      | Soft swing, 5/8 Balkan feel  |
-| DoSoDiRe    | Do–So–Di–Re–So       | 2+3      | 5/8 reverse                  |
-| DoSoDiSo    | Do–So–Di–So          | 2+2      | Symmetric double accent      |
-| DoReSoDi    | Do–Re–So–Di–(Do)     | 3+1      | Enclosure; backdoor cadence  |
-| DoReSoDiDi  | Do–Re–So–Di–Di–(Do)  | 3+1+1    | Double enclosure             |
-| DoLaReSoDi  | Do–La–Re–So–Di–(Do)  | 4+1      | Quadruple with tail          |
+| Dox Re Dix So    | Dox Re So Dix So       | 3+2      | Soft swing, 5/8 Balkan feel  |
+| Dox So Dix Re    | Dox So Dix Re So       | 2+3      | 5/8 reverse                  |
+| Dox So Dix So    | Dox So Dix So          | 2+2      | Symmetric double accent      |
+| Dox Re So Dix    | Dox Re So Dix → Dox     | 3+1      | Enclosure; backdoor cadence  |
+| Dox Re So Dix Dix  | Dox Re So Dix Dix → Dox  | 3+1+1    | Double enclosure             |
+| Dox La Re So Dix  | Dox La Re So Dix → Dox  | 4+1      | Quadruple with tail          |
 
 ## Chaining
 
@@ -236,11 +214,9 @@ long sequences. Each block retains its own opener (Do or Di) and So closer.
 
 A **4+3+4 compound chain** chains three blocks. Crucially, only one primary accent (Dox) should exist for a chain, located at the start. Subsequent blocks in the chain use the secondary accent (Dix) as their opener:
 
-```
-DoLaReSo – DiReSo – DiLaReSo
-```
+**Dox La Re So + Dix Re So + Dix La Re So**
 
-Written as a continuous string, this is: `DoLaReSoDiReSoDiLaReSo`.
+Written as a single compacted phrase, this is: **Dox La Dix Re Dix La**.
 
 This is both more legible and more musically meaningful than an 11-beat
 uniform string — each block is a named cadential gesture that the body can
@@ -256,9 +232,7 @@ while applying volume accents at each stream's downbeats.
 
 For a **3:2 polyrhythm** (LCM = 6 beats):
 
-```
-DoRe / SoDo / ReSo
-```
+*Dox Re / <span class="solfege">So</span> Dox / Re So*
 
 This chunks the 6-beat grid into three 2-beat units (marking the 3-stream)
 while volume accents on the opening of each chunk mark the 2-stream's
@@ -313,17 +287,17 @@ conventions chosen for phonetic clarity:
   appearing at step 7 is accepted as a compromise to preserve phonetic
   separation from `Do`/`Di`
 
-### The Li/Te Homoglyph
+### The `Li`/`Te` Homoglyph
 
-`Li` and `Te` share the same Uniform Solfège glyph. In pitch solfège context, `Te` is used (the minor 7th). In Rhythmic Grammar context, `Li` is used to avoid introducing a dental consonant into the non-accent syllable stream. The notation is identical; the phonetic realisation is context-dependent.
+`Li` and `Te` share the same Uniform Solfège glyph (Te). In pitch solfège context, `Te` is used (the minor 7th). In Rhythmic Grammar context, `Li` is used to avoid introducing a dental consonant into the non-accent syllable stream. The notation is identical; the phonetic realisation is context-dependent.
 
 The phonetic hierarchy:
 
 | Class | Tokens | Consonant type | Grammatical role |
 | ----- | ------ | -------------- | ---------------- |
-| Accent | `Do`, `Di` | Dental stop (D) | Block openers |
-| Penultimate | <span class="solfege">So</span> | Fricative (S) | Block closer / decision point |
-| Interior | Re, La, Mi, Si, Fi, Ra | Liquids and nasals | Chain fill |
+| Accent | <span class="solfege-append">Do, Di</span> | Dental stop (D) | Block openers |
+| Penultimate | <span class="solfege-append">So</span> | Fricative (S) | Block closer / decision point |
+| Interior | <span class="solfege-append">Re, La, Mi, Si, Fi, Ra</span> | Liquids and nasals | Chain fill |
 
 ## Relationship to Uniform Solfège
 
