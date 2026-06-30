@@ -6,7 +6,7 @@
 const BASE_SYLLABLES = 'Do|Di|Ra|Re|Ri|Me|Mi|Fa|Fi|So|Le|La|Te|Se|Ti|Si';
 
 // Diacritic suffixes
-const DIACRITICS = 'Sub|HalfSub|HalfSup|Sup|Axis';
+const DIACRITICS = 'Sub|HalfSub|HalfSup|Sup|Axis|x';
 
 // Strictly match capitalized syllables, optional diacritics, and optional superscripts (e.g. Do^Mi, ReSub^FaSup)
 const solfegeRegex = new RegExp(
@@ -85,6 +85,19 @@ export function decorateSolfege(container: HTMLElement) {
     solfegeRegex.lastIndex = 0;
     if (!solfegeRegex.test(text)) continue;
 
+    const parentEl = node.parentElement;
+    if (!parentEl) continue;
+    const isExplicit = !!(
+      parentEl.closest('.solfege') ||
+      parentEl.closest('.solfege-append') ||
+      parentEl.closest('[data-solfege]') ||
+      parentEl.closest('[data-solfege-append]')
+    );
+    const isAppendMode = !!(
+      parentEl.closest('.solfege-append') ||
+      parentEl.closest('[data-solfege-append]')
+    );
+
     solfegeRegex.lastIndex = 0;
     const fragment = document.createDocumentFragment();
     let lastIndex = 0;
@@ -95,7 +108,7 @@ export function decorateSolfege(container: HTMLElement) {
       const matchText = match[0];
       const matchIndex = match.index;
 
-      if (isFalsePositive(matchText, text, matchIndex)) {
+      if (!isExplicit && isFalsePositive(matchText, text, matchIndex)) {
         continue;
       }
 
@@ -105,9 +118,6 @@ export function decorateSolfege(container: HTMLElement) {
       if (matchIndex > lastIndex) {
         fragment.appendChild(document.createTextNode(text.substring(lastIndex, matchIndex)));
       }
-
-      const parentEl = node.parentElement;
-      const isAppendMode = !!(parentEl && (parentEl.closest('.solfege-append') || parentEl.closest('[data-solfege-append]')));
 
       // Create accessible wrapper
       const wrapper = document.createElement('span');

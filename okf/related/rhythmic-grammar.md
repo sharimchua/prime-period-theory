@@ -46,10 +46,10 @@ grouping information.
   the next cycle.
 - **Primary block** — opens with Do. There is exactly one primary block per
   chain, and it is always first.
-- **Secondary block** — opens with Di. A chain may contain any number of
-  secondary blocks following the primary block.
-- **Block** — the atomic unit shared by both types: opener (Do or Di) +
-  interior chain tokens in descending-fifths order + So closer (explicit or
+- **Secondary block** — opens with Dix. A chain may contain any number of
+  secondary blocks.
+- **Block** — the atomic unit shared by both types: opener (Dox or Dix) +
+  interior chain tokens in descending-fifths order + <span class="solfege">So</span> closer (explicit or
   implied by shorthand expansion).
 
 ## The generative principle
@@ -90,39 +90,39 @@ Blocks of 7 beats or fewer cover the practical range of most musical
 contexts. Longer chains are better expressed as **chained blocks** (see
 [Chaining](#chaining)).
 
-## The accent mechanism: Di as tritone displacement
+## The accent mechanism: Dix as tritone displacement
 
 Secondary accents — strong beats that are not the global downbeat — are
-encoded by **tritone displacement**. The tritone of Do is Di (#1), which
-is maximally distant from Do on the circle of fifths and maximally
-harmonically distant as an interval.
+encoded by **tritone displacement**. The tritone of **Dox** is **Dix** (#1)
+(spoken `Do` and `Di` respectively). Dix is maximally distant from Dox
+on the circle of fifths and maximally harmonically distant as an interval.
 
-Di displaces Do as the tonic anchor of a secondary block. A secondary block
-follows the same generative rules as a primary block, but opens on Di rather
-than Do.
+Dix displaces Dox as the tonic anchor of a secondary block. A secondary block
+follows the same generative rules as a primary block, but opens on Dix rather
+than Dox.
 
 The key structural rule:
 
-> **So is always followed by Do or Di.**
+> **<span class="solfege">So</span> is always followed by Dox or Dix.**
 
-- **So → Do** = cadential resolution; cycle or block boundary
-- **So → Di** = cadential diversion; secondary accent block begins
+- **<span class="solfege">So</span> → Dox** = cadential resolution; cycle or block boundary
+- **<span class="solfege">So</span> → Dix** = cadential diversion; secondary accent block begins
 
-So is the **decision point** in the grammar. Every So carries forward
+<span class="solfege">So</span> is the **decision point** in the grammar. Every <span class="solfege">So</span> carries forward
 tension that resolves in one of exactly two ways.
 
 ## Token roles
 
 | Token | Role | Followed by |
 | ----- | ---- | ----------- |
-| Do    | Primary tonic anchor (Sam / "1"); block opener | Interior chain tokens or So |
-| Di    | Secondary tonic anchor (tritone sub); accent opener | Interior chain tokens or So or Do or Di |
-| So    | Cadential penultimate; block closer | Do or Di only |
-| Re, La, Mi, Si, Fi, Ra, ... | Interior chain tokens | Next step in chain toward So |
+| Dox   | Primary tonic anchor (Sam / "1"); block opener | Interior chain tokens or <span class="solfege">So</span> |
+| Dix   | Secondary tonic anchor (tritone sub); accent opener | Interior chain tokens or <span class="solfege">So</span> or Dox or Dix |
+| <span class="solfege">So</span> | Cadential penultimate; block closer | Dox or Dix only |
+| Re, La, Mi, Si, Fi, Ra, ... | Interior chain tokens | Next step in chain toward <span class="solfege">So</span> |
 
 ### Dental Isolation Principle
 
-Accent syllables (**Do**, **Di**) use dental consonants. All other Rhythmic Grammar syllables use labial, velar, or lateral consonants. This is a deliberate phonetic design: when vocalising rhythm (analogous to konnakol), the accent markers are perceptually salient against the background of non-dental syllables. A performer or teacher can dictate a rhythm verbally and the accent structure is immediately audible.
+Accent syllables (spoken `Do`, `Di`) use dental consonants. All other Rhythmic Grammar syllables use labial, velar, or lateral consonants. This is a deliberate phonetic design: when vocalising rhythm (analogous to konnakol), the accent markers are perceptually salient against the background of non-dental syllables. A performer or teacher can dictate a rhythm verbally and the accent structure is immediately audible.
 
 ## Production rules
 
@@ -138,22 +138,22 @@ token       ::= "Re" | "La" | "Mi" | "Si" | "Fi" | "Ra" | "Le" | "Me"
 
 Additional rules:
 
-1. **So must be followed by Do or Di** (or end of chain, resolving to the
-   next cycle's Do)
-2. **Di may resolve directly to Do** (backdoor resolution, without a
-   following So) — this is a special case for single-beat secondary accents
-3. **Consecutive Di** tokens are grammatical: each Di is a backdoor resolving
+1. **<span class="solfege">So</span> must be followed by Dox or Dix** (or end of chain, resolving to the
+   next cycle's Dox)
+2. **Dix may resolve directly to Dox** (backdoor resolution, without a
+   following <span class="solfege">So</span>) — this is a special case for single-beat secondary accents
+3. **Consecutive Dix** tokens are grammatical: each Dix is a backdoor resolving
    to whatever follows it
-4. **Do alone** is the degenerate 1-beat block — no interior chain, no So
+4. **Dox alone** is the degenerate 1-beat block — no interior chain, no <span class="solfege">So</span>
 
 ## Shorthand expansion
 
-Rhythm strings may be written in shorthand, omitting the So that must
-precede a Di boundary. The parser expands these automatically:
+Rhythm strings may be written in shorthand, omitting the <span class="solfege">So</span> that must
+precede a Dix boundary. The parser expands these automatically:
 
-- A Di not preceded by So implies a missing So for the preceding block
-- A chain that does not end with So implies a missing So before the
-  next cycle's Do
+- A Dix not preceded by <span class="solfege">So</span> implies a missing <span class="solfege">So</span> for the preceding block
+- A chain that does not end with <span class="solfege">So</span> implies a missing <span class="solfege">So</span> before the
+  next cycle's Dox
 
 Examples:
 
@@ -234,7 +234,7 @@ Chains longer than 7 beats, or compound chains with multiple distinct
 accent regions, are expressed as **chains of blocks** rather than single
 long sequences. Each block retains its own opener (Do or Di) and So closer.
 
-A **4+3+4 compound chain** chains three blocks. Crucially, only one primary accent (Do) should exist for a chain, located at the start. Subsequent blocks in the chain use the secondary accent (Di) as their opener:
+A **4+3+4 compound chain** chains three blocks. Crucially, only one primary accent (Dox) should exist for a chain, located at the start. Subsequent blocks in the chain use the secondary accent (Dix) as their opener:
 
 ```
 DoLaReSo – DiReSo – DiLaReSo
@@ -246,7 +246,7 @@ This is both more legible and more musically meaningful than an 11-beat
 uniform string — each block is a named cadential gesture that the body can
 feel independently.
 
-The **Do reservation rule** ensures that Do only appears at the start of a chain. Hearing Do mid-sequence always signals the opening of a completely new chain or cycle, making continuous chains self-parsing even without visual delimiters.
+The **Dox reservation rule** ensures that Dox only appears at the start of a chain. Hearing Dox mid-sequence always signals the opening of a completely new chain or cycle, making continuous chains self-parsing even without visual delimiters.
 
 ## Polyrhythm encoding
 
@@ -270,16 +270,16 @@ multiple simultaneous layers.
 
 ### Polyrhythm in Three-Layer Coil Notation
 
-When multiple rhythm lines are stacked in Three-Layer Coil Notation, all Axis-marked Do/Di symbols across all lines serve as structural comparison points. The visual horizontal alignment of these markers across lines makes the phase relationship between rhythmic cycles directly readable — a 3-against-2 polyrhythm, for example, shows its Do markers offset by one column, making the hemiola structure visible without calculation.
+When multiple rhythm lines are stacked in Three-Layer Coil Notation, all Axis-marked Dox/Dix symbols across all lines serve as structural comparison points. The visual horizontal alignment of these markers across lines makes the phase relationship between rhythmic cycles directly readable — a 3-against-2 polyrhythm, for example, shows its Dox markers offset by one column, making the hemiola structure visible without calculation.
 
 ## Written notation: the Axis diacritic
 
-In written Rhythmic Grammar, the structural anchor tokens Do and Di are
+In written Rhythmic Grammar, the structural anchor tokens Dox and Dix are
 marked with the Axis diacritic (`x`) to visually distinguish them from
 interior chain tokens:
 
-- **Dox** — primary tonic anchor (written); "Do" (spoken)
-- **Dix** — secondary tonic anchor / tritone accent (written); "Di" (spoken)
+- **Dox** — primary tonic anchor (written); `Do` (spoken)
+- **Dix** — secondary tonic anchor / tritone accent (written); `Di` (spoken)
 
 The Axis diacritic is already defined in the [Diacritic System](../uniform-solfege/diacritic-system.md)
 as a structural marker (the crossing point, equidistant between territories).
@@ -322,7 +322,7 @@ The phonetic hierarchy:
 | Class | Tokens | Consonant type | Grammatical role |
 | ----- | ------ | -------------- | ---------------- |
 | Accent | `Do`, `Di` | Dental stop (D) | Block openers |
-| Penultimate | `So` | Fricative (S) | Block closer / decision point |
+| Penultimate | <span class="solfege">So</span> | Fricative (S) | Block closer / decision point |
 | Interior | Re, La, Mi, Si, Fi, Ra | Liquids and nasals | Chain fill |
 
 ## Relationship to Uniform Solfège
@@ -335,25 +335,21 @@ descriptions.
 
 The same string can theoretically be read as a pitch sequence or a rhythmic
 grammar string. In practice these contexts are distinct enough that ambiguity
-does not arise. A string following the So→Do/Di grammar reads as rhythm; a
+does not arise. A string following the <span class="solfege">So</span>→Dox/Dix grammar reads as rhythm; a
 pitch sequence without that grammar reads as harmony or melody.
 
 The **Axis diacritic** is the sole point of contact between the two systems:
-`x` used in rhythmic notation on Do and Di marks structural boundaries (its
+`x` used in rhythmic notation on `Do` and `Di` marks structural boundaries (its
 semantic role in the diacritic system) rather than a +3-step microtonal
 inflection (its pitch-space role). The two uses are contextually distinct.
 
 ## Applications
 
 **Metronome / practice tool**: A metronome implementing Rhythmic Grammar
-accepts a chain string (e.g. `DoReDiSo`), maps each token to a pitch
-on the CoF cadential chain, and fires that pitch at the specified BPM. The
-resulting pitch sequence makes grouping structure immediately audible. The
-tool supports listening mode (pitched clicks) and voicing mode (the player
-speaks the string along with the metronome).
+accepts a chain string (e.g. `DoReDiSo`), maps each token on the CoF cadential chain, and fires that pitch at the specified BPM. The resulting pitch sequence makes grouping structure immediately audible. The tool supports listening mode (pitched clicks) and voicing mode (the player speaks the string along with the metronome).
 
 **Pedagogy**: Chain strings serve as compact lesson briefs. "This week
-we are working on DoReDiSo" is a complete, unambiguous instruction that a
+we are working on `DoReDiSo`" is a complete, unambiguous instruction that a
 student can look up, hear, practice, and internalise independently.
 
 **Notation annotation**: Rhythm strings can annotate scores or lead sheets

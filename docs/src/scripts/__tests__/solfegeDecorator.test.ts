@@ -59,6 +59,35 @@ describe('solfegeDecorator', () => {
     expect(replaced[0].getAttribute('data-original-text')).toBe('Re');
   });
 
+  it('should decorate Axis shorthand diacritics Dox and Dix', () => {
+    container.innerHTML = '<p>The block starts at Dox and secondary at Dix.</p>';
+    decorateSolfege(container);
+
+    const replaced = container.querySelectorAll('.ppt-solfege-text-replaced');
+    expect(replaced).toHaveLength(2);
+    expect(replaced[0].getAttribute('data-original-text')).toBe('Dox');
+    expect(replaced[1].getAttribute('data-original-text')).toBe('Dix');
+  });
+
+  it('should bypass false positive checks when explicitly wrapped in .solfege or .solfege-append', () => {
+    container.innerHTML = '<p>Normally <span class="solfege">So</span> is skipped. In table <span class="solfege-append">Do</span> is shown.</p>';
+    decorateSolfege(container);
+
+    const replaced = container.querySelectorAll('.ppt-solfege-text-replaced');
+    expect(replaced).toHaveLength(2);
+    
+    // First: "So" inside .solfege should be replaced (bypassing heuristics) and use standard mode (hidden text)
+    expect(replaced[0].getAttribute('data-original-text')).toBe('So');
+    expect(replaced[0].querySelector('.sr-only')?.textContent).toBe('So');
+    expect(replaced[0].getAttribute('data-append-mode')).toBeNull();
+
+    // Second: "Do" inside .solfege-append should be replaced and use append mode (visible text, no .sr-only)
+    expect(replaced[1].getAttribute('data-original-text')).toBe('Do');
+    expect(replaced[1].querySelector('.sr-only')).toBeNull();
+    expect(replaced[1].getAttribute('data-append-mode')).toBe('true');
+    expect(replaced[1].childNodes[0].nodeValue).toBe('Do'); // Text node itself is visible first child
+  });
+
   it('should undecorate back to the exact original text', () => {
     const originalHTML = '<p>This is Do and ReSub on the grid.</p>';
     container.innerHTML = originalHTML;
