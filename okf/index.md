@@ -165,6 +165,7 @@ amplitude or effect envelopes.
 - [Periodicity Limen Reference Tuning](tuning/periodicity-limen-reference-tuning.md) — absolute pitch anchors derived from the Periodicity Limen
 - [Just Intonation](tuning/just-intonation.md) — prime ratios as pure intervals
 - [Pentatonic and Heptatonic Structures](tuning/pentatonic-heptatonic.md) — the geometric generation of the 5 and 7-note scales
+- [Tetrachord-Pair Generation of Heptatonic Scales](tuning/tetrachord-pairs.md) — heptatonic scales from paired tetrachord fragments and a join interval; the melakarta correspondence
 - [12-Tone Equal Temperament (12TET)](tuning/12-tet.md) — the historical compromise and base coordinate grid
 - [31 EDO](tuning/31-edo.md) — the primary microtonal system; 5-limit excellence
 - [72 EDO Grid](tuning/72-edo-grid.md) — the reference grid for diacritic placement

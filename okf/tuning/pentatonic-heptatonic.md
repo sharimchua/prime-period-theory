@@ -43,3 +43,14 @@ In PPT, Pentatonic and Heptatonic scales are not treated merely as "modes" or "k
 They represent different resolutions of the same underlying periodic structure. When analysing a melody, PPT views the shift from a pentatonic vocabulary to a heptatonic one as an increase in geometric complexity and harmonic tension. The pentatonic scale provides an open, stable 3-prime scaffold, while the heptatonic scale introduces the structural friction required to drive a phrase forward. 
 
 Because these scales are generated purely by the 3-limit, they exist independently of any specific temperament. They can be tuned in Just Intonation, 12TET, or 31 EDO, but their underlying geometric shape—a contiguous chain of fifths—remains identical.
+
+## See also
+
+- [Tetrachord-Pair Generation of Heptatonic Scales](tetrachord-pairs.md) — a
+  complementary generative method building heptatonic scales from two
+  three-interval fragments and a join interval, reaching scales (harmonic
+  minor, melodic minor, double harmonic) that fifth-stacking alone does not
+- [Just Intonation](just-intonation.md) — the ratio-based tuning context for
+  realising these scales
+- [Uniform Solfège — Overview](../uniform-solfege/index.md) — the interval
+  syllable system used to name tetrachord and join intervals
