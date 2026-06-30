@@ -31,6 +31,17 @@ describe('composerIntegration', () => {
       const target = getSerializeTarget(child, 'demo-step-circle');
       expect(target).toBe(parent);
     });
+
+    it('should handle special showcase cases like demo-clock', () => {
+      const parent = document.createElement('div');
+      const child = document.createElement('div');
+      child.id = 'demo-clock';
+      parent.appendChild(child);
+      document.body.appendChild(parent);
+
+      const target = getSerializeTarget(child, 'demo-clock');
+      expect(target).toBe(child);
+    });
   });
 
   describe('wrapInContainerIfNeeded', () => {

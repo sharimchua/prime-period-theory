@@ -59,6 +59,20 @@ describe('MidiOrchestrator', () => {
       mockMidiAccess.onstatechange(stateChangeEvent as any);
       expect(stateChangeEvent.port.onmidimessage).toBeTypeOf('function');
 
+      // Simulate state change (device connect but not input)
+      const stateChangeEventOutput = {
+        port: { type: 'output', state: 'connected', onmidimessage: null }
+      };
+      mockMidiAccess.onstatechange(stateChangeEventOutput as any);
+      expect(stateChangeEventOutput.port.onmidimessage).toBeNull();
+
+      // Simulate state change (device disconnect)
+      const stateChangeEventDisconnect = {
+        port: { type: 'input', state: 'disconnected', onmidimessage: null }
+      };
+      mockMidiAccess.onstatechange(stateChangeEventDisconnect as any);
+      expect(stateChangeEventDisconnect.port.onmidimessage).toBeNull();
+
       // Clean up
       // @ts-ignore
       delete global.navigator.requestMIDIAccess;
@@ -147,6 +161,18 @@ describe('MidiOrchestrator', () => {
       const noteOffData = new Uint8Array([0x90, 60, 0]);
       mockInput.onmidimessage({ data: noteOffData } as MIDIMessageEvent);
 
+      expect(callback).toHaveBeenCalledWith({ note: 60, velocity: 0, type: 'noteoff' });
+    });
+
+    it('should handle midi messages with length <= 2', () => {
+      const callback = vi.fn();
+      instance.subscribe(callback);
+
+      // Command 9 (Note On), Channel 0, Note 60, missing velocity
+      const shortData = new Uint8Array([0x90, 60]);
+      mockInput.onmidimessage({ data: shortData } as MIDIMessageEvent);
+
+      // It should default velocity to 0, which triggers noteoff
       expect(callback).toHaveBeenCalledWith({ note: 60, velocity: 0, type: 'noteoff' });
     });
 
