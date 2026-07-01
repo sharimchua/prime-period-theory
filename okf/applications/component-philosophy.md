@@ -13,7 +13,7 @@ tags:
   - design-philosophy
   - periodicity
   - prime-period-theory
-timestamp: 2026-07-01
+timestamp: 2026-06-30
 ---
 
 # Component Philosophy — One Primitive, Two Domains

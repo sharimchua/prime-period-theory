@@ -9,7 +9,7 @@ tags:
   - pedagogy
   - learning-paths
   - prime-period-theory
-timestamp: 2026-07-01
+timestamp: 2026-06-30
 ---
 
 # Pedagogy — Learning PPT
