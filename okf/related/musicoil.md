@@ -76,7 +76,7 @@ practice achieves through convention: harmonic rhythm and phrase rhythm
 coexist on the same timeline as independent streams. In MusiCoil the
 independence is architectural. See [Three-Layer Coil Notation](coil-notation.md)
 for the paper-writable surface syntax of the same separation, and
-[Form as Macro-Periodicity](../domains/form.md) for how this independence
+Form as Macro-Periodicity for how this independence
 propagates to the level of musical form.
 
 ### Seams
@@ -121,7 +121,7 @@ for diatonic path step types.
 **Active Palette** — the subset of Tonal Points active in the current
 harmonic moment (the chord). Generates the **tonal polygon** through
 chord spans connecting adjacent Active Palette points. See
-[Spatial Harmony](spatial-harmony.md) for the full account of chord
+Spatial Harmony for the full account of chord
 quality as polygon geometry and the prime-family basis for span thickness.
 
 The three palettes form a visual weight hierarchy: Active Palette at
@@ -250,7 +250,7 @@ MusiCoil distinguishes between authored content (placed by a composer)
 and emergent objects (computed from authored content, never placed,
 always read-only). The emergent layer is a continuous analytical portrait
 of the arrangement at every zoom level. See
-[Emergent Analysis](../reference/emergent-analysis.md) for the full
+Emergent Analysis for the full
 theoretical account of this distinction.
 
 **Mark heads** — at every NoteOn, a clockwise arc encoding duration as
@@ -268,7 +268,7 @@ authored.
 **Chord spans and the tonal polygon** — spans between adjacent Active
 Palette points on the Tonal Course, forming the polygon whose shape
 encodes chord quality. Span thickness encodes interval dissonance
-relative to active prime-family ratios. See [Spatial Harmony](spatial-harmony.md).
+relative to active prime-family ratios. See Spatial Harmony.
 
 **Scale spans** — spans between adjacent Scale Palette points, encoding
 scale step widths. Render at reduced visual weight relative to chord
@@ -369,7 +369,7 @@ through-composed) is readable from the arrangement graph without hearing
 the arrangement — incoming edge count per normalised node encodes formal
 weight; the arrangement sequence of node references gives the formal
 label; shared versus local Tonal Course nodes encode harmonic variation
-within formal repetition. See [Form as Macro-Periodicity](../domains/form.md)
+within formal repetition. See Form as Macro-Periodicity
 for the full account.
 
 The **definition view** shows unique coil definitions and their reference
@@ -459,11 +459,11 @@ arrangement data for scan-to-open.
   compaction layer; surface syntax for the same structural model
 - [Melodic Grammar](melodic-grammar.md) — the melodic layer convention,
   inheriting MusiCoil node/path concepts
-- [Spatial Harmony](spatial-harmony.md) — chord quality as geometry;
+- Spatial Harmony — chord quality as geometry;
   tonal polygon and palette span theory
-- [Emergent Analysis](../reference/emergent-analysis.md) — the authored
+- Emergent Analysis — the authored
   vs. computed distinction; the read-only analytical layer
-- [Form as Macro-Periodicity](../domains/form.md) — arrangement graph
+- Form as Macro-Periodicity — arrangement graph
   topology as formal analysis
 - [Metric DuPeriod](../reference/metric-duperiod.md) — the coordinate
   system that the reference period system operationalises
