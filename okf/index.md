@@ -130,6 +130,7 @@ amplitude or effect envelopes.
   gradient across the timescale; Temporal-Place Limen; Metric Induction Limen;
   cross-domain tolerance budget; cultural transmission asymmetry
 - [Temporal-Place Limen](perception/temporal-place-limen.md) — the anchor definition and the boundary between pitch and rhythm
+- [Coarse-Graining and Grid Reduction](perception/coarse-graining-and-grid-reduction.md) — snapping coordinates from a finer lattice onto a coarser one, enharmonic collapse, and reduction origins
 
 ### Reference
 - [Metric DuPeriod](reference/metric-duperiod.md) — the coordinate system for logarithmic period mapping

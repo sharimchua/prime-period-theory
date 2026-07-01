@@ -15,6 +15,7 @@ psychoacoustics, cognitive science, and cultural transmission theory.
 | `information-and-expectation.md` | Complete | Pattern recognition, prediction, and the mechanics of musical delight |
 | `auditory-horizon.md` | Complete | Agency gradient across the timescale; Temporal-Place Limen; Metric Induction Limen; cross-domain tolerance budget |
 | `temporal-place-limen.md` | Complete | The 20Hz anchor definition and the boundary between pitch and rhythm |
+| `coarse-graining-and-grid-reduction.md` | Draft | Snapping coordinates from a finer lattice onto a coarser one |
 
 ## Tone guidance
 

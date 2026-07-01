@@ -62,6 +62,7 @@ export function decorateSolfege(container: HTMLElement) {
           tagName === 'button' ||
           parent.closest('pre') ||
           parent.closest('code') ||
+          parent.closest('.ppt-not-solfege') ||
           parent.closest('.ppt-solfege-text-replaced') ||
           parent.closest('ppt-uniform-solfege') ||
           parent.closest('ppt-solfege-phrase') ||
