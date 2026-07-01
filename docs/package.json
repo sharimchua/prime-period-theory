@@ -9,7 +9,7 @@
     "bundle-okf": "node scripts/build-okf-bundle.js",
     "copy-svgs": "node scripts/copy-solfege-svgs.js",
     "dev": "npm run bundle-okf && npm run copy-svgs && astro dev --force",
-    "build": "npm run bundle-okf && npm run copy-svgs && astro build && node postbuild.js",
+    "build": "npm run bundle-okf && npm run copy-svgs && astro build --force && node postbuild.js",
     "preview": "astro preview",
     "astro": "astro",
     "test": "vitest run",

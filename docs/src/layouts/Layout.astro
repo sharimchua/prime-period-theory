@@ -341,24 +341,47 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '') + '/';
     color: inherit;
   }
 
-  /* Table Styles */
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 2rem 0;
-    font-size: 0.95rem;
-    background: white;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    border-radius: 8px;
-    display: block;
+  /* -------------------------------------------------------------------------
+   * Table system
+   *
+   * Architecture: the rehypeTableEnhance plugin wraps every <table> in a
+   * .table-wrapper div and adds modifier classes:
+   *
+   *   table--compact            2-col tables (lookup pairs, Q&A)
+   *   table--data               3–4 col, short cell values (default)
+   *   table--narrative          3–4 col, long prose in cells
+   *   table--wide               5+ col, short cells (scroll + sticky first col)
+   *   table--wide.table--narrative  5+ col, long prose cells (card-stack at ≤960px)
+   *
+   * It also injects data-label="[header]" on every <td> so the card-stack
+   * mobile transform can display column headings without JavaScript.
+   * ------------------------------------------------------------------------- */
+
+  /* Scroll container — replaces the old display:block on <table> */
+  .table-wrapper {
     overflow-x: auto;
-    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    margin: 2rem 0;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+
+  /* Core table reset — no display:block, no white-space, no overflow here */
+  table {
+    width: max-content;       /* shrink to fit content, don't stretch gratuitously */
+    min-width: 100%;          /* but always fill the wrapper at minimum */
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    background: white;
+    border-radius: 8px;       /* visible when wrapper clips it */
   }
 
   th, td {
     border: 1px solid var(--border-color);
-    padding: 1rem;
+    padding: 0.75rem 1rem;
     text-align: left;
+    font-variant-numeric: tabular-nums;
+    vertical-align: top;
   }
 
   th {
@@ -366,14 +389,310 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '') + '/';
     color: white;
     font-weight: 600;
     border-color: var(--brand-accent);
+    white-space: nowrap;      /* keep header labels on one line */
   }
 
-  tr:nth-child(even) {
+  /* First column label emphasis across all table types */
+  td:first-child {
+    font-weight: 600;
+  }
+
+  /* Explicit per-cell backgrounds (required for sticky column correctness) */
+  tr:nth-child(odd) td {
+    background-color: white;
+  }
+
+  tr:nth-child(even) td {
     background-color: #f5f5f4;
   }
 
-  tr:hover {
+  tr:hover td {
     background-color: #fef0eb;
+  }
+
+  /* --- Compact tables (2-col) ---
+   * Don't force full container width — let the table breathe at natural size */
+  .table--compact table {
+    min-width: unset;
+    width: max-content;
+  }
+
+  /* --- Narrative tables (3-4 col, prose cells) ---
+   * Allow cells to wrap; do not scroll horizontally */
+  .table--narrative table {
+    width: 100%;
+  }
+
+  .table--narrative td {
+    white-space: normal;      /* let prose wrap */
+    min-width: 8rem;
+  }
+
+  /* --- Wide tables (5+ cols) ---
+   * width:100% fills the container; max-width:100% is a hard overflow guard
+   * in case any browser quirk lets the table exceed it. min-width:0 overrides
+   * the base min-width:100% so the table can shrink in card-stack mode. */
+  .table--wide table {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  /* Sticky first column for pure data wide tables only (short-cell content).
+   *
+   * IMPORTANT: sticky requires explicit opaque backgrounds — the tr:nth-child
+   * rules above set explicit per-cell backgrounds, so sticky cells already
+   * have an opaque colour without needing further overrides. */
+  .table--wide:not(.table--narrative) td:first-child,
+  .table--wide:not(.table--narrative) th:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    box-shadow: 2px 0 6px rgba(0,0,0,0.08);
+  }
+
+  .table--wide:not(.table--narrative) th:first-child {
+    background-color: var(--brand-primary);
+  }
+
+  /* --- Wide + Narrative (5+ cols, long prose cells) ---
+   *
+   * width:max-content + max-width:100% lets each column size to its natural
+   * content width first, then the table is capped at the container boundary.
+   * When the cap is hit, the browser wraps cells with white-space:normal,
+   * naturally favouring the columns with the longest prose content.
+   *
+   * Critically: we override white-space:nowrap on th for these tables.
+   * The base th rule sets nowrap, which forces a minimum column width equal
+   * to the full header text ("Grid depth" = ~90px, "Rounded coordinates" =
+   * ~165px). Allowing headers to wrap here reduces those min-widths to the
+   * longest word in the header ("depth" = ~40px, "coordinates" = ~90px),
+   * giving the auto-layout algorithm room to allocate width more accurately
+   * toward the prose-heavy columns.
+   *
+   * Specificity: (0,2,1) correctly overrides .table--wide table (0,1,1). */
+  .table--wide.table--narrative table {
+    width: max-content;
+    max-width: 100%;
+  }
+
+  .table--wide.table--narrative th {
+    white-space: normal;      /* remove nowrap min-width floor for these tables */
+    word-break: break-word;
+  }
+
+  .table--wide.table--narrative td {
+    white-space: normal;
+  }
+
+
+  /* -------------------------------------------------------------------------
+   * Card-stack transform — tablet width (≤ 960px)
+   *
+   * Applied ONLY to wide+narrative tables (5+ col, prose cells). These tables
+   * cannot be read as a horizontal-scrolling table at any comfortable width.
+   * Collapses each row into a labelled card block.
+   * ------------------------------------------------------------------------- */
+  @media (max-width: 960px) {
+    /* Disable scroll on the wrapper — the stack layout must fit in-flow */
+    .table-wrapper.table--wide.table--narrative {
+      overflow-x: hidden;
+    }
+
+    .table-wrapper.table--wide.table--narrative table,
+    .table-wrapper.table--wide.table--narrative thead,
+    .table-wrapper.table--wide.table--narrative tbody,
+    .table-wrapper.table--wide.table--narrative th,
+    .table-wrapper.table--wide.table--narrative td,
+    .table-wrapper.table--wide.table--narrative tr {
+      display: block;
+      /* Critical: override base table width so the block doesn't size
+         itself for all columns laid out horizontally */
+      width: 100%;
+      min-width: 0;
+      box-sizing: border-box;
+    }
+
+    .table-wrapper.table--wide.table--narrative thead tr {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+    }
+
+    .table-wrapper.table--wide.table--narrative tr {
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      margin-bottom: 0.75rem;
+      background: white;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+
+    .table-wrapper.table--wide.table--narrative tr:nth-child(even) {
+      background-color: #f5f5f4;
+    }
+
+    .table-wrapper.table--wide.table--narrative td {
+      border: none;
+      border-bottom: 1px solid var(--border-color);
+      padding: 0.5rem 1rem 0.5rem 42%;
+      position: relative;
+      white-space: normal;
+      word-break: break-word;
+      font-weight: normal;
+      background: none;
+    }
+
+    /* First cell in card: the row's key — full width, no left-indent */
+    .table-wrapper.table--wide.table--narrative td:first-child {
+      font-weight: 700;
+      padding-left: 1rem;
+    }
+
+    .table-wrapper.table--wide.table--narrative td:last-child {
+      border-bottom: none;
+    }
+
+    .table-wrapper.table--wide.table--narrative td[data-label]::before {
+      content: attr(data-label);
+      position: absolute;
+      left: 1rem;
+      width: 38%;
+      padding-right: 0.5rem;
+      font-weight: 700;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--brand-primary);
+      line-height: 1.4;
+      top: 0.65rem;
+    }
+
+    /* Don't double-label the first cell (it IS the key label) */
+    .table-wrapper.table--wide.table--narrative td:first-child[data-label]::before {
+      display: none;
+    }
+  }
+
+  /* -------------------------------------------------------------------------
+   * Card-stack transform — mobile width (≤ 640px)
+   *
+   * Applied to compact and data tables. Narrative tables (wrapping text) and
+   * wide+narrative tables (already handled at ≤960px) are excluded.
+   * ------------------------------------------------------------------------- */
+  @media (max-width: 640px) {
+    /* Disable scroll on the wrapper — the stack layout must fit in-flow */
+    .table-wrapper:not(.table--narrative) {
+      overflow-x: hidden;
+    }
+
+    .table-wrapper:not(.table--narrative) table,
+    .table-wrapper:not(.table--narrative) thead,
+    .table-wrapper:not(.table--narrative) tbody,
+    .table-wrapper:not(.table--narrative) th,
+    .table-wrapper:not(.table--narrative) td,
+    .table-wrapper:not(.table--narrative) tr {
+      display: block;
+      /* Critical: override base table width so the block doesn't stay
+         as wide as the original columnar layout */
+      width: 100%;
+      min-width: 0;
+      box-sizing: border-box;
+    }
+
+    /* Hide the header row — labels come from data-label instead */
+    .table-wrapper:not(.table--narrative) thead tr {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+    }
+
+    .table-wrapper:not(.table--narrative) tr {
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      margin-bottom: 0.75rem;
+      background: white;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+
+    /* Restore even-row stripe on cards via nth-child */
+    .table-wrapper:not(.table--narrative) tr:nth-child(even) {
+      background-color: #f5f5f4;
+    }
+
+    .table-wrapper:not(.table--narrative) td {
+      border: none;
+      border-bottom: 1px solid var(--border-color);
+      padding: 0.5rem 0.75rem 0.5rem 40%;
+      position: relative;
+      white-space: normal;
+      word-break: break-word;
+      font-weight: normal;
+      font-variant-numeric: tabular-nums;
+      background: none; /* card bg comes from tr */
+    }
+
+    .table-wrapper:not(.table--narrative) td:first-child {
+      font-weight: 700;
+    }
+
+    .table-wrapper:not(.table--narrative) td:last-child {
+      border-bottom: none;
+    }
+
+    /* Column label from data-label attribute */
+    .table-wrapper:not(.table--narrative) td[data-label]::before {
+      content: attr(data-label);
+      position: absolute;
+      left: 0.75rem;
+      width: 36%;           /* slightly narrower than padding-left to allow breathing room */
+      padding-right: 0.5rem;
+      font-weight: 700;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--brand-primary);
+      line-height: 1.4;
+      top: 0.6rem;          /* aligned to first line of cell content */
+      word-break: break-word;
+      overflow-wrap: break-word;
+    }
+
+    /* Compact tables: softer label style (2-col is always [term | value]) */
+    .table-wrapper.table--compact td[data-label]::before {
+      font-weight: 600;
+      text-transform: none;
+      font-size: 0.8rem;
+      color: var(--text-color);
+      opacity: 0.6;
+    }
+
+    /* Pure narrative tables: just let them wrap normally, no card transform */
+    .table-wrapper.table--narrative:not(.table--wide) {
+      overflow-x: auto; /* restore scroll for genuinely wide narrative tables */
+    }
+    .table-wrapper.table--narrative:not(.table--wide) table {
+      display: table;
+      width: 100%;
+      min-width: unset;
+    }
+    .table-wrapper.table--narrative:not(.table--wide) thead,
+    .table-wrapper.table--narrative:not(.table--wide) tbody,
+    .table-wrapper.table--narrative:not(.table--wide) tr,
+    .table-wrapper.table--narrative:not(.table--wide) th,
+    .table-wrapper.table--narrative:not(.table--wide) td {
+      display: revert;
+      width: auto;
+      min-width: 0;
+    }
+    .table-wrapper.table--narrative:not(.table--wide) thead tr {
+      position: static;
+    }
+    .table-wrapper.table--narrative:not(.table--wide) th,
+    .table-wrapper.table--narrative:not(.table--wide) td {
+      padding: 0.5rem 0.6rem;
+      font-size: 0.8rem;
+      white-space: normal;
+    }
   }
 
   /* Mobile Breakpoints */

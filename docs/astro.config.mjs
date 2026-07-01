@@ -3,6 +3,7 @@ import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
 import { unified } from '@astrojs/markdown-remark';
 import { remarkRewriteOkfLinks } from './src/plugins/remark-rewrite-okf-links.js';
+import { rehypeTableEnhance } from './src/plugins/rehype-table-enhance.js';
 
 // https://astro.build/config
 export default defineConfig({
@@ -10,7 +11,8 @@ export default defineConfig({
   integrations: [mdx()],
   markdown: {
     processor: unified({
-      remarkPlugins: [remarkRewriteOkfLinks]
+      remarkPlugins: [remarkRewriteOkfLinks],
+      rehypePlugins: [rehypeTableEnhance],
     })
   }
 });
