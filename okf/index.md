@@ -90,7 +90,7 @@ out-of-tune.
 
 ## Universal anchors
 
-Where possible, PPT actively shifts perspective to avoid arbitrary values adopted for cultural or historical reasons (such as A=440Hz or arbitrary beats-per-minute). Instead, the system anchors itself in universal prime components and biological limits — boundaries defined by the physical properties of sound intersecting with human hearing (such as the Periodicity Limen).
+Where possible, PPT actively shifts perspective to avoid arbitrary values adopted for cultural or historical reasons (such as A=440Hz or arbitrary beats-per-minute). Instead, the system anchors itself in universal prime components and biological limits — boundaries defined by the physical properties of sound intersecting with human hearing (such as the Temporal-Place Limen).
 
 ## Notation: Uniform Solfège
 
@@ -127,9 +127,9 @@ amplitude or effect envelopes.
 - [Information and Expectation](perception/information-and-expectation.md) —
   pattern recognition, prediction, and the mechanics of musical delight
 - [Auditory Horizon and Agency](perception/auditory-horizon.md) — the agency
-  gradient across the timescale; Periodicity Limen; Metric Induction Limen;
+  gradient across the timescale; Temporal-Place Limen; Metric Induction Limen;
   cross-domain tolerance budget; cultural transmission asymmetry
-- [Periodicity Limen](perception/periodicity-limen.md) — the anchor definition and the boundary between pitch and rhythm
+- [Temporal-Place Limen](perception/temporal-place-limen.md) — the anchor definition and the boundary between pitch and rhythm
 
 ### Reference
 - [Metric DuPeriod](reference/metric-duperiod.md) — the coordinate system for logarithmic period mapping
@@ -150,7 +150,7 @@ amplitude or effect envelopes.
 ### Domains
 - [Pitch](domains/pitch.md) — micro periodicity; frequency; just intonation
 - [Rhythm](domains/rhythm.md) — macro periodicity; metre; polyrhythm; tala
-- [Rhythmic Overtone Series](domains/rhythmic-overtone-series.md) — the inter-onset ratio spectrum of a rhythmic phrase; identity with the harmonic series across the Periodicity Limen
+- [Rhythmic Overtone Series](domains/rhythmic-overtone-series.md) — the inter-onset ratio spectrum of a rhythmic phrase; identity with the harmonic series across the Temporal-Place Limen
 - [Rhythmic Phase Coherence](domains/rhythmic-phase-coherence.md) — stability of inter-onset ratio relationships across time; distinguishes expressive deviation from instability; the groove-metre
 - [Timbre](domains/timbre.md) — spectral periodicity; overtones; harmonic series
 - [Dynamics](domains/dynamics.md) — amplitude periodicity; accents; groove
@@ -167,7 +167,7 @@ amplitude or effect envelopes.
 - [Glyph Forms](ppd/glyph-forms.md) — visual specification for all prime families
 
 ### Tuning Systems
-- [Periodicity Limen Reference Tuning](tuning/periodicity-limen-reference-tuning.md) — absolute pitch anchors derived from the Periodicity Limen
+- [Temporal-Place Limen Reference Tuning](tuning/temporal-place-limen-reference-tuning.md) — absolute pitch anchors derived from the Temporal-Place Limen
 - [Just Intonation](tuning/just-intonation.md) — prime ratios as pure intervals
 - [Pentatonic and Heptatonic Structures](tuning/pentatonic-heptatonic.md) — the geometric generation of the 5 and 7-note scales
 - [Tetrachord-Pair Generation of Heptatonic Scales](tuning/tetrachord-pairs.md) — heptatonic scales from paired tetrachord fragments and a join interval; the melakarta correspondence

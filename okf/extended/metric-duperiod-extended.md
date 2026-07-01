@@ -16,7 +16,7 @@ tags:
   - cognition
   - circadian
   - prime-period-theory
-timestamp: 2026-06-27
+timestamp: 2026-07-01
 ---
 
 # Metric DuPeriod — Extended Range
@@ -83,7 +83,7 @@ interface translations rather than primary musical measures.
 
 Second, the day landing near **Fi** (the tritone position, maximum metric
 tension) is structurally suggestive. The circadian cycle sits at the point
-of greatest displacement from the Periodicity Limen anchor — the furthest
+of greatest displacement from the Temporal-Place Limen anchor — the furthest
 point from the Do of the system. Whether this is a meaningful structural
 feature or a numerical coincidence is left as an open question.
 
@@ -163,7 +163,7 @@ at the scale of one BRAC cycle — and the interval or intermission that
 typically appears at the 45–60 minute mark corresponds to the trough
 between two half-cycles.
 
-Unlike the Periodicity Limen, the BRAC boundary is **not a perceptual
+Unlike the Temporal-Place Limen, the BRAC boundary is **not a perceptual
 phase transition** — there is no sudden change in the nature of experience
 at 90 minutes. It is a gradual oscillation. But it is a genuine biological
 periodicity, operating by the same prime-ratio interference logic that PPT
@@ -190,7 +190,7 @@ circadian oscillator.
 ## The structural asymmetry
 
 Pitch space (Metric DuPeriods −10 to 0) has **two hard physiological
-boundaries** on either side — the Periodicity Limen and the Upper Auditory
+boundaries** on either side — the Temporal-Place Limen and the Upper Auditory
 Horizon — both determined by auditory neurology, both precise, both
 universal across humans.
 
@@ -237,7 +237,7 @@ navigable.
 
 - [Metric DuPeriod](../reference/metric-duperiod.md) — the core coordinate system;
   Metric DuPeriods −10 to +10
-- [Periodicity Limen](../perception/periodicity-limen.md) — the anchor definition
+- [Temporal-Place Limen](../perception/temporal-place-limen.md) — the anchor definition
 - [Periodicity](../foundations/periodicity.md) — periodicity as the
   unifying phenomenon across all timescales; tala and the ti-hai as
   macro-scale periodicity examples

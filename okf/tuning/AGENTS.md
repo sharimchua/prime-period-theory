@@ -8,7 +8,7 @@ The `tuning/` directory contains specifications and derivations for how Prime Pe
 
 |File|Status|Description|
 |---|---|---|
-|`periodicity-limen-reference-tuning.md`|Complete|Derivation of absolute pitch anchors (Do-4 and Do-5) using the Metric DuPeriod coordinate system and the Periodicity Limen.|
+|`temporal-place-limen-reference-tuning.md`|Complete|Derivation of absolute pitch anchors (Do-4 and Do-5) using the Metric DuPeriod coordinate system and the Temporal-Place Limen.|
 |`just-intonation.md`|Draft|The tuning of musical intervals as whole number ratios, and its role as the pure theoretical anchor for PPT.|
 |`pentatonic-heptatonic.md`|Draft|3-limit scale generation structures.|
 |`tetrachord-pairs.md`|Draft|Heptatonic scale generation via tetrachord pairs and a join interval; symmetric perfect-fourth case, asymmetric-span extension, and the melakarta correspondence.|

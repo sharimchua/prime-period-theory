@@ -10,14 +10,14 @@ tags:
   - overtones
   - prime-period-theory
   - acoustics
-timestamp: 2026-06-28
+timestamp: 2026-07-01
 ---
 
 # Timbre and Spectral Periodicity
 
 ## Timbre as micro-scale polyphony
 
-In Prime Period Theory (PPT), the traditional boundaries between rhythm, pitch, and timbre are dissolved. At its core, timbre is defined precisely as **amplitude-weighted polyphony operating past the Periodicity Limen** (the micro scale of the Metric DuPeriod).
+In Prime Period Theory (PPT), the traditional boundaries between rhythm, pitch, and timbre are dissolved. At its core, timbre is defined precisely as **amplitude-weighted polyphony operating past the Temporal-Place Limen** (the micro scale of the Metric DuPeriod).
 
 When we hear a "single" note played by a physical instrument or a complex synthesiser, we are actually hearing a chord. A vibrating body produces a fundamental frequency alongside a series of overtones (partials). The unique character of the resulting sound is determined by which prime-ratio partials are present, their relative amplitudes, their envelopes, and how they interfere with one another.
 
@@ -55,7 +55,7 @@ Modulation effects operate by copying a signal and delaying it by very small, os
 
 PPT encourages musicians to see that composing a chord progression, programming a drum beat, and designing a synth patch are structurally the same activity happening at different timescales. 
 
-Because the framework is self-similar across the Metric DuPeriod, we can find direct structural equivalents between domains. The flipside of micro-polyphony is that **timbre and accented rhythm are the exact same phenomenon mirrored across the Periodicity Limen**.
+Because the framework is self-similar across the Metric DuPeriod, we can find direct structural equivalents between domains. The flipside of micro-polyphony is that **timbre and accented rhythm are the exact same phenomenon mirrored across the Temporal-Place Limen**.
 
 - **Macro (Seconds)**: A 3-against-2 polyrhythm where the '3' beats are played softer than the '2' beats (Accented Rhythm).
 - **Micro (Milliseconds)**: A perfect fifth (Pitch, formed by two distinct fundamentals of equal amplitude).
@@ -65,7 +65,7 @@ Because the framework is self-similar across the Metric DuPeriod, we can find di
 
 This equivalency opens an entirely new area of inquiry within PPT: if prime-ratio frequencies govern pitch and rhythm, do mathematically significant relationships govern the *amplitude differences* between partials (or accented beats)? Are there ratio or prime-number observations we can make about the amplitude differences between different "sounds" that determine their perceived character? By framing words like "suppress" or "emphasise" strictly as relative amplitude functions, PPT provides a lens to explore the geometric relationships of dynamics themselves.
 
-Rather than existing at a fundamentally faster timescale than pitch, timbre occupies the **same periodicity range** (the micro scale past the Periodicity Limen). The distinction is conceptual and perceptual: while pitch describes the primary fundamental period we cognitively track, timbre describes the concurrent, lower-amplitude polyphony of partials that the brain fuses into a single perceived object. By understanding both as expressions of prime-ratio polyphony, we gain a unified grammar that spans the entirety of musical experience.
+Rather than existing at a fundamentally faster timescale than pitch, timbre occupies the **same periodicity range** (the micro scale past the Temporal-Place Limen). The distinction is conceptual and perceptual: while pitch describes the primary fundamental period we cognitively track, timbre describes the concurrent, lower-amplitude polyphony of partials that the brain fuses into a single perceived object. By understanding both as expressions of prime-ratio polyphony, we gain a unified grammar that spans the entirety of musical experience.
 
 ## See also
 - [Amplitude and Time](../foundations/amplitude-time.md) — music as amplitude over time

@@ -1,31 +1,31 @@
 ---
 type: concept
-title: Periodicity Limen Reference Tuning
+title: Temporal-Place Limen Reference Tuning
 description: >
   Derives pitch anchor values from PPT first principles using the Metric DuPeriod
   coordinate system. Establishes that conventional pitch references (A440, A432,
   C256) are not structurally grounded in PPT's framework, identifies the
   prime-ratio landmark positions in pitch space that correspond to structurally
-  meaningful tuning anchors, and defines the relationship between the Periodicity
+  meaningful tuning anchors, and defines the relationship between the Temporal-Place
   Limen and absolute pitch as a single late-binding projection step.
 tags:
   - tuning
   - metric-duperiod
-  - periodicity-limen
+  - temporal-place-limen
   - just-intonation
   - pitch
   - uniform-solfege
   - prime-period-theory
-timestamp: 2026-06-27
+timestamp: 2026-07-01
 ---
 
-# Periodicity Limen Reference Tuning
+# Temporal-Place Limen Reference Tuning
 
 ## Purpose and scope
 
 This document is not a foundational page. It is a tuning reference that
 applies the foundational principles established in
-[Periodicity Limen](../perception/periodicity-limen.md) and
+[Temporal-Place Limen](../perception/temporal-place-limen.md) and
 [Metric DuPeriod](../reference/metric-duperiod.md) to derive structurally
 grounded pitch anchor values from PPT first principles.
 
@@ -109,7 +109,7 @@ Do−4 = 50ms × 2^(−4) = 50ms × 0.0625 = 3.125ms → 320Hz
 
 This is the **tonic floor of Metric DuPeriod −4** — a pure 2-prime
 position, the most structurally grounded choice in that band. It places
-the tonal centre at a clean power-of-two relationship to the Periodicity
+the tonal centre at a clean power-of-two relationship to the Temporal-Place
 Limen: 20Hz × 2^4 = 320Hz.
 
 A complete scale from Do−4:
@@ -165,10 +165,6 @@ how much weight one places on the tuning note's structural role.
 
 ### Candidate 3: Do−5 = 160Hz as bass anchor
 
-```
-Do−5 = 50ms × 2^(−5) = 50ms × 0.03125 = 1.5625ms → 640Hz
-```
-
 Wait — that's wrong direction. Recalculating:
 
 ```
@@ -210,9 +206,9 @@ In PPT's framework, the complete derivation of absolute pitch from
 first principles requires exactly one external input and one
 projection step:
 
-**The one external input**: the Periodicity Limen at 20Hz. This is
+**The one external input**: the Temporal-Place Limen at 20Hz. This is
 not arbitrary — it is a perceptual constant grounded in human auditory
-neurology (see [Periodicity Limen](../perception/periodicity-limen.md)).
+neurology (see [Temporal-Place Limen](../perception/temporal-place-limen.md)).
 It is the only value in the system that must be taken as given rather
 than derived.
 
@@ -222,7 +218,7 @@ grounded in PPT structure (it is the tonic floor of the band containing
 the primary instrument and vocal range) rather than historical
 convention.
 
-**All other values follow**: once the Periodicity Limen and the Do
+**All other values follow**: once the Temporal-Place Limen and the Do
 address are fixed, every other pitch in the system — every scale
 degree, every interval, every octave — is fully determined by the
 prime-ratio structure of Uniform Solfège and the Metric DuPeriod
@@ -231,7 +227,7 @@ coordinate system. No further external inputs are needed.
 The full derivation chain:
 
 ```
-Perceptual constant:    20Hz (Periodicity Limen) — neurologically grounded
+Perceptual constant:    20Hz (Temporal-Place Limen) — neurologically grounded
          ↓
 Coordinate system:      Metric DuPeriod addresses — ratio space, logarithmic
          ↓
@@ -240,8 +236,8 @@ Anchor choice:          Do−4 — structurally grounded (tonic floor, mid band)
 Absolute pitch:         Do = 320Hz — derived, not stipulated
          ↓
 Interface translation:  A = So−4 ≈ 427Hz (for orchestral coordination)
-                        BPM values (for metronome/DAW)
-                        Hz values (for instrument tuning)
+                         BPM values (for metronome/DAW)
+                         Hz values (for instrument tuning)
 ```
 
 ## Relationship to existing tuning systems
@@ -261,7 +257,7 @@ approximate.
 5-limit approximations and maps cleanly onto Uniform Solfège's
 diacritic system. The PPT-derived anchor does not change 31-EDO's
 internal structure — it simply provides a principled absolute value
-for where Do sits in Hz, derived from the Periodicity Limen rather
+for where Do sits in Hz, derived from the Temporal-Place Limen rather
 than from convention.
 
 **72-EDO** (see [72 EDO Grid](72-edo-grid.md)): 72-EDO is PPT's
@@ -273,7 +269,7 @@ In all cases, the existing tuning systems describe *relationships*
 between pitches. This document describes where to *place* those
 relationships in absolute frequency space — and the answer is: place
 them at the Metric DuPeriod address that PPT's coordinate system
-identifies as structurally meaningful, with the Periodicity Limen
+identifies as structurally meaningful, with the Temporal-Place Limen
 as the single external anchor.
 
 ## Practical implications
@@ -294,7 +290,7 @@ system.
 **For the PPT metronome**: the tempo anchor follows the same logic.
 The metronome's primary interface is Metric DuPeriod address; BPM is
 a derived display value calculated from the address and the
-Periodicity Limen (50ms). No BPM value is stored as a primary
+Temporal-Place Limen (50ms). No BPM value is stored as a primary
 parameter.
 
 ## Summary
@@ -306,12 +302,12 @@ parameter.
 | What is the concert A equivalent? | So−4 ≈ 427Hz (JI) / 426.7Hz (12-TET) |
 | Is A440 structurally significant? | No — it falls between La and Te in Metric DuPeriod −4 with no prime-ratio significance |
 | Is A432 structurally significant? | No — it falls at virtually the same address as A440 |
-| What is the single external input? | The Periodicity Limen at 20Hz — neurologically grounded |
+| What is the single external input? | The Temporal-Place Limen at 20Hz — neurologically grounded |
 | What follows from first principles? | Everything else — all pitches, all intervals, all octave positions |
 
 ## See also
 
-- [Periodicity Limen](../perception/periodicity-limen.md) — the
+- [Temporal-Place Limen](../perception/temporal-place-limen.md) — the
   perceptual anchor and its derivation
 - [Metric DuPeriod](../reference/metric-duperiod.md) — the coordinate
   system from which pitch addresses are derived

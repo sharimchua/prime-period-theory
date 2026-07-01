@@ -10,7 +10,7 @@ tags:
   - foundations
   - philosophy
   - methodology
-timestamp: 2026-06-28
+timestamp: 2026-07-01
 ---
 
 # Core Tenets of Prime Period Theory
@@ -81,7 +81,7 @@ powerful. By stabilising the centre of any periodic continuum with a geometric, 
   for treating pitch and rhythm as one phenomenon
 - [Prime Families](../foundations/prime-families.md) — the five prime
   generators and their perceptual characters
-- [Periodicity Limen](../perception/periodicity-limen.md) — the
+- [Temporal-Place Limen](../perception/temporal-place-limen.md) — the
   physical-biological boundary between pitch and rhythm
 - [Music as Language](music-as-language.md) — PPT as shared grammar and
   vocabulary for auditory classification

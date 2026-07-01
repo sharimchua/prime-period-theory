@@ -2,7 +2,7 @@
 type: concept
 title: Auditory Horizon and Agency
 description: >
-  The Auditory Horizon reframes the Periodicity Limen not as a single
+  The Auditory Horizon reframes the Temporal-Place Limen not as a single
   perceptual threshold but as part of a continuous agency gradient: listener
   freedom to choose and interpret period-groupings is highest in the macro
   (rhythm) domain and approaches zero in the micro (pitch) domain, where
@@ -12,7 +12,7 @@ description: >
   and cultural transmission asymmetry that follow from this gradient.
 tags:
   - perception
-  - periodicity-limen
+  - temporal-place-limen
   - auditory-horizon
   - agency
   - metric-induction
@@ -22,25 +22,25 @@ tags:
   - psychoacoustics
   - cultural-transmission
   - prime-period-theory
-timestamp: 2026-06-28
+timestamp: 2026-07-01
 ---
 
 # Auditory Horizon and Agency
 
-## The Periodicity Limen as one boundary among two
+## The Temporal-Place Limen as one boundary among two
 
-The [Periodicity Limen](../foundations/periodicity.md) — approximately 20Hz,
+The [Temporal-Place Limen](temporal-place-limen.md) — approximately 20Hz,
 the lower bound of pitch perception — is already established in PPT as the
 boundary between rhythm and pitch. Below it, the ear tracks individual events;
 above it, it fuses them into continuous tone. This is a perceptual boundary,
 not a structural one: the underlying phenomenon is periodic signal in both
 cases.
 
-What the Periodicity Limen does not fully describe is the **upper** boundary
+What the Temporal-Place Limen does not fully describe is the **upper** boundary
 of rhythmic agency — the point at which the period is still perceptible as
 rhythm, but the listener's capacity to actively choose between competing
 period-groupings collapses. This upper boundary is the **Metric Induction
-Limen**, and together with the Periodicity Limen it brackets a zone of full
+Limen**, and together with the Temporal-Place Limen it brackets a zone of full
 metric agency.
 
 **Metric induction** is the cognitive process by which a listener commits to
@@ -54,13 +54,13 @@ grouping is no longer freely chosen by the listener but instead imposed by
 external cues (dynamics, contour, timbre, ensemble accent) or simply not
 experienced at all.
 
-The Periodicity Limen and the Metric Induction Limen together define a
+The Temporal-Place Limen and the Metric Induction Limen together define a
 **full-agency zone** in the metric DuPeriod scale:
 
 | Zone | Approx. period | Perceptual character |
 |---|---|---|
-| Below Periodicity Limen | < 50ms (~20Hz+) | Fused into pitch; no metric tracking |
-| Periodicity Limen transition | ~50–200ms | Boundary zone; fast rhythm approaching pitch |
+| Below Temporal-Place Limen | < 50ms (~20Hz+) | Fused into pitch; no metric tracking |
+| Temporal-Place Limen transition | ~50–200ms | Boundary zone; fast rhythm approaching pitch |
 | Full-agency zone | ~200ms–2s | Pulse perceptible; grouping freely chosen |
 | Metric Induction Limen transition | ~2–4s | Pulse weakening; grouping cues external |
 | Above Metric Induction Limen | > 4s per beat | Gesture and phrase; metric agency absent |
@@ -71,7 +71,7 @@ below.
 
 ## The Auditory Horizon as an agency gradient
 
-The Periodicity Limen and Metric Induction Limen are most usefully understood
+The Temporal-Place Limen and the Metric Induction Limen are most usefully understood
 not as two separate walls but as opposite ends of a single continuous
 **agency gradient** — the **Auditory Horizon**.
 
@@ -86,7 +86,7 @@ a function of where on the timescale they are operating:
 - Approaching the **Metric Induction Limen** from below, this freedom
   narrows as the working-memory window can no longer span enough cycles to
   sustain competing grouping hypotheses.
-- Approaching the **Periodicity Limen** from above, the listener's mode of
+- Approaching the **Temporal-Place Limen** from above, the listener's mode of
   perception shifts from event-tracking to frequency-sensing. The period is
   no longer *heard as a beat* at all.
 - In the **micro** (pitch), the period is resolved in the physics of the

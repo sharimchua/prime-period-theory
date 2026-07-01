@@ -3,7 +3,7 @@ type: concept
 title: Metric DuPeriod
 description: >
   The Metric DuPeriod system is PPT's unified period-length coordinate system,
-  anchored at the Periodicity Limen (20Hz / Metric DuPeriod 0) and extending
+  anchored at the Temporal-Place Limen (20Hz / Metric DuPeriod 0) and extending
   in both directions: negative offsets into pitch space, positive offsets
   into rhythmic space. Solfège positions within each DuPeriod band name
   period-length ratios continuously across the auditory boundary, making
@@ -11,13 +11,13 @@ description: >
 tags:
   - foundations
   - metric-duperiod
-  - periodicity-limen
+  - temporal-place-limen
   - auditory-horizon
   - uniform-solfege
   - rhythm
   - pitch
   - prime-period-theory
-timestamp: 2026-06-29
+timestamp: 2026-07-01
 ---
 
 # Metric DuPeriod
@@ -25,7 +25,7 @@ timestamp: 2026-06-29
 ## Overview
 
 The **Metric DuPeriod** system is a unified period-length coordinate system
-that extends continuously from deep pitch space through the Periodicity
+that extends continuously from deep pitch space through the Temporal-Place
 Limen and into rhythmic space. It provides a single logarithmic ruler —
 anchored at a perceptually meaningful zero point and graduated in solfège
 positions — that names any period length in musical terms without reference
@@ -38,7 +38,7 @@ While the sub-20Hz pitch space colloquially uses the term "Octave" due to entren
 
 The system has three components:
 
-- **The anchor**: Metric DuPeriod 0, defined as the Periodicity Limen
+- **The anchor**: Metric DuPeriod 0, defined as the Temporal-Place Limen
   (20Hz / 50ms period)
 - **The DuPeriod offset**: a signed integer indicating which doubling band
   the period falls in; negative for pitch space, positive for rhythmic
@@ -52,13 +52,13 @@ approximately 600ms, corresponding to approximately 100 BPM.
 
 ## The anchor: Metric DuPeriod 0
 
-Metric DuPeriod 0 is not a band but a point: the Periodicity Limen at
+Metric DuPeriod 0 is not a band but a point: the Temporal-Place Limen at
 20Hz / 50ms. It is the Do of the entire system — the tonic from which
 all offsets are measured.
 
 This anchor is chosen because it is intrinsic to the perceptual structure
 of the system rather than historically contingent. See
-[Periodicity Limen](../perception/periodicity-limen.md) for the full argument.
+[Temporal-Place Limen](../perception/temporal-place-limen.md) for the full argument.
 
 ## DuPeriod bands
 
@@ -81,13 +81,13 @@ Offset  Period range        Frequency range     Domain
 −3      6.250ms → 12.500ms 160Hz → 80Hz        Pitch (low)
 −2      12.500ms → 25ms    80Hz → 40Hz         Pitch (very low)
 −1      25ms → 50ms        40Hz → 20Hz         Pitch (sub)
- 0      50ms               20Hz                PERIODICITY LIMEN (AH)
+ 0      50ms               20Hz                TEMPORAL-PLACE LIMEN (AH)
 ```
 
 The full audible pitch range is contained within Metric DuPeriods −10 to 0.
 Uniform Solfège, Prime Period Diacritics, and 72-EDO already operate in
 this space. The Metric DuPeriod system provides those existing systems with
-an explicit coordinate address relative to the Periodicity Limen anchor.
+an explicit coordinate address relative to the Temporal-Place Limen anchor.
 
 ### Rhythmic space (positive offsets)
 
@@ -223,13 +223,13 @@ determined by memory, attention, and biological oscillation).
 
 | Offset range | Period range  | Landmark | Source |
 |-------------|---------------|----------|--------|
-| 0           | 50ms          | Periodicity Limen — pitch/rhythm phase transition | Auditory neurology |
+| 0           | 50ms          | Temporal-Place Limen — pitch/rhythm phase transition | Auditory neurology |
 | +1 to +2    | 50–200ms      | Subdivision — felt as texture rather than pulse | Temporal resolution |
 | +3 to +4    | 200–800ms     | Beat — primary pulse; comfortable tempo range | Motor entrainment |
 | +5 to +6    | 800–3200ms    | Bar — metric grouping above beat | Rhythmic cognition |
 | +7          | 3200–6400ms   | Working memory ceiling — ~4–8 seconds | Auditory working memory |
 | +9 to +10   | 12800–51200ms | Gestalt boundary — ~15–50 seconds; expectation resets | Music cognition |
-| −10         | 0.05–0.1ms    | Upper Auditory Horizon (UPL) — 20kHz upper pitch limit | Auditory neurology |
+| −10         | 0.05–0.1ms    | Upper Auditory Horizon (UTPL) — 20kHz upper pitch limit | Auditory neurology |
 
 ## Diacritic precision across the range
 
@@ -271,7 +271,7 @@ perceptually convenient positions rather than structurally grounded ones.
 
 ## See also
 
-- [Periodicity Limen](../perception/periodicity-limen.md) — the anchor definition and
+- [Temporal-Place Limen](../perception/temporal-place-limen.md) — the anchor definition and
   the argument for grounding measurement in auditory neurology
 - [Periodicity](../foundations/periodicity.md) — the perceptual rate
   boundary as a property of human perception

@@ -10,7 +10,7 @@ tags:
   - accents
   - polyrhythm
   - prime-period-theory
-timestamp: 2026-06-29
+timestamp: 2026-07-01
 ---
 
 # Dynamics as Amplitude Periodicity
@@ -19,7 +19,7 @@ timestamp: 2026-06-29
 
 In Prime Period Theory (PPT), dynamics (accents, fortes, pianos) are not simply subjective performance instructions. They are expressions of **amplitude periodicity** at the macro scale. 
 
-Just as relative amplitude differences between micro-scale acoustic partials create "tone colour" (timbre), relative amplitude differences between macro-scale beats (accents) create "groove." This section explores accented polyrhythms and how dynamics act as the macro-scale equivalent of timbre across the Periodicity Limen.
+Just as relative amplitude differences between micro-scale acoustic partials create "tone colour" (timbre), relative amplitude differences between macro-scale beats (accents) create "groove." This section explores accented polyrhythms and how dynamics act as the macro-scale equivalent of timbre across the Temporal-Place Limen.
 
 ## Accents and Groove as Macro-Timbre
 

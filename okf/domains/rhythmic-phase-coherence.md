@@ -15,9 +15,9 @@ tags:
   - prime-families
   - expressive-timing
   - diacritics
-  - periodicity-limen
+  - temporal-place-limen
   - prime-period-theory
-timestamp: 2026-06-29
+timestamp: 2026-07-01
 ---
 
 # Rhythmic Phase Coherence
@@ -208,7 +208,7 @@ This is directly analogous to the pitch domain:
 
 The perceptual mechanism is the same: the auditory system tracks the stability
 of ratio relationships over time and registers instability as roughness,
-beating, or incoherence. The Periodicity Limen separates the perceptual
+beating, or incoherence. The Temporal-Place Limen separates the perceptual
 register (pitch vs rhythm) but not the underlying mechanism.
 
 A useful pedagogical frame: *phase coherence is the groove-metre*. It measures
@@ -326,7 +326,7 @@ but not yet executing it consistently.
 - [Diacritic System](../uniform-solfege/diacritic-system.md) — the full
   diacritic suffix specification (Sub, HalfSub, Base, HalfSup, Sup, Axis)
   used to describe diacritic deviation profiles
-- [Periodicity Limen](../perception/periodicity-limen.md) — the perceptual
+- [Temporal-Place Limen](../perception/temporal-place-limen.md) — the perceptual
   boundary that separates rhythm from pitch; the anchor for the pitch/rhythm
   identity claim that motivates the phase coherence analogy
 - [Rhythmic Grammar](../related/rhythmic-grammar.md) — the formal encoding
