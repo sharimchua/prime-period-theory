@@ -12,7 +12,7 @@ tags:
   - ear-training
   - notation
   - prime-period-theory
-timestamp: 2026-07-01
+timestamp: 2026-07-02
 ---
 
 # Ear-First Pedagogy

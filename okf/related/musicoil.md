@@ -26,7 +26,7 @@ related:
   - reference/emergent-analysis.md
   - domains/form.md
   - applications/component-philosophy.md
-timestamp: 2026-06-30
+timestamp: 2026-07-02
 ---
 
 # MusiCoil

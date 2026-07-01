@@ -13,7 +13,7 @@ tags:
   - feedback
   - pedagogy
   - prime-period-theory
-timestamp: 2026-06-30
+timestamp: 2026-07-02
 ---
 
 # Play-Along Feedback — Three Models
