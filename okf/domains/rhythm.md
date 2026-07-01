@@ -165,7 +165,7 @@ Rhythmic Grammar is a formal system for encoding rhythmic grouping structure
 as compact, speakable, machine-parsable strings using the 12 base solfège
 syllables of Uniform Solfège.
 
-A rhythm string like `DoReDiSo` is simultaneously:
+A rhythm string like  Dox Re Dix So is simultaneously:
 
 - A **name** for the pattern (3+2 swing / soft quintuplet grouping)
 - A **description** of its internal structure (primary block of 3, secondary accent block of 2)
@@ -173,7 +173,7 @@ A rhythm string like `DoReDiSo` is simultaneously:
 - A **machine-executable encoding** for a metronome or notation tool
 
 This is a more expressive grid definition than a standard time signature.
-`DoLaReSo` and `DoSoDiRe` are both four-beat patterns, but they encode
+Dox La Re So and Dox So Dix Re are both four-beat patterns, but they encode
 entirely different accentuation structures and grooves.
 
 See [Rhythmic Grammar](../related/rhythmic-grammar.md) for the full specification.
@@ -181,8 +181,8 @@ See [Rhythmic Grammar](../related/rhythmic-grammar.md) for the full specificatio
 ## Melodic layer independence
 
 In Three-Layer Coil Notation, the rhythmic layer carries complete
-responsibility for beat-marking through explicit Do and Di entries. Do marks
-the period anchor; Di marks the period midpoint. All subperiod boundaries
+responsibility for beat-marking through explicit Dox and Dix entries. Dox marks
+the period anchor; Dix marks the period midpoint. All subperiod boundaries
 are represented in the rhythmic layer by the appropriate solfège syllable.
 
 This design frees the melodic layer entirely from rhythmic information.
