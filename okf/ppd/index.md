@@ -8,7 +8,7 @@ tags:
   - notation
   - microtonality
   - prime-period-theory
-timestamp: 2026-06-26
+timestamp: 2026-07-01
 ---
 
 # Prime Period Diacritics
@@ -18,6 +18,37 @@ timestamp: 2026-06-26
 PPD is a standalone diacritic system for marking sub-period positions on any base figure. It is derived from PPT's prime family structure and is applicable wherever a period needs to be subdivided — pitch notation, rhythmic duration markers, amplitude or effect envelopes, or any parameter that varies across a repeating cycle.
 
 It is used by Uniform Solfège as its microtonal extension layer, but is specified independently so it can be applied to other notational contexts.
+
+## Relationship to the comma system
+
+Prime Period Diacritics is the **writing system** for a more abstract
+mathematical layer: the prime lattice comma system. In the comma system,
+any microtonal position is described as an ordered sequence of
+`{ prime, step }` entries navigating from a solfège anchor through the
+prime lattice. See [Prime Lattice](../foundations/prime-lattice.md) for
+the full mathematical treatment.
+
+PPD glyph forms are visual renderings of specific comma values — the
+most musically useful lattice positions, rendered as marks on a solfège
+character. The relationship is analogous to decimal notation and real
+numbers: the decimal system renders rational approximations of a
+continuous space; PPD renders practical visual approximations of the
+prime lattice. The lattice itself is finer than any finite glyph set.
+
+Where this document describes a diacritic as indicating a specific tuning
+deviation, the equivalent comma representation is a `{ prime, step }`
+entry or sequence in the [MIDI to Solfège Input Specification](../specifications/midi-solfege-input.md)
+output type.
+
+## Directional convention
+
+PPD glyphs encode direction as clockwise (positive, period expansion,
+flatter) and withershins (negative, period compression, sharper). In the
+underlying comma system, the same directions are encoded as positive
+integer steps (period expansion) and negative integer steps (period
+compression). The clockwise/withershins visual convention and the
+positive/negative step convention are equivalent representations of
+the same directional relationship.
 
 ## Core principle
 

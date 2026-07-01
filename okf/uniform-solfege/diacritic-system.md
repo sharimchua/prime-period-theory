@@ -10,7 +10,7 @@ tags:
   - prime-families
   - notation
   - prime-period-theory
-timestamp: 2026-06-26
+timestamp: 2026-07-01
 status: active
 version: 2.0
 relates-to:
@@ -26,6 +26,40 @@ relates-to:
 > [Prime Period Diacritics (PPD)](../ppd/index.md) to Uniform Solfège pitch
 > space. Refer to PPD for the general specification; this document covers
 > Uniform Solfège-specific mappings only.
+
+## The diacritic system as writing system
+
+The six-state diacritic model (Sub, HalfSub, Base, HalfSup, Sup, Axis)
+is a **writing system approximation** of the prime lattice comma space.
+It provides a practical, finite set of visually distinct glyph states that
+cover the most musically useful positions in that space, rendered within
+the constraints of a handwritten or typeset notation system.
+
+The mathematical object being approximated is an ordered comma sequence
+— an array of `{ prime, step }` entries in the
+[prime lattice](../foundations/prime-lattice.md). The diacritic glyph
+is a rendered representation of that sequence at a chosen level of
+precision, in the same way that a decimal number is a rendered
+representation of a real-number value at a chosen number of significant
+figures.
+
+The six states are not the definition of the microtonal space. They are
+a practical rendering of the most commonly needed positions in that space.
+Less common positions — deeper fractal Du subdivisions, higher Sep or
+Undec magnitudes — can be described in the comma system precisely while
+the writing system renders them at the nearest practical glyph form.
+
+This framing separates two concerns that the diacritic system has
+historically carried together:
+
+- **The mathematical layer:** what position in the prime lattice is
+  intended. This is captured precisely by the comma sequence.
+- **The writing layer:** how that position is rendered in notation. This
+  is captured by the PPD glyph form.
+
+Both layers are necessary. The writing layer makes the notation readable
+and writable by humans; the mathematical layer makes it precise and
+machine-processable.
 
 ## Overview
 
@@ -68,17 +102,17 @@ A full solfège token is constructed as a single continuous string without space
 
 1. **Base Solfège**: Must be exactly two characters in title case (`[A-Z][a-z]`), matching the twelve base chromatic syllables (e.g., `Do`, `Re`, `Fi`).
 2. **Diacritic Suffix**: If a diacritic is applied, it immediately follows the base syllable in title case. The standard suffixes are:
-   - `Sub`: Withershins (negative Tri)
-   - `HalfSub`: Withershins (negative DuTri)
-   - `HalfSup`: Deosil (positive DuTri)
-   - `Sup`: Deosil (positive Tri)
+   - `Sub`: period compression (negative Tri)
+   - `HalfSub`: period compression (negative DuTri)
+   - `HalfSup`: period expansion (positive DuTri)
+   - `Sup`: period expansion (positive Tri)
    - `Axis`: The 50¢ Du boundary
    - `x`: A convenient shorthand for `Axis` (e.g., `Dox` is exactly equivalent to `DoAxis`)
 3. **Superscript Concatenation**: Superscripts (used for remainder sub-glyphs or cross-family notation) are concatenated using the caret (`^`) symbol. The string following the caret is parsed as its own complete solfège token.
 
 **Examples:**
 - `Do` — Base chromatic syllable
-- `ReSub` — Re with a negative Tri diacritic (withershins)
+- `ReSub` — Re with a negative Tri diacritic (period compression)
 - `Dox` or `DoAxis` — Do with the Axis diacritic (50¢)
 - `Dox^ReSub` — Do with the Axis diacritic, hosting a superscript of `ReSub`
 

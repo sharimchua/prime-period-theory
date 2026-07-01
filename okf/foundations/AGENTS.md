@@ -20,6 +20,7 @@ perceptual consequences — that is `perception/`'s job.
 |`amplitude-time.md`|Complete|Core thesis: music as amplitude over time; includes forward-pointing note on spacetime|
 |`periodicity.md`|Complete|Periodicity as the unifying phenomenon; 20Hz boundary; tala/ti-hai; overtone series|
 |`prime-families.md`|Complete|The five prime families; prime vs exponent; the 11-limit ceiling|
+|`prime-lattice.md`|Complete|The multi-dimensional coordinate space defined by the five independent prime axes|
 
 ## Future page — not yet ready to formalise
 

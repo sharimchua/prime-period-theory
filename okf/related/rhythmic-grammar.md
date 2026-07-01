@@ -38,6 +38,42 @@ the body in the rhythm without requiring conscious counting. In Rhythmic
 Grammar, pitch contour replaces syllabic texture as the carrier of
 grouping information.
 
+## Rest-free approach
+
+Rhythmic Grammar does not use rests as notational primitives. In
+conventional notation, a rest is melodic silence that simultaneously
+carries rhythmic duty — it occupies a durational position in the bar
+while indicating the absence of pitch content. This conflation forces
+the notator to place explicit symbols for silence, and forces the reader
+to process them as both rhythmic and melodic information simultaneously.
+
+In Rhythmic Grammar, durational responsibility belongs entirely to the
+rhythmic layer. Silence in the melodic layer is the natural absence of
+a pitch entry at a given rhythmic position — not a symbol to be placed,
+but the gap between placed symbols. The rhythmic layer's Do and Di entries
+account for all subperiod positions explicitly, making a separate rest
+symbol redundant.
+
+## Pitch addressability and MIDI input
+
+Rhythmic Grammar is pitch-addressable: the same twelve solfège syllables
+used for pitch notation also encode rhythmic grammar entries. Do and Di
+are not special-purpose rhythmic symbols invented separately — they are
+the existing solfège syllables for pitch classes 0 (Do) and 6 (Di/Fi)
+applied to the rhythmic domain.
+
+This means the [MIDI to Solfège Input Specification](../specifications/midi-solfege-input.md)
+provides a uniform input mechanism for the rhythmic layer without
+modification. A two-octave MIDI controller enters rhythmic grammar the
+same way it enters pitch content — by selecting from the twelve solfège
+positions. The layer context (rhythmic vs pitch) determines how the
+Solfège Output object is interpreted; the input mechanism is identical.
+
+The practical consequence for notation tools: a musician entering a
+rhythmic phrase DoDiDoRe presses the same physical keys they would use
+to enter those syllables as pitch content. No mode-specific input surface
+is required.
+
 ## Terminology
 
 - **Chain** — the top-level repeatable structure. A chain contains exactly one

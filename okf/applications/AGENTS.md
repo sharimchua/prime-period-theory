@@ -22,6 +22,7 @@ not for end users of specific tools.
 | `visualisation.md` | Draft | PPT ratio visualisation across Metric DuPeriods; the solfège showcase intent |
 | `play-along.md` | Draft | Play-along feedback philosophy; three feedback models |
 | `transcription.md` | Draft | Melody-first → progressive specification workflow |
+| `notation-input.md` | Complete | How the MIDI to Solfège Input Specification serves as input for PPT tools |
 
 ## Tone guidance
 

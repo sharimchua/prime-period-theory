@@ -13,7 +13,7 @@ tags:
   - polyrhythm
   - microtonality
   - 31-edo
-timestamp: 2026-06-29
+timestamp: 2026-07-01
 ---
 
 # Prime Period Theory
@@ -118,6 +118,10 @@ amplitude or effect envelopes.
   all scales; consonance as period coincidence; tala and ti-hai
 - [Prime Families](foundations/prime-families.md) — the five prime generators;
   prime vs exponent; the 11-limit ceiling
+- [Prime Lattice](foundations/prime-lattice.md) — the multi-dimensional
+  prime-ratio space that comma sequences navigate; just intonation lattice;
+  path dependence; inter-prime non-coincidence; comma complements;
+  enharmonic equivalence as application-layer relation
 
 ### Perception
 - [Information and Expectation](perception/information-and-expectation.md) —
@@ -158,7 +162,8 @@ amplitude or effect envelopes.
 - [Base-12 Algebra](uniform-solfege/base-12-algebra.md) — clock arithmetic and interval composition
 
 ### Prime Period Diacritics
-- [Overview](ppd/index.md) — the standalone diacritic system for prime-ratio period subdivision
+- [Overview](ppd/index.md) — the writing system rendering of prime lattice
+  comma values; glyph forms as visual approximations of ordered comma sequences
 - [Glyph Forms](ppd/glyph-forms.md) — visual specification for all prime families
 
 ### Tuning Systems
@@ -191,6 +196,9 @@ amplitude or effect envelopes.
 - [Visualisation](applications/visualisation.md) — PPT ratio visualisation across Metric DuPeriods
 - [Play-Along Feedback](applications/play-along.md) — three feedback models
 - [Transcription](applications/transcription.md) — melody-first → progressive specification
+- [Notation Input](applications/notation-input.md) — how the MIDI to
+  Solfège Input Specification serves PPT tools; text expander and macro
+  patterns; generative MIDI input; design principles for consuming tools
 
 ### Implementations
 - [Register](implementations/index.md) — all existing tools and their PPT coverage
@@ -202,6 +210,12 @@ amplitude or effect envelopes.
 ## Specifications
 - [Design System & Colour Semantics](specifications/design-system.md) — Visual styling and mathematical mapping
 - [PPT Composition Format (PPT-CF)](specifications/composition-format.md) — a concise, structural encoding format for serializing component layouts
+- [MIDI to Solfège Input Specification](specifications/midi-solfege-input.md)
+  — the canonical contract for translating a MIDI event stream to a
+  Solfège Output object; output type definition; COMMIT signal; bundle model
+- [MIDI to Solfège Mapping](specifications/midi-solfege-mapping.md)
+  — reference mapping implementations; keyboard chord conventions; MIDI
+  guitar interpretation; binding profiles; MIDI chain input patterns
 
 ## Relationship to other theories
 
