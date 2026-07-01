@@ -56,7 +56,7 @@ This is the general shape of grid reduction: distortion at shallow depths, genui
 
 ### Lossless contrast case: hemiola
 
-Classical hemiola (e.g. two dotted-quarters reheard as three quarters over the same six eighth-notes) is **not** grid reduction. <span class="ppt-not-solfege">Six</span> is divisible by both 2 and 3, so both the 2-prime and 3-prime readings live natively on a *shared* fine grid of 6. Nothing is rounded or lost — only the accent grouping changes. Hemiola is the lossless sibling to tresillo's lossy case, and the two are useful as a paired example: same surface "three-against-two" flavor, opposite underlying mechanism.
+Classical hemiola (e.g. two dotted-quarters reheard as three quarters over the same six eighth-notes) is **not** grid reduction. <span class="ppt-not-solfege">Six</span> is divisible by both 2 and 3, so both the 2-prime and 3-prime readings live natively on a *shared* fine grid of 6. Nothing is rounded or lost — only the accent grouping changes. Hemiola is the lossless sibling to tresillo's lossy case, and the two are useful as a paired example: same surface "three-against-two" flavour, opposite underlying mechanism.
 
 ---
 
@@ -79,7 +79,7 @@ Design is the only origin among the four that is *chosen* rather than *imposed*.
 
 The former name "Periodicity Limen" implied the collapse boundary was intrinsic to the mathematics of periods. It is not — it is a **perceptual-origin** collapse (§4), specifically caused by a change in cochlear coding *strategy*, not a degradation of resolution within one strategy.
 
-**Mechanism:** Below the phase-locking ceiling, the auditory nerve uses **temporal coding** — neurons fire synchronized to specific phases of the sound wave, so spike timing directly mirrors event timing. Event-by-event structure (rhythm and pitch alike, in this range) is read straight off the firing pattern. Above the ceiling, neurons can no longer track individual cycles, and the cochlea switches to **place coding** — frequency is represented by *where* along the basilar membrane (tonotopically organized, base = high, apex = low) the vibration peaks, rather than by *when* spikes occur. Past this point, individual event timing is not encoded at all — not degraded, never captured.
+**Mechanism:** Below the phase-locking ceiling, the auditory nerve uses **temporal coding** — neurons fire synchronized to specific phases of the sound wave, so spike timing directly mirrors event timing. Event-by-event structure (rhythm and pitch alike, in this range) is read straight off the firing pattern. Above the ceiling, neurons can no longer track individual cycles, and the cochlea switches to **place coding** — frequency is represented by *where* along the basilar membrane (tonotopically organised, base = high, apex = low) the vibration peaks, rather than by *when* spikes occur. Past this point, individual event timing is not encoded at all — not degraded, never captured.
 
 This reclassifies the limen as a **strategy-switch collapse** (the coding mechanism itself changes) rather than a **degradation collapse** (the same kind of code, just coarser — as in grid reduction proper). It is the perceptual-origin sibling to notational/instrumental/design-origin grid reduction, not an instance of the grid-reduction operation itself, since there is no lattice-snapping occurring — the finer information was simply never captured by that channel.
 
