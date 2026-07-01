@@ -110,15 +110,15 @@ left to right, and direction pairs (compression/expansion) are adjacent.
 
 | Upper key | Assignment | Comma value |
 |---|---|---|
-| C | Axis (Du step) | `{ prime: "Du", step: 1 }` |
-| C# | Du Sup | `{ prime: "Du", step: -1 }` |
-| D | Du depth 2 compression | `{ prime: "Du", step: -2 }` |
-| D# | Tri compression | `{ prime: "Tri", step: -1 }` |
-| E | Tri expansion | `{ prime: "Tri", step: 1 }` |
-| F | Qui compression | `{ prime: "Qui", step: -1 }` |
-| F# | Qui expansion | `{ prime: "Qui", step: 1 }` |
-| G | Sep / Undec compression zone | family determined by magnitude key |
-| G# | Sep / Undec expansion zone | family determined by magnitude key |
+| C | Du depth 2 expansion (Sub) | `{ prime: "Du", step: 1 }, { prime: "Du", step: -1 }` |
+| C# | Axis (Du step) | `{ prime: "Du", step: 1 }` |
+| D | Du depth 2 compression (Sup) | `{ prime: "Du", step: 1 }, { prime: "Du", step: 1 }` |
+| D# | Tri expansion | `{ prime: "Tri", step: -1 }` |
+| E | Tri compression | `{ prime: "Tri", step: 1 }` |
+| F | Qui expansion | `{ prime: "Qui", step: -1 }` |
+| F# | Qui compression | `{ prime: "Qui", step: 1 }` |
+| G | Sep / Undec expansion zone | family determined by magnitude key |
+| G# | Sep / Undec compression zone | family determined by magnitude key |
 | A | Sep family flag | combined with G/G# selects Sep |
 | A# | Undec family flag | combined with G/G# selects Undec |
 | B | Magnitude 2 | step value 2 when combined with family key |
@@ -130,11 +130,11 @@ simultaneous lower-octave key acts as a magnitude selector while any upper
 modifier key is held — at that point the lower octave is in magnitude mode
 rather than syllable mode.
 
-**Qui2:** Lower key + F (Qui compression) + B (magnitude 2) = Qui step -2.
+**Qui2:** Lower key + F (Qui expansion) + B (magnitude 2) = Qui step -2.
 
-**Sep3:** Lower key + A (Sep flag) + G (compression zone) + B = Sep step -3.
+**Sep3:** Lower key + A (Sep flag) + G (expansion zone) + B = Sep step -3.
 
-**Undec5:** Lower key + A# (Undec flag) + G# (expansion zone) + lower D#
+**Undec5:** Lower key + A# (Undec flag) + G# (compression zone) + lower D#
 (magnitude 4 or 5 per user config) = Undec step 4 or 5.
 
 This layout is a recommended default, not a normative requirement. Users are

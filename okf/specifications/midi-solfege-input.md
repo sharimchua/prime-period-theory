@@ -92,9 +92,9 @@ Sep to prime 7, Undec to prime 11.
 A single comma entry specifies a prime family and a signed integer step count.
 The step is a direction and magnitude in that prime family's subdivision space:
 
-- A **negative step** compresses the subperiod — the equivalent of a sharper
+- A **positive step** compresses the subperiod — the equivalent of a sharper
   deviation in pitch terms, or a shorter duration in rhythmic terms.
-- A **positive step** expands the subperiod — the equivalent of a flatter
+- A **negative step** expands the subperiod — the equivalent of a flatter
   deviation in pitch terms, or a longer duration in rhythmic terms.
 
 The step is an integer. The magnitude of one step is defined by the prime
