@@ -159,18 +159,18 @@ values across all distances `d` in the phrase's [Rhythmic Overtone Series](rhyth
 
 The [Diacritic System](../uniform-solfege/diacritic-system.md) provides the
 vocabulary for naming the fractional displacement of a performed ratio from
-its nearest pure prime landmark. A ratio landing at $3/2 + \epsilon$ (slightly
+its nearest pure prime landmark. A ratio landing at 3/2 + ε (slightly
 above the 3-prime landmark) receives a HalfSup diacritic description; one
-landing at $3/2 - \epsilon$ receives a HalfSub.
+landing at 3/2 − ε receives a HalfSub.
 
 This vocabulary enables a precise distinction:
 
-**Coherent diacritic deviation:** the displacement $\epsilon$ is consistent
+**Coherent diacritic deviation:** the displacement ε is consistent
 across repetitions. The performer reliably lands at the same fractional offset
 from the pure landmark. The deviation is a stable, describable diacritic
 position — not Base, but a specific Sub or Sup that characterises the phrase.
 
-**Incoherent diacritic deviation:** the displacement $\epsilon$ varies
+**Incoherent diacritic deviation:** the displacement ε varies
 erratically across repetitions. On one pass the ratio is HalfSub; on the next
 it is HalfSup; on the third it is near Base. There is no stable diacritic
 position to assign — the phrase has no characteristic deviation profile,
