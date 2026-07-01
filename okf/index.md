@@ -186,17 +186,17 @@ amplitude or effect envelopes.
 
 ### Pedagogy
 - [Overview](pedagogy/index.md) — learning path map and core pedagogical principles
-- [Learning Paths](pedagogy/learning-paths.md) — the four paths and their rationale
+- Learning Paths — the four paths and their rationale
 - [Ear-First Pedagogy](pedagogy/ear-first.md) — perceptual grounding before symbolic notation
 - [Cross-Domain Transfer](pedagogy/cross-domain-transfer.md) — transfer as the test of understanding
-- [Progressive Complexity](pedagogy/progressive-complexity.md) — developmental arc through prime families
+- Progressive Complexity — developmental arc through prime families
 
 ### Applications
-- [Overview](applications/index.md) — the bridge between theory and tools
+- Overview — the bridge between theory and tools
 - [Component Philosophy](applications/component-philosophy.md) — one primitive for pitch and rhythm
-- [Visualisation](applications/visualisation.md) — PPT ratio visualisation across Metric DuPeriods
+- Visualisation — PPT ratio visualisation across Metric DuPeriods
 - [Play-Along Feedback](applications/play-along.md) — three feedback models
-- [Transcription](applications/transcription.md) — melody-first → progressive specification
+- Transcription — melody-first → progressive specification
 - [Notation Input](applications/notation-input.md) — how the MIDI to
   Solfège Input Specification serves PPT tools; text expander and macro
   patterns; generative MIDI input; design principles for consuming tools
@@ -204,9 +204,9 @@ amplitude or effect envelopes.
 ### Implementations
 - [Register](implementations/index.md) — all existing tools and their PPT coverage
 - [PPT Component Library](implementations/ppt-components.md) — canonical active development
-- [Harmonic Geometry](implementations/harmonic-geometry.md) — precursor tool
-- [Note Navigation](implementations/note-navigation.md) — precursor tool
-- [Frequency Perception](implementations/frequency-perception.md) — precursor tool
+- Harmonic Geometry — precursor tool
+- Note Navigation — precursor tool
+- Frequency Perception — precursor tool
 
 ## Specifications
 - [Design System & Colour Semantics](specifications/design-system.md) — Visual styling and mathematical mapping

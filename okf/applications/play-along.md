@@ -13,7 +13,7 @@ tags:
   - feedback
   - pedagogy
   - prime-period-theory
-timestamp: 2026-06-30
+timestamp: 2026-07-02
 ---
 
 # Play-Along Feedback — Three Models
@@ -141,7 +141,7 @@ impoverishing the musical context.
   the formal framework for distinguishing expressive timing from error
 - [Ear-First Pedagogy](../pedagogy/ear-first.md) — the pedagogical
   principle that informs the relative-pitch assessment approach
-- [Progressive Complexity](../pedagogy/progressive-complexity.md) —
+- Progressive Complexity —
   the developmental arc that the three feedback models serve
-- [Transcription](transcription.md) — the complementary workflow for
+- Transcription — the complementary workflow for
   intake of musical material (as distinct from performance feedback)

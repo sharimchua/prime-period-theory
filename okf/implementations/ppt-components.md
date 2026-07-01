@@ -11,7 +11,7 @@ tags:
   - components
   - canonical
   - prime-period-theory
-timestamp: 2026-06-30
+timestamp: 2026-07-02
 ---
 
 # PPT Component Library
@@ -93,7 +93,7 @@ as a live documentation environment.
 
 - [Component Philosophy](../applications/component-philosophy.md) —
   design rationale for the one-primitive architecture
-- [Visualisation](../applications/visualisation.md) — the broader
+- Visualisation — the broader
   visualisation philosophy that the component library serves
 - [PPT Topics Site](https://ppt.midlifemuso.com/topics) — the learner-
   facing documentation that uses these components
