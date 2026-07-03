@@ -39,7 +39,7 @@ While the sub-20Hz pitch space colloquially uses the term "Octave" due to entren
 The system has three components:
 
 - **The anchor**: Metric DuPeriod 0, defined as the Temporal-Place Limen
-  (20Hz / 50ms period)
+  (20Hz / 50ms period). This provides the external absolute binding to reality.
 - **The DuPeriod offset**: a signed integer indicating which doubling band
   the period falls in; negative for pitch space, positive for rhythmic
   space
@@ -50,7 +50,27 @@ A complete address takes the form **[Syllable][offset]** — for example,
 **So+4** denotes the So position within Metric DuPeriod +4, a period of
 approximately 600ms, corresponding to approximately 100 BPM.
 
+## Period, Anchor, and Comma Mechanics
+
+### Period is multiplicative only
+
+A **Period** is defined by a dimensionless recurrence:
+`P(n) = P₀ · rⁿ`
+
+where `r` is a pure ratio (e.g. `r = 2` for Metric DuPeriod's octave doubling) and `P₀` is the single external constant the whole sequence is pinned to.
+
+Additive recurrences (e.g., `P(n) = P₀ + n·Δ`) are specifically excluded from this category because they rely on a dimensioned constant (a difference rather than a dimensionless quotient). Sequences relying on additive dimensioned constants are formally considered a **Series**, not a Period, and fall outside comma-space.
+
+### Comma stays single-typed
+
+Every deviation within a period is a fraction of that period, expressed in log/ratio terms (cents) — there is no separate "linear offset" type. Even apparent exceptions like a beat rate in Gamelan ombak are mechanically derived (`Δf = f₁(r − 1)`) and can be recovered directly as a ratio-based comma:
+`comma (cents) = 1200 · log₂(1 + Δf / f₁)`
+
+The register (`f₁`) is supplied as an Anchor input, not an intrinsic property of the comma itself.
+
 ## The anchor: Metric DuPeriod 0
+
+A Period requires exactly one external, physical/biological absolute to bind its otherwise-dimensionless ratio structure to reality. This is the **Anchor**: an empirically or perceptually chosen constant, supplied, never derived.
 
 Metric DuPeriod 0 is not a band but a point: the Temporal-Place Limen at
 20Hz / 50ms. It is the Do of the entire system — the tonic from which
@@ -59,6 +79,8 @@ all offsets are measured.
 This anchor is chosen because it is intrinsic to the perceptual structure
 of the system rather than historically contingent. See
 [Temporal-Place Limen](../perception/temporal-place-limen.md) for the full argument.
+
+**Principle of Local Closure (First Form):** A period's own ratio math can never resolve its own anchor. The anchor must always come from outside the space being defined, because a ratio without a register to apply it to is dimensionless by design.
 
 ## DuPeriod bands
 

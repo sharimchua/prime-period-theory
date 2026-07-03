@@ -122,6 +122,7 @@ amplitude or effect envelopes.
   prime-ratio space that comma sequences navigate; just intonation lattice;
   path dependence; inter-prime non-coincidence; comma complements;
   enharmonic equivalence as application-layer relation
+- [Anchors](foundations/anchors.md) — local reference boundaries within a period space; prime lattice coordinate derivation of the 12 chromatic solfège positions up to the 11-limit
 
 ### Perception
 - [Information and Expectation](perception/information-and-expectation.md) —
@@ -147,6 +148,7 @@ amplitude or effect envelopes.
 - [Geometric Amplitude Ratios](extended/geometric-amplitude-ratios.md) — inquiry into prime-number governance of amplitude differences
 - [Amplitude Trajectories](extended/amplitude-trajectories.md) — amplitude as change over Metric DuPeriod time
 - [Spectral Dynamic Coupling](extended/spectral-dynamic-coupling.md) — modulation of spectral content by amplitude trajectories
+- [Path Equivalence and Confluence](extended/path-equivalence.md) — the mathematical equivalence of different prime paths to the same harmonic position
 
 ### Domains
 - [Pitch](domains/pitch.md) — micro periodicity; frequency; just intonation
@@ -210,7 +212,7 @@ amplitude or effect envelopes.
 
 ## Specifications
 - [Design System & Colour Semantics](specifications/design-system.md) — Visual styling and mathematical mapping
-- [PPT Composition Format (PPT-CF)](specifications/composition-format.md) — a concise, structural encoding format for serializing component layouts
+- [PPT Composition Format (PPT-CF)](specifications/composition-format.md) — a concise, structural encoding format for serialising component layouts
 - [MIDI to Solfège Input Specification](specifications/midi-solfege-input.md)
   — the canonical contract for translating a MIDI event stream to a
   Solfège Output object; output type definition; COMMIT signal; bundle model

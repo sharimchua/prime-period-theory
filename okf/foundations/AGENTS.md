@@ -21,6 +21,7 @@ perceptual consequences — that is `perception/`'s job.
 |`periodicity.md`|Complete|Periodicity as the unifying phenomenon; 20Hz boundary; tala/ti-hai; overtone series|
 |`prime-families.md`|Complete|The five prime families; prime vs exponent; the 11-limit ceiling|
 |`prime-lattice.md`|Complete|The multi-dimensional coordinate space defined by the five independent prime axes|
+|`anchors.md`|Complete|Definition of local anchors and the prime lattice coordinate derivation of the 12 chromatic solfège positions|
 
 ## Future page — not yet ready to formalise
 

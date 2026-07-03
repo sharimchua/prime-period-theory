@@ -52,7 +52,7 @@ the same directional relationship.
 
 ## Core principle
 
-Any period has a base position (0) and an Axis position (+1/2, the point equidistant between adjacent bases). Between these two poles, positions are defined by prime-ratio subdivision. Diacritics mark deviation from base within the range (−1/2, +1/2], where −1/2 is excluded by periodicity (it is equivalent to the prior period's +1/2).
+Any period has a base position (0) and a shared topological boundary (Axis, the point equidistant between adjacent bases). Between these two poles, positions are defined by prime-ratio subdivision. Diacritics mark deviation from base within the range (−1/2, +1/2], where −1/2 is excluded by periodicity (it is equivalent to the prior period's +1/2). Axis (+1/2) is a prime-agnostic boundary, though Du's recursive bisection process uniquely lands exactly on it at its first step.
 
 ## The prime families
 
@@ -75,7 +75,7 @@ Threshold: position > 1/4. This applies explicitly in Sep (+3/7 ≈ 0.429) and U
 
 ## Fractal Du depth (Du family only)
 
-The Du diacritic (Axis stroke) supports fractal subdivision to four levels, encoding depth via small triangle offsets on the Axis stroke itself:
+The Du diacritic (Axis stroke) supports fractal subdivision to four levels, encoding depth via small triangle offsets on the Axis stroke itself. Unlike odd primes which select exact fractional point-labels, Du's choices at each depth act as **branch-selectors** specifying which half of the space to descend into:
 
 | Depth | Position | Fraction |
 |-------|----------|----------|

@@ -5,7 +5,7 @@ description: >
   The mathematical space that the PPT comma system navigates. The prime
   lattice is a multi-dimensional coordinate space where each prime family
   defines an independent axis. Comma sequences are ordered paths through
-  this space from a solfège anchor. Covers path dependence, inter-prime
+  this space from a local anchor. Covers path dependence, inter-prime
   non-coincidence, comma complements, and enharmonic equivalence as an
   application-layer relation.
 tags:
@@ -33,8 +33,10 @@ dimensions of a multi-dimensional space. That space is the **prime lattice**.
 Any musical position that can be described in PPT terms — any pitch, any
 rhythmic duration, any timbral partial — is a point in the prime lattice.
 Its coordinates are determined by how many steps along each prime axis are
-required to reach it from a reference point. The [comma system](../specifications/midi-solfege-input.md)
-encodes those coordinates as an ordered array of `{ prime, step }` entries.
+required to reach it from a reference point. The comma system native to the lattice
+encodes those coordinates as an ordered list of `±x/y` steps, where `x` is the 
+index step (as a balanced parity magnitude around 0) and `y` is the bounded prime family 
+(e.g., 1 for Boundary/Axis, 2 for Du, 3 for Tri, 5 for Qui, 7 for Sep, 11 for Undec).
 
 The prime lattice is not a PPT invention. It is the natural mathematical
 structure underlying just intonation theory, where it is typically
@@ -45,11 +47,12 @@ rather than as a convention of equivalence.
 
 ## Lattice coordinates and comma sequences
 
-A comma sequence is an ordered list of steps along prime axes. Each entry
+A comma sequence is an ordered list of steps along prime axes, written natively in `±x/y` format. Each entry
 moves from the current position to a new position in the lattice. The
-sequence starts from the solfège anchor — one of the twelve chromatic
-positions — and each step refines the position within the subperiod local
-to that anchor.
+sequence starts from a local anchor (defined by its parent boundary), and each step 
+refines the position within the subperiod local to that anchor. Note that the 
+use of the twelve chromatic solfège positions as anchors is a specific 
+implementation detail of Uniform Solfège, not a native constraint of the prime lattice itself.
 
 The coordinates of a lattice point are determined by the complete path taken
 to reach it, not by any single entry. Two comma sequences that traverse the
@@ -62,13 +65,25 @@ Du fractal navigation makes path dependence unavoidable. Each Du step
 specifies which half of the current subperiod to enter — positive for the
 upper half, negative for the lower half. A sequence of Du steps is a binary
 tree path, and the sequence of decisions is precisely what locates the
-position. Collapsing a Du sequence to a single net value would destroy the
+position. Du's two choices at any depth are branch-selectors, not point-labels.
+Collapsing a Du sequence to a single net value would destroy the
 tree structure entirely.
 
 Once path dependence is required for Du, it is extended to all prime families
 for consistency and to permit mixed-prime fractal navigation. A sequence that
 interleaves Tri and Qui steps describes a path through the lattice that
 carries more information than the sum of its Tri and Qui components.
+
+### Generalised Fractal Descent and the Zero Index (Sustain)
+
+For an odd prime `p`, the signed digit set is `{±1, ±2, …, ±(p−1)/2}`.
+The formula for the position reached by a path of digits `a_i` with associated primes `p_i` is:
+
+`position = Σᵢ aᵢ / Pᵢ`, where `Pᵢ = ∏ⱼ₌₁ⁱ pⱼ`
+
+Importantly, the zero index (`0`) is a valid and crucial operator in the underlying math, acting as a **Sustain**. A zero over a prime family does not displace position; rather, it performs a period space reduction for the next level. The scale of the next level is determined by the product of the next level's prime family and the prime family where the zero index was applied.
+
+If the zero index is applied over another zero (an axis descent on zero), the reduction is determined by the exponent of the next prime family descent — structurally akin to carrying over the multiplier from a strike in bowling. This ensures the theoretical space has no unreachable gaps ("Cantor gaps"), even if the current visual writing system does not yet map all these internal routes.
 
 ## No exact inter-prime coincidence
 
@@ -77,15 +92,13 @@ non-overlapping. Du steps halve the subperiod at each level; Tri steps
 divide it by 3; and so on. These grids are clean trees with no internal
 intersections.
 
-Across different prime families, exact coincidence is mathematically
-impossible. This follows from the fundamental theorem of arithmetic: for
+When navigating exclusively via pure, single-prime descents (e.g., a pure Tri path versus a pure Qui path), exact coincidence across different families is mathematically impossible. This follows from the fundamental theorem of arithmetic: for
 any two distinct primes p and q, the equation p^m = q^n has no solution
 in positive integers m and n. There is no depth at which a grid of pure
 Du subdivisions and a grid of pure Tri subdivisions share a common point.
 
-The practical consequence: every distinct comma sequence describes a
-distinct lattice position. The representation is injective — no two
-different paths arrive at exactly the same point.
+The practical consequence: every distinct, single-family comma sequence describes a
+distinct lattice position. (Note that this non-coincidence applies strictly to pure paths; as noted below, paths built from *mixed* prime families can exhibit Confluence).
 
 ## Nearest approach and the origin of simple ratios
 
@@ -110,12 +123,12 @@ grids at a given depth. The simpler the ratio, the shallower the convergence
 depth, and the larger the residual comma. Ratios are derived from the lattice
 structure; they are not the primitive objects. The comma path is prior.
 
-## Comma complements
+## Comma complements and the Axis
 
-Each solfège anchor defines a local subperiod — a bounded region of the
+Each local anchor defines a local subperiod — a bounded region of the
 lattice centred on that anchor. The commas array navigates within this region.
-It cannot cross into an adjacent solfège anchor's region; that would require
-selecting a different syllable, not adding a comma entry.
+It cannot cross into an adjacent anchor's region; that would require
+selecting a different base reference, not adding a comma entry.
 
 Within a local subperiod, every position has a **comma complement**: the
 position arrived at by inverting the sign of every step in the comma sequence.
@@ -126,12 +139,14 @@ of the same depth.
 
 Complement positions always sum to the full subperiod length — they are
 equidistant from opposite sides of the anchor's local space. This is a direct
-consequence of the subperiod being a closed bounded interval with a centre
-point (the Axis, at Du step 1 or -1 from the anchor midpoint).
+consequence of the subperiod being a closed bounded interval with an origin
+(the Base) and a shared topological boundary (the Axis). 
 
-The comma complement relationship is internal to each solfège anchor. It does
-not extend across anchors. The complement of a position near Do is another
-position near Do, not a position near Fi.
+Crucially, **Axis and Base are part of the same boundary family**, because Axis is simply the reflection of Base across the subperiod. For Du, the recursive bisection process happens to land exactly on this shared boundary at the first step (`±1/2`), which is why Axis is often introduced alongside Du, but its topological role is prime-agnostic.
+
+The comma complement relationship is internal to each local anchor. It does
+not extend across anchors. The complement of a position near a given anchor is another
+position near that same anchor.
 
 ## Enharmonic equivalence
 
@@ -167,6 +182,10 @@ Temperament is therefore an application-layer decision about which
 near-coincidences to declare exact. The spec carries the full lattice
 information. The application chooses its resolution.
 
+### Path Equivalence and Confluence
+
+Because position depends on the product of primes used across a path, and multiplication commutes, different prime orders can sometimes resolve to the same physical address (e.g., a Tri-then-Qui path vs a Qui-then-Tri path resolving to the same fraction of the period). This commutativity collision across mixed primes is a structural feature of the lattice, not a problem to engineer around. It forms the basis of the **Confluence** relation — a documented equivalence between distinct decision-paths that arrive at the same location. For more details, see [Path Equivalence and Confluence](../extended/path-equivalence.md).
+
 ## Relationship to Prime Period Diacritics
 
 Prime Period Diacritics (PPD) is the **writing system rendering** of comma
@@ -198,6 +217,15 @@ Period-fixed and subperiod-fixed relationships (the mathematical basis for
 polyrhythm and polymeter respectively) are both naturally described in
 lattice terms — see [Rhythm](../domains/rhythm.md).
 
+## Mathematical Lineage
+
+The mathematical structures described here build on established number-theoretic and tuning-theoretic machinery:
+- The multi-dimensional coordinate space of prime families is the established representation in **Regular Temperament Theory (RTT)**, commonly known as **monzos** (prime-exponent vectors), formalised by Gene Ward Smith, Adriaan Fokker, and Joe Monzo.
+- The boundary family and compactification logic shares deep intuitions with the **Stern-Brocot tree** and **Erv Wilson's Scale Tree**, which seeds its construction with `0/1` and `1/0`.
+- Uniqueness within a single prime is governed by the mathematics of **balanced base-p signed-digit systems** (e.g., balanced ternary).
+
+PPT synthesises these existing tools, generalises balanced descent across mixed primes, maps it to a period-operator grammar, and applies it identically across pitch and rhythm.
+
 ## See also
 
 - [Prime Families](prime-families.md) — the five generators and their
@@ -216,3 +244,5 @@ lattice terms — see [Rhythm](../domains/rhythm.md).
   across which the lattice applies
 - [Rhythm](../domains/rhythm.md) — period-fixed and subperiod-fixed
   relationships in rhythmic terms
+- [Path Equivalence and Confluence](../extended/path-equivalence.md) — how different paths
+  can resolve to the same point

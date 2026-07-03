@@ -45,9 +45,11 @@ figures.
 
 The six states are not the definition of the microtonal space. They are
 a practical rendering of the most commonly needed positions in that space.
-Less common positions — deeper fractal Du subdivisions, higher Sep or
+Less common positions — deeper fractal subdivisions in odd primes, or higher Sep or
 Undec magnitudes — can be described in the comma system precisely while
 the writing system renders them at the nearest practical glyph form.
+
+Crucially, there is an intentional gap between this writing representation (which currently supports 1-level descent across odd primes, and a fractal descent only in Du prime space up to depth 4, akin to a rhythmic bitmask) and the underlying mathematics (which allows unlimited fractal descent across all primes). This gap will be resolved as the system evolves, but the diacritic glyphs remain finite approximations.
 
 This framing separates two concerns that the diacritic system has
 historically carried together:
@@ -82,14 +84,14 @@ This hybrid design delivers a "closed" geometric axis of symmetry for multi-doma
 * **FiUnDecSup1** (or a customised Sup-inflection): Pushes the square root of 2 axis upward to approximate the pure acoustic resonance of the greater-tritone (16:11).
 
 > **Note on "Axis" across contexts:** The term Axis is used in three distinct
-> ways within the PPT framework. (1) As the Du-family glyph: the horizontal
-> crossbar at 50% of the period, the depth-1 Fractal Du position.
-> (2) As the shared upper boundary of every period symbol's range: 50% is
-> a common reference point across all families;
-> DuTri inherits it as its
-> sixth position. (3) In Rhythmic Grammar: the Axis suffix on Do and Di
-> (written Dox, Dix) marks rhythmic block boundaries. This is a notational
-> convention of Rhythmic Grammar, not a microtonal inflection. The three
+> ways within the PPT framework. (1) Topologically, it is the prime-agnostic 
+> shared upper boundary (+50%) between adjacent periods. It belongs to the 
+> same Boundary Family as Base (0%), being simply its reflection. (2) As the 
+> Du-family glyph: the horizontal crossbar at 50% of the period. Because Du's 
+> recursive bisection lands exactly on this boundary at its first step, the 
+> boundary itself is often visually associated with Du, but its topological 
+> role is universal. (3) In Rhythmic Grammar: the Axis suffix on Do and Di
+> (written Dox, Dix) marks rhythmic block boundaries. The three
 > uses are contextually distinct and do not overlap.
 
 ---
@@ -111,10 +113,12 @@ A full solfège token is constructed as a single continuous string without space
 3. **Superscript Concatenation**: Superscripts (used for remainder sub-glyphs or cross-family notation) are concatenated using the caret (`^`) symbol. The string following the caret is parsed as its own complete solfège token.
 
 **Examples:**
-- `Do` — Base chromatic syllable
+- `Do` — Base chromatic syllable (Mathematically `0/0` within the boundary family)
 - `ReSub` — Re with a negative Tri diacritic (period compression)
-- `Dox` or `DoAxis` — Do with the Axis diacritic (50¢)
+- `Dox` or `DoAxis` — Do with the Axis diacritic (Mathematically `+1/0` within the boundary family)
 - `Dox^ReSub` — Do with the Axis diacritic, hosting a superscript of `ReSub`
+
+> **Note on the Boundary Family:** In the underlying mathematics, Base (`0/0`) and Axis (`+1/0`) belong to the Boundary Family. While the mathematical model supports `−1/0` (the previous anchor's supremum) and complex fractal navigation within boundary states, the diacritic writing system explicitly does not have representations for `−1/0` or fractal navigation in the boundary family (only Du Prime is currently supported for fractal navigation).
 
 ---
 

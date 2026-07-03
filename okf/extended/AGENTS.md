@@ -14,6 +14,7 @@ This directory is intended for theoretical extensions that, while grounded in PP
 |`geometric-amplitude-ratios.md`|Draft|Inquiry into geometric and prime-ratio governance of amplitude differences|
 |`amplitude-trajectories.md`|Stub|Amplitude as change over Metric DuPeriod time|
 |`spectral-dynamic-coupling.md`|Stub|Modulation of spectral content by amplitude trajectories|
+|`path-equivalence.md`|Complete|The mathematical equivalence of different paths through the prime lattice to the same harmonic result|
 
 ## Tone guidance
 
