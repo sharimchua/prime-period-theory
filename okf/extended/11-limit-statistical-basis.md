@@ -1,4 +1,4 @@
-﻿---
+---
 type: concept
 title: Bounding the Infinite — A Statistical Basis for the 11-Limit in Macro-Rhythmic Analysis
 description: >
