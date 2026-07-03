@@ -15,6 +15,7 @@ This directory is intended for theoretical extensions that, while grounded in PP
 |`amplitude-trajectories.md`|Stub|Amplitude as change over Metric DuPeriod time|
 |`spectral-dynamic-coupling.md`|Stub|Modulation of spectral content by amplitude trajectories|
 |`path-equivalence.md`|Complete|The mathematical equivalence of different paths through the prime lattice to the same harmonic result|
+|`11-limit-statistical-basis.md`|Draft|Statistical proof for the 11‑limit using Pareto and Legendre formulas|
 
 ## Tone guidance
 

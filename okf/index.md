@@ -13,7 +13,7 @@ tags:
   - polyrhythm
   - microtonality
   - 31-edo
-timestamp: 2026-07-01
+timestamp: 2026-07-03
 ---
 
 # Prime Period Theory
@@ -149,6 +149,7 @@ amplitude or effect envelopes.
 - [Amplitude Trajectories](extended/amplitude-trajectories.md) — amplitude as change over Metric DuPeriod time
 - [Spectral Dynamic Coupling](extended/spectral-dynamic-coupling.md) — modulation of spectral content by amplitude trajectories
 - [Path Equivalence and Confluence](extended/path-equivalence.md) — the mathematical equivalence of different prime paths to the same harmonic position
+- [Bounding the Infinite: A Statistical Basis for the 11-Limit](extended/11-limit-statistical-basis.md) — Pareto principle and Legendre's formula applied to the rhythmic overtone series; a corpus-statistical derivation of the 11-limit ceiling
 
 ### Domains
 - [Pitch](domains/pitch.md) — micro periodicity; frequency; just intonation
