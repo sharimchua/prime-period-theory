@@ -17,7 +17,7 @@ timestamp: 2026-07-03
 
 ## The limits of path uniqueness
 
-In the [Prime Lattice](prime-lattice.md), every point is defined by an ordered sequence of steps along prime axes, descending recursively into smaller subdivisions of a period. 
+In the [Prime Lattice](../foundations/prime-lattice.md), every point is defined by an ordered sequence of steps along prime axes, descending recursively into smaller subdivisions of a period.
 
 As stated in the prime lattice definition, within a **single prime family**, the subdivision grid is regular and every path maps to a unique position. The mathematics of balanced base-p signed-digit systems guarantees that no two different paths of pure Tri digits, or pure Qui digits, can arrive at the same fractional position.
 
@@ -57,5 +57,5 @@ Recognising Confluence allows a composer or theorist to treat the *path taken* a
 
 ## See also
 
-- [Prime Lattice](prime-lattice.md) — the full mathematical space
-- [Prime Families](prime-families.md) — the prime generators
+- [Prime Lattice](../foundations/prime-lattice.md) — the full mathematical space
+- [Prime Families](../foundations/prime-families.md) — the prime generators
