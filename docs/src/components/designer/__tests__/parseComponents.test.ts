@@ -3,12 +3,14 @@ import { parseSafeMetadata, getPPTComponents } from '../parseComponents';
 import * as fs from 'node:fs';
 
 vi.mock('node:fs', () => {
+  const mockFs = {
+    existsSync: vi.fn(),
+    readdirSync: vi.fn(),
+    readFileSync: vi.fn(),
+  };
   return {
-    default: {
-      existsSync: vi.fn(),
-      readdirSync: vi.fn(),
-      readFileSync: vi.fn(),
-    }
+    ...mockFs,
+    default: mockFs
   };
 });
 

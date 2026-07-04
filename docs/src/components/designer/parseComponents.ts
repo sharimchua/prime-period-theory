@@ -1,5 +1,10 @@
-import fs from 'node:fs';
+import * as fs from 'node:fs';
 import path from 'node:path';
+
+
+
+
+
 import * as acorn from 'acorn';
 
 export function parseSafeMetadata(objStr: string): any {
@@ -55,20 +60,22 @@ export interface ComponentMeta {
 
 export function getPPTComponents(): ComponentMeta[] {
   const srcDir = path.resolve(process.cwd(), 'components/src');
-  if (!fs.existsSync(srcDir)) {
+  const srcDirPosix = srcDir.replace(/\\/g, '/');
+  if (!fs.existsSync(srcDirPosix)) {
     console.warn(`Could not find components directory at ${srcDir}`);
     return [];
   }
 
-  const files = fs.readdirSync(srcDir).filter(f => f.endsWith('.ts') && f !== 'index.ts');
+  const files = fs.readdirSync(srcDirPosix).filter(f => f.endsWith('.ts') && f !== 'index.ts');
   const components: ComponentMeta[] = [];
 
   // Parse BasePPTComponent first to inherit metadata
   let baseMetadata: Record<string, ComponentMetadata> = {};
   let baseContent = '';
   const baseContentPath = path.join(srcDir, 'BasePPTComponent.ts');
-  if (fs.existsSync(baseContentPath)) {
-    baseContent = fs.readFileSync(baseContentPath, 'utf-8');
+  const baseContentPathPosix = baseContentPath.replace(/\\/g, '/');
+  if (fs.existsSync(baseContentPathPosix)) {
+    baseContent = fs.readFileSync(baseContentPathPosix, 'utf-8');
     const metaMatch = baseContent.match(/pptMetadata[^{]*{.*?return\s*({[\s\S]*?})\s*;\s*}/s);
     if (metaMatch) {
       try {
@@ -82,25 +89,24 @@ export function getPPTComponents(): ComponentMeta[] {
   // Parse Mixins
   const mixinMetadata: Record<string, Record<string, ComponentMetadata>> = {};
   const featuresDir = path.join(srcDir, 'features');
-  if (fs.existsSync(featuresDir)) {
-    const mixinFiles = fs.readdirSync(featuresDir).filter(f => f.endsWith('.ts'));
-    for (const f of mixinFiles) {
-      const mixinContent = fs.readFileSync(path.join(featuresDir, f), 'utf-8');
-      const metaMatch = mixinContent.match(/pptMetadata[^{]*{.*?return\s*({[\s\S]*?})\s*;\s*}/s);
-      if (metaMatch) {
-        try {
-          let objStr = metaMatch[1].replace(/\.\.\.\(\(Base as any\)\.pptMetadata\s*\|\|\s*\{\}\),?/, '');
-          mixinMetadata[f.replace('.ts', '')] = parseSafeMetadata(objStr);
-        } catch (e) {
-          console.warn(`Failed to parse mixinMetadata for ${f}:`, e);
-        }
+  const featuresDirPosix = featuresDir.replace(/\\/g, '/');
+  const mixinFiles = (fs.readdirSync(featuresDirPosix) ?? []).filter(f => f.endsWith('.ts'));
+  for (const f of mixinFiles) {
+    const mixinContent = fs.readFileSync(path.join(featuresDir, f).replace(/\\/g, '/'), 'utf-8');
+    const metaMatch = mixinContent.match(/pptMetadata[^{]*{.*?return\s*({[\s\S]*?})\s*;\s*}/s);
+    if (metaMatch) {
+      try {
+        let objStr = metaMatch[1].replace(/\.\.\.\(\(Base as any\)\.pptMetadata\s*\|\|\s*\{\}\),?/, '');
+        mixinMetadata[f.replace('.ts', '')] = parseSafeMetadata(objStr);
+      } catch (e) {
+        console.warn(`Failed to parse mixinMetadata for ${f}:`, e);
       }
     }
   }
 
   for (const file of files) {
     if (file === 'BasePPTComponent.ts') continue;
-    const content = fs.readFileSync(path.join(srcDir, file), 'utf-8');
+    const content = fs.readFileSync(path.join(srcDir, file).replace(/\\/g, '/'), 'utf-8');
     
     // Match customElements.define
     const defineMatch = content.match(/customElements\.define\(\s*['"]([^'"]+)['"]\s*,\s*([A-Za-z0-9_]+)\s*\)/);
@@ -127,8 +133,9 @@ export function getPPTComponents(): ComponentMeta[] {
       const parentClass = extendMatch[1];
       if (parentClass !== 'BasePPTComponent' && !parentClass.includes('With')) {
         const parentFile = path.join(srcDir, `${parentClass}.ts`);
-        if (fs.existsSync(parentFile)) {
-          const pContent = fs.readFileSync(parentFile, 'utf-8');
+        const parentFilePosix = parentFile.replace(/\\/g, '/');
+        if (fs.existsSync(parentFilePosix)) {
+          const pContent = fs.readFileSync(parentFilePosix, 'utf-8');
           const pAttrMatch = pContent.match(/observedAttributes[^{]*{\s*return\s*\[(.*?)\];/s);
           if (pAttrMatch) {
             const extracted = [...pAttrMatch[1].matchAll(/['"]([^'"]+)['"]/g)].map(m => m[1]);
