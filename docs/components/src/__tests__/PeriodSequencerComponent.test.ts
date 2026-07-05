@@ -56,6 +56,14 @@ describe('PeriodSequencerComponent', () => {
     expect(element.hasAttribute('is-playing')).toBe(false);
   });
 
+  it('should handle invalid tempo', () => {
+    element.setAttribute('tempo', 'invalid');
+    expect(element.tempo).toBe(120);
+
+    element.setAttribute('tempo', '-10');
+    expect(element.tempo).toBe(120);
+  });
+
   it('should handle onStateMessage for metronome-tempo and metronome-play', () => {
     element.onStateMessage('metronome-tempo', 150);
     expect(element.tempo).toBe(150);
@@ -121,4 +129,119 @@ describe('PeriodSequencerComponent', () => {
       parent.parentElement.removeChild(parent);
     }
   });
+
+  it('should handle tempo change during playback', () => {
+    const parent = document.createElement('div');
+
+    const sibling1 = document.createElement('div') as any;
+    sibling1.playSound = vi.fn();
+    sibling1.highlight = vi.fn();
+    sibling1.unhighlight = vi.fn();
+    sibling1.pitch = 'C4';
+
+    parent.appendChild(sibling1);
+    parent.appendChild(element);
+    document.body.appendChild(parent);
+
+    element.tempo = 60; // 1000ms per beat
+    element.isPlaying = true;
+
+    vi.advanceTimersByTime(1000);
+    expect(sibling1.playSound).toHaveBeenCalledTimes(1);
+
+    element.tempo = 120; // 500ms per beat
+
+    vi.advanceTimersByTime(500);
+    expect(sibling1.playSound).toHaveBeenCalledTimes(2);
+
+    if (parent.parentElement) {
+      parent.parentElement.removeChild(parent);
+    }
+  });
+
+  it('should handle no parent gracefully', () => {
+    // Remove element from DOM
+    if (element.parentElement) {
+      element.parentElement.removeChild(element);
+    }
+
+    element.tempo = 120;
+    element.isPlaying = true;
+
+    // Shouldn't crash
+    vi.advanceTimersByTime(1000);
+  });
+
+  it('should handle no valid siblings gracefully', () => {
+    const parent = document.createElement('div');
+    parent.appendChild(element);
+    document.body.appendChild(parent);
+
+    element.tempo = 120;
+    element.isPlaying = true;
+
+    // Shouldn't crash
+    vi.advanceTimersByTime(1000);
+
+    if (parent.parentElement) {
+      parent.parentElement.removeChild(parent);
+    }
+  });
+
+  it('should handle siblings without highlight function', () => {
+    const parent = document.createElement('div');
+
+    const sibling1 = document.createElement('div') as any;
+    sibling1.playSound = vi.fn();
+    sibling1.pitch = 'C4';
+
+    parent.appendChild(sibling1);
+    parent.appendChild(element);
+    document.body.appendChild(parent);
+
+    element.tempo = 120;
+    element.isPlaying = true;
+
+    // Shouldn't crash
+    vi.advanceTimersByTime(500);
+    expect(sibling1.playSound).toHaveBeenCalledTimes(1);
+
+    if (parent.parentElement) {
+      parent.parentElement.removeChild(parent);
+    }
+  });
+
+  it('should start if is-playing attribute is present on load', () => {
+    const newEl = document.createElement('ppt-period-sequencer') as PeriodSequencerComponent;
+    newEl.setAttribute('is-playing', 'true');
+    newEl.setAttribute('tempo', '150');
+    document.body.appendChild(newEl);
+
+    expect(newEl.isPlaying).toBe(true);
+    expect(newEl.tempo).toBe(150);
+
+    document.body.removeChild(newEl);
+  });
+
+  it('should default pitch to C4 if sibling does not define one', () => {
+    const parent = document.createElement('div');
+
+    const sibling1 = document.createElement('div') as any;
+    sibling1.playSound = vi.fn();
+
+    parent.appendChild(sibling1);
+    parent.appendChild(element);
+    document.body.appendChild(parent);
+
+    element.tempo = 120;
+    element.isPlaying = true;
+
+    vi.advanceTimersByTime(500);
+    expect(sibling1.playSound).toHaveBeenCalledWith('C4');
+
+    if (parent.parentElement) {
+      parent.parentElement.removeChild(parent);
+    }
+  });
+
 });
