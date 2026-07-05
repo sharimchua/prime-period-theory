@@ -79,7 +79,7 @@ explicit coordinate calculations. A `<ppt-period>` with five children
 produces a pentatonic arrangement without any code change.
 
 This mirrors the emergent analysis principle in the OKF
-([Emergent Analysis](../reference/emergent-analysis.md)): the geometry
+(Emergent Analysis): the geometry
 is a consequence of the structure, not a separately specified overlay.
 In the notation system, a mark head emerges from the mark's duration.
 In the component library, the step positions emerge from the step count.
@@ -128,9 +128,9 @@ component library is designed to make this composition tractable.
   for treating pitch and rhythm with the same primitive
 - [Metric DuPeriod](../reference/metric-duperiod.md) — the coordinate
   system that the component nesting hierarchy maps onto
-- [Emergent Analysis](../reference/emergent-analysis.md) — the parallel
+- Emergent Analysis — the parallel
   principle in notation: structure generates its own analytical portrait
 - [PPT Components](../implementations/ppt-components.md) — the current
   state of the component library implementation
-- [Visualisation](visualisation.md) — PPT ratio visualisation as a
+- Visualisation — PPT ratio visualisation as a
   specific application of the component architecture

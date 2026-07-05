@@ -77,7 +77,7 @@ encode what they have heard and tested. The symbols now name real
 perceptual experiences, not abstract positions.
 
 This arc is directly implemented in the transcription workflow in the
-[Applications](../applications/transcription.md) layer, where the
+Applications layer, where the
 progressive specification system supports each stage computationally.
 
 ## The solfège dimension
@@ -113,7 +113,7 @@ the learner has a real referent for it.
   framing that motivates ear-first pedagogy
 - [Cross-Domain Transfer](cross-domain-transfer.md) — transfer as
   the measure that ear-first understanding has succeeded
-- [Applications — Transcription](../applications/transcription.md) —
+- Applications — Transcription —
   the computational implementation of the transcription arc
 - [Uniform Solfège](../uniform-solfege/index.md) — the notation system
   whose design is grounded in the ear-first principle

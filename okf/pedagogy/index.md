@@ -69,7 +69,7 @@ the full Metric DuPeriod as analytical tools, arrives at form as
 macro-periodicity. Designed for learners who are ready to use PPT as
 a complete analytical system.
 
-See [Learning Paths](learning-paths.md) for the full path specifications.
+See Learning Paths for the full path specifications.
 
 ## Core pedagogical principles
 
@@ -88,7 +88,7 @@ test of genuine understanding, not recall. See
 7 → 11 is not arbitrary — it follows perceptual accessibility and
 musical centrality. Every learner begins with the 2-prime (octave, duple
 metre) and progresses through the prime families in order. See
-[Progressive Complexity](progressive-complexity.md).
+Progressive Complexity.
 
 **Geometry before symbol.** Where a concept has a geometric expression,
 the geometry is taught first. Chord quality as a polygon shape precedes
@@ -100,7 +100,7 @@ precedes staff notation for metre. See
 ## Relationship to the applications layer
 
 The pedagogical architecture is realised in concrete tools in the
-[Applications](../applications/index.md) directory. The play-along
+Applications directory. The play-along
 feedback system, the transcription workflow, and the PPT component
 visualisations are all implementations of the principles described
 here. The theory says what should be taught and in what sequence; the
@@ -108,9 +108,9 @@ applications say how.
 
 ## See also
 
-- [Learning Paths](learning-paths.md) — full path specifications
+- Learning Paths — full path specifications
 - [Ear-First Pedagogy](ear-first.md) — the ear-first principle in depth
 - [Cross-Domain Transfer](cross-domain-transfer.md) — transfer as the measure of understanding
-- [Progressive Complexity](progressive-complexity.md) — the prime family developmental arc
-- [Applications](../applications/index.md) — tools that implement these principles
+- Progressive Complexity — the prime family developmental arc
+- Applications — tools that implement these principles
 - [Music as Language](../context/music-as-language.md) — the linguistic framing that motivates PPT pedagogy
