@@ -44,20 +44,21 @@ export class PhraseEditorComponent extends BasePPTComponent {
   }
 
   private tokens: any[] = [];
+  private isActiveEditor = false;
   private handleGlyphInput = this.onGlyphInput.bind(this);
   private handleFocus = this.onFocus.bind(this);
-  private handleBlur = this.onBlur.bind(this);
+  private handleActiveEditorChanged = this.onActiveEditorChanged.bind(this);
 
   override connectedCallback() {
     super.connectedCallback();
     this.tabIndex = 0; // Make it focusable
     
     this.addEventListener('focus', this.handleFocus);
-    this.addEventListener('blur', this.handleBlur);
     this.addEventListener('click', () => this.focus());
 
     const listenId = this.getAttribute('listen-id') || 'glyph-input';
     EventBus.subscribe(listenId, this.handleGlyphInput);
+    EventBus.subscribe('active-phrase-editor-changed', this.handleActiveEditorChanged);
 
     this.render();
   }
@@ -65,10 +66,10 @@ export class PhraseEditorComponent extends BasePPTComponent {
   override disconnectedCallback() {
     super.disconnectedCallback();
     this.removeEventListener('focus', this.handleFocus);
-    this.removeEventListener('blur', this.handleBlur);
     
     const listenId = this.getAttribute('listen-id') || 'glyph-input';
     EventBus.unsubscribe(listenId, this.handleGlyphInput);
+    EventBus.unsubscribe('active-phrase-editor-changed', this.handleActiveEditorChanged);
   }
 
   override attributeChangedCallback(name: string, oldVal: string, newVal: string) {
@@ -80,16 +81,21 @@ export class PhraseEditorComponent extends BasePPTComponent {
   }
 
   private onFocus() {
+    this.isActiveEditor = true;
+    EventBus.publish('active-phrase-editor-changed', this);
     this.render(); // Show cursor
   }
 
-  private onBlur() {
-    this.render(); // Hide cursor
+  private onActiveEditorChanged(activeEditor: any) {
+    if (activeEditor !== this && this.isActiveEditor) {
+      this.isActiveEditor = false;
+      this.render(); // Hide cursor
+    }
   }
 
   private onGlyphInput(payload: any) {
-    // Only accept input if we have focus
-    if (document.activeElement !== this) return;
+    // Only accept input if we are the globally active editor
+    if (!this.isActiveEditor) return;
 
     if (payload && payload.type === 'glyph') {
       this.tokens.push(payload);
@@ -116,8 +122,8 @@ export class PhraseEditorComponent extends BasePPTComponent {
       html += `<ppt-uniform-solfege solfege="${token.solfege}" ${diacriticAttr} size="1.5em"></ppt-uniform-solfege>`;
     }
 
-    // Render cursor if focused
-    if (document.activeElement === this) {
+    // Render cursor if active
+    if (this.isActiveEditor) {
       html += `<ppt-coil-cursor></ppt-coil-cursor>`;
     } else if (this.tokens.length === 0) {
       html += `<span style="color:#cbd5e1;font-size:0.8em;user-select:none;">Click to edit</span>`;
