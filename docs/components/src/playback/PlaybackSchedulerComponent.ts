@@ -38,7 +38,7 @@ export class PlaybackSchedulerComponent extends BasePPTComponent {
   }
 
   private handleMute(payload: any) {
-    const key = \`\${payload.layer}-\${payload.rowIndex}\`;
+    const key = `${payload.layer}-${payload.rowIndex}`;
     if (payload.active) {
       this.mutedRows.add(key);
     } else {
@@ -47,7 +47,7 @@ export class PlaybackSchedulerComponent extends BasePPTComponent {
   }
 
   private handleSolo(payload: any) {
-    const key = \`\${payload.layer}-\${payload.rowIndex}\`;
+    const key = `${payload.layer}-${payload.rowIndex}`;
     if (payload.active) {
       this.soloedRows.add(key);
     } else {
@@ -88,7 +88,7 @@ export class PlaybackSchedulerComponent extends BasePPTComponent {
       
       const rows = Array.from(layer.querySelectorAll('ppt-coil-row'));
       rows.forEach((row, rowIndex) => {
-        const key = \`\${layerContext}-\${rowIndex}\`;
+        const key = `${layerContext}-${rowIndex}`;
         
         // Check mixer state
         if (this.soloedRows.size > 0 && !this.soloedRows.has(key)) return;
