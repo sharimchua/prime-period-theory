@@ -25,12 +25,10 @@ describe('Coil Components', () => {
     expect(el.shadowRoot?.innerHTML).toContain('melody Layer');
   });
 
-  it('should render ppt-coil-row with chrome', () => {
+  it('should render ppt-coil-row', () => {
     const el = document.createElement('ppt-coil-row');
-    el.setAttribute('label', 'Test Voice');
     document.body.appendChild(el);
-    
-    expect(el.shadowRoot?.innerHTML).toContain('Test Voice');
+    expect(el.shadowRoot).not.toBeNull();
   });
 
   it('should render ppt-coil-cursor', () => {

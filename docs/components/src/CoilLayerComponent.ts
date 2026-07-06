@@ -68,7 +68,15 @@ export class CoilLayerComponent extends BasePPTComponent {
         <style>${this.getBaseStyles()}</style>
         <div class="layer-label">${layerType} Layer</div>
         <slot></slot>
+        <div class="add-row" style="cursor:pointer; color: var(--layer-color, #888); font-size: 0.8rem; font-weight: bold; margin-top: 0.25rem;">+ Add Row</div>
       `;
+
+      const addBtn = this.shadowRoot.querySelector('.add-row');
+      addBtn?.addEventListener('click', () => {
+        const row = document.createElement('ppt-coil-row');
+        row.innerHTML = `<ppt-phrase-editor listen-id="glyph-input"></ppt-phrase-editor>`;
+        this.appendChild(row);
+      });
     }
   }
 }

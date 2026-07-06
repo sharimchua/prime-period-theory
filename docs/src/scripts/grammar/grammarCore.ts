@@ -6,6 +6,11 @@ export interface GlyphToken {
   diacritic: DiacriticState;
   octaveOffset: number;
   durationWeight?: number; // Used mainly in rhythm context
+  isPadding?: boolean;
+  paddingLength?: number;
+  isHold?: boolean;
+  isImplicit?: boolean;
+  modifiers?: GlyphToken[]; // For chords/half-height glyphs
 }
 
 export class Phrase {

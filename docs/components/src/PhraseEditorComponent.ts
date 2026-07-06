@@ -1,5 +1,6 @@
 import { BasePPTComponent } from './BasePPTComponent.js';
 import { EventBus } from './features/EventBus.js';
+import { ParsedToken, expandRhythmPhrase } from './solfegeUtils.js';
 
 export class PhraseEditorComponent extends BasePPTComponent {
   static override get componentDef() {
@@ -51,9 +52,11 @@ export class PhraseEditorComponent extends BasePPTComponent {
   private tokens: any[] = [];
   private rawText: string = '';
   private isActiveEditor = false;
+  private beatMap: number[] = [];
   private handleGlyphInput = this.onGlyphInput.bind(this);
   private handleFocus = this.onFocus.bind(this);
   private handleActiveEditorChanged = this.onActiveEditorChanged.bind(this);
+  private handleGridBeatMap = this.onGridBeatMap.bind(this);
 
   override connectedCallback() {
     super.connectedCallback();
@@ -65,6 +68,10 @@ export class PhraseEditorComponent extends BasePPTComponent {
     const listenId = this.getAttribute('listen-id') || 'glyph-input';
     EventBus.subscribe(listenId, this.handleGlyphInput);
     EventBus.subscribe('active-phrase-editor-changed', this.handleActiveEditorChanged);
+    EventBus.subscribe('grid-beat-map', this.handleGridBeatMap);
+
+    // Request the latest beat map in case we are mounted late
+    EventBus.publish('request-beat-map', {});
 
     this.render();
   }
@@ -76,6 +83,7 @@ export class PhraseEditorComponent extends BasePPTComponent {
     const listenId = this.getAttribute('listen-id') || 'glyph-input';
     EventBus.unsubscribe(listenId, this.handleGlyphInput);
     EventBus.unsubscribe('active-phrase-editor-changed', this.handleActiveEditorChanged);
+    EventBus.unsubscribe('grid-beat-map', this.handleGridBeatMap);
   }
 
   override attributeChangedCallback(name: string, oldVal: string, newVal: string) {
@@ -102,6 +110,18 @@ export class PhraseEditorComponent extends BasePPTComponent {
     }
   }
 
+  private onGridBeatMap(payload: any) {
+    if (payload && Array.isArray(payload.beatMap)) {
+      this.beatMap = payload.beatMap;
+      const rowComponent = this.closest('ppt-coil-row');
+      const layerComponent = rowComponent?.closest('ppt-coil-layer');
+      const layerContext = layerComponent?.getAttribute('layer') || 'rhythm';
+      if (layerContext !== 'rhythm') {
+        this.render();
+      }
+    }
+  }
+
   private onGlyphInput(payload: any) {
     // Only accept input if we are the globally active editor
     if (!this.isActiveEditor) return;
@@ -122,7 +142,39 @@ export class PhraseEditorComponent extends BasePPTComponent {
   private render() {
     if (!this.shadowRoot) return;
     
-    let html = `<style>${this.getBaseStyles()}</style>`;
+    let html = `<style>
+      ${this.getBaseStyles()}
+      .token-container {
+        display: flex;
+        align-items: baseline;
+        gap: 2px;
+      }
+      .modifier {
+        opacity: 0.8;
+      }
+      .implicit {
+        opacity: 0.5;
+        filter: grayscale(100%);
+      }
+      .pad-dot {
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background-color: #94a3b8;
+        margin-left: 0.6em; /* Align to the visual center of a 1.5em glyph */
+      }
+      .hold-line {
+        height: 2px;
+        background-color: #cbd5e1;
+        width: 100%;
+        margin: auto 0;
+      }
+      :host([justify="grid"]) {
+        display: grid;
+        grid-template-columns: var(--ppt-grid-template, repeat(auto-fill, minmax(3em, 1fr)));
+        gap: 0.25rem;
+      }
+    </style>`;
     
     if (this.isActiveEditor) {
       this.classList.add('active-editor');
@@ -130,10 +182,65 @@ export class PhraseEditorComponent extends BasePPTComponent {
       this.classList.remove('active-editor');
     }
     
-    // Render existing tokens using ppt-uniform-solfege
-    for (const token of this.tokens) {
-      const diacriticAttr = token.diacritic ? `diacritic="${token.diacritic}"` : '';
-      html += `<ppt-uniform-solfege solfege="${token.solfege}" ${diacriticAttr} size="1.5em"></ppt-uniform-solfege>`;
+    const rowComponent = this.closest('ppt-coil-row');
+    const layerComponent = rowComponent?.closest('ppt-coil-layer');
+    const layerContext = layerComponent?.getAttribute('layer') || 'rhythm';
+
+    let renderTokens = this.tokens;
+    if (layerContext === 'rhythm') {
+      renderTokens = expandRhythmPhrase(this.tokens);
+      // Calculate beat map
+      const newBeatMap: number[] = [];
+      let c = 0;
+      for (const t of renderTokens) {
+        if (t.type === 'glyph') {
+          if (t.solfege === 'Do' || t.solfege === 'Di') newBeatMap.push(c);
+          c++;
+        } else if (t.type === 'padding') {
+          c += (t.paddingLength || 1);
+        } else if (t.type === 'hold') {
+          c += 1; // Assuming hold on rhythm layer spans 1
+        }
+      }
+      // Always broadcast so others know the current structure
+      EventBus.publish('grid-beat-map', { beatMap: newBeatMap });
+      this.beatMap = newBeatMap;
+    }
+    
+    let currentCol = 0;
+
+    for (const token of renderTokens) {
+      if (token.type === 'padding') {
+        const span = token.paddingLength || 1;
+        for (let i = 0; i < span; i++) {
+          html += `<div style="grid-column: span 1; display: flex; align-items: center; justify-content: flex-start;"><div class="pad-dot"></div></div>`;
+        }
+        currentCol += span;
+      } else if (token.type === 'hold') {
+        let span = 1;
+        const nextBeat = this.beatMap.find(b => b > currentCol);
+        if (nextBeat) {
+          span = nextBeat - currentCol;
+        }
+        html += `<div style="grid-column: span ${span}; display: flex; align-items: center; justify-content: stretch; padding: 0 4px;"><div class="hold-line"></div></div>`;
+        currentCol += span;
+      } else if (token.type === 'glyph') {
+        const diacriticAttr = token.diacritic ? `diacritic="${token.diacritic}"` : '';
+        const implicitCls = token.isImplicit ? 'implicit' : '';
+        
+        html += `<div class="token-container ${implicitCls}" style="grid-column: span 1;">`;
+        html += `<ppt-uniform-solfege solfege="${token.raw || token.solfege}" ${diacriticAttr} size="1.5em"></ppt-uniform-solfege>`;
+        
+        if (token.modifiers && token.modifiers.length > 0) {
+          for (const mod of token.modifiers) {
+             const modDiacritic = mod.diacritic ? `diacritic="${mod.diacritic}"` : '';
+             html += `<ppt-uniform-solfege class="modifier" solfege="${mod.raw || mod.solfege}" ${modDiacritic} size="0.8em"></ppt-uniform-solfege>`;
+          }
+        }
+        
+        html += `</div>`;
+        currentCol += 1;
+      }
     }
 
     if (this.tokens.length === 0) {

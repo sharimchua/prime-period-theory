@@ -1,6 +1,6 @@
 import { BasePPTComponent } from './BasePPTComponent.js';
 import { EventBus } from './features/EventBus.js';
-import { parseSolfegeToken, isValidSolfegeToken } from './solfegeUtils.js';
+import { tokenizePhrase } from './solfegeUtils.js';
 
 export class SolfegeTextInputComponent extends BasePPTComponent {
   static override get componentDef() {
@@ -47,11 +47,11 @@ export class SolfegeTextInputComponent extends BasePPTComponent {
         width: 8px;
         height: 8px;
         border-radius: 50%;
-        background-color: #cbd5e1; /* Inactive */
+        background-color: #cbd5e1;
         transition: background-color 0.3s;
       }
       .status-indicator.active {
-        background-color: #10b981; /* Active/Bound */
+        background-color: #10b981;
         box-shadow: 0 0 5px #10b981;
       }
       input {
@@ -126,22 +126,8 @@ export class SolfegeTextInputComponent extends BasePPTComponent {
     if (!this.inputEl || !this.isBound) return;
     const text = this.inputEl.value;
     
-    const tokensStr = text.split(/\s+/).filter(Boolean);
+    const parsedTokens = tokenizePhrase(text);
     const emitId = this.getAttribute('emit-id') || 'glyph-input';
-    
-    const parsedTokens = [];
-
-    for (const tokenStr of tokensStr) {
-      if (isValidSolfegeToken(tokenStr)) {
-        const parsed = parseSolfegeToken(tokenStr);
-        parsedTokens.push({
-          type: 'glyph',
-          solfege: parsed.solfege,
-          diacritic: parsed.diacritic,
-          octaveOffset: 0
-        });
-      }
-    }
     
     EventBus.publish(emitId, {
       type: 'phrase',

@@ -55,7 +55,7 @@ import AutoPropsPanel from '../../components/ui/AutoPropsPanel.astro';
       <div class="demo-box-wrapper">
         <div class="demo-box" style="height: 300px;">
           <ppt-coil-layer id="demo-layer" layer="harmony">
-            <ppt-coil-row id="demo-row" label="Chord" register-offset="0">
+            <ppt-coil-row id="demo-row">
               <div style="padding: 1rem; color: #64748b;">Phrase Editor goes here</div>
             </ppt-coil-row>
           </ppt-coil-layer>
@@ -65,7 +65,7 @@ import AutoPropsPanel from '../../components/ui/AutoPropsPanel.astro';
       <details class="code-panel">
         <summary>View Source Code <button class="copy-btn" onclick="copyCode('layer-code', this)">Copy Code</button></summary>
         <pre><code id="layer-code">&lt;ppt-coil-layer layer="harmony"&gt;
-  &lt;ppt-coil-row label="Chord" register-offset="0"&gt;
+  &lt;ppt-coil-row&gt;
     &lt;!-- Phrase Editor goes here --&gt;
   &lt;/ppt-coil-row&gt;
 &lt;/ppt-coil-layer&gt;</code></pre>

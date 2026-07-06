@@ -32,6 +32,7 @@ export * from './CoilRowComponent.js';
 export * from './PhraseEditorComponent.js';
 export * from './CoilCursorComponent.js';
 export * from './SolfegeTextInputComponent.js';
+export * from './GridCoordinatorComponent.js';
 
 // Feature Registration for components that need external libraries
 import { MidiOrchestrator } from './features/MidiOrchestrator.js';

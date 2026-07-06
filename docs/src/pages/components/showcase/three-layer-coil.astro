@@ -23,24 +23,23 @@ import ComponentLayout from '../../../layouts/ComponentLayout.astro';
       
       <!-- Coil -->
       <ppt-coil>
-        <ppt-coil-layer layer="rhythm">
-          <ppt-coil-row label="Percussion" register-offset="-1">
-            <ppt-phrase-editor listen-id="coil-glyph-input"></ppt-phrase-editor>
-          </ppt-coil-row>
-        </ppt-coil-layer>
+        <ppt-grid-coordinator column-width="4em"></ppt-grid-coordinator>
         
-        <ppt-coil-layer layer="harmony">
-          <ppt-coil-row label="Chords" register-offset="0">
-            <ppt-phrase-editor listen-id="coil-glyph-input"></ppt-phrase-editor>
-          </ppt-coil-row>
-          <ppt-coil-row label="Bass" register-offset="-2">
-            <ppt-phrase-editor listen-id="coil-glyph-input"></ppt-phrase-editor>
+        <ppt-coil-layer layer="melody">
+          <ppt-coil-row>
+            <ppt-phrase-editor justify="grid" listen-id="coil-glyph-input"></ppt-phrase-editor>
           </ppt-coil-row>
         </ppt-coil-layer>
 
-        <ppt-coil-layer layer="melody">
-          <ppt-coil-row label="Lead" register-offset="1">
-            <ppt-phrase-editor listen-id="coil-glyph-input"></ppt-phrase-editor>
+        <ppt-coil-layer layer="harmony">
+          <ppt-coil-row>
+            <ppt-phrase-editor justify="grid" listen-id="coil-glyph-input"></ppt-phrase-editor>
+          </ppt-coil-row>
+        </ppt-coil-layer>
+        
+        <ppt-coil-layer layer="rhythm">
+          <ppt-coil-row>
+            <ppt-phrase-editor justify="grid" listen-id="coil-glyph-input"></ppt-phrase-editor>
           </ppt-coil-row>
         </ppt-coil-layer>
       </ppt-coil>
