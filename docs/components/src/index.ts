@@ -26,6 +26,12 @@ export * from './EventBindingComponent.js';
 export * from './UniformSolfegeComponent.js';
 export * from './SolfegePhraseComponent.js';
 export * from './SolfegePhrasePanelComponent.js';
+export * from './CoilComponent.js';
+export * from './CoilLayerComponent.js';
+export * from './CoilRowComponent.js';
+export * from './PhraseEditorComponent.js';
+export * from './CoilCursorComponent.js';
+export * from './SolfegeTextInputComponent.js';
 
 // Feature Registration for components that need external libraries
 import { MidiOrchestrator } from './features/MidiOrchestrator.js';
