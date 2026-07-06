@@ -19,7 +19,7 @@ not for end users of specific tools.
 |---|---|---|
 | `index.md` | Draft | Overview of the applications layer |
 | `component-philosophy.md` | Draft | The ppt-period primitive; unified pitch/rhythm component architecture |
-| `three-layer-coil-editor.md` | Draft | Component architecture for the Three-Layer Coil Editor |
+| `coil-editor-design.md` | Draft | Design rationale for the Three-Layer Coil Editor |
 | `visualisation.md` | Draft | PPT ratio visualisation across Metric DuPeriods; the solfège showcase intent |
 | `play-along.md` | Draft | Play-along feedback philosophy; three feedback models |
 | `transcription.md` | Draft | Melody-first → progressive specification workflow |

@@ -39,6 +39,15 @@ export class CoilRowComponent extends BasePPTComponent {
         align-items: center;
         min-height: 40px;
       }
+      @media print {
+        :host {
+          border: none !important;
+          background: transparent !important;
+        }
+        .row-content {
+          padding: 0;
+        }
+      }
     `;
   }
 

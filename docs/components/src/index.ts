@@ -27,6 +27,8 @@ export * from './UniformSolfegeComponent.js';
 export * from './playback/ToneVoiceComponent.js';
 export * from './playback/CoilTransportComponent.js';
 export * from './playback/PlaybackSchedulerComponent.js';
+export * from './playback/CoilMixerComponent.js';
+export * from './playback/PlayalongPresetsComponent.js';
 export * from './SolfegePhraseComponent.js';
 export * from './SolfegePhrasePanelComponent.js';
 export * from './CoilComponent.js';

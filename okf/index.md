@@ -197,7 +197,7 @@ amplitude or effect envelopes.
 ### Applications
 - [Overview](applications/index.md) — the bridge between theory and tools
 - [Component Philosophy](applications/component-philosophy.md) — one primitive for pitch and rhythm
-- [Three-Layer Coil Editor](applications/three-layer-coil-editor.md) — component architecture for the coil editor
+- [Three-Layer Coil Editor Design](applications/coil-editor-design.md) — the rationale and philosophy behind the editor
 - [Visualisation](applications/visualisation.md) — PPT ratio visualisation across Metric DuPeriods
 - [Play-Along Feedback](applications/play-along.md) — three feedback models
 - [Transcription](applications/transcription.md) — melody-first → progressive specification

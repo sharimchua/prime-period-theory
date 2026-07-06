@@ -46,6 +46,17 @@ export class PhraseEditorComponent extends BasePPTComponent {
         background: rgba(16, 185, 129, 0.1);
         box-shadow: inset 0 0 0 1px #10b981;
       }
+      @media print {
+        :host {
+          border: none !important;
+          background: transparent !important;
+          box-shadow: none !important;
+          padding: 0;
+        }
+        ppt-coil-cursor {
+          display: none !important;
+        }
+      }
     `;
   }
 

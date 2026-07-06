@@ -18,6 +18,9 @@ export class PlaybackSchedulerComponent extends BasePPTComponent {
   private timingResolver = new TimingGridResolver(1.0); // 1 sec per beat default
   private tuningResolver = new TuningResolver(261.63);  // C4 default
   private scheduledEventIds: number[] = [];
+  
+  private mutedRows: Set<string> = new Set();
+  private soloedRows: Set<string> = new Set();
 
   override connectedCallback() {
     super.connectedCallback();
@@ -25,11 +28,31 @@ export class PlaybackSchedulerComponent extends BasePPTComponent {
 
     EventBus.subscribe('coil-play', this.handlePlay.bind(this));
     EventBus.subscribe('coil-stop', this.handleStop.bind(this));
+    EventBus.subscribe('mixer-mute', this.handleMute.bind(this));
+    EventBus.subscribe('mixer-solo', this.handleSolo.bind(this));
   }
 
   override disconnectedCallback() {
     super.disconnectedCallback();
     this.handleStop();
+  }
+
+  private handleMute(payload: any) {
+    const key = \`\${payload.layer}-\${payload.rowIndex}\`;
+    if (payload.active) {
+      this.mutedRows.add(key);
+    } else {
+      this.mutedRows.delete(key);
+    }
+  }
+
+  private handleSolo(payload: any) {
+    const key = \`\${payload.layer}-\${payload.rowIndex}\`;
+    if (payload.active) {
+      this.soloedRows.add(key);
+    } else {
+      this.soloedRows.delete(key);
+    }
   }
 
   private async handlePlay() {
@@ -65,6 +88,12 @@ export class PlaybackSchedulerComponent extends BasePPTComponent {
       
       const rows = Array.from(layer.querySelectorAll('ppt-coil-row'));
       rows.forEach((row, rowIndex) => {
+        const key = \`\${layerContext}-\${rowIndex}\`;
+        
+        // Check mixer state
+        if (this.soloedRows.size > 0 && !this.soloedRows.has(key)) return;
+        if (this.mutedRows.has(key)) return;
+
         const editor = row.querySelector('ppt-phrase-editor') as any;
         if (!editor || !editor.tokens) return;
         

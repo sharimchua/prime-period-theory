@@ -41,6 +41,20 @@ The structural scaffolding for all compositions.
 These render the visual character set of Uniform Solfège as web components,
 making the notation system available in any browser context.
 
+**Coil Editor Components** — Three-Layer Coil, Layer, Row, and Phrase Editor.
+These form the interactive editing surface for authoring PPT phrases. They are
+designed to be input-agnostic and fully composable, with context determined
+by the layer they sit within.
+
+**Playback Engine Components** — Playback Scheduler, Coil Transport, Tone Voice,
+and Coil Mixer. A headless scheduling engine that orchestrates playback by
+synchronising with the event bus, respecting layer mixer settings, and triggering
+Tone.js synthesisers.
+
+**Input Bridge Components** — MIDI Input Bridge, Solfège Text Input.
+These translate raw hardware inputs or text shorthands into a uniform `glyph-input`
+event stream for the Phrase Editor.
+
 **Geometric Containers** — Period container (`<ppt-period>`), Period Step
 (`<ppt-period-step-circle>`), Sequencer. The core primitive: a period
 container that auto-positions its children at equal angular or linear
