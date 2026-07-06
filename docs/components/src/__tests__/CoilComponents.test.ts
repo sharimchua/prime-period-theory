@@ -51,16 +51,22 @@ describe('PhraseEditorComponent', () => {
     
     // Simulate focus
     el.focus();
-    expect(document.activeElement).toBe(el);
     
-    // Emit token
-    EventBus.publish('glyph-input', { type: 'glyph', solfege: 'Re', diacritic: 'Sub' });
+    // Wait for microtasks so EventBus subscription resolves focus
+    await Promise.resolve();
+    
+    // Emit token as a phrase payload
+    EventBus.publish('glyph-input', { 
+      type: 'phrase', 
+      text: 'ReSub', 
+      tokens: [{ type: 'glyph', solfege: 'Re', diacritic: 'w_tri' }] 
+    });
     
     // Wait for microtasks
     await Promise.resolve();
     
     expect(el.shadowRoot.innerHTML).toContain('solfege="Re"');
-    expect(el.shadowRoot.innerHTML).toContain('diacritic="Sub"');
+    expect(el.shadowRoot.innerHTML).toContain('diacritic="w_tri"');
   });
 });
 
@@ -69,13 +75,16 @@ describe('SolfegeTextInputComponent', () => {
     document.body.innerHTML = '';
   });
 
-  it('should emit tokens via EventBus when send is clicked', async () => {
+  it('should emit tokens via EventBus when input changes', async () => {
     const el = document.createElement('ppt-solfege-text-input') as any;
     el.setAttribute('emit-id', 'test-input');
     document.body.appendChild(el);
     
+    // Bind the input by publishing an active editor
+    EventBus.publish('active-phrase-editor-changed', { editor: {}, rawText: '' });
+    await Promise.resolve();
+    
     const input = el.shadowRoot.querySelector('input');
-    const button = el.shadowRoot.querySelector('button');
     
     let receivedPayload: any = null;
     EventBus.subscribe('test-input', (payload) => {
@@ -83,12 +92,13 @@ describe('SolfegeTextInputComponent', () => {
     });
     
     input.value = 'ReSub';
-    button.click();
+    input.dispatchEvent(new Event('input'));
     
     await Promise.resolve();
     
     expect(receivedPayload).not.toBeNull();
-    expect(receivedPayload.solfege).toBe('Re');
-    expect(receivedPayload.diacritic).toBe('w_tri'); // 'Sub' mapped to 'w_tri'
+    expect(receivedPayload.type).toBe('phrase');
+    expect(receivedPayload.tokens[0].solfege).toBe('Re');
+    expect(receivedPayload.tokens[0].diacritic).toBe('w_tri');
   });
 });

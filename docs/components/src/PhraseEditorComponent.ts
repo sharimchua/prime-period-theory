@@ -35,15 +35,21 @@ export class PhraseEditorComponent extends BasePPTComponent {
         padding: 0 0.5rem;
         cursor: text;
         outline: none;
+        border-radius: 4px;
+        transition: background-color 0.2s, box-shadow 0.2s;
       }
-      :host(:focus) {
+      :host(:hover) {
         background: rgba(0,0,0,0.02);
-        box-shadow: inset 0 0 0 1px #cbd5e1;
+      }
+      :host(.active-editor) {
+        background: rgba(16, 185, 129, 0.1);
+        box-shadow: inset 0 0 0 1px #10b981;
       }
     `;
   }
 
   private tokens: any[] = [];
+  private rawText: string = '';
   private isActiveEditor = false;
   private handleGlyphInput = this.onGlyphInput.bind(this);
   private handleFocus = this.onFocus.bind(this);
@@ -82,14 +88,17 @@ export class PhraseEditorComponent extends BasePPTComponent {
 
   private onFocus() {
     this.isActiveEditor = true;
-    EventBus.publish('active-phrase-editor-changed', this);
-    this.render(); // Show cursor
+    EventBus.publish('active-phrase-editor-changed', {
+      editor: this,
+      rawText: this.rawText
+    });
+    this.render(); // Show active state
   }
 
-  private onActiveEditorChanged(activeEditor: any) {
-    if (activeEditor !== this && this.isActiveEditor) {
+  private onActiveEditorChanged(payload: any) {
+    if (payload && payload.editor !== this && this.isActiveEditor) {
       this.isActiveEditor = false;
-      this.render(); // Hide cursor
+      this.render(); // Hide active state
     }
   }
 
@@ -97,13 +106,12 @@ export class PhraseEditorComponent extends BasePPTComponent {
     // Only accept input if we are the globally active editor
     if (!this.isActiveEditor) return;
 
-    if (payload && payload.type === 'glyph') {
-      this.tokens.push(payload);
-      // Let's manually trigger a render and add the new element
+    if (payload && payload.type === 'phrase') {
+      this.tokens = payload.tokens || [];
+      this.rawText = payload.text || '';
+      
       this.render();
       
-      // In a real implementation, we would dispatch an event to the grammar interpreter here
-      // and highlight invalid sequences if necessary.
       const rowComponent = this.closest('ppt-coil-row');
       const layerComponent = rowComponent?.closest('ppt-coil-layer');
       const layerContext = layerComponent?.getAttribute('layer') || 'rhythm';
@@ -116,16 +124,19 @@ export class PhraseEditorComponent extends BasePPTComponent {
     
     let html = `<style>${this.getBaseStyles()}</style>`;
     
+    if (this.isActiveEditor) {
+      this.classList.add('active-editor');
+    } else {
+      this.classList.remove('active-editor');
+    }
+    
     // Render existing tokens using ppt-uniform-solfege
     for (const token of this.tokens) {
       const diacriticAttr = token.diacritic ? `diacritic="${token.diacritic}"` : '';
       html += `<ppt-uniform-solfege solfege="${token.solfege}" ${diacriticAttr} size="1.5em"></ppt-uniform-solfege>`;
     }
 
-    // Render cursor if active
-    if (this.isActiveEditor) {
-      html += `<ppt-coil-cursor></ppt-coil-cursor>`;
-    } else if (this.tokens.length === 0) {
+    if (this.tokens.length === 0) {
       html += `<span style="color:#cbd5e1;font-size:0.8em;user-select:none;">Click to edit</span>`;
     }
 

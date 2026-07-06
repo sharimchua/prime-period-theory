@@ -35,33 +35,55 @@ export class SolfegeTextInputComponent extends BasePPTComponent {
         gap: 0.5rem;
         align-items: center;
       }
+      .input-wrapper {
+        position: relative;
+        flex: 1;
+        display: flex;
+        align-items: center;
+      }
+      .status-indicator {
+        position: absolute;
+        left: 10px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: #cbd5e1; /* Inactive */
+        transition: background-color 0.3s;
+      }
+      .status-indicator.active {
+        background-color: #10b981; /* Active/Bound */
+        box-shadow: 0 0 5px #10b981;
+      }
       input {
         flex: 1;
-        padding: 0.5rem;
+        padding: 0.5rem 0.5rem 0.5rem 24px;
         border: 1px solid #ccc;
         border-radius: 4px;
         font-family: monospace;
+        transition: border-color 0.3s, box-shadow 0.3s;
       }
-      button {
-        padding: 0.5rem 1rem;
-        background: #3b82f6;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-      }
-      button:hover {
-        background: #2563eb;
+      input:focus {
+        outline: none;
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
       }
     `;
   }
 
   private inputEl: HTMLInputElement | null = null;
-  private buttonEl: HTMLButtonElement | null = null;
+  private statusEl: HTMLElement | null = null;
+  private handleActiveEditorChanged = this.onActiveEditorChanged.bind(this);
+  private isBound = false;
 
   override connectedCallback() {
     super.connectedCallback();
     this.render();
+    EventBus.subscribe('active-phrase-editor-changed', this.handleActiveEditorChanged);
+  }
+  
+  override disconnectedCallback() {
+    super.disconnectedCallback();
+    EventBus.unsubscribe('active-phrase-editor-changed', this.handleActiveEditorChanged);
   }
 
   private render() {
@@ -69,43 +91,63 @@ export class SolfegeTextInputComponent extends BasePPTComponent {
     this.shadowRoot.innerHTML = `
       <style>${this.getBaseStyles()}</style>
       <div class="input-container">
-        <input type="text" placeholder="Type solfege e.g. Do Re Mi DoxRe" />
-        <button>Send</button>
+        <div class="input-wrapper">
+          <div class="status-indicator"></div>
+          <input type="text" placeholder="Select a phrase to edit..." />
+        </div>
       </div>
     `;
 
     this.inputEl = this.shadowRoot.querySelector('input');
-    this.buttonEl = this.shadowRoot.querySelector('button');
+    this.statusEl = this.shadowRoot.querySelector('.status-indicator');
 
-    this.buttonEl?.addEventListener('click', () => this.handleSend());
-    this.inputEl?.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') this.handleSend();
-    });
+    this.inputEl?.addEventListener('input', () => this.handleInput());
   }
 
-  private handleSend() {
-    if (!this.inputEl) return;
-    const text = this.inputEl.value.trim();
-    if (!text) return;
+  private onActiveEditorChanged(payload: any) {
+    if (payload && payload.editor) {
+      this.isBound = true;
+      if (this.inputEl) {
+        this.inputEl.value = payload.rawText || '';
+        this.inputEl.focus();
+      }
+      if (this.statusEl) {
+        this.statusEl.classList.add('active');
+      }
+    } else {
+      this.isBound = false;
+      if (this.statusEl) {
+        this.statusEl.classList.remove('active');
+      }
+    }
+  }
 
-    // A simple regex to split tokens by space. Real implementation might need more robust tokenization.
-    const tokensStr = text.split(/\s+/);
+  private handleInput() {
+    if (!this.inputEl || !this.isBound) return;
+    const text = this.inputEl.value;
+    
+    const tokensStr = text.split(/\s+/).filter(Boolean);
     const emitId = this.getAttribute('emit-id') || 'glyph-input';
+    
+    const parsedTokens = [];
 
     for (const tokenStr of tokensStr) {
       if (isValidSolfegeToken(tokenStr)) {
         const parsed = parseSolfegeToken(tokenStr);
-        EventBus.publish(emitId, {
+        parsedTokens.push({
           type: 'glyph',
           solfege: parsed.solfege,
           diacritic: parsed.diacritic,
-          // Handle superscript mapping if necessary, leaving basic for now
           octaveOffset: 0
         });
       }
     }
     
-    this.inputEl.value = '';
+    EventBus.publish(emitId, {
+      type: 'phrase',
+      text: text,
+      tokens: parsedTokens
+    });
   }
 }
 
