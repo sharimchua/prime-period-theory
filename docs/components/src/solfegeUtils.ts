@@ -111,14 +111,20 @@ export function tokenizePhrase(text: string): ParsedToken[] {
           for (const ms of modStrs) {
              if (isValidSolfegeToken(ms)) {
                const p = parseSolfegeToken(ms);
-               prev.modifiers.push({ type: 'glyph', solfege: p.solfege, diacritic: p.diacritic, octaveOffset: 0, raw: ms });
+                let octaveOffset = 0;
+                if (p.superscriptStr === 'Ra') octaveOffset = 1;
+                if (p.superscriptStr === 'Ti') octaveOffset = -1;
+                prev.modifiers.push({ type: 'glyph', solfege: p.solfege, diacritic: p.diacritic, octaveOffset, raw: ms });
              }
           }
        }
     } else if (match[4]) {
        if (isValidSolfegeToken(match[4])) {
           const p = parseSolfegeToken(match[4]);
-          results.push({ type: 'glyph', solfege: p.solfege, diacritic: p.diacritic, octaveOffset: 0, modifiers: [], raw: match[4] });
+          let octaveOffset = 0;
+          if (p.superscriptStr === 'Ra') octaveOffset = 1;
+          if (p.superscriptStr === 'Ti') octaveOffset = -1;
+          results.push({ type: 'glyph', solfege: p.solfege, diacritic: p.diacritic, octaveOffset, modifiers: [], raw: match[4] });
        }
     }
   }

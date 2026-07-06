@@ -42,6 +42,19 @@ export class CoilTransportComponent extends BasePPTComponent {
       button.stop:hover {
         background: #b91c1c;
       }
+      .control-group {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-family: monospace;
+        font-size: 0.9rem;
+      }
+      input[type="number"] {
+        width: 60px;
+        padding: 0.25rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
     `;
   }
 
@@ -52,10 +65,23 @@ export class CoilTransportComponent extends BasePPTComponent {
         <style>${this.getBaseStyles()}</style>
         <button id="btn-play">Play</button>
         <button id="btn-stop" class="stop">Stop</button>
+        <div class="control-group">
+          <label for="bpm-input">BPM:</label>
+          <input type="number" id="bpm-input" value="120" min="40" max="300" />
+        </div>
+        <div class="control-group">
+          <input type="checkbox" id="loop-input" />
+          <label for="loop-input">Loop</label>
+        </div>
       `;
 
       this.shadowRoot!.getElementById('btn-play')?.addEventListener('click', () => {
-        EventBus.publish('coil-play', {});
+        const bpmInput = this.shadowRoot!.getElementById('bpm-input') as HTMLInputElement;
+        const loopInput = this.shadowRoot!.getElementById('loop-input') as HTMLInputElement;
+        EventBus.publish('coil-play', { 
+          bpm: parseInt(bpmInput.value) || 120,
+          loop: loopInput.checked
+        });
       });
 
       this.shadowRoot!.getElementById('btn-stop')?.addEventListener('click', () => {

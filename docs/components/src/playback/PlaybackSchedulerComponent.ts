@@ -55,12 +55,19 @@ export class PlaybackSchedulerComponent extends BasePPTComponent {
     }
   }
 
-  private async handlePlay() {
+  private async handlePlay(payload?: any) {
     // Start Audio Context if needed
     if (Tone.context.state !== 'running') {
       await Tone.start();
     }
     this.handleStop(); // clear previous
+
+    const bpm = payload?.bpm || 120;
+    const isLooping = payload?.loop || false;
+    
+    Tone.Transport.bpm.value = bpm;
+    const secondsPerBeat = 60 / bpm;
+    this.timingResolver = new TimingGridResolver(secondsPerBeat);
 
     const coil = this.closest('ppt-coil') || document.body;
     
@@ -79,6 +86,17 @@ export class PlaybackSchedulerComponent extends BasePPTComponent {
     const rhythmTokens = expandRhythmPhrase(rhythmEditor.tokens);
     const onsets = this.timingResolver.resolve(rhythmTokens);
     if (onsets.length === 0) return;
+
+    // Set loop properties if enabled
+    if (isLooping && onsets.length > 0) {
+      const lastOnset = onsets[onsets.length - 1];
+      const totalDuration = lastOnset.timeInSeconds + lastOnset.durationInSeconds;
+      Tone.Transport.loop = true;
+      Tone.Transport.loopStart = 0;
+      Tone.Transport.loopEnd = totalDuration;
+    } else {
+      Tone.Transport.loop = false;
+    }
 
     // 2. Schedule Melody and Harmony layers using the onsets
     const scheduleLayer = (layerContext: 'melody' | 'harmony') => {
