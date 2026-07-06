@@ -45,15 +45,45 @@ export class CoilTransportComponent extends BasePPTComponent {
       .control-group {
         display: flex;
         align-items: center;
+        background: white;
+        border: 1px solid #cbd5e1;
+        border-radius: 4px;
+        padding: 0.25rem 0.5rem;
         gap: 0.5rem;
-        font-family: monospace;
-        font-size: 0.9rem;
+        font-size: 0.85rem;
+        color: #475569;
+        font-weight: 500;
+      }
+      .control-group label {
+        cursor: pointer;
       }
       input[type="number"] {
-        width: 60px;
+        width: 50px;
         padding: 0.25rem;
-        border: 1px solid #ccc;
+        border: 1px solid transparent;
+        background: #f1f5f9;
         border-radius: 4px;
+        font-family: monospace;
+        font-size: 0.9rem;
+        color: #334155;
+        text-align: center;
+        transition: border-color 0.2s;
+      }
+      input[type="number"]:focus {
+        outline: none;
+        border-color: #3b82f6;
+      }
+      input[type="checkbox"] {
+        accent-color: #3b82f6;
+        width: 1rem;
+        height: 1rem;
+        cursor: pointer;
+      }
+      .divider {
+        width: 1px;
+        height: 20px;
+        background: #e2e8f0;
+        margin: 0 0.25rem;
       }
     `;
   }
@@ -65,9 +95,10 @@ export class CoilTransportComponent extends BasePPTComponent {
         <style>${this.getBaseStyles()}</style>
         <button id="btn-play">Play</button>
         <div class="control-group">
-          <label for="bpm-input">BPM:</label>
+          <label for="bpm-input">BPM</label>
           <input type="number" id="bpm-input" value="120" min="40" max="300" />
-          <input type="checkbox" id="loop-input" style="margin-left: 0.5rem;" />
+          <div class="divider"></div>
+          <input type="checkbox" id="loop-input" />
           <label for="loop-input">Loop</label>
         </div>
       `;

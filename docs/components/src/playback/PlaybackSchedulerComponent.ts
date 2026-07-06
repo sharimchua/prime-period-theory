@@ -74,19 +74,19 @@ export class PlaybackSchedulerComponent extends BasePPTComponent {
     
     // 1. Find Rhythm layer to generate the timing grid
     const rhythmLayer = coil.querySelector('ppt-coil-layer[layer="rhythm"]');
-    if (!rhythmLayer) {
-      console.warn('PlaybackScheduler: No rhythm layer found to derive timing grid.');
-      return;
+    const rhythmEditor = rhythmLayer ? rhythmLayer.querySelector('ppt-phrase-editor') as any : null;
+    
+    let onsets: any[] = [];
+    if (rhythmEditor && rhythmEditor.tokens && rhythmEditor.tokens.length > 0) {
+      const rhythmTokens = expandRhythmPhrase(rhythmEditor.tokens);
+      onsets = this.timingResolver.resolve(rhythmTokens);
     }
 
-    // We'll take the first rhythm row for the master grid for now
-    const rhythmEditor = rhythmLayer.querySelector('ppt-phrase-editor') as any;
-    if (!rhythmEditor || !rhythmEditor.tokens) return;
-    
-    // Resolve Timing using the fully expanded rhythm phrase
-    const rhythmTokens = expandRhythmPhrase(rhythmEditor.tokens);
-    const onsets = this.timingResolver.resolve(rhythmTokens);
-    if (onsets.length === 0) return;
+    if (onsets.length === 0) {
+      // Fallback: 16 sixteenth notes if no rhythm is specified
+      const fallbackTokens = Array.from({length: 16}, () => ({ type: 'glyph', length: 1, raw: 'do' }));
+      onsets = this.timingResolver.resolve(fallbackTokens as any);
+    }
 
     // Set loop properties if enabled
     if (isLooping && onsets.length > 0) {
@@ -97,6 +97,17 @@ export class PlaybackSchedulerComponent extends BasePPTComponent {
       Tone.Transport.loopEnd = totalDuration;
     } else {
       Tone.Transport.loop = false;
+      
+      // Auto-stop at end of non-looping track
+      if (onsets.length > 0) {
+        const lastOnset = onsets[onsets.length - 1];
+        const totalDuration = lastOnset.timeInSeconds + lastOnset.durationInSeconds;
+        Tone.Transport.scheduleOnce((time) => {
+          Tone.Draw.schedule(() => {
+            EventBus.publish('coil-stop', {});
+          }, time);
+        }, totalDuration + 0.1);
+      }
     }
 
     // 2. Schedule Melody, Harmony, and Rhythm layers using the onsets
@@ -190,7 +201,6 @@ export class PlaybackSchedulerComponent extends BasePPTComponent {
 
   private handleStop() {
     Tone.Transport.stop();
-    Tone.Transport.cancel(); // Clears all scheduled events
     this.scheduledEventIds.forEach(id => Tone.Transport.clear(id));
     this.scheduledEventIds = [];
     

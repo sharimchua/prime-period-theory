@@ -32,17 +32,27 @@ export class CoilRowComponent extends BasePPTComponent {
         border-radius: 4px;
         overflow: hidden;
       }
+      .row-header {
+        display: flex;
+        align-items: stretch;
+        border-right: 1px solid #e2e8f0;
+        background: #f8fafc;
+      }
       .row-content {
         flex: 1;
         padding: 0.5rem;
         display: flex;
         align-items: center;
         min-height: 40px;
+        overflow-x: auto;
       }
       @media print {
         :host {
           border: none !important;
           background: transparent !important;
+        }
+        .row-header {
+          display: none !important;
         }
         .row-content {
           padding: 0;
@@ -64,6 +74,9 @@ export class CoilRowComponent extends BasePPTComponent {
     if (this.shadowRoot) {
       this.shadowRoot.innerHTML = `
         <style>${this.getBaseStyles()}</style>
+        <div class="row-header">
+          <slot name="header"></slot>
+        </div>
         <div class="row-content">
           <slot></slot>
         </div>

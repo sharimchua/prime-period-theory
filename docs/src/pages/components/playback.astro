@@ -3,30 +3,579 @@ import ComponentLayout from '../../layouts/ComponentLayout.astro';
 ---
 
 <ComponentLayout title="Playback Components">
-  <div class="prose">
-    <h1>Playback Components</h1>
-    <p>Components and services responsible for resolving timing and synthesizing audio from solfege glyphs.</p>
-    
-    <script>
-      import '../../../components/src/index.ts';
-    </script>
-    
-    <section id="playback-scheduler">
-      <h2>&lt;ppt-playback-scheduler&gt;</h2>
-      <p>A headless coordinator that listens to transport events, resolves the timing grid from the active Rhythm layer, and schedules Tone.js events for Melody and Harmony layers.</p>
-    </section>
+  <script>
+    import '../../../components/src/index.ts';
+  </script>
 
-    <section id="coil-transport">
-      <h2>&lt;ppt-coil-transport&gt;</h2>
-      <p>A UI widget providing Play and Stop buttons that dispatch global events via the EventBus.</p>
-      <div class="component-demo">
-        <ppt-coil-transport></ppt-coil-transport>
+  <h1>Playback Components</h1>
+
+  <p>
+    The playback system is a small family of composable components that together turn a
+    <code>&lt;ppt-coil&gt;</code> full of solfège tokens into scheduled audio. Each component has a
+    single responsibility — transport control, timing resolution, mixing, or synthesis — and
+    they communicate exclusively through a shared <strong>EventBus</strong> rather than direct
+    DOM references. This keeps them loosely coupled and straightforward to compose in different
+    configurations.
+  </p>
+
+  <p>
+    Four of the five components are <em>headless</em>: they render no visible UI and exist only
+    to coordinate behaviour. The exception is <code>&lt;ppt-coil-transport&gt;</code>, which
+    provides the Play/Stop/BPM/Loop controls a performer or student interacts with directly.
+  </p>
+
+  <p>
+    All event names follow a consistent <code>kebab-case</code> convention and are summarised in
+    the <a href="#eventbus-summary">EventBus summary table</a> at the bottom of this page.
+  </p>
+
+  <!-- ============================================================ -->
+  <!-- ppt-coil-transport                                            -->
+  <!-- ============================================================ -->
+  <section class="component-demo">
+    <h3 id="coil-transport">Transport Bar — <code>&lt;ppt-coil-transport&gt;</code></h3>
+
+    <p>
+      The transport bar is the primary interactive surface of the playback system. It renders
+      three controls inline:
+    </p>
+    <ul>
+      <li><strong>Play / Stop toggle</strong> — clicking Play publishes a <code>coil-play</code>
+        event carrying the current BPM and loop state; clicking Stop (or clicking again while
+        playing) publishes <code>coil-stop</code>.</li>
+      <li><strong>BPM field</strong> — a numeric input clamped to 40–300, defaulting to
+        <code>120</code>. The current value is bundled into every <code>coil-play</code> event.</li>
+      <li><strong>Loop checkbox</strong> — when checked, the scheduler loops indefinitely rather
+        than auto-stopping at the end of the track.</li>
+    </ul>
+
+    <p>
+      The component also <em>subscribes</em> to <code>coil-stop</code> on the EventBus, so that
+      when the scheduler auto-fires stop at the end of a non-looping track, the transport UI
+      resets to its resting state automatically — no imperative wiring required.
+    </p>
+
+    <p>
+      <strong>No custom attributes</strong> are required. Drop the element anywhere in the page;
+      it is self-contained.
+    </p>
+
+    <div class="live-doc-grid">
+      <div class="demo-box-wrapper">
+        <div class="demo-box" style="height: auto; padding: 2.5rem;">
+          <ppt-coil-transport></ppt-coil-transport>
+        </div>
       </div>
-    </section>
 
-    <section id="tone-voice">
-      <h2>&lt;ppt-tone-voice&gt;</h2>
-      <p>A headless synth wrapper utilizing <code>Tone.PolySynth</code> to receive targeted `play-note` and `stop-note` commands from the Playback Scheduler.</p>
-    </section>
-  </div>
+      <details class="code-panel">
+        <summary>View Source Code <button class="copy-btn" onclick="copyCode('transport-code', this)">Copy Code</button></summary>
+        <pre><code id="transport-code">&lt;ppt-coil-transport&gt;&lt;/ppt-coil-transport&gt;</code></pre>
+      </details>
+    </div>
+
+    <div class="event-list">
+      <h4>EventBus</h4>
+      <ul>
+        <li><strong>Publishes</strong> <code>coil-play &#123; bpm, loop &#125;</code> — on Play button press.</li>
+        <li><strong>Publishes</strong> <code>coil-stop &#123;&#125;</code> — on Stop button press.</li>
+        <li><strong>Subscribes</strong> <code>coil-stop &#123;&#125;</code> — resets the button to its resting state when the scheduler auto-fires stop.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- ppt-coil-mixer                                                -->
+  <!-- ============================================================ -->
+  <section class="component-demo">
+    <h3 id="coil-mixer">Mixer — <code>&lt;ppt-coil-mixer&gt;</code></h3>
+
+    <p>
+      <em>Headless layout decorator — renders no visual UI of its own.</em> The mixer wraps a
+      <code>&lt;ppt-coil&gt;</code> and injects per-row <strong>Mute</strong> and
+      <strong>Solo</strong> button headers into the <code>header</code> slot of each
+      <code>&lt;ppt-coil-row&gt;</code> it discovers. It uses a <code>MutationObserver</code>
+      to watch the coil's DOM, so rows added after the initial render are handled automatically.
+    </p>
+
+    <p>
+      Button colouring follows the <em>layer type</em> of each row's parent
+      <code>&lt;ppt-coil-layer&gt;</code> (rhythm, harmony, melody), giving performers a quick
+      visual cue. On initialisation, any row whose parent layer carries the <code>muted</code>
+      attribute starts in the muted state without requiring an explicit event.
+    </p>
+
+    <p>
+      <strong>Placement:</strong> wrap a <code>&lt;ppt-coil&gt;</code> in
+      <code>&lt;ppt-coil-mixer&gt;</code>. Do <em>not</em> place it inside the coil — the
+      mixer must be an ancestor, not a sibling or child.
+    </p>
+
+    <div class="live-doc-grid">
+      <details class="code-panel">
+        <summary>View Source Code <button class="copy-btn" onclick="copyCode('mixer-code', this)">Copy Code</button></summary>
+        <pre><code id="mixer-code">&lt;ppt-coil-mixer&gt;
+  &lt;ppt-coil&gt;
+    &lt;ppt-coil-layer layer="rhythm"&gt;
+      &lt;ppt-coil-row&gt;...&lt;/ppt-coil-row&gt;
+    &lt;/ppt-coil-layer&gt;
+    &lt;ppt-coil-layer layer="harmony"&gt;
+      &lt;ppt-coil-row&gt;...&lt;/ppt-coil-row&gt;
+    &lt;/ppt-coil-layer&gt;
+    &lt;ppt-coil-layer layer="melody"&gt;
+      &lt;ppt-coil-row&gt;...&lt;/ppt-coil-row&gt;
+    &lt;/ppt-coil-layer&gt;
+  &lt;/ppt-coil&gt;
+&lt;/ppt-coil-mixer&gt;</code></pre>
+      </details>
+    </div>
+
+    <div class="event-list">
+      <h4>EventBus</h4>
+      <ul>
+        <li><strong>Publishes</strong> <code>mixer-mute &#123; layer, rowIndex, active &#125;</code> — when a Mute button is toggled.</li>
+        <li><strong>Publishes</strong> <code>mixer-solo &#123; layer, rowIndex, active &#125;</code> — when a Solo button is toggled.</li>
+        <li><strong>Subscribes</strong> <code>mixer-batch-update &#123; action: 'solo-layer' | 'reset', layer? &#125;</code> — applies preset mixer states from <code>&lt;ppt-playalong-presets&gt;</code>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- ppt-playback-scheduler                                        -->
+  <!-- ============================================================ -->
+  <section class="component-demo">
+    <h3 id="playback-scheduler">Scheduler — <code>&lt;ppt-playback-scheduler&gt;</code></h3>
+
+    <p>
+      <em>Headless audio engine — renders nothing visually.</em> The scheduler is the timing
+      brain of the playback system. When a <code>coil-play</code> event fires it:
+    </p>
+    <ol>
+      <li>Reads the <strong>rhythm layer</strong> tokens from its parent <code>&lt;ppt-coil&gt;</code>
+        and resolves them into an absolute timing grid of note onsets using the Tone.js
+        Transport. If no rhythm data is present it falls back to a uniform
+        16-sixteenth-note grid.</li>
+      <li>Maps <strong>melody</strong> and <strong>harmony</strong> layer tokens onto those
+        onsets, respecting mute and solo state as last reported by the mixer.</li>
+      <li>Schedules <code>play-note-&#123;voiceId&#125;</code> events via <code>Tone.Draw</code> at the
+        correct audio-context times, ensuring the UI and audio remain tightly synchronised.</li>
+    </ol>
+
+    <p>
+      In <strong>non-loop mode</strong>, the scheduler auto-publishes <code>coil-stop</code>
+      when the final note onset has been scheduled, which in turn resets the transport UI.
+    </p>
+
+    <p>
+      <strong>Placement:</strong> the scheduler must live <em>inside</em> a
+      <code>&lt;ppt-coil&gt;</code> so that it can traverse the coil's layer and row children
+      to read token data. Placing it outside the coil will prevent it from finding any layers.
+    </p>
+
+    <div class="live-doc-grid">
+      <details class="code-panel">
+        <summary>View Source Code <button class="copy-btn" onclick="copyCode('scheduler-code', this)">Copy Code</button></summary>
+        <pre><code id="scheduler-code">&lt;ppt-coil&gt;
+  &lt;ppt-playback-scheduler&gt;&lt;/ppt-playback-scheduler&gt;
+  &lt;ppt-tone-voice voice-id="melody"&gt;&lt;/ppt-tone-voice&gt;
+  &lt;ppt-tone-voice voice-id="harmony"&gt;&lt;/ppt-tone-voice&gt;
+
+  &lt;ppt-coil-layer layer="rhythm"&gt;...&lt;/ppt-coil-layer&gt;
+  &lt;ppt-coil-layer layer="harmony"&gt;...&lt;/ppt-coil-layer&gt;
+  &lt;ppt-coil-layer layer="melody"&gt;...&lt;/ppt-coil-layer&gt;
+&lt;/ppt-coil&gt;</code></pre>
+      </details>
+    </div>
+
+    <div class="event-list">
+      <h4>EventBus</h4>
+      <ul>
+        <li><strong>Subscribes</strong> <code>coil-play &#123; bpm, loop &#125;</code> — starts scheduling.</li>
+        <li><strong>Subscribes</strong> <code>coil-stop &#123;&#125;</code> — cancels all scheduled events and tears down the Transport.</li>
+        <li><strong>Subscribes</strong> <code>mixer-mute &#123; layer, rowIndex, active &#125;</code> — updates internal mute state.</li>
+        <li><strong>Subscribes</strong> <code>mixer-solo &#123; layer, rowIndex, active &#125;</code> — updates internal solo state.</li>
+        <li><strong>Publishes</strong> <code>play-note-&#123;voiceId&#125; &#123; freq, duration?, time? &#125;</code> — fires at each note onset.</li>
+        <li><strong>Publishes</strong> <code>stop-note-&#123;voiceId&#125; &#123; freq?, time? &#125;</code> — fires to release held notes.</li>
+        <li><strong>Publishes</strong> <code>coil-stop &#123;&#125;</code> — auto-fires at end of track in non-loop mode.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- ppt-tone-voice                                                -->
+  <!-- ============================================================ -->
+  <section class="component-demo">
+    <h3 id="tone-voice">Synth Voice — <code>&lt;ppt-tone-voice&gt;</code></h3>
+
+    <p>
+      <em>Headless synthesiser — renders nothing visually.</em> Each
+      <code>&lt;ppt-tone-voice&gt;</code> instance wraps a Tone.js
+      <code>PolySynth</code> and listens on its own namespaced EventBus channels
+      (<code>play-note-&#123;voiceId&#125;</code> and <code>stop-note-&#123;voiceId&#125;</code>) to trigger and
+      release notes. Multiple voices can coexist inside a single coil — for example, one for
+      melody and one for harmony — each distinguished by a unique <code>voice-id</code>.
+    </p>
+
+    <p>
+      The underlying <code>PolySynth</code> is initialised <strong>lazily</strong> on the first
+      <code>play-note</code> event, which defers the AudioContext creation until a genuine user
+      gesture has occurred and avoids browser autoplay restrictions.
+    </p>
+
+    <h4>Attributes</h4>
+    <table class="attr-table">
+      <thead>
+        <tr>
+          <th>Attribute</th>
+          <th>Type</th>
+          <th>Default</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>voice-id</code></td>
+          <td>string</td>
+          <td><code>'default'</code></td>
+          <td>
+            Unique identifier for this voice. The scheduler publishes
+            <code>play-note-&#123;voiceId&#125;</code> and <code>stop-note-&#123;voiceId&#125;</code> events
+            targeting this string.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="live-doc-grid">
+      <details class="code-panel">
+        <summary>View Source Code <button class="copy-btn" onclick="copyCode('voice-code', this)">Copy Code</button></summary>
+        <pre><code id="voice-code">&lt;!-- Two voices inside a coil: one for melody, one for harmony --&gt;
+&lt;ppt-coil&gt;
+  &lt;ppt-tone-voice voice-id="melody"&gt;&lt;/ppt-tone-voice&gt;
+  &lt;ppt-tone-voice voice-id="harmony"&gt;&lt;/ppt-tone-voice&gt;
+
+  &lt;ppt-playback-scheduler&gt;&lt;/ppt-playback-scheduler&gt;
+  &lt;!-- ...layers... --&gt;
+&lt;/ppt-coil&gt;</code></pre>
+      </details>
+    </div>
+
+    <div class="event-list">
+      <h4>EventBus</h4>
+      <ul>
+        <li><strong>Subscribes</strong> <code>play-note-&#123;voiceId&#125; &#123; freq, duration?, time? &#125;</code> — triggers the PolySynth at the given frequency and time.</li>
+        <li><strong>Subscribes</strong> <code>stop-note-&#123;voiceId&#125; &#123; freq?, time? &#125;</code> — releases a specific frequency (or all held notes if <code>freq</code> is omitted).</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- ppt-playalong-presets                                         -->
+  <!-- ============================================================ -->
+  <section class="component-demo">
+    <h3 id="playalong-presets">Presets Panel — <code>&lt;ppt-playalong-presets&gt;</code></h3>
+
+    <p>
+      <em>Headless preset controller — renders nothing visually beyond the preset buttons
+      themselves.</em> The presets panel provides four shortcut buttons designed for pedagogical
+      use — situations where a student wants to hear just one layer in isolation, or return to
+      the full arrangement quickly:
+    </p>
+    <ul>
+      <li><strong>Full Track</strong> — resets all mute/solo state, playing every layer.</li>
+      <li><strong>Solo Melody</strong> — solos the melody layer, muting rhythm and harmony.</li>
+      <li><strong>Solo Harmony</strong> — solos the harmony layer, muting rhythm and melody.</li>
+      <li><strong>Rhythm Only</strong> — solos the rhythm layer, muting melody and harmony.</li>
+    </ul>
+
+    <p>
+      Each button fires a <code>mixer-batch-update</code> event that the
+      <code>&lt;ppt-coil-mixer&gt;</code> interprets to apply the corresponding state atomically.
+      This component is designed to be used alongside, not inside,
+      <code>&lt;ppt-coil-mixer&gt;</code>.
+    </p>
+
+    <p>
+      <strong>No custom attributes</strong> are required.
+    </p>
+
+    <div class="live-doc-grid">
+      <details class="code-panel">
+        <summary>View Source Code <button class="copy-btn" onclick="copyCode('presets-code', this)">Copy Code</button></summary>
+        <pre><code id="presets-code">&lt;!-- Presets sit alongside the mixer, outside the coil --&gt;
+&lt;ppt-playalong-presets&gt;&lt;/ppt-playalong-presets&gt;
+
+&lt;ppt-coil-mixer&gt;
+  &lt;ppt-coil&gt;
+    &lt;!-- ...layers... --&gt;
+  &lt;/ppt-coil&gt;
+&lt;/ppt-coil-mixer&gt;</code></pre>
+      </details>
+    </div>
+
+    <div class="event-list">
+      <h4>EventBus</h4>
+      <ul>
+        <li><strong>Publishes</strong> <code>mixer-batch-update &#123; action: 'reset' &#125;</code> — on Full Track.</li>
+        <li><strong>Publishes</strong> <code>mixer-batch-update &#123; action: 'solo-layer', layer: 'melody' | 'harmony' | 'rhythm' &#125;</code> — on the three layer-specific presets.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- Composition example                                           -->
+  <!-- ============================================================ -->
+  <section class="component-demo">
+    <h3 id="full-composition">Full Composition Example</h3>
+
+    <p>
+      The snippet below shows how all five components fit together in a typical playalong
+      configuration. The transport and presets sit outside the mixer; the scheduler and voices
+      live inside the coil.
+    </p>
+
+    <div class="live-doc-grid">
+      <details class="code-panel" open>
+        <summary>View Source Code <button class="copy-btn" onclick="copyCode('full-code', this)">Copy Code</button></summary>
+        <pre><code id="full-code">&lt;!-- Transport and presets: outside the coil --&gt;
+&lt;ppt-coil-transport&gt;&lt;/ppt-coil-transport&gt;
+&lt;ppt-playalong-presets&gt;&lt;/ppt-playalong-presets&gt;
+
+&lt;!-- Mixer wraps the coil --&gt;
+&lt;ppt-coil-mixer&gt;
+  &lt;ppt-coil&gt;
+
+    &lt;!-- Headless engines live inside the coil --&gt;
+    &lt;ppt-playback-scheduler&gt;&lt;/ppt-playback-scheduler&gt;
+    &lt;ppt-tone-voice voice-id="melody"&gt;&lt;/ppt-tone-voice&gt;
+    &lt;ppt-tone-voice voice-id="harmony"&gt;&lt;/ppt-tone-voice&gt;
+
+    &lt;!-- Three-layer content --&gt;
+    &lt;ppt-coil-layer layer="rhythm"&gt;
+      &lt;ppt-coil-row&gt;...&lt;/ppt-coil-row&gt;
+    &lt;/ppt-coil-layer&gt;
+    &lt;ppt-coil-layer layer="harmony"&gt;
+      &lt;ppt-coil-row&gt;...&lt;/ppt-coil-row&gt;
+    &lt;/ppt-coil-layer&gt;
+    &lt;ppt-coil-layer layer="melody"&gt;
+      &lt;ppt-coil-row&gt;...&lt;/ppt-coil-row&gt;
+    &lt;/ppt-coil-layer&gt;
+
+  &lt;/ppt-coil&gt;
+&lt;/ppt-coil-mixer&gt;</code></pre>
+      </details>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- EventBus summary table                                        -->
+  <!-- ============================================================ -->
+  <section class="component-demo" id="eventbus-summary">
+    <h3>EventBus Summary</h3>
+
+    <p>
+      All inter-component communication uses a shared EventBus. The table below lists every
+      event name, its payload shape, and which components publish or subscribe to it.
+    </p>
+
+    <div class="table-wrapper">
+      <table class="event-table">
+        <thead>
+          <tr>
+            <th>Event</th>
+            <th>Payload</th>
+            <th>Publisher(s)</th>
+            <th>Subscriber(s)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>coil-play</code></td>
+            <td><code>&#123; bpm, loop &#125;</code></td>
+            <td><code>ppt-coil-transport</code></td>
+            <td><code>ppt-playback-scheduler</code></td>
+          </tr>
+          <tr>
+            <td><code>coil-stop</code></td>
+            <td><code>&#123;&#125;</code></td>
+            <td><code>ppt-coil-transport</code>, <code>ppt-playback-scheduler</code> (auto)</td>
+            <td><code>ppt-coil-transport</code>, <code>ppt-playback-scheduler</code></td>
+          </tr>
+          <tr>
+            <td><code>mixer-mute</code></td>
+            <td><code>&#123; layer, rowIndex, active &#125;</code></td>
+            <td><code>ppt-coil-mixer</code></td>
+            <td><code>ppt-playback-scheduler</code></td>
+          </tr>
+          <tr>
+            <td><code>mixer-solo</code></td>
+            <td><code>&#123; layer, rowIndex, active &#125;</code></td>
+            <td><code>ppt-coil-mixer</code></td>
+            <td><code>ppt-playback-scheduler</code></td>
+          </tr>
+          <tr>
+            <td><code>mixer-batch-update</code></td>
+            <td><code>&#123; action: 'reset' | 'solo-layer', layer? &#125;</code></td>
+            <td><code>ppt-playalong-presets</code></td>
+            <td><code>ppt-coil-mixer</code></td>
+          </tr>
+          <tr>
+            <td><code>play-note-&#123;voiceId&#125;</code></td>
+            <td><code>&#123; freq, duration?, time? &#125;</code></td>
+            <td><code>ppt-playback-scheduler</code></td>
+            <td><code>ppt-tone-voice</code></td>
+          </tr>
+          <tr>
+            <td><code>stop-note-&#123;voiceId&#125;</code></td>
+            <td><code>&#123; freq?, time? &#125;</code></td>
+            <td><code>ppt-playback-scheduler</code></td>
+            <td><code>ppt-tone-voice</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
 </ComponentLayout>
+
+<script>
+  window.copyCode = function(targetId, btn) {
+    const code = document.getElementById(targetId)?.textContent;
+    if (code) {
+      navigator.clipboard.writeText(code);
+      const oldText = btn.textContent;
+      btn.textContent = 'Copied!';
+      setTimeout(() => btn.textContent = oldText, 2000);
+    }
+  };
+</script>
+
+<style>
+  .component-demo {
+    margin-top: 3rem;
+  }
+
+  .live-doc-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .code-panel {
+    margin-top: 0.5rem;
+  }
+
+  .code-panel summary {
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--brand-primary);
+    padding: 0.5rem 0;
+    user-select: none;
+  }
+
+  .copy-btn {
+    float: right;
+    background: #e2e8f0;
+    border: none;
+    border-radius: 4px;
+    padding: 0.2rem 0.6rem;
+    font-size: 0.8rem;
+    cursor: pointer;
+    color: #475569;
+    font-weight: bold;
+    transition: background 0.2s;
+  }
+
+  .copy-btn:hover {
+    background: #cbd5e1;
+  }
+
+  .code-panel pre {
+    background: #1e293b;
+    color: #f8fafc;
+    padding: 1rem;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0.5rem 0 0 0;
+  }
+
+  .demo-box-wrapper {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .demo-box {
+    width: 100%;
+    padding: 2rem;
+    border: 2px dashed #94a3b8;
+    border-radius: 8px;
+    background: #f8fafc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+  }
+
+  .event-list {
+    margin-top: 1.5rem;
+    background: #f8fafc;
+    border: 1px solid var(--border-color, #e2e8f0);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+  }
+
+  .event-list h4 {
+    margin: 0 0 0.75rem;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--brand-primary);
+  }
+
+  .event-list ul {
+    margin: 0;
+    padding-left: 1.25rem;
+  }
+
+  .event-list li {
+    margin-bottom: 0.4rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .attr-table,
+  .event-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+  }
+
+  .attr-table th,
+  .attr-table td,
+  .event-table th,
+  .event-table td {
+    text-align: left;
+    padding: 0.6rem 0.9rem;
+    border: 1px solid #e2e8f0;
+  }
+
+  .attr-table thead th,
+  .event-table thead th {
+    background: #1e293b;
+    color: #f8fafc;
+    font-weight: 600;
+  }
+
+  .attr-table tbody tr:nth-child(even),
+  .event-table tbody tr:nth-child(even) {
+    background: #f1f5f9;
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
+    margin-top: 1.5rem;
+  }
+</style>

@@ -3,22 +3,622 @@ import ComponentLayout from '../../layouts/ComponentLayout.astro';
 ---
 
 <ComponentLayout title="Input Components">
-  <div class="prose">
-    <h1>Input Components</h1>
-    <p>Components bridging external input devices (QWERTY keyboards, MIDI devices) to the internal EventBus.</p>
-    
-    <script>
-      import '../../../components/src/index.ts';
-    </script>
-    
-    <section id="solfege-text-input">
-      <h2>&lt;ppt-solfege-text-input&gt;</h2>
-      <p>An invisible bridge that intercepts typing when no other input has focus, routing keys like 'D' 'o' into Uniform Solfège glyph tokens on the EventBus.</p>
-    </section>
+  <h1>Input Components</h1>
 
-    <section id="midi-input-bridge">
-      <h2>&lt;ppt-midi-input-bridge&gt;</h2>
-      <p>A headless component utilizing the WebMIDI API to convert piano keyboard notes and structural modifier chords into glyph tokens and layer management commands.</p>
-    </section>
-  </div>
+  <p>
+    These components form the bridge between external input devices — QWERTY keyboards and MIDI controllers —
+    and the internal EventBus that drives the coil editor system. Both text-based and hardware-based input
+    paths are supported, and both are designed to be <em>layer-aware</em>: the active grammar layer
+    (melody, harmony, or rhythm) determines how raw input is interpreted before being published as
+    Uniform Solfège tokens.
+  </p>
+
+  <script>
+    import '../../../components/src/index.ts';
+  </script>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       SECTION 1: ppt-solfege-text-input
+  ════════════════════════════════════════════════════════════════════ -->
+
+  <section class="component-demo" id="solfege-text-input">
+    <h2>&lt;ppt-solfege-text-input&gt;</h2>
+    <p class="component-subtitle">Tag: <code>ppt-solfege-text-input</code> · Class: <code>SolfegeTextInputComponent</code></p>
+
+    <p>
+      <code>&lt;ppt-solfege-text-input&gt;</code> is the primary text-based input gateway to the coil system.
+      It renders a text field alongside a <strong>MIDI Connect</strong> button with a small connection-state
+      indicator dot. Taken together, these two surfaces cover both keyboard-typed and MIDI-generated Uniform
+      Solfège input.
+    </p>
+
+    <h3>How it works</h3>
+
+    <h4>Auto-binding to a Phrase Editor</h4>
+    <p>
+      The component monitors the <code>active-phrase-editor-changed</code> EventBus event. Whenever a
+      <code>&lt;ppt-phrase-editor&gt;</code> elsewhere on the page gains focus, this input automatically
+      binds to it: the indicator dot turns green, and the text field pre-populates with the editor's
+      current content. All subsequent typed or MIDI-generated tokens are forwarded to that editor via
+      the configured <code>emit-id</code> EventBus channel. This binding model means a single
+      <code>&lt;ppt-solfege-text-input&gt;</code> can serve an entire coil without manual wiring — focus
+      is the routing signal.
+    </p>
+
+    <h4>Typed Solfège input</h4>
+    <p>
+      Any valid Uniform Solfège phrase typed into the text field (e.g. <code>do mi so</code>,
+      <code>Re♭ Fi La</code>) is parsed into an array of glyph tokens on submission (Enter key). The
+      parser is tolerant of capitalisation and common shorthands. Tokens are then published on the
+      <code>emit-id</code> channel for the bound phrase editor to consume.
+    </p>
+
+    <h4>Integrated MIDI input</h4>
+    <p>
+      The <strong>MIDI Connect</strong> button requests WebMIDI API access. Once a MIDI device is
+      connected, incoming note events are intercepted and routed through a context-aware mapper
+      determined by the currently focused layer:
+    </p>
+    <ul>
+      <li><strong>Melody layer</strong> → <code>PitchMapper</code> — maps MIDI note numbers to
+        Uniform Solfège pitch syllables relative to the active tonic.</li>
+      <li><strong>Harmony layer</strong> → <code>HarmonyMapper</code> — interprets simultaneous
+        note clusters as harmonic voicings and maps them to compound glyph sequences.</li>
+      <li><strong>Rhythm layer</strong> → <code>RhythmMapper</code> — maps note durations and
+        onset timing to rhythmic Uniform Solfège tokens (e.g. <code>Du De Di</code>).</li>
+    </ul>
+    <p>
+      Parsed tokens are published on the <code>emit-id</code> channel, identical to the typed-input
+      path. The MIDI bridge built into <code>&lt;ppt-solfege-text-input&gt;</code> covers the same
+      functionality as the standalone <code>&lt;ppt-midi-input-bridge&gt;</code> — the standalone
+      component exists for contexts where you want MIDI routing <em>without</em> a visible text field.
+    </p>
+
+    <h4>Structural command chords</h4>
+    <p>
+      Beyond note-to-syllable mapping, the MIDI input layer recognises a set of two-note
+      <em>command chords</em> that trigger structural operations on the coil. Holding
+      <strong>C3 + B4</strong> simultaneously arms the command mode; an additional note determines
+      the operation:
+    </p>
+    <div class="chord-table-wrapper">
+      <table class="chord-table">
+        <thead>
+          <tr>
+            <th>Chord (C3 + B4 +)</th>
+            <th>EventBus event published</th>
+            <th>Effect</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>E3</code></td>
+            <td><code>coil-layer-delete</code></td>
+            <td>Delete the active layer</td>
+          </tr>
+          <tr>
+            <td><code>G3</code></td>
+            <td><code>coil-layer-add</code></td>
+            <td>Add a new layer</td>
+          </tr>
+          <tr>
+            <td><code>F#3</code></td>
+            <td><code>coil-nav-up</code></td>
+            <td>Navigate focus up one layer</td>
+          </tr>
+          <tr>
+            <td><code>D#3</code></td>
+            <td><code>coil-nav-down</code></td>
+            <td>Navigate focus down one layer</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Attributes</h3>
+    <div class="attr-table-wrapper">
+      <table class="attr-table">
+        <thead>
+          <tr>
+            <th>Attribute</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>emit-id</code></td>
+            <td>string</td>
+            <td><code>"glyph-input"</code></td>
+            <td>
+              The EventBus channel name on which parsed glyph tokens are published.
+              A paired <code>&lt;ppt-phrase-editor listen-id="…"&gt;</code> must use the
+              same value to receive the tokens.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Live demo</h3>
+    <p>
+      The input below is wired to the phrase editor via the <code>glyph-input-demo</code> channel.
+      Type a Uniform Solfège phrase (e.g. <code>do re mi</code>) and press Enter to populate the
+      editor. Use the MIDI Connect button to route a connected MIDI keyboard through the same channel.
+    </p>
+
+    <div class="live-doc-grid">
+      <div class="demo-box-wrapper">
+        <div class="demo-box" style="flex-direction: column; gap: 1.5rem; height: auto; align-items: flex-start;">
+          <ppt-solfege-text-input emit-id="glyph-input-demo"></ppt-solfege-text-input>
+
+          <div style="width: 100%; border: 1px solid #e2e8f0; border-radius: 6px; padding: 0.75rem; background: white; box-sizing: border-box;">
+            <ppt-phrase-editor id="demo-phrase-editor" listen-id="glyph-input-demo"></ppt-phrase-editor>
+          </div>
+        </div>
+      </div>
+
+      <details class="code-panel">
+        <summary>View Source Code <button class="copy-btn" onclick="copyCode('solfege-input-code', this)">Copy Code</button></summary>
+        <pre><code id="solfege-input-code">&lt;ppt-solfege-text-input emit-id="glyph-input-demo"&gt;&lt;/ppt-solfege-text-input&gt;
+
+&lt;ppt-phrase-editor listen-id="glyph-input-demo"&gt;&lt;/ppt-phrase-editor&gt;</code></pre>
+      </details>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       SECTION 2: MIDI Solfège input concept
+  ════════════════════════════════════════════════════════════════════ -->
+
+  <section class="component-demo" id="midi-solfege-concept">
+    <h2>MIDI Solfège Input</h2>
+
+    <p>
+      Both input components described on this page support a common conceptual model: translating
+      the physical gestures of a MIDI keyboard into the symbolic language of Uniform Solfège. This
+      section explains that model in depth.
+    </p>
+
+    <h3>From MIDI note numbers to Solfège syllables</h3>
+    <p>
+      A standard MIDI keyboard transmits note-on and note-off messages encoded as integers from 0
+      to 127, where middle C (C4) is MIDI note 60. On its own, a MIDI note number is just a
+      position — it carries no inherent tonal meaning. The mappers in PPT's input system translate
+      that raw position into a Uniform Solfège syllable by computing the interval between the played
+      note and a contextual reference point (typically the active tonic or the metric grid position).
+    </p>
+    <p>
+      For example, in a melody context with C as the tonic:
+    </p>
+    <ul>
+      <li>MIDI 60 (C4) → <code>Do</code></li>
+      <li>MIDI 62 (D4) → <code>Re</code></li>
+      <li>MIDI 64 (E4) → <code>Mi</code></li>
+      <li>MIDI 65 (F4) → <code>Fa</code></li>
+      <li>MIDI 67 (G4) → <code>So</code></li>
+    </ul>
+    <p>
+      Notes outside the twelve chromatic positions (once microtonal Solfège is engaged) are mapped
+      to diacritic-inflected syllables using the prime-family suffix system: Sub, HalfSub, HalfSup,
+      Sup, and Axis.
+    </p>
+
+    <h3>Why the system is layer-aware</h3>
+    <p>
+      PPT's coil editor organises musical material into three grammar layers — melody, harmony, and
+      rhythm — each governed by a different <em>GrammarInterpreter</em>. The same physical gesture
+      on a MIDI keyboard carries fundamentally different information depending on which layer is
+      active:
+    </p>
+    <ul>
+      <li>
+        <strong>Melody layer (<code>PitchMapper</code>):</strong> A single note pressed and
+        released maps to a single pitch syllable. The duration of the note-on event may optionally
+        influence the rhythmic weight attached to the glyph, but the primary signal is pitch class
+        and octave register.
+      </li>
+      <li>
+        <strong>Harmony layer (<code>HarmonyMapper</code>):</strong> Multiple simultaneous notes
+        are treated as a chord voicing. The mapper resolves the set of intervals present in the
+        chord and maps them to a compound Uniform Solfège expression representing the harmonic
+        context (e.g. a triad built on <code>Do</code>).
+      </li>
+      <li>
+        <strong>Rhythm layer (<code>RhythmMapper</code>):</strong> Pitch is secondary; what
+        matters is the <em>timing</em> of note-on events relative to the metric grid. Onset position
+        and inter-onset interval are mapped to rhythmic Uniform Solfège tokens such as
+        <code>Du</code>, <code>De</code>, and <code>Di</code>, encoding metric placement.
+      </li>
+    </ul>
+    <p>
+      The active mapper is selected automatically when the focused layer changes, via the
+      <code>layer-focus-changed</code> EventBus event. No manual reconfiguration is required — the
+      musician simply moves focus between layers and the MIDI input responds accordingly.
+    </p>
+
+    <h3>Structural command chords</h3>
+    <p>
+      Holding <strong>C3 + B4</strong> simultaneously signals that the next note pressed is a
+      structural command rather than a Solfège token. This two-key anchor chord was chosen because
+      the interval (a major seventh across two octaves) is unlikely to appear in normal musical
+      input. The modifier note determines which structural operation is dispatched to the coil editor
+      via the EventBus, as detailed in the table in the
+      <a href="#solfege-text-input">ppt-solfege-text-input</a> section above.
+    </p>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       SECTION 3: ppt-midi-input-bridge
+  ════════════════════════════════════════════════════════════════════ -->
+
+  <section class="component-demo" id="midi-input-bridge">
+    <h2>&lt;ppt-midi-input-bridge&gt;</h2>
+    <p class="component-subtitle">Tag: <code>ppt-midi-input-bridge</code> · Class: <code>MidiInputBridgeComponent</code></p>
+
+    <p>
+      <code>&lt;ppt-midi-input-bridge&gt;</code> is a <strong>headless, standalone</strong> MIDI
+      bridge. It provides the same layer-aware MIDI-to-EventBus routing as the MIDI button in
+      <code>&lt;ppt-solfege-text-input&gt;</code>, but without any visible UI. Use this component
+      when you want pure MIDI input routing in a context where a text field would be redundant or
+      unwanted — for instance, a performance-only view, or a custom layout that provides its own
+      input affordances.
+    </p>
+
+    <div class="info-callout">
+      <strong>Note on MIDI bridge scope:</strong>
+      <code>&lt;ppt-solfege-text-input&gt;</code> already contains an integrated MIDI bridge — the
+      MIDI Connect button in that component covers the full set of layer-aware mapping and structural
+      command chord behaviours described here.
+      <code>&lt;ppt-midi-input-bridge&gt;</code> exists exclusively for situations where you want
+      that same capability <em>without</em> the text input surface. Do not use both components
+      simultaneously against the same <code>emit-id</code> channel unless you intentionally want
+      two separate MIDI input paths.
+    </div>
+
+    <h3>Behaviour</h3>
+    <p>
+      Unlike the other input and editor components, <code>MidiInputBridgeComponent</code> does
+      <strong>not</strong> extend <code>BasePPTComponent</code>. It connects directly to the
+      WebMIDI API on construction and manages its own lifecycle independently of the component
+      shadow DOM. It subscribes to:
+    </p>
+    <ul>
+      <li>
+        <code>layer-focus-changed</code> — to swap the active mapper (PitchMapper, HarmonyMapper,
+        or RhythmMapper) as the user moves between coil layers.
+      </li>
+      <li>
+        <code>active-phrase-editor-changed</code> — to track which phrase editor should receive
+        the parsed tokens.
+      </li>
+    </ul>
+    <p>
+      All note-on events from the connected MIDI device are passed through the active mapper and
+      published as Uniform Solfège glyph tokens on the <code>emit-id</code> channel. Structural
+      command chords (C3 + B4 + modifier) are handled identically to the integrated bridge.
+    </p>
+
+    <h3>Attributes</h3>
+    <div class="attr-table-wrapper">
+      <table class="attr-table">
+        <thead>
+          <tr>
+            <th>Attribute</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>emit-id</code></td>
+            <td>string</td>
+            <td>—</td>
+            <td>
+              The EventBus channel on which parsed glyph tokens and structural commands are
+              published. Should match the <code>listen-id</code> of the target phrase editor.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Usage example</h3>
+    <p>
+      Place <code>&lt;ppt-midi-input-bridge&gt;</code> anywhere in the document — it renders no
+      visible output. The example below wires it alongside a <code>&lt;ppt-phrase-editor&gt;</code>
+      in a layout that provides its own controls:
+    </p>
+
+    <details class="code-panel" style="margin-top: 1rem;">
+      <summary>View Source Code <button class="copy-btn" onclick="copyCode('midi-bridge-code', this)">Copy Code</button></summary>
+      <pre><code id="midi-bridge-code">&lt;!-- Headless MIDI bridge — no UI rendered --&gt;
+&lt;ppt-midi-input-bridge emit-id="midi-only-channel"&gt;&lt;/ppt-midi-input-bridge&gt;
+
+&lt;!-- Phrase editor bound to the same channel --&gt;
+&lt;ppt-phrase-editor listen-id="midi-only-channel"&gt;&lt;/ppt-phrase-editor&gt;</code></pre>
+    </details>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       SECTION 4: EventBus summary
+  ════════════════════════════════════════════════════════════════════ -->
+
+  <section class="component-demo" id="eventbus-summary">
+    <h2>EventBus Summary</h2>
+
+    <p>
+      Both components communicate exclusively through the global EventBus. The table below lists
+      every event each component subscribes to or publishes. The <code>&#123;emit-id&#125;</code> placeholder
+      represents the value of the component's <code>emit-id</code> attribute at runtime.
+    </p>
+
+    <div class="attr-table-wrapper">
+      <table class="attr-table">
+        <thead>
+          <tr>
+            <th>Event</th>
+            <th>Direction</th>
+            <th>ppt-solfege-text-input</th>
+            <th>ppt-midi-input-bridge</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>active-phrase-editor-changed</code></td>
+            <td>Subscribes</td>
+            <td>✔</td>
+            <td>✔</td>
+            <td>Fires when a <code>&lt;ppt-phrase-editor&gt;</code> gains focus. Both components use
+              this to track the current binding target and update their internal state.</td>
+          </tr>
+          <tr>
+            <td><code>layer-focus-changed</code></td>
+            <td>Subscribes</td>
+            <td>✔</td>
+            <td>✔</td>
+            <td>Fires when the active coil layer changes. Triggers a mapper swap (PitchMapper →
+              HarmonyMapper → RhythmMapper) in the MIDI routing logic.</td>
+          </tr>
+          <tr>
+            <td><code>&#123;emit-id&#125;</code></td>
+            <td>Subscribes</td>
+            <td>✔</td>
+            <td>—</td>
+            <td><code>ppt-solfege-text-input</code> listens on its own channel to pre-populate the
+              text field when the bound editor's content changes externally.</td>
+          </tr>
+          <tr>
+            <td><code>&#123;emit-id&#125;</code></td>
+            <td>Publishes</td>
+            <td>✔</td>
+            <td>✔</td>
+            <td>The primary output channel. Carries parsed Uniform Solfège glyph token arrays from
+              both typed and MIDI input paths.</td>
+          </tr>
+          <tr>
+            <td><code>coil-layer-delete</code></td>
+            <td>Publishes</td>
+            <td>✔</td>
+            <td>✔</td>
+            <td>Published when the C3 + B4 + E3 structural command chord is detected. Instructs the
+              active coil to delete the focused layer.</td>
+          </tr>
+          <tr>
+            <td><code>coil-layer-add</code></td>
+            <td>Publishes</td>
+            <td>✔</td>
+            <td>✔</td>
+            <td>Published when the C3 + B4 + G3 structural command chord is detected. Instructs the
+              active coil to add a new layer.</td>
+          </tr>
+          <tr>
+            <td><code>coil-nav-up</code></td>
+            <td>Publishes</td>
+            <td>✔</td>
+            <td>✔</td>
+            <td>Published when the C3 + B4 + F#3 structural command chord is detected. Moves layer
+              focus up by one position.</td>
+          </tr>
+          <tr>
+            <td><code>coil-nav-down</code></td>
+            <td>Publishes</td>
+            <td>✔</td>
+            <td>✔</td>
+            <td>Published when the C3 + B4 + D#3 structural command chord is detected. Moves layer
+              focus down by one position.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
 </ComponentLayout>
+
+<script>
+  window.copyCode = function(targetId, btn) {
+    const code = document.getElementById(targetId)?.textContent;
+    if (code) {
+      navigator.clipboard.writeText(code);
+      const oldText = btn.textContent;
+      btn.textContent = 'Copied!';
+      setTimeout(() => btn.textContent = oldText, 2000);
+    }
+  };
+</script>
+
+<style>
+  .component-demo {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .component-demo:first-of-type {
+    border-top: none;
+    padding-top: 0;
+  }
+
+  .component-subtitle {
+    margin-top: -0.5rem;
+    margin-bottom: 1.25rem;
+    font-size: 0.9rem;
+    color: #64748b;
+  }
+
+  .component-demo h3 {
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    font-size: 1.05rem;
+    color: var(--brand-primary);
+  }
+
+  .component-demo h4 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #334155;
+  }
+
+  .live-doc-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .demo-box-wrapper {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .demo-box {
+    width: 100%;
+    padding: 2rem;
+    border: 2px dashed #94a3b8;
+    border-radius: 8px;
+    background: #f8fafc;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    box-sizing: border-box;
+  }
+
+  /* ── Attribute & chord tables ── */
+
+  .attr-table-wrapper,
+  .chord-table-wrapper {
+    margin-top: 1rem;
+    overflow-x: auto;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  }
+
+  .attr-table,
+  .chord-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+  }
+
+  .attr-table thead,
+  .chord-table thead {
+    background: var(--brand-primary, #1e293b);
+    color: #f8fafc;
+  }
+
+  .attr-table th,
+  .chord-table th {
+    padding: 0.65rem 1rem;
+    text-align: left;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .attr-table td,
+  .chord-table td {
+    padding: 0.6rem 1rem;
+    border-top: 1px solid #e2e8f0;
+    vertical-align: top;
+    line-height: 1.5;
+  }
+
+  .attr-table tbody tr:nth-child(even),
+  .chord-table tbody tr:nth-child(even) {
+    background: #f8fafc;
+  }
+
+  .attr-table tbody tr:hover,
+  .chord-table tbody tr:hover {
+    background: #f1f5f9;
+  }
+
+  /* ── Info callout ── */
+
+  .info-callout {
+    margin: 1.5rem 0;
+    padding: 1rem 1.25rem;
+    background: #eff6ff;
+    border-left: 4px solid #3b82f6;
+    border-radius: 0 6px 6px 0;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #1e3a5f;
+  }
+
+  .info-callout strong {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-size: 0.95rem;
+  }
+
+  /* ── Code panel ── */
+
+  .code-panel {
+    margin-top: 0.5rem;
+  }
+
+  .code-panel summary {
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--brand-primary);
+    padding: 0.5rem 0;
+    user-select: none;
+  }
+
+  .copy-btn {
+    float: right;
+    background: #e2e8f0;
+    border: none;
+    border-radius: 4px;
+    padding: 0.2rem 0.6rem;
+    font-size: 0.8rem;
+    cursor: pointer;
+    color: #475569;
+    font-weight: bold;
+    transition: background 0.2s;
+  }
+
+  .copy-btn:hover {
+    background: #cbd5e1;
+  }
+
+  .code-panel pre {
+    background: #1e293b;
+    color: #f8fafc;
+    padding: 1rem;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0.5rem 0 0 0;
+  }
+</style>

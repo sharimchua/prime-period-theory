@@ -6,125 +6,63 @@ export class CoilMixerComponent extends BasePPTComponent {
     return {
       displayName: 'Coil Mixer',
       familyColor: '#64748b',
-      acceptsChildren: [],
+      acceptsChildren: ['ppt-coil'],
       canNestIn: ['ppt-container']
-    };
-  }
-
-  static override get observedAttributes() {
-    return [...super.observedAttributes, 'coil-selector'];
-  }
-
-  static override get pptMetadata() {
-    return {
-      ...super.pptMetadata,
-      'coil-selector': { type: 'string', default: 'ppt-coil', description: 'Selector for the target coil to control.' }
     };
   }
 
   private mutedRows: Set<string> = new Set();
   private soloedRows: Set<string> = new Set();
+  private observer: MutationObserver | null = null;
 
   override getBaseStyles() {
     return `
       ${super.getBaseStyles()}
       :host {
         display: block;
-        background: #f8fafc;
-        border: 1px solid #cbd5e1;
-        border-radius: 8px;
-        padding: 1rem;
-        min-width: 200px;
+        width: 100%;
       }
-      .mixer-title {
-        font-size: 1.1rem;
-        font-weight: 600;
-        margin-bottom: 1rem;
-        color: #334155;
-        border-bottom: 2px solid #e2e8f0;
-        padding-bottom: 0.5rem;
-      }
-      .layer-group {
-        margin-bottom: 1rem;
-      }
-      .layer-title {
-        font-size: 0.85rem;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        color: #64748b;
-        margin-bottom: 0.5rem;
-      }
-      .row-controls {
+      .mixer-wrapper {
         display: flex;
-        align-items: center;
-        justify-content: space-between;
-        background: white;
-        padding: 0.5rem;
-        border: 1px solid #e2e8f0;
-        border-radius: 4px;
-        margin-bottom: 0.5rem;
-      }
-      .row-label {
-        font-size: 0.9rem;
-        color: #475569;
-        font-weight: 500;
-      }
-      .btn-group {
-        display: flex;
-        gap: 0.25rem;
-      }
-      button {
-        border: 1px solid #cbd5e1;
-        background: #f1f5f9;
-        color: #64748b;
-        border-radius: 4px;
-        padding: 0.25rem 0.5rem;
-        font-size: 0.75rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.2s;
-      }
-      button:hover {
-        background: #e2e8f0;
-      }
-      button.active.mute {
-        background: #ef4444;
-        color: white;
-        border-color: #ef4444;
-      }
-      button.active.solo {
-        background: #eab308;
-        color: white;
-        border-color: #eab308;
+        flex-direction: column;
       }
     `;
   }
 
   override connectedCallback() {
     super.connectedCallback();
-    // Wait a tick for the coil to render its rows
+    this.render();
+
+    // Observe Light DOM for new coil rows
+    this.observer = new MutationObserver(() => this.syncHeaders());
+    this.observer.observe(this, { childList: true, subtree: true });
+
+    // Initial sync
     setTimeout(() => {
-      // Find layers with muted attribute initially
-      const selector = this.getAttribute('coil-selector') || 'ppt-coil';
-      const coil = document.querySelector(selector);
-      if (coil) {
-        const layers = Array.from(coil.querySelectorAll('ppt-coil-layer'));
-        layers.forEach(layer => {
-          if (layer.hasAttribute('muted')) {
-            const layerContext = layer.getAttribute('layer') || 'unknown';
-            const rows = Array.from(layer.querySelectorAll('ppt-coil-row'));
-            rows.forEach((_, rowIndex) => {
-              this.mutedRows.add(`${layerContext}-${rowIndex}`);
-              EventBus.publish('mixer-mute', { layer: layerContext, rowIndex, active: true });
-            });
-          }
-        });
-      }
-      this.renderMixer();
+      this.initDefaultMutes();
+      this.syncHeaders();
     }, 0);
 
     EventBus.subscribe('mixer-batch-update', this.onBatchUpdate.bind(this));
-    EventBus.subscribe('coil-layer-added', () => this.renderMixer());
+  }
+
+  override disconnectedCallback() {
+    super.disconnectedCallback();
+    if (this.observer) this.observer.disconnect();
+  }
+
+  private initDefaultMutes() {
+    const layers = Array.from(this.querySelectorAll('ppt-coil-layer'));
+    layers.forEach(layer => {
+      if (layer.hasAttribute('muted')) {
+        const layerContext = layer.getAttribute('layer') || 'unknown';
+        const rows = Array.from(layer.querySelectorAll('ppt-coil-row'));
+        rows.forEach((_, rowIndex) => {
+          this.mutedRows.add(`${layerContext}-${rowIndex}`);
+          EventBus.publish('mixer-mute', { layer: layerContext, rowIndex, active: true });
+        });
+      }
+    });
   }
 
   private onBatchUpdate(payload: any) {
@@ -133,11 +71,7 @@ export class CoilMixerComponent extends BasePPTComponent {
       this.soloedRows.clear();
       this.mutedRows.clear();
 
-      const selector = this.getAttribute('coil-selector') || 'ppt-coil';
-      const coil = document.querySelector(selector);
-      if (!coil) return;
-
-      const layers = Array.from(coil.querySelectorAll('ppt-coil-layer'));
+      const layers = Array.from(this.querySelectorAll('ppt-coil-layer'));
       layers.forEach(layer => {
         const layerContext = layer.getAttribute('layer') || 'unknown';
         const rows = Array.from(layer.querySelectorAll('ppt-coil-row'));
@@ -147,31 +81,25 @@ export class CoilMixerComponent extends BasePPTComponent {
             this.soloedRows.add(rowKey);
             EventBus.publish(`mixer-solo`, { layer: layerContext, rowIndex, active: true });
           } else {
-             // Let solo take precedence, no need to explicitly mute if something is soloed.
-             // But for UI visual, we could mute them.
              EventBus.publish(`mixer-mute`, { layer: layerContext, rowIndex, active: false });
           }
         });
       });
-      this.renderMixer(); // full re-render
+      this.syncHeaders();
     } else if (payload.action === 'reset') {
       this.soloedRows.clear();
       this.mutedRows.clear();
       
-      const selector = this.getAttribute('coil-selector') || 'ppt-coil';
-      const coil = document.querySelector(selector);
-      if (coil) {
-        const layers = Array.from(coil.querySelectorAll('ppt-coil-layer'));
-        layers.forEach(layer => {
-          const layerContext = layer.getAttribute('layer') || 'unknown';
-          const rows = Array.from(layer.querySelectorAll('ppt-coil-row'));
-          rows.forEach((_, rowIndex) => {
-            EventBus.publish(`mixer-solo`, { layer: layerContext, rowIndex, active: false });
-            EventBus.publish(`mixer-mute`, { layer: layerContext, rowIndex, active: false });
-          });
+      const layers = Array.from(this.querySelectorAll('ppt-coil-layer'));
+      layers.forEach(layer => {
+        const layerContext = layer.getAttribute('layer') || 'unknown';
+        const rows = Array.from(layer.querySelectorAll('ppt-coil-row'));
+        rows.forEach((_, rowIndex) => {
+          EventBus.publish(`mixer-solo`, { layer: layerContext, rowIndex, active: false });
+          EventBus.publish(`mixer-mute`, { layer: layerContext, rowIndex, active: false });
         });
-      }
-      this.renderMixer();
+      });
+      this.syncHeaders();
     }
   }
 
@@ -182,14 +110,13 @@ export class CoilMixerComponent extends BasePPTComponent {
       EventBus.publish('mixer-mute', { layer, rowIndex, active: false });
     } else {
       this.mutedRows.add(key);
-      // Solo and Mute are mutually exclusive on the same row
       if (this.soloedRows.has(key)) {
         this.soloedRows.delete(key);
         EventBus.publish('mixer-solo', { layer, rowIndex, active: false });
       }
       EventBus.publish('mixer-mute', { layer, rowIndex, active: true });
     }
-    this.renderMixer();
+    this.syncHeaders();
   }
 
   private toggleSolo(layer: string, rowIndex: number) {
@@ -205,77 +132,127 @@ export class CoilMixerComponent extends BasePPTComponent {
       }
       EventBus.publish('mixer-solo', { layer, rowIndex, active: true });
     }
-    this.renderMixer();
+    this.syncHeaders();
   }
 
-  private renderMixer() {
-    const selector = this.getAttribute('coil-selector') || 'ppt-coil';
-    const coil = document.querySelector(selector);
-    
-    let contentHtml = '';
-    
-    if (!coil) {
-      contentHtml = `<p style="color: #94a3b8; font-size: 0.9rem;">No coil found.</p>`;
-    } else {
-      const layers = Array.from(coil.querySelectorAll('ppt-coil-layer'));
+  private syncHeaders() {
+    const layers = Array.from(this.querySelectorAll('ppt-coil-layer'));
+    layers.forEach((layer) => {
+      const layerContext = layer.getAttribute('layer') || 'unknown';
+      const rows = Array.from(layer.querySelectorAll('ppt-coil-row'));
       
-      // Render in reverse to match bottom-to-top DOM order visual conceptually, or keep DOM order (top-to-bottom visually)
-      layers.forEach((layer) => {
-        const layerContext = layer.getAttribute('layer') || 'unknown';
-        const layerLabel = layer.getAttribute('label') || layerContext;
-        const rows = Array.from(layer.querySelectorAll('ppt-coil-row'));
+      rows.forEach((row, rowIndex) => {
+        const key = `${layerContext}-${rowIndex}`;
+        const isMuted = this.mutedRows.has(key);
+        const isSoloed = this.soloedRows.has(key);
         
-        if (rows.length === 0) return;
-        
-        let rowsHtml = rows.map((r, rowIndex) => {
-          const key = `${layerContext}-${rowIndex}`;
-          const isMuted = this.mutedRows.has(key);
-          const isSoloed = this.soloedRows.has(key);
-          
-          return `
-            <div class="row-controls">
-              <span class="row-label">Row ${rowIndex + 1}</span>
-              <div class="btn-group">
-                <button class="mute ${isMuted ? 'active' : ''}" data-action="mute" data-layer="${layerContext}" data-row="${rowIndex}">M</button>
-                <button class="solo ${isSoloed ? 'active' : ''}" data-action="solo" data-layer="${layerContext}" data-row="${rowIndex}">S</button>
-              </div>
+        let header = row.querySelector('.mixer-track-header');
+        if (!header) {
+          header = document.createElement('div');
+          header.slot = 'header';
+          header.className = 'mixer-track-header';
+          header.innerHTML = `
+            <style>
+              .mixer-track-header {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                padding: 0.5rem;
+                gap: 0.25rem;
+                height: 100%;
+                width: 100px;
+                box-sizing: border-box;
+                font-family: system-ui, sans-serif;
+              }
+              .mixer-track-header input {
+                width: 100%;
+                font-size: 0.75rem;
+                padding: 0.2rem;
+                border: 1px solid transparent;
+                background: transparent;
+                text-align: center;
+                color: #475569;
+                font-weight: 600;
+                transition: all 0.2s;
+              }
+              .mixer-track-header input:hover, .mixer-track-header input:focus {
+                background: white;
+                border-color: #cbd5e1;
+                outline: none;
+                border-radius: 4px;
+              }
+              .btn-row {
+                display: flex;
+                gap: 0.25rem;
+              }
+              .mixer-track-header button {
+                width: 32px;
+                height: 24px;
+                border: 1px solid #cbd5e1;
+                background: #f1f5f9;
+                color: #64748b;
+                border-radius: 4px;
+                font-size: 0.7rem;
+                font-weight: bold;
+                cursor: pointer;
+              }
+              .mixer-track-header button:hover {
+                background: #e2e8f0;
+              }
+              .mixer-track-header button.active.mute-btn {
+                background: #ef4444;
+                color: white;
+                border-color: #ef4444;
+              }
+              .mixer-track-header button.active.solo-btn {
+                background: #eab308;
+                color: white;
+                border-color: #eab308;
+              }
+            </style>
+            <input type="text" value="${layerContext.charAt(0).toUpperCase() + layerContext.slice(1)}" class="track-label" />
+            <div class="btn-row">
+              <button class="mute-btn">M</button>
+              <button class="solo-btn">S</button>
             </div>
           `;
-        }).join('');
-        
-        contentHtml += `
-          <div class="layer-group">
-            <div class="layer-title">${layerLabel} Layer</div>
-            ${rowsHtml}
-          </div>
-        `;
-      });
-    }
+          row.appendChild(header);
 
-    if (!this.shadowRoot) return;
-    
-    this.shadowRoot.innerHTML = `
-      <style>${this.getBaseStyles()}</style>
-      <div class="mixer-title">Mixer</div>
-      ${contentHtml}
-    `;
-
-    // Attach listeners
-    this.shadowRoot.querySelectorAll('button').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        const action = btn.getAttribute('data-action');
-        const layer = btn.getAttribute('data-layer');
-        const rowIndex = parseInt(btn.getAttribute('data-row') || '0', 10);
-        
-        if (layer) {
-          if (action === 'mute') this.toggleMute(layer, rowIndex);
-          if (action === 'solo') this.toggleSolo(layer, rowIndex);
+          const muteBtn = header.querySelector('.mute-btn') as HTMLButtonElement;
+          const soloBtn = header.querySelector('.solo-btn') as HTMLButtonElement;
+          
+          muteBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            this.toggleMute(layerContext, rowIndex);
+          });
+          
+          soloBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            this.toggleSolo(layerContext, rowIndex);
+          });
         }
+        
+        // Update state classes
+        const muteBtn = header.querySelector('.mute-btn') as HTMLButtonElement;
+        const soloBtn = header.querySelector('.solo-btn') as HTMLButtonElement;
+        
+        if (isMuted) muteBtn.classList.add('active'); else muteBtn.classList.remove('active');
+        if (isSoloed) soloBtn.classList.add('active'); else soloBtn.classList.remove('active');
       });
     });
   }
+
+  private render() {
+    if (this.shadowRoot) {
+      this.shadowRoot.innerHTML = `
+        <style>${this.getBaseStyles()}</style>
+        <div class="mixer-wrapper">
+          <slot></slot>
+        </div>
+      `;
+    }
+  }
 }
 
-if (!customElements.get('ppt-coil-mixer')) {
-  customElements.define('ppt-coil-mixer', CoilMixerComponent);
-}
+customElements.define('ppt-coil-mixer', CoilMixerComponent);

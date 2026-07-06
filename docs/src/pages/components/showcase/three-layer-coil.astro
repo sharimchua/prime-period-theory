@@ -1,167 +1,508 @@
 ---
 import ComponentLayout from '../../../layouts/ComponentLayout.astro';
+import ComposerButton from '../../../components/ui/ComposerButton.astro';
 ---
 
-<ComponentLayout title="Three-Layer Coil Editor Showcase">
-  <div class="showcase-header">
-    <a href="/components" class="back-link">← Back to Components</a>
-    <h1>Three-Layer Coil Editor</h1>
-    <p>A full integration of the text-path editing phase for the Coil Editor. It demonstrates the bottom-to-top architecture (Rhythm -> Harmony -> Melody) where layers govern their child rows.</p>
-  </div>
+<ComponentLayout title="Three-Layer Coil Editor — PPT Composition Showcase">
+  <h1 id="three-layer-coil">Composition Showcase: Three-Layer Coil Editor</h1>
+
+  <section class="component-demo">
+    <div class="live-doc-grid">
+
+      <div class="demo-box-wrapper">
+        <div class="demo-box resizable" style="min-height: 420px; height: auto;">
+          <script>
+            import '../../../../components/src/index.ts';
+          </script>
+          <ppt-container id="demo-writer-container" style="height: 100%; min-height: 100%;">
+            <ppt-flex direction="column" width="100%" height="100%" gap="1.5rem">
+              
+              <ppt-flex width="100%" direction="column" gap="0.5rem">
+                <ppt-solfege-text-input emit-id="coil-glyph-input"></ppt-solfege-text-input>
+                <div style="font-size: 0.85rem; color: #64748b;">Click a row to select it, then type solfège syllables (e.g. <code>do re mi</code>) or press MIDI Connect and play notes on your keyboard (Octave 4). Press <strong>Enter</strong> to commit.</div>
+              </ppt-flex>
+
+              <ppt-flex width="100%">
+                <ppt-coil-mixer id="main-mixer" style="width: 100%;">
+                  <ppt-coil id="main-coil">
+                    <ppt-grid-coordinator column-width="4em"></ppt-grid-coordinator>
+
+                    <ppt-coil-layer layer="melody">
+                      <ppt-coil-row>
+                        <ppt-phrase-editor justify="grid" listen-id="coil-glyph-input"></ppt-phrase-editor>
+                      </ppt-coil-row>
+                    </ppt-coil-layer>
+
+                    <ppt-coil-layer layer="harmony">
+                      <ppt-coil-row>
+                        <ppt-phrase-editor justify="grid" listen-id="coil-glyph-input"></ppt-phrase-editor>
+                      </ppt-coil-row>
+                    </ppt-coil-layer>
+
+                    <ppt-coil-layer layer="rhythm" muted>
+                      <ppt-coil-row>
+                        <ppt-phrase-editor justify="grid" listen-id="coil-glyph-input"></ppt-phrase-editor>
+                      </ppt-coil-row>
+                    </ppt-coil-layer>
+
+                    <ppt-playback-scheduler></ppt-playback-scheduler>
+                    <ppt-tone-voice voice-id="default"></ppt-tone-voice>
+                  </ppt-coil>
+                </ppt-coil-mixer>
+              </ppt-flex>
+
+              <ppt-flex width="100%" justify="flex-end">
+                <ppt-coil-transport></ppt-coil-transport>
+              </ppt-flex>
+
+            </ppt-flex>
+          </ppt-container>
+        </div>
+    </div>
+
+      <details class="code-panel">
+        <summary>
+          View Source Code
+          <span class="summary-actions">
+            <ComposerButton targetId="demo-writer-container" />
+            <button class="copy-btn" onclick="copyCode('demo-code', this)">Copy Code</button>
+          </span>
+        </summary>
+        <pre><code id="demo-code">&lt;ppt-container style="height: 100%; min-height: 100%;"&gt;
+  &lt;ppt-flex direction="column" gap="1.5rem"&gt;
+    
+    &lt;ppt-solfege-text-input emit-id="coil-glyph-input"&gt;&lt;/ppt-solfege-text-input&gt;
+
+    &lt;ppt-coil-mixer&gt;
+      &lt;ppt-coil&gt;
+        &lt;ppt-grid-coordinator column-width="4em"&gt;&lt;/ppt-grid-coordinator&gt;
+
+        &lt;ppt-coil-layer layer="melody"&gt;
+          &lt;ppt-coil-row&gt;
+            &lt;ppt-phrase-editor justify="grid" listen-id="coil-glyph-input"&gt;&lt;/ppt-phrase-editor&gt;
+          &lt;/ppt-coil-row&gt;
+        &lt;/ppt-coil-layer&gt;
+
+        &lt;ppt-coil-layer layer="harmony"&gt;
+          &lt;ppt-coil-row&gt;
+            &lt;ppt-phrase-editor justify="grid" listen-id="coil-glyph-input"&gt;&lt;/ppt-phrase-editor&gt;
+          &lt;/ppt-coil-row&gt;
+        &lt;/ppt-coil-layer&gt;
+
+        &lt;ppt-coil-layer layer="rhythm" muted&gt;
+          &lt;ppt-coil-row&gt;
+            &lt;ppt-phrase-editor justify="grid" listen-id="coil-glyph-input"&gt;&lt;/ppt-phrase-editor&gt;
+          &lt;/ppt-coil-row&gt;
+        &lt;/ppt-coil-layer&gt;
+
+        &lt;ppt-playback-scheduler&gt;&lt;/ppt-playback-scheduler&gt;
+        &lt;ppt-tone-voice voice-id="default"&gt;&lt;/ppt-tone-voice&gt;
+      &lt;/ppt-coil&gt;
+    &lt;/ppt-coil-mixer&gt;
+
+    &lt;ppt-flex width="100%" justify="flex-end"&gt;
+      &lt;ppt-coil-transport&gt;&lt;/ppt-coil-transport&gt;
+    &lt;/ppt-flex&gt;
+
+  &lt;/ppt-flex&gt;
+&lt;/ppt-container&gt;</code></pre>
+      </details>
+
+    </div>
+  </section>
 
   <div class="showcase-container">
-    <script>
-      import '../../../../components/src/index.ts';
-    </script>
-    
-    <div class="editor-layout" style="display: flex; gap: 2rem; align-items: flex-start;">
-      <div class="editor-workspace" style="flex: 1;">
-        <!-- Top controls -->
-        <div class="global-controls">
-          <div class="input-bridges" style="margin-bottom: 1rem;">
-            <ppt-solfege-text-input emit-id="coil-glyph-input"></ppt-solfege-text-input>
-            <ppt-midi-input-bridge emit-id="coil-glyph-input"></ppt-midi-input-bridge>
-          </div>
-          <p class="help-text">Click inside a row to focus it, then type solfege or play MIDI notes (Octave 4) to add glyphs.</p>
+
+    <!-- Concept: Three-Layer Architecture -->
+    <section class="doc-section">
+      <h2>The Three-Layer Architecture</h2>
+      <p>
+        Prime Period Theory organises musical material across three distinct perceptual and structural strata. Rather than treating pitch, rhythm, and harmony as attributes of a single note stream, PPT separates them into independent layers that are mapped against each other at playback time. This mirrors the way the ear actually processes music — rhythm is a scaffold on which melodic events land, and harmonic colour is a field that envelops the melodic line.
+      </p>
+      <div class="layer-grid">
+        <div class="layer-card layer-melody">
+          <div class="layer-label">Melody</div>
+          <p>The primary pitch stream. Solfège glyphs here describe individual scale degrees relative to a tonic. Each glyph occupies one rhythmic onset determined by the Rhythm layer below it. The melody layer uses the <strong>PitchMapper</strong> when receiving MIDI input, translating piano notes into Uniform Solfège syllables. See the <a href="/reference/related/melodic-grammar">Melodic Grammar</a> documentation for more details.</p>
         </div>
-        
-        <!-- Coil -->
-        <ppt-coil id="main-coil">
-          <ppt-grid-coordinator column-width="4em"></ppt-grid-coordinator>
-          
-          <ppt-coil-layer layer="melody" label="Lead">
-            <ppt-coil-row>
-              <ppt-phrase-editor justify="grid" listen-id="coil-glyph-input"></ppt-phrase-editor>
-            </ppt-coil-row>
-          </ppt-coil-layer>
-
-          <ppt-coil-layer layer="harmony" label="Chords">
-            <ppt-coil-row>
-              <ppt-phrase-editor justify="grid" listen-id="coil-glyph-input"></ppt-phrase-editor>
-            </ppt-coil-row>
-          </ppt-coil-layer>
-          
-          <ppt-coil-layer layer="rhythm" label="Beat" muted>
-            <ppt-coil-row>
-              <ppt-phrase-editor justify="grid" listen-id="coil-glyph-input"></ppt-phrase-editor>
-            </ppt-coil-row>
-          </ppt-coil-layer>
-
-          <ppt-playback-scheduler></ppt-playback-scheduler>
-          <ppt-tone-voice voice-id="default"></ppt-tone-voice>
-        </ppt-coil>
-      </div>
-
-      <div class="sidebar" style="width: 250px;">
-        <ppt-playalong-presets></ppt-playalong-presets>
-        <ppt-coil-mixer coil-selector="#main-coil"></ppt-coil-mixer>
-        <div style="margin-top: 2rem;">
-          <h4 style="margin-top: 0;">Audio Engine</h4>
-          <ppt-coil-transport></ppt-coil-transport>
+        <div class="layer-card layer-harmony">
+          <div class="layer-label">Harmony</div>
+          <p>Vertical pitch relationships — chords or sustained tones played simultaneously. Harmonic glyphs sustain until the next harmonic event, rather than strictly following the rhythm grid beat-for-beat. The <strong>HarmonyMapper</strong> translates MIDI chords into stacked Solfège tokens. A padding token (<code>-</code>) holds the harmonic field through several rhythmic beats.</p>
+        </div>
+        <div class="layer-card layer-rhythm">
+          <div class="layer-label">Rhythm</div>
+          <p>The foundational periodic grid. In PPT, there is no concept of a "rest" — silence is simply the absence of a pitch entry at a given rhythmic position. Rhythm layer tokens primarily use <code>Do</code> and <code>Di</code> to mark onsets and off-beats. This layer acts as the master timing reference — the <strong>PlaybackScheduler</strong> reads the Rhythm layer first to generate a sequence of onset times, then maps Melody and Harmony tokens onto those times. See the <a href="/reference/related/rhythmic-grammar">Rhythmic Grammar</a> documentation for more details. The Rhythm layer is muted by default in this demo.</p>
         </div>
       </div>
-    </div>
+      <p class="note">
+        Layers are displayed bottom-to-top in the editor — Rhythm at the bottom, Harmony above it, Melody at the top — reflecting the compositional dependency chain: rhythm provides time, harmony provides colour, melody provides line.
+      </p>
+    </section>
 
-    <div class="explanation-panel">
-      <h3>How it Works</h3>
-      <p>This composition wires the <code>&lt;ppt-solfege-text-input&gt;</code> to the <code>&lt;ppt-phrase-editor&gt;</code> via the EventBus using the <code>coil-glyph-input</code> channel.</p>
-      <p>The <code>&lt;ppt-phrase-editor&gt;</code> ensures it only intercepts glyph events when it has active focus. Selecting a row reveals the blinking <code>&lt;ppt-coil-cursor&gt;</code>.</p>
-      <p>The layers are styled dynamically based on the <code>layer</code> attribute ("rhythm", "harmony", "melody"), demonstrating the visual separation required for the Three-Layer architecture.</p>
-      <p>The <strong>Mixer</strong> and <strong>Simplification Ladder</strong> let you instantly solo or mute layers.</p>
-    </div>
+    <!-- Concept: Uniform Solfège Input -->
+    <section class="doc-section">
+      <h2>Uniform Solfège Input</h2>
+      <p>
+        Uniform Solfège (PPT's base-12 notation layer) names all twelve chromatic pitch classes relative to a tonic. Unlike traditional solfège, it is fully chromatic — every semitone step has a unique, unambiguous syllable name. The twelve syllables are:
+      </p>
+      <div class="solfege-table-wrapper">
+        <table class="solfege-table">
+          <thead>
+            <tr>
+              <th>Degree</th>
+              <th>1</th><th>♭2</th><th>2</th><th>♭3</th><th>3</th><th>4</th>
+              <th>♭5</th><th>5</th><th>♭6</th><th>6</th><th>♭7</th><th>7</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Syllable</strong></td>
+              <td>Do</td><td>Di</td><td>Re</td><td>Ri</td><td>Mi</td><td>Fa</td>
+              <td>Fi</td><td>So</td><td>Si</td><td>La</td><td>Te</td><td>Ti</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        To enter a phrase via keyboard, click a row to focus it, then type syllable names separated by spaces into the text input above and press <strong>Enter</strong>. For example, entering <code>Do Mi So Mi Do</code> produces a simple ascending-descending arpeggio.
+      </p>
+
+      <h3>Layer-Specific Interpretation</h3>
+      <p>
+        Uniform Solfège is interpreted differently depending on the active layer:
+      </p>
+      <ul>
+        <li><strong>Melody:</strong> Syllables can be interpreted as either absolute pitch positions within the solfège space or as interval movements from the previously sounded note (via Melodic Grammar).</li>
+        <li><strong>Harmony:</strong> Syllables represent vertical chord structures. The text parser allows for grouping multiple syllables to specify stacked notes, and a dash (<code>-</code>) can be used to explicitly pad or hold the harmonic field across rhythmic beats.</li>
+        <li><strong>Rhythm:</strong> Syllables strictly define rhythmic groupings and accents. <code>Do</code> and <code>Di</code> encode primary onsets and off-beats, without any attached pitch meaning.</li>
+      </ul>
+    </section>
+
+    <!-- Concept: MIDI Solfège Input -->
+    <section class="doc-section">
+      <h2>MIDI Solfège Input</h2>
+      <p>
+        The MIDI Connect button in the text input bar initiates a WebMIDI API request. Once permission is granted, notes played on any connected MIDI device are automatically mapped to Uniform Solfège syllables and routed to the currently focused phrase editor. This makes the editor function as a transcription surface — play a musical idea directly on your instrument and see it rendered in Solfège notation in real time.
+      </p>
+
+      <h3>Layer-Aware Mappers & Input Octaves</h3>
+      <p>
+        The mapping strategy changes depending on which layer has focus. To facilitate both pitch selection and editing commands, the MIDI mapping divides the keyboard into two key regions: the <strong>Input Octave</strong> (C4 to B4) for note entry, and the <strong>Modifier Octave</strong> (C3 to B3) for structural commands and chord modifications.
+      </p>
+      <ul class="mapper-list">
+        <li>
+          <strong>PitchMapper (Melody):</strong> Translates each incoming MIDI note in the Input Octave to its Uniform Solfège syllable relative to the root. Single notes map to single glyphs. Suitable for step-by-step melodic entry.
+        </li>
+        <li>
+          <strong>HarmonyMapper (Harmony):</strong> Translates MIDI notes into stacked Solfège tokens. The lowest note played in the Input Octave defines the root of the chord, while additional notes held in the Modifier Octave specify the chord tones relative to that root. When you release all notes, or press the commit modifier, the chord is committed. Holding C3 in the Modifier Octave allows entering dot or dash padding symbols.
+        </li>
+        <li>
+          <strong>RhythmMapper (Rhythm):</strong> Converts MIDI note timing into rhythmic tokens. Notes map to <code>Do</code> (onset) or <code>Di</code>, allowing you to tap a rhythm pattern directly on your instrument without needing dedicated rhythmic hardware.
+        </li>
+      </ul>
+
+      <h3>General Modifier Keys</h3>
+      <p>
+        When using MIDI input, the Modifier Octave (C3 to B3) contains dedicated keys for editing and controlling the flow of syllables:
+      </p>
+      <ul>
+        <li><strong>E3 (Delete):</strong> Acts as a backspace to delete the last entered syllable in the active row.</li>
+        <li><strong>G3 (Commit):</strong> Explicitly commits the currently held chord or syllable to the phrase.</li>
+      </ul>
+
+      <h3>Structural Command Chords</h3>
+      <p>
+        Beyond note input, a special structural chord allows you to trigger structural editing commands without lifting your hands from the instrument. Hold <strong>C3 + B4 simultaneously</strong>, then press one of the following modifier notes:
+      </p>
+      <table class="command-table">
+        <thead>
+          <tr><th>Modifier note</th><th>MIDI #</th><th>Action</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>E3</td><td>52</td><td>Delete current row</td></tr>
+          <tr><td>G3</td><td>55</td><td>Add new row to current layer</td></tr>
+          <tr><td>F♯3</td><td>54</td><td>Navigate up to previous row</td></tr>
+          <tr><td>D♯3</td><td>51</td><td>Navigate down to next row</td></tr>
+        </tbody>
+      </table>
+      <p class="note">
+        MIDI input requires browser support for the WebMIDI API. Chrome and Edge support this natively. Firefox requires the <a href="https://jazz-soft.net/" target="_blank" rel="noopener">Jazz-Plugin</a> or similar. iOS/Safari is not currently supported.
+      </p>
+    </section>
+
+    <!-- Concept: Playback Engine -->
+    <section class="doc-section">
+      <h2>Playback Engine</h2>
+      <p>
+        The playback system in this demo consists of cooperating headless components that live inside the <code>&lt;ppt-coil&gt;</code>. 
+        When you press Play, the transport publishes the current BPM and loop settings. The playback scheduler receives this, reads the rhythm layer's tokens to generate a timing grid of note onsets (or falls back to a 16-sixteenth-note grid if the rhythm layer is empty), then maps each melody and harmony token onto an onset and schedules the corresponding audio.
+      </p>
+      <p>
+        The synthesizer handles the actual audio synthesis, receiving events with frequency and duration from the scheduler. Multiple voices can be defined — one per row — to give each row its own timbre and register.
+      </p>
+
+      <h3>Mixer Controls</h3>
+      <p>
+        The <code>&lt;ppt-coil-mixer&gt;</code> wrapper injects Mute (<strong>M</strong>) and Solo (<strong>S</strong>) buttons into the header slot of each row. These are not just visual — mute/solo state is published to the EventBus and the PlaybackScheduler respects it when building the schedule. If any row is soloed, only soloed rows sound; if a row is muted, it is excluded from the schedule entirely.
+      </p>
+      <p>
+        In this demo, the Rhythm layer starts muted. You can unmute it once you have rhythm tokens entered to hear the full three-layer texture. The Mute button on the Rhythm row is highlighted red to indicate default-muted status.
+      </p>
+    </section>
   </div>
 </ComponentLayout>
 
 <style>
-  .showcase-header {
-    margin-bottom: 2rem;
+  /* Summary bar with actions on the right */
+  .code-panel summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
-  
-  .back-link {
-    display: inline-block;
-    margin-bottom: 1rem;
-    color: var(--brand-primary);
-    text-decoration: none;
-    font-weight: 500;
-  }
-  
-  .back-link:hover {
-    text-decoration: underline;
+
+  .summary-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
   }
 
   .showcase-container {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 3rem;
   }
 
-  .editor-workspace {
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    padding: 2rem;
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
-  }
 
-  .global-controls {
-    margin-bottom: 2rem;
-    background: white;
-    padding: 1rem;
-    border-radius: 8px;
-    border: 1px solid #e2e8f0;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-  }
 
-  .input-bridges {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+  .solfege-wrapper {
+    flex: 1;
+    min-width: 0;
   }
 
   .help-text {
     font-size: 0.85rem;
     color: #64748b;
-    margin-top: 0.5rem;
-    margin-bottom: 0;
+    margin: 0;
   }
 
-  .explanation-panel {
-    background: #eff6ff;
-    border-left: 4px solid #3b82f6;
-    padding: 1.5rem;
-    border-radius: 0 8px 8px 0;
-  }
-
-  .explanation-panel h3 {
-    margin-top: 0;
-    color: #1e3a8a;
-  }
-
-  .explanation-panel p:last-child {
-    margin-bottom: 0;
-  }
-  
-  html.dark .editor-workspace {
-    background: #0f172a;
-    border-color: #334155;
-  }
-  
-  html.dark .global-controls {
-    background: #1e293b;
-    border-color: #334155;
-  }
-  
   html.dark .help-text {
     color: #94a3b8;
   }
-  
-  html.dark .explanation-panel {
-    background: #1e3a8a;
-    border-left-color: #60a5fa;
-    color: #eff6ff;
+
+  .bottom-controls {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: flex-end;
   }
-  
-  html.dark .explanation-panel h3 {
-    color: #eff6ff;
+
+  /* Doc sections */
+  .doc-section {
+    padding: 2rem;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+  }
+
+  html.dark .doc-section {
+    background: #1e293b;
+    border-color: #334155;
+  }
+
+  .doc-section h2 {
+    margin-top: 0;
+    font-size: 1.4rem;
+    color: #1e293b;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  html.dark .doc-section h2 {
+    color: #f1f5f9;
+    border-bottom-color: #334155;
+  }
+
+  .doc-section h3 {
+    font-size: 1.05rem;
+    color: #334155;
+    margin-top: 1.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  html.dark .doc-section h3 {
+    color: #cbd5e1;
+  }
+
+  .doc-section p {
+    color: #475569;
+    line-height: 1.75;
+  }
+
+  html.dark .doc-section p {
+    color: #94a3b8;
+  }
+
+  /* Layer cards */
+  .layer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+
+  .layer-card {
+    border-radius: 6px;
+    padding: 1.25rem;
+    border-left: 4px solid transparent;
+  }
+
+  .layer-card p {
+    font-size: 0.9rem;
+    margin: 0;
+  }
+
+  .layer-label {
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.5rem;
+  }
+
+  .layer-melody {
+    background: #eff6ff;
+    border-left-color: #3b82f6;
+  }
+
+  .layer-melody .layer-label { color: #1d4ed8; }
+
+  .layer-harmony {
+    background: #fffbeb;
+    border-left-color: #f59e0b;
+  }
+
+  .layer-harmony .layer-label { color: #b45309; }
+
+  .layer-rhythm {
+    background: #f8fafc;
+    border-left-color: #94a3b8;
+  }
+
+  .layer-rhythm .layer-label { color: #475569; }
+
+  html.dark .layer-melody { background: #1e3a5f; }
+  html.dark .layer-harmony { background: #3d2e0a; }
+  html.dark .layer-rhythm { background: #1e293b; }
+  html.dark .layer-card p { color: #cbd5e1; }
+
+  /* Note */
+  .note {
+    font-size: 0.875rem !important;
+    background: #f0fdf4;
+    border-left: 3px solid #22c55e;
+    padding: 0.75rem 1rem;
+    border-radius: 0 4px 4px 0;
+    color: #166534 !important;
+  }
+
+  html.dark .note {
+    background: #14532d;
+    border-left-color: #4ade80;
+    color: #bbf7d0 !important;
+  }
+
+  /* Tables */
+  .solfege-table-wrapper {
+    overflow-x: auto;
+    margin: 1rem 0;
+  }
+
+  .solfege-table,
+  .command-table,
+  .event-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+  }
+
+  .solfege-table th,
+  .solfege-table td,
+  .command-table th,
+  .command-table td,
+  .event-table th,
+  .event-table td {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #e2e8f0;
+    text-align: left;
+  }
+
+  .solfege-table th,
+  .command-table th,
+  .event-table th {
+    background: #f1f5f9;
+    font-weight: 600;
+    color: #1e293b;
+  }
+
+  html.dark .solfege-table th,
+  html.dark .command-table th,
+  html.dark .event-table th {
+    background: #0f172a;
+    color: #f1f5f9;
+  }
+
+  html.dark .solfege-table td,
+  html.dark .command-table td,
+  html.dark .event-table td {
+    border-color: #334155;
+    color: #94a3b8;
+  }
+
+  html.dark .solfege-table th,
+  html.dark .command-table th,
+  html.dark .event-table th {
+    border-color: #334155;
+  }
+
+  /* Mapper list */
+  .mapper-list {
+    padding-left: 1.5rem;
+  }
+
+  .mapper-list li {
+    margin-bottom: 0.75rem;
+    color: #475569;
+    line-height: 1.7;
+  }
+
+  html.dark .mapper-list li {
+    color: #94a3b8;
+  }
+
+  /* Architecture diagram */
+  .arch-block {
+    margin: 1.25rem 0;
+  }
+
+  .arch-diagram {
+    background: #0f172a;
+    color: #7dd3fc;
+    padding: 1.25rem 1.5rem;
+    border-radius: 6px;
+    font-size: 0.82rem;
+    line-height: 1.6;
+    overflow-x: auto;
+    margin: 0;
+  }
+
+  /* Code block */
+  .code-block {
+    background: #0f172a;
+    color: #e2e8f0;
+    padding: 1.25rem 1.5rem;
+    border-radius: 6px;
+    font-size: 0.82rem;
+    line-height: 1.6;
+    overflow-x: auto;
+    margin: 1rem 0 0;
   }
 </style>
