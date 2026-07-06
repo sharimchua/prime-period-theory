@@ -66,8 +66,9 @@ export class PlaybackSchedulerComponent extends BasePPTComponent {
     const isLooping = payload?.loop || false;
     
     Tone.Transport.bpm.value = bpm;
-    const secondsPerBeat = 60 / bpm;
-    this.timingResolver = new TimingGridResolver(secondsPerBeat);
+    // Assume 4 tokens per beat (16th notes in 4/4) so it's not too slow at 120 BPM
+    const secondsPerToken = (60 / bpm) / 4;
+    this.timingResolver = new TimingGridResolver(secondsPerToken);
 
     const coil = this.closest('ppt-coil') || document.body;
     
@@ -98,8 +99,8 @@ export class PlaybackSchedulerComponent extends BasePPTComponent {
       Tone.Transport.loop = false;
     }
 
-    // 2. Schedule Melody and Harmony layers using the onsets
-    const scheduleLayer = (layerContext: 'melody' | 'harmony') => {
+    // 2. Schedule Melody, Harmony, and Rhythm layers using the onsets
+    const scheduleLayer = (layerContext: 'melody' | 'harmony' | 'rhythm') => {
       const isHarmony = layerContext === 'harmony';
       const layer = coil.querySelector(`ppt-coil-layer[layer="${layerContext}"]`);
       if (!layer) return;
@@ -119,12 +120,13 @@ export class PlaybackSchedulerComponent extends BasePPTComponent {
         const voice = row.querySelector('ppt-tone-voice') || coil.querySelector('ppt-tone-voice');
         const voiceId = voice ? voice.getAttribute('voice-id') || 'default' : 'default';
 
+        const tokensToSchedule = layerContext === 'rhythm' ? expandRhythmPhrase(editor.tokens) : editor.tokens;
         let tokenIdx = 0;
         let onsetIdx = 0;
         
-        // Map melody/harmony tokens sequentially to the rhythm onsets
-        while (tokenIdx < editor.tokens.length && onsetIdx < onsets.length) {
-          const mToken = editor.tokens[tokenIdx];
+        // Map tokens sequentially to the rhythm onsets
+        while (tokenIdx < tokensToSchedule.length && onsetIdx < onsets.length) {
+          const mToken = tokensToSchedule[tokenIdx];
           
           if (mToken.type === 'glyph') {
             const freq = this.tuningResolver.resolveFrequency(mToken);
@@ -137,8 +139,8 @@ export class PlaybackSchedulerComponent extends BasePPTComponent {
               if (isHarmony) {
                 let nextOnsetIdx = onsetIdx + 1;
                 let nextTokenIdx = tokenIdx + 1;
-                while (nextTokenIdx < editor.tokens.length) {
-                  const lookahead = editor.tokens[nextTokenIdx];
+                while (nextTokenIdx < tokensToSchedule.length) {
+                  const lookahead = tokensToSchedule[nextTokenIdx];
                   if (lookahead.type === 'glyph') break;
                   if (lookahead.type === 'padding') nextOnsetIdx += (lookahead.paddingLength || 1);
                   if (lookahead.type === 'hold') nextOnsetIdx++;
@@ -160,7 +162,7 @@ export class PlaybackSchedulerComponent extends BasePPTComponent {
                   duration: duration,
                   time: time
                 });
-              }, `+${onset.timeInSeconds}`);
+              }, onset.timeInSeconds);
               this.scheduledEventIds.push(eventId);
             }
             tokenIdx++;
@@ -178,6 +180,7 @@ export class PlaybackSchedulerComponent extends BasePPTComponent {
       });
     };
 
+    scheduleLayer('rhythm');
     scheduleLayer('melody');
     scheduleLayer('harmony');
 
