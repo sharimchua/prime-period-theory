@@ -1,0 +1,204 @@
+---
+import ComponentLayout from '../../layouts/ComponentLayout.astro';
+import AutoPropsPanel from '../../components/ui/AutoPropsPanel.astro';
+---
+
+<ComponentLayout title="Coil Editor Components">
+  <h1>Coil Editor Components</h1>
+  
+  <p>The components that form the Three-Layer Coil Editor (Issue #26). They allow for creating a rich text-path editing experience using PPT's grammar layers.</p>
+
+  <section class="component-demo">
+    <h3 id="coil-component">Coil</h3>
+    <p>The top-level container that orders layers from bottom to top (rhythm, harmony, melody).</p>
+    
+    <div class="live-doc-grid">
+      <div class="controls-panel">
+        <h3>Parameters</h3>
+        <AutoPropsPanel targetId="demo-coil" tagName="ppt-coil" />
+      </div>
+
+      <div class="demo-box-wrapper">
+        <div class="demo-box" style="height: 200px;">
+          <script>
+            import '../../../components/src/index.ts';
+          </script>
+          
+          <ppt-coil id="demo-coil">
+            <div style="background: rgba(0,0,0,0.1); padding: 1rem;">Layer content placeholder</div>
+          </ppt-coil>
+        </div>
+      </div>
+
+      <details class="code-panel">
+        <summary>View Source Code <button class="copy-btn" onclick="copyCode('coil-code', this)">Copy Code</button></summary>
+        <pre><code id="coil-code">&lt;ppt-coil&gt;
+  &lt;!-- Layer components go here --&gt;
+&lt;/ppt-coil&gt;</code></pre>
+      </details>
+    </div>
+  </section>
+
+  <section class="component-demo">
+    <h3 id="coil-layer-component">Coil Layer & Row</h3>
+    <p><code>&lt;ppt-coil-layer&gt;</code> dictates the GrammarInterpreter applied to its children. <code>&lt;ppt-coil-row&gt;</code> provides a wrapper for a single voice/strand, along with UI controls (mute, solo, register).</p>
+    
+    <div class="live-doc-grid">
+      <div class="controls-panel">
+        <h3>Parameters (Layer)</h3>
+        <AutoPropsPanel targetId="demo-layer" tagName="ppt-coil-layer" />
+        <br/>
+        <h3>Parameters (Row)</h3>
+        <AutoPropsPanel targetId="demo-row" tagName="ppt-coil-row" />
+      </div>
+
+      <div class="demo-box-wrapper">
+        <div class="demo-box" style="height: 300px;">
+          <ppt-coil-layer id="demo-layer" layer="harmony">
+            <ppt-coil-row id="demo-row">
+              <div style="padding: 1rem; color: #64748b;">Phrase Editor goes here</div>
+            </ppt-coil-row>
+          </ppt-coil-layer>
+        </div>
+      </div>
+
+      <details class="code-panel">
+        <summary>View Source Code <button class="copy-btn" onclick="copyCode('layer-code', this)">Copy Code</button></summary>
+        <pre><code id="layer-code">&lt;ppt-coil-layer layer="harmony"&gt;
+  &lt;ppt-coil-row&gt;
+    &lt;!-- Phrase Editor goes here --&gt;
+  &lt;/ppt-coil-row&gt;
+&lt;/ppt-coil-layer&gt;</code></pre>
+      </details>
+    </div>
+  </section>
+
+  <section class="component-demo">
+    <h3 id="phrase-editor-component">Phrase Editor & Text Input</h3>
+    <p><code>&lt;ppt-phrase-editor&gt;</code> is the interactive surface that displays solfege glyphs. <code>&lt;ppt-solfege-text-input&gt;</code> parses text into glyph tokens and emits them via the EventBus.</p>
+    
+    <div class="live-doc-grid">
+      <div class="controls-panel">
+        <h3>Parameters (Editor)</h3>
+        <AutoPropsPanel targetId="demo-editor" tagName="ppt-phrase-editor" />
+      </div>
+
+      <div class="demo-box-wrapper">
+        <div class="demo-box" style="flex-direction: column; gap: 1rem; height: auto;">
+          <ppt-solfege-text-input emit-id="glyph-input-demo"></ppt-solfege-text-input>
+          
+          <div style="width: 100%; border: 1px solid #e2e8f0; border-radius: 4px; padding: 0.5rem; background: white;">
+            <ppt-phrase-editor id="demo-editor" listen-id="glyph-input-demo"></ppt-phrase-editor>
+          </div>
+        </div>
+      </div>
+
+      <details class="code-panel">
+        <summary>View Source Code <button class="copy-btn" onclick="copyCode('editor-code', this)">Copy Code</button></summary>
+        <pre><code id="editor-code">&lt;ppt-solfege-text-input emit-id="glyph-input-demo"&gt;&lt;/ppt-solfege-text-input&gt;
+
+&lt;ppt-phrase-editor listen-id="glyph-input-demo"&gt;&lt;/ppt-phrase-editor&gt;</code></pre>
+      </details>
+    </div>
+  </section>
+
+</ComponentLayout>
+
+<script>
+  window.copyCode = function(targetId, btn) {
+    const code = document.getElementById(targetId)?.textContent;
+    if (code) {
+      navigator.clipboard.writeText(code);
+      const oldText = btn.textContent;
+      btn.textContent = "Copied!";
+      setTimeout(() => btn.textContent = oldText, 2000);
+    }
+  };
+</script>
+
+<style>
+  .component-demo {
+    margin-top: 3rem;
+  }
+  
+  .live-doc-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .controls-panel {
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+
+  .controls-panel h3 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    color: var(--brand-primary);
+    border-bottom: 2px solid var(--brand-secondary);
+    padding-bottom: 0.5rem;
+  }
+
+  .code-panel {
+    margin-top: 0.5rem;
+  }
+  
+  .code-panel summary {
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--brand-primary);
+    padding: 0.5rem 0;
+    user-select: none;
+  }
+
+  .copy-btn {
+    float: right;
+    background: #e2e8f0;
+    border: none;
+    border-radius: 4px;
+    padding: 0.2rem 0.6rem;
+    font-size: 0.8rem;
+    cursor: pointer;
+    color: #475569;
+    font-weight: bold;
+    transition: background 0.2s;
+  }
+  
+  .copy-btn:hover {
+    background: #cbd5e1;
+  }
+
+  .code-panel pre {
+    background: #1e293b;
+    color: #f8fafc;
+    padding: 1rem;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0.5rem 0 0 0;
+  }
+
+  .demo-box-wrapper {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .demo-box {
+    width: 100%;
+    padding: 2rem;
+    border: 2px dashed #94a3b8;
+    border-radius: 8px;
+    background: #f8fafc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+  }
+</style>

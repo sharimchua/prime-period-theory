@@ -61,13 +61,14 @@ export class UniformSolfegeComponent extends BasePPTComponent {
   }
   
   static override get observedAttributes() {
-    return [...super.observedAttributes, 'solfege', 'color', 'diacritic-color', 'annotation-align', 'annotation-color', 'annotation-padding', 'superscript-offset-x', 'superscript-offset-y', 'size'];
+    return [...super.observedAttributes, 'solfege', 'diacritic', 'color', 'diacritic-color', 'annotation-align', 'annotation-color', 'annotation-padding', 'superscript-offset-x', 'superscript-offset-y', 'size'];
   }
 
   static override get pptMetadata() {
     return {
       ...super.pptMetadata,
       solfege: { type: 'string', default: 'Do', description: 'Base solfege string (e.g., Do, ReSub, Dox^MiSup)' },
+      diacritic: { type: 'string', default: '', description: 'Explicit diacritic to apply' },
       color: { type: 'color', default: '', description: 'Override base color' },
       'diacritic-color': { type: 'color', default: '', description: 'Override diacritic color' },
       'annotation-align': { type: 'enum', options: ['none', 'top', 'bottom'], default: 'none', description: 'Alignment of the solfege annotation text' },
@@ -81,7 +82,7 @@ export class UniformSolfegeComponent extends BasePPTComponent {
 
   override attributeChangedCallback(name: string, _oldValue: string, _newValue: string) {
     super.attributeChangedCallback(name, _oldValue, _newValue);
-    if (['solfege', 'color', 'diacritic-color', 'annotation-align', 'annotation-color', 'annotation-padding', 'superscript-offset-x', 'superscript-offset-y', 'size'].includes(name)) {
+    if (['solfege', 'diacritic', 'color', 'diacritic-color', 'annotation-align', 'annotation-color', 'annotation-padding', 'superscript-offset-x', 'superscript-offset-y', 'size'].includes(name)) {
       this.render();
     }
   }
@@ -144,7 +145,7 @@ export class UniformSolfegeComponent extends BasePPTComponent {
     
     const parsed = parseSolfegeToken(solfegeStr);
     const solfege = parsed.solfege;
-    const diacritic = parsed.diacritic;
+    const diacritic = this.getAttribute('diacritic') || parsed.diacritic;
     const superscriptObj = parsed.superscript;
 
     const normalized = solfege.toLowerCase();

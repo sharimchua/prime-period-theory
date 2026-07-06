@@ -16,7 +16,7 @@ tags:
   - comma
   - microtonality
   - lattice
-timestamp: 2026-07-01
+timestamp: 2026-07-06
 ---
 
 # Prime Lattice
@@ -36,7 +36,7 @@ Its coordinates are determined by how many steps along each prime axis are
 required to reach it from a reference point. The comma system native to the lattice
 encodes those coordinates as an ordered list of `±x/y` steps, where `x` is the 
 index step (as a balanced parity magnitude around 0) and `y` is the bounded prime family 
-(e.g., 1 for Boundary/Axis, 2 for Du, 3 for Tri, 5 for Qui, 7 for Sep, 11 for Undec).
+(e.g., 0 for Boundary/Axis, 2 for Du, 3 for Tri, 5 for Qui, 7 for Sep, 11 for Undec).
 
 The prime lattice is not a PPT invention. It is the natural mathematical
 structure underlying just intonation theory, where it is typically
@@ -147,6 +147,14 @@ Crucially, **Axis and Base are part of the same boundary family**, because Axis 
 The comma complement relationship is internal to each local anchor. It does
 not extend across anchors. The complement of a position near a given anchor is another
 position near that same anchor.
+
+### Boundary Routing and Transient Excursions
+
+In a strictly hierarchical lattice, pathing near the boundaries can create dead zones where an additive step would exceed local space limits (e.g., reaching Fa from Do). To resolve this, the pathing engine supports **Transient Excursions** (or Boundary Reflections). 
+
+This allows navigation to use the global supremum (the Axis / Fi, coordinate `+1/0`) as a non-terminal pivot node. By assuming an infinite tiling of the local space, a path can step to the boundary and then cast a negative vector backward into the defined local bounds. As long as the *terminal* step resolves to a coordinate inside the known macro-bounds, the path is valid.
+
+For the formal implementation details and mathematical foundations, see the [Prime Lattice Boundary Routing](../specifications/prime-lattice-boundary-routing.md) specification.
 
 ## Enharmonic equivalence
 

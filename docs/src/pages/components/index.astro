@@ -4,13 +4,16 @@ import ComponentLayout from '../../layouts/ComponentLayout.astro';
 
 <ComponentLayout title="Components Showcase">
   <h1>Interactive Components</h1>
-  
+
   <p>This library of framework-agnostic Web Components is designed to bring Prime Period Theory (PPT) to life. These components are highly composable, completely atomic, and independently distributable.</p>
 
   <p>Explore the component families:</p>
   <ul>
     <li><a href="/components/primitives"><strong>Foundational Primitives</strong></a>: The Base Component, Title, Container, and Text Panels.</li>
     <li><a href="/components/notation"><strong>Notation Components</strong></a>: The Uniform Solfege glyph and the Solfege Phrase Panel.</li>
+    <li><a href="/components/coil"><strong>Coil Editor Components</strong></a>: The Three-Layer Coil, Layer, Row, and Phrase Editor.</li>
+    <li><a href="/components/playback"><strong>Playback Components</strong></a>: The Playback Scheduler, Coil Transport, and Tone Voice.</li>
+    <li><a href="/components/input"><strong>Input Components</strong></a>: The MIDI Input Bridge and Solfege Text Input.</li>
     <li><a href="/components/geometry"><strong>Geometric Containers</strong></a>: The Period, Period Step, and Sequencer Components.</li>
     <li><a href="/components/controls"><strong>Interactive Controls & Event Bus</strong></a>: Control Panels, Boolean Toggles, and Integer Inputs that communicate via a shared EventBus.</li>
   </ul>
@@ -46,6 +49,16 @@ import ComponentLayout from '../../layouts/ComponentLayout.astro';
       <div class="card-content">
         <h3>Solfege Writer</h3>
         <p>An interactive environment to experiment with Uniform Solfege kerning and layout.</p>
+      </div>
+    </a>
+
+    <a href="/components/showcase/three-layer-coil" class="showcase-card">
+      <div class="card-thumb" style="background: linear-gradient(135deg, #10b981, #3b82f6);">
+        <span style="font-size: 3rem;">📝</span>
+      </div>
+      <div class="card-content">
+        <h3>Three-Layer Coil Editor</h3>
+        <p>An interactive multi-layered text-path editor for composing PPT phrases.</p>
       </div>
     </a>
 

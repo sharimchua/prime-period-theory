@@ -5,6 +5,17 @@ export interface ParsedSolfege {
   superscript?: ParsedSolfege;
 }
 
+export interface ParsedToken {
+  type: 'glyph' | 'padding' | 'hold';
+  solfege?: string;
+  diacritic?: string;
+  octaveOffset?: number;
+  modifiers?: ParsedToken[];
+  paddingLength?: number;
+  isImplicit?: boolean;
+  raw?: string;
+}
+
 const DIACRITIC_SUFFIX_MAP: Record<string, string> = {
   'Sub': 'w_tri',
   'HalfSub': 'w_dutri',
@@ -73,4 +84,101 @@ export function parseSolfegeToken(tokenStr: string): ParsedSolfege {
   }
 
   return result;
+}
+
+/**
+ * Parses a raw phrase string into a structured array of ParsedTokens,
+ * handling grid padding (.), strong beat holds (-), and chord modifiers ([...]).
+ */
+export function tokenizePhrase(text: string): ParsedToken[] {
+  const results: ParsedToken[] = [];
+  // Match things like: "..", "-", "Do", "[Ti, Re]", "[Me]"
+  const regex = /(\.+)|(-)|(\[[^\]]+\])|([A-Za-z\^]+)/g;
+  let match;
+  
+  while ((match = regex.exec(text)) !== null) {
+    if (match[1]) { // padding
+       results.push({ type: 'padding', paddingLength: match[1].length });
+    } else if (match[2]) { // hold
+       results.push({ type: 'hold' });
+    } else if (match[3]) { // bracketed modifiers
+       // attach to previous token if it's a glyph
+       const prev = results[results.length - 1];
+       if (prev && prev.type === 'glyph') {
+          prev.modifiers = prev.modifiers || [];
+          const inner = match[3].slice(1, -1); // remove [ ]
+          const modStrs = inner.split(/[,\s]+/).filter(Boolean);
+          for (const ms of modStrs) {
+             if (isValidSolfegeToken(ms)) {
+               const p = parseSolfegeToken(ms);
+                let octaveOffset = 0;
+                if (p.superscriptStr === 'Ra') octaveOffset = 1;
+                if (p.superscriptStr === 'Ti') octaveOffset = -1;
+                prev.modifiers.push({ type: 'glyph', solfege: p.solfege, diacritic: p.diacritic, octaveOffset, raw: ms });
+             }
+          }
+       }
+    } else if (match[4]) {
+       if (isValidSolfegeToken(match[4])) {
+          const p = parseSolfegeToken(match[4]);
+          let octaveOffset = 0;
+          if (p.superscriptStr === 'Ra') octaveOffset = 1;
+          if (p.superscriptStr === 'Ti') octaveOffset = -1;
+          results.push({ type: 'glyph', solfege: p.solfege, diacritic: p.diacritic, octaveOffset, modifiers: [], raw: match[4] });
+       }
+    }
+  }
+  return results;
+}
+
+const DESCENDING_FIFTHS = ['Li', 'Me', 'Le', 'Ra', 'Fi', 'Si', 'Mi', 'La', 'Re'];
+
+/**
+ * Expands a rhythmic shorthand (e.g. "Dox La") into its full explicitly required tokens (e.g. "Dox La Re So"),
+ * marking the expanded tokens as implicit so the UI can render them muted.
+ */
+export function expandRhythmPhrase(tokens: ParsedToken[]): ParsedToken[] {
+  if (tokens.length === 0) return tokens;
+  
+  const expanded: ParsedToken[] = [];
+  
+  // A simple pass: look for sequences of [Opener, Interior] where Opener is Dox/Dix
+  // For Phase 1, we just do a basic expansion if the entire phrase is exactly 2 tokens 
+  // (opener + interior) or if we encounter an opener+interior at the end.
+  // We'll iterate through and rebuild.
+  
+  for (let i = 0; i < tokens.length; i++) {
+    const token = tokens[i];
+    
+    // In Rhythm layer, Do or Di should automatically promote to Dox or Dix (axis diacritic)
+    if (token.type === 'glyph' && (token.solfege === 'Do' || token.solfege === 'Di') && !token.diacritic) {
+      token.diacritic = 'axis';
+      token.raw = token.solfege + 'x';
+    }
+    
+    expanded.push(token);
+    
+    // Check for shorthand block: Opener (Dox/Dix) followed by an interior token (not So).
+    if (token.type === 'glyph' && (token.solfege === 'Do' || token.solfege === 'Di') && token.diacritic === 'axis') {
+      const next = tokens[i + 1];
+      if (next && next.type === 'glyph' && next.solfege !== 'So' && next.solfege !== 'Do' && next.solfege !== 'Di') {
+        // It's a shorthand opener + interior. Expand it.
+        expanded.push(next);
+        i++; // skip next since we just pushed it
+        
+        // Now fill the descending fifths from `next.solfege` down to Re, then append So.
+        const startIndex = DESCENDING_FIFTHS.indexOf(next.solfege || '');
+        if (startIndex !== -1) {
+          for (let j = startIndex + 1; j < DESCENDING_FIFTHS.length; j++) {
+            const parsed = parseSolfegeToken(DESCENDING_FIFTHS[j]);
+            expanded.push({ type: 'glyph', solfege: parsed.solfege, diacritic: parsed.diacritic, octaveOffset: 0, isImplicit: true, modifiers: [], raw: DESCENDING_FIFTHS[j] });
+          }
+        }
+        // Append So
+        expanded.push({ type: 'glyph', solfege: 'So', diacritic: '', octaveOffset: 0, isImplicit: true, modifiers: [], raw: 'So' });
+      }
+    }
+  }
+  
+  return expanded;
 }
