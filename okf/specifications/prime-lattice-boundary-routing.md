@@ -12,7 +12,7 @@ tags:
   - prime-lattice
   - boundary-routing
   - note-navigator
-timestamp: 2026-07-04
+timestamp: 2026-07-06
 ---
 
 # Architecture Specification: Prime Lattice Boundary Routing

@@ -14,7 +14,7 @@ tags:
   - prime-families
   - uniform-solfege
   - coordinates
-timestamp: 2026-07-03
+timestamp: 2026-07-06
 revision: corrected symmetric reduction around Do; Base/Boundary notation aligned to Boundary Family grammar
 ---
 
