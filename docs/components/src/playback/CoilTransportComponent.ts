@@ -36,10 +36,10 @@ export class CoilTransportComponent extends BasePPTComponent {
       button:hover {
         background: #1d4ed8;
       }
-      button.stop {
+      button.playing {
         background: #ef4444;
       }
-      button.stop:hover {
+      button.playing:hover {
         background: #b91c1c;
       }
       .control-group {
@@ -64,28 +64,40 @@ export class CoilTransportComponent extends BasePPTComponent {
       this.shadowRoot!.innerHTML = `
         <style>${this.getBaseStyles()}</style>
         <button id="btn-play">Play</button>
-        <button id="btn-stop" class="stop">Stop</button>
         <div class="control-group">
           <label for="bpm-input">BPM:</label>
           <input type="number" id="bpm-input" value="120" min="40" max="300" />
-        </div>
-        <div class="control-group">
-          <input type="checkbox" id="loop-input" />
+          <input type="checkbox" id="loop-input" style="margin-left: 0.5rem;" />
           <label for="loop-input">Loop</label>
         </div>
       `;
 
-      this.shadowRoot!.getElementById('btn-play')?.addEventListener('click', () => {
-        const bpmInput = this.shadowRoot!.getElementById('bpm-input') as HTMLInputElement;
-        const loopInput = this.shadowRoot!.getElementById('loop-input') as HTMLInputElement;
-        EventBus.publish('coil-play', { 
-          bpm: parseInt(bpmInput.value) || 120,
-          loop: loopInput.checked
-        });
+      let isPlaying = false;
+      const playBtn = this.shadowRoot!.getElementById('btn-play') as HTMLButtonElement;
+      
+      playBtn.addEventListener('click', () => {
+        if (isPlaying) {
+          EventBus.publish('coil-stop', {});
+          playBtn.textContent = 'Play';
+          playBtn.classList.remove('playing');
+        } else {
+          const bpmInput = this.shadowRoot!.getElementById('bpm-input') as HTMLInputElement;
+          const loopInput = this.shadowRoot!.getElementById('loop-input') as HTMLInputElement;
+          EventBus.publish('coil-play', { 
+            bpm: parseInt(bpmInput.value) || 120,
+            loop: loopInput.checked
+          });
+          playBtn.textContent = 'Stop';
+          playBtn.classList.add('playing');
+        }
+        isPlaying = !isPlaying;
       });
-
-      this.shadowRoot!.getElementById('btn-stop')?.addEventListener('click', () => {
-        EventBus.publish('coil-stop', {});
+      
+      EventBus.subscribe('coil-stop', () => {
+        // Handle external stop (e.g. from Tone js if we emit it)
+        isPlaying = false;
+        playBtn.textContent = 'Play';
+        playBtn.classList.remove('playing');
       });
     }
   }

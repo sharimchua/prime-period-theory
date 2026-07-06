@@ -29,19 +29,19 @@ import ComponentLayout from '../../../layouts/ComponentLayout.astro';
         <ppt-coil id="main-coil">
           <ppt-grid-coordinator column-width="4em"></ppt-grid-coordinator>
           
-          <ppt-coil-layer layer="melody">
+          <ppt-coil-layer layer="melody" label="Lead">
             <ppt-coil-row>
               <ppt-phrase-editor justify="grid" listen-id="coil-glyph-input"></ppt-phrase-editor>
             </ppt-coil-row>
           </ppt-coil-layer>
 
-          <ppt-coil-layer layer="harmony">
+          <ppt-coil-layer layer="harmony" label="Chords">
             <ppt-coil-row>
               <ppt-phrase-editor justify="grid" listen-id="coil-glyph-input"></ppt-phrase-editor>
             </ppt-coil-row>
           </ppt-coil-layer>
           
-          <ppt-coil-layer layer="rhythm">
+          <ppt-coil-layer layer="rhythm" label="Beat" muted>
             <ppt-coil-row>
               <ppt-phrase-editor justify="grid" listen-id="coil-glyph-input"></ppt-phrase-editor>
             </ppt-coil-row>

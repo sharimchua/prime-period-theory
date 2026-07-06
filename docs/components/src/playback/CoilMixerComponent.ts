@@ -103,9 +103,28 @@ export class CoilMixerComponent extends BasePPTComponent {
   override connectedCallback() {
     super.connectedCallback();
     // Wait a tick for the coil to render its rows
-    setTimeout(() => this.renderMixer(), 0);
+    setTimeout(() => {
+      // Find layers with muted attribute initially
+      const selector = this.getAttribute('coil-selector') || 'ppt-coil';
+      const coil = document.querySelector(selector);
+      if (coil) {
+        const layers = Array.from(coil.querySelectorAll('ppt-coil-layer'));
+        layers.forEach(layer => {
+          if (layer.hasAttribute('muted')) {
+            const layerContext = layer.getAttribute('layer') || 'unknown';
+            const rows = Array.from(layer.querySelectorAll('ppt-coil-row'));
+            rows.forEach((_, rowIndex) => {
+              this.mutedRows.add(`${layerContext}-${rowIndex}`);
+              EventBus.publish('mixer-mute', { layer: layerContext, rowIndex, active: true });
+            });
+          }
+        });
+      }
+      this.renderMixer();
+    }, 0);
 
     EventBus.subscribe('mixer-batch-update', this.onBatchUpdate.bind(this));
+    EventBus.subscribe('coil-layer-added', () => this.renderMixer());
   }
 
   private onBatchUpdate(payload: any) {
@@ -203,6 +222,7 @@ export class CoilMixerComponent extends BasePPTComponent {
       // Render in reverse to match bottom-to-top DOM order visual conceptually, or keep DOM order (top-to-bottom visually)
       layers.forEach((layer) => {
         const layerContext = layer.getAttribute('layer') || 'unknown';
+        const layerLabel = layer.getAttribute('label') || layerContext;
         const rows = Array.from(layer.querySelectorAll('ppt-coil-row'));
         
         if (rows.length === 0) return;
@@ -225,7 +245,7 @@ export class CoilMixerComponent extends BasePPTComponent {
         
         contentHtml += `
           <div class="layer-group">
-            <div class="layer-title">${layerContext} Layer</div>
+            <div class="layer-title">${layerLabel} Layer</div>
             ${rowsHtml}
           </div>
         `;
