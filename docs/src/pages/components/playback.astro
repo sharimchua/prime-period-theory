@@ -1,0 +1,32 @@
+---
+import ComponentLayout from '../../layouts/ComponentLayout.astro';
+---
+
+<ComponentLayout title="Playback Components">
+  <div class="prose">
+    <h1>Playback Components</h1>
+    <p>Components and services responsible for resolving timing and synthesizing audio from solfege glyphs.</p>
+    
+    <script>
+      import '../../../components/src/index.ts';
+    </script>
+    
+    <section id="playback-scheduler">
+      <h2>&lt;ppt-playback-scheduler&gt;</h2>
+      <p>A headless coordinator that listens to transport events, resolves the timing grid from the active Rhythm layer, and schedules Tone.js events for Melody and Harmony layers.</p>
+    </section>
+
+    <section id="coil-transport">
+      <h2>&lt;ppt-coil-transport&gt;</h2>
+      <p>A UI widget providing Play and Stop buttons that dispatch global events via the EventBus.</p>
+      <div class="component-demo">
+        <ppt-coil-transport></ppt-coil-transport>
+      </div>
+    </section>
+
+    <section id="tone-voice">
+      <h2>&lt;ppt-tone-voice&gt;</h2>
+      <p>A headless synth wrapper utilizing <code>Tone.PolySynth</code> to receive targeted `play-note` and `stop-note` commands from the Playback Scheduler.</p>
+    </section>
+  </div>
+</ComponentLayout>

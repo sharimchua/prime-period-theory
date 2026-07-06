@@ -73,17 +73,22 @@ export class SolfegeTextInputComponent extends BasePPTComponent {
   private inputEl: HTMLInputElement | null = null;
   private statusEl: HTMLElement | null = null;
   private handleActiveEditorChanged = this.onActiveEditorChanged.bind(this);
+  private handleGlyphInput = this.onGlyphInput.bind(this);
   private isBound = false;
 
   override connectedCallback() {
     super.connectedCallback();
     this.render();
     EventBus.subscribe('active-phrase-editor-changed', this.handleActiveEditorChanged);
+    const emitId = this.getAttribute('emit-id') || 'glyph-input';
+    EventBus.subscribe(emitId, this.handleGlyphInput);
   }
   
   override disconnectedCallback() {
     super.disconnectedCallback();
     EventBus.unsubscribe('active-phrase-editor-changed', this.handleActiveEditorChanged);
+    const emitId = this.getAttribute('emit-id') || 'glyph-input';
+    EventBus.unsubscribe(emitId, this.handleGlyphInput);
   }
 
   private render() {
@@ -134,6 +139,14 @@ export class SolfegeTextInputComponent extends BasePPTComponent {
       text: text,
       tokens: parsedTokens
     });
+  }
+
+  private onGlyphInput(payload: any) {
+    if (this.isBound && this.inputEl && payload && payload.type === 'phrase') {
+      if (this.inputEl.value !== payload.text) {
+        this.inputEl.value = payload.text || '';
+      }
+    }
   }
 }
 

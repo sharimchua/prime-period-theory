@@ -17,8 +17,14 @@ import ComponentLayout from '../../../layouts/ComponentLayout.astro';
     <div class="editor-workspace">
       <!-- Top controls -->
       <div class="global-controls">
-        <ppt-solfege-text-input emit-id="coil-glyph-input"></ppt-solfege-text-input>
-        <p class="help-text">Click inside a row to focus it, then type solfege (e.g. <code>Do Re Mi Fa So La Ti</code> or <code>ReSub</code>) and press Send or Enter to add glyphs.</p>
+        <div class="input-bridges" style="margin-bottom: 1rem;">
+          <ppt-solfege-text-input emit-id="coil-glyph-input"></ppt-solfege-text-input>
+          <ppt-midi-input-bridge emit-id="coil-glyph-input"></ppt-midi-input-bridge>
+        </div>
+        <div class="playback-controls">
+          <ppt-coil-transport></ppt-coil-transport>
+        </div>
+        <p class="help-text">Click inside a row to focus it, then type solfege or play MIDI notes (Octave 4) to add glyphs.</p>
       </div>
       
       <!-- Coil -->
@@ -42,6 +48,9 @@ import ComponentLayout from '../../../layouts/ComponentLayout.astro';
             <ppt-phrase-editor justify="grid" listen-id="coil-glyph-input"></ppt-phrase-editor>
           </ppt-coil-row>
         </ppt-coil-layer>
+
+        <ppt-playback-scheduler></ppt-playback-scheduler>
+        <ppt-tone-voice voice-id="default"></ppt-tone-voice>
       </ppt-coil>
     </div>
 
@@ -92,6 +101,12 @@ import ComponentLayout from '../../../layouts/ComponentLayout.astro';
     border-radius: 8px;
     border: 1px solid #e2e8f0;
     box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+
+  .input-bridges {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
   }
 
   .help-text {

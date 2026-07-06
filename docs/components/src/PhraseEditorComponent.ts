@@ -49,14 +49,22 @@ export class PhraseEditorComponent extends BasePPTComponent {
     `;
   }
 
-  private tokens: any[] = [];
-  private rawText: string = '';
+  private _tokens: any[] = [];
+  private _rawText: string = '';
   private isActiveEditor = false;
   private beatMap: number[] = [];
   private handleGlyphInput = this.onGlyphInput.bind(this);
   private handleFocus = this.onFocus.bind(this);
   private handleActiveEditorChanged = this.onActiveEditorChanged.bind(this);
   private handleGridBeatMap = this.onGridBeatMap.bind(this);
+
+  public get tokens(): any[] {
+    return this._tokens;
+  }
+
+  public get rawText(): string {
+    return this._rawText;
+  }
 
   override connectedCallback() {
     super.connectedCallback();
@@ -100,6 +108,11 @@ export class PhraseEditorComponent extends BasePPTComponent {
       editor: this,
       rawText: this.rawText
     });
+    
+    const layerComponent = this.closest('ppt-coil-layer');
+    const layerType = layerComponent?.getAttribute('layer') || 'melody';
+    EventBus.publish('layer-focus-changed', { layerType });
+
     this.render(); // Show active state
   }
 
@@ -127,8 +140,8 @@ export class PhraseEditorComponent extends BasePPTComponent {
     if (!this.isActiveEditor) return;
 
     if (payload && payload.type === 'phrase') {
-      this.tokens = payload.tokens || [];
-      this.rawText = payload.text || '';
+      this._tokens = payload.tokens || [];
+      this._rawText = payload.text || '';
       
       this.render();
       

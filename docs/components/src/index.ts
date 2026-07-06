@@ -24,6 +24,9 @@ export * from './ControlIntegerComponent.js';
 export * from './ControlTextComponent.js';
 export * from './EventBindingComponent.js';
 export * from './UniformSolfegeComponent.js';
+export * from './playback/ToneVoiceComponent.js';
+export * from './playback/CoilTransportComponent.js';
+export * from './playback/PlaybackSchedulerComponent.js';
 export * from './SolfegePhraseComponent.js';
 export * from './SolfegePhrasePanelComponent.js';
 export * from './CoilComponent.js';
@@ -37,3 +40,5 @@ export * from './GridCoordinatorComponent.js';
 // Feature Registration for components that need external libraries
 import { MidiOrchestrator } from './features/MidiOrchestrator.js';
 MidiOrchestrator.init();
+
+export * from './MidiInputBridgeComponent.js';

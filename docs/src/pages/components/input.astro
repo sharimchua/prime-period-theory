@@ -1,0 +1,24 @@
+---
+import ComponentLayout from '../../layouts/ComponentLayout.astro';
+---
+
+<ComponentLayout title="Input Components">
+  <div class="prose">
+    <h1>Input Components</h1>
+    <p>Components bridging external input devices (QWERTY keyboards, MIDI devices) to the internal EventBus.</p>
+    
+    <script>
+      import '../../../components/src/index.ts';
+    </script>
+    
+    <section id="solfege-text-input">
+      <h2>&lt;ppt-solfege-text-input&gt;</h2>
+      <p>An invisible bridge that intercepts typing when no other input has focus, routing keys like 'D' 'o' into Uniform Solfège glyph tokens on the EventBus.</p>
+    </section>
+
+    <section id="midi-input-bridge">
+      <h2>&lt;ppt-midi-input-bridge&gt;</h2>
+      <p>A headless component utilizing the WebMIDI API to convert piano keyboard notes and structural modifier chords into glyph tokens and layer management commands.</p>
+    </section>
+  </div>
+</ComponentLayout>

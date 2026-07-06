@@ -44,6 +44,8 @@ function isActive(path: string) {
             <li><a href={`${base}components/showcase/tonal-clock`}>Tonal Clock</a></li>
             <li><a href={`${base}components/showcase/metronome`}>Metronome</a></li>
             <li><a href={`${base}components/showcase/solfege-writer`}>Solfege Writer</a></li>
+            <li><a href={`${base}components/showcase/coil-editor`}>Coil Editor</a></li>
+            <li><a href={`${base}components/showcase/three-layer-coil`}>Three-Layer Coil</a></li>
             <li><a href={`${base}components/designer`}>Designer Studio</a></li>
           </ul>
         </details>
@@ -70,6 +72,35 @@ function isActive(path: string) {
           <ul>
             <li><a href={`${base}components/notation#uniform-solfege-component`}>Uniform Solfege</a></li>
             <li><a href={`${base}components/notation#solfege-phrase-panel`}>Solfege Phrase</a></li>
+          </ul>
+        </details>
+
+        <details open>
+          <summary>Coil Editor</summary>
+          <ul>
+            <li><a href={`${base}components/coil#coil-component`}>Coil Root</a></li>
+            <li><a href={`${base}components/coil#coil-layer`}>Coil Layer</a></li>
+            <li><a href={`${base}components/coil#coil-row`}>Coil Row</a></li>
+            <li><a href={`${base}components/coil#phrase-editor`}>Phrase Editor</a></li>
+            <li><a href={`${base}components/coil#grid-coordinator`}>Grid Coordinator</a></li>
+            <li><a href={`${base}components/coil#coil-cursor`}>Coil Cursor</a></li>
+          </ul>
+        </details>
+
+        <details open>
+          <summary>Playback</summary>
+          <ul>
+            <li><a href={`${base}components/playback#playback-scheduler`}>Playback Scheduler</a></li>
+            <li><a href={`${base}components/playback#coil-transport`}>Coil Transport</a></li>
+            <li><a href={`${base}components/playback#tone-voice`}>Tone Voice</a></li>
+          </ul>
+        </details>
+
+        <details open>
+          <summary>Input</summary>
+          <ul>
+            <li><a href={`${base}components/input#midi-input-bridge`}>MIDI Input Bridge</a></li>
+            <li><a href={`${base}components/input#solfege-text-input`}>Solfege Text Input</a></li>
           </ul>
         </details>
 
@@ -233,6 +264,14 @@ function isActive(path: string) {
   }
   
   /* Tree Navigation */
+  .component-tree ul {
+    list-style: none;
+    padding-left: 1.2rem;
+    margin: 0;
+  }
+  .component-tree li {
+    margin: 0.1rem 0;
+  }
   .component-tree details {
     margin-bottom: 0.2rem;
   }

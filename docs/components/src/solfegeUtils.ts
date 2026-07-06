@@ -143,6 +143,13 @@ export function expandRhythmPhrase(tokens: ParsedToken[]): ParsedToken[] {
   
   for (let i = 0; i < tokens.length; i++) {
     const token = tokens[i];
+    
+    // In Rhythm layer, Do or Di should automatically promote to Dox or Dix (axis diacritic)
+    if (token.type === 'glyph' && (token.solfege === 'Do' || token.solfege === 'Di') && !token.diacritic) {
+      token.diacritic = 'axis';
+      token.raw = token.solfege + 'x';
+    }
+    
     expanded.push(token);
     
     // Check for shorthand block: Opener (Dox/Dix) followed by an interior token (not So).
