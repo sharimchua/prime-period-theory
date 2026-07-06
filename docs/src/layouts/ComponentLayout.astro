@@ -77,25 +77,21 @@ function isActive(path: string) {
         <details open>
           <summary>Coil Editor</summary>
           <ul>
-            <li><a href={`${base}components/coil#coil-component`}>Coil Root</a></li>
-            <li><a href={`${base}components/coil#coil-mixer`}>Coil Mixer</a></li>
-            <li><a href={`${base}components/coil#coil-layer`}>Coil Layer</a></li>
-            <li><a href={`${base}components/coil#coil-row`}>Coil Row</a></li>
-            <li><a href={`${base}components/coil#phrase-editor`}>Phrase Editor</a></li>
-            <li><a href={`${base}components/coil#grid-coordinator`}>Grid Coordinator</a></li>
-            <li><a href={`${base}components/coil#coil-cursor`}>Coil Cursor</a></li>
-            <li><a href={`${base}components/coil#event-binding`}>Event Binding</a></li>
+            <li><a href={`${base}components/coil-editor#coil-component`}>Coil</a></li>
+            <li><a href={`${base}components/coil-editor#coil-layer-component`}>Coil Layer & Row</a></li>
+            <li><a href={`${base}components/coil-editor#phrase-editor-component`}>Phrase Editor & Text Input</a></li>
           </ul>
         </details>
 
         <details open>
           <summary>Playback</summary>
           <ul>
-            <li><a href={`${base}components/playback#playback-scheduler`}>Playback Scheduler</a></li>
-            <li><a href={`${base}components/playback#coil-transport`}>Coil Transport</a></li>
-            <li><a href={`${base}components/playback#tone-voice`}>Tone Voice</a></li>
-            <li><a href={`${base}components/playback#coil-mixer`}>Coil Mixer</a></li>
-            <li><a href={`${base}components/playback#playalong-presets`}>Playalong Presets</a></li>
+            <li><a href={`${base}components/playback#coil-transport`}>Transport Bar</a></li>
+            <li><a href={`${base}components/playback#coil-mixer`}>Mixer</a></li>
+            <li><a href={`${base}components/playback#playback-scheduler`}>Scheduler</a></li>
+            <li><a href={`${base}components/playback#tone-voice`}>Synth Voice</a></li>
+            <li><a href={`${base}components/playback#playalong-presets`}>Presets Panel</a></li>
+            <li><a href={`${base}components/playback#full-composition`}>Full Composition Example</a></li>
           </ul>
         </details>
 
@@ -113,17 +109,17 @@ function isActive(path: string) {
             <li><a href={`${base}components/controls#control-panel`}>Control Panel</a></li>
             <li><a href={`${base}components/controls#boolean-control`}>Boolean Control</a></li>
             <li><a href={`${base}components/controls#integer-control`}>Integer Control</a></li>
-            <li><a href={`${base}components/controls#event-binding`}>Event Binding</a></li>
           </ul>
         </details>
 
         <details open>
-          <summary>Period</summary>
+          <summary>Geometry (Period)</summary>
           <ul>
             <li>
               <a href={`${base}components/geometry#period-component`}>Container</a>
               <ul>
                 <li><a href={`${base}components/geometry#step-circle-component`}>Step</a></li>
+                <li><a href={`${base}components/geometry#sequencer-component`}>Sequencer</a></li>
               </ul>
             </li>
           </ul>
@@ -267,7 +263,12 @@ function isActive(path: string) {
     color: var(--brand-accent);
   }
   
-  /* Tree Navigation */
+  .component-tree {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  
   .component-tree ul {
     list-style: none;
     padding-left: 1.2rem;
@@ -277,10 +278,13 @@ function isActive(path: string) {
     margin: 0.1rem 0;
   }
   .component-tree details {
+    display: block;
     margin-bottom: 0.2rem;
+    width: 100%;
   }
   
   .component-tree summary {
+    display: block;
     cursor: pointer;
     list-style: none; /* Hide default arrow */
     position: relative;
