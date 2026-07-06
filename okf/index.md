@@ -13,7 +13,7 @@ tags:
   - polyrhythm
   - microtonality
   - 31-edo
-timestamp: 2026-07-03
+timestamp: 2026-07-04
 ---
 
 # Prime Period Theory
@@ -197,6 +197,7 @@ amplitude or effect envelopes.
 ### Applications
 - [Overview](applications/index.md) — the bridge between theory and tools
 - [Component Philosophy](applications/component-philosophy.md) — one primitive for pitch and rhythm
+- [Three-Layer Coil Editor](applications/three-layer-coil-editor.md) — component architecture for the coil editor
 - [Visualisation](applications/visualisation.md) — PPT ratio visualisation across Metric DuPeriods
 - [Play-Along Feedback](applications/play-along.md) — three feedback models
 - [Transcription](applications/transcription.md) — melody-first → progressive specification
@@ -212,6 +213,7 @@ amplitude or effect envelopes.
 - [Frequency Perception](implementations/frequency-perception.md) — precursor tool
 
 ## Specifications
+- [Prime Lattice Boundary Routing](specifications/prime-lattice-boundary-routing.md) — rules and validation logic for transient excursions beyond local boundaries
 - [Design System & Colour Semantics](specifications/design-system.md) — Visual styling and mathematical mapping
 - [PPT Composition Format (PPT-CF)](specifications/composition-format.md) — a concise, structural encoding format for serialising component layouts
 - [MIDI to Solfège Input Specification](specifications/midi-solfege-input.md)

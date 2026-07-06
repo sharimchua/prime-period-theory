@@ -70,6 +70,8 @@ glyph kerning and layout. Supports the MusiCoil font development work.
 visually. Enables non-code exploration of component compositions and serves
 as a live documentation environment.
 
+**Three-Layer Coil Editor** — Component design for a MIDI- and text-driven Three-Layer Coil editor in the Composer. Built with atomic grammar interpreters and phrase editing surfaces.
+
 ## PPT concepts implemented
 
 | Concept | Component / Showcase |

@@ -38,8 +38,8 @@ A single Solfège Output object has the following structure:
 
 ```
 {
-  solfege: Solfegesyllable,
-  commas: Array<Comma>
+  solfege: SolfegeSyllable,
+  commas: Array<CommaString>
 }
 ```
 
@@ -49,12 +49,7 @@ Where:
 SolfegeSyllable = "Do" | "Ra" | "Re" | "Me" | "Mi" | "Fa"
                | "Fi" | "So" | "Le" | "La" | "Te" | "Ti"
 
-CommaPrime = "Du" | "Tri" | "Qui" | "Sep" | "Undec"
-
-Comma = {
-  prime: CommaPrime,
-  step: integer
-}
+CommaString = string // Format: "±x/y"
 ```
 
 ### SolfegeSyllable
@@ -81,26 +76,17 @@ The syllables in chromatic order:
 | Te | 10 |
 | Ti | 11 |
 
-### CommaPrime
+### CommaString
 
-The five prime families recognised by PPT up to the 11-limit. They are an
-enumeration. Du corresponds to prime 2, Tri to prime 3, Qui to prime 5,
-Sep to prime 7, Undec to prime 11.
+A single comma entry specifies a navigational path step formatted as a string `±x/y`, where `x` is the integer step magnitude and `y` is the prime family divisor.
 
-### Comma
-
-A single comma entry specifies a prime family and a signed integer step count.
-The step is a direction and magnitude in that prime family's subdivision space:
-
-- A **positive step** compresses the subperiod — the equivalent of a sharper
-  deviation in pitch terms, or a shorter duration in rhythmic terms.
-- A **negative step** expands the subperiod — the equivalent of a flatter
-  deviation in pitch terms, or a longer duration in rhythmic terms.
-
-The step is an integer. The magnitude of one step is defined by the prime
-family: one Tri step is one Pythagorean comma's worth of deviation, one Qui
-step is one syntonic comma, one Sep step is one septimal comma, and so on.
-Du steps subdivide the period by 2 at each level.
+- **`x` (magnitude and direction):**
+  - A **positive step** compresses the subperiod — the equivalent of a sharper deviation in pitch terms, or a shorter duration in rhythmic terms.
+  - A **negative step** expands the subperiod — the equivalent of a flatter deviation in pitch terms, or a longer duration in rhythmic terms.
+  
+- **`y` (prime family):**
+  - The valid prime families recognized by PPT up to the 11-limit are: `Du`, `Tri`, `Qui`, `Sep`, `Undec`.
+  - The special identifier `0` is used to represent the Boundary family (local supremum and infinities). This enables Transient Excursions and boundary routing (e.g., `+1/0` for the current period's Axis, `-1/0` for the previous period's Axis, or `0/0` for the origin base).
 
 ### The commas array
 
@@ -181,6 +167,7 @@ relationship between comma values and their written representations.
   implementations; instrument-specific conventions; chord and bend resolution
 - [Prime Lattice](../foundations/prime-lattice.md) — the mathematical space
   the comma array navigates
+- [Prime Lattice Boundary Routing](prime-lattice-boundary-routing.md) — rules for Transient Excursions using the `/0` Boundary notation
 - [Prime Period Diacritics — Overview](../ppd/index.md) — the writing system
   rendering of comma values
 - [Notation Input](../applications/notation-input.md) — how this spec is used
