@@ -1,0 +1,144 @@
+---
+import ComponentLayout from '../../../layouts/ComponentLayout.astro';
+---
+
+<ComponentLayout title="Three-Layer Coil Editor Showcase">
+  <div class="showcase-header">
+    <a href="/components" class="back-link">← Back to Components</a>
+    <h1>Three-Layer Coil Editor</h1>
+    <p>A full integration of the text-path editing phase for the Coil Editor. It demonstrates the bottom-to-top architecture (Rhythm -> Harmony -> Melody) where layers govern their child rows.</p>
+  </div>
+
+  <div class="showcase-container">
+    <script>
+      import '../../../../components/src/index.ts';
+    </script>
+    
+    <div class="editor-workspace">
+      <!-- Top controls -->
+      <div class="global-controls">
+        <ppt-solfege-text-input emit-id="coil-glyph-input"></ppt-solfege-text-input>
+        <p class="help-text">Click inside a row to focus it, then type solfege (e.g. <code>Do Re Mi Fa So La Ti</code> or <code>ReSub</code>) and press Send or Enter to add glyphs.</p>
+      </div>
+      
+      <!-- Coil -->
+      <ppt-coil>
+        <ppt-coil-layer layer="rhythm">
+          <ppt-coil-row label="Percussion" register-offset="-1">
+            <ppt-phrase-editor listen-id="coil-glyph-input"></ppt-phrase-editor>
+          </ppt-coil-row>
+        </ppt-coil-layer>
+        
+        <ppt-coil-layer layer="harmony">
+          <ppt-coil-row label="Chords" register-offset="0">
+            <ppt-phrase-editor listen-id="coil-glyph-input"></ppt-phrase-editor>
+          </ppt-coil-row>
+          <ppt-coil-row label="Bass" register-offset="-2">
+            <ppt-phrase-editor listen-id="coil-glyph-input"></ppt-phrase-editor>
+          </ppt-coil-row>
+        </ppt-coil-layer>
+
+        <ppt-coil-layer layer="melody">
+          <ppt-coil-row label="Lead" register-offset="1">
+            <ppt-phrase-editor listen-id="coil-glyph-input"></ppt-phrase-editor>
+          </ppt-coil-row>
+        </ppt-coil-layer>
+      </ppt-coil>
+    </div>
+
+    <div class="explanation-panel">
+      <h3>How it Works</h3>
+      <p>This composition wires the <code>&lt;ppt-solfege-text-input&gt;</code> to the <code>&lt;ppt-phrase-editor&gt;</code> via the EventBus using the <code>coil-glyph-input</code> channel.</p>
+      <p>The <code>&lt;ppt-phrase-editor&gt;</code> ensures it only intercepts glyph events when it has active focus. Selecting a row reveals the blinking <code>&lt;ppt-coil-cursor&gt;</code>.</p>
+      <p>The layers are styled dynamically based on the <code>layer</code> attribute ("rhythm", "harmony", "melody"), demonstrating the visual separation required for the Three-Layer architecture.</p>
+    </div>
+  </div>
+</ComponentLayout>
+
+<style>
+  .showcase-header {
+    margin-bottom: 2rem;
+  }
+  
+  .back-link {
+    display: inline-block;
+    margin-bottom: 1rem;
+    color: var(--brand-primary);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .back-link:hover {
+    text-decoration: underline;
+  }
+
+  .showcase-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .editor-workspace {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+  }
+
+  .global-controls {
+    margin-bottom: 2rem;
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+
+  .help-text {
+    font-size: 0.85rem;
+    color: #64748b;
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+  }
+
+  .explanation-panel {
+    background: #eff6ff;
+    border-left: 4px solid #3b82f6;
+    padding: 1.5rem;
+    border-radius: 0 8px 8px 0;
+  }
+
+  .explanation-panel h3 {
+    margin-top: 0;
+    color: #1e3a8a;
+  }
+
+  .explanation-panel p:last-child {
+    margin-bottom: 0;
+  }
+  
+  html.dark .editor-workspace {
+    background: #0f172a;
+    border-color: #334155;
+  }
+  
+  html.dark .global-controls {
+    background: #1e293b;
+    border-color: #334155;
+  }
+  
+  html.dark .help-text {
+    color: #94a3b8;
+  }
+  
+  html.dark .explanation-panel {
+    background: #1e3a8a;
+    border-left-color: #60a5fa;
+    color: #eff6ff;
+  }
+  
+  html.dark .explanation-panel h3 {
+    color: #eff6ff;
+  }
+</style>
