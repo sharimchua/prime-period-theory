@@ -31,7 +31,7 @@ To resolve this, the pathing engine rules must be updated to support **Transient
 
 ### Updated Path Validation Rules:
 1. **Non-Terminal Supremum Navigation:** The global supremum (the Axis / Fi) may be used as a non-terminal pivot node. 
-2. **Infinite Tiling Assumption:** While parked on the supremum boundary, the engine assumes an infinite tiling of the local space (i.e., it assumes an equal-width neighbor space exists beyond the boundary).
+2. **Infinite Tiling Assumption:** While parked on the supremum boundary, the engine assumes an infinite tiling of the local space (i.e., it assumes an equal-width neighbour space exists beyond the boundary).
 3. **The Rule of Terminal Escapes (Validation):** A path is only considered an invalid "Boundary Escape" if the *terminal* (final) step resolves to a coordinate outside the known local address space. If the cumulative vector sum of the path pulls the final address back into the defined bounds (stepping back from infinity), the path is strictly valid.
 
 ### Example: Pathing to Fa (5)

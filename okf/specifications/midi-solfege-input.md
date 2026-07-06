@@ -85,7 +85,7 @@ A single comma entry specifies a navigational path step formatted as a string `Â
   - A **negative step** expands the subperiod â€” the equivalent of a flatter deviation in pitch terms, or a longer duration in rhythmic terms.
   
 - **`y` (prime family):**
-  - The valid prime families recognized by PPT up to the 11-limit are: `Du`, `Tri`, `Qui`, `Sep`, `Undec`.
+  - The valid prime families recognised by PPT up to the 11-limit are: `Du`, `Tri`, `Qui`, `Sep`, `Undec`.
   - The special identifier `0` is used to represent the Boundary family (local supremum and infinities). This enables Transient Excursions and boundary routing (e.g., `+1/0` for the current period's Axis, `-1/0` for the previous period's Axis, or `0/0` for the origin base).
 
 ### The commas array

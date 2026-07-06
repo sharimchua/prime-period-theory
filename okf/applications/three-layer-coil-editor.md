@@ -39,7 +39,7 @@ the design and are treated as non-negotiable:
    components declare what they listen for via `listen-id`. No component
    directly calls into another component's internals.
 4. **Relative-before-absolute.** Grammar interpreters work entirely in
-   scale-degree / solfège-token space. Nothing about tonal center, absolute
+   scale-degree / solfège-token space. Nothing about tonal centre, absolute
    Hz, or wall-clock time is allowed to leak into a `Phrase` until it hits
    the tuning/timing resolution boundary at playback time. This is what
    keeps a coil transposable and tempo-independent by construction.
@@ -65,7 +65,7 @@ to those specifications rather than reimplementing grammar rules in UI code.
 │   │ <ppt-coil-layer layer="rhythm">    (bottom)             │ │
 │   │   <ppt-coil-row> × N   (polyrhythm)                    │ │
 │   └───────────────────────────────────────────────────────┘ │
-│   <ppt-coil-transport>  <ppt-tonal-center>  <ppt-tempo-control> │
+│   <ppt-coil-transport>  <ppt-tonal-centre>  <ppt-tempo-control> │
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -107,7 +107,7 @@ it was authored under (rhythm / melody / harmony). A `Phrase` is what a
 ### `CoilModel`
 The full addressable state of one coil: three `Layer`s (rhythm, harmony,
 melody), each holding an ordered list of `Row`s, each `Row` holding a
-`Phrase` plus row metadata (label, register offset, mute/solo, voice color).
+`Phrase` plus row metadata (label, register offset, mute/solo, voice colour).
 This is the unit that gets serialized to/from **PPT-CF** (see §G).
 
 ---
@@ -115,7 +115,7 @@ This is the unit that gets serialized to/from **PPT-CF** (see §G).
 ## B. Grammar interpreters (headless services)
 
 Three small, independently testable modules. Each takes a `Phrase` (and,
-where needed, contextual state like tonal center) and produces a structured,
+where needed, contextual state like tonal centre) and produces a structured,
 domain-specific result. None of them touch the DOM, MIDI, or audio.
 
 ### `RhythmicGrammarInterpreter`
@@ -130,7 +130,7 @@ grid is the `TimingGridResolver`'s job (§D), not the interpreter's.
 ### `MelodicGrammarInterpreter`
 Resolves a melody-layer `Phrase` into a sequence of **scale-degree
 positions** — absolute or intervallic movement per Melodic Grammar
-conventions — still relative to an unspecified tonal center. Handles
+conventions — still relative to an unspecified tonal centre. Handles
 diacritic-based microtonal offsets as fractional degree displacement.
 
 ### `HarmonicGrammarInterpreter`
@@ -161,7 +161,7 @@ Holds one or more `<ppt-coil-row>` children. The `layer` attribute is the
 *only* thing that determines which `GrammarInterpreter` gets attached to
 child phrase editors — this is the composition-over-configuration hinge
 point of the whole design. Swapping `layer="harmony"` for `layer="melody"`
-on an otherwise identical subtree changes its behavior entirely, the same
+on an otherwise identical subtree changes its behaviour entirely, the same
 way changing a `<ppt-period>`'s child count changes a Tonal Clock into a
 pentatonic clock.
 
@@ -191,10 +191,10 @@ not in the editor.
 
 ## D. Timing and tonal context (headless services + thin controls)
 
-### `<ppt-tonal-center>`
+### `<ppt-tonal-centre>`
 A declarative control (not unlike the existing tempo slider pattern)
-declaring the coil's current tonal center / reference degree. Emits
-`tonal-center-change`. This is the single point where "what note is Do
+declaring the coil's current tonal centre / reference degree. Emits
+`tonal-centre-change`. This is the single point where "what note is Do
 right now" enters the system — everything upstream of it stays relative.
 
 ### `<ppt-tempo-control>`
@@ -216,7 +216,7 @@ this resolver.
 
 ### `TuningResolver` (headless)
 Converts a resolved scale-degree + diacritic + octave + current tonal
-center into an absolute frequency in Hz, using the prime-ratio/just-
+centre into an absolute frequency in Hz, using the prime-ratio/just-
 intonation math from the tuning docs (with the Periodicity Limen Reference
 Tuning as the absolute anchor). This is the *only* place absolute pitch
 exists in the whole system — swappable, so a 12TET-fallback resolver can sit
@@ -234,7 +234,7 @@ to whichever `<ppt-phrase-editor>` currently holds selection focus. Two
 mapper implementations are needed, selected by the focused row's layer:
 
 - **Pitch mapper** (melody/harmony rows): MIDI note number → scale degree +
-  diacritic relative to the current `<ppt-tonal-center>`.
+  diacritic relative to the current `<ppt-tonal-centre>`.
 - **Rhythm mapper** (rhythm rows): note-on timing/velocity on a designated
   pad/key range → Rhythmic Grammar tokens, including Axis-marked (`Dox`/
   `Dix`) boundary detection from strong-beat velocity.
@@ -297,7 +297,7 @@ need to own caret-rendering logic itself.
 ### PPT-CF extension
 Rather than inventing a new save format, propose a `coil` shape under the
 existing **PPT Composition Format** spec: layers → rows → phrases (as
-`GlyphToken` arrays) → tonal center → tempo. This is what the Composer
+`GlyphToken` arrays) → tonal centre → tempo. This is what the Composer
 would read/write, and what an agent-raised PR against the OKF repo would
 attach as a worked example alongside the spec update.
 
