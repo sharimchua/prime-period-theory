@@ -36,20 +36,20 @@ Concretely, this means five of the twelve traditional ascending-solfège anchors
 
 The prime lattice coordinates for an anchor describe the exact path taken from the origin (Do) to reach that position, using nearest-address reduction. The notation uses the native comma format `±x/y`, where `x` is the step magnitude and `y` is the prime family. Because this is a Du period space, any movement along an odd-prime axis requires a counterbalancing movement along the Du axis to bring the result to its nearest address relative to Do — not merely within `[0, 1200¢)`, but within `(−600¢, +600¢]`.
 
-| Interval | Ratio | Cents | Note | Path | Family |
-|---|---|---|---|---|---|
-| Equal tritone | √2 | ±600¢ | **Fi** | `+1/2` | Du, level 1 (axis) |
-| Perfect fourth ↑ | 4/3 | +498¢ | **Fa** | `+1/Tri` | Tri, full + |
-| Major third ↑ | 5/4 | +386¢ | **Mi** | `+1/Qui` | Qui, full + |
-| Quarter octave ↑ | 2^(1/4) | +300¢ | **Me** | `+1/Du` | Du, level 2 |
-| Major second ↑ | 9/8 | +204¢ | **Re** | `+1/Tri, +1/Tri` | Tri, compound |
-| Minor second ↑ | 16/15 | +112¢ | **Ra** | `+1/Tri, −1/Qui` | Tri×Qui compound |
-| Unison | 1/1 | 0¢ | **Do** | `0` | origin |
-| Minor second ↓ | 15/16 | −112¢ | **Ti** | `−1/Tri, +1/Qui` | Tri×Qui compound |
-| Sep complement ↓ | 8/7 | −231¢ | **Te** | `−1/Sep` | Sep, reduced |
-| Quarter octave ↓ | 2^(1/4) | −300¢ | **La** | `−1/Du` | Du, level 2 |
-| Major third ↓ | 4/5 | −386¢ | **Le** | `−1/Qui` | Qui, full − |
-| Perfect fourth ↓ | 3/4 | −498¢ | **So** | `−1/Tri` | Tri, full − |
+| Solfège | Traditional Ratio | Prime Lattice Coordinates (`±x/y`) | Cents | Register (Do = C4) | Derivation Path |
+|---------|-------------------|-------------------------------------|-------|---------------------|-----------------|
+| **Do**  | 1:1   | `0` | 0.00 | C4 | The origin. |
+| **Ra**  | 16:15 | `+1/Tri, −1/Qui` | +111.73 | Db4 | Descending a major third and a perfect fifth from the Du ceiling. |
+| **Re**  | 9:8   | `+1/Tri, +1/Tri` | +203.91 | D4 | Ascending two perfect fifths (Tri). |
+| **Me**  | 6:5   | `+1/Du` | +315.64 | Eb4 | The pure 5-limit minor third. |
+| **Mi**  | 5:4   | `+1/Qui` | +386.31 | E4 | Ascending one pure major third (Qui). |
+| **Fa**  | 4:3   | `+1/Tri` | +498.04 | F4 | Descending one perfect fifth from the Du ceiling. |
+| **Fi**  | √2:1  | `+1/2` | ±600.00 | F#4 *(by convention — see note)* | Du's coarsest-frame edge — the shared upper boundary of Do's local period space. |
+| **So**  | 3/4   | `−1/Tri` | **−498.04** | **G3** | Ascending one perfect fifth (Tri), reduced to nearest address — one octave *below* the traditional ascending position. |
+| **Le**  | 4/5   | `−1/Qui` | **−386.31** | **Ab3** | Descending one major third, reduced to nearest address. |
+| **La**  | 5/6   | `−1/Du` | **−315.64** | **A3** | Ascending a major third and descending a fifth, reduced to nearest address. |
+| **Te**  | 7/8   | `−1/Sep` | **−231.17** | **Bb3** *(flat)* | The 7-limit harmonic seventh, reduced to nearest address. |
+| **Ti**  | 15/16 | `−1/Tri, +1/Qui` | **−111.73** | **B3** | Ascending a major third and a perfect fifth, reduced to nearest address. |
 
 ### Characteristics of the Map
 
