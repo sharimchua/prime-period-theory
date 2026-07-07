@@ -10,7 +10,7 @@ tags:
   - prime-families
   - notation
   - prime-period-theory
-timestamp: 2026-07-01
+timestamp: 2026-07-07
 status: active
 version: 2.0
 relates-to:
@@ -85,8 +85,8 @@ This hybrid design delivers a "closed" geometric axis of symmetry for multi-doma
 
 > **Note on "Axis" across contexts:** The term Axis is used in three distinct
 > ways within the PPT framework. (1) Topologically, it is the prime-agnostic 
-> shared upper boundary (+50%) between adjacent periods. It belongs to the 
-> same Boundary Family as Base (0%), being simply its reflection. (2) As the 
+> shared upper boundary (+50%) between adjacent periods. It is not a separate
+> prime family, but rather Du's own coarsest-frame digit (`±1/2`). (2) As the 
 > Du-family glyph: the horizontal crossbar at 50% of the period. Because Du's 
 > recursive bisection lands exactly on this boundary at its first step, the 
 > boundary itself is often visually associated with Du, but its topological 
@@ -113,12 +113,12 @@ A full solfège token is constructed as a single continuous string without space
 3. **Superscript Concatenation**: Superscripts (used for remainder sub-glyphs or cross-family notation) are concatenated using the caret (`^`) symbol. The string following the caret is parsed as its own complete solfège token.
 
 **Examples:**
-- `Do` — Base chromatic syllable (Mathematically `0/0` within the boundary family)
+- `Do` — Base chromatic syllable (Base declaration; path length zero, per `anchors.md`)
 - `ReSub` — Re with a negative Tri diacritic (period compression)
-- `Dox` or `DoAxis` — Do with the Axis diacritic (Mathematically `+1/0` within the boundary family)
+- `Dox` or `DoAxis` — Do with the Axis diacritic (Du digit `+1` at the coarsest open frame)
 - `Dox^ReSub` — Do with the Axis diacritic, hosting a superscript of `ReSub`
 
-> **Note on the Boundary Family:** In the underlying mathematics, Base (`0/0`) and Axis (`+1/0`) belong to the Boundary Family. While the mathematical model supports `−1/0` (the previous anchor's supremum) and complex fractal navigation within boundary states, the diacritic writing system explicitly does not have representations for `−1/0` or fractal navigation in the boundary family (only Du Prime is currently supported for fractal navigation).
+> **Note on Diacritic Scope Limitations:** While the underlying mathematical model supports a neighbour-frame reading of the edge (e.g., the previous anchor's supremum) and complex interior fractal descent past it, the diacritic writing system explicitly does not currently represent the neighbour-frame reading of the edge, nor interior fractal descent past it. This is a scope limitation of the glyph set, not of the underlying math.
 
 ---
 

@@ -10,7 +10,7 @@ tags:
   - prime-lattice
   - comma
   - prime-period-theory
-timestamp: 2026-07-03
+timestamp: 2026-07-07
 ---
 
 # Path Equivalence and Confluence
@@ -53,7 +53,7 @@ We do not frame this commutativity collision as a problem to be solved. Rather, 
 
 Confluence is the comma-space analogue to enharmonic equivalence in pitch space (e.g., G♯ and A♭ being different spellings of the same pitch). It documents an equivalence class between distinct decision-paths — whether they use the same or different prime orders, at the same or different depths — that arrive at the same location. 
 
-Recognising Confluence allows a composer or theorist to treat the *path taken* as a meaningful choice (a compositional decision about how a period is recursively subdivided) even when the *final destination* is identical to another route.
+Recognising Confluence allows a composer or theorist to treat the *path taken* as a meaningful choice (a compositional decision about how a period is recursively subdivided) even when the *final destination* is identical to another route. Furthermore, because there is no longer a separate Boundary family, a coarsest-frame Du digit (licensed pivot) and an interior Du digit now participate in Confluence relations on the exact same footing as any other prime's digits.
 
 ## See also
 
