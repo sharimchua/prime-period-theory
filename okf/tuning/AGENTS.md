@@ -13,6 +13,7 @@ The `tuning/` directory contains specifications and derivations for how Prime Pe
 |`pentatonic-heptatonic.md`|Draft|3-limit scale generation structures.|
 |`tetrachord-pairs.md`|Draft|Heptatonic scale generation via tetrachord pairs and a join interval; symmetric perfect-fourth case, asymmetric-span extension, and the melakarta correspondence.|
 |`12-tet.md`|Draft|The base 12-tone coarse grid.|
+|`du-fractal-dutri-closure.md`|Complete|A PPT-native 12-tone tuning system derived from axis-pass and fractal-descent grammar.|
 |`31-edo.md`|Draft|Thirty-one equal divisions of the octave, its historical development, and its role as the primary microtonal system in PPT.|
 |`72-edo-grid.md`|Draft|Seventy-two equal divisions of the octave, its history, and its function as the high-resolution reference grid for the diacritic system.|
 

@@ -176,6 +176,7 @@ amplitude or effect envelopes.
 - [Pentatonic and Heptatonic Structures](tuning/pentatonic-heptatonic.md) — the geometric generation of the 5 and 7-note scales
 - [Tetrachord-Pair Generation of Heptatonic Scales](tuning/tetrachord-pairs.md) — heptatonic scales from paired tetrachord fragments and a join interval; the melakarta correspondence
 - [12-Tone Equal Temperament (12TET)](tuning/12-tet.md) — the historical compromise and base coordinate grid
+- [Du-Fractal DuTri Closure](tuning/du-fractal-dutri-closure.md) — a PPT-native 12-tone tuning system derived from axis-pass and fractal-descent grammar
 - [31 EDO](tuning/31-edo.md) — the primary microtonal system; 5-limit excellence
 - [72 EDO Grid](tuning/72-edo-grid.md) — the reference grid for diacritic placement
 
