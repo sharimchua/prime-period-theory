@@ -13,7 +13,7 @@ tags:
   - polyrhythm
   - microtonality
   - 31-edo
-timestamp: 2026-07-04
+timestamp: 2026-07-07
 ---
 
 # Prime Period Theory
@@ -154,7 +154,9 @@ amplitude or effect envelopes.
 ### Domains
 - [Pitch](domains/pitch.md) — micro periodicity; frequency; just intonation
 - [Rhythm](domains/rhythm.md) — macro periodicity; metre; polyrhythm; tala
+- [Polymetric Phase Equivalence](domains/polymetric-phase-equivalence.md) — polyrhythm vs polymeter across the Temporal-Place Limen
 - [Rhythmic Overtone Series](domains/rhythmic-overtone-series.md) — the inter-onset ratio spectrum of a rhythmic phrase; identity with the harmonic series across the Temporal-Place Limen
+- [Rhythmic Undertone Series](domains/rhythmic-undertone-series.md) — mathematical mirror to the rhythmic overtone series; decelerating rhythms
 - [Rhythmic Phase Coherence](domains/rhythmic-phase-coherence.md) — stability of inter-onset ratio relationships across time; distinguishes expressive deviation from instability; the groove-metre
 - [Timbre](domains/timbre.md) — spectral periodicity; overtones; harmonic series
 - [Dynamics](domains/dynamics.md) — amplitude periodicity; accents; groove
