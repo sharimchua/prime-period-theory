@@ -15,7 +15,7 @@ tags:
   - temporal-place-limen
   - inter-onset-ratio
   - prime-period-theory
-timestamp: 2026-07-01
+timestamp: 2026-07-07
 ---
 
 # Rhythmic Overtone Series
@@ -225,6 +225,17 @@ inside a pitched tone. It happens at every scale at which a periodic
 pattern generates sub-patterns at integer multiples — including the
 rhythmic phrase scale. The Temporal-Place Limen separates the perceptual
 mode, not the underlying structure.
+
+## Computational array model (0-indexing)
+
+The formal definition maps directly to a standard 0-indexed software array, making this framework highly applicable for programmatic models (e.g., audio tool development).
+
+By defining Beat 0 as the rhythmic origin point (the start of the inter-onset interval), the array indices map precisely to the harmonic series and prime limits:
+- Index `[1]` = 1i / Fundamental
+- Index `[2]` = 2i / Octave
+- Index `[3]` = 3i / Perfect 5th
+
+This 0-indexed mapping ensures that the mathematical distance `d` between any two beats corresponds exactly to the array index of the generated overtone, streamlining the calculation of prime spectral profiles in software implementations.
 
 ## See also
 
