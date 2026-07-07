@@ -16,7 +16,8 @@ tags:
   - comma
   - microtonality
   - lattice
-timestamp: 2026-07-06
+timestamp: 2026-07-07
+revision: "2026-07-07: Collapse Boundary/Axis family into Du"
 ---
 
 # Prime Lattice
@@ -36,7 +37,8 @@ Its coordinates are determined by how many steps along each prime axis are
 required to reach it from a reference point. The comma system native to the lattice
 encodes those coordinates as an ordered list of `±x/y` steps, where `x` is the 
 index step (as a balanced parity magnitude around 0) and `y` is the bounded prime family 
-(e.g., 0 for Boundary/Axis, 2 for Du, 3 for Tri, 5 for Qui, 7 for Sep, 11 for Undec).
+(e.g., 2 for Du, 3 for Tri, 5 for Qui, 7 for Sep, 11 for Undec). Du (`2`) is the only 
+entry that can appear at the coarsest open frame *or* at an interior depth.
 
 The prime lattice is not a PPT invention. It is the natural mathematical
 structure underlying just intonation theory, where it is typically
@@ -79,7 +81,7 @@ carries more information than the sum of its Tri and Qui components.
 For an odd prime `p`, the signed digit set is `{±1, ±2, …, ±(p−1)/2}`.
 The formula for the position reached by a path of digits `a_i` with associated primes `p_i` is:
 
-`position = Σᵢ aᵢ / Pᵢ`, where `Pᵢ = ∏ⱼ₌₁ⁱ pⱼ`
+`position = Σᵢ aᵢ / Pᵢ`, where `Pᵢ = ∏ⱼ₌₁ⁱ pⱼ` (where every `pⱼ` in a valid path is a true prime: 2, 3, 5, 7, or 11)
 
 Importantly, the zero index (`0`) is a valid and crucial operator in the underlying math, acting as a **Sustain**. A zero over a prime family does not displace position; rather, it performs a period space reduction for the next level. The scale of the next level is determined by the product of the next level's prime family and the prime family where the zero index was applied.
 
@@ -142,7 +144,7 @@ equidistant from opposite sides of the anchor's local space. This is a direct
 consequence of the subperiod being a closed bounded interval with an origin
 (the Base) and a shared topological boundary (the Axis). 
 
-Crucially, **Axis and Base are part of the same boundary family**, because Axis is simply the reflection of Base across the subperiod. For Du, the recursive bisection process happens to land exactly on this shared boundary at the first step (`±1/2`), which is why Axis is often introduced alongside Du, but its topological role is prime-agnostic.
+Crucially, Axis and Base define the boundary of the subperiod, with Axis acting as the reflection of Base across the local space. Axis is not a separate family. It is simply Du's own first-step digit (`±1/2`), viewed relative to whichever local anchor's frame is currently open, landing exactly on this shared boundary.
 
 The comma complement relationship is internal to each local anchor. It does
 not extend across anchors. The complement of a position near a given anchor is another
@@ -152,7 +154,7 @@ position near that same anchor.
 
 In a strictly hierarchical lattice, pathing near the boundaries can create dead zones where an additive step would exceed local space limits (e.g., reaching Fa from Do). To resolve this, the pathing engine supports **Transient Excursions** (or Boundary Reflections). 
 
-This allows navigation to use the global supremum (the Axis / Fi, coordinate `+1/0`) as a non-terminal pivot node. By assuming an infinite tiling of the local space, a path can step to the boundary and then cast a negative vector backward into the defined local bounds. As long as the *terminal* step resolves to a coordinate inside the known macro-bounds, the path is valid.
+This allows navigation to use the Du digit that represents the edge of the coarsest still-open frame as a non-terminal pivot; interior Du digits may not. By assuming an infinite tiling of the local space, a path can step to this edge and then cast a negative vector backward into the defined local bounds. As long as the *terminal* step resolves to a coordinate inside the known macro-bounds, the path is valid.
 
 For the formal implementation details and mathematical foundations, see the [Prime Lattice Boundary Routing](../specifications/prime-lattice-boundary-routing.md) specification.
 

@@ -12,7 +12,7 @@ tags:
   - uniform-solfege
   - input
   - prime-period-theory
-timestamp: 2026-07-06
+timestamp: 2026-07-07
 ---
 
 # MIDI to Solfège Input Specification
@@ -86,7 +86,8 @@ A single comma entry specifies a navigational path step formatted as a string `�
   
 - **`y` (prime family):**
   - The valid prime families recognised by PPT up to the 11-limit are: `Du`, `Tri`, `Qui`, `Sep`, `Undec`.
-  - The special identifier `0` is used to represent the Boundary family (local supremum and infinities). This enables Transient Excursions and boundary routing (e.g., `+1/0` for the current period's Axis, `-1/0` for the previous period's Axis, or `0/0` for the origin base).
+
+*Note on Du interpretation:* A Du entry (`y=Du`) is interpreted as a coarsest-frame edge (licensed pivot) when it is the first digit relative to the currently-open anchor frame (before any narrower subdivision has been chosen). It is interpreted as an ordinary interior bisection otherwise. This distinction is crucial for parser validation of Transient Excursions.
 
 ### The commas array
 
@@ -167,7 +168,7 @@ relationship between comma values and their written representations.
   implementations; instrument-specific conventions; chord and bend resolution
 - [Prime Lattice](../foundations/prime-lattice.md) — the mathematical space
   the comma array navigates
-- [Prime Lattice Boundary Routing](prime-lattice-boundary-routing.md) — rules for Transient Excursions using the `/0` Boundary notation
+- [Prime Lattice Boundary Routing](prime-lattice-boundary-routing.md) — rules for Transient Excursions and Du pivot licensing
 - [Prime Period Diacritics — Overview](../ppd/index.md) — the writing system
   rendering of comma values
 - [Notation Input](../applications/notation-input.md) — how this spec is used

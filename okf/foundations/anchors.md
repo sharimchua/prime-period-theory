@@ -14,8 +14,8 @@ tags:
   - prime-families
   - uniform-solfege
   - coordinates
-timestamp: 2026-07-06
-revision: corrected symmetric reduction around Do; Base/Boundary notation aligned to Boundary Family grammar
+timestamp: 2026-07-07
+revision: corrected symmetric reduction around Do; Base/Boundary notation aligned to Boundary Family grammar; collapsed Boundary/Axis into Du
 ---
 
 # Anchors and Prime Lattice Coordinates
@@ -24,7 +24,7 @@ revision: corrected symmetric reduction around Do; Base/Boundary notation aligne
 
 In Prime Period Theory, a **period space** is a continuous bounded space mapped to a specific perceptual phenomenon (e.g., a pitch octave, a rhythmic bar). To navigate this space meaningfully using the prime lattice, we require reference points. These reference points are **local anchors**.
 
-A local anchor serves as the **Base** for a local subperiod — the terminal, unlabelled origin of that subperiod's own fractal descent (see Boundary Family grammar). An anchor's own coordinate needs no explicit digit: termination of a path at length zero *is* the Base declaration. It is not written as `0/Boundary`, and it is not `0/0` — that notation is reserved specifically for an undefined next-scale following an Axis re-basing, a distinct and narrower case. From an anchor, the comma system navigates outward via fractal descent to locate any micro-position.
+A local anchor serves as the **Base** for a local subperiod — the terminal, unlabelled origin of that subperiod's own fractal descent. An anchor's own coordinate needs no explicit digit: termination of a path at length zero *is* the Base declaration. (The same applies following a neighbour-frame edge re-basing; path length zero at the new anchor is simply its Base). From an anchor, the comma system navigates outward via fractal descent to locate any micro-position.
 
 ## Reduction convention: symmetric around Do
 
@@ -44,7 +44,7 @@ The prime lattice coordinates for an anchor describe the exact path taken from t
 | **Me**  | 6:5   | `+1/Du, +1/Tri, −1/Qui` | +315.64 | Eb4 | The pure 5-limit minor third. |
 | **Mi**  | 5:4   | `+1/Qui, −2/Du` | +386.31 | E4 | Ascending one pure major third (Qui). |
 | **Fa**  | 4:3   | `+2/Du, −1/Tri` | +498.04 | F4 | Descending one perfect fifth from the Du ceiling. |
-| **Fi**  | √2:1  | `+1/0` | ±600.00 | F#4 *(by convention — see note)* | The Boundary of Do's local period space. |
+| **Fi**  | √2:1  | `+1/2` | ±600.00 | F#4 *(by convention — see note)* | Du's coarsest-frame edge — the shared upper boundary of Do's local period space. |
 | **So**  | 3/4   | `+1/Tri, −2/Du` | **−498.04** | **G3** | Ascending one perfect fifth (Tri), reduced to nearest address — one octave *below* the traditional ascending position. |
 | **Le**  | 4/5   | `+2/Du, −1/Qui` | **−386.31** | **Ab3** | Descending one major third, reduced to nearest address. |
 | **La**  | 5/6   | `+1/Qui, −1/Tri, −1/Du` | **−315.64** | **A3** | Ascending a major third and descending a fifth, reduced to nearest address. |
@@ -57,7 +57,7 @@ The prime lattice coordinates for an anchor describe the exact path taken from t
 
 2. **Reciprocal pairing falls out of the correction, unforced.** Once resolved to nearest address, four of the five re-mapped anchors are exact reciprocals of anchors already on the positive side: So (3/4) = 1/Fa (4/3); Le (4/5) = 1/Mi (5/4); La (5/6) = 1/Me (6/5); Ti (15/16) = 1/Ra (16/15). Their prime-lattice paths mirror by negating every exponent. This did not have to happen — it is a consequence of the underlying 3-limit and 5-limit anchors already being placed as inverse pairs around Do, now made visible by consistent reduction. Te (7-limit) has no such mirror in this 12-anchor set, which is expected: there is no second 7-limit anchor on the positive side to pair against.
 
-3. **Fi's dual address is structural, not an oversight.** Fi sits at exactly ±600¢ — equidistant from Do in both directions, the one point in this table where nearest-address reduction does not force a unique answer. This is the same ambiguity that appears generally at any Axis: a boundary point admits two equally valid framings (this anchor's supremum, or the next anchor's infimum), the way `+1/0` (current period's Axis) and `−1/0` (previous period's Axis) name the same address from two different anchors' frames. Convention resolves Fi to the positive spelling (F#4) rather than the negative one (F#3) — consistent with Axis conventionally being read as *this* anchor's own boundary — but the negative spelling is not wrong, merely unconventional. This dual address logic is further leveraged in Transient Excursions; see [Prime Lattice Boundary Routing](../specifications/prime-lattice-boundary-routing.md).
+3. **Fi's dual address is structural, not an oversight.** Fi sits at exactly ±600¢ — equidistant from Do in both directions, the one point in this table where nearest-address reduction does not force a unique answer. This is the same ambiguity that appears generally at any Axis: a boundary point admits two equally valid framings (this anchor's supremum, or the next anchor's infimum), the way `+1/2` (read from the current anchor's frame) and the same physical point read as the neighbour's own `+1/2` name the same address from two different anchors' frames. Convention resolves Fi to the positive spelling (F#4) rather than the negative one (F#3) — consistent with Axis conventionally being read as *this* anchor's own boundary — but the negative spelling is not wrong, merely unconventional. This dual address logic is further leveraged in Transient Excursions; see [Prime Lattice Boundary Routing](../specifications/prime-lattice-boundary-routing.md).
 
 4. **The 7-Limit Inclusion.** Te is defined natively via the Sep family (7:4 raw, 7/8 reduced), ensuring the foundational blue notes and harmonic sevenths have a direct, single-step lattice path independent of the reduction convention.
 
