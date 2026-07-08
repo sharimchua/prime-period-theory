@@ -13,7 +13,7 @@ tags:
   - polyrhythm
   - microtonality
   - 31-edo
-timestamp: 2026-07-07
+timestamp: 2026-07-08
 ---
 
 # Prime Period Theory
@@ -182,11 +182,14 @@ amplitude or effect envelopes.
 - [31 EDO](tuning/31-edo.md) — the primary microtonal system; 5-limit excellence
 - [72 EDO Grid](tuning/72-edo-grid.md) — the reference grid for diacritic placement
 
+### Structure
+- [Musical Tapestry](structure/tapestry.md) — compositional graph layer; Coils, Weaves, Threads, and Knots forming a directed graph for assembling phrases, sections, and full compositions
+- [Three-Layer Coil Notation](structure/coil-notation.md) — paper-writable surface syntax unifying Uniform Solfège, Rhythmic Grammar, and MusiCoil into a three-layer grid
+- [Rhythmic Grammar](structure/rhythmic-grammar.md) — formal encoding system for rhythmic grouping structure
+- [Melodic Grammar](structure/melodic-grammar.md) — the melodic layer convention for Three-Layer Coil Notation, encoding absolute or intervallic pitch movement
+- [MusiCoil](structure/musicoil.md) — spatial notation system; visual representation of PPT
+
 ### Related systems
-- [Three-Layer Coil Notation](related/coil-notation.md) — paper-writable surface syntax unifying Uniform Solfège, Rhythmic Grammar, and MusiCoil into a three-layer grid
-- [Rhythmic Grammar](related/rhythmic-grammar.md) — formal encoding system for rhythmic grouping structure
-- [Melodic Grammar](related/melodic-grammar.md) — the melodic layer convention for Three-Layer Coil Notation, encoding absolute or intervallic pitch movement
-- [MusiCoil](related/musicoil.md) — spatial notation system; visual representation of PPT
 - [Tone Atlas](related/tone-atlas.md) — clock-face pitch relationship diagram
 - [Chromatic Clock Geometry](related/chromatic-clock.md) — the 12-tone chromatic circle as a geometric navigation tool
 

@@ -304,7 +304,7 @@ attach as a worked example alongside the spec update.
 ## See also
 
 - [[Component Philosophy]](component-philosophy.md) — the primitive/composition/EventBus principles this design extends
-- [[Three-Layer Coil Notation]](../related/coil-notation.md) — the paper syntax this editor makes interactive
-- [[Rhythmic Grammar]](../related/rhythmic-grammar.md) / [[Melodic Grammar]](../related/melodic-grammar.md) — the theory each interpreter defers to
+- [[Three-Layer Coil Notation]](../structure/coil-notation.md) — the paper syntax this editor makes interactive
+- [[Rhythmic Grammar]](../structure/rhythmic-grammar.md) / [[Melodic Grammar]](../structure/melodic-grammar.md) — the theory each interpreter defers to
 - [[Play-Along Feedback]](play-along.md) — the simplification ladder the mixer/row-mute design is built to serve
 - [[PPT Composition Format (PPT-CF)]](../specifications/composition-format.md) — proposed home for the `coil` serialization shape

@@ -195,8 +195,8 @@ context and preference.
 
 ## See also
 
-- [Three-Layer Coil Notation](../related/coil-notation.md) — paper-writable surface syntax for the full PPT framework
-- [Melodic Grammar](../related/melodic-grammar.md) — absolute vs intervallic melodic navigation in Uniform Solfège
+- [Three-Layer Coil Notation](../structure/coil-notation.md) — paper-writable surface syntax for the full PPT framework
+- [Melodic Grammar](../structure/melodic-grammar.md) — absolute vs intervallic melodic navigation in Uniform Solfège
 - [Diacritic System](diacritic-system.md) — microtonal inflection
 - [Geometric Basis](geometric-basis.md) — how symbols encode interval geometry
 - [Base-12 Algebra](base-12-algebra.md) — clock arithmetic and interval composition

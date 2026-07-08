@@ -122,7 +122,7 @@ import ComposerButton from '../../../components/ui/ComposerButton.astro';
       <div class="layer-grid">
         <div class="layer-card layer-melody">
           <div class="layer-label">Melody</div>
-          <p>The primary pitch stream. Solfège glyphs here describe individual scale degrees relative to a tonic. Each glyph occupies one rhythmic onset determined by the Rhythm layer below it. The melody layer uses the <strong>PitchMapper</strong> when receiving MIDI input, translating piano notes into Uniform Solfège syllables. See the <a href="/reference/related/melodic-grammar">Melodic Grammar</a> documentation for more details.</p>
+          <p>The primary pitch stream. Solfège glyphs here describe individual scale degrees relative to a tonic. Each glyph occupies one rhythmic onset determined by the Rhythm layer below it. The melody layer uses the <strong>PitchMapper</strong> when receiving MIDI input, translating piano notes into Uniform Solfège syllables. See the <a href="/reference/structure/melodic-grammar">Melodic Grammar</a> documentation for more details.</p>
         </div>
         <div class="layer-card layer-harmony">
           <div class="layer-label">Harmony</div>
@@ -130,7 +130,7 @@ import ComposerButton from '../../../components/ui/ComposerButton.astro';
         </div>
         <div class="layer-card layer-rhythm">
           <div class="layer-label">Rhythm</div>
-          <p>The foundational periodic grid. In PPT, there is no concept of a "rest" — silence is simply the absence of a pitch entry at a given rhythmic position. Rhythm layer tokens primarily use <code>Do</code> and <code>Di</code> to mark onsets and off-beats. This layer acts as the master timing reference — the <strong>PlaybackScheduler</strong> reads the Rhythm layer first to generate a sequence of onset times, then maps Melody and Harmony tokens onto those times. See the <a href="/reference/related/rhythmic-grammar">Rhythmic Grammar</a> documentation for more details. The Rhythm layer is muted by default in this demo.</p>
+          <p>The foundational periodic grid. In PPT, there is no concept of a "rest" — silence is simply the absence of a pitch entry at a given rhythmic position. Rhythm layer tokens primarily use <code>Do</code> and <code>Di</code> to mark onsets and off-beats. This layer acts as the master timing reference — the <strong>PlaybackScheduler</strong> reads the Rhythm layer first to generate a sequence of onset times, then maps Melody and Harmony tokens onto those times. See the <a href="/reference/structure/rhythmic-grammar">Rhythmic Grammar</a> documentation for more details. The Rhythm layer is muted by default in this demo.</p>
         </div>
       </div>
       <p class="note">

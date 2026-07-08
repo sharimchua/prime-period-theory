@@ -95,7 +95,7 @@ the geometry is taught first. Chord quality as a polygon shape precedes
 the symbol system for chord names. The circular period representation
 precedes staff notation for metre. See
 [Chromatic Clock Geometry](../related/chromatic-clock.md) and
-[Three-Layer Coil Notation](../related/coil-notation.md).
+[Three-Layer Coil Notation](../structure/coil-notation.md).
 
 ## Relationship to the applications layer
 

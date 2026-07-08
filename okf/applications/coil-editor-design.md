@@ -18,7 +18,7 @@ timestamp: 2026-07-06
 
 # Three-Layer Coil Editor Design Rationale
 
-The Three-Layer Coil Editor is the interactive manifestation of [Three-Layer Coil Notation](../related/coil-notation.md). More than just a digital replica of a paper format, it serves as the primary authoring environment for Prime Period Theory (PPT) phrases within the Composer.
+The Three-Layer Coil Editor is the interactive manifestation of [Three-Layer Coil Notation](../structure/coil-notation.md). More than just a digital replica of a paper format, it serves as the primary authoring environment for Prime Period Theory (PPT) phrases within the Composer.
 
 This document outlines the *why* behind its architecture, grounded in the [Component Philosophy](component-philosophy.md).
 
@@ -56,6 +56,6 @@ By abstracting inputs through "Bridges" (`<ppt-midi-input-bridge>`, `<ppt-solfeg
 The editor's mixer architecture is deeply tied to the [Play-Along Feedback](play-along.md) philosophy. By treating mute/solo not as edge-case playback hacks but as core state in a `<ppt-coil-mixer>`, the interface naturally supports the "Simplification Ladder". A user struggling with a complex polyphonic passage can instantly drop the UI into "Solo Rhythm" mode, muting all pitch information and reducing cognitive load, without altering the underlying data model.
 
 ## See Also
-- [Three-Layer Coil Notation](../related/coil-notation.md) — the paper syntax this editor makes interactive.
+- [Three-Layer Coil Notation](../structure/coil-notation.md) — the paper syntax this editor makes interactive.
 - [Component Philosophy](component-philosophy.md) — the primitive and EventBus principles this design extends.
 - [PPT Components](../implementations/ppt-components.md) — the canonical implementation status of the component library.

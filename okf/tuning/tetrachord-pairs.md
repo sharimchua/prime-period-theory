@@ -273,7 +273,7 @@ notation-first learning.
   throughout this page
 - [Base-12 Algebra](../uniform-solfege/base-12-algebra.md) — the clock
   arithmetic underlying span and join summation
-- [Melodic Grammar](../related/melodic-grammar.md) — how tetrachord
+- [Melodic Grammar](../structure/melodic-grammar.md) — how tetrachord
   positions are notated as absolute or intervallic melodic movement
 - [Periodicity](../foundations/periodicity.md) — the tala/ti-hai
   cross-tradition convergence that the melakarta correspondence here

@@ -19,8 +19,8 @@ tags:
   - form
   - prime-period-theory
 related:
-  - related/coil-notation.md
-  - related/melodic-grammar.md
+  - structure/coil-notation.md
+  - structure/melodic-grammar.md
   - related/spatial-harmony.md
   - uniform-solfege/index.md
   - reference/emergent-analysis.md

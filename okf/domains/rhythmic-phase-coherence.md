@@ -89,7 +89,7 @@ Rhythmic tuning uses the same diacritic vocabulary as pitch tuning: a tempo
 running slightly faster than the target is described as rhythmically sharp; one
 running slightly slower is rhythmically flat. The [Metric DuPeriod](../reference/metric-duperiod.md)
 coordinate system provides the continuous axis on which both pitch and rhythmic
-tuning are described. See [Rhythmic Grammar](../related/rhythmic-grammar.md) for
+tuning are described. See [Rhythmic Grammar](../structure/rhythmic-grammar.md) for
 how DuPeriod positions interact with rhythmic phrase encoding.
 
 ### Phase coherence
@@ -329,7 +329,7 @@ but not yet executing it consistently.
 - [Temporal-Place Limen](../perception/temporal-place-limen.md) — the perceptual
   boundary that separates rhythm from pitch; the anchor for the pitch/rhythm
   identity claim that motivates the phase coherence analogy
-- [Rhythmic Grammar](../related/rhythmic-grammar.md) — the formal encoding
+- [Rhythmic Grammar](../structure/rhythmic-grammar.md) — the formal encoding
   system for rhythmic grouping structure that phase coherence analysis extends
 - [Metric DuPeriod](../reference/metric-duperiod.md) — the coordinate system
   on which rhythmic tuning (as distinct from phase coherence) is measured

@@ -55,7 +55,7 @@ the character; the notation tool is the editor.
 ## Layer assignment
 
 The solfège syllable and comma system are used across all three layers of
-[Three-Layer Coil Notation](../related/coil-notation.md): the pitch layer,
+[Three-Layer Coil Notation](../structure/coil-notation.md): the pitch layer,
 the rhythmic layer, and the register layer. The input spec does not specify
 which layer a given Solfège Output object targets — that is application
 context.
@@ -165,8 +165,8 @@ the pitch layer, rhythmic grammar entry in the rhythmic layer, coil position
 in the register layer — is determined by the layer context at the time of
 input, not by the input object itself.
 
-See [Three-Layer Coil Notation](../related/coil-notation.md) for the layer
-structure and [Rhythmic Grammar](../related/rhythmic-grammar.md) for the
+See [Three-Layer Coil Notation](../structure/coil-notation.md) for the layer
+structure and [Rhythmic Grammar](../structure/rhythmic-grammar.md) for the
 rhythmic layer's use of the solfège enumeration.
 
 ## See also
@@ -175,9 +175,9 @@ rhythmic layer's use of the solfège enumeration.
   — the input contract this document describes applications of
 - [MIDI to Solfège Mapping](../specifications/midi-solfege-mapping.md)
   — the mapping layer that produces Solfège Output objects from MIDI
-- [Three-Layer Coil Notation](../related/coil-notation.md) — the notation
+- [Three-Layer Coil Notation](../structure/coil-notation.md) — the notation
   system that consumes Solfège Output objects
-- [Rhythmic Grammar](../related/rhythmic-grammar.md) — the rhythmic layer's
+- [Rhythmic Grammar](../structure/rhythmic-grammar.md) — the rhythmic layer's
   use of the solfège enumeration as input
 - [Prime Lattice](../foundations/prime-lattice.md) — the mathematical space
   the comma array navigates

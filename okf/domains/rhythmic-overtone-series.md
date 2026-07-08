@@ -249,7 +249,7 @@ This 0-indexed mapping ensures that the mathematical distance `d` between any tw
   that places both pitch and rhythmic periods on the same continuous axis
 - [Rhythm](rhythm.md) — the macro-periodicity domain; metre, polyrhythm,
   swing understood through prime-ratio interference
-- [Rhythmic Grammar](../related/rhythmic-grammar.md) — the formal encoding
+- [Rhythmic Grammar](../structure/rhythmic-grammar.md) — the formal encoding
   system for rhythmic grouping structure that this spectral framing extends
 - [Timbre](timbre.md) — the micro-periodicity domain; the harmonic overtone
   series whose structure the rhythmic overtone series mirrors
