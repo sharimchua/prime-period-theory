@@ -17,7 +17,7 @@ tags:
   - combinatorics
   - melakarta
   - prime-period-theory
-timestamp: 2026-07-01
+timestamp: 2026-07-08
 ---
 
 # Tetrachord-Pair Generation of Heptatonic Scales

@@ -13,7 +13,7 @@ tags:
   - rhythmic-grammar
   - melodic-grammar
   - musicoil
-timestamp: 2026-07-06
+timestamp: 2026-07-08
 ---
 
 # Three-Layer Coil Editor Design Rationale

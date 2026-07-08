@@ -14,7 +14,7 @@ tags:
   - metronome
   - solkattu
   - prime-period-theory
-timestamp: 2026-07-01
+timestamp: 2026-07-08
 ---
 
 # Rhythmic Grammar

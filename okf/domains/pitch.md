@@ -11,7 +11,7 @@ tags:
   - psychoacoustics
   - harmonic-series
   - prime-period-theory
-timestamp: 2026-06-29
+timestamp: 2026-07-08
 ---
 
 # Pitch and Consonance

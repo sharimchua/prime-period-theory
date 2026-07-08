@@ -21,7 +21,7 @@ related:
   - structure/melodic-grammar.md
   - uniform-solfege/index.md
   - foundations/prime-families.md
-timestamp: 2026-06-29
+timestamp: 2026-07-08
 ---
 
 # Three-Layer Coil Notation

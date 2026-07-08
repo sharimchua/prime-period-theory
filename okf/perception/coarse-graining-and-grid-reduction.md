@@ -11,7 +11,7 @@ tags:
   - coarse-graining
   - pitch
   - rhythm
-timestamp: 2026-07-01
+timestamp: 2026-07-08
 ---
 
 # Coarse-Graining and Grid Reduction

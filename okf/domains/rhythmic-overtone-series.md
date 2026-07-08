@@ -15,7 +15,7 @@ tags:
   - temporal-place-limen
   - inter-onset-ratio
   - prime-period-theory
-timestamp: 2026-07-07
+timestamp: 2026-07-08
 ---
 
 # Rhythmic Overtone Series

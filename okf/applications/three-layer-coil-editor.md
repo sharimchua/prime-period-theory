@@ -16,7 +16,7 @@ tags:
   - musicoil
   - midi
   - prime-period-theory
-timestamp: 2026-07-06
+timestamp: 2026-07-08
 ---
 
 # Three-Layer Coil Editor — Component Architecture
