@@ -16,7 +16,7 @@ tags:
   - interval
   - microtonality
   - notation
-timestamp: 2026-06-29
+timestamp: 2026-07-08
 ---
 
 # Melodic Grammar

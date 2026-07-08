@@ -11,7 +11,7 @@ tags:
   - coarse-graining
   - pitch
   - rhythm
-timestamp: 2026-07-01
+timestamp: 2026-07-08
 ---
 
 # Coarse-Graining and Grid Reduction
@@ -110,4 +110,4 @@ The comma is worth highlighting as a model for how precise this can get: tuning 
 - [Temporal-Place Limen](temporal-place-limen.md)
 - [Metric DuPeriod](../reference/metric-duperiod.md)
 - [Prime Period Diacritics](../ppd/index.md)
-- [Melodic Grammar](../related/melodic-grammar.md)
+- [Melodic Grammar](../structure/melodic-grammar.md)

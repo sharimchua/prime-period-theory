@@ -43,7 +43,8 @@ navigating the graph. Make it precise and specific, not generic.
 | `pedagogy/` | Learning paths and pedagogy principles | Active |
 | `applications/` | Tool design philosophy and workflows | Active |
 | `implementations/` | Precursor and canonical tool registry | Active |
-| `related/` | MusiCoil, Tone Atlas, Melodic Grammar | Active |
+| `structure/` | Compositional structure and notation (Tapestry, Coil Notation, MusiCoil, Grammars) | Active |
+| `related/` | Visualisation and navigation tools (Tone Atlas, Chromatic Clock) | Active |
 
 ## Concept graph conventions
 

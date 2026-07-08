@@ -17,7 +17,7 @@ tags:
   - rhythm
   - pitch
   - prime-period-theory
-timestamp: 2026-07-01
+timestamp: 2026-07-08
 ---
 
 # Metric DuPeriod
@@ -303,7 +303,7 @@ perceptually convenient positions rather than structurally grounded ones.
   metric DuPeriod space
 - [Uniform Solfège](../uniform-solfege/index.md) — the solfège position
   system used within each metric DuPeriod band
-- [Rhythmic Grammar](../related/rhythmic-grammar.md) — the cadential
+- [Rhythmic Grammar](../structure/rhythmic-grammar.md) — the cadential
   chain system whose structure the metric DuPeriod formalises
 - [Metric DuPeriod — Extended Range](../extended/metric-duperiod-extended.md) — the
   stratospheric positive metric DuPeriod space above musical form

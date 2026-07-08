@@ -41,7 +41,8 @@ okf/                    OKF knowledge bundle — see okf/AGENTS.md
 ├── pedagogy/           Pedagogy and learning paths — see okf/pedagogy/AGENTS.md
 ├── applications/       Unified tool architecture philosophy — see okf/applications/AGENTS.md
 ├── implementations/    Interactive tool registry — see okf/implementations/AGENTS.md
-└── related/            Adjacent systems (MusiCoil, Tone Atlas, Melodic Grammar)
+├── structure/          Compositional structure and notation — see okf/structure/AGENTS.md
+└── related/            Visualisation tools (Tone Atlas, Chromatic Clock)
 
 docs/                   GitHub Pages — see docs/AGENTS.md
 ├── index.html          Site entry point

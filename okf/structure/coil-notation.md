@@ -16,12 +16,12 @@ tags:
   - polyrhythm
   - paper-notation
 related:
-  - related/musicoil.md
-  - related/rhythmic-grammar.md
-  - related/melodic-grammar.md
+  - structure/musicoil.md
+  - structure/rhythmic-grammar.md
+  - structure/melodic-grammar.md
   - uniform-solfege/index.md
   - foundations/prime-families.md
-timestamp: 2026-06-29
+timestamp: 2026-07-08
 ---
 
 # Three-Layer Coil Notation
