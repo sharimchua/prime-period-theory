@@ -59,7 +59,7 @@ refines the position within the subperiod local to that anchor. Note that the
 use of the twelve chromatic solfège positions as anchors is a specific 
 implementation detail of Uniform Solfège, not a native constraint of the prime lattice itself.
 Anchors themselves are *not* produced by comma sequences — see
-[Anchors and Prime Lattice Coordinates](anchors-and-prime-lattice-coordinates.md)
+Anchors and Prime Lattice Coordinates
 for how they are defined.
  
 The coordinates of a lattice point are determined by the complete path taken
@@ -142,7 +142,7 @@ comma sequence from Do. Each anchor is independently defined by its own
 ±600¢ = 1200 × log2(√2)). Comma sequences instead do what they are
 structurally suited for: **navigating and refining position relative to an
 anchor**, at whatever rational precision the depth of the sequence provides.
-See [Anchors and Prime Lattice Coordinates](anchors-and-prime-lattice-coordinates.md)
+See Anchors and Prime Lattice Coordinates
 for the full anchor definitions and how paths relate to them as refinements.
  
 ## Nearest approach and rational approximation of simple ratios
@@ -333,7 +333,7 @@ underlying structures are not the same:
   actually uses.
 ## See also
  
-- [Anchors and Prime Lattice Coordinates](anchors-and-prime-lattice-coordinates.md)
+- Anchors and Prime Lattice Coordinates
   — how the 12 solfège anchors are independently defined via log2(ratio),
   and how comma-sequence paths relate to them as refinements
 - [Prime Families](prime-families.md) — the five generators and their
