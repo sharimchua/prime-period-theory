@@ -12,7 +12,7 @@ tags:
   - prime-lattice
   - boundary-routing
   - note-navigator
-timestamp: 2026-07-07
+timestamp: 2026-07-09
 ---
 
 # Architecture Specification: Prime Lattice Du Pivot Licensing

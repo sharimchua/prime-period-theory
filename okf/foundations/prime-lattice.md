@@ -19,7 +19,7 @@ tags:
   - comma
   - microtonality
   - lattice
-timestamp: 2026-07-07
+timestamp: 2026-07-09
 revision: "2026-07-07 (rev 2): separated comma-sequence paths from JI ratio/log2 space; anchors are now independently defined (see Anchors and Prime Lattice Coordinates); corrected 'nearest approach' causality; corrected Confluence justification; removed monzo/Stern-Brocot lineage claim in favour of an explicit distinction"
 ---
  
