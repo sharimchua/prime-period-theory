@@ -20,7 +20,15 @@ tags:
   - microtonality
   - lattice
 timestamp: 2026-07-07
-revision: "2026-07-07 (rev 2): separated comma-sequence paths from JI ratio/log2 space; anchors are now independently defined (see Anchors and Prime Lattice Coordinates); corrected 'nearest approach' causality; corrected Confluence justification; removed monzo/Stern-Brocot lineage claim in favour of an explicit distinction"
+revision: "2026-07-10 (rev 3): introduced Base/Reel as two named coordinate
+  modes on the same lattice; scoped the existing 'paths are rational, JI is
+  logarithmic' claim to Base mode specifically, since Reel-mode paths reach
+  JI targets exactly by summing the true log2(prime) constants; added
+  continued-fraction / Dirichlet-bound treatment of fold-count vs. comma
+  size, and distinguished single-prime convergents from cross-prime
+  (simultaneous Diophantine / lattice-reduction) landmarks such as 31-EDO;
+  clarified that 'comma' now properly refers to cross-route enharmonic
+  discrepancy, not single-target Base-mode approximation gap."
 ---
  
 # Prime Lattice
@@ -59,7 +67,7 @@ refines the position within the subperiod local to that anchor. Note that the
 use of the twelve chromatic solfège positions as anchors is a specific 
 implementation detail of Uniform Solfège, not a native constraint of the prime lattice itself.
 Anchors themselves are *not* produced by comma sequences — see
-[Anchors and Prime Lattice Coordinates](anchors-and-prime-lattice-coordinates.md)
+[Anchors and Prime Lattice Coordinates](anchors.md)
 for how they are defined.
  
 The coordinates of a lattice point are determined by the complete path taken
@@ -96,6 +104,104 @@ formal source of the closure property stated above.
 Importantly, the zero index (`0`) is a valid and crucial operator in the underlying math, acting as a **Sustain**. A zero over a prime family does not displace position; rather, it performs a period space reduction for the next level. The scale of the next level is determined by the product of the next level's prime family and the prime family where the zero index was applied.
  
 If the zero index is applied over another zero (an axis descent on zero), the reduction is determined by the exponent of the next prime family descent — structurally akin to carrying over the multiplier from a strike in bowling. This ensures the theoretical space has no unreachable gaps ("Cantor gaps"), even if the current visual writing system does not yet map all these internal routes.
+
+## Base and Reel: two coordinate modes on the same lattice
+
+Everything above this point uses the **Base**-mode position formula:
+`position = Σᵢ aᵢ/Pᵢ`, where each step contributes a rational fraction
+of the current subperiod. This mode is exact for what it actually
+targets — an equal subdivision of a period (a step of `1/5` genuinely
+is one-fifth of the period, exactly) — which makes it the correct mode
+for EDO-style addressing (12-TET, 31-EDO, 72-EDO) and for any target
+that is itself a rational fraction of the period.
+
+It is not, however, the only coordinate mode the lattice supports. A **Reel**-mode
+step contributes the *exact* constant `log2(pᵢ)` (or, in a differently
+based Reel, `logₚ(pᵢ)` for the declared prime base) rather than a
+rational fraction standing in for it. Because logarithms convert
+multiplication to addition exactly (`log2(a·b) = log2(a) + log2(b)`,
+with no error, for any `a, b`), a Reel-mode path's position is:
+
+`position (DuReel units) = Σᵢ eᵢ · log2(pᵢ)`
+
+where `eᵢ` are signed integer exponents. This is not an approximation
+of a ratio's `log2` position — it *is* that ratio's `log2` position,
+restated as the sum of its own prime factorization. Any ratio built from
+primes 2, 3, 5, 7, 11 to modest exponents is therefore reachable with
+**zero residual** in Reel mode, for exactly the reason a rational
+Base-mode sum can never reach it exactly: `log2(pᵢ)` is irrational for
+every prime, and using the true irrational constant rather than a
+rational stand-in for it removes the approximation error at its source.
+
+This means the "Prime lattice paths are rational; JI ratios are
+logarithmic" section below describes a true and important fact about
+**Base**-mode paths specifically. It does not describe a limitation of
+the lattice as a whole, and should be read as scoped to Base mode
+throughout — see the note added to that section.
+
+**Which mode a given comma sequence is written in must be declared, the
+same way a Period declares Base or Reel relative to its parent (see
+[Period](period.md#base-vs-reel-a-real-geometric-property-not-an-authoring-choice)).**
+A step is not ambiguously "a Tri step" independent of mode — a Base-mode
+Tri step contributes a rational fraction of the period (`k/3ⁿ` for some
+integer `k`); a Reel-mode Tri step contributes the exact irrational
+constant `log2(3)`. These produce different position types (a rational
+fraction of a period, versus a real-valued log2 position) and must not
+be silently mixed within a single path.
+
+### Where real commas belong, once Reel mode is available
+
+With Reel mode established, it's worth being precise about what a
+**comma** actually is, since it is not "the gap between a path and its
+single target ratio" — that gap is now provably zero, for a single Reel
+target. A comma is what appears when **two different Reel-address
+routes are compared as though they reached the same pitch class**: the
+classic syntonic comma (81/80) is the gap between four stacked justly
+tuned fifths minus two octaves, and a directly-addressed justly tuned
+major third — two different, both individually exact, Reel constructions
+that do not agree with each other. This is a genuine structural fact
+about the independence of `log2(3)` and `log2(5)` (neither is a rational
+multiple of the other, a consequence of unique prime factorization), not
+an artefact of approximation. Base mode's approximate, ever-shrinking
+proximity to an irrational target (see "Nearest approach and rational
+approximation of simple ratios," below) is a different and genuinely
+separate phenomenon from this cross-route comma, and the two should not
+be described with the same vocabulary without this distinction stated.
+
+### Fold-count and continued fractions: a coarse but real measure of Base-mode approximation quality
+
+For a single prime `p`, the question "how many Base-mode Tri (or Qui,
+Sep, Undec) steps are needed before the approximation to `n` octaves is
+below some threshold" is answered exactly by the **continued fraction
+expansion of `log2(p)`** — a deterministic algorithm (not a search or an
+observed pattern), producing a sequence of **convergent** step-counts
+where the approximation is anomalously good for its depth. The
+historically familiar case is `log2(3)`: convergent step-counts of 12
+and 53 produce the Pythagorean comma (≈23.46¢) and a strikingly small
+≈3.6¢ residual respectively — which is the rigorous version of "why 12
+notes," not a coincidence.
+
+Two things are worth stating plainly so a reader doesn't over-generalise
+this:
+
+- **This is a single-prime tool.** Cross-prime landmarks (e.g. 31-EDO's
+  fame for approximating 5-limit content) are not explained by any
+  single prime's continued fraction — 31 is not a convergent of
+  `log2(5)` alone. They are explained by an exact integer relationship
+  between *two* primes' approximations simultaneously (in 31-EDO's
+  case, `4 × (best fifth) − 2 × 31 = (best third)`, exactly, as
+  integers) — a **simultaneous Diophantine approximation** question,
+  solved with different machinery (lattice reduction, e.g. LLL) rather
+  than a single continued fraction.
+- **There is no closed-form formula for the exact convergent sequence
+  itself** — `log2(p)` has no known special structure the way, say,
+  `√2` does, so computing the actual convergents requires running the
+  continued-fraction algorithm. What *is* available in closed form is a
+  guaranteed **search-space bound**: Dirichlet's approximation theorem
+  guarantees a solution achieving comma < X cents exists within
+  `q ≤ 1200/X` folds, without needing to search to know that bound
+  exists. Pinpointing which `q` within that bound is the good one still
+  requires the algorithm.
  
 ## No exact inter-prime coincidence
  
@@ -111,10 +217,12 @@ distinct lattice position. (Note that this non-coincidence applies strictly to p
  
 ## Prime lattice paths are rational; JI ratios are logarithmic
  
-This section states explicitly what the rest of the document implies: **the
-prime lattice's native position formula and a Just Intonation ratio's true
-geometric position are two different kinds of number, and no path in this
-grammar can produce the second from the first.**
+This section states explicitly what the rest of the document implies for
+**Base-mode paths specifically**: the Base-mode position formula and a
+Just Intonation ratio's true geometric position are two different kinds
+of number, and no *Base-mode* path can produce the second from the
+first. (See "Base and Reel: two coordinate modes on the same lattice,"
+above, for the Reel-mode case, where this limitation does not apply.)
  
 A JI ratio's geometric position (its angle around the period, or
 equivalently its distance in cents from the origin) is:
@@ -136,14 +244,18 @@ irrational one. This means:
   ratio's true log2 position is a genuine, quantifiable **comma** in the
   ordinary sense of the word — not an error to eliminate, but the natural
   unit of "how far off" a rational approximation sits.
+- This limitation is specific to Base mode's rational `Σaᵢ/Pᵢ` formula.
+  A Reel-mode path reaches these same targets with zero residual — see
+  "Base and Reel," above — because it sums the exact irrational
+  `log2(pᵢ)` constants rather than rational approximations of them.
+
 This is also why the twelve solfège anchors are **not** derived by walking a
 comma sequence from Do. Each anchor is independently defined by its own
 `1200 × log2(ratio)` value (or, for Fi, directly as the irrational point
 ±600¢ = 1200 × log2(√2)). Comma sequences instead do what they are
 structurally suited for: **navigating and refining position relative to an
 anchor**, at whatever rational precision the depth of the sequence provides.
-See [Anchors and Prime Lattice Coordinates](anchors-and-prime-lattice-coordinates.md)
-for the full anchor definitions and how paths relate to them as refinements.
+See [Anchors and Prime Lattice Coordinates](anchors.md) for the actual anchor definitions and how paths relate to them as refinements.
  
 ## Nearest approach and rational approximation of simple ratios
  
@@ -331,9 +443,13 @@ underlying structures are not the same:
   subdivision. That resemblance motivated the original comparison; it just
   doesn't extend to the full mixed-prime, order-sensitive system PPT
   actually uses.
+
 ## See also
  
-- [Anchors and Prime Lattice Coordinates](anchors-and-prime-lattice-coordinates.md)
+- [Period](period.md) — the general Base/Reel coordinate-relationship
+  concept, of which this file's Base/Reel comma-path distinction is the
+  lattice-specific instance
+- [Anchors and Prime Lattice Coordinates](anchors.md)
   — how the 12 solfège anchors are independently defined via log2(ratio),
   and how comma-sequence paths relate to them as refinements
 - [Prime Families](prime-families.md) — the five generators and their

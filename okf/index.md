@@ -116,6 +116,9 @@ amplitude or effect envelopes.
   over time; the physical basis for treating pitch and rhythm as one phenomenon
 - [Periodicity](foundations/periodicity.md) — the unifying phenomenon across
   all scales; consonance as period coincidence; tala and ti-hai
+- [Period](foundations/period.md) — the general bounded-space object
+  (minima/midpoint/maxima, Base vs. Reel coordinate relationships, Cast)
+  underlying pitch, rhythm, and every other range-bounded parameter
 - [Prime Families](foundations/prime-families.md) — the five prime generators;
   prime vs exponent; the 11-limit ceiling
 - [Prime Lattice](foundations/prime-lattice.md) — the multi-dimensional

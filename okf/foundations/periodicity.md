@@ -134,6 +134,7 @@ for rhythm, and a different one for orchestration.
 ## See also
 
 - [Amplitude and Time](amplitude-time.md) — the physical grounding for periodicity
+- [Period](period.md) — the formal bounded-space object that captures one instance of a periodic cycle
 - [Prime Families](prime-families.md) — how periods relate to one another via prime ratios
 - [Rhythm](../domains/rhythm.md) — periodicity at the macro scale
 - [Pitch](../domains/pitch.md) — periodicity at the micro scale

@@ -18,6 +18,9 @@ tags:
   - pitch
   - prime-period-theory
 timestamp: 2026-07-08
+revision: "2026-07-10: cross-referenced the general Period model
+  (foundations/period.md) this file's Period/Anchor mechanics are a
+  timescale-specific instance of"
 ---
 
 # Metric DuPeriod
@@ -52,6 +55,17 @@ approximately 600ms, corresponding to approximately 100 BPM.
 
 ## Period, Anchor, and Comma Mechanics
 
+This section defines Metric DuPeriod's own specific application of the
+general [Period](../foundations/period.md) model: a chain of DuReel-typed
+Periods, each one octave-doubling of period-length relative to the last,
+anchored externally at the Temporal-Place Limen. The "Period is
+multiplicative only" rule below describes the relationship *between
+successive DuPeriod bands* (each is exactly double the previous); it is
+a claim specific to this timescale axis, not a general constraint on
+every Period everywhere in the framework — see
+[Period](../foundations/period.md) for what does and does not carry over
+to Periods in other domains.
+
 ### Period is multiplicative only
 
 A **Period** is defined by a dimensionless recurrence:
@@ -70,7 +84,12 @@ The register (`f₁`) is supplied as an Anchor input, not an intrinsic property 
 
 ## The anchor: Metric DuPeriod 0
 
-A Period requires exactly one external, physical/biological absolute to bind its otherwise-dimensionless ratio structure to reality. This is the **Anchor**: an empirically or perceptually chosen constant, supplied, never derived.
+A Period requires exactly one external, physical/biological absolute to
+bind its otherwise-dimensionless ratio structure to reality. This is the
+**Anchor** in the sense of the general [Period](../foundations/period.md)
+model — here, specifically, the top-level Anchor for the entire Metric
+DuPeriod hierarchy: an empirically or perceptually chosen constant,
+supplied, never derived.
 
 Metric DuPeriod 0 is not a band but a point: the Temporal-Place Limen at
 20Hz / 50ms. It is the Do of the entire system — the tonic from which
@@ -81,6 +100,12 @@ of the system rather than historically contingent. See
 [Temporal-Place Limen](../perception/temporal-place-limen.md) for the full argument.
 
 **Principle of Local Closure (First Form):** A period's own ratio math can never resolve its own anchor. The anchor must always come from outside the space being defined, because a ratio without a register to apply it to is dimensionless by design.
+
+This is the Metric-DuPeriod-specific statement of the general Period
+model's "Deferred resolution" principle — see
+[Period](../foundations/period.md#deferred-resolution) for the fully
+general form, which applies identically to every Period hierarchy, not
+only to the pitch/rhythm timescale axis.
 
 ## DuPeriod bands
 
@@ -293,6 +318,8 @@ perceptually convenient positions rather than structurally grounded ones.
 
 ## See also
 
+- [Period](../foundations/period.md) — the general bounded-space model
+  this file's Period/Anchor mechanics instantiate for the timescale axis
 - [Temporal-Place Limen](../perception/temporal-place-limen.md) — the anchor definition and
   the argument for grounding measurement in auditory neurology
 - [Periodicity](../foundations/periodicity.md) — the perceptual rate

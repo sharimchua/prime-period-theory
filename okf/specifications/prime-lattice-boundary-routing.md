@@ -13,6 +13,9 @@ tags:
   - boundary-routing
   - note-navigator
 timestamp: 2026-07-07
+revision: "2026-07-10: reworded 'casts a vector' to 'projects a vector'
+  and added a disambiguating note, to avoid collision with the unrelated
+  Cast operation introduced in foundations/period.md"
 ---
 
 # Architecture Specification: Prime Lattice Du Pivot Licensing
@@ -55,7 +58,7 @@ Every step in the path does not just add value; it tightens the boundaries of th
 The transient excursion rule is required because, without it, the interval bounds collapse to zero-width near the supremum. Over-shooting and subtracting is mathematically required to maintain resolution.
 
 ### C. Projective Geometry (Points at Infinity)
-In standard Euclidean space, a boundary is an edge. In **Projective Geometry**, the boundary (the point at infinity) is treated as a perfectly valid, functional coordinate. The coarsest-frame Du edge acts as this projective point. The engine casts a vector out to it, anchors onto it, and draws a precise vector back into localized space. The tritone is an acoustic mirror, not a wall.
+In standard Euclidean space, a boundary is an edge. In **Projective Geometry**, the boundary (the point at infinity) is treated as a perfectly valid, functional coordinate. The coarsest-frame Du edge acts as this projective point. The engine projects a vector out to it, anchors onto it, and draws a precise vector back into localized space. (This projection is a Base-mode navigational manoeuvre and should not be confused with the unrelated, newer **Cast** operation defined in [Period](../foundations/period.md#cast-returning-to-the-parents-linear-space), which moves a coordinate between a Reel-typed Period and its parent's Base space. Both involve a notion of "going out and coming back," but they operate on different objects for different reasons.) The tritone is an acoustic mirror, not a wall.
 
 ## 4. Implementation Directives for Tools
 

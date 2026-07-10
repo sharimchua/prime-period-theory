@@ -19,9 +19,10 @@ perceptual consequences — that is `perception/`'s job.
 |---|---|---|
 |`amplitude-time.md`|Complete|Core thesis: music as amplitude over time; includes forward-pointing note on spacetime|
 |`periodicity.md`|Complete|Periodicity as the unifying phenomenon; 20Hz boundary; tala/ti-hai; overtone series|
+|`period.md`|Complete|The general bounded-space object generalising Anchor/Metric-DuPeriod mechanics: minima/midpoint/maxima, Base vs. Reel, Cast, deferred resolution|
 |`prime-families.md`|Complete|The five prime families; prime vs exponent; the 11-limit ceiling|
-|`prime-lattice.md`|Complete|The multi-dimensional coordinate space defined by the five independent prime axes|
-|`anchors.md`|Complete|Definition of local anchors and the prime lattice coordinate derivation of the 12 chromatic solfège positions|
+|`prime-lattice.md`|Complete|The multi-dimensional coordinate space defined by the five independent prime axes; introduces the Base vs. Reel coordinate-mode distinction|
+|`anchors.md`|Complete|Definition of local anchors independently by log2(ratio), explicitly distinguishing exact Reel-mode addresses from rational Base-mode approximations|
 
 ## Future page — not yet ready to formalise
 

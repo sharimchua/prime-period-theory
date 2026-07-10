@@ -144,6 +144,7 @@ The prime families are also the geometric and conceptual foundation for [Prime P
 ## See also
 
 - [Periodicity](periodicity.md) — the underlying unifying phenomenon
+- [Period](period.md) — the bounded-space object that prime-family ratio relationships operate within
 - [Amplitude and Time](amplitude-time.md) — the physical grounding
 - [Uniform Solfège — Geometric Basis](../uniform-solfege/geometric-basis.md) —
   how the five families are encoded as nested geometric forms
