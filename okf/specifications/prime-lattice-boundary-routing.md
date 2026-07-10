@@ -68,4 +68,4 @@ When integrating this logic into the lattice pathing engine, ensure the followin
 ## See also
 
 - [Prime Lattice](../foundations/prime-lattice.md) — the mathematical space the boundary routing operates within
-- [Note Navigation](../implementations/note-navigation.md) — an active implementation utilizing these routing rules
+- Note Navigation — an active implementation utilizing these routing rules
