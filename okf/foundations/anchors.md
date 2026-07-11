@@ -14,12 +14,15 @@ tags:
   - prime-families
   - uniform-solfege
   - coordinates
-timestamp: 2026-07-07
+timestamp: 2026-07-11
 revision: "2026-07-10 (rev 3): scoped the 'no finite comma sequence can
   land exactly on a non-Do/Fi anchor' claim to Base-mode sequences
   specifically; noted that the existing Prime Factorization column is
   already each anchor's exact Reel-mode address, per the Base/Reel
-  distinction introduced in Prime Lattice"
+  distinction introduced in Prime Lattice.
+  2026-07-11 (rev 4): added 'Solfège frames and the diacritic
+  space,' verifying that dividing N=27,720 into the 12 Solfège
+  frames yields exactly 2,310 = the radical of 27,720."
 ---
  
 # Anchors and Prime Lattice Coordinates
@@ -69,6 +72,46 @@ The table below specifies each anchor as an exact Base-mode path. Cents are prec
 2. **Perfect Mirroring.** Because the grid is evenly spaced, the Base-mode paths on the negative side are exact inversions of the positive side. `So` is the direct negative reflection of `Fa`, `La` reflects `Me`, and so on.
 3. **Fi's dual address is structural, not an oversight.** Fi sits at exactly ±600¢ — equidistant from Do in both directions, the one point in this table where nearest-address reduction does not force a unique answer. Convention resolves Fi's *register* to the positive spelling (F#4) rather than the negative one (F#3) — consistent with Axis conventionally being read as *this* anchor's own boundary — but the negative spelling `[-1/2]` is not wrong, merely unconventional.
 4. **Base-mode Navigation.** The Prime Lattice Path shown is the actual, exact location of each anchor. There is no residual comma and no approximation here — this is a mathematically perfect subdivision of the period space.
+
+### Solfège frames and the diacritic space
+
+Dividing the canonical resolution constant `N = 27,720` (see
+[Prime Lattice](prime-lattice.md#the-canonical-resolution-constant))
+into twelve equal Solfège frames — the evenly spaced divisions of the
+octave described above — gives exactly:
+
+`27,720 / 12 = 2,310 = 2 × 3 × 5 × 7 × 11`
+
+This is a direct consequence of `27,720`'s factorization, not a
+coincidence requiring separate justification. `2,310` is the
+**radical** of `27,720` — the product of its distinct prime factors,
+each to the first power — because `27,720 = 2³ × 3² × 5 × 7 × 11` needs
+exactly one extra factor of 2 (beyond the first power, to cover
+divisibility by 8) and one extra factor of 3 (beyond the first power,
+to cover divisibility by 9). That excess is `2² × 3 = 12` exactly, and
+dividing by it strips the excess and leaves the radical.
+
+The consequence for the Prime Diacritics system: each of the twelve
+Solfège frames has a **local** resolution of exactly 2,310 points,
+precisely enough to give an exact Base-mode address to any squarefree
+(first-power-only) 11-limit adjustment entirely within that one frame —
+a diacritic combining `±1` steps of 2, 3, 5, 7, and 11 — without needing
+to borrow resolution from a neighbouring frame. This gives Prime
+Diacritics a clean, principled local budget rather than an arbitrary
+fixed precision.
+
+This does **not** extend to every comma of interest. Adjustments
+requiring a prime to a *second* power or higher — the syntonic comma
+(`81/80 = 3⁴/(5·2⁴)`), the Pythagorean comma (`3¹²/2¹⁹`) — need more
+depth in a single prime than the local 2,310-point budget carries, and
+correspondingly draw on the "excess" 12-fold structure that separates
+`27,720` from its radical — i.e., they reach outside a single Solfège
+frame. This is the same distinction already drawn in
+[Prime Lattice](prime-lattice.md#where-real-commas-belong-once-reel-mode-is-available):
+squarefree, single-frame adjustments are what the local diacritic space
+is for; the classic higher-power commas are a cross-frame phenomenon,
+consistent with their being a cross-route (not single-target) fact
+about the lattice.
 
 ## Pure Ratios and Cast()
 
