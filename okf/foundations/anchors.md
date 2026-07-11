@@ -14,7 +14,7 @@ tags:
   - prime-families
   - uniform-solfege
   - coordinates
-timestamp: 2026-07-07
+timestamp: 2026-07-11
 revision: "2026-07-10 (rev 3): scoped the 'no finite comma sequence can
   land exactly on a non-Do/Fi anchor' claim to Base-mode sequences
   specifically; noted that the existing Prime Factorization column is
