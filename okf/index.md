@@ -13,7 +13,7 @@ tags:
   - polyrhythm
   - microtonality
   - 31-edo
-timestamp: 2026-07-08
+timestamp: 2026-07-11
 ---
 
 # Prime Period Theory
@@ -223,6 +223,7 @@ amplitude or effect envelopes.
 
 ## Specifications
 - [Prime Lattice Boundary Routing](specifications/prime-lattice-boundary-routing.md) — rules and validation logic for transient excursions beyond local boundaries
+- [Period Declaration Mechanics](specifications/period-declaration.md) — Anchored and Floating subperiods, adjacency, anchor equivalence, and scaled concatenation
 - [Design System & Colour Semantics](specifications/design-system.md) — Visual styling and mathematical mapping
 - [PPT Composition Format (PPT-CF)](specifications/composition-format.md) — a concise, structural encoding format for serialising component layouts
 - [MIDI to Solfège Input Specification](specifications/midi-solfege-input.md)

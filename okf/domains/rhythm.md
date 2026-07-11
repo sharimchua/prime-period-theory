@@ -13,7 +13,7 @@ tags:
   - prime-families
   - rhythmic-grammar
   - prime-period-theory
-timestamp: 2026-07-08
+timestamp: 2026-07-11
 ---
 
 # Rhythm
@@ -54,6 +54,14 @@ Standard time signatures are a limited vocabulary for this. They name the
 container (how many beats, what note value) but say nothing about internal
 accentuation, feel, or the prime-family relationships at play within a beat.
 **Rhythmic Grammar** (see below) addresses this directly.
+
+## Rhythmic phrases and scaled concatenation
+
+In conventional notation, a single symbol attempts to encode both a note's own duration and its fit within a fixed bar. In PPT, these concepts are separated using **scaled concatenation** (see [Period Declaration Mechanics](../specifications/period-declaration.md)). 
+
+A rhythmic phrase is constructed from notes that specify their own natural lengths (declared as Floating subperiods). The phrase's total extent is derived upward by summing these lengths. If a target container length is imposed, a single scale factor is computed — the available space divided by the natural sum — and applied uniformly across the chain. This resolves the notes to fit the container.
+
+This formal mechanism replaces the informal intuition that "note lengths sum to the bar length." It naturally handles tuplets: three notes compressed into the space of two, each remaining equal to the others, is simply a scaled concatenation with an imposed target container space.
 
 ## Polyrhythm as LCM interference
 
@@ -100,10 +108,12 @@ at the LCM of their respective subperiod counts. This is **polymeter**.
 The same PPT framework describes both relationships. The distinction is
 which quantity the composer or analyst treats as the fixed anchor:
 
-| Relationship | Fixed quantity | Floating quantity |
+| Relationship | Fixed quantity | Variable quantity* |
 |---|---|---|
 | Polyrhythm | Period | Subperiod duration (varies per voice) |
 | Polymeter | Subperiod | Period length (varies per voice) |
+
+*\*Note: "Variable" is used here to mean the quantity that differs between simultaneous voices. This is distinct from the concept of a "Floating" subperiod (one positioned by adjacency rather than an explicit anchor) described in [Period Declaration Mechanics](../specifications/period-declaration.md).*
 
 This framing is consistent with how Indian classical music treats the tala:
 the avartana (period) is the shared container, and different rhythmic
