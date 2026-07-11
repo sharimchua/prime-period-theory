@@ -78,7 +78,7 @@ const superscriptData = JSON.stringify({solfege: "Ti"});
 </ComponentLayout>
 
 <script>
-  window.copyCode = function(targetId, btn) {
+  (window as any).copyCode = function(targetId: string, btn: HTMLElement) {
     const code = document.getElementById(targetId)?.textContent;
     if (code) {
       navigator.clipboard.writeText(code);

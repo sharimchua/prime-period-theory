@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { Phrase, GlyphToken, CoilRow, CoilLayer, CoilModel } from '../grammar/grammarCore';
+import { Phrase, CoilRow, CoilLayer, CoilModel, type GlyphToken } from '../grammar/grammarCore';
 import { RhythmicGrammarInterpreter, MelodicGrammarInterpreter, HarmonicGrammarInterpreter } from '../grammar/interpreters';
 
 describe('Grammar Core Models', () => {

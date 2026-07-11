@@ -65,21 +65,21 @@ describe('parseComponents', () => {
     });
 
     it('should return empty array if srcDir does not exist', () => {
-      vi.mocked(fs.default.existsSync).mockReturnValue(false);
+      vi.mocked(fs.existsSync).mockReturnValue(false);
 
       const components = getPPTComponents();
       expect(components).toEqual([]);
     });
 
     it('should parse files and extract component metadata successfully', () => {
-      vi.mocked(fs.default.existsSync).mockImplementation((pathStr) => {
+      vi.mocked(fs.existsSync).mockImplementation((pathStr) => {
          const p = pathStr.toString().replace(/\\/g, '/');
          if (p.includes('components/src')) return true;
          if (p.includes('features')) return true; // Mixins dir
          return false;
       });
 
-      vi.mocked(fs.default.readdirSync).mockImplementation((pathStr) => {
+      vi.mocked(fs.readdirSync).mockImplementation((pathStr) => {
          const p = pathStr.toString().replace(/\\/g, '/');
          if (p.endsWith('components/src')) {
             return ['BasePPTComponent.ts', 'TestComponent.ts', 'index.ts'] as any;
@@ -90,7 +90,7 @@ describe('parseComponents', () => {
          return [] as any;
       });
 
-      vi.mocked(fs.default.readFileSync).mockImplementation((pathStr) => {
+      vi.mocked(fs.readFileSync).mockImplementation((pathStr) => {
          const p = pathStr.toString();
          if (p.endsWith('BasePPTComponent.ts')) {
             return `
@@ -163,13 +163,13 @@ describe('parseComponents', () => {
     });
 
     it('should handle missing baseMetadata or mixinMetadata gracefully', () => {
-      vi.mocked(fs.default.existsSync).mockImplementation((pathStr) => {
+      vi.mocked(fs.existsSync).mockImplementation((pathStr) => {
          const p = pathStr.toString().replace(/\\/g, '/');
          if (p.includes('components/src')) return true;
          return false; // Features dir doesn't exist
       });
 
-      vi.mocked(fs.default.readdirSync).mockImplementation((pathStr) => {
+      vi.mocked(fs.readdirSync).mockImplementation((pathStr) => {
          const p = pathStr.toString().replace(/\\/g, '/');
          if (p.endsWith('components/src')) {
             return ['TestComponent2.ts'] as any;
@@ -177,7 +177,7 @@ describe('parseComponents', () => {
          return [] as any;
       });
 
-      vi.mocked(fs.default.readFileSync).mockImplementation((pathStr) => {
+      vi.mocked(fs.readFileSync).mockImplementation((pathStr) => {
          const p = pathStr.toString();
          if (p.endsWith('TestComponent2.ts')) {
             return `
@@ -204,14 +204,14 @@ describe('parseComponents', () => {
     });
 
     it('should handle parent class metadata inheritance when parent is not BasePPTComponent', () => {
-      vi.mocked(fs.default.existsSync).mockImplementation((pathStr) => {
+      vi.mocked(fs.existsSync).mockImplementation((pathStr) => {
          const p = pathStr.toString().replace(/\\/g, '/');
          if (p.includes('components/src')) return true;
          if (p.includes('ParentComponent.ts')) return true;
          return false;
       });
 
-      vi.mocked(fs.default.readdirSync).mockImplementation((pathStr) => {
+      vi.mocked(fs.readdirSync).mockImplementation((pathStr) => {
          const p = pathStr.toString().replace(/\\/g, '/');
          if (p.endsWith('components/src')) {
             return ['ChildComponent.ts'] as any;
@@ -219,7 +219,7 @@ describe('parseComponents', () => {
          return [] as any;
       });
 
-      vi.mocked(fs.default.readFileSync).mockImplementation((pathStr) => {
+      vi.mocked(fs.readFileSync).mockImplementation((pathStr) => {
          const p = pathStr.toString();
          if (p.endsWith('ParentComponent.ts')) {
              return `
@@ -266,14 +266,14 @@ describe('parseComponents', () => {
     it('should catch parsing errors for metadata and componentDef', () => {
       const consoleWarnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
 
-      vi.mocked(fs.default.existsSync).mockImplementation((pathStr) => {
+      vi.mocked(fs.existsSync).mockImplementation((pathStr) => {
          const p = pathStr.toString();
          if (p.includes('components/src')) return true;
          if (p.includes('features')) return true; // Mixins dir
          return false;
       });
 
-      vi.mocked(fs.default.readdirSync).mockImplementation((pathStr) => {
+      vi.mocked(fs.readdirSync).mockImplementation((pathStr) => {
          const p = pathStr.toString();
          if (p.endsWith('components/src')) {
             return ['BasePPTComponent.ts', 'ErrorComponent.ts'] as any;
@@ -284,7 +284,7 @@ describe('parseComponents', () => {
          return [] as any;
       });
 
-      vi.mocked(fs.default.readFileSync).mockImplementation((pathStr) => {
+      vi.mocked(fs.readFileSync).mockImplementation((pathStr) => {
          const p = pathStr.toString();
          if (p.endsWith('BasePPTComponent.ts')) {
             return `

@@ -1,4 +1,4 @@
-import { Phrase, GlyphToken, DiacriticState } from './grammarCore';
+import { Phrase, type GlyphToken, type DiacriticState } from './grammarCore';
 
 export interface OnsetSpec {
   positionRatio: number; // Ratio from the start of the sequence

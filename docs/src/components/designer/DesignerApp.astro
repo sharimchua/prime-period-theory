@@ -666,7 +666,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '') + '/';
         }
       });
       // Also listen to input for text fields for real-time updates
-      if (input.type === 'text' || input.tagName.toLowerCase() === 'textarea') {
+      if ((input as any).type === 'text' || input.tagName.toLowerCase() === 'textarea') {
         input.addEventListener('input', (e) => {
           const target = e.target as HTMLInputElement | HTMLTextAreaElement;
           if (target.disabled) return;
@@ -758,7 +758,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '') + '/';
           const target = getElementByPath(JSON.parse(pathStr));
           if (target) {
             selectElement(target);
-            showContextMenu(e.clientX, e.clientY, target);
+            showContextMenu((e as any).clientX, (e as any).clientY, target);
           }
         }
       });

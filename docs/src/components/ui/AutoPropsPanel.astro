@@ -11,7 +11,7 @@ const metadata = comp?.metadata || {};
 
 const parentComp = parentTagName ? components.find((c) => c.tagName === parentTagName) : null;
 const parentMetadata = parentComp?.metadata || {};
-const allowedParentList = allowedParentProps ? allowedParentProps.split(',').map((s) => s.trim()) : [];
+const allowedParentList = allowedParentProps ? allowedParentProps.split(',').map((s: string) => s.trim()) : [];
 
 const targetEntries = getTargetEntries(metadata, tagName);
 const parentEntries = parentTagName ? getParentEntries(parentMetadata, allowedParentList) : [];
@@ -42,7 +42,7 @@ const parentEntries = parentTagName ? getParentEntries(parentMetadata, allowedPa
     panel.setAttribute('data-initialized', 'true');
 
     const targetId = panel.getAttribute('data-target');
-    const targetElement = document.getElementById(targetId);
+    const targetElement = targetId ? document.getElementById(targetId) : null;
     if (!targetElement) return;
 
     panel.querySelectorAll('.auto-prop-override').forEach((overrideToggle: any) => {
@@ -146,7 +146,7 @@ const parentEntries = parentTagName ? getParentEntries(parentMetadata, allowedPa
     });
 
     // Auto-update the "View Source Code" panel if it exists
-    const codeBlockId = targetId.replace('demo-', '') + '-code';
+    const codeBlockId = (targetId || '').replace('demo-', '') + '-code';
     let codeBlock = document.getElementById(codeBlockId);
     
     // Special handling for the step circle which is nested inside demo-step

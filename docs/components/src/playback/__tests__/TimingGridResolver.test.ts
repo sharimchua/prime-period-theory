@@ -6,8 +6,8 @@ describe('TimingGridResolver', () => {
   it('should resolve simple glyphs correctly', () => {
     const resolver = new TimingGridResolver(0.5); // 0.5s per beat
     const tokens: ParsedToken[] = [
-      { type: 'glyph', solfege: 'Do', char: 'd', index: 0 },
-      { type: 'glyph', solfege: 'Re', char: 'r', index: 1 }
+      { type: 'glyph', solfege: 'Do' },
+      { type: 'glyph', solfege: 'Re' }
     ];
 
     const onsets = resolver.resolve(tokens);
@@ -20,9 +20,9 @@ describe('TimingGridResolver', () => {
   it('should handle padding correctly', () => {
     const resolver = new TimingGridResolver(1.0);
     const tokens: ParsedToken[] = [
-      { type: 'glyph', solfege: 'Do', char: 'd', index: 0 },
-      { type: 'padding', paddingLength: 2, index: 1 },
-      { type: 'glyph', solfege: 'Mi', char: 'm', index: 2 }
+      { type: 'glyph', solfege: 'Do' },
+      { type: 'padding', paddingLength: 2 },
+      { type: 'glyph', solfege: 'Mi' }
     ];
 
     const onsets = resolver.resolve(tokens);
@@ -35,9 +35,9 @@ describe('TimingGridResolver', () => {
   it('should handle hold correctly', () => {
     const resolver = new TimingGridResolver(1.0);
     const tokens: ParsedToken[] = [
-      { type: 'glyph', solfege: 'Do', char: 'd', index: 0 },
-      { type: 'hold', char: '-', index: 1 },
-      { type: 'glyph', solfege: 'Mi', char: 'm', index: 2 }
+      { type: 'glyph', solfege: 'Do' },
+      { type: 'hold' },
+      { type: 'glyph', solfege: 'Mi' }
     ];
 
     const onsets = resolver.resolve(tokens);
@@ -50,8 +50,8 @@ describe('TimingGridResolver', () => {
   it('should handle hold with no preceding glyph correctly', () => {
     const resolver = new TimingGridResolver(1.0);
     const tokens: ParsedToken[] = [
-      { type: 'hold', char: '-', index: 0 },
-      { type: 'glyph', solfege: 'Mi', char: 'm', index: 1 }
+      { type: 'hold' },
+      { type: 'glyph', solfege: 'Mi' }
     ];
 
     const onsets = resolver.resolve(tokens);
