@@ -38,7 +38,7 @@ This adjacency structure is valid exactly when both of the following hold:
 
 ## Anchor Equivalence
 
-The means of declaration for Floating subperiods must not result in ambiguity. This is formalized through **Anchor Equivalence** — stating that one period's anchor is geometrically equivalent to another.
+The means of declaration for Floating subperiods must not result in ambiguity. This is formalised through **Anchor Equivalence** — stating that one period's anchor is geometrically equivalent to another.
 
 For **sequential anchoring** (where one period immediately follows another), this equivalence is declared by stating that the `+Axis` (maxima) of the preceding period is equal to the `-Axis` (minima) of the following period.
 
@@ -54,7 +54,7 @@ Every maximal chain of Floating periods between two bounding anchors resolves th
 2. Compute a single scale factor: the space available between the chain's two bounding anchors, divided by that sum.
 3. Apply that one scale factor uniformly across every period in the chain.
 
-This is a pure Base (linear) operation on the whole chain — it changes how much of the parent's space the chain occupies without touching the proportions between the children inside it. This is exactly what a notated tuplet already means (three notes compressed into the space of two, each remaining equal to the others), generalized to be the same mechanism used for ordinary concatenation with no imposed target length at all (scale factor of 1, when the chain's natural sum already equals the available space).
+This is a pure Base (linear) operation on the whole chain — it changes how much of the parent's space the chain occupies without touching the proportions between the children inside it. This is exactly what a notated tuplet already means (three notes compressed into the space of two, each remaining equal to the others), generalised to be the same mechanism used for ordinary concatenation with no imposed target length at all (scale factor of 1, when the chain's natural sum already equals the available space).
 
 ### Worked example: mixed subdivisions under a shared parent
 
