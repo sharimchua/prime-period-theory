@@ -28,7 +28,9 @@ revision: "2026-07-10 (rev 3): introduced Base/Reel as two named coordinate
   size, and distinguished single-prime convergents from cross-prime
   (simultaneous Diophantine / lattice-reduction) landmarks such as 31-EDO;
   clarified that 'comma' now properly refers to cross-route enharmonic
-  discrepancy, not single-target Base-mode approximation gap."
+  discrepancy, not single-target Base-mode approximation gap.
+  2026-07-11 (rev 4): introduced N = 27,720 = lcm(1..11) as the
+  named canonical resolution constant for the Base-mode lattice."
 ---
  
 # Prime Lattice
@@ -104,6 +106,30 @@ formal source of the closure property stated above.
 Importantly, the zero index (`0`) is a valid and crucial operator in the underlying math, acting as a **Sustain**. A zero over a prime family does not displace position; rather, it performs a period space reduction for the next level. The scale of the next level is determined by the product of the next level's prime family and the prime family where the zero index was applied.
  
 If the zero index is applied over another zero (an axis descent on zero), the reduction is determined by the exponent of the next prime family descent — structurally akin to carrying over the multiplier from a strike in bowling. This ensures the theoretical space has no unreachable gaps ("Cantor gaps"), even if the current visual writing system does not yet map all these internal routes.
+
+## The canonical resolution constant
+
+The position formula above tracks `Pᵢ` as the running product of
+whichever primes a given path visits — but for two paths to be
+compared, combined, or validated against each other, it's useful to fix
+one common denominator large enough to hold every Base-mode address the
+11-limit lattice can produce at once. That constant is:
+
+`N = 27,720 = 2³ × 3² × 5 × 7 × 11 = lcm(1, 2, 3, ..., 11)`
+
+the smallest integer divisible by every integer from 1 through 11.
+Every Base-mode subharmonic `N/n` for `n = 1…11` is therefore an exact
+integer with zero remainder — the property that makes `N` the natural
+shared resolution for the whole lattice, rather than an arbitrary round
+number chosen for convenience.
+
+`N` is a convenience constant, not a hard ceiling on resolution. A path
+that goes deeper than the exponents `N` itself carries (for instance, a
+fourth Du-fold, past `2³`) simply addresses a finer grid nested inside
+`N`, not an invalid one. `N = 27,720` is best understood as the
+coarsest common resolution that exactly covers every first-pass
+11-limit construction this document describes, not as the maximum
+precision the lattice is capable of.
 
 ## Base and Reel: two coordinate modes on the same lattice
 
