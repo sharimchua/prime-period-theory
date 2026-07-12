@@ -2,7 +2,7 @@
 type: concept
 title: Perception-Period Local Closure & Residue Triangulation
 description: >
-  A general method for deriving a Period's anchor (Do) from empirical edge behavior
+  A general method for deriving a Period's anchor (Do) from empirical edge behaviour
   of its child periods, rather than stipulating the anchor's coordinate in advance.
 tags:
   - perception
@@ -25,7 +25,7 @@ This applies recursively: any Period's Do can, in principle, be treated as infer
 
 ## Residue-as-Period Triangulation
 
-Given two adjacent, locally-closed periods P1 and P2 with self-detected edges E1 (P1's bound closest to the shared boundary) and E2 (P2's bound closest to the shared boundary), the span between E1 and E2 is itself an unclaimed residue. Because "Do = geometric center of a bounded span" is a scale-invariant PPT rule, it applies recursively to this residue:
+Given two adjacent, locally-closed periods P1 and P2 with self-detected edges E1 (P1's bound closest to the shared boundary) and E2 (P2's bound closest to the shared boundary), the span between E1 and E2 is itself an unclaimed residue. Because "Do = geometric centre of a bounded span" is a scale-invariant PPT rule, it applies recursively to this residue:
 
 ```
 Do_parent(candidate) = √(E1 × E2)
