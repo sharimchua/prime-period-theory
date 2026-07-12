@@ -136,6 +136,7 @@ amplitude or effect envelopes.
 - [Temporal-Place Limen](perception/temporal-place-limen.md) — the anchor definition and the boundary between pitch and rhythm
 - [Local Closure & Residue Triangulation](perception/local-closure.md) — a method for deriving a period's anchor from empirical edge behaviour of child periods
 - [Coarse-Graining and Grid Reduction](perception/coarse-graining-and-grid-reduction.md) — snapping coordinates from a finer lattice onto a coarser one, enharmonic collapse, and reduction origins
+- [DuPeriod Window Stack](perception/duperiod-window-stack.md) — an analytical framework and perceptual model defining prime-coherent analysis windows anchored by a rhythmic fundamental
 
 ### Reference
 - [Metric DuPeriod](reference/metric-duperiod.md) — the coordinate system for logarithmic period mapping
