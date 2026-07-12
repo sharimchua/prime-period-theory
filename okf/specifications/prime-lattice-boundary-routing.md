@@ -12,7 +12,7 @@ tags:
   - prime-lattice
   - boundary-routing
   - note-navigator
-timestamp: 2026-07-07
+timestamp: 2026-07-12
 revision: "2026-07-10: reworded 'casts a vector' to 'projects a vector'
   and added a disambiguating note, to avoid collision with the unrelated
   Cast operation introduced in foundations/period.md"

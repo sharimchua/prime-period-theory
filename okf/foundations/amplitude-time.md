@@ -12,7 +12,7 @@ tags:
   - physics
   - fractal
   - prime-period-theory
-timestamp: 2026-06-20
+timestamp: 2026-07-12
 ---
 
 # Amplitude and Time

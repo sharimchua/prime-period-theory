@@ -17,7 +17,7 @@ tags:
   - reel
   - cast
   - metric-duperiod
-timestamp: 2026-07-10
+timestamp: 2026-07-12
 ---
 
 # Period
