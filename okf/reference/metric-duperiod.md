@@ -3,7 +3,7 @@ type: concept
 title: Metric DuPeriod
 description: >
   The Metric DuPeriod system is PPT's unified period-length coordinate system,
-  anchored at the Temporal-Place Limen (20Hz / Metric DuPeriod 0) and extending
+  anchored at the Temporal-Place Limen (~25.8Hz / Metric DuPeriod 0) and extending
   in both directions: negative offsets into pitch space, positive offsets
   into rhythmic space. Solfège positions within each DuPeriod band name
   period-length ratios continuously across the auditory boundary, making
@@ -17,7 +17,7 @@ tags:
   - rhythm
   - pitch
   - prime-period-theory
-timestamp: 2026-07-08
+timestamp: 2026-07-13
 revision: "2026-07-10: cross-referenced the general Period model
   (foundations/period.md) this file's Period/Anchor mechanics are a
   timescale-specific instance of"
@@ -42,7 +42,7 @@ While the sub-20Hz pitch space colloquially uses the term "Octave" due to entren
 The system has three components:
 
 - **The anchor**: Metric DuPeriod 0, defined as the Temporal-Place Limen
-  (20Hz / 50ms period). This provides the external absolute binding to reality.
+  (~25.8Hz / ~38.7ms period). This provides the external absolute binding to reality.
 - **The DuPeriod offset**: a signed integer indicating which doubling band
   the period falls in; negative for pitch space, positive for rhythmic
   space
@@ -92,7 +92,7 @@ DuPeriod hierarchy: an empirically or perceptually chosen constant,
 supplied, never derived.
 
 Metric DuPeriod 0 is not a band but a point: the Temporal-Place Limen at
-20Hz / 50ms. It is the Do of the entire system — the tonic from which
+~25.8Hz / ~38.7ms. It is the Do of the entire system — the tonic from which
 all offsets are measured.
 
 This anchor is chosen because it is intrinsic to the perceptual structure
@@ -118,17 +118,17 @@ space.
 
 ```
 Offset  Period range        Frequency range     Domain
-−10     0.050ms → 0.100ms  20kHz → 10kHz       Upper Auditory Horizon
-−9      0.100ms → 0.200ms  10kHz → 5kHz        Pitch (high)
-−8      0.200ms → 0.400ms  5kHz → 2.5kHz       Pitch (high-mid)
-−7      0.400ms → 0.800ms  2.5kHz → 1.25kHz    Pitch (mid-high)
-−6      0.800ms → 1.600ms  1.25kHz → 625Hz     Pitch (mid)
-−5      1.600ms → 3.200ms  625Hz → 312Hz       Pitch (mid-low)
-−4      3.200ms → 6.250ms  312Hz → 160Hz       Pitch (low-mid)
-−3      6.250ms → 12.500ms 160Hz → 80Hz        Pitch (low)
-−2      12.500ms → 25ms    80Hz → 40Hz         Pitch (very low)
-−1      25ms → 50ms        40Hz → 20Hz         Pitch (sub)
- 0      50ms               20Hz                TEMPORAL-PLACE LIMEN (AH)
+−10     0.038ms → 0.076ms  26.4kHz → 13.2kHz   Upper Auditory Horizon
+−9      0.076ms → 0.151ms  13.2kHz → 6.6kHz    Pitch (high)
+−8      0.151ms → 0.302ms  6.6kHz → 3.3kHz     Pitch (high-mid)
+−7      0.302ms → 0.605ms  3.3kHz → 1.65kHz    Pitch (mid-high)
+−6      0.605ms → 1.209ms  1.65kHz → 825Hz     Pitch (mid)
+−5      1.209ms → 2.419ms  825Hz → 413Hz       Pitch (mid-low)
+−4      2.419ms → 4.838ms  413Hz → 206Hz       Pitch (low-mid)
+−3      4.838ms → 9.675ms  206Hz → 103Hz       Pitch (low)
+−2      9.675ms → 19.35ms  103Hz → 51.6Hz      Pitch (very low)
+−1      19.35ms → 38.7ms   51.6Hz → 25.8Hz     Pitch (sub)
+ 0      38.7ms             25.8Hz              TEMPORAL-PLACE LIMEN (AH)
 ```
 
 The full audible pitch range is contained within Metric DuPeriods −10 to 0.
@@ -140,16 +140,16 @@ an explicit coordinate address relative to the Temporal-Place Limen anchor.
 
 ```
 Offset  Period range          Approximate BPM   Domain
-+1      50ms → 100ms          600+ BPM          Fast subdivision
-+2      100ms → 200ms         300–600 BPM       Subdivision
-+3      200ms → 400ms         150–300 BPM       Fast tempo
-+4      400ms → 800ms         75–150 BPM        Tempo
-+5      800ms → 1600ms        37–75 BPM         Slow tempo
-+6      1600ms → 3200ms       19–37 BPM         Bar / slow bar
-+7      3200ms → 6400ms       —                 Phrase
-+8      6400ms → 12800ms      —                 Section boundary
-+9      12800ms → 25600ms     —                 Long section
-+10     25600ms → 51200ms     —                 Movement boundary
++1      38.7ms → 77.4ms       1550–775 BPM      Fast subdivision
++2      77.4ms → 154.8ms      775–388 BPM       Subdivision
++3      154.8ms → 309.6ms     388–194 BPM       Fast tempo
++4      309.6ms → 619.2ms     194–97 BPM        Tempo
++5      619.2ms → 1238.4ms    97–48 BPM         Slow tempo
++6      1238.4ms → 2476.8ms   48–24 BPM         Bar / slow bar
++7      2476.8ms → 4953.6ms   —                 Phrase
++8      4953.6ms → 9907.2ms   —                 Section boundary
++9      9907.2ms → 19814.4ms  —                 Long section
++10     19814.4ms → 39628.8ms —                 Movement boundary
 ```
 
 ## Solfège positions within a metric DuPeriod
@@ -159,25 +159,25 @@ the 12-TET period-length ratios in exactly the same way they name
 frequency ratios in pitch space. The Do of any band is its floor period;
 the Do of the next band (one octave up) is its ceiling.
 
-For Metric DuPeriod +4 (400ms → 800ms, the comfortable tempo range):
+For Metric DuPeriod +4 (309.6ms → 619.2ms, the comfortable tempo range):
 
 ```
-Do   400ms   (~150 BPM)   — DuPeriod floor
-Ra   423ms
-Re   449ms
-Me   476ms
-Mi   504ms
-Fa   533ms
-Fi   565ms                — rhythmic tritone (maximum metric tension)
-So   599ms   (~100 BPM)   — 3:2 ratio above floor
-Le   635ms
-La   672ms
-Te   712ms
-Ti   755ms
-Do   800ms   (~75 BPM)    — DuPeriod ceiling / next DuPeriod floor
+Do   309.6ms   (~194 BPM)   — DuPeriod floor
+Ra   327.3ms
+Re   347.5ms
+Me   368.5ms
+Mi   390.1ms
+Fa   412.8ms
+Fi   437.4ms                — rhythmic tritone (maximum metric tension)
+So   464.4ms   (~129 BPM)   — 3:2 ratio above floor
+Le   491.5ms
+La   520.2ms
+Te   551.2ms
+Ti   584.5ms
+Do   619.2ms   (~97 BPM)    — DuPeriod ceiling / next DuPeriod floor
 ```
 
-The So position at approximately 600ms / 100 BPM is not incidental — it
+The So position at approximately 464ms / 129 BPM is not incidental — it
 is the 3-prime landmark, the same structural position as the perfect fifth
 in pitch space, arising from the same 3:2 ratio relationship.
 
@@ -270,13 +270,13 @@ determined by memory, attention, and biological oscillation).
 
 | Offset range | Period range  | Landmark | Source |
 |-------------|---------------|----------|--------|
-| 0           | 50ms          | Temporal-Place Limen — pitch/rhythm phase transition | Auditory neurology |
-| +1 to +2    | 50–200ms      | Subdivision — felt as texture rather than pulse | Temporal resolution |
-| +3 to +4    | 200–800ms     | Beat — primary pulse; comfortable tempo range | Motor entrainment |
-| +5 to +6    | 800–3200ms    | Bar — metric grouping above beat | Rhythmic cognition |
-| +7          | 3200–6400ms   | Working memory ceiling — ~4–8 seconds | Auditory working memory |
-| +9 to +10   | 12800–51200ms | Gestalt boundary — ~15–50 seconds; expectation resets | Music cognition |
-| −10         | 0.05–0.1ms    | Upper Auditory Horizon (UTPL) — 20kHz upper pitch limit | Auditory neurology |
+| 0           | ~38.7ms       | Temporal-Place Limen — pitch/rhythm phase transition | Auditory neurology |
+| +1 to +2    | ~38.7–155ms   | Subdivision — felt as texture rather than pulse | Temporal resolution |
+| +3 to +4    | ~155–619ms    | Beat — primary pulse; comfortable tempo range | Motor entrainment |
+| +5 to +6    | ~619–2477ms   | Bar — metric grouping above beat | Rhythmic cognition |
+| +7          | ~2477–4954ms  | Working memory ceiling — ~4–8 seconds | Auditory working memory |
+| +9 to +10   | ~9907–39629ms | Gestalt boundary — ~15–50 seconds; expectation resets | Music cognition |
+| −10         | ~0.038–0.076ms | Upper Auditory Horizon (UTPL) — 26.4kHz upper pitch limit | Auditory neurology |
 
 ## Diacritic precision across the range
 

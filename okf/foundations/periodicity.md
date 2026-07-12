@@ -13,7 +13,7 @@ tags:
   - tala
   - overtone
   - prime-period-theory
-timestamp: 2026-06-20
+timestamp: 2026-07-13
 ---
 
 # Periodicity
@@ -36,14 +36,14 @@ for this; this document develops periodicity itself as the unifying concept.
 The human auditory system does not perceive all periodicities the same way.
 Roughly:
 
-- **Below ~20Hz** (slower than 20 repetitions per second): the ear tracks
+- **Below ~25.8Hz** (slower than ~26 repetitions per second): the ear tracks
   individual events. This is heard as **rhythm**.
-- **Above ~20Hz**: the ear fuses repetitions into a continuous sensation.
+- **Above ~25.8Hz**: the ear fuses repetitions into a continuous sensation.
   This is heard as **pitch**.
 
 This is a perceptual boundary, not a structural one. A rhythmic pattern
-smoothly accelerated past 20Hz becomes a pitch; a sustained pitch smoothly
-slowed down below 20Hz becomes a rhythm. The structure — a repeating
+smoothly accelerated past ~25.8Hz becomes a pitch; a sustained pitch smoothly
+slowed down below ~25.8Hz becomes a rhythm. The structure — a repeating
 period — does not change at the boundary. Only the listener's mode of
 perceiving it does.
 
