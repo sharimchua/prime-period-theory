@@ -71,7 +71,7 @@ A 75 BPM pulse has a period of 800 ms, aligning with DP+4.
 
 When tracking a live performance, the tempo is rarely perfectly static. The rate at which the window stack rescales over linear time is a measurable quantity known as **window change velocity**.
 
-Window change velocity is a perceptual model variable representing how quickly a listener updates their internal reference frame. It is **not** an arbitrary free parameter. Instead, it is bounded by physiological and cognitive constraints (perceptual inertia). A listener cannot instantaneously update their temporal expectation framework; it requires a few cycles of evidence to pull the internal tracking mechanism to the new tempo. Modeling window change velocity must respect these principled bounds.
+Window change velocity is a perceptual model variable representing how quickly a listener updates their internal reference frame. It is **not** an arbitrary free parameter. Instead, it is bounded by physiological and cognitive constraints (perceptual inertia). A listener cannot instantaneously update their temporal expectation framework; it requires a few cycles of evidence to pull the internal tracking mechanism to the new tempo. Modelling window change velocity must respect these principled bounds.
 
 ## Analytical tool vs. Perceptual model
 
