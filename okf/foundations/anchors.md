@@ -76,7 +76,7 @@ The table below specifies each anchor as an exact Base-mode path. Cents are prec
 ### Solfège frames and the diacritic space
 
 Dividing the canonical resolution constant `N = 27,720` (see
-[Prime Lattice](prime-lattice.md#the-canonical-resolution-constant))
+[Prime Lattice](../foundations/prime-lattice.md#the-canonical-resolution-constant))
 into twelve equal Solfège frames — the evenly spaced divisions of the
 octave described above — gives exactly:
 
@@ -107,7 +107,7 @@ depth in a single prime than the local 2,310-point budget carries, and
 correspondingly draw on the "excess" 12-fold structure that separates
 `27,720` from its radical — i.e., they reach outside a single Solfège
 frame. This is the same distinction already drawn in
-[Prime Lattice](prime-lattice.md#where-real-commas-belong-once-reel-mode-is-available):
+[Prime Lattice](../foundations/prime-lattice.md#where-real-commas-belong-once-reel-mode-is-available):
 squarefree, single-frame adjustments are what the local diacritic space
 is for; the classic higher-power commas are a cross-frame phenomenon,
 consistent with their being a cross-route (not single-target) fact
@@ -129,7 +129,7 @@ This table is the exact bridge between the continuous period space and the discr
  
 - [Period](period.md) — the general model this page's local-anchor
   concept is a pitch-domain instance of
-- [Prime Lattice](prime-lattice.md) — the comma-sequence path system that
+- [Prime Lattice](../foundations/prime-lattice.md) — the comma-sequence path system that
   navigates and refines position relative to these anchors, and why it
   cannot exactly reproduce them
 - [Prime Period Diacritics — Overview](../ppd/index.md) — the writing system

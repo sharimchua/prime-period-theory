@@ -478,7 +478,7 @@ underlying structures are not the same:
 - [Anchors and Prime Lattice Coordinates](anchors.md)
   — how the 12 solfège anchors are independently defined via log2(ratio),
   and how comma-sequence paths relate to them as refinements
-- [Prime Families](prime-families.md) — the five generators and their
+- [Prime Families](../foundations/prime-families.md) — the five generators and their
   perceptual properties
 - [Periodicity](periodicity.md) — the underlying phenomenon the lattice
   describes

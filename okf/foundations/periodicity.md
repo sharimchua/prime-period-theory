@@ -112,7 +112,7 @@ fundamental pitch sound different because they distribute amplitude
 differently across this stack of periods, not because pitch itself differs.
 
 See [Timbre](../domains/timbre.md) for the full development of this, and
-[Prime Families](prime-families.md) for how the integer multiples of the
+[Prime Families](../foundations/prime-families.md) for how the integer multiples of the
 harmonic series decompose into prime-generated families.
 
 ## Periodicity as the common analytical object
@@ -135,7 +135,7 @@ for rhythm, and a different one for orchestration.
 
 - [Amplitude and Time](amplitude-time.md) — the physical grounding for periodicity
 - [Period](period.md) — the formal bounded-space object that captures one instance of a periodic cycle
-- [Prime Families](prime-families.md) — how periods relate to one another via prime ratios
+- [Prime Families](../foundations/prime-families.md) — how periods relate to one another via prime ratios
 - [Rhythm](../domains/rhythm.md) — periodicity at the macro scale
 - [Pitch](../domains/pitch.md) — periodicity at the micro scale
 - [Timbre](../domains/timbre.md) — periodicity within a single sound's spectrum

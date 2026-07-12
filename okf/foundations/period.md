@@ -132,12 +132,12 @@ relationships are Base or Reel differ per domain.
 
 - [Periodicity](periodicity.md) — the underlying physical phenomenon
   that a Period formalises as a bounded coordinate space
-- [Prime Families](prime-families.md) — the prime-generated ratio
+- [Prime Families](../foundations/prime-families.md) — the prime-generated ratio
   relationships that operate within and between Periods
 - [Anchors and Prime Lattice Coordinates](anchors.md) — the pitch-domain
   instance of this model: a DuReel-typed octave and its twelve solfège
   Anchors
-- [Prime Lattice](prime-lattice.md) — the Base/Reel coordinate-mode
+- [Prime Lattice](../foundations/prime-lattice.md) — the Base/Reel coordinate-mode
   distinction as it applies to comma-sequence navigation specifically
 - [Metric DuPeriod](../reference/metric-duperiod.md) — the timescale
   axis, understood as a chain of DuReel-typed Periods anchored at

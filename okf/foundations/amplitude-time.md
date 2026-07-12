@@ -158,7 +158,7 @@ consequences:
 ## See also
 
 - [Periodicity](periodicity.md) — the unifying property across all scales
-- [Prime Families](prime-families.md) — the classification of ratio relationships
+- [Prime Families](../foundations/prime-families.md) — the classification of ratio relationships
 - [Pitch](../domains/pitch.md) — amplitude at the micro scale
 - [Rhythm](../domains/rhythm.md) — amplitude at the macro scale
 - [Timbre](../domains/timbre.md) — amplitude distribution across the overtone series

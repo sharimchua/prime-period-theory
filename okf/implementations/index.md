@@ -57,6 +57,6 @@ as reference implementations of the applications layer.
 
 - [Component Philosophy](../applications/component-philosophy.md) —
   the design principles governing canonical implementations
-- [Applications](../applications/index.md) — the tool philosophy layer
-- [Harmonic Geometry](harmonic-geometry.md) — detailed entry
+- Applications — the tool philosophy layer
+- Harmonic Geometry — detailed entry
 - [PPT Components](ppt-components.md) — detailed entry
