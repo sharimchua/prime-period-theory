@@ -52,11 +52,11 @@ The physical process is identical. Only the timescale differs.
 ## The perceptual boundary
 
 The human auditory system transitions between perceiving periodicity as
-**rhythm** and perceiving it as **pitch** at approximately 20Hz — twenty
-repetitions per second.
+**rhythm** and perceiving it as **pitch** at approximately 25.8Hz — roughly
+twenty-six repetitions per second.
 
-Below 20Hz: the ear tracks individual events; the pattern is rhythm.
-Above 20Hz: the ear fuses events into a continuous tone; the pattern is pitch.
+Below ~25.8Hz: the ear tracks individual events; the pattern is rhythm.
+Above ~25.8Hz: the ear fuses events into a continuous tone; the pattern is pitch.
 
 This boundary is a feature of human perception, not of the underlying physics.
 The oscillating string and the recurring drum strike are doing the same thing.

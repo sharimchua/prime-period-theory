@@ -3,7 +3,7 @@ type: concept
 title: Temporal-Place Limen
 description: >
   The Temporal-Place Limen (colloquially: Auditory Horizon) is the perceptual
-  phase transition at approximately 20Hz / 50ms period, at which periodic
+  phase transition at approximately 25.8Hz / 38.7ms period, at which periodic
   signals cross the boundary between rhythmic and pitched perception. It
   serves as the anchor point — Metric DuPeriod 0 — for PPT's unified
   period-length coordinate system, grounded in human auditory neurology
@@ -15,7 +15,7 @@ tags:
   - metric-duperiod
   - psychoacoustics
   - prime-period-theory
-timestamp: 2026-07-01
+timestamp: 2026-07-13
 ---
 
 # Temporal-Place Limen
@@ -23,13 +23,13 @@ timestamp: 2026-07-01
 ## What it is
 
 The **Temporal-Place Limen** (colloquially: the **Auditory Horizon**) is the
-perceptual phase transition at approximately 20Hz — a period length of 50ms
+perceptual phase transition at approximately 25.8Hz — a period length of 38.7ms
 — at which periodic signals cross the boundary between two distinct modes
 of human auditory perception: rhythm and pitch.
 
-Below 20Hz, the ear tracks individual events. The repeating pattern is
+Below ~25.8Hz, the ear tracks individual events. The repeating pattern is
 perceived as **rhythm** — discrete pulses with felt intervals between them.
-Above 20Hz, the ear fuses repetitions into a continuous sensation. The
+Above ~25.8Hz, the ear fuses repetitions into a continuous sensation. The
 pattern is perceived as **pitch** — a sustained frequency with a
 recognisable tonal character.
 
@@ -42,7 +42,8 @@ intermediate perceptual states:
 - **Roughness** (~20–40Hz): fusion beginning, pitch emerging but unstable,
   perceived as a coarse or buzzing tone
 
-The Temporal-Place Limen is defined at 20Hz as the midpoint of this transition
+The Temporal-Place Limen is provisionally defined at ~25.8Hz (triangulated
+via [Local Closure](local-closure.md)) as the midpoint of this transition
 zone — the point at which perceptual mode is most evenly balanced between
 rhythm and pitch, and therefore the most structurally meaningful single
 value to use as an anchor.
@@ -82,9 +83,9 @@ described, not a convenient approximation of it.
 
 ## Relationship to conventional measures
 
-The Temporal-Place Limen can be expressed in conventional units — 20Hz,
-50ms period, 1200 BPM — but these are **interface translations**, not
-primary descriptions. The theoretical status of 20Hz as an anchor does
+The Temporal-Place Limen can be expressed in conventional units — 25.8Hz,
+38.7ms period, ~1548 BPM — but these are **interface translations**, not
+primary descriptions. The theoretical status of ~25.8Hz as an anchor does
 not depend on seconds; the second is available as a translation layer
 when interfacing with conventional tools, instruments, and notation
 systems.
@@ -104,15 +105,14 @@ limit of human pitch perception, also determined by basilar membrane
 resolution. This is designated the **Upper Temporal-Place Limen**
 (colloquially: the **Upper Auditory Horizon**).
 
-The full audible pitch range spans from the Temporal-Place Limen (20Hz) to
+The full audible pitch range spans from the Temporal-Place Limen (~25.8Hz) to
 the Upper Temporal-Place Limen (20kHz). This range is:
 
 ```
-log2(20000 / 20) = log2(1000) ≈ 9.97 octaves
+log2(20000 / 25.8) = log2(775.19) ≈ 9.6 octaves
 ```
 
-Approximately **10 octaves** — a near-exact decade in base-2 logarithmic
-space. This spans Metric DuPeriods −10 to 0 in PPT's unified coordinate
+Approximately **9.6 octaves** — spanning Metric DuPeriods −9.6 to 0 in PPT's unified coordinate
 system. See [Metric DuPeriod](../reference/metric-duperiod.md) for the full coordinate
 definition.
 

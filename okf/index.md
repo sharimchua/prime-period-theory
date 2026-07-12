@@ -13,7 +13,7 @@ tags:
   - polyrhythm
   - microtonality
   - 31-edo
-timestamp: 2026-07-11
+timestamp: 2026-07-13
 ---
 
 # Prime Period Theory
@@ -134,6 +134,7 @@ amplitude or effect envelopes.
   gradient across the timescale; Temporal-Place Limen; Metric Induction Limen;
   cross-domain tolerance budget; cultural transmission asymmetry
 - [Temporal-Place Limen](perception/temporal-place-limen.md) — the anchor definition and the boundary between pitch and rhythm
+- [Local Closure & Residue Triangulation](perception/local-closure.md) — a method for deriving a period's anchor from empirical edge behavior of child periods
 - [Coarse-Graining and Grid Reduction](perception/coarse-graining-and-grid-reduction.md) — snapping coordinates from a finer lattice onto a coarser one, enharmonic collapse, and reduction origins
 
 ### Reference

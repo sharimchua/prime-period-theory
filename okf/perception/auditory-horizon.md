@@ -22,14 +22,14 @@ tags:
   - psychoacoustics
   - cultural-transmission
   - prime-period-theory
-timestamp: 2026-07-01
+timestamp: 2026-07-13
 ---
 
 # Auditory Horizon and Agency
 
 ## The Temporal-Place Limen as one boundary among two
 
-The [Temporal-Place Limen](temporal-place-limen.md) — approximately 20Hz,
+The [Temporal-Place Limen](temporal-place-limen.md) — approximately 25.8Hz,
 the lower bound of pitch perception — is already established in PPT as the
 boundary between rhythm and pitch. Below it, the ear tracks individual events;
 above it, it fuses them into continuous tone. This is a perceptual boundary,
@@ -59,8 +59,8 @@ The Temporal-Place Limen and the Metric Induction Limen together define a
 
 | Zone | Approx. period | Perceptual character |
 |---|---|---|
-| Below Temporal-Place Limen | < 50ms (~20Hz+) | Fused into pitch; no metric tracking |
-| Temporal-Place Limen transition | ~50–200ms | Boundary zone; fast rhythm approaching pitch |
+| Below Temporal-Place Limen | < 38.7ms (~25.8Hz+) | Fused into pitch; no metric tracking |
+| Temporal-Place Limen transition | ~38.7–200ms | Boundary zone; fast rhythm approaching pitch |
 | Full-agency zone | ~200ms–2s | Pulse perceptible; grouping freely chosen |
 | Metric Induction Limen transition | ~2–4s | Pulse weakening; grouping cues external |
 | Above Metric Induction Limen | > 4s per beat | Gesture and phrase; metric agency absent |
