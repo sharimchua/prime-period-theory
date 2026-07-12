@@ -17,7 +17,7 @@ tags:
   - rhythm
   - pitch
   - prime-period-theory
-timestamp: 2026-07-08
+timestamp: 2026-07-13
 revision: "2026-07-10: cross-referenced the general Period model
   (foundations/period.md) this file's Period/Anchor mechanics are a
   timescale-specific instance of"
