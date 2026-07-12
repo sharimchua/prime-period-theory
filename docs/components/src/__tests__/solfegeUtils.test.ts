@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { isValidSolfegeToken, parseSolfegeToken } from '../solfegeUtils.js';
+import { isValidSolfegeToken, parseSolfegeToken, tokenizePhrase, expandRhythmPhrase } from '../solfegeUtils.js';
 
 describe('solfegeUtils', () => {
   describe('isValidSolfegeToken', () => {
@@ -156,6 +156,106 @@ describe('solfegeUtils', () => {
         solfege: 'Do',
         diacritic: ''
       });
+    });
+  });
+
+  describe('tokenizePhrase', () => {
+    it('should parse padding', () => {
+      expect(tokenizePhrase('..')).toEqual([{ type: 'padding', paddingLength: 2 }]);
+    });
+
+    it('should parse hold', () => {
+      expect(tokenizePhrase('-')).toEqual([{ type: 'hold' }]);
+    });
+
+    it('should parse simple glyphs', () => {
+      expect(tokenizePhrase('Do')).toEqual([
+        { type: 'glyph', solfege: 'Do', diacritic: '', modifiers: [], raw: 'Do', octaveOffset: 0 }
+      ]);
+    });
+
+    it('should parse octave offsets from superscript', () => {
+      expect(tokenizePhrase('Do^Ra')).toEqual([
+        { type: 'glyph', solfege: 'Do', diacritic: '', modifiers: [], raw: 'Do^Ra', octaveOffset: 1 }
+      ]);
+      expect(tokenizePhrase('Do^Ti')).toEqual([
+        { type: 'glyph', solfege: 'Do', diacritic: '', modifiers: [], raw: 'Do^Ti', octaveOffset: -1 }
+      ]);
+    });
+
+    it('should parse modifiers', () => {
+      expect(tokenizePhrase('Do [Mi, So]')).toEqual([
+        {
+          type: 'glyph',
+          solfege: 'Do',
+          diacritic: '',
+          modifiers: [
+            { type: 'glyph', solfege: 'Mi', diacritic: '', octaveOffset: 0, raw: 'Mi' },
+            { type: 'glyph', solfege: 'So', diacritic: '', octaveOffset: 0, raw: 'So' }
+          ],
+          raw: 'Do',
+          octaveOffset: 0
+        }
+      ]);
+    });
+
+    it('should handle invalid modifiers', () => {
+      expect(tokenizePhrase('Do [XYZ]')).toEqual([
+        {
+          type: 'glyph',
+          solfege: 'Do',
+          diacritic: '',
+          modifiers: [],
+          raw: 'Do',
+          octaveOffset: 0
+        }
+      ]);
+    });
+
+    it('should handle invalid tokens', () => {
+      expect(tokenizePhrase('XYZ')).toEqual([]);
+    });
+
+  });
+
+  describe('expandRhythmPhrase', () => {
+    it('should promote Do to Dox', () => {
+      const tokens = tokenizePhrase('Do Re');
+      const expanded = expandRhythmPhrase(tokens);
+      expect(expanded[0].diacritic).toBe('axis');
+      expect(expanded[0].raw).toBe('Dox');
+    });
+
+    it('should promote Di to Dix', () => {
+      const tokens = tokenizePhrase('Di Re');
+      const expanded = expandRhythmPhrase(tokens);
+      expect(expanded[0].diacritic).toBe('axis');
+      expect(expanded[0].raw).toBe('Dix');
+    });
+
+    it('should expand Dox shorthand', () => {
+      // Shorthand: Dox La -> Dox La Re So
+      const tokens = tokenizePhrase('Dox La');
+      // For testing, mock Dox manually since tokenizer might not add axis unless token is exactly Dox
+      // actually tokenizePhrase will see Dox as Do + x -> axis
+      const expanded = expandRhythmPhrase(tokens);
+
+      expect(expanded).toEqual([
+        { type: 'glyph', solfege: 'Do', diacritic: 'axis', modifiers: [], raw: 'Dox', octaveOffset: 0 },
+        { type: 'glyph', solfege: 'La', diacritic: '', modifiers: [], raw: 'La', octaveOffset: 0 },
+        { type: 'glyph', solfege: 'Re', diacritic: '', isImplicit: true, modifiers: [], raw: 'Re', octaveOffset: 0 },
+        { type: 'glyph', solfege: 'So', diacritic: '', isImplicit: true, modifiers: [], raw: 'So', octaveOffset: 0 }
+      ]);
+    });
+
+    it('should return empty array when input is empty', () => {
+      expect(expandRhythmPhrase([])).toEqual([]);
+    });
+
+    it('should leave unknown sequences intact', () => {
+       const tokens = tokenizePhrase('Re Mi');
+       const expanded = expandRhythmPhrase(tokens);
+       expect(expanded).toEqual(tokens);
     });
   });
 });
