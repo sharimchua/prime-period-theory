@@ -10,7 +10,7 @@ tags:
   - prime-lattice
   - comma
   - prime-period-theory
-timestamp: 2026-07-14
+timestamp: 2026-07-07
 ---
 
 # Path Equivalence and Confluence
