@@ -19,7 +19,7 @@ tags:
   - comma
   - microtonality
   - lattice
-timestamp: 2026-07-11
+timestamp: 2026-07-13
 revision: "2026-07-10 (rev 3): introduced Base/Reel as two named coordinate
   modes on the same lattice; scoped the existing 'paths are rational, JI is
   logarithmic' claim to Base mode specifically, since Reel-mode paths reach
@@ -496,3 +496,4 @@ underlying structures are not the same:
   relationships in rhythmic terms
 - [Path Equivalence and Confluence](../extended/path-equivalence.md) — how different paths
   can incidentally resolve to the same point
+- [Prime Lattice Profiles](../extended/prime-lattice-profiles.md) — an analytical approach for feature extraction and interharmonic distance using prime lattice paths

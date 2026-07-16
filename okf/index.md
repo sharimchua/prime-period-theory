@@ -149,6 +149,7 @@ amplitude or effect envelopes.
   visual vs auditory classification; PPT as shared grammar and vocabulary
 
 ### Extended
+- [Prime Harmonic Profiles](extended/prime-harmonic-profiles.md) — feature extraction methodology comparing pitches by full combinatorial sets of partials to determine prime lattice complexity
 - [Metric DuPeriod — Extended Range](extended/metric-duperiod-extended.md) — the stratospheric positive metric DuPeriod space and biological periodicity
 - [Geometric Amplitude Ratios](extended/geometric-amplitude-ratios.md) — inquiry into prime-number governance of amplitude differences
 - [Amplitude Trajectories](extended/amplitude-trajectories.md) — amplitude as change over Metric DuPeriod time
