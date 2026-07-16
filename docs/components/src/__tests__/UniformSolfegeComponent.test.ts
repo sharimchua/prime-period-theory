@@ -3,6 +3,7 @@ import { UniformSolfegeComponent } from '../UniformSolfegeComponent.js';
 
 describe('UniformSolfegeComponent', () => {
   beforeEach(() => {
+    localStorage.setItem('ppt-show-solfege-glyphs', 'true');
     // Component already registered when module loaded
   });
 
