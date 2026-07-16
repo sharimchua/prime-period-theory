@@ -1,0 +1,88 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="PPT Applications">
+  <div style="max-width: 900px; margin: 0 auto; padding: 2rem 1rem;">
+    <h1>PPT Applications</h1>
+
+    <p>These are standalone web applications built using the Prime Period Theory component ecosystem. They showcase full-scale implementations of theoretical concepts, analytical tooling, and compositional environments.</p>
+
+    <div class="showcase-grid">
+      <a href="/applications/designer" class="showcase-card">
+        <div class="card-thumb" style="background: linear-gradient(135deg, var(--brand-primary), var(--brand-accent));">
+          <span style="font-size: 3rem;">✨</span>
+        </div>
+        <div class="card-content">
+          <h3>Designer Studio</h3>
+          <p>A drag-and-drop workspace to visually compose and configure PPT components.</p>
+        </div>
+      </a>
+
+      <a href="/applications/harmonic-profiler" class="showcase-card">
+        <div class="card-thumb" style="background: linear-gradient(135deg, #4f46e5, #ec4899);">
+          <span style="font-size: 3rem;">📊</span>
+        </div>
+        <div class="card-content">
+          <h3>Harmonic Profiler</h3>
+          <p>Analyse the harmonic power of prime families and partial depths across multi-tone chords.</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .showcase-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 4rem;
+  }
+  .showcase-card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid var(--border-color, #e2e8f0);
+    border-radius: 8px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  html.dark .showcase-card {
+    background: #1e293b;
+    border-color: #334155;
+  }
+  .showcase-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+  .card-thumb {
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid var(--border-color, #e2e8f0);
+  }
+  html.dark .card-thumb {
+    border-bottom-color: #334155;
+  }
+  .card-content {
+    padding: 1.5rem;
+  }
+  .card-content h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.25rem;
+  }
+  .card-content p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #64748b;
+    line-height: 1.5;
+  }
+  html.dark .card-content p {
+    color: #94a3b8;
+  }
+</style>

@@ -1,0 +1,30 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<script>
+  import '../../../components/src/index.ts';
+</script>
+
+<Layout title="Prime Harmonic Profiler" maxWidth="100%" hideHeader={true}>
+  <ppt-harmonic-profiler-app></ppt-harmonic-profiler-app>
+</Layout>
+
+<style is:global>
+  /* Override default main layout to allow full-width app shell */
+  body {
+    overflow: hidden;
+  }
+  
+  main {
+    padding: 0 !important;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Dynamically adjust height to exactly fit the remaining space below header */
+  header {
+    flex-shrink: 0;
+  }
+</style>

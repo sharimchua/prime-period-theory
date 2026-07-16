@@ -1,0 +1,53 @@
+---
+import ComponentLayout from '../../layouts/ComponentLayout.astro';
+---
+
+<ComponentLayout title="PPT Applications">
+  <div class="component-demo">
+    <h1>PPT Applications Library</h1>
+    <p>The <code>&lt;ppt-application&gt;</code> component provides a unified shell for standalone Prime Period Theory tools. It encapsulates the standard branding, typography, color palette, and global user preferences like the Solfège/Glyph toggle and Dark/Light Mode.</p>
+    
+    <h2>Application Layout (<code>&lt;ppt-application&gt;</code>)</h2>
+    <p>Wrap any full-page PPT tool inside this component to instantly inherit the design system.</p>
+
+    <div class="demo-box-wrapper">
+      <div class="demo-box resizable" style="padding: 0; border: none; overflow: hidden; position: relative;">
+        <ppt-application app-title="Demo Application">
+          <div style="padding: 2rem;">
+            <h2>Hello, World!</h2>
+            <p>This content is seamlessly injected into the application shell.</p>
+            <p>Try toggling the themes and Solfège glyphs in the header above!</p>
+            <br/>
+            <p>Current Solfège: <ppt-uniform-solfege solfege="Do"></ppt-uniform-solfege> <ppt-uniform-solfege solfege="Re"></ppt-uniform-solfege> <ppt-uniform-solfege solfege="Mi"></ppt-uniform-solfege></p>
+          </div>
+        </ppt-application>
+      </div>
+    </div>
+
+    <details class="code-panel">
+      <summary>View Source</summary>
+      <button class="copy-btn">Copy</button>
+      <pre><code>&lt;ppt-application app-title="My Cool Tool"&gt;
+  &lt;div class="my-tool-layout"&gt;
+    &lt;!-- Your app content goes here --&gt;
+  &lt;/div&gt;
+&lt;/ppt-application&gt;</code></pre>
+    </details>
+
+    <h3 style="margin-top: 2rem;">Attributes</h3>
+    <ul>
+      <li><code>app-title</code>: The name of the application displayed in the header next to the logo. Defaults to "PPT Application".</li>
+    </ul>
+
+    <h3 style="margin-top: 2rem;">CSS Variables Provided</h3>
+    <p>Child elements can utilize these CSS variables to maintain visual consistency:</p>
+    <ul>
+      <li><code>var(--bg-color)</code>: The main background color.</li>
+      <li><code>var(--panel-bg)</code>: Background color for panels and cards.</li>
+      <li><code>var(--border-color)</code>: Subtle borders for dividers and inputs.</li>
+      <li><code>var(--text-color)</code>: Primary text color.</li>
+      <li><code>var(--brand-primary)</code>: The core PPT brand red.</li>
+    </ul>
+
+  </div>
+</ComponentLayout>

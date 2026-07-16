@@ -39,13 +39,21 @@ function isActive(path: string) {
 
       <nav class="component-tree">
         <details open>
+          <summary>PPT Applications</summary>
+          <ul>
+            <li><a href={`${base}components/applications`}>App Layout Library</a></li>
+            <li><a href={`${base}components/designer`}>Designer Studio</a></li>
+            <li><a href={`${base}components/showcase/harmonic-profiler`}>Harmonic Profiler</a></li>
+          </ul>
+        </details>
+
+        <details open>
           <summary>Showcases</summary>
           <ul>
             <li><a href={`${base}components/showcase/tonal-clock`}>Tonal Clock</a></li>
             <li><a href={`${base}components/showcase/metronome`}>Metronome</a></li>
             <li><a href={`${base}components/showcase/solfege-writer`}>Solfege Writer</a></li>
             <li><a href={`${base}components/showcase/three-layer-coil`}>Three-Layer Coil Editor</a></li>
-            <li><a href={`${base}components/designer`}>Designer Studio</a></li>
           </ul>
         </details>
 
@@ -122,6 +130,13 @@ function isActive(path: string) {
                 <li><a href={`${base}components/geometry#sequencer-component`}>Sequencer</a></li>
               </ul>
             </li>
+          </ul>
+        </details>
+
+        <details open>
+          <summary>Analytical</summary>
+          <ul>
+            <li><a href={`${base}components/analytical#prime-lattice-profiler`}>Prime Lattice Profiler</a></li>
           </ul>
         </details>
       </nav>

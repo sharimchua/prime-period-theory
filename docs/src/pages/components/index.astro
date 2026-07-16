@@ -15,8 +15,35 @@ import ComponentLayout from '../../layouts/ComponentLayout.astro';
     <li><a href="/components/playback"><strong>Playback Components</strong></a>: The Playback Scheduler, Coil Transport, and Tone Voice.</li>
     <li><a href="/components/input"><strong>Input Components</strong></a>: The MIDI Input Bridge and Solfege Text Input.</li>
     <li><a href="/components/geometry"><strong>Geometric Containers</strong></a>: The Period, Period Step, and Sequencer Components.</li>
+    <li><a href="/components/analytical"><strong>Analytical Components</strong></a>: The Prime Lattice Profiler.</li>
     <li><a href="/components/controls"><strong>Interactive Controls & Event Bus</strong></a>: Control Panels, Boolean Toggles, and Integer Inputs that communicate via a shared EventBus.</li>
+    <li><a href="/components/applications"><strong>Application Framework</strong></a>: The Application Layout Shell for consistent multi-panel tooling.</li>
   </ul>
+
+  <h2 id="applications" style="margin-top: 3rem;">PPT Applications</h2>
+  <p>Standalone applications built using the <code>&lt;ppt-application&gt;</code> layout, showcasing full-scale usage of the Prime Period Theory ecosystem.</p>
+
+  <div class="showcase-grid">
+    <a href="/applications/designer" class="showcase-card">
+      <div class="card-thumb" style="background: linear-gradient(135deg, var(--brand-primary), var(--brand-accent));">
+        <span style="font-size: 3rem;">✨</span>
+      </div>
+      <div class="card-content">
+        <h3>Designer Studio</h3>
+        <p>A drag-and-drop workspace to visually compose PPT components.</p>
+      </div>
+    </a>
+
+    <a href="/applications/harmonic-profiler" class="showcase-card">
+      <div class="card-thumb" style="background: linear-gradient(135deg, #4f46e5, #ec4899);">
+        <span style="font-size: 3rem;">📊</span>
+      </div>
+      <div class="card-content">
+        <h3>Harmonic Profiler</h3>
+        <p>Analyse the harmonic power of prime families and partial depths in chords.</p>
+      </div>
+    </a>
+  </div>
 
   <h2 id="showcases" style="margin-top: 3rem;">Compositions & Showcases</h2>
   <p>The true power of these atomic components comes from how they can be composed together. Explore these showcases to see the components in action.</p>
@@ -62,15 +89,7 @@ import ComponentLayout from '../../layouts/ComponentLayout.astro';
       </div>
     </a>
 
-    <a href="/components/designer" class="showcase-card">
-      <div class="card-thumb" style="background: linear-gradient(135deg, var(--brand-primary), var(--brand-accent));">
-        <span style="font-size: 3rem;">✨</span>
-      </div>
-      <div class="card-content">
-        <h3>Designer Studio</h3>
-        <p>A drag-and-drop workspace to visually compose PPT components.</p>
-      </div>
-    </a>
+    <!-- Moved to Applications section -->
   </div>
 
 </ComponentLayout>
