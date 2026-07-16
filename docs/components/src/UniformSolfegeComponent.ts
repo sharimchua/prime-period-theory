@@ -88,17 +88,39 @@ export class UniformSolfegeComponent extends BasePPTComponent {
   }
 
   private _resizeObserver: ResizeObserver | null = null;
+  private _renderMode: 'glyph' | 'text' = 'glyph';
 
   override connectedCallback() {
     super.connectedCallback();
+    this.updateRenderMode();
     this.render();
     this.setupResizeObserver();
+    window.addEventListener('ppt-solfege-preference-changed', this.handlePreferenceChange);
   }
 
   override disconnectedCallback() {
     super.disconnectedCallback();
     if (this._resizeObserver) {
       this._resizeObserver.disconnect();
+    }
+    window.removeEventListener('ppt-solfege-preference-changed', this.handlePreferenceChange);
+  }
+
+  private updateRenderMode = () => {
+    // If not set, default to text to be safe, but main site default is often glyphs depending on context.
+    // We'll default to text unless explicitly set to 'true'.
+    const prefs = localStorage.getItem('ppt-show-solfege-glyphs');
+    this._renderMode = prefs === 'true' ? 'glyph' : 'text';
+  }
+
+  private handlePreferenceChange = (e: Event) => {
+    const customEvent = e as CustomEvent;
+    if (customEvent.detail && typeof customEvent.detail.showGlyphs === 'boolean') {
+      this._renderMode = customEvent.detail.showGlyphs ? 'glyph' : 'text';
+      this.render();
+    } else {
+      this.updateRenderMode();
+      this.render();
     }
   }
 
@@ -185,27 +207,51 @@ export class UniformSolfegeComponent extends BasePPTComponent {
 
     const annotationText = solfegeStr;
 
-    let html = `
-      <div class="solfege-container ${annotationAlign !== 'none' ? 'has-annotation' : ''}" style="font-size: ${size};">
-        ${annotationAlign === 'top' ? `<div class="solfege-annotation align-top" style="color: ${annotationColor || defaultColor}; margin-bottom: ${annotationPadding};">${annotationText}</div>` : ''}
-        <div class="solfege-core" style="--glyph-color: ${defaultColor}; ${diacriticColor ? `--diacritic-color: ${diacriticColor};` : ''}">
-          <div class="svg-container" style="transform: rotate(${info.rot}deg);">
-            <div class="base-glyph">${processSvg(info.svg)}</div>
-            ${diacriticSvgs.map(svg => `<div class="diacritic-glyph">${processSvg(svg)}</div>`).join('')}
-          </div>
+    let html = '';
+    
+    if (this._renderMode === 'text') {
+      // In text mode, we output semantic HTML (styled spans/sups)
+      html = `
+        <span class="solfege-text" style="color: ${defaultColor}; font-weight: 600;">
+          ${solfege}
+          ${diacritic ? `<span class="diacritic-text">${diacritic}</span>` : ''}
           ${superscriptObj ? `
-            <div class="superscript-wrapper" style="top: ${superscriptOffsetY}; left: ${superscriptOffsetX};">
+            <sup style="color: ${diacriticColor || defaultColor}; margin-left: 2px;">
               <ppt-uniform-solfege 
                 solfege="${parsed.superscriptStr || ''}" 
                 ${diacriticColor ? `diacritic-color="${diacriticColor}"` : ''}
                 color="${defaultColor}"
               ></ppt-uniform-solfege>
-            </div>
+            </sup>
           ` : ''}
+        </span>
+      `;
+    } else {
+      // Glyph Mode
+      html = `
+        <div class="solfege-container ${annotationAlign !== 'none' ? 'has-annotation' : ''}" style="font-size: ${size};">
+          ${annotationAlign === 'top' ? `<div class="solfege-annotation align-top" style="color: ${annotationColor || defaultColor}; margin-bottom: ${annotationPadding};">${annotationText}</div>` : ''}
+          <div class="solfege-core" style="--glyph-color: ${defaultColor}; ${diacriticColor ? `--diacritic-color: ${diacriticColor};` : ''}">
+            <div class="svg-container" style="transform: rotate(${info.rot}deg);">
+              <div class="base-glyph">${processSvg(info.svg)}</div>
+              ${diacriticSvgs.map(svg => `<div class="diacritic-glyph">${processSvg(svg)}</div>`).join('')}
+            </div>
+            ${superscriptObj ? `
+              <div class="superscript-wrapper" style="top: ${superscriptOffsetY}; left: ${superscriptOffsetX};">
+                <ppt-uniform-solfege 
+                  solfege="${parsed.superscriptStr || ''}" 
+                  ${diacriticColor ? `diacritic-color="${diacriticColor}"` : ''}
+                  color="${defaultColor}"
+                ></ppt-uniform-solfege>
+              </div>
+            ` : ''}
+          </div>
+          ${annotationAlign === 'bottom' ? `<div class="solfege-annotation align-bottom" style="color: ${annotationColor || defaultColor}; margin-top: ${annotationPadding};">${annotationText}</div>` : ''}
         </div>
-        ${annotationAlign === 'bottom' ? `<div class="solfege-annotation align-bottom" style="color: ${annotationColor || defaultColor}; margin-top: ${annotationPadding};">${annotationText}</div>` : ''}
-      </div>
-    `;
+      `;
+    }
+    
+    this.setAttribute('title', solfegeStr);
 
     this.shadowRoot.innerHTML = `
       <style>
@@ -214,6 +260,21 @@ export class UniformSolfegeComponent extends BasePPTComponent {
         :host {
           display: inline-block;
           font-family: inherit;
+          width: auto;
+          height: auto;
+          vertical-align: middle;
+          container-type: normal;
+        }
+
+        .solfege-text {
+          display: inline-block;
+          vertical-align: baseline;
+        }
+
+        .diacritic-text {
+          font-size: 0.75em;
+          opacity: 0.8;
+          margin-left: 1px;
         }
 
         .solfege-container {

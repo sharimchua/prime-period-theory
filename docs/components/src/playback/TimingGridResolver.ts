@@ -1,4 +1,4 @@
-import { ParsedToken } from '../solfegeUtils.js';
+import type { ParsedToken } from '../solfegeUtils.js';
 
 export interface GridOnset {
   timeInSeconds: number;

@@ -179,6 +179,86 @@ export function expandRhythmPhrase(tokens: ParsedToken[]): ParsedToken[] {
       }
     }
   }
-  
   return expanded;
+}
+
+export type ThirdsTuning = 'Tri' | 'Qui' | 'Du';
+export type SeventhsTuning = 'Tri' | 'Sep' | 'Du';
+export type TritoneTuning = 'Undec' | 'Qui' | 'Du';
+
+export interface TuningConfig {
+  thirds: ThirdsTuning; // Affects Thirds and Sixths (e.g. Mi, La)
+  sevenths: SeventhsTuning; // Affects Sevenths (e.g. Te, Ti)
+  tritone: TritoneTuning; // Affects Tritone (e.g. Fi)
+}
+
+/**
+ * Maps a structured array of ParsedTokens into exact mathematical Fractions
+ * based on the provided TuningConfig. 
+ * Note: Diacritics are ignored for this component phase.
+ */
+export function mapTokensToRatios(tokens: ParsedToken[], config: TuningConfig): { label: string, rmult: any }[] {
+  // We cannot import Fraction directly here without risking circular deps or restructuring, 
+  // so we return raw { num, den } objects and the caller (Component) will wrap them in Fraction instances.
+  const results: { label: string, rmult: { num: number, den: number } }[] = [];
+
+  for (const token of tokens) {
+    if (token.type !== 'glyph' || !token.solfege) continue;
+
+    let num = 1;
+    let den = 1;
+
+    // Use a robust switch for the base syllable to apply exact integer tunings
+    switch (token.solfege.toLowerCase()) {
+      case 'do':
+      case 'di': num = 1; den = 1; break; // Origin
+      case 'ra': num = 16; den = 15; break; // Minor 2nd
+      case 're': num = 9; den = 8; break; // Major 2nd
+      case 'ri': num = 75; den = 64; break; // Augmented 2nd
+      case 'me':
+        if (config.thirds === 'Tri') { num = 32; den = 27; } // Pythagorean minor 3rd
+        else { num = 6; den = 5; } // Ptolemaic minor 3rd
+        break;
+      case 'mi':
+        if (config.thirds === 'Tri') { num = 81; den = 64; } // Pythagorean major 3rd
+        else { num = 5; den = 4; } // Ptolemaic major 3rd
+        break;
+      case 'fa': num = 4; den = 3; break; // Perfect 4th
+      case 'fi':
+        if (config.tritone === 'Du') { num = 1.4142135623730951; den = 1; }
+        else if (config.tritone === 'Undec') { num = 11; den = 8; } 
+        else { num = 45; den = 32; } // Qui
+        break;
+      case 'so': num = 3; den = 2; break; // Perfect 5th
+      case 'le':
+        if (config.thirds === 'Tri') { num = 128; den = 81; } // Pythagorean minor 6th
+        else { num = 8; den = 5; } // Ptolemaic minor 6th
+        break;
+      case 'la':
+        if (config.thirds === 'Tri') { num = 27; den = 16; } // Pythagorean major 6th
+        else { num = 5; den = 3; } // Ptolemaic major 6th
+        break;
+      case 'te':
+      case 'se':
+        if (config.sevenths === 'Sep') { num = 7; den = 4; } // Septimal minor 7th
+        else { num = 16; den = 9; } // Pythagorean minor 7th (Tri)
+        break;
+      case 'ti':
+      case 'si':
+        // Standard major 7th is usually 15/8. Pythagorean is 243/128.
+        if (config.sevenths === 'Tri') { num = 243; den = 128; }
+        else { num = 15; den = 8; }
+        break;
+    }
+
+    // Apply octave offsets if requested by diacritic/superscript
+    if (token.octaveOffset) {
+      if (token.octaveOffset > 0) num *= Math.pow(2, token.octaveOffset);
+      else if (token.octaveOffset < 0) den *= Math.pow(2, Math.abs(token.octaveOffset));
+    }
+
+    results.push({ label: token.raw || token.solfege, rmult: { num, den } });
+  }
+
+  return results;
 }

@@ -218,6 +218,14 @@ function initSolfegeToggle() {
     } else {
       undecorateSolfege(mainContent);
     }
+    
+    // Dispatch event so Web Components on the page update automatically
+    const ev = new CustomEvent('ppt-solfege-preference-changed', {
+      detail: { showGlyphs: nextState },
+      bubbles: true,
+      composed: true
+    });
+    window.dispatchEvent(ev);
   });
 }
 

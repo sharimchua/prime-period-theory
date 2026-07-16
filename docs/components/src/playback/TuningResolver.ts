@@ -1,4 +1,5 @@
-import { ParsedToken } from '../solfegeUtils.js';
+import type { ParsedToken } from '../solfegeUtils.js';
+import { TuningConfig } from '../solfegeUtils.js';
 
 export class TuningResolver {
   // Reference: A4 = 440Hz -> C4 is approx 261.63Hz
