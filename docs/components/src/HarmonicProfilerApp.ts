@@ -493,7 +493,6 @@ export class HarmonicProfilerApp extends BasePPTComponent {
         display: flex;
         flex-direction: column;
         transition: transform 0.3s ease-in-out;
-        margin-top: 36px;
       }
       :host(.drawer-collapsed) .add-column-panel {
         position: fixed;
@@ -1109,7 +1108,9 @@ export class HarmonicProfilerApp extends BasePPTComponent {
             </div>
 
             <div class="analysis-panel" id="analysis-panel">
-              <div class="table-toolbar" style="display: flex; justify-content: flex-end; gap: 0.5rem; margin-bottom: 0.5rem;">
+              <div id="table-pager" class="pager-container" style="display: none;"></div>
+              <div class="table-wrapper" id="table-container"></div>
+              <div class="table-toolbar" style="display: flex; justify-content: flex-end; gap: 0.5rem; margin-top: 0.75rem;">
                 <button class="icon-btn" id="compare-mode-btn" title="Compare Cells" style="padding: 4px; cursor: pointer; background: transparent; border: none; color: #64748b; transition: color 0.2s;">
                   <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M9.01 14H2v2h7.01v3L13 15l-3.99-4v3zm5.98-1v-3H22V8h-7.01V5L11 9l3.99 4z"/></svg>
                 </button>
@@ -1120,8 +1121,6 @@ export class HarmonicProfilerApp extends BasePPTComponent {
                   <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M16 1H4C2.9 1 2 1.9 2 3v14h2V3h12V1zm3 4H8C6.9 5 6 5.9 6 7v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
                 </button>
               </div>
-              <div id="table-pager" class="pager-container" style="display: none;"></div>
-              <div class="table-wrapper" id="table-container"></div>
             </div>
 
             <button id="toggle-add-chord-btn">Add Chord</button>
