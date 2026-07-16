@@ -767,6 +767,7 @@ export class HarmonicProfilerApp extends BasePPTComponent {
         border: 1px solid var(--border-color);
         padding: 1rem;
         text-align: center;
+        vertical-align: top;
         width: 140px;
         min-width: 140px;
         max-width: 140px;
