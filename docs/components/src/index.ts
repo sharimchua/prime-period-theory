@@ -44,3 +44,5 @@ import { MidiOrchestrator } from './features/MidiOrchestrator.js';
 MidiOrchestrator.init();
 
 export * from './MidiInputBridgeComponent.js';
+export * from './HarmonicProfilerApp.js';
+export * from './ApplicationLayoutComponent.js';
