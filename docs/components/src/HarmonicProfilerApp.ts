@@ -440,22 +440,13 @@ export class HarmonicProfilerApp extends BasePPTComponent {
         gap: 2rem;
         min-width: 0;
         width: 100%;
+        padding-top: 36px;
         align-items: flex-start;
         justify-content: center;
         transition: all 0.3s ease-in-out;
       }
       .app-container.empty-state .top-row {
         gap: 2rem;
-      }
-      .global-toolbar {
-        display: none;
-        justify-content: flex-end;
-        gap: 0.5rem;
-        margin-bottom: 0.5rem;
-        width: 100%;
-      }
-      .app-container:not(.empty-state) .global-toolbar {
-        display: flex;
       }
       .analysis-panel {
         display: none; /* hidden by default */
@@ -1102,17 +1093,6 @@ export class HarmonicProfilerApp extends BasePPTComponent {
           </div>
 
           <div class="app-container empty-state" id="main-app-container" style="flex: 1; max-width: 100%; overflow-y: auto; transition: max-width 0.3s ease;">
-          <div class="global-toolbar">
-            <button class="icon-btn" id="compare-mode-btn" title="Compare Cells" style="padding: 4px; cursor: pointer; background: transparent; border: none; color: #64748b; transition: color 0.2s;">
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M9.01 14H2v2h7.01v3L13 15l-3.99-4v3zm5.98-1v-3H22V8h-7.01V5L11 9l3.99 4z"/></svg>
-            </button>
-            <button class="icon-btn" id="open-graph-btn" title="Graphical Analysis" style="padding: 4px; cursor: pointer; background: transparent; border: none; color: #64748b;">
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>
-            </button>
-            <button class="icon-btn" id="copy-table-json-btn" title="Copy JSON" style="padding: 4px; cursor: pointer; background: transparent; border: none; color: #64748b;">
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M16 1H4C2.9 1 2 1.9 2 3v14h2V3h12V1zm3 4H8C6.9 5 6 5.9 6 7v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
-            </button>
-          </div>
           <div class="top-row">
             <div class="preamble-panel" id="preamble-left">
               <h1 style="margin-top:0; font-size: 1.5rem; color: var(--brand-primary);">Harmonic Profiles</h1>
@@ -1129,6 +1109,17 @@ export class HarmonicProfilerApp extends BasePPTComponent {
             </div>
 
             <div class="analysis-panel" id="analysis-panel">
+              <div class="table-toolbar" style="display: flex; justify-content: flex-end; gap: 0.5rem; position: absolute; top: -36px; right: 0;">
+                <button class="icon-btn" id="compare-mode-btn" title="Compare Cells" style="padding: 4px; cursor: pointer; background: transparent; border: none; color: #64748b; transition: color 0.2s;">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M9.01 14H2v2h7.01v3L13 15l-3.99-4v3zm5.98-1v-3H22V8h-7.01V5L11 9l3.99 4z"/></svg>
+                </button>
+                <button class="icon-btn" id="open-graph-btn" title="Graphical Analysis" style="padding: 4px; cursor: pointer; background: transparent; border: none; color: #64748b;">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>
+                </button>
+                <button class="icon-btn" id="copy-table-json-btn" title="Copy JSON" style="padding: 4px; cursor: pointer; background: transparent; border: none; color: #64748b;">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M16 1H4C2.9 1 2 1.9 2 3v14h2V3h12V1zm3 4H8C6.9 5 6 5.9 6 7v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                </button>
+              </div>
               <div id="table-pager" class="pager-container" style="display: none;"></div>
               <div class="table-wrapper" id="table-container"></div>
             </div>
