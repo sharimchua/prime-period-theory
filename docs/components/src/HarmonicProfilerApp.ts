@@ -440,7 +440,7 @@ export class HarmonicProfilerApp extends BasePPTComponent {
         gap: 2rem;
         min-width: 0;
         width: 100%;
-        align-items: stretch;
+        align-items: flex-start;
         justify-content: center;
         transition: all 0.3s ease-in-out;
       }
@@ -450,6 +450,7 @@ export class HarmonicProfilerApp extends BasePPTComponent {
       .analysis-panel {
         display: none; /* hidden by default */
         flex-direction: column;
+        position: relative;
         transition: all 0.3s ease-in-out;
       }
       .preamble-panel {
@@ -463,6 +464,23 @@ export class HarmonicProfilerApp extends BasePPTComponent {
       @media (max-width: 1000px) {
         .preamble-panel {
           display: none; /* simple fallback for mobile for now */
+        }
+        .walkthrough-panel.active {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100vw;
+          height: 100vh;
+          z-index: 200;
+          border-radius: 0;
+          background: var(--panel-bg);
+          box-sizing: border-box;
+          overflow-y: auto;
+        }
+        :host(.walkthrough-active) #toggle-add-chord-btn,
+        :host(.walkthrough-active) #toggle-settings-btn,
+        :host(.walkthrough-active) #toggle-guide-btn {
+          display: none !important;
         }
       }
       .add-column-panel {
@@ -485,6 +503,7 @@ export class HarmonicProfilerApp extends BasePPTComponent {
         transform: translateX(100%);
         border-radius: 0;
         box-shadow: -4px 0 15px rgba(0,0,0,0.1);
+        margin-top: 0;
       }
       :host(.drawer-collapsed) .add-column-panel.open {
         transform: translateX(0);
@@ -552,6 +571,7 @@ export class HarmonicProfilerApp extends BasePPTComponent {
 
       .app-container.empty-state .add-column-panel {
         border-radius: 8px;
+        margin-top: 0;
       }
       .add-column-panel h2 {
         margin-top: 0;
@@ -852,6 +872,7 @@ export class HarmonicProfilerApp extends BasePPTComponent {
         right: 0;
         height: 100vh;
         width: 450px;
+        max-width: 100vw;
         background: var(--panel-bg);
         border-left: 1px solid var(--border-color);
         box-shadow: -4px 0 15px rgba(0,0,0,0.1);
@@ -1086,7 +1107,7 @@ export class HarmonicProfilerApp extends BasePPTComponent {
             </div>
 
             <div class="analysis-panel" id="analysis-panel">
-              <div class="table-toolbar" style="display: flex; justify-content: flex-end; gap: 0.5rem; margin-bottom: 0.5rem;">
+              <div class="table-toolbar" style="display: flex; justify-content: flex-end; gap: 0.5rem; position: absolute; top: -2.25rem; right: 0;">
                 <button class="icon-btn" id="compare-mode-btn" title="Compare Cells" style="padding: 4px; cursor: pointer; background: transparent; border: none; color: #64748b; transition: color 0.2s;">
                   <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M9.01 14H2v2h7.01v3L13 15l-3.99-4v3zm5.98-1v-3H22V8h-7.01V5L11 9l3.99 4z"/></svg>
                 </button>
@@ -2739,6 +2760,7 @@ export class HarmonicProfilerApp extends BasePPTComponent {
     if (this._dom.walkthroughPanel) {
       this._dom.walkthroughPanel.classList.add("active");
     }
+    this.classList.add("walkthrough-active");
   }
 
   private closeWalkthrough() {
@@ -2766,6 +2788,7 @@ export class HarmonicProfilerApp extends BasePPTComponent {
     });
 
     this._dom.walkthroughPanel?.classList.remove("active");
+    this.classList.remove("walkthrough-active");
     this.shadowRoot
       ?.querySelectorAll(".heatmap-cell.selected")
       .forEach((el) => el.classList.remove("selected"));
