@@ -15,6 +15,8 @@ export class HarmonicProfilerApp extends BasePPTComponent {
   private _jndCents = 15;
   private _maxDepth = 2;
   private _sigmaMultiplier = 3;
+  private _filterSameTone = false;
+  private _partialCount = 5;
   private _activeWalkthrough: { chordIndex: number; label: string } | null =
     null;
   private _isGraphicalAnalysisOpen = false;
@@ -1001,11 +1003,29 @@ export class HarmonicProfilerApp extends BasePPTComponent {
             </span>
           </div>
 
+          <div class="control-group" style="display: flex; flex-direction: column; gap: 0.4rem; margin-top: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-color);">
+            <label style="font-weight: 600; display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+              <input type="checkbox" id="filter-same-tone-input">
+              Filter out same-tone partial pairs
+            </label>
+            <span style="font-size: 0.78rem; color: var(--text-color); opacity: 0.75; line-height: 1.5;">
+              When enabled, the profiler ignores interference between partials that originate exclusively from the same fundamental tone. This isolates harmonic interactions <em>between</em> different notes of the chord rather than internal resonances of a single string/pipe.
+            </span>
+          </div>
+
           <div class="control-group" style="display: flex; flex-direction: column; gap: 0.4rem; margin-top: 1rem;">
             <label style="font-weight: 600;">Partial Depth</label>
             <input type="number" id="depth-input" value="2" min="1" max="4" style="padding: 0.5rem; max-width: 100px;">
             <span style="font-size: 0.78rem; color: var(--text-color); opacity: 0.75; line-height: 1.5;">
               How many levels of the harmonic series are generated per tone. At <strong>Depth 1</strong>, only the direct overtones of each fundamental are considered (partials 1, 2, 3, …). At <strong>Depth 2</strong>, each of those partials also spawns its own sub-partials — modelling the real acoustic behaviour of instruments where upper harmonics are themselves resonant bodies. Deeper recursion surfaces more subtle prime relationships but decays rapidly in acoustic power (each additional level is weighted by 1/n²). Depth 3–4 may be slow for large chords.
+            </span>
+          </div>
+
+          <div class="control-group" style="display: flex; flex-direction: column; gap: 0.4rem; margin-top: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-color);">
+            <label style="font-weight: 600;">Partial Count</label>
+            <input type="number" id="count-input" value="5" min="2" max="16" style="padding: 0.5rem; max-width: 100px;">
+            <span style="font-size: 0.78rem; color: var(--text-color); opacity: 0.75; line-height: 1.5;">
+              How many partials are generated at each depth level. Increasing this includes higher harmonics (e.g., 7th, 9th, 11th) but grows exponentially with depth.
             </span>
           </div>
         </div>
@@ -1306,41 +1326,49 @@ export class HarmonicProfilerApp extends BasePPTComponent {
     const jndInput = this.shadowRoot.querySelector(
       "#jnd-input",
     ) as HTMLInputElement;
-    if (jndInput) {
-      jndInput.addEventListener("change", () => {
-        const val = parseInt(jndInput.value, 10);
-        if (!isNaN(val) && val >= 0) {
-          this._jndCents = val;
-          this.recalculateAll();
-        }
-      });
-    }
-
-    const sigmaInput = this.shadowRoot.querySelector(
-      "#sigma-input",
-    ) as HTMLInputElement;
-    if (sigmaInput) {
-      sigmaInput.addEventListener("change", () => {
-        const val = parseFloat(sigmaInput.value);
-        if (!isNaN(val) && val > 0) {
-          this._sigmaMultiplier = val;
-          this.recalculateAll();
-        }
-      });
-    }
-
     const depthInput = this.shadowRoot.querySelector(
       "#depth-input",
     ) as HTMLInputElement;
-    if (depthInput) {
-      depthInput.addEventListener("change", () => {
-        const val = parseInt(depthInput.value, 10);
-        if (!isNaN(val) && val >= 1) {
-          this._maxDepth = val;
-          this.recalculateAll();
-        }
-      });
-    }
+    const sigmaInput = this.shadowRoot.querySelector(
+      "#sigma-input",
+    ) as HTMLInputElement;
+    const filterInput = this.shadowRoot.querySelector(
+      "#filter-same-tone-input",
+    ) as HTMLInputElement;
+    const countInput = this.shadowRoot.querySelector(
+      "#count-input",
+    ) as HTMLInputElement;
+
+    if (jndInput) jndInput.value = this._jndCents.toString();
+    if (depthInput) depthInput.value = this._maxDepth.toString();
+    if (sigmaInput) sigmaInput.value = this._sigmaMultiplier.toString();
+    if (filterInput) filterInput.checked = this._filterSameTone;
+    if (countInput) countInput.value = this._partialCount.toString();
+
+    jndInput?.addEventListener("change", (e) => {
+      this._jndCents = parseFloat((e.target as HTMLInputElement).value);
+      this.recalculateAll();
+    });
+
+    depthInput?.addEventListener("change", (e) => {
+      this._maxDepth = parseInt((e.target as HTMLInputElement).value, 10);
+      this.recalculateAll();
+    });
+
+    sigmaInput?.addEventListener("change", (e) => {
+      this._sigmaMultiplier = parseFloat((e.target as HTMLInputElement).value);
+      this.recalculateAll();
+    });
+
+    filterInput?.addEventListener("change", (e) => {
+      this._filterSameTone = (e.target as HTMLInputElement).checked;
+      this.recalculateAll();
+    });
+
+    countInput?.addEventListener("change", (e) => {
+      this._partialCount = parseInt((e.target as HTMLInputElement).value, 10);
+      this.recalculateAll();
+    });
 
     this.shadowRoot
       .querySelector("#preset-pythagorean")
@@ -1584,6 +1612,8 @@ export class HarmonicProfilerApp extends BasePPTComponent {
             this._jndCents,
             this._maxDepth,
             this._sigmaMultiplier,
+            this._filterSameTone,
+            this._partialCount
           );
           const weights: Record<string, number> = {};
           for (const [label, data] of res.entries()) {
@@ -1897,6 +1927,8 @@ export class HarmonicProfilerApp extends BasePPTComponent {
         this._jndCents,
         this._maxDepth,
         this._sigmaMultiplier,
+        this._filterSameTone,
+        this._partialCount
       ),
     );
     const startIndex = Math.min(
@@ -2212,6 +2244,8 @@ export class HarmonicProfilerApp extends BasePPTComponent {
       this._jndCents,
       this._maxDepth,
       this._sigmaMultiplier,
+      this._filterSameTone,
+      this._partialCount
     );
     const res2 = analyzeChord(
       chord2.notes,
@@ -2219,6 +2253,8 @@ export class HarmonicProfilerApp extends BasePPTComponent {
       this._jndCents,
       this._maxDepth,
       this._sigmaMultiplier,
+      this._filterSameTone,
+      this._partialCount
     );
 
     const data1 = res1.get(cell1.label);
@@ -2419,6 +2455,8 @@ export class HarmonicProfilerApp extends BasePPTComponent {
       this._jndCents,
       this._maxDepth,
       this._sigmaMultiplier,
+      this._filterSameTone,
+      this._partialCount
     );
     const data = res.get(targetLabel);
 

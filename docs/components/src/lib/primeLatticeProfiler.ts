@@ -101,8 +101,8 @@ export type NoteDef = { label: string, rmult: Fraction };
 export type PointProvenance = { noteLabel: string, noteIndex: number, path: number[], weight: number };
 export type PoolPoint = { ar: Fraction, weight: number, provenance: PointProvenance[] };
 
-export function buildPool(notes: NoteDef[], maxDepth: number = 2): Array<PoolPoint> {
-    const pts = genPoints(5, maxDepth);
+export function buildPool(notes: NoteDef[], maxDepth: number = 2, partialCount: number = 5): Array<PoolPoint> {
+    const pts = genPoints(partialCount, maxDepth);
     const map = new Map<string, PoolPoint>();
 
     notes.forEach((note, idx) => {
@@ -196,8 +196,8 @@ export type AnalysisResult = {
     pairs: PairDetail[]
 };
 
-export function analyzeChord(notes: NoteDef[], weightThreshold: number = 0.02, jndCents: number = 15, maxDepth: number = 2, sigmaMultiplier: number = 3): Map<string, AnalysisResult> {
-    const pool = buildPool(notes, maxDepth);
+export function analyzeChord(notes: NoteDef[], weightThreshold: number = 0.02, jndCents: number = 15, maxDepth: number = 2, sigmaMultiplier: number = 3, filterSameTone: boolean = false, partialCount: number = 5): Map<string, AnalysisResult> {
+    const pool = buildPool(notes, maxDepth, partialCount);
     pool.sort((a, b) => a.ar.toNumber() - b.ar.toNumber());
 
     const results = new Map<string, AnalysisResult>();
@@ -209,7 +209,19 @@ export function analyzeChord(notes: NoteDef[], weightThreshold: number = 0.02, j
             const p1 = pool[i];
             const p2 = pool[j];
 
-            const cw = (p1.weight * p1.weight) * (p2.weight * p2.weight);
+            let cw = 0;
+            if (filterSameTone) {
+                for (const prov1 of p1.provenance) {
+                    for (const prov2 of p2.provenance) {
+                        if (prov1.noteIndex !== prov2.noteIndex) {
+                            cw += (prov1.weight * prov1.weight) * (prov2.weight * prov2.weight);
+                        }
+                    }
+                }
+            } else {
+                cw = (p1.weight * p1.weight) * (p2.weight * p2.weight);
+            }
+
             if (cw < weightThreshold) continue;
 
             let ratio = p2.ar.div(p1.ar);
