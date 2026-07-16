@@ -1107,24 +1107,33 @@ export class HarmonicProfilerApp extends BasePPTComponent {
 
               <p style="line-height: 1.6; font-size: 0.9em; opacity: 0.8;">PPT is a <em>descriptive</em> framework, not a prescriptive one. A higher value in one prime family column is not inherently "better" — it means the chord structurally emphasises that prime relationship more heavily. Use the profiler to understand <em>what</em> a chord is doing, not to rank it.</p>
             </div>
-
-            <div class="analysis-panel" id="analysis-panel">
-              <div class="table-toolbar" style="display: flex; justify-content: flex-end; gap: 0.5rem; position: absolute; top: -36px; right: 0;">
-                <button class="icon-btn" id="compare-mode-btn" title="Compare Cells" style="padding: 4px; cursor: pointer; background: transparent; border: none; color: #64748b; transition: color 0.2s;">
-                  <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M9.01 14H2v2h7.01v3L13 15l-3.99-4v3zm5.98-1v-3H22V8h-7.01V5L11 9l3.99 4z"/></svg>
-                </button>
-                <button class="icon-btn" id="open-graph-btn" title="Graphical Analysis" style="padding: 4px; cursor: pointer; background: transparent; border: none; color: #64748b;">
-                  <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>
-                </button>
-                <button class="icon-btn" id="copy-table-json-btn" title="Copy JSON" style="padding: 4px; cursor: pointer; background: transparent; border: none; color: #64748b;">
-                  <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M16 1H4C2.9 1 2 1.9 2 3v14h2V3h12V1zm3 4H8C6.9 5 6 5.9 6 7v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
-                </button>
-              </div>
-              <div id="table-pager" class="pager-container" style="display: none;"></div>
-              <div class="table-wrapper" id="table-container"></div>
             </div>
 
-            <button id="toggle-add-chord-btn">Add Chord</button>
+            <div class="right-columns-wrapper" style="display: flex; flex-direction: column; flex: 1; min-width: 0;">
+              <div class="toolbars-row" style="display: flex; gap: 2rem; margin-bottom: 0.5rem;">
+                <div style="flex: 1; display: flex; justify-content: flex-end;">
+                  <div class="table-toolbar" style="display: flex; justify-content: flex-end; gap: 0.5rem;">
+                    <button class="icon-btn" id="compare-mode-btn" title="Compare Cells" style="padding: 4px; cursor: pointer; background: transparent; border: none; color: #64748b; transition: color 0.2s;">
+                      <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M9.01 14H2v2h7.01v3L13 15l-3.99-4v3zm5.98-1v-3H22V8h-7.01V5L11 9l3.99 4z"/></svg>
+                    </button>
+                    <button class="icon-btn" id="open-graph-btn" title="Graphical Analysis" style="padding: 4px; cursor: pointer; background: transparent; border: none; color: #64748b;">
+                      <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>
+                    </button>
+                    <button class="icon-btn" id="copy-table-json-btn" title="Copy JSON" style="padding: 4px; cursor: pointer; background: transparent; border: none; color: #64748b;">
+                      <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M16 1H4C2.9 1 2 1.9 2 3v14h2V3h12V1zm3 4H8C6.9 5 6 5.9 6 7v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                    </button>
+                  </div>
+                </div>
+                <div class="add-column-placeholder" style="width: 280px; flex-shrink: 0;"></div>
+              </div>
+
+              <div class="content-row" style="display: flex; gap: 2rem;">
+                <div class="analysis-panel" id="analysis-panel" style="flex: 1;">
+                  <div id="table-pager" class="pager-container" style="display: none;"></div>
+                  <div class="table-wrapper" id="table-container"></div>
+                </div>
+
+                <button id="toggle-add-chord-btn">Add Chord</button>
             <div class="add-column-panel" id="add-column-panel">
               <div class="global-input-section" style="display:flex; flex-direction:column; gap: 0.75rem;">
                 <button id="add-chord-btn" style="width: 100%; padding: 0.75rem; font-weight: 600; cursor: pointer;">Add Chord</button>
@@ -1226,6 +1235,8 @@ export class HarmonicProfilerApp extends BasePPTComponent {
               <p style="line-height: 1.6;"><strong>Click any cell</strong> to open the Algorithm Walkthrough — a full breakdown of every partial pair contributing to that family value, including their source tones, ratios, and individual weights. Use this to trace exactly <em>why</em> a chord scores the way it does.</p>
               <p style="line-height: 1.6;">Enable <strong>Compare Mode</strong> (the arrows icon) then click two cells to view a side-by-side diff of their contributing pairs — useful for understanding what structurally separates two chords or voicings in a given prime family.</p>
             </div>
+            
+              </div>
             </div>
           </div>
         </div>
