@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { Fraction, factorInt, primeVecInt, genPoints, getCents, pairVector, getPrimeCombination, analyzeChord, buildPool } from '../primeLatticeProfiler';
+import { Fraction, factorInt, primeVecInt, genPoints, getCents, pairVector, getPrimeCombination, analyzeChord, buildPool, AbsRatio, Tuning } from '../primeLatticeProfiler';
 
 describe('primeLatticeProfiler', () => {
   describe('Fraction', () => {
@@ -73,29 +73,29 @@ describe('primeLatticeProfiler', () => {
 
   describe('pairVector', () => {
     it('should return prime vector for ratio', () => {
-      const ar1 = new Fraction(3, 2);
-      const ar2 = new Fraction(1, 1);
-      const v = pairVector(ar2, ar1);
-      expect(v[2]).toBe(-1);
-      expect(v[3]).toBe(1);
+      const ar1 = Tuning.ji(3, 2);
+      const ar2 = Tuning.ji(1, 1);
+      const { vec } = pairVector(ar2, ar1);
+      expect(vec[2]).toBe(-1);
+      expect(vec[3]).toBe(1);
     });
   });
 
   describe('getPrimeCombination', () => {
     it('should return prime combination label', () => {
-      const v = getPrimeCombination({ 3: 1, 5: 1, 2: 0, 7: 0, 11: 0 });
+      const v = getPrimeCombination({ 3: 1, 5: 1, 2: 0, 7: 0, 11: 0 }, false);
       expect(v.label).toBe('Tri Qui (15)'); // Based on implementation order: Du, Tri, Qui, Sep, Undec
       expect(v.product).toBe(15);
 
-      const v2 = getPrimeCombination({ 3: 2, 2: 0, 5: 0, 7: 0, 11: 0 });
+      const v2 = getPrimeCombination({ 3: 2, 2: 0, 5: 0, 7: 0, 11: 0 }, false);
       expect(v2.label).toBe('Tri (3)');
       expect(v2.product).toBe(3);
 
-      const v3 = getPrimeCombination({ 7: 1, 11: 1, 2: 0, 3: 0, 5: 0 });
+      const v3 = getPrimeCombination({ 7: 1, 11: 1, 2: 0, 3: 0, 5: 0 }, false);
       expect(v3.label).toBe('Sep Undec (77)');
       expect(v3.product).toBe(77);
 
-      const v4 = getPrimeCombination({ 2: 0, 3: 0, 5: 0, 7: 0, 11: 0 });
+      const v4 = getPrimeCombination({ 2: 0, 3: 0, 5: 0, 7: 0, 11: 0 }, false);
       expect(v4.label).toBe('Du (2)');
       expect(v4.product).toBe(2);
     });
@@ -113,8 +113,8 @@ describe('primeLatticeProfiler', () => {
   describe('buildPool', () => {
     it('should build a harmonic pool', () => {
       const notes = [
-        { label: 'Do', rmult: new Fraction(1, 1) },
-        { label: 'Mi', rmult: new Fraction(5, 4) }
+        { label: 'Do', rmult: Tuning.ji(1, 1) },
+        { label: 'Mi', rmult: Tuning.ji(5, 4) }
       ];
       const pool = buildPool(notes, 1, 3);
       expect(pool.length).toBeGreaterThan(0);
@@ -127,9 +127,9 @@ describe('primeLatticeProfiler', () => {
   describe('analyzeChord', () => {
     it('should analyze a basic chord', () => {
       const notes = [
-        { label: 'Do', rmult: new Fraction(1, 1) },
-        { label: 'Mi', rmult: new Fraction(5, 4) },
-        { label: 'So', rmult: new Fraction(3, 2) }
+        { label: 'Do', rmult: Tuning.ji(1, 1) },
+        { label: 'Mi', rmult: Tuning.ji(5, 4) },
+        { label: 'So', rmult: Tuning.ji(3, 2) }
       ];
       const results = analyzeChord(notes, 0.01, 15, 1, 3, true, 3);
       expect(results.size).toBeGreaterThanOrEqual(0); // If filterSameTone removes everything it might be 0, that's fine for this test to just exercise the code

@@ -2,7 +2,7 @@ import { BasePPTComponent } from "./BasePPTComponent";
 import type { PitchTuningConfig, ParsedPitch } from "./pitchUtils";
 import { mapPitchesToRatios, parsePitch, pitchToMidi } from "./pitchUtils";
 import type { NoteDef } from "./lib/primeLatticeProfiler.js";
-import { analyzeChord, Fraction } from "./lib/primeLatticeProfiler.js";
+import { analyzeChord, Fraction, AbsRatio, Tuning } from "./lib/primeLatticeProfiler.js";
 
 export class HarmonicProfilerApp extends BasePPTComponent {
   private _isRendered = false;
@@ -1760,6 +1760,29 @@ export class HarmonicProfilerApp extends BasePPTComponent {
       const oct = (match[2] ? parseInt(match[2], 10) : 1) + delta;
       tokens[index] = `${base}${oct !== 1 ? oct : ""}`;
       tokens = this.normalizeRegisters(tokens);
+      
+      const parsedPitches = tokens.map(t => parsePitch(t)).filter(Boolean);
+      if (parsedPitches.length > 0) {
+        const midiValues = parsedPitches.map(p => pitchToMidi(p!));
+        const minMidi = Math.min(...midiValues);
+        
+        // Normalize so the lowest note is in the base octave (MIDI 0-11)
+        const octaveShift = -Math.floor(minMidi / 12);
+        
+        tokens = parsedPitches.map(p => {
+          const newOct = p!.octave + 1 + octaveShift;
+          return `${p!.note}${newOct !== 1 ? newOct : ""}`;
+        });
+        
+        // Sort by absolute pitch to maintain ascending order
+        tokens.sort((a, b) => {
+          const pA = parsePitch(a);
+          const pB = parsePitch(b);
+          if (!pA || !pB) return 0;
+          return pitchToMidi(pA) - pitchToMidi(pB);
+        });
+      }
+      
       input.value = tokens.join(" ");
       this.updateToneBadges(input.value);
     }
@@ -1846,7 +1869,7 @@ export class HarmonicProfilerApp extends BasePPTComponent {
       const rawMap = mapPitchesToRatios(chord.raw, chord.tuningConfig);
       chord.notes = rawMap.map((r) => ({
         label: r.label,
-        rmult: new Fraction(r.rmult.num, r.rmult.den),
+        rmult: Tuning.ji(r.rmult.num, r.rmult.den),
       }));
     }
 
@@ -2018,9 +2041,16 @@ export class HarmonicProfilerApp extends BasePPTComponent {
       return notes
         .map((n) => {
           const ratio = n.rmult.div(bass);
-          return Number.isInteger(ratio.num) && Number.isInteger(ratio.den)
-            ? `${ratio.num}/${ratio.den}`
-            : (ratio.num / ratio.den).toFixed(3);
+          if (ratio.isEffectivelyRational()) {
+            let num = 1; let den = 1;
+            for (const p of [2, 3, 5, 7, 11]) {
+               const e = ratio.vec[p] || 0;
+               if (e > 0) num *= Math.pow(p, Math.round(e));
+               if (e < 0) den *= Math.pow(p, Math.abs(Math.round(e)));
+            }
+            return `${num}/${den}`;
+          }
+          return ratio.toNumber().toFixed(3);
         })
         .join(" : ");
     };
@@ -2501,10 +2531,16 @@ export class HarmonicProfilerApp extends BasePPTComponent {
         const getFiguredBass = (n: NoteDef) => {
           if (!bass) return "";
           const ratio = n.rmult.div(bass);
-          if (Number.isInteger(ratio.num) && Number.isInteger(ratio.den)) {
-            return `${ratio.num}/${ratio.den}`;
+          if (ratio.isEffectivelyRational()) {
+            let num = 1; let den = 1;
+            for (const p of [2, 3, 5, 7, 11]) {
+               const e = ratio.vec[p] || 0;
+               if (e > 0) num *= Math.pow(p, Math.round(e));
+               if (e < 0) den *= Math.pow(p, Math.abs(Math.round(e)));
+            }
+            return `${num}/${den}`;
           }
-          return (ratio.num / ratio.den).toFixed(3);
+          return ratio.toNumber().toFixed(3);
         };
 
         let htmlOutput = `
@@ -2645,7 +2681,7 @@ export class HarmonicProfilerApp extends BasePPTComponent {
 
           htmlOutput += `
             <tr class="pair-row" data-partials="${partialsAttr}">
-              <td data-label="Pair Ratio" style="border: 1px solid var(--border-color); padding: 4px 8px;"><code>${pair.ratio.toKey()}</code></td>
+              <td data-label="Pair Ratio" style="border: 1px solid var(--border-color); padding: 4px 8px;"><code>${pair.p2.ar.div(pair.p1.ar).toKey()}</code></td>
               <td data-label="Power" style="border: 1px solid var(--border-color); padding: 4px 8px;">${pair.cw.toFixed(3)}</td>
               <td data-label="P1 Ratio" style="border: 1px solid var(--border-color); padding: 4px 8px;"><code>${pair.p1.ar.toKey()}</code></td>
               <td data-label="P1 Sources" style="border: 1px solid var(--border-color); padding: 4px 8px;">${p1Sources}</td>
