@@ -47,47 +47,47 @@ describe('pitchUtils', () => {
     it('should map pitches to ratios with Du tuning', () => {
       const results = mapPitchesToRatios('Do Re Mi Fa So La Ti', config);
       expect(results.length).toBe(7);
-      expect(results[0].rmult).toEqual({ num: 1, den: 1 });
-      expect(results[1].rmult.num).toBeCloseTo(Math.pow(2, 2/12));
-      expect(results[2].rmult.num).toBeCloseTo(Math.pow(2, 4/12));
+      expect(results[0].rmult.toKey()).toBe('1/1');
+      expect(results[1].rmult.toNumber()).toBeCloseTo(Math.pow(2, 2/12));
+      expect(results[2].rmult.toNumber()).toBeCloseTo(Math.pow(2, 4/12));
     });
 
     it('should map pitches to ratios with Tri/Qui/Sep tuning', () => {
       const results = mapPitchesToRatios('Do Di Re Ri Mi Fa Fi So Le La Te Ti Do2', standardConfig);
       expect(results.length).toBe(13);
-      expect(results[0].rmult).toEqual({ num: 1, den: 1 });
-      expect(results[1].rmult).toEqual({ num: 16, den: 15 });
-      expect(results[2].rmult).toEqual({ num: 9, den: 8 });
-      expect(results[3].rmult).toEqual({ num: 6, den: 5 });
-      expect(results[4].rmult).toEqual({ num: 5, den: 4 });
-      expect(results[5].rmult).toEqual({ num: 4, den: 3 });
-      expect(results[6].rmult).toEqual({ num: 45, den: 32 });
-      expect(results[7].rmult).toEqual({ num: 3, den: 2 });
-      expect(results[8].rmult).toEqual({ num: 8, den: 5 });
-      expect(results[9].rmult).toEqual({ num: 5, den: 3 });
-      expect(results[10].rmult).toEqual({ num: 7, den: 4 });
-      expect(results[11].rmult).toEqual({ num: 15, den: 8 });
-      expect(results[12].rmult).toEqual({ num: 2, den: 1 });
+      expect(results[0].rmult.toKey()).toBe('1/1');
+      expect(results[1].rmult.toKey()).toBe('16/15');
+      expect(results[2].rmult.toKey()).toBe('9/8');
+      expect(results[3].rmult.toKey()).toBe('6/5');
+      expect(results[4].rmult.toKey()).toBe('5/4');
+      expect(results[5].rmult.toKey()).toBe('4/3');
+      expect(results[6].rmult.toKey()).toBe('45/32');
+      expect(results[7].rmult.toKey()).toBe('3/2');
+      expect(results[8].rmult.toKey()).toBe('8/5');
+      expect(results[9].rmult.toKey()).toBe('5/3');
+      expect(results[10].rmult.toKey()).toBe('7/4');
+      expect(results[11].rmult.toKey()).toBe('15/8');
+      expect(results[12].rmult.toKey()).toBe('2/1');
     });
 
     it('should handle Tri variations', () => {
        const results2 = mapPitchesToRatios('Do Di Ri Mi Fi Le La Te Ti', triConfig);
-       expect(results2[1].rmult).toEqual({ num: 16, den: 15 });
-       expect(results2[2].rmult).toEqual({ num: 32, den: 27 });
-       expect(results2[3].rmult).toEqual({ num: 81, den: 64 });
-       expect(results2[4].rmult).toEqual({ num: 729, den: 512 });
-       expect(results2[5].rmult).toEqual({ num: 128, den: 81 });
-       expect(results2[6].rmult).toEqual({ num: 27, den: 16 });
-       expect(results2[7].rmult).toEqual({ num: 7, den: 4 });
-       expect(results2[8].rmult).toEqual({ num: 243, den: 128 });
+       expect(results2[1].rmult.toKey()).toBe('16/15');
+       expect(results2[2].rmult.toKey()).toBe('32/27');
+       expect(results2[3].rmult.toKey()).toBe('81/64');
+       expect(results2[4].rmult.toKey()).toBe('729/512');
+       expect(results2[5].rmult.toKey()).toBe('128/81');
+       expect(results2[6].rmult.toKey()).toBe('27/16');
+       expect(results2[7].rmult.toKey()).toBe('7/4');
+       expect(results2[8].rmult.toKey()).toBe('243/128');
     });
 
     it('should handle Undec and fallback tunings', () => {
        const results = mapPitchesToRatios('Do Fi', { ...standardConfig, TT: 'Undec' });
-       expect(results[1].rmult).toEqual({ num: 11, den: 8 });
+       expect(results[1].rmult.toKey()).toBe('11/8');
 
        const results2 = mapPitchesToRatios('Do Fi', { ...standardConfig, TT: 'SomethingElse' } as any);
-       expect(results2[1].rmult).toEqual({ num: 45, den: 32 });
+       expect(results2[1].rmult.toKey()).toBe('45/32');
     });
 
     it('should handle empty input', () => {
@@ -102,10 +102,10 @@ describe('pitchUtils', () => {
     it('should compute negative octaves correctly', () => {
       const results = mapPitchesToRatios('Do-1', config);
       expect(results.length).toBe(1);
-      expect(results[0].rmult).toEqual({ num: 1, den: 1 });
+      expect(results[0].rmult.toKey()).toBe('1/1');
 
       const results2 = mapPitchesToRatios('Do Do-1', config);
-      expect(results2[1].rmult).toEqual({ num: 1, den: 1 });
+      expect(results2[1].rmult.toKey()).toBe('1/1');
     });
   });
 });

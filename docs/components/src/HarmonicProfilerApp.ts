@@ -1867,10 +1867,7 @@ export class HarmonicProfilerApp extends BasePPTComponent {
   private recalculateAll() {
     for (const chord of this._chords) {
       const rawMap = mapPitchesToRatios(chord.raw, chord.tuningConfig);
-      chord.notes = rawMap.map((r) => ({
-        label: r.label,
-        rmult: Tuning.ji(r.rmult.num, r.rmult.den),
-      }));
+      chord.notes = rawMap;
     }
 
     // Check pagination logic without triggering double render

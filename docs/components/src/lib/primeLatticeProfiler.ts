@@ -522,7 +522,10 @@ export function analyzeChord(
       let finalWeight = cw;
       let simplicity: SimplicityMatch | undefined;
 
-      if (!irrational && jndCents > 0) {
+      let classificationVec = vec;
+      let isIrrational = irrational;
+
+      if (jndCents > 0) {
         simplicity =
           findSimplicityAnchor(ratioVal, maxDenominator) ?? undefined;
         if (simplicity) {
@@ -532,14 +535,23 @@ export function analyzeChord(
             sigmaMultiplier,
           );
           finalWeight = cw * confidence;
+
+          if (confidence > 0) {
+            const snapRatio = Tuning.rational(simplicity.fraction);
+            const snapDiff = pairVector(Tuning.ji(1, 1), snapRatio);
+            classificationVec = snapDiff.vec;
+            isIrrational = snapDiff.irrational;
+          }
         }
       }
-      // Irrational pairs: no snap/confidence penalty -- classified
-      // directly from their exact exponent vector.
 
       if (finalWeight < weightThreshold) continue;
 
-      const { label, product } = getPrimeCombination(vec, irrational);
+      // If a pair is still irrational (e.g. an EDO degree that didn't snap),
+      // we exclude it from prime classification rather than generating irrational buckets.
+      if (isIrrational) continue;
+
+      const { label, product } = getPrimeCombination(classificationVec, isIrrational);
       const existing = results.get(label);
       if (existing) {
         existing.value += finalWeight;
