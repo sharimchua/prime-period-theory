@@ -19,7 +19,7 @@ tags:
   - comma
   - microtonality
   - lattice
-timestamp: 2026-07-13
+timestamp: 2026-07-17
 revision: "2026-07-10 (rev 3): introduced Base/Reel as two named coordinate
   modes on the same lattice; scoped the existing 'paths are rational, JI is
   logarithmic' claim to Base mode specifically, since Reel-mode paths reach
