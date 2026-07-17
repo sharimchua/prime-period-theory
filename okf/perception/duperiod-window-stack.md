@@ -89,4 +89,4 @@ When the rhythmic fundamental is estimated continuously from live performance da
 - [Metric DuPeriod](../reference/metric-duperiod.md) — The logarithmic coordinate system underlying the stack.
 - [Temporal-Place Limen](temporal-place-limen.md) — The biological crossover point (DP0) anchoring the bands.
 - [Rhythmic Overtone Series](../domains/rhythmic-overtone-series.md) — The fractional ratios that populate the windows.
-- [Self-Adjusting Pipeline](self-adjusting-pipeline.md) *(Future)* — The continuous implementation of the stack.
+- Self-Adjusting Pipeline *(Future)* — The continuous implementation of the stack.

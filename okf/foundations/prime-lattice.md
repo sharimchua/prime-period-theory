@@ -496,4 +496,4 @@ underlying structures are not the same:
   relationships in rhythmic terms
 - [Path Equivalence and Confluence](../extended/path-equivalence.md) — how different paths
   can incidentally resolve to the same point
-- [Prime Lattice Profiles](../extended/prime-lattice-profiles.md) — an analytical approach for feature extraction and interharmonic distance using prime lattice paths
+- Prime Lattice Profiles — an analytical approach for feature extraction and interharmonic distance using prime lattice paths
