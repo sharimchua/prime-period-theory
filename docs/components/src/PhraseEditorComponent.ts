@@ -114,15 +114,15 @@ export class PhraseEditorComponent extends BasePPTComponent {
   }
 
   private onFocus() {
+    const layerComponent = this.closest('ppt-coil-layer');
+    const layerType = layerComponent?.getAttribute('layer') || 'melody';
+    EventBus.publish('layer-focus-changed', { layerType });
+
     this.isActiveEditor = true;
     EventBus.publish('active-phrase-editor-changed', {
       editor: this,
       rawText: this.rawText
     });
-    
-    const layerComponent = this.closest('ppt-coil-layer');
-    const layerType = layerComponent?.getAttribute('layer') || 'melody';
-    EventBus.publish('layer-focus-changed', { layerType });
 
     this.render(); // Show active state
   }

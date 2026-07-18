@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tapestry Composer - Prime Period Theory</title>
+  
+  <style>
+    :root {
+      --ppt-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      --ppt-text-color: #2c3e50;
+      --ppt-panel-bg: rgba(255, 255, 255, 0.95);
+    }
+    
+    body {
+      font-family: var(--ppt-font-family);
+      color: var(--ppt-text-color);
+      margin: 0;
+      padding: 0;
+      background: #0f172a; /* Dark background suited for the composer */
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    ppt-tapestry-composer-app {
+      flex: 1;
+      display: block;
+    }
+
+    .back-link {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      z-index: 1000;
+      background: rgba(15, 23, 42, 0.8);
+      color: white;
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-size: 14px;
+      font-family: sans-serif;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .back-link:hover {
+      background: rgba(30, 41, 59, 1);
+    }
+  </style>
+
+  <script type="module" src="./src/index.ts"></script>
+</head>
+<body>
+  <a href="index.html" class="back-link">← Back to Components</a>
+  <ppt-tapestry-composer-app></ppt-tapestry-composer-app>
+</body>
+</html>

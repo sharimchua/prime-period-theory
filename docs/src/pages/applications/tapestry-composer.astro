@@ -1,0 +1,28 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<script>
+  import '../../../components/src/index.ts';
+</script>
+
+<Layout title="Tapestry Composer" maxWidth="100%" hideHeader={true}>
+  <ppt-tapestry-composer-app></ppt-tapestry-composer-app>
+</Layout>
+
+<style is:global>
+  body {
+    overflow: hidden;
+  }
+
+  main {
+    padding: 0 !important;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  header {
+    flex-shrink: 0;
+  }
+</style>

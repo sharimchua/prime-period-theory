@@ -180,6 +180,7 @@ export class MidiInputBridgeComponent extends HTMLElement {
   }
 
   private render() {
+    const isCompact = this.hasAttribute('compact');
     let statusText = 'Disconnected';
     let devices = 0;
     
@@ -226,13 +227,38 @@ export class MidiInputBridgeComponent extends HTMLElement {
           color: #ef4444;
           font-size: 0.8rem;
         }
+        .container.compact {
+          padding: 0;
+          background: transparent;
+          border: none;
+          gap: 0;
+        }
+        .compact button {
+          padding: 0.22rem 0.55rem;
+          background: transparent;
+          color: var(--tx, #333);
+          border: 1px solid var(--bd, #ccc);
+          border-radius: 5px;
+          font-size: 0.74rem;
+          font-weight: 600;
+        }
+        .compact button:hover {
+          background: var(--bg, #eee);
+        }
+        .compact button:disabled {
+          background: rgba(37, 99, 235, 0.1);
+          color: #2563eb;
+          border-color: #2563eb;
+        }
+        .compact .status, .compact .error {
+          display: none;
+        }
       </style>
-      <div class="container">
-        <button id="connect-btn" ${this.midiAccess ? 'disabled' : ''}>
-          ${this.midiAccess ? 'MIDI Active' : 'Connect MIDI'}
+      <div class="container ${isCompact ? 'compact' : ''}">
+        <button id="connect-btn" ${this.midiAccess ? 'disabled' : ''} title="${statusText}">
+          ${this.midiAccess ? (isCompact ? 'MIDI ON' : 'MIDI Active') : (isCompact ? 'MIDI OFF' : 'Connect MIDI')}
         </button>
-        <span class="status">Status: ${statusText}</span>
-        <span class="error"></span>
+        ${!isCompact ? `<span class="status">Status: ${statusText}</span><span class="error"></span>` : ''}
       </div>
     `;
 

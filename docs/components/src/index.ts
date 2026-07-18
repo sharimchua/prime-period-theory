@@ -46,3 +46,9 @@ MidiOrchestrator.init();
 export * from './MidiInputBridgeComponent.js';
 export * from './HarmonicProfilerApp.js';
 export * from './ApplicationLayoutComponent.js';
+
+// ── Tapestry Composer ─────────────────────────────────────────────────────────
+export * from './tapestry/TapestryModel.js';
+export * from './tapestry/TapestrySerializer.js';
+export * from './tapestry/TapestryResolver.js';
+export * from './TapestryComposerApp.js';
