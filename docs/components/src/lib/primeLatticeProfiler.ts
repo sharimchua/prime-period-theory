@@ -355,24 +355,18 @@ export function getPrimeCombination(
     const e = vec[p] || 0;
     if (Math.abs(e) > 1e-9) {
       const famName = FAMILY_NAMES[p];
-      if (Number.isInteger(e)) {
-        parts.push(famName);
-      } else {
-        parts.push(`${famName}*${e.toFixed(3)}`); // fractional-exponent marker
-        anyNonInteger = true;
-      }
+      parts.push(famName);
       product *= p; // presence indicator only, not exponentiated magnitude
     }
   }
 
   if (parts.length === 0) {
-    return { label: "Unison (1)", product: 1 };
+    return null;
   }
 
-  const finalProduct = anyNonInteger || irrational ? null : product;
   return {
-    label: `${parts.join(" ")} (${finalProduct ?? "irrational"})`,
-    product: finalProduct,
+    label: `${parts.join(" ")} (${product})`,
+    product,
   };
 }
 
@@ -522,10 +516,7 @@ export function analyzeChord(
       let finalWeight = cw;
       let simplicity: SimplicityMatch | undefined;
 
-      let classificationVec = vec;
-      let isIrrational = irrational;
-
-      if (jndCents > 0) {
+      if (!irrational && jndCents > 0) {
         simplicity =
           findSimplicityAnchor(ratioVal, maxDenominator) ?? undefined;
         if (simplicity) {
@@ -535,23 +526,14 @@ export function analyzeChord(
             sigmaMultiplier,
           );
           finalWeight = cw * confidence;
-
-          if (confidence > 0) {
-            const snapRatio = Tuning.rational(simplicity.fraction);
-            const snapDiff = pairVector(Tuning.ji(1, 1), snapRatio);
-            classificationVec = snapDiff.vec;
-            isIrrational = snapDiff.irrational;
-          }
         }
       }
 
       if (finalWeight < weightThreshold) continue;
 
-      // If a pair is still irrational (e.g. an EDO degree that didn't snap),
-      // we exclude it from prime classification rather than generating irrational buckets.
-      if (isIrrational) continue;
-
-      const { label, product } = getPrimeCombination(classificationVec, isIrrational);
+      const combo = getPrimeCombination(vec, irrational);
+      if (!combo) continue;
+      const { label, product } = combo;
       const existing = results.get(label);
       if (existing) {
         existing.value += finalWeight;
