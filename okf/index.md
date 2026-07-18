@@ -205,6 +205,7 @@ amplitude or effect envelopes.
 - [Learning Paths](pedagogy/learning-paths.md) — the four paths and their rationale
 - [Ear-First Pedagogy](pedagogy/ear-first.md) — perceptual grounding before symbolic notation
 - [Cross-Domain Transfer](pedagogy/cross-domain-transfer.md) — transfer as the test of understanding
+- [Default Do (12TET Keyboard)](pedagogy/default-do.md) — the pedagogical case for anchoring Do on D
 - [Progressive Complexity](pedagogy/progressive-complexity.md) — developmental arc through prime families
 
 ### Applications

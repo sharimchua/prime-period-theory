@@ -16,6 +16,7 @@ perception/).
 | `learning-paths.md` | Draft | The four learning paths and their rationale |
 | `ear-first.md` | Draft | The ear-first pedagogy principle |
 | `cross-domain-transfer.md` | Draft | Prime family understanding transferring across pitch/rhythm/timbre |
+| `default-do.md` | Draft | The pedagogical case for anchoring Do on D on 12TET keyboards |
 | `progressive-complexity.md` | Draft | Developmental arc through the prime families |
 
 ## Tone guidance
