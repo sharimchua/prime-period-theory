@@ -207,6 +207,7 @@ amplitude or effect envelopes.
 - [Cross-Domain Transfer](pedagogy/cross-domain-transfer.md) — transfer as the test of understanding
 - [Default Do (12TET Keyboard)](pedagogy/default-do.md) — the pedagogical case for anchoring Do on D
 - [Progressive Complexity](pedagogy/progressive-complexity.md) — developmental arc through prime families
+- [Axis-Fan Pedagogy](pedagogy/axis-fan-pedagogy.md) — tritone-first harmony sequence based on PPT generative grammar
 
 ### Applications
 - [Overview](applications/index.md) — the bridge between theory and tools

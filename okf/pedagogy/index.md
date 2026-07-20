@@ -112,5 +112,6 @@ applications say how.
 - [Ear-First Pedagogy](ear-first.md) — the ear-first principle in depth
 - [Cross-Domain Transfer](cross-domain-transfer.md) — transfer as the measure of understanding
 - [Progressive Complexity](progressive-complexity.md) — the prime family developmental arc
+- [Axis-Fan Pedagogy](axis-fan-pedagogy.md) — tritone-first harmony sequence based on PPT generative grammar
 - [Applications](../applications/index.md) — tools that implement these principles
 - [Music as Language](../context/music-as-language.md) — the linguistic framing that motivates PPT pedagogy

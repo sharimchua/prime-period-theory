@@ -18,6 +18,7 @@ perception/).
 | `cross-domain-transfer.md` | Draft | Prime family understanding transferring across pitch/rhythm/timbre |
 | `default-do.md` | Draft | The pedagogical case for anchoring Do on D on 12TET keyboards |
 | `progressive-complexity.md` | Draft | Developmental arc through the prime families |
+| `axis-fan-pedagogy.md` | Draft | Tritone-first harmony sequence based on PPT generative grammar |
 
 ## Tone guidance
 
