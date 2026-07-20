@@ -53,8 +53,8 @@ D and Ab.
 
 - Introduces **tension and duality** without any scale context to resolve
   into.
-- Either point can "surrender" to reinforce the other as tonal center —
-  the student asserts the center, the collection does not supply one.
+- Either point can "surrender" to reinforce the other as tonal centre —
+  the student asserts the centre, the collection does not supply one.
 - On guitar: on any string-pair spaced a fourth apart, the tritone is a
   same-string 6-fret span, or a single-fret diagonal to the adjacent
   string. It also bisects the octave shape on a single string (6 frets to
@@ -134,7 +134,7 @@ mirroring the axis the whole sequence was built from).
 
 A diatonic heptatonic scale contains exactly one tritone (between scale
 degrees 4 and 7), and that single asymmetry is most of what generates the
-scale's sense of a unique tonal center — the collection hands the performer
+scale's sense of a unique tonal centre — the collection hands the performer
 a home before they've made a single choice.
 
 The stage-2 hexatonic set contains **three** symmetrically-arranged
