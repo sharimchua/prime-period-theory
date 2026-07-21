@@ -10,7 +10,11 @@ tags:
   - prime-lattice
   - comma
   - prime-period-theory
+status: stable
 timestamp: 2026-07-16
+used_by:
+  - foundations/prime-lattice.md
+  - foundations/prime-families.md
 ---
 
 # Path Equivalence and Confluence

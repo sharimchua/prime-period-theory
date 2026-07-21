@@ -13,7 +13,15 @@ tags:
   - tala
   - overtone
   - prime-period-theory
+status: stable
 timestamp: 2026-07-13
+used_by:
+  - foundations/amplitude-time.md
+  - domains/timbre.md
+  - foundations/prime-families.md
+  - foundations/period.md
+  - domains/rhythm.md
+  - domains/pitch.md
 ---
 
 # Periodicity

@@ -6,7 +6,7 @@
     "node": ">=22.12.0"
   },
   "scripts": {
-    "bundle-okf": "node scripts/build-okf-bundle.js",
+    "bundle-okf": "python ../scripts/okf_analyse.py && node scripts/build-okf-bundle.js",
     "copy-svgs": "node scripts/copy-solfege-svgs.js",
     "dev": "npm run bundle-okf && npm run copy-svgs && astro dev --force",
     "build": "npm run bundle-okf && npm run copy-svgs && astro build --force && node postbuild.js",

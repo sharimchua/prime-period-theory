@@ -12,7 +12,14 @@ tags:
   - ear-training
   - notation
   - prime-period-theory
+status: stable
 timestamp: 2026-07-01
+used_by:
+  - applications/transcription.md
+  - related/chromatic-clock.md
+  - context/music-as-language.md
+  - pedagogy/cross-domain-transfer.md
+  - uniform-solfege/index.md
 ---
 
 # Ear-First Pedagogy

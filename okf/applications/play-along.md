@@ -13,7 +13,13 @@ tags:
   - feedback
   - pedagogy
   - prime-period-theory
+status: stable
 timestamp: 2026-06-30
+used_by:
+  - domains/rhythmic-phase-coherence.md
+  - pedagogy/ear-first.md
+  - pedagogy/progressive-complexity.md
+  - applications/transcription.md
 ---
 
 # Play-Along Feedback — Three Models

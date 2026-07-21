@@ -9,7 +9,11 @@ tags:
   - envelopes
   - metric-duperiod
   - prime-period-theory
+status: stable
 timestamp: 2026-06-28
+used_by:
+  - foundations/amplitude-time.md
+  - perception/auditory-horizon.md
 ---
 
 # Amplitude Trajectories

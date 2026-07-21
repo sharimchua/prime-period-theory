@@ -9,6 +9,15 @@ const reference = defineCollection({
     description: z.string().optional(),
     tags: z.array(z.string()).optional(),
     timestamp: z.union([z.string(), z.date()]).optional(),
+    status: z.string().optional(),
+    domain: z.string().optional(),
+    depends_on: z.array(z.string()).optional(),
+    extends: z.array(z.string()).optional(),
+    contrasts_with: z.array(z.string()).optional(),
+    used_by: z.array(z.string()).optional(),
+    implemented_by: z.array(z.string()).optional(),
+    defines: z.array(z.string()).optional(),
+    evidence: z.array(z.string()).optional(),
   }),
 });
 

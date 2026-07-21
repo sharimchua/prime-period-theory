@@ -8,7 +8,11 @@ tags:
   - polyrhythm
   - temporal-place-limen
   - phase-alignment
+status: stable
 timestamp: 2026-07-07
+used_by:
+  - perception/temporal-place-limen.md
+  - domains/rhythm.md
 ---
 
 # Polymetric Phase Equivalence

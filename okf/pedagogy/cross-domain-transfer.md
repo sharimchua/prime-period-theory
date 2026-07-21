@@ -13,7 +13,14 @@ tags:
   - prime-families
   - transfer
   - prime-period-theory
+status: stable
 timestamp: 2026-06-30
+used_by:
+  - foundations/prime-families.md
+  - foundations/periodicity.md
+  - domains/rhythmic-overtone-series.md
+  - domains/timbre.md
+  - pedagogy/ear-first.md
 ---
 
 # Cross-Domain Transfer
@@ -167,7 +174,6 @@ concept.
   the most direct demonstration of pitch-rhythm structural identity
 - [Timbre](../domains/timbre.md) — timbre as micro-polyphony; the
   cross-domain entry point from the spectral side
-- [Form](../domains/form.md) — form as macro-periodicity; the
   cross-domain entry point from the large-scale side
 - [Ear-First Pedagogy](ear-first.md) — the prerequisite principle;
   transfer requires perceptual grounding first

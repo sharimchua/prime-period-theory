@@ -13,7 +13,17 @@ tags:
   - interval
   - clock-arithmetic
   - prime-period-theory
+status: stable
 timestamp: 2026-07-08
+used_by:
+  - uniform-solfege/geometric-basis.md
+  - ppd/index.md
+  - uniform-solfege/diacritic-system.md
+  - structure/coil-notation.md
+  - structure/melodic-grammar.md
+  - uniform-solfege/base-12-algebra.md
+  - tuning/31-edo.md
+  - foundations/prime-families.md
 ---
 
 # Uniform Solfège

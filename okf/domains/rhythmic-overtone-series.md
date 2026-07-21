@@ -15,7 +15,18 @@ tags:
   - temporal-place-limen
   - inter-onset-ratio
   - prime-period-theory
+status: stable
 timestamp: 2026-07-08
+used_by:
+  - foundations/periodicity.md
+  - perception/temporal-place-limen.md
+  - ppd/index.md
+  - uniform-solfege/diacritic-system.md
+  - foundations/prime-families.md
+  - reference/metric-duperiod.md
+  - domains/rhythm.md
+  - structure/rhythmic-grammar.md
+  - domains/timbre.md
 ---
 
 # Rhythmic Overtone Series

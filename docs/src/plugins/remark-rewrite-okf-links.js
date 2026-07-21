@@ -5,7 +5,7 @@ import fs from 'fs';
 export function remarkRewriteOkfLinks() {
   return function (tree, file) {
     visit(tree, 'link', (node, index, parent) => {
-      if (node.url && node.url.endsWith('.md') && !node.url.startsWith('http')) {
+      if (node.url && /\.md(#.*)?$/.test(node.url) && !node.url.startsWith('http')) {
         let newUrl = node.url.replace(/\.md(#.*)?$/, '$1');
 
         const filePath = (file.path || file.history[0] || '').replace(/\\/g, '/');
@@ -43,14 +43,33 @@ export function remarkRewriteOkfLinks() {
             node.url = newUrl;
           }
 
-          if (!fileExists) {
+          let isStub = false;
+          if (fileExists) {
+            try {
+              const targetContent = fs.readFileSync(targetPath, 'utf8');
+              if (targetContent.includes('status: stub')) {
+                isStub = true;
+              }
+            } catch (e) {}
+          }
+
+          if (!fileExists || isStub) {
             let text = '';
             visit(node, 'text', (textNode) => { text += textNode.value; });
-            const htmlNode = {
-              type: 'html',
-              value: `<span class="disabled-link">${text}</span><span class="badge">Coming Soon</span>`
-            };
-            parent.children[index] = htmlNode;
+            
+            if (!fileExists) {
+              const htmlNode = {
+                type: 'html',
+                value: `<span class="disabled-link">${text}</span> <span class="badge" style="font-size: 0.75em; padding: 0.1em 0.4em; border-radius: 4px; background: #e2e8f0; color: #475569; vertical-align: super; margin-left: 0.25rem;">Coming Soon</span>`
+              };
+              parent.children[index] = htmlNode;
+            } else {
+              const htmlNode = {
+                type: 'html',
+                value: `<a href="${node.url}">${text}</a> <span class="badge" style="font-size: 0.75em; padding: 0.1em 0.4em; border-radius: 4px; background: #fef08a; color: #854d0e; vertical-align: super; margin-left: 0.25rem;">Stub</span>`
+              };
+              parent.children[index] = htmlNode;
+            }
           }
         } else {
           node.url = newUrl;

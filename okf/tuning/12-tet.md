@@ -8,6 +8,7 @@ tags:
   - tuning
   - 12-tet
   - temperament
+status: stable
 timestamp: 2026-06-28
 ---
 

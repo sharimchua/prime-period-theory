@@ -8,7 +8,11 @@ tags:
   - harmony
   - tritone
   - axis-fan
+status: stable
 timestamp: 2026-07-20
+used_by:
+  - tuning/du-fractal-dutri-closure.md
+  - foundations/prime-families.md
 ---
 
 # Axis-Fan Pedagogy: A Tritone-First Harmony Sequence

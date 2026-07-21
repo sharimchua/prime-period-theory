@@ -22,7 +22,15 @@ tags:
   - psychoacoustics
   - cultural-transmission
   - prime-period-theory
+status: stable
 timestamp: 2026-07-13
+used_by:
+  - perception/temporal-place-limen.md
+  - foundations/periodicity.md
+  - foundations/prime-families.md
+  - perception/information-and-expectation.md
+  - domains/rhythm.md
+  - domains/pitch.md
 ---
 
 # Auditory Horizon and Agency

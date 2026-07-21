@@ -19,6 +19,7 @@ tags:
   - comma
   - microtonality
   - lattice
+status: stable
 timestamp: 2026-07-13
 revision: "2026-07-10 (rev 3): introduced Base/Reel as two named coordinate
   modes on the same lattice; scoped the existing 'paths are rational, JI is
@@ -31,6 +32,20 @@ revision: "2026-07-10 (rev 3): introduced Base/Reel as two named coordinate
   discrepancy, not single-target Base-mode approximation gap.
   2026-07-11 (rev 4): introduced N = 27,720 = lcm(1..11) as the
   named canonical resolution constant for the Base-mode lattice."
+used_by:
+  - foundations/anchors.md
+  - foundations/period.md
+  - specifications/prime-lattice-boundary-routing.md
+  - extended/path-equivalence.md
+  - ppd/index.md
+  - ppd/glyph-forms.md
+  - reference/metric-duperiod.md
+  - domains/rhythm.md
+  - foundations/prime-families.md
+  - foundations/periodicity.md
+  - specifications/midi-solfege-input.md
+  - tuning/just-intonation.md
+  - tuning/72-edo-grid.md
 ---
  
 # Prime Lattice
@@ -496,4 +511,3 @@ underlying structures are not the same:
   relationships in rhythmic terms
 - [Path Equivalence and Confluence](../extended/path-equivalence.md) — how different paths
   can incidentally resolve to the same point
-- [Prime Lattice Profiles](../extended/prime-lattice-profiles.md) — an analytical approach for feature extraction and interharmonic distance using prime lattice paths

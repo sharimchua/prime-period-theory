@@ -10,7 +10,12 @@ tags:
   - geometry
   - tone-atlas
   - prime-period-theory
+status: stable
 timestamp: 2026-06-26
+used_by:
+  - related/tone-atlas.md
+  - uniform-solfege/base-12-algebra.md
+  - uniform-solfege/geometric-basis.md
 ---
 
 # Chromatic Clock Geometry

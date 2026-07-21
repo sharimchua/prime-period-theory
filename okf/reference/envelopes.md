@@ -9,6 +9,7 @@ tags:
   - ADSR
   - amplitude
   - prime-period-theory
+status: stable
 timestamp: 2026-06-28
 ---
 

@@ -26,7 +26,20 @@ related:
   - reference/emergent-analysis.md
   - domains/form.md
   - applications/component-philosophy.md
+status: stable
 timestamp: 2026-07-08
+used_by:
+  - structure/coil-notation.md
+  - structure/spatial-harmony.md
+  - context/tenets.md
+  - reference/metric-duperiod.md
+  - reference/emergent-analysis.md
+  - pedagogy/index.md
+  - applications/play-along.md
+  - structure/melodic-grammar.md
+  - uniform-solfege/index.md
+  - applications/component-philosophy.md
+  - implementations/ppt-components.md
 ---
 
 # MusiCoil
@@ -76,7 +89,6 @@ practice achieves through convention: harmonic rhythm and phrase rhythm
 coexist on the same timeline as independent streams. In MusiCoil the
 independence is architectural. See [Three-Layer Coil Notation](coil-notation.md)
 for the paper-writable surface syntax of the same separation, and
-[Form as Macro-Periodicity](../domains/form.md) for how this independence
 propagates to the level of musical form.
 
 ### Seams
@@ -369,7 +381,6 @@ through-composed) is readable from the arrangement graph without hearing
 the arrangement — incoming edge count per normalised node encodes formal
 weight; the arrangement sequence of node references gives the formal
 label; shared versus local Tonal Course nodes encode harmonic variation
-within formal repetition. See [Form as Macro-Periodicity](../domains/form.md)
 for the full account.
 
 The **definition view** shows unique coil definitions and their reference
@@ -463,7 +474,6 @@ arrangement data for scan-to-open.
   tonal polygon and palette span theory
 - [Emergent Analysis](../reference/emergent-analysis.md) — the authored
   vs. computed distinction; the read-only analytical layer
-- [Form as Macro-Periodicity](../domains/form.md) — arrangement graph
   topology as formal analysis
 - [Metric DuPeriod](../reference/metric-duperiod.md) — the coordinate
   system that the reference period system operationalises

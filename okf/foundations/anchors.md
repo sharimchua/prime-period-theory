@@ -14,6 +14,7 @@ tags:
   - prime-families
   - uniform-solfege
   - coordinates
+status: stable
 timestamp: 2026-07-11
 revision: "2026-07-10 (rev 3): scoped the 'no finite comma sequence can
   land exactly on a non-Do/Fi anchor' claim to Base-mode sequences
@@ -23,6 +24,11 @@ revision: "2026-07-10 (rev 3): scoped the 'no finite comma sequence can
   2026-07-11 (rev 4): added 'Solfège frames and the diacritic
   space,' verifying that dividing N=27,720 into the 12 Solfège
   frames yields exactly 2,310 = the radical of 27,720."
+used_by:
+  - foundations/prime-lattice.md
+  - foundations/period.md
+  - ppd/index.md
+  - tuning/just-intonation.md
 ---
  
 # Anchors and Prime Lattice Coordinates

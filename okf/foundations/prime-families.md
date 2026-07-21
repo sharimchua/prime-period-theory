@@ -13,7 +13,18 @@ tags:
   - polyrhythm
   - prime-limit
   - prime-period-theory
+status: stable
 timestamp: 2026-06-20
+used_by:
+  - foundations/periodicity.md
+  - uniform-solfege/geometric-basis.md
+  - domains/timbre.md
+  - ppd/index.md
+  - foundations/period.md
+  - foundations/amplitude-time.md
+  - tuning/just-intonation.md
+  - domains/rhythm.md
+  - domains/pitch.md
 ---
 
 # Prime Families

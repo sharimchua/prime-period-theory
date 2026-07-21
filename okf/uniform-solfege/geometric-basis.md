@@ -13,7 +13,14 @@ tags:
   - notation
   - logo
   - prime-period-theory
+status: stable
 timestamp: 2026-06-20
+used_by:
+  - foundations/prime-families.md
+  - foundations/amplitude-time.md
+  - uniform-solfege/diacritic-system.md
+  - uniform-solfege/index.md
+  - foundations/periodicity.md
 ---
 
 # Geometric Basis

@@ -7,6 +7,7 @@ tags:
   - music-as-language
   - auditory-classification
   - pedagogy
+status: stable
 timestamp: 2026-06-27
 ---
 

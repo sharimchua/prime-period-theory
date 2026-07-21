@@ -9,7 +9,11 @@ tags:
   - envelopes
   - timbre
   - prime-period-theory
+status: stable
 timestamp: 2026-06-29
+used_by:
+  - domains/timbre.md
+  - extended/amplitude-trajectories.md
 ---
 
 # Spectral Dynamic Coupling

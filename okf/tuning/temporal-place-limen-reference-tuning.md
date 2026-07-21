@@ -16,7 +16,15 @@ tags:
   - pitch
   - uniform-solfege
   - prime-period-theory
+status: stable
 timestamp: 2026-07-13
+used_by:
+  - perception/temporal-place-limen.md
+  - reference/metric-duperiod.md
+  - tuning/just-intonation.md
+  - tuning/31-edo.md
+  - tuning/72-edo-grid.md
+  - uniform-solfege/index.md
 ---
 
 # Temporal-Place Limen Reference Tuning

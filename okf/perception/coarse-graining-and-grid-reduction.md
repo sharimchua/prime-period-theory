@@ -11,7 +11,13 @@ tags:
   - coarse-graining
   - pitch
   - rhythm
+status: stable
 timestamp: 2026-07-08
+used_by:
+  - perception/temporal-place-limen.md
+  - reference/metric-duperiod.md
+  - ppd/index.md
+  - structure/melodic-grammar.md
 ---
 
 # Coarse-Graining and Grid Reduction

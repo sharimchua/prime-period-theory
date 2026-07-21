@@ -11,7 +11,11 @@ tags:
   - psychology
   - expectation
   - periodicity
+status: stable
 timestamp: 2026-06-26
+used_by:
+  - foundations/amplitude-time.md
+  - foundations/periodicity.md
 ---
 
 # Information and Expectation

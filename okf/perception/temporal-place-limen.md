@@ -15,7 +15,14 @@ tags:
   - metric-duperiod
   - psychoacoustics
   - prime-period-theory
+status: stable
 timestamp: 2026-07-13
+used_by:
+  - perception/local-closure.md
+  - reference/metric-duperiod.md
+  - foundations/amplitude-time.md
+  - foundations/periodicity.md
+  - extended/metric-duperiod-extended.md
 ---
 
 # Temporal-Place Limen

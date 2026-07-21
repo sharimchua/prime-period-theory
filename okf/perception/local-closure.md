@@ -10,7 +10,10 @@ tags:
   - triangulation
   - temporal-place-limen
   - prime-period-theory
+status: stable
 timestamp: 2026-07-13
+used_by:
+  - perception/temporal-place-limen.md
 ---
 
 # Perception-Period Local Closure & Residue Triangulation

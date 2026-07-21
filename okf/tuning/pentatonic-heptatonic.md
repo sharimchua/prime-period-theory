@@ -10,7 +10,12 @@ tags:
   - 3-limit
   - pentatonic
   - heptatonic
+status: stable
 timestamp: 2026-06-28
+used_by:
+  - tuning/tetrachord-pairs.md
+  - tuning/just-intonation.md
+  - uniform-solfege/index.md
 ---
 
 # Pentatonic and Heptatonic Structures

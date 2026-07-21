@@ -9,7 +9,18 @@ tags:
   - pedagogy
   - learning-paths
   - prime-period-theory
+status: stable
 timestamp: 2026-07-08
+used_by:
+  - pedagogy/learning-paths.md
+  - pedagogy/ear-first.md
+  - pedagogy/cross-domain-transfer.md
+  - pedagogy/progressive-complexity.md
+  - related/chromatic-clock.md
+  - structure/coil-notation.md
+  - applications/index.md
+  - pedagogy/axis-fan-pedagogy.md
+  - context/music-as-language.md
 ---
 
 # Pedagogy — Learning PPT

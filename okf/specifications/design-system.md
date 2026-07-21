@@ -7,6 +7,7 @@ tags:
   - design
   - colour-theory
   - styling
+status: stable
 timestamp: 2026-06-27
 ---
 

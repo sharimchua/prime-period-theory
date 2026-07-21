@@ -11,7 +11,20 @@ tags:
   - prime-period-theory
   - music-information-retrieval
   - diacritics
+status: stable
 timestamp: 2026-07-17
+used_by:
+  - perception/temporal-place-limen.md
+  - reference/metric-duperiod.md
+  - domains/rhythmic-overtone-series.md
+  - foundations/prime-lattice.md
+  - ppd/index.md
+  - uniform-solfege/diacritic-system.md
+  - domains/rhythmic-phase-coherence.md
+  - perception/duperiod-window-stack.md
+  - extended/prime-harmonic-profiles.md
+  - structure/melodic-grammar.md
+  - index.md
 ---
 
 # PPT Feature Taxonomy

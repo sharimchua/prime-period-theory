@@ -10,7 +10,12 @@ tags:
   - notation
   - interval
   - prime-period-theory
+status: stable
 timestamp: 2026-07-01
+used_by:
+  - uniform-solfege/base-12-algebra.md
+  - related/chromatic-clock.md
+  - uniform-solfege/index.md
 ---
 
 # Tone Atlas

@@ -17,7 +17,17 @@ tags:
   - combinatorics
   - melakarta
   - prime-period-theory
+status: stable
 timestamp: 2026-07-08
+used_by:
+  - tuning/pentatonic-heptatonic.md
+  - uniform-solfege/index.md
+  - foundations/periodicity.md
+  - context/tenets.md
+  - context/music-as-language.md
+  - uniform-solfege/base-12-algebra.md
+  - structure/melodic-grammar.md
+  - tuning/just-intonation.md
 ---
 
 # Tetrachord-Pair Generation of Heptatonic Scales

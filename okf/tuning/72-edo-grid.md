@@ -9,6 +9,7 @@ tags:
   - 72-edo
   - microtonality
   - diacritic-system
+status: stable
 timestamp: 2026-06-28
 ---
 

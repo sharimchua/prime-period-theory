@@ -14,6 +14,15 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await render(entry);
+
+const relations = [
+  { label: 'Depends On', items: entry.data.depends_on },
+  { label: 'Extends', items: entry.data.extends },
+  { label: 'Contrasts With', items: entry.data.contrasts_with },
+  { label: 'Used By', items: entry.data.used_by },
+  { label: 'Implemented By', items: entry.data.implemented_by }
+];
+const hasGraph = entry.data.type !== undefined;
 ---
 
 <Layout title={entry.data.title}>
@@ -21,17 +30,104 @@ const { Content } = await render(entry);
     <div class="content">
       <Content />
     </div>
+    {hasGraph && (
+      <details class="kg-box">
+        <summary>Knowledge Graph</summary>
+        <div class="kg-content">
+          <code>
+            {entry.data.status && <div><span class="kg-key">status:</span> <span class="kg-val">{entry.data.status}</span></div>}
+            {entry.data.domain && <div><span class="kg-key">domain:</span> <span class="kg-val">{entry.data.domain}</span></div>}
+            {entry.data.defines && entry.data.defines.length > 0 && (
+              <div>
+                <span class="kg-key">defines:</span>
+                <ul class="kg-list">
+                  {entry.data.defines.map((item: string) => <li>- <span class="kg-val">{item}</span></li>)}
+                </ul>
+              </div>
+            )}
+            {entry.data.evidence && entry.data.evidence.length > 0 && (
+              <div>
+                <span class="kg-key">evidence:</span>
+                <ul class="kg-list">
+                  {entry.data.evidence.map((item: string) => <li>- <span class="kg-val">{item}</span></li>)}
+                </ul>
+              </div>
+            )}
+            {relations.map(rel => {
+              if (!rel.items || rel.items.length === 0) return null;
+              const key = rel.label.toLowerCase().replace(' ', '_');
+              return (
+                <div>
+                  <span class="kg-key">{key}:</span>
+                  <ul class="kg-list">
+                    {rel.items.map((item: string) => (
+                      <li>- <a href={`/reference/${item.replace('.md', '')}`}>{item}</a></li>
+                    ))}
+                  </ul>
+                </div>
+              );
+            })}
+          </code>
+        </div>
+      </details>
+    )}
   </article>
 </Layout>
 
-<style>
-  .description {
-    font-size: 1.125rem;
-    color: #475569;
-    margin-bottom: 2rem;
-    font-style: italic;
+<style is:global>
+  .kg-box {
+    margin: 3rem 0 1.5rem 0 !important;
+    padding: 1.25rem !important;
+    background: #f8fafc !important;
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 8px !important;
+    color: #0f172a !important;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1) !important;
   }
-  .content {
-    margin-top: 2rem;
+  .kg-box summary {
+    font-weight: 700 !important;
+    cursor: pointer !important;
+    color: #0f172a !important;
+    user-select: none !important;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
+  }
+  .kg-content {
+    margin-top: 1rem !important;
+    font-size: 0.95rem !important;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
+    overflow-x: auto !important;
+    background: transparent !important;
+  }
+  .kg-content code {
+    display: block !important;
+    line-height: 1.6 !important;
+    background: transparent !important;
+    color: inherit !important;
+  }
+  .kg-key {
+    color: #2563eb !important;
+    font-weight: 600 !important;
+  }
+  .kg-val {
+    color: #059669 !important;
+  }
+  .kg-content a {
+    color: #dc2626 !important;
+    text-decoration: underline !important;
+    text-decoration-color: #f87171 !important;
+    text-underline-offset: 3px !important;
+    font-weight: 500 !important;
+  }
+  .kg-content a:hover {
+    color: #991b1b !important;
+    text-decoration-color: #991b1b !important;
+  }
+  .kg-list {
+    margin: 0 !important;
+    padding-left: 1rem !important;
+    list-style: none !important;
+  }
+  .kg-list li {
+    margin: 0 !important;
   }
 </style>

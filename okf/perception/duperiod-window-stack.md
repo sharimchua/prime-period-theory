@@ -11,7 +11,13 @@ tags:
   - rhythm
   - analysis
   - spectral
+status: stable
 timestamp: 2026-07-13
+used_by:
+  - reference/metric-duperiod.md
+  - perception/temporal-place-limen.md
+  - domains/rhythmic-overtone-series.md
+  - perception/self-adjusting-pipeline.md
 ---
 
 # DuPeriod Window Stack

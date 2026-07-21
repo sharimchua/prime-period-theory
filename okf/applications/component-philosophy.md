@@ -13,7 +13,14 @@ tags:
   - design-philosophy
   - periodicity
   - prime-period-theory
+status: stable
 timestamp: 2026-06-30
+used_by:
+  - reference/emergent-analysis.md
+  - foundations/periodicity.md
+  - reference/metric-duperiod.md
+  - implementations/ppt-components.md
+  - applications/visualisation.md
 ---
 
 # Component Philosophy — One Primitive, Two Domains

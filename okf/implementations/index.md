@@ -10,7 +10,12 @@ tags:
   - tools
   - register
   - prime-period-theory
+status: stable
 timestamp: 2026-06-30
+used_by:
+  - applications/component-philosophy.md
+  - applications/index.md
+  - implementations/ppt-components.md
 ---
 
 # Implementations — PPT Tool Register
@@ -58,5 +63,4 @@ as reference implementations of the applications layer.
 - [Component Philosophy](../applications/component-philosophy.md) —
   the design principles governing canonical implementations
 - [Applications](../applications/index.md) — the tool philosophy layer
-- [Harmonic Geometry](harmonic-geometry.md) — detailed entry
 - [PPT Components](ppt-components.md) — detailed entry

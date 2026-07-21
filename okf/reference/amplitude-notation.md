@@ -8,7 +8,11 @@ tags:
   - amplitude
   - uniform-solfege
   - prime-period-theory
+status: stable
 timestamp: 2026-06-28
+used_by:
+  - uniform-solfege/index.md
+  - extended/geometric-amplitude-ratios.md
 ---
 
 # Amplitude Notation

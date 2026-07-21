@@ -10,7 +10,12 @@ tags:
   - overtones
   - prime-period-theory
   - acoustics
+status: stable
 timestamp: 2026-07-01
+used_by:
+  - foundations/amplitude-time.md
+  - domains/pitch.md
+  - foundations/prime-families.md
 ---
 
 # Timbre and Spectral Periodicity

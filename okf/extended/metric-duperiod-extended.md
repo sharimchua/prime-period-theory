@@ -16,7 +16,13 @@ tags:
   - cognition
   - circadian
   - prime-period-theory
+status: stable
 timestamp: 2026-07-01
+used_by:
+  - reference/metric-duperiod.md
+  - perception/temporal-place-limen.md
+  - foundations/periodicity.md
+  - domains/rhythm.md
 ---
 
 # Metric DuPeriod — Extended Range

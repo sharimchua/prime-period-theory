@@ -3,6 +3,7 @@ type: concept
 title: "Default Do: The Case for D on 12TET Keyboards"
 description: A proposal to use D, rather than C, as the default pitch-class anchor for Do when teaching Uniform Solfège on 12TET keyboard instruments — grounded in the unique black/white key symmetry around D and its alignment with the A440 tuning standard.
 tags: [pedagogy, uniform-solfege, keyboard, default-do, mnemonics]
+status: stable
 timestamp: 2026-07-18
 ---
 

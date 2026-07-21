@@ -16,7 +16,15 @@ tags:
   - interval
   - microtonality
   - notation
+status: stable
 timestamp: 2026-07-08
+used_by:
+  - structure/coil-notation.md
+  - structure/rhythmic-grammar.md
+  - uniform-solfege/index.md
+  - ppd/index.md
+  - structure/musicoil.md
+  - domains/pitch.md
 ---
 
 # Melodic Grammar

@@ -12,10 +12,14 @@ tags:
   - prime-lattice
   - boundary-routing
   - note-navigator
+status: stable
 timestamp: 2026-07-07
 revision: "2026-07-10: reworded 'casts a vector' to 'projects a vector'
   and added a disambiguating note, to avoid collision with the unrelated
   Cast operation introduced in foundations/period.md"
+used_by:
+  - foundations/period.md
+  - foundations/prime-lattice.md
 ---
 
 # Architecture Specification: Prime Lattice Du Pivot Licensing
@@ -71,4 +75,3 @@ When integrating this logic into the lattice pathing engine, ensure the followin
 ## See also
 
 - [Prime Lattice](../foundations/prime-lattice.md) — the mathematical space the boundary routing operates within
-- [Note Navigation](../implementations/note-navigation.md) — an active implementation utilizing these routing rules

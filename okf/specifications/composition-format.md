@@ -3,6 +3,7 @@ type: concept
 title: PPT Composition Format (PPT-CF)
 description: A concise structural encoding format for serializing Prime Period Theory component layouts.
 tags: [systems, web, architecture, serialization]
+status: stable
 timestamp: 2026-06-29
 ---
 

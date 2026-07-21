@@ -17,10 +17,20 @@ tags:
   - rhythm
   - pitch
   - prime-period-theory
+status: stable
 timestamp: 2026-07-13
 revision: "2026-07-10: cross-referenced the general Period model
   (foundations/period.md) this file's Period/Anchor mechanics are a
   timescale-specific instance of"
+used_by:
+  - foundations/period.md
+  - perception/temporal-place-limen.md
+  - foundations/periodicity.md
+  - foundations/prime-families.md
+  - domains/rhythm.md
+  - uniform-solfege/index.md
+  - structure/rhythmic-grammar.md
+  - extended/metric-duperiod-extended.md
 ---
 
 # Metric DuPeriod

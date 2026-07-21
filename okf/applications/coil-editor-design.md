@@ -13,7 +13,13 @@ tags:
   - rhythmic-grammar
   - melodic-grammar
   - musicoil
+status: stable
 timestamp: 2026-07-08
+used_by:
+  - structure/coil-notation.md
+  - applications/component-philosophy.md
+  - applications/play-along.md
+  - implementations/ppt-components.md
 ---
 
 # Three-Layer Coil Editor Design Rationale

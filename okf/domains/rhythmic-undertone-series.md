@@ -9,7 +9,11 @@ tags:
   - subharmonics
   - periodicity
   - inter-onset-ratio
+status: stable
 timestamp: 2026-07-07
+used_by:
+  - domains/rhythmic-overtone-series.md
+  - foundations/periodicity.md
 ---
 
 # Rhythmic Undertone Series

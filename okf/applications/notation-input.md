@@ -14,7 +14,15 @@ tags:
   - notation
   - uniform-solfege
   - prime-period-theory
+status: stable
 timestamp: 2026-07-08
+used_by:
+  - specifications/midi-solfege-input.md
+  - structure/coil-notation.md
+  - structure/rhythmic-grammar.md
+  - specifications/midi-solfege-mapping.md
+  - foundations/prime-lattice.md
+  - applications/component-philosophy.md
 ---
 
 # Notation Input

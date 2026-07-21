@@ -13,6 +13,7 @@ tags:
   - polyrhythm
   - microtonality
   - 31-edo
+status: stable
 timestamp: 2026-07-13
 ---
 
@@ -225,9 +226,6 @@ amplitude or effect envelopes.
 ### Implementations
 - [Register](implementations/index.md) — all existing tools and their PPT coverage
 - [PPT Component Library](implementations/ppt-components.md) — canonical active development
-- [Harmonic Geometry](implementations/harmonic-geometry.md) — precursor tool
-- [Note Navigation](implementations/note-navigation.md) — precursor tool
-- [Frequency Perception](implementations/frequency-perception.md) — precursor tool
 
 ## Specifications
 - [Prime Lattice Boundary Routing](specifications/prime-lattice-boundary-routing.md) — rules and validation logic for transient excursions beyond local boundaries
@@ -240,6 +238,9 @@ amplitude or effect envelopes.
 - [MIDI to Solfège Mapping](specifications/midi-solfege-mapping.md)
   — reference mapping implementations; keyboard chord conventions; MIDI
   guitar interpretation; binding profiles; MIDI chain input patterns
+
+## Project Analytics
+- [OKF Architectural Analysis](analysis.md) — auto-generated dependency health, metrics, and refactor candidates
 
 ## Relationship to other theories
 

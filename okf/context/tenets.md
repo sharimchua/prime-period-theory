@@ -10,7 +10,13 @@ tags:
   - foundations
   - philosophy
   - methodology
+status: stable
 timestamp: 2026-07-01
+used_by:
+  - foundations/amplitude-time.md
+  - foundations/prime-families.md
+  - perception/temporal-place-limen.md
+  - context/music-as-language.md
 ---
 
 # Core Tenets of Prime Period Theory

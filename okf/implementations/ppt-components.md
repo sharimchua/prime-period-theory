@@ -11,7 +11,11 @@ tags:
   - components
   - canonical
   - prime-period-theory
+status: stable
 timestamp: 2026-07-06
+used_by:
+  - applications/component-philosophy.md
+  - applications/visualisation.md
 ---
 
 # PPT Component Library

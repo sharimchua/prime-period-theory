@@ -22,7 +22,15 @@ related:
   - structure/rhythmic-grammar.md
   - structure/melodic-grammar.md
   - foundations/anchors.md
+status: stable
 timestamp: 2026-07-08
+used_by:
+  - structure/coil-notation.md
+  - uniform-solfege/index.md
+  - structure/rhythmic-grammar.md
+  - foundations/anchors.md
+  - structure/musicoil.md
+  - structure/melodic-grammar.md
 ---
 
 # Musical Tapestry: Compositional Structure Layer

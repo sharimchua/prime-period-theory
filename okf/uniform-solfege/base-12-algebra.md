@@ -10,7 +10,12 @@ tags:
   - clock-arithmetic
   - interval
   - prime-period-theory
+status: stable
 timestamp: 2026-06-26
+used_by:
+  - uniform-solfege/geometric-basis.md
+  - related/tone-atlas.md
+  - foundations/periodicity.md
 ---
 
 # Base-12 Algebra

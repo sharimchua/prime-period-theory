@@ -12,7 +12,10 @@ tags:
   - anchors
   - floating
   - tuplet
+status: stable
 timestamp: 2026-07-11
+used_by:
+  - foundations/period.md
 ---
 
 # Period Declaration Mechanics

@@ -8,7 +8,12 @@ tags:
   - notation
   - microtonality
   - prime-period-theory
+status: stable
 timestamp: 2026-07-01
+used_by:
+  - foundations/prime-lattice.md
+  - specifications/midi-solfege-input.md
+  - ppd/glyph-forms.md
 ---
 
 # Prime Period Diacritics

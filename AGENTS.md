@@ -69,7 +69,9 @@ After ANY meaningful change:
 1. Update `okf/index.md` if a new concept page was added or renamed
 2. Update the local `AGENTS.md` if directory structure changed
 3. Update `timestamp` in the frontmatter of any modified OKF file
-4. Update `README.md` to reflect any major additions, new tooling, or structural changes to the project
+4. Ensure typed relationships in frontmatter (`depends_on`, `defines`, etc.) are up-to-date
+5. Run local validation: `python scripts/okf_lint.py` and ensure it passes
+6. Update `README.md` to reflect any major additions, new tooling, or structural changes to the project
 
 ## Core terminology (do not redefine without author approval)
 

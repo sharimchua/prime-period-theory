@@ -11,13 +11,18 @@ tags:
   - notation
   - prime-period-theory
 timestamp: 2026-07-07
-status: active
+status: stable
 version: 2.0
 relates-to:
   - uniform-solfege/geometric-basis
   - uniform-solfege/base-12-algebra
   - foundations/prime-families
   - tuning/72-edo-grid
+used_by:
+  - ppd/index.md
+  - foundations/prime-lattice.md
+  - ppd/glyph-forms.md
+  - uniform-solfege/geometric-basis.md
 ---
 
 # Diacritic System

@@ -13,7 +13,16 @@ tags:
   - prime-families
   - rhythmic-grammar
   - prime-period-theory
+status: stable
 timestamp: 2026-07-11
+used_by:
+  - foundations/periodicity.md
+  - foundations/prime-families.md
+  - specifications/period-declaration.md
+  - structure/rhythmic-grammar.md
+  - uniform-solfege/diacritic-system.md
+  - domains/rhythmic-overtone-series.md
+  - domains/pitch.md
 ---
 
 # Rhythm

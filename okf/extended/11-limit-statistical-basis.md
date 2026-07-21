@@ -16,7 +16,14 @@ tags:
   - rhythmic-overtone-series
   - corpus-analysis
   - prime-period-theory
+status: stable
 timestamp: 2026-07-03
+used_by:
+  - foundations/prime-families.md
+  - domains/rhythmic-overtone-series.md
+  - perception/temporal-place-limen.md
+  - domains/rhythm.md
+  - foundations/periodicity.md
 ---
 
 # Bounding the Infinite: A Statistical Basis for the 11-Limit in Macro-Rhythmic Analysis

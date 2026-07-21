@@ -10,7 +10,12 @@ tags:
   - prime-families
   - geometric-ratios
   - prime-period-theory
+status: stable
 timestamp: 2026-06-29
+used_by:
+  - domains/timbre.md
+  - domains/dynamics.md
+  - foundations/prime-families.md
 ---
 
 # Geometric Amplitude Ratios

@@ -11,6 +11,7 @@ tags:
   - prime-harmonic-profiles
   - structural-complexity
   - tone-attribution
+status: stable
 timestamp: 2026-07-16
 ---
 

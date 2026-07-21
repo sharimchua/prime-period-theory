@@ -9,7 +9,12 @@ tags:
   - just-intonation
   - prime-families
   - pitch
+status: stable
 timestamp: 2026-07-07
+used_by:
+  - foundations/prime-families.md
+  - tuning/12-tet.md
+  - tuning/just-intonation.md
 ---
 
 # Du-Fractal DuTri Closure: A PPT-Native 12-Tone Tuning

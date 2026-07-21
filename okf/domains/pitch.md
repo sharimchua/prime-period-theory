@@ -11,7 +11,13 @@ tags:
   - psychoacoustics
   - harmonic-series
   - prime-period-theory
+status: stable
 timestamp: 2026-07-08
+used_by:
+  - foundations/amplitude-time.md
+  - uniform-solfege/base-12-algebra.md
+  - structure/melodic-grammar.md
+  - domains/rhythm.md
 ---
 
 # Pitch and Consonance

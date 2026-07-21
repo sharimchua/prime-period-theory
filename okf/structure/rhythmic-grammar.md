@@ -14,7 +14,17 @@ tags:
   - metronome
   - solkattu
   - prime-period-theory
+status: stable
 timestamp: 2026-07-08
+used_by:
+  - specifications/midi-solfege-input.md
+  - uniform-solfege/diacritic-system.md
+  - domains/rhythm.md
+  - foundations/prime-families.md
+  - uniform-solfege/index.md
+  - structure/coil-notation.md
+  - structure/melodic-grammar.md
+  - structure/musicoil.md
 ---
 
 # Rhythmic Grammar
