@@ -197,6 +197,16 @@ export class AbsRatio {
   }
 
   toKey(): string {
+    if (this.isEffectivelyRational()) {
+      let num = 1;
+      let den = 1;
+      for (const p of PRIMES) {
+        const e = Math.round(this.vec[p] || 0);
+        if (e > 0) num *= Math.pow(p, e);
+        else if (e < 0) den *= Math.pow(p, -e);
+      }
+      return `${num}/${den}`;
+    }
     const parts = PRIMES.map((p) => {
       const e = this.vec[p] || 0;
       return Math.abs(e) > 1e-9 ? `${p}^${e.toFixed(6)}` : null;
@@ -361,7 +371,7 @@ export function getPrimeCombination(
   }
 
   if (parts.length === 0) {
-    return null;
+    return { label: 'Du (2)', product: 2 };
   }
 
   return {

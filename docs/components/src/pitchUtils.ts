@@ -73,8 +73,9 @@ export function mapPitchesToRatios(text: string, config: PitchTuningConfig): { l
     }
     currentMidi = midi;
     
-    let octaves = Math.floor(midi / 12);
-    let semitones = midi % 12;
+    let relativeMidi = midi - baseMidi;
+    let octaves = Math.floor(relativeMidi / 12);
+    let semitones = relativeMidi % 12;
     if (semitones < 0) {
       semitones += 12;
     }
