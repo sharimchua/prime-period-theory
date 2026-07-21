@@ -1,15 +1,12 @@
-/// <reference types="vitest" />
-import { getViteConfig } from 'astro/config';
+import { defineConfig } from 'vitest/config';
 
-export default getViteConfig({
+export default defineConfig({
   test: {
     environment: 'happy-dom',
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
-      all: true,
-      include: ['components/src/**/*.ts', 'src/components/designer/**/*.ts'],
-      exclude: ['**/*.d.ts', '**/index.ts'],
-    },
-  },
+      exclude: ['node_modules/', 'dist/']
+    }
+  }
 });
