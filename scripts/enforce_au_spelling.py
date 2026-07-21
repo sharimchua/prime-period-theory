@@ -56,6 +56,8 @@ def check_file(filepath):
             
         # Remove inline code `...` before checking so we don't flag `color: red;`
         text_to_check = re.sub(r'`[^`]*`', '', line)
+        # Remove HTML tags to prevent flagging attributes like style="color: red;"
+        text_to_check = re.sub(r'<[^>]+>', '', text_to_check)
         
         words_to_check = dict(AMERICAN_TO_AUSTRALIAN)
         if is_md:
