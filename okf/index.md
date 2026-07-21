@@ -220,6 +220,7 @@ amplitude or effect envelopes.
   Solfège Input Specification serves PPT tools; text expander and macro
   patterns; generative MIDI input; design principles for consuming tools
 - [Song Sphere Instrument](applications/song-sphere.md) — concept note and design rationale for a self-powered chorded digital instrument
+- [Song Stick Instrument](applications/song-stick.md) — concept note and design rationale for a guitar-shaped variant of the self-powered chorded instrument
 
 ### Implementations
 - [Register](implementations/index.md) — all existing tools and their PPT coverage
