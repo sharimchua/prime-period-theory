@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import KnowledgeGraphViewer from '../../components/KnowledgeGraphViewer.astro';
 
 export async function getStaticPaths() {
   const referenceEntries = await getCollection('reference');
@@ -29,6 +30,7 @@ const hasGraph = entry.data.type !== undefined;
   <article>
     <div class="content">
       <Content />
+      {entry.id === 'analysis' && <KnowledgeGraphViewer />}
     </div>
     {hasGraph && (
       <details class="kg-box">

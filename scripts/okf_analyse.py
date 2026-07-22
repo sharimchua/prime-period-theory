@@ -158,8 +158,30 @@ def analyze_okf(output_dir):
         "evidence_distribution": dict(evidence_counts),
     }
     
-    with open(os.path.join(output_dir, "okf-analysis.json"), "w") as f:
+    with open(os.path.join(output_dir, "okf-analysis.json"), "w", encoding='utf-8') as f:
         json.dump(report_data, f, indent=2)
+
+    # Write Interactive Graph JSON for Astro public dir
+    graph_nodes = []
+    graph_links = []
+    for f_path in all_files:
+        fm = doc_data[f_path]["frontmatter"] or {}
+        title = fm.get("title", f_path)
+        group = fm.get("domain") or (f_path.split("/")[0] if "/" in f_path else "root")
+        if isinstance(group, list):
+            group = group[0] if group else "root"
+        doc_type = fm.get("type", "concept")
+        status = fm.get("status", "none")
+        graph_nodes.append({"id": f_path, "title": title, "group": group, "doc_type": doc_type, "status": status})
+        
+    for src, targets in edges.items():
+        for tgt in targets:
+            graph_links.append({"source": src, "target": tgt, "value": 1})
+            
+    docs_public = os.path.join("docs", "public")
+    os.makedirs(docs_public, exist_ok=True)
+    with open(os.path.join(docs_public, "okf-graph.json"), "w", encoding='utf-8') as f:
+        json.dump({"nodes": graph_nodes, "links": graph_links}, f, indent=2)
 
     # Write Markdown full report
     md = [
@@ -195,9 +217,9 @@ def analyze_okf(output_dir):
         for gc in god_concepts:
             gc_metric = next((m for m in metrics if m['file'] == gc), None)
             if gc_metric:
-                md.append(f"| {gc} | {gc_metric['fan_out']} | {gc_metric['size_chars']} | {gc_metric['h2_sections']} |")
+                md.append(f"| [{gc}]({gc}) | {gc_metric['fan_out']} | {gc_metric['size_chars']} | {gc_metric['h2_sections']} |")
             else:
-                md.append(f"| {gc} | ? | ? | ? |")
+                md.append(f"| [{gc}]({gc}) | ? | ? | ? |")
     else:
         md.append("None detected.")
         
@@ -208,30 +230,13 @@ def analyze_okf(output_dir):
         "|------|--------|---------|-------------|----|------|"
     ])
     for m in metrics[:15]:
-        md.append(f"| {m['file']} | {m['fan_in']} | {m['fan_out']} | {m['instability']} | {m['h2_sections']} | {m['size_chars']} |")
+        md.append(f"| [{m['file']}]({m['file']}) | {m['fan_in']} | {m['fan_out']} | {m['instability']} | {m['h2_sections']} | {m['size_chars']} |")
         
     md.extend([
         "", 
         "## Graph Topology",
-        "The following diagram provides a visual representation of the core dependency graph (limited to the first 50 connections for readability).",
-        "",
-        "- **Nodes** represent individual OKF concept files.",
-        "- **Arrows** represent a dependency relationship pointing from a source concept to its target.",
-        "",
-        "This topology helps visualize the structural flow of knowledge and identify foundational concepts that anchor the framework."
+        "The complete graph topology is rendered interactively below using the `KnowledgeGraphViewer` Astro component, providing a visual representation of the core dependency graph."
     ])
-    md.append("```mermaid")
-    md.append("graph TD")
-    count = 0
-    for src, targets in edges.items():
-        if count > 50:
-            break
-        src_name = os.path.basename(src).replace('.md', '')
-        for tgt in targets:
-            tgt_name = os.path.basename(tgt).replace('.md', '')
-            md.append(f"    {src_name} --> {tgt_name}")
-            count += 1
-    md.append("```")
 
     with open(os.path.join(output_dir, "okf-analysis.md"), "w", encoding='utf-8') as f:
         f.write("\n".join(md))

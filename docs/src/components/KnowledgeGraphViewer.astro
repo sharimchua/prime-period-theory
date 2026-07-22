@@ -1,0 +1,229 @@
+---
+---
+
+<div class="kg-viewer-wrapper" id="kg-wrapper">
+  <div class="kg-controls">
+    <input type="text" id="kg-search" placeholder="Search concepts..." autocomplete="off" />
+    <button id="kg-btn-fit" title="Zoom to Fit">⛶ Fit</button>
+    <button id="kg-btn-fs" title="Toggle Full Screen">⤢ Full Screen</button>
+  </div>
+  <div id="kg-canvas-container"></div>
+</div>
+
+<script>
+  import ForceGraph from 'force-graph';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const container = document.getElementById('kg-canvas-container');
+    const wrapper = document.getElementById('kg-wrapper');
+    const searchInput = document.getElementById('kg-search') as HTMLInputElement;
+    const btnFit = document.getElementById('kg-btn-fit');
+    const btnFs = document.getElementById('kg-btn-fs');
+    
+    if (!container) return;
+
+    fetch('/okf-graph.json')
+      .then(res => res.json())
+      .then(data => {
+        // Pre-compute node neighbors and links
+        const highlightNodes = new Set();
+        const highlightLinks = new Set();
+        let hoverNode: any = null;
+        let searchQuery = "";
+
+        data.links.forEach((link: any) => {
+          const a = data.nodes.find((n: any) => n.id === link.source);
+          const b = data.nodes.find((n: any) => n.id === link.target);
+          if (a && b) {
+            if (!a.neighbors) a.neighbors = [];
+            if (!b.neighbors) b.neighbors = [];
+            a.neighbors.push(b);
+            b.neighbors.push(a);
+            if (!a.links) a.links = [];
+            if (!b.links) b.links = [];
+            a.links.push(link);
+            b.links.push(link);
+          }
+        });
+
+        const Graph = ForceGraph()(container)
+          .graphData(data)
+          .nodeId('id')
+          .nodeLabel('title')
+          .nodeCanvasObject((node: any, ctx: any) => {
+            const isHovered = hoverNode === node;
+            const isHighlighted = highlightNodes.has(node);
+            const isDimmed = (searchQuery && !node.title.toLowerCase().includes(searchQuery)) || (hoverNode && !isHighlighted && !isHovered);
+            
+            // Map type to fill color
+            let fillColor = '#3b82f6'; // default concept (blue)
+            if (node.doc_type === 'index') fillColor = '#8b5cf6'; // purple
+            else if (node.doc_type === 'reference') fillColor = '#10b981'; // green
+            else if (node.doc_type === 'glossary') fillColor = '#f59e0b'; // amber
+            else if (node.doc_type === 'specification') fillColor = '#ef4444'; // red
+            
+            if (isDimmed) fillColor = 'rgba(200, 200, 200, 0.2)';
+
+            // Map status to stroke style
+            let strokeColor = '#ffffff';
+            let lineDash: number[] = [];
+            if (node.status === 'draft' || node.status === 'experimental' || node.status === 'stub') {
+              strokeColor = isDimmed ? 'rgba(150, 150, 150, 0.2)' : '#f97316'; // orange outline for draft/experimental
+              lineDash = [1.5, 1.5];
+            } else if (node.status === 'deprecated') {
+              strokeColor = isDimmed ? 'rgba(150, 150, 150, 0.2)' : '#9ca3af'; // gray outline
+              lineDash = [1, 2];
+            } else { 
+              strokeColor = isDimmed ? 'transparent' : '#1e3a8a'; // solid dark border for stable
+            }
+
+            const radius = 4;
+            ctx.beginPath();
+            ctx.arc(node.x, node.y, radius, 0, 2 * Math.PI, false);
+            ctx.fillStyle = fillColor;
+            ctx.fill();
+            
+            ctx.setLineDash(lineDash);
+            ctx.lineWidth = isHovered ? 1.5 : 1;
+            ctx.strokeStyle = strokeColor;
+            ctx.stroke();
+            ctx.setLineDash([]); // reset
+          })
+          .linkWidth(link => highlightLinks.has(link) ? 3 : 1)
+          .linkColor(link => highlightLinks.has(link) ? '#10b981' : 'rgba(150, 150, 150, 0.3)')
+          .linkDirectionalArrowLength(3.5)
+          .linkDirectionalArrowRelPos(1)
+          .backgroundColor('#f8f9fa')
+          .onNodeClick((node: any) => {
+            // Navigate to the reference page
+            let path = node.id.replace('.md', '');
+            if (path === 'index') {
+              path = '';
+            } else if (path.endsWith('/index')) {
+              path = path.slice(0, -6); // Strip the '/index' to route to the directory root
+            }
+            window.location.href = `/reference/${path}`;
+          })
+          .onNodeHover(node => {
+            if ((!node && !highlightNodes.size) || (node && hoverNode === node)) return;
+
+            highlightNodes.clear();
+            highlightLinks.clear();
+            
+            if (node) {
+              highlightNodes.add(node);
+              if (node.neighbors) node.neighbors.forEach((neighbor: any) => highlightNodes.add(neighbor));
+              if (node.links) node.links.forEach((link: any) => highlightLinks.add(link));
+            }
+
+            hoverNode = node || null;
+            
+            // Trigger visual update
+            Graph
+              .linkColor(Graph.linkColor())
+              .linkWidth(Graph.linkWidth());
+          });
+
+        // Controls
+        btnFit?.addEventListener('click', () => {
+          Graph.zoomToFit(400, 50);
+        });
+
+        btnFs?.addEventListener('click', () => {
+          if (!document.fullscreenElement) {
+            wrapper?.requestFullscreen().catch(err => {
+              console.error(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+            });
+          } else {
+            document.exitFullscreen();
+          }
+        });
+
+        searchInput?.addEventListener('input', (e) => {
+          searchQuery = (e.target as HTMLInputElement).value.toLowerCase();
+          // Trigger a re-render of the canvas by slightly shifting zoom (no-op visual but forces redraw)
+          Graph.zoom(Graph.zoom()); 
+        });
+
+        // Resize observer to keep canvas responsive
+        const resizeObserver = new ResizeObserver(entries => {
+          for (let entry of entries) {
+            Graph.width(entry.contentRect.width);
+            Graph.height(entry.contentRect.height);
+          }
+        });
+        resizeObserver.observe(container);
+      })
+      .catch(err => console.error("Error loading OKF Graph data:", err));
+  });
+</script>
+
+<style>
+  .kg-viewer-wrapper {
+    margin: 2rem 0;
+    width: 100%;
+    height: 600px;
+    border: 1px solid #e1e4e8;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    background-color: #f8f9fa;
+  }
+  
+  .kg-viewer-wrapper:fullscreen {
+    height: 100vh;
+    border: none;
+    border-radius: 0;
+    margin: 0;
+  }
+
+  .kg-controls {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    z-index: 10;
+    display: flex;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 0.5rem;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    backdrop-filter: blur(4px);
+  }
+
+  .kg-controls input {
+    padding: 0.4rem 0.6rem;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    outline: none;
+    width: 200px;
+  }
+
+  .kg-controls input:focus {
+    border-color: #3b82f6;
+  }
+
+  .kg-controls button {
+    padding: 0.4rem 0.8rem;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #374151;
+    transition: all 0.2s;
+  }
+
+  .kg-controls button:hover {
+    background: #f3f4f6;
+    border-color: #9ca3af;
+  }
+  
+  #kg-canvas-container {
+    width: 100%;
+    height: 100%;
+  }
+</style>
