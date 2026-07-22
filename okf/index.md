@@ -239,8 +239,6 @@ amplitude or effect envelopes.
   — reference mapping implementations; keyboard chord conventions; MIDI
   guitar interpretation; binding profiles; MIDI chain input patterns
 
-## Project Analytics
-- [OKF Architectural Analysis](analysis.md) — auto-generated dependency health, metrics, and refactor candidates
 
 ## Relationship to other theories
 
