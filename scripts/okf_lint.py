@@ -1,58 +1,16 @@
 import os
 import sys
 import re
-import yaml
 import json
 import argparse
 from datetime import datetime
 from collections import defaultdict
 
-OKF_DIR = "okf"
-
-REQUIRED_KEYS = ["type", "title", "description", "tags", "timestamp", "status"]
-ALLOWED_TYPES = {"index", "concept", "reference", "glossary", "specification"}
-ALLOWED_STATUSES = {"stable", "experimental", "draft", "deprecated", "stub"}
-ALLOWED_EVIDENCES = {"mathematical", "empirical", "historical", "pedagogical", "design", "speculative"}
-TYPED_RELS = ["depends_on", "extends", "contrasts_with", "used_by", "implemented_by", "pedagogically_precedes"]
-
-class Finding:
-    def __init__(self, severity, check_id, filepath, message):
-        self.severity = severity
-        self.check_id = check_id
-        self.filepath = filepath
-        self.message = message
-
-    def to_dict(self):
-        return {
-            "severity": self.severity,
-            "check_id": self.check_id,
-            "filepath": self.filepath,
-            "message": self.message
-        }
-
-def parse_file(filepath):
-    with open(filepath, 'r', encoding='utf-8') as f:
-        content = f.read()
-    
-    frontmatter = None
-    body = content
-    if content.startswith("---"):
-        parts = content.split("---", 2)
-        if len(parts) >= 3:
-            try:
-                frontmatter = yaml.safe_load(parts[1])
-            except Exception:
-                pass
-            body = parts[2]
-            
-    # Extract markdown links [text](path)
-    links = re.findall(r'\[([^\]]+)\]\(([^)]+)\)', body)
-    
-    return {
-        "frontmatter": frontmatter,
-        "body": body,
-        "links": links
-    }
+from okf_common import (
+    OKF_DIR, REQUIRED_KEYS, ALLOWED_TYPES, ALLOWED_STATUSES,
+    ALLOWED_EVIDENCES, TYPED_RELS, Finding, parse_file,
+    walk_okf_files, check_cycles,
+)
 
 def lint_okf(strict=False):
     findings = []
@@ -69,56 +27,38 @@ def lint_okf(strict=False):
     # Store edges for acyclic check
     depends_on_graph = defaultdict(list)
 
+    pedagogy_graph = defaultdict(list)
+
     # Pass 1: Parse and collect files
-    for root, _, files in os.walk(OKF_DIR):
-        for file in files:
-            if file.endswith(".md") and not file.endswith("AGENTS.md"):
-                rel_path = os.path.relpath(os.path.join(root, file), OKF_DIR).replace('\\', '/')
-                all_files.add(rel_path)
-                
-                full_path = os.path.join(OKF_DIR, rel_path)
-                data = parse_file(full_path)
-                doc_data[rel_path] = data
-                
-                fm = data["frontmatter"]
-                if fm:
-                    for d in fm.get("defines", []):
-                        defines_map[d].append(rel_path)
-                    
-                    depends = fm.get("depends_on", [])
-                    if depends:
-                        depends_on_graph[rel_path].extend(depends)
-
-    # Acyclic check function
-    def check_cycle(graph):
-        visited = set()
-        rec_stack = set()
-        cycles = []
+    for rel_path, full_path in walk_okf_files():
+        all_files.add(rel_path)
         
-        def dfs(node, path):
-            visited.add(node)
-            rec_stack.add(node)
-            path.append(node)
+        data = parse_file(full_path)
+        doc_data[rel_path] = data
+        
+        fm = data["frontmatter"]
+        if fm:
+            for d in fm.get("defines", []):
+                defines_map[d].append(rel_path)
             
-            for neighbor in graph.get(node, []):
-                if neighbor not in visited:
-                    dfs(neighbor, path)
-                elif neighbor in rec_stack:
-                    idx = path.index(neighbor)
-                    cycles.append(path[idx:] + [neighbor])
-                    
-            rec_stack.remove(node)
-            path.pop()
-            
-        for node in list(graph.keys()):
-            if node not in visited:
-                dfs(node, [])
-        return cycles
+            depends = fm.get("depends_on", [])
+            if depends:
+                depends_on_graph[rel_path].extend(depends)
+                
+            pedagogical = fm.get("pedagogically_precedes", [])
+            if pedagogical:
+                pedagogy_graph[rel_path].extend(pedagogical)
 
-    cycles = check_cycle(depends_on_graph)
+    cycles = check_cycles(depends_on_graph)
     for cycle in cycles:
         cycle_str = " -> ".join(cycle)
         findings.append(Finding("error", "depends-acyclic", cycle[0], f"Dependency cycle detected: {cycle_str}"))
+
+    pedagogy_cycles = check_cycles(pedagogy_graph)
+    for cycle in pedagogy_cycles:
+        cycle_str = " -> ".join(cycle)
+        findings.append(Finding("error", "pedagogy-acyclic", cycle[0],
+                                f"Pedagogical cycle detected: {cycle_str}"))
 
     # Pass 2: Rules
     for rel_path, data in doc_data.items():
@@ -174,6 +114,19 @@ def lint_okf(strict=False):
             for target in targets:
                 if target not in all_files:
                     findings.append(Finding("error", "relationship-targets", rel_path, f"Broken '{rel_key}' link to '{target}'"))
+
+        depends_count = len(fm.get("depends_on", []))
+        if depends_count > 10:
+            findings.append(Finding("warning", "fan-out", rel_path,
+                                    f"High fan-out: {depends_count} depends_on entries (threshold: 10)"))
+
+        # Exposition ratio check
+        prose = re.sub(r'```[\s\S]*?```', '', data["body"])
+        prose = re.sub(r'`[^`]+`', '', prose)
+        prose_len = len(prose.strip())
+        if prose_len > 8000:
+            findings.append(Finding("info", "exposition-length", rel_path,
+                                    f"Long exposition: {prose_len} chars of prose (threshold: 8000)"))
 
         if not has_typed_rels and rel_path != "index.md":
             findings.append(Finding("info", "no-orphan", rel_path, "No typed relationships defined"))
