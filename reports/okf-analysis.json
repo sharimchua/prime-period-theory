@@ -1,0 +1,703 @@
+{
+  "metrics": [
+    {
+      "file": "foundations/prime-families.md",
+      "fan_in": 20,
+      "fan_out": 9,
+      "instability": 0.31,
+      "h2_sections": 8,
+      "size_chars": 7741
+    },
+    {
+      "file": "foundations/periodicity.md",
+      "fan_in": 18,
+      "fan_out": 6,
+      "instability": 0.25,
+      "h2_sections": 7,
+      "size_chars": 6233
+    },
+    {
+      "file": "uniform-solfege/index.md",
+      "fan_in": 14,
+      "fan_out": 8,
+      "instability": 0.36,
+      "h2_sections": 8,
+      "size_chars": 11389
+    },
+    {
+      "file": "reference/metric-duperiod.md",
+      "fan_in": 13,
+      "fan_out": 8,
+      "instability": 0.38,
+      "h2_sections": 12,
+      "size_chars": 16334
+    },
+    {
+      "file": "perception/temporal-place-limen.md",
+      "fan_in": 13,
+      "fan_out": 5,
+      "instability": 0.28,
+      "h2_sections": 7,
+      "size_chars": 7341
+    },
+    {
+      "file": "domains/rhythm.md",
+      "fan_in": 12,
+      "fan_out": 7,
+      "instability": 0.37,
+      "h2_sections": 10,
+      "size_chars": 12194
+    },
+    {
+      "file": "ppd/index.md",
+      "fan_in": 11,
+      "fan_out": 3,
+      "instability": 0.21,
+      "h2_sections": 7,
+      "size_chars": 4327
+    },
+    {
+      "file": "foundations/prime-lattice.md",
+      "fan_in": 10,
+      "fan_out": 13,
+      "instability": 0.57,
+      "h2_sections": 13,
+      "size_chars": 27654
+    },
+    {
+      "file": "structure/melodic-grammar.md",
+      "fan_in": 9,
+      "fan_out": 6,
+      "instability": 0.4,
+      "h2_sections": 10,
+      "size_chars": 12482
+    },
+    {
+      "file": "foundations/amplitude-time.md",
+      "fan_in": 9,
+      "fan_out": 5,
+      "instability": 0.36,
+      "h2_sections": 8,
+      "size_chars": 6938
+    },
+    {
+      "file": "domains/timbre.md",
+      "fan_in": 8,
+      "fan_out": 3,
+      "instability": 0.27,
+      "h2_sections": 5,
+      "size_chars": 7109
+    },
+    {
+      "file": "structure/coil-notation.md",
+      "fan_in": 8,
+      "fan_out": 5,
+      "instability": 0.38,
+      "h2_sections": 8,
+      "size_chars": 9185
+    },
+    {
+      "file": "structure/rhythmic-grammar.md",
+      "fan_in": 8,
+      "fan_out": 8,
+      "instability": 0.5,
+      "h2_sections": 16,
+      "size_chars": 18214
+    },
+    {
+      "file": "domains/pitch.md",
+      "fan_in": 7,
+      "fan_out": 4,
+      "instability": 0.36,
+      "h2_sections": 6,
+      "size_chars": 5710
+    },
+    {
+      "file": "uniform-solfege/diacritic-system.md",
+      "fan_in": 7,
+      "fan_out": 4,
+      "instability": 0.36,
+      "h2_sections": 12,
+      "size_chars": 16404
+    },
+    {
+      "file": "foundations/period.md",
+      "fan_in": 7,
+      "fan_out": 5,
+      "instability": 0.42,
+      "h2_sections": 6,
+      "size_chars": 6643
+    },
+    {
+      "file": "domains/rhythmic-overtone-series.md",
+      "fan_in": 7,
+      "fan_out": 9,
+      "instability": 0.56,
+      "h2_sections": 9,
+      "size_chars": 10958
+    },
+    {
+      "file": "tuning/just-intonation.md",
+      "fan_in": 7,
+      "fan_out": 0,
+      "instability": 0.0,
+      "h2_sections": 5,
+      "size_chars": 4319
+    },
+    {
+      "file": "specifications/midi-solfege-input.md",
+      "fan_in": 5,
+      "fan_out": 6,
+      "instability": 0.55,
+      "h2_sections": 7,
+      "size_chars": 6783
+    },
+    {
+      "file": "applications/component-philosophy.md",
+      "fan_in": 5,
+      "fan_out": 5,
+      "instability": 0.5,
+      "h2_sections": 6,
+      "size_chars": 6140
+    },
+    {
+      "file": "uniform-solfege/base-12-algebra.md",
+      "fan_in": 5,
+      "fan_out": 3,
+      "instability": 0.38,
+      "h2_sections": 5,
+      "size_chars": 3333
+    },
+    {
+      "file": "uniform-solfege/geometric-basis.md",
+      "fan_in": 5,
+      "fan_out": 5,
+      "instability": 0.5,
+      "h2_sections": 9,
+      "size_chars": 7827
+    },
+    {
+      "file": "structure/musicoil.md",
+      "fan_in": 4,
+      "fan_out": 11,
+      "instability": 0.73,
+      "h2_sections": 11,
+      "size_chars": 20997
+    },
+    {
+      "file": "context/music-as-language.md",
+      "fan_in": 4,
+      "fan_out": 0,
+      "instability": 0.0,
+      "h2_sections": 3,
+      "size_chars": 2426
+    },
+    {
+      "file": "implementations/ppt-components.md",
+      "fan_in": 4,
+      "fan_out": 2,
+      "instability": 0.33,
+      "h2_sections": 6,
+      "size_chars": 4822
+    },
+    {
+      "file": "ppd/glyph-forms.md",
+      "fan_in": 4,
+      "fan_out": 0,
+      "instability": 0.0,
+      "h2_sections": 7,
+      "size_chars": 3927
+    },
+    {
+      "file": "foundations/anchors.md",
+      "fan_in": 3,
+      "fan_out": 4,
+      "instability": 0.57,
+      "h2_sections": 6,
+      "size_chars": 9832
+    },
+    {
+      "file": "pedagogy/ear-first.md",
+      "fan_in": 3,
+      "fan_out": 5,
+      "instability": 0.62,
+      "h2_sections": 5,
+      "size_chars": 5025
+    },
+    {
+      "file": "related/chromatic-clock.md",
+      "fan_in": 3,
+      "fan_out": 3,
+      "instability": 0.5,
+      "h2_sections": 8,
+      "size_chars": 4295
+    },
+    {
+      "file": "applications/index.md",
+      "fan_in": 2,
+      "fan_out": 0,
+      "instability": 0.0,
+      "h2_sections": 0,
+      "size_chars": 110
+    },
+    {
+      "file": "pedagogy/cross-domain-transfer.md",
+      "fan_in": 2,
+      "fan_out": 5,
+      "instability": 0.71,
+      "h2_sections": 5,
+      "size_chars": 8087
+    },
+    {
+      "file": "applications/notation-input.md",
+      "fan_in": 2,
+      "fan_out": 6,
+      "instability": 0.75,
+      "h2_sections": 8,
+      "size_chars": 8627
+    },
+    {
+      "file": "pedagogy/progressive-complexity.md",
+      "fan_in": 2,
+      "fan_out": 0,
+      "instability": 0.0,
+      "h2_sections": 0,
+      "size_chars": 114
+    },
+    {
+      "file": "applications/play-along.md",
+      "fan_in": 2,
+      "fan_out": 4,
+      "instability": 0.67,
+      "h2_sections": 4,
+      "size_chars": 6521
+    },
+    {
+      "file": "applications/visualisation.md",
+      "fan_in": 2,
+      "fan_out": 0,
+      "instability": 0.0,
+      "h2_sections": 0,
+      "size_chars": 105
+    },
+    {
+      "file": "extended/geometric-amplitude-ratios.md",
+      "fan_in": 2,
+      "fan_out": 3,
+      "instability": 0.6,
+      "h2_sections": 5,
+      "size_chars": 2979
+    },
+    {
+      "file": "context/tenets.md",
+      "fan_in": 2,
+      "fan_out": 4,
+      "instability": 0.67,
+      "h2_sections": 6,
+      "size_chars": 3906
+    },
+    {
+      "file": "extended/metric-duperiod-extended.md",
+      "fan_in": 2,
+      "fan_out": 4,
+      "instability": 0.67,
+      "h2_sections": 7,
+      "size_chars": 11288
+    },
+    {
+      "file": "tuning/31-edo.md",
+      "fan_in": 2,
+      "fan_out": 0,
+      "instability": 0.0,
+      "h2_sections": 3,
+      "size_chars": 3316
+    },
+    {
+      "file": "tuning/72-edo-grid.md",
+      "fan_in": 2,
+      "fan_out": 0,
+      "instability": 0.0,
+      "h2_sections": 2,
+      "size_chars": 2981
+    },
+    {
+      "file": "related/tone-atlas.md",
+      "fan_in": 2,
+      "fan_out": 3,
+      "instability": 0.6,
+      "h2_sections": 7,
+      "size_chars": 3706
+    },
+    {
+      "file": "domains/rhythmic-phase-coherence.md",
+      "fan_in": 2,
+      "fan_out": 6,
+      "instability": 0.75,
+      "h2_sections": 9,
+      "size_chars": 15286
+    },
+    {
+      "file": "reference/emergent-analysis.md",
+      "fan_in": 2,
+      "fan_out": 0,
+      "instability": 0.0,
+      "h2_sections": 0,
+      "size_chars": 109
+    },
+    {
+      "file": "applications/transcription.md",
+      "fan_in": 2,
+      "fan_out": 0,
+      "instability": 0.0,
+      "h2_sections": 0,
+      "size_chars": 105
+    },
+    {
+      "file": "specifications/midi-solfege-mapping.md",
+      "fan_in": 2,
+      "fan_out": 4,
+      "instability": 0.67,
+      "h2_sections": 8,
+      "size_chars": 11819
+    },
+    {
+      "file": "specifications/prime-lattice-boundary-routing.md",
+      "fan_in": 2,
+      "fan_out": 2,
+      "instability": 0.5,
+      "h2_sections": 5,
+      "size_chars": 5651
+    },
+    {
+      "file": "tuning/12-tet.md",
+      "fan_in": 1,
+      "fan_out": 0,
+      "instability": 0.0,
+      "h2_sections": 2,
+      "size_chars": 2519
+    },
+    {
+      "file": "perception/local-closure.md",
+      "fan_in": 1,
+      "fan_out": 1,
+      "instability": 0.5,
+      "h2_sections": 3,
+      "size_chars": 3255
+    },
+    {
+      "file": "tuning/du-fractal-dutri-closure.md",
+      "fan_in": 1,
+      "fan_out": 3,
+      "instability": 0.75,
+      "h2_sections": 7,
+      "size_chars": 7086
+    },
+    {
+      "file": "perception/auditory-horizon.md",
+      "fan_in": 1,
+      "fan_out": 6,
+      "instability": 0.86,
+      "h2_sections": 7,
+      "size_chars": 11542
+    },
+    {
+      "file": "extended/prime-harmonic-profiles.md",
+      "fan_in": 1,
+      "fan_out": 0,
+      "instability": 0.0,
+      "h2_sections": 4,
+      "size_chars": 7293
+    },
+    {
+      "file": "index.md",
+      "fan_in": 1,
+      "fan_out": 0,
+      "instability": 0.0,
+      "h2_sections": 9,
+      "size_chars": 17029
+    },
+    {
+      "file": "specifications/period-declaration.md",
+      "fan_in": 1,
+      "fan_out": 1,
+      "instability": 0.5,
+      "h2_sections": 3,
+      "size_chars": 6175
+    },
+    {
+      "file": "pedagogy/axis-fan-pedagogy.md",
+      "fan_in": 1,
+      "fan_out": 2,
+      "instability": 0.67,
+      "h2_sections": 6,
+      "size_chars": 8393
+    },
+    {
+      "file": "tuning/tetrachord-pairs.md",
+      "fan_in": 1,
+      "fan_out": 8,
+      "instability": 0.89,
+      "h2_sections": 8,
+      "size_chars": 12989
+    },
+    {
+      "file": "tuning/pentatonic-heptatonic.md",
+      "fan_in": 1,
+      "fan_out": 3,
+      "instability": 0.75,
+      "h2_sections": 4,
+      "size_chars": 3382
+    },
+    {
+      "file": "extended/amplitude-trajectories.md",
+      "fan_in": 1,
+      "fan_out": 2,
+      "instability": 0.67,
+      "h2_sections": 3,
+      "size_chars": 911
+    },
+    {
+      "file": "domains/dynamics.md",
+      "fan_in": 1,
+      "fan_out": 3,
+      "instability": 0.75,
+      "h2_sections": 5,
+      "size_chars": 2238
+    },
+    {
+      "file": "perception/information-and-expectation.md",
+      "fan_in": 1,
+      "fan_out": 2,
+      "instability": 0.67,
+      "h2_sections": 5,
+      "size_chars": 3724
+    },
+    {
+      "file": "pedagogy/learning-paths.md",
+      "fan_in": 1,
+      "fan_out": 0,
+      "instability": 0.0,
+      "h2_sections": 0,
+      "size_chars": 106
+    },
+    {
+      "file": "structure/spatial-harmony.md",
+      "fan_in": 1,
+      "fan_out": 0,
+      "instability": 0.0,
+      "h2_sections": 0,
+      "size_chars": 107
+    },
+    {
+      "file": "perception/duperiod-window-stack.md",
+      "fan_in": 1,
+      "fan_out": 4,
+      "instability": 0.8,
+      "h2_sections": 6,
+      "size_chars": 5416
+    },
+    {
+      "file": "perception/self-adjusting-pipeline.md",
+      "fan_in": 1,
+      "fan_out": 0,
+      "instability": 0.0,
+      "h2_sections": 0,
+      "size_chars": 115
+    },
+    {
+      "file": "extended/path-equivalence.md",
+      "fan_in": 1,
+      "fan_out": 2,
+      "instability": 0.67,
+      "h2_sections": 4,
+      "size_chars": 2930
+    },
+    {
+      "file": "pedagogy/index.md",
+      "fan_in": 1,
+      "fan_out": 9,
+      "instability": 0.9,
+      "h2_sections": 5,
+      "size_chars": 5228
+    },
+    {
+      "file": "reference/envelopes.md",
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0,
+      "h2_sections": 2,
+      "size_chars": 806
+    },
+    {
+      "file": "tuning/temporal-place-limen-reference-tuning.md",
+      "fan_in": 0,
+      "fan_out": 6,
+      "instability": 1.0,
+      "h2_sections": 8,
+      "size_chars": 9783
+    },
+    {
+      "file": "extended/spectral-dynamic-coupling.md",
+      "fan_in": 0,
+      "fan_out": 2,
+      "instability": 1.0,
+      "h2_sections": 3,
+      "size_chars": 776
+    },
+    {
+      "file": "applications/song-sphere.md",
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0,
+      "h2_sections": 12,
+      "size_chars": 19609
+    },
+    {
+      "file": "domains/rhythmic-undertone-series.md",
+      "fan_in": 0,
+      "fan_out": 2,
+      "instability": 1.0,
+      "h2_sections": 4,
+      "size_chars": 1379
+    },
+    {
+      "file": "implementations/index.md",
+      "fan_in": 0,
+      "fan_out": 3,
+      "instability": 1.0,
+      "h2_sections": 4,
+      "size_chars": 2209
+    },
+    {
+      "file": "specifications/design-system.md",
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0,
+      "h2_sections": 3,
+      "size_chars": 2407
+    },
+    {
+      "file": "reference/amplitude-notation.md",
+      "fan_in": 0,
+      "fan_out": 2,
+      "instability": 1.0,
+      "h2_sections": 3,
+      "size_chars": 750
+    },
+    {
+      "file": "domains/polymetric-phase-equivalence.md",
+      "fan_in": 0,
+      "fan_out": 2,
+      "instability": 1.0,
+      "h2_sections": 4,
+      "size_chars": 1724
+    },
+    {
+      "file": "specifications/composition-format.md",
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0,
+      "h2_sections": 4,
+      "size_chars": 3014
+    },
+    {
+      "file": "extended/11-limit-statistical-basis.md",
+      "fan_in": 0,
+      "fan_out": 5,
+      "instability": 1.0,
+      "h2_sections": 6,
+      "size_chars": 7686
+    },
+    {
+      "file": "pedagogy/default-do.md",
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0,
+      "h2_sections": 8,
+      "size_chars": 7303
+    },
+    {
+      "file": "applications/song-stick.md",
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0,
+      "h2_sections": 7,
+      "size_chars": 7945
+    },
+    {
+      "file": "perception/coarse-graining-and-grid-reduction.md",
+      "fan_in": 0,
+      "fan_out": 4,
+      "instability": 1.0,
+      "h2_sections": 7,
+      "size_chars": 9093
+    },
+    {
+      "file": "extended/ppt-feature-taxonomy.md",
+      "fan_in": 0,
+      "fan_out": 11,
+      "instability": 1.0,
+      "h2_sections": 7,
+      "size_chars": 15059
+    },
+    {
+      "file": "applications/coil-editor-design.md",
+      "fan_in": 0,
+      "fan_out": 4,
+      "instability": 1.0,
+      "h2_sections": 6,
+      "size_chars": 3544
+    },
+    {
+      "file": "structure/tapestry.md",
+      "fan_in": 0,
+      "fan_out": 6,
+      "instability": 1.0,
+      "h2_sections": 8,
+      "size_chars": 17655
+    },
+    {
+      "file": "analysis.md",
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0,
+      "h2_sections": 3,
+      "size_chars": 3925
+    },
+    {
+      "file": "applications/three-layer-coil-editor.md",
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0,
+      "h2_sections": 10,
+      "size_chars": 14193
+    }
+  ],
+  "god_concepts": [
+    "domains/timbre.md",
+    "structure/musicoil.md",
+    "domains/rhythm.md",
+    "domains/pitch.md",
+    "specifications/midi-solfege-input.md",
+    "uniform-solfege/index.md",
+    "structure/melodic-grammar.md",
+    "uniform-solfege/diacritic-system.md",
+    "reference/metric-duperiod.md",
+    "foundations/periodicity.md",
+    "foundations/period.md",
+    "perception/temporal-place-limen.md",
+    "domains/rhythmic-overtone-series.md",
+    "extended/ppt-feature-taxonomy.md",
+    "structure/coil-notation.md",
+    "foundations/prime-families.md",
+    "structure/rhythmic-grammar.md",
+    "foundations/amplitude-time.md",
+    "foundations/prime-lattice.md"
+  ],
+  "max_depth": 30,
+  "status_distribution": {
+    "stable": 76,
+    "stub": 8
+  },
+  "evidence_distribution": {}
+}
