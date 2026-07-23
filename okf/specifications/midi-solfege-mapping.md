@@ -14,12 +14,13 @@ tags:
   - input
   - prime-period-theory
 status: stable
-timestamp: 2026-07-01
+timestamp: 2026-07-23
 used_by:
   - specifications/midi-solfege-input.md
   - foundations/prime-lattice.md
   - ppd/glyph-forms.md
   - applications/notation-input.md
+implemented_by: [applications/notation-input.md]
 ---
 
 # MIDI to Solfège Mapping

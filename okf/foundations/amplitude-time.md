@@ -13,13 +13,14 @@ tags:
   - fractal
   - prime-period-theory
 status: stable
-timestamp: 2026-07-13
+timestamp: 2026-07-23
 used_by:
   - foundations/periodicity.md
   - foundations/prime-families.md
   - domains/pitch.md
   - domains/rhythm.md
   - domains/timbre.md
+pedagogically_precedes: [domains/dynamics.md]
 ---
 
 # Amplitude and Time

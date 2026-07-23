@@ -13,7 +13,7 @@ tags:
   - input
   - prime-period-theory
 status: stable
-timestamp: 2026-07-07
+timestamp: 2026-07-23
 used_by:
   - specifications/midi-solfege-mapping.md
   - ppd/index.md
@@ -21,6 +21,7 @@ used_by:
   - specifications/prime-lattice-boundary-routing.md
   - applications/notation-input.md
   - uniform-solfege/index.md
+implemented_by: [applications/notation-input.md]
 ---
 
 # MIDI to Solfège Input Specification

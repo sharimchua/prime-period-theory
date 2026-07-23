@@ -22,13 +22,14 @@ related:
   - uniform-solfege/index.md
   - foundations/prime-families.md
 status: stable
-timestamp: 2026-07-08
+timestamp: 2026-07-23
 used_by:
   - structure/melodic-grammar.md
   - structure/rhythmic-grammar.md
   - structure/musicoil.md
   - uniform-solfege/index.md
   - foundations/prime-families.md
+implemented_by: [applications/three-layer-coil-editor.md]
 ---
 
 # Three-Layer Coil Notation

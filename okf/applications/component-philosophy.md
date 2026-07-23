@@ -14,13 +14,14 @@ tags:
   - periodicity
   - prime-period-theory
 status: stable
-timestamp: 2026-06-30
+timestamp: 2026-07-23
 used_by:
   - reference/emergent-analysis.md
   - foundations/periodicity.md
   - reference/metric-duperiod.md
   - implementations/ppt-components.md
   - applications/visualisation.md
+implemented_by: [implementations/ppt-components.md]
 ---
 
 # Component Philosophy — One Primitive, Two Domains

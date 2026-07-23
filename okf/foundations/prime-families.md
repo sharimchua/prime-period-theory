@@ -14,7 +14,7 @@ tags:
   - prime-limit
   - prime-period-theory
 status: stable
-timestamp: 2026-06-20
+timestamp: 2026-07-23
 used_by:
   - foundations/periodicity.md
   - uniform-solfege/geometric-basis.md
@@ -25,6 +25,7 @@ used_by:
   - tuning/just-intonation.md
   - domains/rhythm.md
   - domains/pitch.md
+pedagogically_precedes: [domains/pitch.md, domains/rhythm.md, domains/timbre.md]
 ---
 
 # Prime Families

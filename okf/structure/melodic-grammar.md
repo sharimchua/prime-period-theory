@@ -17,7 +17,7 @@ tags:
   - microtonality
   - notation
 status: stable
-timestamp: 2026-07-08
+timestamp: 2026-07-23
 used_by:
   - structure/coil-notation.md
   - structure/rhythmic-grammar.md
@@ -25,6 +25,7 @@ used_by:
   - ppd/index.md
   - structure/musicoil.md
   - domains/pitch.md
+implemented_by: [applications/three-layer-coil-editor.md]
 ---
 
 # Melodic Grammar
