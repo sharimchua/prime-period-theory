@@ -1,23 +1,23 @@
 {
   "nodes": [
     {
-      "id": "foundations/periodicity.md",
-      "title": "Periodicity",
-      "group": "foundations",
+      "id": "tuning/12-tet.md",
+      "title": "12-Tone Equal Temperament (12TET)",
+      "group": "tuning",
       "doc_type": "concept",
       "status": "stable"
     },
     {
-      "id": "ppd/glyph-forms.md",
-      "title": "Prime Period Diacritics \u2014 Glyph Forms",
-      "group": "ppd",
-      "doc_type": "reference",
+      "id": "domains/timbre.md",
+      "title": "Timbre and Spectral Periodicity",
+      "group": "domains",
+      "doc_type": "concept",
       "status": "stable"
     },
     {
-      "id": "domains/dynamics.md",
-      "title": "Dynamics as Amplitude Periodicity",
-      "group": "domains",
+      "id": "perception/local-closure.md",
+      "title": "Perception-Period Local Closure & Residue Triangulation",
+      "group": "perception",
       "doc_type": "concept",
       "status": "stable"
     },
@@ -29,11 +29,459 @@
       "status": "stable"
     },
     {
+      "id": "domains/rhythm.md",
+      "title": "Rhythm",
+      "group": "domains",
+      "doc_type": "concept",
+      "status": "stable"
+    },
+    {
+      "id": "domains/pitch.md",
+      "title": "Pitch and Consonance",
+      "group": "domains",
+      "doc_type": "concept",
+      "status": "stable"
+    },
+    {
+      "id": "tuning/du-fractal-dutri-closure.md",
+      "title": "Du-Fractal DuTri Closure",
+      "group": "tuning",
+      "doc_type": "concept",
+      "status": "stable"
+    },
+    {
+      "id": "specifications/midi-solfege-input.md",
+      "title": "MIDI to Solf\u00e8ge Input Specification",
+      "group": "specifications",
+      "doc_type": "reference",
+      "status": "stable"
+    },
+    {
+      "id": "applications/index.md",
+      "title": "Applications Index",
+      "group": "applications",
+      "doc_type": "index",
+      "status": "stub"
+    },
+    {
+      "id": "perception/auditory-horizon.md",
+      "title": "Auditory Horizon and Agency",
+      "group": "perception",
+      "doc_type": "concept",
+      "status": "stable"
+    },
+    {
+      "id": "pedagogy/cross-domain-transfer.md",
+      "title": "Cross-Domain Transfer",
+      "group": "pedagogy",
+      "doc_type": "concept",
+      "status": "stable"
+    },
+    {
+      "id": "reference/envelopes.md",
+      "title": "Envelopes and Amplitude Shaping",
+      "group": "reference",
+      "doc_type": "concept",
+      "status": "stable"
+    },
+    {
+      "id": "uniform-solfege/index.md",
+      "title": "Uniform Solf\u00e8ge \u2014 Overview",
+      "group": "uniform-solfege",
+      "doc_type": "concept",
+      "status": "stable"
+    },
+    {
       "id": "extended/prime-harmonic-profiles.md",
       "title": "Prime Harmonic Profiles",
       "group": "extended",
       "doc_type": "concept",
       "status": "stable"
+    },
+    {
+      "id": "index.md",
+      "title": "Prime Period Theory \u2014 Knowledge Bundle",
+      "group": "root",
+      "doc_type": "index",
+      "status": "stable"
+    },
+    {
+      "id": "tuning/temporal-place-limen-reference-tuning.md",
+      "title": "Temporal-Place Limen Reference Tuning",
+      "group": "tuning",
+      "doc_type": "concept",
+      "status": "stable"
+    },
+    {
+      "id": "extended/spectral-dynamic-coupling.md",
+      "title": "Spectral Dynamic Coupling",
+      "group": "extended",
+      "doc_type": "concept",
+      "status": "stable"
+    },
+    {
+      "id": "applications/song-sphere.md",
+      "title": "Self-Powered PPT Native Instrument \u2014 Concept Note",
+      "group": "applications",
+      "doc_type": "concept",
+      "status": "stable"
+    },
+    {
+      "id": "domains/rhythmic-undertone-series.md",
+      "title": "Rhythmic Undertone Series",
+      "group": "domains",
+      "doc_type": "concept",
+      "status": "stable"
+    },
+    {
+      "id": "applications/notation-input.md",
+      "title": "Notation Input",
+      "group": "applications",
+      "doc_type": "concept",
+      "status": "stable"
+    },
+    {
+      "id": "foundations/anchors.md",
+      "title": "Anchors and Prime Lattice Coordinates",
+      "group": "foundations",
+      "doc_type": "concept",
+      "status": "stable"
+    },
+    {
+      "id": "structure/melodic-grammar.md",
+      "title": "Melodic Grammar",
+      "group": "structure",
+      "doc_type": "concept",
+      "status": "stable"
+    },
+    {
+      "id": "pedagogy/progressive-complexity.md",
+      "title": "Progressive Complexity",
+      "group": "pedagogy",
+      "doc_type": "concept",
+      "status": "stub"
+    },
+    {
+      "id": "applications/play-along.md",
+      "title": "Play-Along Feedback \u2014 Three Models",
+      "group": "applications",
+      "doc_type": "concept",
+      "status": "stable"
+    },
+    {
+      "id": "context/music-as-language.md",
+      "title": "Music as Language and Auditory Classification",
+      "group": "context",
+      "doc_type": "concept",
+      "status": "stable"
+    },
+    {
+      "id": "implementations/index.md",
+      "title": "Implementations \u2014 PPT Tool Register",
+      "group": "implementations",
+      "doc_type": "index",
+      "status": "stable"
+    },
+    {
+      "id": "specifications/design-system.md",
+      "title": "Design System & Colour Semantics",
+      "group": "specifications",
+      "doc_type": "concept",
+      "status": "stable"
+    },
+    {
+      "id": "specifications/period-declaration.md",
+      "title": "Period Declaration Mechanics",
+      "group": "specifications",
+      "doc_type": "concept",
+      "status": "stable"
+    },
+    {
+      "id": "applications/component-philosophy.md",
+      "title": "Component Philosophy \u2014 One Primitive, Two Domains",
+      "group": "applications",
+      "doc_type": "concept",
+      "status": "stable"
+    },
+    {
+      "id": "pedagogy/ear-first.md",
+      "title": "Ear-First Pedagogy",
+      "group": "pedagogy",
+      "doc_type": "concept",
+      "status": "stable"
+    },
+    {
+      "id": "pedagogy/axis-fan-pedagogy.md",
+      "title": "Axis-Fan Pedagogy \u2014 A Tritone-First Harmony Sequence",
+      "group": "pedagogy",
+      "doc_type": "concept",
+      "status": "stable"
+    },
+    {
+      "id": "reference/amplitude-notation.md",
+      "title": "Amplitude Notation",
+      "group": "reference",
+      "doc_type": "reference",
+      "status": "stable"
+    },
+    {
+      "id": "domains/polymetric-phase-equivalence.md",
+      "title": "Polymetric Phase Equivalence",
+      "group": "domains",
+      "doc_type": "concept",
+      "status": "stable"
+    },
+    {
+      "id": "tuning/tetrachord-pairs.md",
+      "title": "Tetrachord-Pair Generation of Heptatonic Scales",
+      "group": "tuning",
+      "doc_type": "concept",
+      "status": "stable"
+    },
+    {
+      "id": "applications/visualisation.md",
+      "title": "Visualisation",
+      "group": "applications",
+      "doc_type": "concept",
+      "status": "stub"
+    },
+    {
+      "id": "uniform-solfege/diacritic-system.md",
+      "title": "Uniform Solf\u00e8ge \u2014 Diacritic System",
+      "group": "uniform-solfege",
+      "doc_type": "concept",
+      "status": "stable"
+    },
+    {
+      "id": "extended/geometric-amplitude-ratios.md",
+      "title": "Geometric Amplitude Ratios",
+      "group": "extended",
+      "doc_type": "concept",
+      "status": "stable"
+    },
+    {
+      "id": "context/tenets.md",
+      "title": "Core Tenets of Prime Period Theory",
+      "group": "context",
+      "doc_type": "concept",
+      "status": "stable"
+    },
+    {
+      "id": "tuning/pentatonic-heptatonic.md",
+      "title": "Pentatonic and Heptatonic Structures",
+      "group": "tuning",
+      "doc_type": "concept",
+      "status": "stable"
+    },
+    {
+      "id": "specifications/composition-format.md",
+      "title": "PPT Composition Format (PPT-CF)",
+      "group": "specifications",
+      "doc_type": "concept",
+      "status": "stable"
+    },
+    {
+      "id": "reference/metric-duperiod.md",
+      "title": "Metric DuPeriod",
+      "group": "reference",
+      "doc_type": "concept",
+      "status": "stable"
+    },
+    {
+      "id": "extended/metric-duperiod-extended.md",
+      "title": "Metric DuPeriod \u2014 Extended Range",
+      "group": "extended",
+      "doc_type": "concept",
+      "status": "stable"
+    },
+    {
+      "id": "foundations/periodicity.md",
+      "title": "Periodicity",
+      "group": "foundations",
+      "doc_type": "concept",
+      "status": "stable"
+    },
+    {
+      "id": "extended/amplitude-trajectories.md",
+      "title": "Amplitude Trajectories",
+      "group": "extended",
+      "doc_type": "concept",
+      "status": "stable"
+    },
+    {
+      "id": "implementations/ppt-components.md",
+      "title": "PPT Component Library",
+      "group": "implementations",
+      "doc_type": "reference",
+      "status": "stable"
+    },
+    {
+      "id": "tuning/31-edo.md",
+      "title": "31 EDO",
+      "group": "tuning",
+      "doc_type": "concept",
+      "status": "stable"
+    },
+    {
+      "id": "ppd/index.md",
+      "title": "Prime Period Diacritics \u2014 Overview",
+      "group": "ppd",
+      "doc_type": "concept",
+      "status": "stable"
+    },
+    {
+      "id": "foundations/period.md",
+      "title": "Period",
+      "group": "foundations",
+      "doc_type": "concept",
+      "status": "stable"
+    },
+    {
+      "id": "extended/11-limit-statistical-basis.md",
+      "title": "Bounding the Infinite \u2014 A Statistical Basis for the 11-Limit in Macro-Rhythmic Analysis",
+      "group": "extended",
+      "doc_type": "concept",
+      "status": "stable"
+    },
+    {
+      "id": "perception/temporal-place-limen.md",
+      "title": "Temporal-Place Limen",
+      "group": "perception",
+      "doc_type": "concept",
+      "status": "stable"
+    },
+    {
+      "id": "pedagogy/default-do.md",
+      "title": "Default Do: The Case for D on 12TET Keyboards",
+      "group": "pedagogy",
+      "doc_type": "concept",
+      "status": "stable"
+    },
+    {
+      "id": "tuning/72-edo-grid.md",
+      "title": "72 EDO Grid",
+      "group": "tuning",
+      "doc_type": "concept",
+      "status": "stable"
+    },
+    {
+      "id": "applications/song-stick.md",
+      "title": "Song Stick Instrument \u2014 Concept Note",
+      "group": "applications",
+      "doc_type": "concept",
+      "status": "stable"
+    },
+    {
+      "id": "domains/dynamics.md",
+      "title": "Dynamics as Amplitude Periodicity",
+      "group": "domains",
+      "doc_type": "concept",
+      "status": "stable"
+    },
+    {
+      "id": "perception/coarse-graining-and-grid-reduction.md",
+      "title": "Coarse-Graining and Grid Reduction",
+      "group": "perception",
+      "doc_type": "concept",
+      "status": "stable"
+    },
+    {
+      "id": "related/tone-atlas.md",
+      "title": "Tone Atlas",
+      "group": "related",
+      "doc_type": "concept",
+      "status": "stable"
+    },
+    {
+      "id": "perception/information-and-expectation.md",
+      "title": "Information and Expectation",
+      "group": "perception",
+      "doc_type": "concept",
+      "status": "stable"
+    },
+    {
+      "id": "uniform-solfege/base-12-algebra.md",
+      "title": "Base-12 Algebra",
+      "group": "uniform-solfege",
+      "doc_type": "concept",
+      "status": "stable"
+    },
+    {
+      "id": "domains/rhythmic-overtone-series.md",
+      "title": "Rhythmic Overtone Series",
+      "group": "domains",
+      "doc_type": "concept",
+      "status": "stable"
+    },
+    {
+      "id": "extended/ppt-feature-taxonomy.md",
+      "title": "PPT Feature Taxonomy",
+      "group": "extended",
+      "doc_type": "concept",
+      "status": "stable"
+    },
+    {
+      "id": "applications/coil-editor-design.md",
+      "title": "Three-Layer Coil Editor Design Rationale",
+      "group": "applications",
+      "doc_type": "concept",
+      "status": "stable"
+    },
+    {
+      "id": "ppd/glyph-forms.md",
+      "title": "Prime Period Diacritics \u2014 Glyph Forms",
+      "group": "ppd",
+      "doc_type": "reference",
+      "status": "stable"
+    },
+    {
+      "id": "pedagogy/learning-paths.md",
+      "title": "Learning Paths",
+      "group": "pedagogy",
+      "doc_type": "concept",
+      "status": "stub"
+    },
+    {
+      "id": "structure/spatial-harmony.md",
+      "title": "Spatial Harmony",
+      "group": "structure",
+      "doc_type": "concept",
+      "status": "stub"
+    },
+    {
+      "id": "perception/duperiod-window-stack.md",
+      "title": "DuPeriod Window Stack",
+      "group": "perception",
+      "doc_type": "concept",
+      "status": "stable"
+    },
+    {
+      "id": "structure/tapestry.md",
+      "title": "Musical Tapestry: Compositional Structure Layer",
+      "group": "structure",
+      "doc_type": "concept",
+      "status": "stable"
+    },
+    {
+      "id": "perception/self-adjusting-pipeline.md",
+      "title": "Self Adjusting Pipeline",
+      "group": "perception",
+      "doc_type": "concept",
+      "status": "stub"
+    },
+    {
+      "id": "domains/rhythmic-phase-coherence.md",
+      "title": "Rhythmic Phase Coherence",
+      "group": "domains",
+      "doc_type": "concept",
+      "status": "stable"
+    },
+    {
+      "id": "reference/emergent-analysis.md",
+      "title": "Emergent Analysis",
+      "group": "reference",
+      "doc_type": "concept",
+      "status": "stub"
     },
     {
       "id": "applications/transcription.md",
@@ -43,10 +491,66 @@
       "status": "stub"
     },
     {
+      "id": "uniform-solfege/geometric-basis.md",
+      "title": "Uniform Solf\u00e8ge \u2014 Geometric Basis",
+      "group": "uniform-solfege",
+      "doc_type": "concept",
+      "status": "stable"
+    },
+    {
+      "id": "structure/coil-notation.md",
+      "title": "Three-Layer Coil Notation",
+      "group": "structure",
+      "doc_type": "concept",
+      "status": "stable"
+    },
+    {
+      "id": "analysis.md",
+      "title": "OKF Architectural Analysis",
+      "group": "root",
+      "doc_type": "reference",
+      "status": "stable"
+    },
+    {
       "id": "specifications/midi-solfege-mapping.md",
       "title": "MIDI to Solf\u00e8ge Mapping",
       "group": "specifications",
       "doc_type": "reference",
+      "status": "stable"
+    },
+    {
+      "id": "foundations/prime-families.md",
+      "title": "Prime Families",
+      "group": "foundations",
+      "doc_type": "concept",
+      "status": "stable"
+    },
+    {
+      "id": "structure/rhythmic-grammar.md",
+      "title": "Rhythmic Grammar",
+      "group": "structure",
+      "doc_type": "concept",
+      "status": "stable"
+    },
+    {
+      "id": "extended/path-equivalence.md",
+      "title": "Path Equivalence and Confluence",
+      "group": "extended",
+      "doc_type": "concept",
+      "status": "stable"
+    },
+    {
+      "id": "foundations/amplitude-time.md",
+      "title": "Amplitude and Time",
+      "group": "foundations",
+      "doc_type": "concept",
+      "status": "stable"
+    },
+    {
+      "id": "related/chromatic-clock.md",
+      "title": "Chromatic Clock Geometry",
+      "group": "related",
+      "doc_type": "concept",
       "status": "stable"
     },
     {
@@ -64,72 +568,9 @@
       "status": "stable"
     },
     {
-      "id": "perception/information-and-expectation.md",
-      "title": "Information and Expectation",
-      "group": "perception",
-      "doc_type": "concept",
-      "status": "stable"
-    },
-    {
-      "id": "applications/visualisation.md",
-      "title": "Visualisation",
-      "group": "applications",
-      "doc_type": "concept",
-      "status": "stub"
-    },
-    {
-      "id": "structure/tapestry.md",
-      "title": "Musical Tapestry: Compositional Structure Layer",
-      "group": "structure",
-      "doc_type": "concept",
-      "status": "stable"
-    },
-    {
-      "id": "foundations/anchors.md",
-      "title": "Anchors and Prime Lattice Coordinates",
+      "id": "foundations/prime-lattice.md",
+      "title": "Prime Lattice",
       "group": "foundations",
-      "doc_type": "concept",
-      "status": "stable"
-    },
-    {
-      "id": "reference/envelopes.md",
-      "title": "Envelopes and Amplitude Shaping",
-      "group": "reference",
-      "doc_type": "concept",
-      "status": "stable"
-    },
-    {
-      "id": "domains/timbre.md",
-      "title": "Timbre and Spectral Periodicity",
-      "group": "domains",
-      "doc_type": "concept",
-      "status": "stable"
-    },
-    {
-      "id": "foundations/prime-families.md",
-      "title": "Prime Families",
-      "group": "foundations",
-      "doc_type": "concept",
-      "status": "stable"
-    },
-    {
-      "id": "specifications/design-system.md",
-      "title": "Design System & Colour Semantics",
-      "group": "specifications",
-      "doc_type": "concept",
-      "status": "stable"
-    },
-    {
-      "id": "applications/component-philosophy.md",
-      "title": "Component Philosophy \u2014 One Primitive, Two Domains",
-      "group": "applications",
-      "doc_type": "concept",
-      "status": "stable"
-    },
-    {
-      "id": "perception/duperiod-window-stack.md",
-      "title": "DuPeriod Window Stack",
-      "group": "perception",
       "doc_type": "concept",
       "status": "stable"
     },
@@ -141,773 +582,302 @@
       "status": "stable"
     },
     {
-      "id": "extended/geometric-amplitude-ratios.md",
-      "title": "Geometric Amplitude Ratios",
-      "group": "extended",
-      "doc_type": "concept",
-      "status": "stable"
-    },
-    {
-      "id": "pedagogy/learning-paths.md",
-      "title": "Learning Paths",
-      "group": "pedagogy",
-      "doc_type": "concept",
-      "status": "stub"
-    },
-    {
-      "id": "index.md",
-      "title": "Prime Period Theory \u2014 Knowledge Bundle",
-      "group": "root",
-      "doc_type": "index",
-      "status": "stable"
-    },
-    {
-      "id": "uniform-solfege/base-12-algebra.md",
-      "title": "Base-12 Algebra",
-      "group": "uniform-solfege",
-      "doc_type": "concept",
-      "status": "stable"
-    },
-    {
-      "id": "implementations/ppt-components.md",
-      "title": "PPT Component Library",
-      "group": "implementations",
-      "doc_type": "reference",
-      "status": "stable"
-    },
-    {
-      "id": "uniform-solfege/index.md",
-      "title": "Uniform Solf\u00e8ge \u2014 Overview",
-      "group": "uniform-solfege",
-      "doc_type": "concept",
-      "status": "stable"
-    },
-    {
-      "id": "domains/rhythmic-undertone-series.md",
-      "title": "Rhythmic Undertone Series",
-      "group": "domains",
-      "doc_type": "concept",
-      "status": "stable"
-    },
-    {
-      "id": "foundations/period.md",
-      "title": "Period",
-      "group": "foundations",
-      "doc_type": "concept",
-      "status": "stable"
-    },
-    {
-      "id": "context/tenets.md",
-      "title": "Core Tenets of Prime Period Theory",
-      "group": "context",
-      "doc_type": "concept",
-      "status": "stable"
-    },
-    {
-      "id": "applications/coil-editor-design.md",
-      "title": "Three-Layer Coil Editor Design Rationale",
-      "group": "applications",
-      "doc_type": "concept",
-      "status": "stable"
-    },
-    {
-      "id": "implementations/index.md",
-      "title": "Implementations \u2014 PPT Tool Register",
-      "group": "implementations",
-      "doc_type": "index",
-      "status": "stable"
-    },
-    {
-      "id": "uniform-solfege/geometric-basis.md",
-      "title": "Uniform Solf\u00e8ge \u2014 Geometric Basis",
-      "group": "uniform-solfege",
-      "doc_type": "concept",
-      "status": "stable"
-    },
-    {
-      "id": "structure/spatial-harmony.md",
-      "title": "Spatial Harmony",
-      "group": "structure",
-      "doc_type": "concept",
-      "status": "stub"
-    },
-    {
-      "id": "analysis.md",
-      "title": "OKF Architectural Analysis",
-      "group": "root",
-      "doc_type": "reference",
-      "status": "stable"
-    },
-    {
-      "id": "reference/emergent-analysis.md",
-      "title": "Emergent Analysis",
-      "group": "reference",
-      "doc_type": "concept",
-      "status": "stub"
-    },
-    {
-      "id": "domains/rhythmic-overtone-series.md",
-      "title": "Rhythmic Overtone Series",
-      "group": "domains",
-      "doc_type": "concept",
-      "status": "stable"
-    },
-    {
-      "id": "foundations/amplitude-time.md",
-      "title": "Amplitude and Time",
-      "group": "foundations",
-      "doc_type": "concept",
-      "status": "stable"
-    },
-    {
-      "id": "extended/ppt-feature-taxonomy.md",
-      "title": "PPT Feature Taxonomy",
-      "group": "extended",
-      "doc_type": "concept",
-      "status": "stable"
-    },
-    {
-      "id": "tuning/12-tet.md",
-      "title": "12-Tone Equal Temperament (12TET)",
-      "group": "tuning",
-      "doc_type": "concept",
-      "status": "stable"
-    },
-    {
-      "id": "extended/spectral-dynamic-coupling.md",
-      "title": "Spectral Dynamic Coupling",
-      "group": "extended",
-      "doc_type": "concept",
-      "status": "stable"
-    },
-    {
-      "id": "applications/notation-input.md",
-      "title": "Notation Input",
-      "group": "applications",
-      "doc_type": "concept",
-      "status": "stable"
-    },
-    {
-      "id": "specifications/midi-solfege-input.md",
-      "title": "MIDI to Solf\u00e8ge Input Specification",
-      "group": "specifications",
-      "doc_type": "reference",
-      "status": "stable"
-    },
-    {
-      "id": "extended/amplitude-trajectories.md",
-      "title": "Amplitude Trajectories",
-      "group": "extended",
-      "doc_type": "concept",
-      "status": "stable"
-    },
-    {
-      "id": "extended/metric-duperiod-extended.md",
-      "title": "Metric DuPeriod \u2014 Extended Range",
-      "group": "extended",
-      "doc_type": "concept",
-      "status": "stable"
-    },
-    {
-      "id": "related/chromatic-clock.md",
-      "title": "Chromatic Clock Geometry",
-      "group": "related",
-      "doc_type": "concept",
-      "status": "stable"
-    },
-    {
-      "id": "perception/auditory-horizon.md",
-      "title": "Auditory Horizon and Agency",
-      "group": "perception",
-      "doc_type": "concept",
-      "status": "stable"
-    },
-    {
-      "id": "ppd/index.md",
-      "title": "Prime Period Diacritics \u2014 Overview",
-      "group": "ppd",
-      "doc_type": "concept",
-      "status": "stable"
-    },
-    {
-      "id": "tuning/tetrachord-pairs.md",
-      "title": "Tetrachord-Pair Generation of Heptatonic Scales",
-      "group": "tuning",
-      "doc_type": "concept",
-      "status": "stable"
-    },
-    {
-      "id": "pedagogy/ear-first.md",
-      "title": "Ear-First Pedagogy",
-      "group": "pedagogy",
-      "doc_type": "concept",
-      "status": "stable"
-    },
-    {
-      "id": "tuning/72-edo-grid.md",
-      "title": "72 EDO Grid",
-      "group": "tuning",
-      "doc_type": "concept",
-      "status": "stable"
-    },
-    {
-      "id": "reference/amplitude-notation.md",
-      "title": "Amplitude Notation",
-      "group": "reference",
-      "doc_type": "reference",
-      "status": "stable"
-    },
-    {
-      "id": "specifications/composition-format.md",
-      "title": "PPT Composition Format (PPT-CF)",
-      "group": "specifications",
-      "doc_type": "concept",
-      "status": "stable"
-    },
-    {
-      "id": "extended/11-limit-statistical-basis.md",
-      "title": "Bounding the Infinite \u2014 A Statistical Basis for the 11-Limit in Macro-Rhythmic Analysis",
-      "group": "extended",
-      "doc_type": "concept",
-      "status": "stable"
-    },
-    {
-      "id": "applications/song-sphere.md",
-      "title": "Self-Powered PPT Native Instrument \u2014 Concept Note",
-      "group": "applications",
-      "doc_type": "concept",
-      "status": "stable"
-    },
-    {
-      "id": "structure/melodic-grammar.md",
-      "title": "Melodic Grammar",
-      "group": "structure",
-      "doc_type": "concept",
-      "status": "stable"
-    },
-    {
-      "id": "pedagogy/default-do.md",
-      "title": "Default Do: The Case for D on 12TET Keyboards",
-      "group": "pedagogy",
-      "doc_type": "concept",
-      "status": "stable"
-    },
-    {
-      "id": "domains/rhythm.md",
-      "title": "Rhythm",
-      "group": "domains",
-      "doc_type": "concept",
-      "status": "stable"
-    },
-    {
-      "id": "extended/path-equivalence.md",
-      "title": "Path Equivalence and Confluence",
-      "group": "extended",
-      "doc_type": "concept",
-      "status": "stable"
-    },
-    {
-      "id": "tuning/31-edo.md",
-      "title": "31 EDO",
-      "group": "tuning",
-      "doc_type": "concept",
-      "status": "stable"
-    },
-    {
-      "id": "structure/coil-notation.md",
-      "title": "Three-Layer Coil Notation",
-      "group": "structure",
-      "doc_type": "concept",
-      "status": "stable"
-    },
-    {
-      "id": "applications/play-along.md",
-      "title": "Play-Along Feedback \u2014 Three Models",
-      "group": "applications",
-      "doc_type": "concept",
-      "status": "stable"
-    },
-    {
-      "id": "pedagogy/progressive-complexity.md",
-      "title": "Progressive Complexity",
-      "group": "pedagogy",
-      "doc_type": "concept",
-      "status": "stub"
-    },
-    {
-      "id": "tuning/du-fractal-dutri-closure.md",
-      "title": "Du-Fractal DuTri Closure",
-      "group": "tuning",
-      "doc_type": "concept",
-      "status": "stable"
-    },
-    {
-      "id": "perception/local-closure.md",
-      "title": "Perception-Period Local Closure & Residue Triangulation",
-      "group": "perception",
-      "doc_type": "concept",
-      "status": "stable"
-    },
-    {
-      "id": "pedagogy/axis-fan-pedagogy.md",
-      "title": "Axis-Fan Pedagogy \u2014 A Tritone-First Harmony Sequence",
-      "group": "pedagogy",
-      "doc_type": "concept",
-      "status": "stable"
-    },
-    {
-      "id": "tuning/pentatonic-heptatonic.md",
-      "title": "Pentatonic and Heptatonic Structures",
-      "group": "tuning",
-      "doc_type": "concept",
-      "status": "stable"
-    },
-    {
-      "id": "perception/self-adjusting-pipeline.md",
-      "title": "Self Adjusting Pipeline",
-      "group": "perception",
-      "doc_type": "concept",
-      "status": "stub"
-    },
-    {
       "id": "specifications/prime-lattice-boundary-routing.md",
       "title": "Architecture Specification - Prime Lattice Du Pivot Licensing",
       "group": "specifications",
       "doc_type": "reference",
       "status": "stable"
-    },
-    {
-      "id": "structure/rhythmic-grammar.md",
-      "title": "Rhythmic Grammar",
-      "group": "structure",
-      "doc_type": "concept",
-      "status": "stable"
-    },
-    {
-      "id": "domains/rhythmic-phase-coherence.md",
-      "title": "Rhythmic Phase Coherence",
-      "group": "domains",
-      "doc_type": "concept",
-      "status": "stable"
-    },
-    {
-      "id": "domains/polymetric-phase-equivalence.md",
-      "title": "Polymetric Phase Equivalence",
-      "group": "domains",
-      "doc_type": "concept",
-      "status": "stable"
-    },
-    {
-      "id": "tuning/temporal-place-limen-reference-tuning.md",
-      "title": "Temporal-Place Limen Reference Tuning",
-      "group": "tuning",
-      "doc_type": "concept",
-      "status": "stable"
-    },
-    {
-      "id": "related/tone-atlas.md",
-      "title": "Tone Atlas",
-      "group": "related",
-      "doc_type": "concept",
-      "status": "stable"
-    },
-    {
-      "id": "perception/temporal-place-limen.md",
-      "title": "Temporal-Place Limen",
-      "group": "perception",
-      "doc_type": "concept",
-      "status": "stable"
-    },
-    {
-      "id": "domains/pitch.md",
-      "title": "Pitch and Consonance",
-      "group": "domains",
-      "doc_type": "concept",
-      "status": "stable"
-    },
-    {
-      "id": "context/music-as-language.md",
-      "title": "Music as Language and Auditory Classification",
-      "group": "context",
-      "doc_type": "concept",
-      "status": "stable"
-    },
-    {
-      "id": "pedagogy/cross-domain-transfer.md",
-      "title": "Cross-Domain Transfer",
-      "group": "pedagogy",
-      "doc_type": "concept",
-      "status": "stable"
-    },
-    {
-      "id": "applications/index.md",
-      "title": "Applications Index",
-      "group": "applications",
-      "doc_type": "index",
-      "status": "stub"
-    },
-    {
-      "id": "specifications/period-declaration.md",
-      "title": "Period Declaration Mechanics",
-      "group": "specifications",
-      "doc_type": "concept",
-      "status": "stable"
-    },
-    {
-      "id": "foundations/prime-lattice.md",
-      "title": "Prime Lattice",
-      "group": "foundations",
-      "doc_type": "concept",
-      "status": "stable"
-    },
-    {
-      "id": "reference/metric-duperiod.md",
-      "title": "Metric DuPeriod",
-      "group": "reference",
-      "doc_type": "concept",
-      "status": "stable"
-    },
-    {
-      "id": "uniform-solfege/diacritic-system.md",
-      "title": "Uniform Solf\u00e8ge \u2014 Diacritic System",
-      "group": "uniform-solfege",
-      "doc_type": "concept",
-      "status": "stable"
-    },
-    {
-      "id": "applications/song-stick.md",
-      "title": "Song Stick Instrument \u2014 Concept Note",
-      "group": "applications",
-      "doc_type": "concept",
-      "status": "stable"
-    },
-    {
-      "id": "perception/coarse-graining-and-grid-reduction.md",
-      "title": "Coarse-Graining and Grid Reduction",
-      "group": "perception",
-      "doc_type": "concept",
-      "status": "stable"
     }
   ],
   "links": [
     {
-      "source": "applications/coil-editor-design.md",
-      "target": "structure/coil-notation.md",
+      "source": "related/chromatic-clock.md",
+      "target": "related/tone-atlas.md",
       "value": 1
     },
     {
-      "source": "applications/coil-editor-design.md",
-      "target": "applications/component-philosophy.md",
-      "value": 1
-    },
-    {
-      "source": "applications/coil-editor-design.md",
-      "target": "applications/play-along.md",
-      "value": 1
-    },
-    {
-      "source": "applications/coil-editor-design.md",
-      "target": "implementations/ppt-components.md",
-      "value": 1
-    },
-    {
-      "source": "applications/component-philosophy.md",
-      "target": "reference/emergent-analysis.md",
-      "value": 1
-    },
-    {
-      "source": "applications/component-philosophy.md",
-      "target": "foundations/periodicity.md",
-      "value": 1
-    },
-    {
-      "source": "applications/component-philosophy.md",
-      "target": "reference/metric-duperiod.md",
-      "value": 1
-    },
-    {
-      "source": "applications/component-philosophy.md",
-      "target": "implementations/ppt-components.md",
-      "value": 1
-    },
-    {
-      "source": "applications/component-philosophy.md",
-      "target": "applications/visualisation.md",
-      "value": 1
-    },
-    {
-      "source": "applications/notation-input.md",
-      "target": "specifications/midi-solfege-input.md",
-      "value": 1
-    },
-    {
-      "source": "applications/notation-input.md",
-      "target": "structure/coil-notation.md",
-      "value": 1
-    },
-    {
-      "source": "applications/notation-input.md",
-      "target": "structure/rhythmic-grammar.md",
-      "value": 1
-    },
-    {
-      "source": "applications/notation-input.md",
-      "target": "specifications/midi-solfege-mapping.md",
-      "value": 1
-    },
-    {
-      "source": "applications/notation-input.md",
-      "target": "foundations/prime-lattice.md",
-      "value": 1
-    },
-    {
-      "source": "applications/notation-input.md",
-      "target": "applications/component-philosophy.md",
-      "value": 1
-    },
-    {
-      "source": "applications/play-along.md",
-      "target": "domains/rhythmic-phase-coherence.md",
-      "value": 1
-    },
-    {
-      "source": "applications/play-along.md",
-      "target": "pedagogy/ear-first.md",
-      "value": 1
-    },
-    {
-      "source": "applications/play-along.md",
-      "target": "pedagogy/progressive-complexity.md",
-      "value": 1
-    },
-    {
-      "source": "applications/play-along.md",
-      "target": "applications/transcription.md",
-      "value": 1
-    },
-    {
-      "source": "context/tenets.md",
-      "target": "foundations/amplitude-time.md",
-      "value": 1
-    },
-    {
-      "source": "context/tenets.md",
-      "target": "foundations/prime-families.md",
-      "value": 1
-    },
-    {
-      "source": "context/tenets.md",
-      "target": "perception/temporal-place-limen.md",
-      "value": 1
-    },
-    {
-      "source": "context/tenets.md",
-      "target": "context/music-as-language.md",
-      "value": 1
-    },
-    {
-      "source": "domains/dynamics.md",
-      "target": "domains/timbre.md",
-      "value": 1
-    },
-    {
-      "source": "domains/dynamics.md",
-      "target": "reference/metric-duperiod.md",
-      "value": 1
-    },
-    {
-      "source": "domains/dynamics.md",
-      "target": "extended/geometric-amplitude-ratios.md",
-      "value": 1
-    },
-    {
-      "source": "domains/pitch.md",
-      "target": "foundations/amplitude-time.md",
-      "value": 1
-    },
-    {
-      "source": "domains/pitch.md",
+      "source": "related/chromatic-clock.md",
       "target": "uniform-solfege/base-12-algebra.md",
       "value": 1
     },
     {
-      "source": "domains/pitch.md",
+      "source": "related/chromatic-clock.md",
+      "target": "uniform-solfege/geometric-basis.md",
+      "value": 1
+    },
+    {
+      "source": "related/tone-atlas.md",
+      "target": "uniform-solfege/base-12-algebra.md",
+      "value": 1
+    },
+    {
+      "source": "related/tone-atlas.md",
+      "target": "related/chromatic-clock.md",
+      "value": 1
+    },
+    {
+      "source": "related/tone-atlas.md",
+      "target": "uniform-solfege/index.md",
+      "value": 1
+    },
+    {
+      "source": "reference/amplitude-notation.md",
+      "target": "uniform-solfege/index.md",
+      "value": 1
+    },
+    {
+      "source": "reference/amplitude-notation.md",
+      "target": "extended/geometric-amplitude-ratios.md",
+      "value": 1
+    },
+    {
+      "source": "reference/metric-duperiod.md",
+      "target": "foundations/period.md",
+      "value": 1
+    },
+    {
+      "source": "reference/metric-duperiod.md",
+      "target": "perception/temporal-place-limen.md",
+      "value": 1
+    },
+    {
+      "source": "reference/metric-duperiod.md",
+      "target": "foundations/periodicity.md",
+      "value": 1
+    },
+    {
+      "source": "reference/metric-duperiod.md",
+      "target": "foundations/prime-families.md",
+      "value": 1
+    },
+    {
+      "source": "reference/metric-duperiod.md",
+      "target": "domains/rhythm.md",
+      "value": 1
+    },
+    {
+      "source": "reference/metric-duperiod.md",
+      "target": "uniform-solfege/index.md",
+      "value": 1
+    },
+    {
+      "source": "reference/metric-duperiod.md",
+      "target": "structure/rhythmic-grammar.md",
+      "value": 1
+    },
+    {
+      "source": "reference/metric-duperiod.md",
+      "target": "extended/metric-duperiod-extended.md",
+      "value": 1
+    },
+    {
+      "source": "uniform-solfege/base-12-algebra.md",
+      "target": "uniform-solfege/geometric-basis.md",
+      "value": 1
+    },
+    {
+      "source": "uniform-solfege/base-12-algebra.md",
+      "target": "related/tone-atlas.md",
+      "value": 1
+    },
+    {
+      "source": "uniform-solfege/base-12-algebra.md",
+      "target": "foundations/periodicity.md",
+      "value": 1
+    },
+    {
+      "source": "uniform-solfege/index.md",
+      "target": "uniform-solfege/geometric-basis.md",
+      "value": 1
+    },
+    {
+      "source": "uniform-solfege/index.md",
+      "target": "ppd/index.md",
+      "value": 1
+    },
+    {
+      "source": "uniform-solfege/index.md",
+      "target": "uniform-solfege/diacritic-system.md",
+      "value": 1
+    },
+    {
+      "source": "uniform-solfege/index.md",
+      "target": "structure/coil-notation.md",
+      "value": 1
+    },
+    {
+      "source": "uniform-solfege/index.md",
       "target": "structure/melodic-grammar.md",
       "value": 1
     },
     {
-      "source": "domains/pitch.md",
-      "target": "domains/rhythm.md",
+      "source": "uniform-solfege/index.md",
+      "target": "uniform-solfege/base-12-algebra.md",
       "value": 1
     },
     {
-      "source": "domains/polymetric-phase-equivalence.md",
-      "target": "perception/temporal-place-limen.md",
+      "source": "uniform-solfege/index.md",
+      "target": "tuning/31-edo.md",
       "value": 1
     },
     {
-      "source": "domains/polymetric-phase-equivalence.md",
-      "target": "domains/rhythm.md",
-      "value": 1
-    },
-    {
-      "source": "domains/rhythm.md",
-      "target": "foundations/periodicity.md",
-      "value": 1
-    },
-    {
-      "source": "domains/rhythm.md",
+      "source": "uniform-solfege/index.md",
       "target": "foundations/prime-families.md",
       "value": 1
     },
     {
-      "source": "domains/rhythm.md",
-      "target": "specifications/period-declaration.md",
-      "value": 1
-    },
-    {
-      "source": "domains/rhythm.md",
-      "target": "structure/rhythmic-grammar.md",
-      "value": 1
-    },
-    {
-      "source": "domains/rhythm.md",
-      "target": "uniform-solfege/diacritic-system.md",
-      "value": 1
-    },
-    {
-      "source": "domains/rhythm.md",
-      "target": "domains/rhythmic-overtone-series.md",
-      "value": 1
-    },
-    {
-      "source": "domains/rhythm.md",
-      "target": "domains/pitch.md",
-      "value": 1
-    },
-    {
-      "source": "domains/rhythmic-overtone-series.md",
-      "target": "foundations/periodicity.md",
-      "value": 1
-    },
-    {
-      "source": "domains/rhythmic-overtone-series.md",
-      "target": "perception/temporal-place-limen.md",
-      "value": 1
-    },
-    {
-      "source": "domains/rhythmic-overtone-series.md",
-      "target": "ppd/index.md",
-      "value": 1
-    },
-    {
-      "source": "domains/rhythmic-overtone-series.md",
-      "target": "uniform-solfege/diacritic-system.md",
-      "value": 1
-    },
-    {
-      "source": "domains/rhythmic-overtone-series.md",
+      "source": "uniform-solfege/geometric-basis.md",
       "target": "foundations/prime-families.md",
       "value": 1
     },
     {
-      "source": "domains/rhythmic-overtone-series.md",
-      "target": "reference/metric-duperiod.md",
-      "value": 1
-    },
-    {
-      "source": "domains/rhythmic-overtone-series.md",
-      "target": "domains/rhythm.md",
-      "value": 1
-    },
-    {
-      "source": "domains/rhythmic-overtone-series.md",
-      "target": "structure/rhythmic-grammar.md",
-      "value": 1
-    },
-    {
-      "source": "domains/rhythmic-overtone-series.md",
-      "target": "domains/timbre.md",
-      "value": 1
-    },
-    {
-      "source": "domains/rhythmic-phase-coherence.md",
-      "target": "reference/metric-duperiod.md",
-      "value": 1
-    },
-    {
-      "source": "domains/rhythmic-phase-coherence.md",
-      "target": "structure/rhythmic-grammar.md",
-      "value": 1
-    },
-    {
-      "source": "domains/rhythmic-phase-coherence.md",
-      "target": "domains/rhythmic-overtone-series.md",
-      "value": 1
-    },
-    {
-      "source": "domains/rhythmic-phase-coherence.md",
-      "target": "ppd/index.md",
-      "value": 1
-    },
-    {
-      "source": "domains/rhythmic-phase-coherence.md",
-      "target": "uniform-solfege/diacritic-system.md",
-      "value": 1
-    },
-    {
-      "source": "domains/rhythmic-phase-coherence.md",
-      "target": "perception/temporal-place-limen.md",
-      "value": 1
-    },
-    {
-      "source": "domains/rhythmic-undertone-series.md",
-      "target": "domains/rhythmic-overtone-series.md",
-      "value": 1
-    },
-    {
-      "source": "domains/rhythmic-undertone-series.md",
-      "target": "foundations/periodicity.md",
-      "value": 1
-    },
-    {
-      "source": "domains/timbre.md",
+      "source": "uniform-solfege/geometric-basis.md",
       "target": "foundations/amplitude-time.md",
       "value": 1
     },
     {
-      "source": "domains/timbre.md",
-      "target": "domains/pitch.md",
+      "source": "uniform-solfege/geometric-basis.md",
+      "target": "uniform-solfege/diacritic-system.md",
       "value": 1
     },
     {
-      "source": "domains/timbre.md",
+      "source": "uniform-solfege/geometric-basis.md",
+      "target": "uniform-solfege/index.md",
+      "value": 1
+    },
+    {
+      "source": "uniform-solfege/geometric-basis.md",
+      "target": "foundations/periodicity.md",
+      "value": 1
+    },
+    {
+      "source": "uniform-solfege/diacritic-system.md",
+      "target": "ppd/index.md",
+      "value": 1
+    },
+    {
+      "source": "uniform-solfege/diacritic-system.md",
+      "target": "foundations/prime-lattice.md",
+      "value": 1
+    },
+    {
+      "source": "uniform-solfege/diacritic-system.md",
+      "target": "ppd/glyph-forms.md",
+      "value": 1
+    },
+    {
+      "source": "uniform-solfege/diacritic-system.md",
+      "target": "uniform-solfege/geometric-basis.md",
+      "value": 1
+    },
+    {
+      "source": "tuning/tetrachord-pairs.md",
+      "target": "tuning/pentatonic-heptatonic.md",
+      "value": 1
+    },
+    {
+      "source": "tuning/tetrachord-pairs.md",
+      "target": "uniform-solfege/index.md",
+      "value": 1
+    },
+    {
+      "source": "tuning/tetrachord-pairs.md",
+      "target": "foundations/periodicity.md",
+      "value": 1
+    },
+    {
+      "source": "tuning/tetrachord-pairs.md",
+      "target": "context/tenets.md",
+      "value": 1
+    },
+    {
+      "source": "tuning/tetrachord-pairs.md",
+      "target": "context/music-as-language.md",
+      "value": 1
+    },
+    {
+      "source": "tuning/tetrachord-pairs.md",
+      "target": "uniform-solfege/base-12-algebra.md",
+      "value": 1
+    },
+    {
+      "source": "tuning/tetrachord-pairs.md",
+      "target": "structure/melodic-grammar.md",
+      "value": 1
+    },
+    {
+      "source": "tuning/tetrachord-pairs.md",
+      "target": "tuning/just-intonation.md",
+      "value": 1
+    },
+    {
+      "source": "tuning/du-fractal-dutri-closure.md",
       "target": "foundations/prime-families.md",
       "value": 1
     },
     {
-      "source": "extended/11-limit-statistical-basis.md",
-      "target": "foundations/prime-families.md",
+      "source": "tuning/du-fractal-dutri-closure.md",
+      "target": "tuning/12-tet.md",
       "value": 1
     },
     {
-      "source": "extended/11-limit-statistical-basis.md",
-      "target": "domains/rhythmic-overtone-series.md",
+      "source": "tuning/du-fractal-dutri-closure.md",
+      "target": "tuning/just-intonation.md",
       "value": 1
     },
     {
-      "source": "extended/11-limit-statistical-basis.md",
+      "source": "tuning/temporal-place-limen-reference-tuning.md",
       "target": "perception/temporal-place-limen.md",
       "value": 1
     },
     {
-      "source": "extended/11-limit-statistical-basis.md",
-      "target": "domains/rhythm.md",
+      "source": "tuning/temporal-place-limen-reference-tuning.md",
+      "target": "reference/metric-duperiod.md",
       "value": 1
     },
     {
-      "source": "extended/11-limit-statistical-basis.md",
-      "target": "foundations/periodicity.md",
+      "source": "tuning/temporal-place-limen-reference-tuning.md",
+      "target": "tuning/just-intonation.md",
+      "value": 1
+    },
+    {
+      "source": "tuning/temporal-place-limen-reference-tuning.md",
+      "target": "tuning/31-edo.md",
+      "value": 1
+    },
+    {
+      "source": "tuning/temporal-place-limen-reference-tuning.md",
+      "target": "tuning/72-edo-grid.md",
+      "value": 1
+    },
+    {
+      "source": "tuning/temporal-place-limen-reference-tuning.md",
+      "target": "uniform-solfege/index.md",
+      "value": 1
+    },
+    {
+      "source": "tuning/pentatonic-heptatonic.md",
+      "target": "tuning/tetrachord-pairs.md",
+      "value": 1
+    },
+    {
+      "source": "tuning/pentatonic-heptatonic.md",
+      "target": "tuning/just-intonation.md",
+      "value": 1
+    },
+    {
+      "source": "tuning/pentatonic-heptatonic.md",
+      "target": "uniform-solfege/index.md",
+      "value": 1
+    },
+    {
+      "source": "extended/spectral-dynamic-coupling.md",
+      "target": "domains/timbre.md",
+      "value": 1
+    },
+    {
+      "source": "extended/spectral-dynamic-coupling.md",
+      "target": "extended/amplitude-trajectories.md",
       "value": 1
     },
     {
@@ -921,48 +891,28 @@
       "value": 1
     },
     {
-      "source": "extended/geometric-amplitude-ratios.md",
-      "target": "domains/timbre.md",
-      "value": 1
-    },
-    {
-      "source": "extended/geometric-amplitude-ratios.md",
-      "target": "domains/dynamics.md",
-      "value": 1
-    },
-    {
-      "source": "extended/geometric-amplitude-ratios.md",
+      "source": "extended/11-limit-statistical-basis.md",
       "target": "foundations/prime-families.md",
       "value": 1
     },
     {
-      "source": "extended/metric-duperiod-extended.md",
-      "target": "reference/metric-duperiod.md",
+      "source": "extended/11-limit-statistical-basis.md",
+      "target": "domains/rhythmic-overtone-series.md",
       "value": 1
     },
     {
-      "source": "extended/metric-duperiod-extended.md",
+      "source": "extended/11-limit-statistical-basis.md",
       "target": "perception/temporal-place-limen.md",
       "value": 1
     },
     {
-      "source": "extended/metric-duperiod-extended.md",
-      "target": "foundations/periodicity.md",
-      "value": 1
-    },
-    {
-      "source": "extended/metric-duperiod-extended.md",
+      "source": "extended/11-limit-statistical-basis.md",
       "target": "domains/rhythm.md",
       "value": 1
     },
     {
-      "source": "extended/path-equivalence.md",
-      "target": "foundations/prime-lattice.md",
-      "value": 1
-    },
-    {
-      "source": "extended/path-equivalence.md",
-      "target": "foundations/prime-families.md",
+      "source": "extended/11-limit-statistical-basis.md",
+      "target": "foundations/periodicity.md",
       "value": 1
     },
     {
@@ -1021,58 +971,513 @@
       "value": 1
     },
     {
-      "source": "extended/spectral-dynamic-coupling.md",
-      "target": "domains/timbre.md",
-      "value": 1
-    },
-    {
-      "source": "extended/spectral-dynamic-coupling.md",
-      "target": "extended/amplitude-trajectories.md",
-      "value": 1
-    },
-    {
-      "source": "foundations/amplitude-time.md",
-      "target": "foundations/periodicity.md",
-      "value": 1
-    },
-    {
-      "source": "foundations/amplitude-time.md",
-      "target": "foundations/prime-families.md",
-      "value": 1
-    },
-    {
-      "source": "foundations/amplitude-time.md",
-      "target": "domains/pitch.md",
-      "value": 1
-    },
-    {
-      "source": "foundations/amplitude-time.md",
-      "target": "domains/rhythm.md",
-      "value": 1
-    },
-    {
-      "source": "foundations/amplitude-time.md",
-      "target": "domains/timbre.md",
-      "value": 1
-    },
-    {
-      "source": "foundations/anchors.md",
+      "source": "extended/path-equivalence.md",
       "target": "foundations/prime-lattice.md",
       "value": 1
     },
     {
-      "source": "foundations/anchors.md",
-      "target": "foundations/period.md",
+      "source": "extended/path-equivalence.md",
+      "target": "foundations/prime-families.md",
       "value": 1
     },
     {
-      "source": "foundations/anchors.md",
+      "source": "extended/metric-duperiod-extended.md",
+      "target": "reference/metric-duperiod.md",
+      "value": 1
+    },
+    {
+      "source": "extended/metric-duperiod-extended.md",
+      "target": "perception/temporal-place-limen.md",
+      "value": 1
+    },
+    {
+      "source": "extended/metric-duperiod-extended.md",
+      "target": "foundations/periodicity.md",
+      "value": 1
+    },
+    {
+      "source": "extended/metric-duperiod-extended.md",
+      "target": "domains/rhythm.md",
+      "value": 1
+    },
+    {
+      "source": "extended/geometric-amplitude-ratios.md",
+      "target": "domains/timbre.md",
+      "value": 1
+    },
+    {
+      "source": "extended/geometric-amplitude-ratios.md",
+      "target": "domains/dynamics.md",
+      "value": 1
+    },
+    {
+      "source": "extended/geometric-amplitude-ratios.md",
+      "target": "foundations/prime-families.md",
+      "value": 1
+    },
+    {
+      "source": "ppd/index.md",
+      "target": "foundations/prime-lattice.md",
+      "value": 1
+    },
+    {
+      "source": "ppd/index.md",
+      "target": "specifications/midi-solfege-input.md",
+      "value": 1
+    },
+    {
+      "source": "ppd/index.md",
+      "target": "ppd/glyph-forms.md",
+      "value": 1
+    },
+    {
+      "source": "perception/information-and-expectation.md",
+      "target": "foundations/amplitude-time.md",
+      "value": 1
+    },
+    {
+      "source": "perception/information-and-expectation.md",
+      "target": "foundations/periodicity.md",
+      "value": 1
+    },
+    {
+      "source": "perception/duperiod-window-stack.md",
+      "target": "reference/metric-duperiod.md",
+      "value": 1
+    },
+    {
+      "source": "perception/duperiod-window-stack.md",
+      "target": "perception/temporal-place-limen.md",
+      "value": 1
+    },
+    {
+      "source": "perception/duperiod-window-stack.md",
+      "target": "domains/rhythmic-overtone-series.md",
+      "value": 1
+    },
+    {
+      "source": "perception/duperiod-window-stack.md",
+      "target": "perception/self-adjusting-pipeline.md",
+      "value": 1
+    },
+    {
+      "source": "perception/coarse-graining-and-grid-reduction.md",
+      "target": "perception/temporal-place-limen.md",
+      "value": 1
+    },
+    {
+      "source": "perception/coarse-graining-and-grid-reduction.md",
+      "target": "reference/metric-duperiod.md",
+      "value": 1
+    },
+    {
+      "source": "perception/coarse-graining-and-grid-reduction.md",
       "target": "ppd/index.md",
       "value": 1
     },
     {
-      "source": "foundations/anchors.md",
-      "target": "tuning/just-intonation.md",
+      "source": "perception/coarse-graining-and-grid-reduction.md",
+      "target": "structure/melodic-grammar.md",
+      "value": 1
+    },
+    {
+      "source": "perception/temporal-place-limen.md",
+      "target": "perception/local-closure.md",
+      "value": 1
+    },
+    {
+      "source": "perception/temporal-place-limen.md",
+      "target": "reference/metric-duperiod.md",
+      "value": 1
+    },
+    {
+      "source": "perception/temporal-place-limen.md",
+      "target": "foundations/amplitude-time.md",
+      "value": 1
+    },
+    {
+      "source": "perception/temporal-place-limen.md",
+      "target": "foundations/periodicity.md",
+      "value": 1
+    },
+    {
+      "source": "perception/temporal-place-limen.md",
+      "target": "extended/metric-duperiod-extended.md",
+      "value": 1
+    },
+    {
+      "source": "perception/local-closure.md",
+      "target": "perception/temporal-place-limen.md",
+      "value": 1
+    },
+    {
+      "source": "perception/auditory-horizon.md",
+      "target": "perception/temporal-place-limen.md",
+      "value": 1
+    },
+    {
+      "source": "perception/auditory-horizon.md",
+      "target": "foundations/periodicity.md",
+      "value": 1
+    },
+    {
+      "source": "perception/auditory-horizon.md",
+      "target": "foundations/prime-families.md",
+      "value": 1
+    },
+    {
+      "source": "perception/auditory-horizon.md",
+      "target": "perception/information-and-expectation.md",
+      "value": 1
+    },
+    {
+      "source": "perception/auditory-horizon.md",
+      "target": "domains/rhythm.md",
+      "value": 1
+    },
+    {
+      "source": "perception/auditory-horizon.md",
+      "target": "domains/pitch.md",
+      "value": 1
+    },
+    {
+      "source": "specifications/period-declaration.md",
+      "target": "foundations/period.md",
+      "value": 1
+    },
+    {
+      "source": "specifications/midi-solfege-mapping.md",
+      "target": "specifications/midi-solfege-input.md",
+      "value": 1
+    },
+    {
+      "source": "specifications/midi-solfege-mapping.md",
+      "target": "foundations/prime-lattice.md",
+      "value": 1
+    },
+    {
+      "source": "specifications/midi-solfege-mapping.md",
+      "target": "ppd/glyph-forms.md",
+      "value": 1
+    },
+    {
+      "source": "specifications/midi-solfege-mapping.md",
+      "target": "applications/notation-input.md",
+      "value": 1
+    },
+    {
+      "source": "specifications/prime-lattice-boundary-routing.md",
+      "target": "foundations/period.md",
+      "value": 1
+    },
+    {
+      "source": "specifications/prime-lattice-boundary-routing.md",
+      "target": "foundations/prime-lattice.md",
+      "value": 1
+    },
+    {
+      "source": "specifications/midi-solfege-input.md",
+      "target": "specifications/midi-solfege-mapping.md",
+      "value": 1
+    },
+    {
+      "source": "specifications/midi-solfege-input.md",
+      "target": "ppd/index.md",
+      "value": 1
+    },
+    {
+      "source": "specifications/midi-solfege-input.md",
+      "target": "foundations/prime-lattice.md",
+      "value": 1
+    },
+    {
+      "source": "specifications/midi-solfege-input.md",
+      "target": "specifications/prime-lattice-boundary-routing.md",
+      "value": 1
+    },
+    {
+      "source": "specifications/midi-solfege-input.md",
+      "target": "applications/notation-input.md",
+      "value": 1
+    },
+    {
+      "source": "specifications/midi-solfege-input.md",
+      "target": "uniform-solfege/index.md",
+      "value": 1
+    },
+    {
+      "source": "applications/play-along.md",
+      "target": "domains/rhythmic-phase-coherence.md",
+      "value": 1
+    },
+    {
+      "source": "applications/play-along.md",
+      "target": "pedagogy/ear-first.md",
+      "value": 1
+    },
+    {
+      "source": "applications/play-along.md",
+      "target": "pedagogy/progressive-complexity.md",
+      "value": 1
+    },
+    {
+      "source": "applications/play-along.md",
+      "target": "applications/transcription.md",
+      "value": 1
+    },
+    {
+      "source": "applications/component-philosophy.md",
+      "target": "reference/emergent-analysis.md",
+      "value": 1
+    },
+    {
+      "source": "applications/component-philosophy.md",
+      "target": "foundations/periodicity.md",
+      "value": 1
+    },
+    {
+      "source": "applications/component-philosophy.md",
+      "target": "reference/metric-duperiod.md",
+      "value": 1
+    },
+    {
+      "source": "applications/component-philosophy.md",
+      "target": "implementations/ppt-components.md",
+      "value": 1
+    },
+    {
+      "source": "applications/component-philosophy.md",
+      "target": "applications/visualisation.md",
+      "value": 1
+    },
+    {
+      "source": "applications/notation-input.md",
+      "target": "specifications/midi-solfege-input.md",
+      "value": 1
+    },
+    {
+      "source": "applications/notation-input.md",
+      "target": "structure/coil-notation.md",
+      "value": 1
+    },
+    {
+      "source": "applications/notation-input.md",
+      "target": "structure/rhythmic-grammar.md",
+      "value": 1
+    },
+    {
+      "source": "applications/notation-input.md",
+      "target": "specifications/midi-solfege-mapping.md",
+      "value": 1
+    },
+    {
+      "source": "applications/notation-input.md",
+      "target": "foundations/prime-lattice.md",
+      "value": 1
+    },
+    {
+      "source": "applications/notation-input.md",
+      "target": "applications/component-philosophy.md",
+      "value": 1
+    },
+    {
+      "source": "applications/coil-editor-design.md",
+      "target": "structure/coil-notation.md",
+      "value": 1
+    },
+    {
+      "source": "applications/coil-editor-design.md",
+      "target": "applications/component-philosophy.md",
+      "value": 1
+    },
+    {
+      "source": "applications/coil-editor-design.md",
+      "target": "applications/play-along.md",
+      "value": 1
+    },
+    {
+      "source": "applications/coil-editor-design.md",
+      "target": "implementations/ppt-components.md",
+      "value": 1
+    },
+    {
+      "source": "structure/coil-notation.md",
+      "target": "structure/melodic-grammar.md",
+      "value": 1
+    },
+    {
+      "source": "structure/coil-notation.md",
+      "target": "structure/rhythmic-grammar.md",
+      "value": 1
+    },
+    {
+      "source": "structure/coil-notation.md",
+      "target": "structure/musicoil.md",
+      "value": 1
+    },
+    {
+      "source": "structure/coil-notation.md",
+      "target": "uniform-solfege/index.md",
+      "value": 1
+    },
+    {
+      "source": "structure/coil-notation.md",
+      "target": "foundations/prime-families.md",
+      "value": 1
+    },
+    {
+      "source": "structure/rhythmic-grammar.md",
+      "target": "specifications/midi-solfege-input.md",
+      "value": 1
+    },
+    {
+      "source": "structure/rhythmic-grammar.md",
+      "target": "uniform-solfege/diacritic-system.md",
+      "value": 1
+    },
+    {
+      "source": "structure/rhythmic-grammar.md",
+      "target": "domains/rhythm.md",
+      "value": 1
+    },
+    {
+      "source": "structure/rhythmic-grammar.md",
+      "target": "foundations/prime-families.md",
+      "value": 1
+    },
+    {
+      "source": "structure/rhythmic-grammar.md",
+      "target": "uniform-solfege/index.md",
+      "value": 1
+    },
+    {
+      "source": "structure/rhythmic-grammar.md",
+      "target": "structure/coil-notation.md",
+      "value": 1
+    },
+    {
+      "source": "structure/rhythmic-grammar.md",
+      "target": "structure/melodic-grammar.md",
+      "value": 1
+    },
+    {
+      "source": "structure/rhythmic-grammar.md",
+      "target": "structure/musicoil.md",
+      "value": 1
+    },
+    {
+      "source": "structure/musicoil.md",
+      "target": "structure/coil-notation.md",
+      "value": 1
+    },
+    {
+      "source": "structure/musicoil.md",
+      "target": "structure/spatial-harmony.md",
+      "value": 1
+    },
+    {
+      "source": "structure/musicoil.md",
+      "target": "context/tenets.md",
+      "value": 1
+    },
+    {
+      "source": "structure/musicoil.md",
+      "target": "reference/metric-duperiod.md",
+      "value": 1
+    },
+    {
+      "source": "structure/musicoil.md",
+      "target": "reference/emergent-analysis.md",
+      "value": 1
+    },
+    {
+      "source": "structure/musicoil.md",
+      "target": "pedagogy/index.md",
+      "value": 1
+    },
+    {
+      "source": "structure/musicoil.md",
+      "target": "applications/play-along.md",
+      "value": 1
+    },
+    {
+      "source": "structure/musicoil.md",
+      "target": "structure/melodic-grammar.md",
+      "value": 1
+    },
+    {
+      "source": "structure/musicoil.md",
+      "target": "uniform-solfege/index.md",
+      "value": 1
+    },
+    {
+      "source": "structure/musicoil.md",
+      "target": "applications/component-philosophy.md",
+      "value": 1
+    },
+    {
+      "source": "structure/musicoil.md",
+      "target": "implementations/ppt-components.md",
+      "value": 1
+    },
+    {
+      "source": "structure/tapestry.md",
+      "target": "structure/coil-notation.md",
+      "value": 1
+    },
+    {
+      "source": "structure/tapestry.md",
+      "target": "uniform-solfege/index.md",
+      "value": 1
+    },
+    {
+      "source": "structure/tapestry.md",
+      "target": "structure/rhythmic-grammar.md",
+      "value": 1
+    },
+    {
+      "source": "structure/tapestry.md",
+      "target": "foundations/anchors.md",
+      "value": 1
+    },
+    {
+      "source": "structure/tapestry.md",
+      "target": "structure/musicoil.md",
+      "value": 1
+    },
+    {
+      "source": "structure/tapestry.md",
+      "target": "structure/melodic-grammar.md",
+      "value": 1
+    },
+    {
+      "source": "structure/melodic-grammar.md",
+      "target": "structure/coil-notation.md",
+      "value": 1
+    },
+    {
+      "source": "structure/melodic-grammar.md",
+      "target": "structure/rhythmic-grammar.md",
+      "value": 1
+    },
+    {
+      "source": "structure/melodic-grammar.md",
+      "target": "uniform-solfege/index.md",
+      "value": 1
+    },
+    {
+      "source": "structure/melodic-grammar.md",
+      "target": "ppd/index.md",
+      "value": 1
+    },
+    {
+      "source": "structure/melodic-grammar.md",
+      "target": "structure/musicoil.md",
+      "value": 1
+    },
+    {
+      "source": "structure/melodic-grammar.md",
+      "target": "domains/pitch.md",
       "value": 1
     },
     {
@@ -1098,81 +1503,6 @@
     {
       "source": "foundations/period.md",
       "target": "reference/metric-duperiod.md",
-      "value": 1
-    },
-    {
-      "source": "foundations/periodicity.md",
-      "target": "foundations/amplitude-time.md",
-      "value": 1
-    },
-    {
-      "source": "foundations/periodicity.md",
-      "target": "domains/timbre.md",
-      "value": 1
-    },
-    {
-      "source": "foundations/periodicity.md",
-      "target": "foundations/prime-families.md",
-      "value": 1
-    },
-    {
-      "source": "foundations/periodicity.md",
-      "target": "foundations/period.md",
-      "value": 1
-    },
-    {
-      "source": "foundations/periodicity.md",
-      "target": "domains/rhythm.md",
-      "value": 1
-    },
-    {
-      "source": "foundations/periodicity.md",
-      "target": "domains/pitch.md",
-      "value": 1
-    },
-    {
-      "source": "foundations/prime-families.md",
-      "target": "foundations/periodicity.md",
-      "value": 1
-    },
-    {
-      "source": "foundations/prime-families.md",
-      "target": "uniform-solfege/geometric-basis.md",
-      "value": 1
-    },
-    {
-      "source": "foundations/prime-families.md",
-      "target": "domains/timbre.md",
-      "value": 1
-    },
-    {
-      "source": "foundations/prime-families.md",
-      "target": "ppd/index.md",
-      "value": 1
-    },
-    {
-      "source": "foundations/prime-families.md",
-      "target": "foundations/period.md",
-      "value": 1
-    },
-    {
-      "source": "foundations/prime-families.md",
-      "target": "foundations/amplitude-time.md",
-      "value": 1
-    },
-    {
-      "source": "foundations/prime-families.md",
-      "target": "tuning/just-intonation.md",
-      "value": 1
-    },
-    {
-      "source": "foundations/prime-families.md",
-      "target": "domains/rhythm.md",
-      "value": 1
-    },
-    {
-      "source": "foundations/prime-families.md",
-      "target": "domains/pitch.md",
       "value": 1
     },
     {
@@ -1241,6 +1571,126 @@
       "value": 1
     },
     {
+      "source": "foundations/amplitude-time.md",
+      "target": "foundations/periodicity.md",
+      "value": 1
+    },
+    {
+      "source": "foundations/amplitude-time.md",
+      "target": "foundations/prime-families.md",
+      "value": 1
+    },
+    {
+      "source": "foundations/amplitude-time.md",
+      "target": "domains/pitch.md",
+      "value": 1
+    },
+    {
+      "source": "foundations/amplitude-time.md",
+      "target": "domains/rhythm.md",
+      "value": 1
+    },
+    {
+      "source": "foundations/amplitude-time.md",
+      "target": "domains/timbre.md",
+      "value": 1
+    },
+    {
+      "source": "foundations/prime-families.md",
+      "target": "foundations/periodicity.md",
+      "value": 1
+    },
+    {
+      "source": "foundations/prime-families.md",
+      "target": "uniform-solfege/geometric-basis.md",
+      "value": 1
+    },
+    {
+      "source": "foundations/prime-families.md",
+      "target": "domains/timbre.md",
+      "value": 1
+    },
+    {
+      "source": "foundations/prime-families.md",
+      "target": "ppd/index.md",
+      "value": 1
+    },
+    {
+      "source": "foundations/prime-families.md",
+      "target": "foundations/period.md",
+      "value": 1
+    },
+    {
+      "source": "foundations/prime-families.md",
+      "target": "foundations/amplitude-time.md",
+      "value": 1
+    },
+    {
+      "source": "foundations/prime-families.md",
+      "target": "tuning/just-intonation.md",
+      "value": 1
+    },
+    {
+      "source": "foundations/prime-families.md",
+      "target": "domains/rhythm.md",
+      "value": 1
+    },
+    {
+      "source": "foundations/prime-families.md",
+      "target": "domains/pitch.md",
+      "value": 1
+    },
+    {
+      "source": "foundations/anchors.md",
+      "target": "foundations/prime-lattice.md",
+      "value": 1
+    },
+    {
+      "source": "foundations/anchors.md",
+      "target": "foundations/period.md",
+      "value": 1
+    },
+    {
+      "source": "foundations/anchors.md",
+      "target": "ppd/index.md",
+      "value": 1
+    },
+    {
+      "source": "foundations/anchors.md",
+      "target": "tuning/just-intonation.md",
+      "value": 1
+    },
+    {
+      "source": "foundations/periodicity.md",
+      "target": "foundations/amplitude-time.md",
+      "value": 1
+    },
+    {
+      "source": "foundations/periodicity.md",
+      "target": "domains/timbre.md",
+      "value": 1
+    },
+    {
+      "source": "foundations/periodicity.md",
+      "target": "foundations/prime-families.md",
+      "value": 1
+    },
+    {
+      "source": "foundations/periodicity.md",
+      "target": "foundations/period.md",
+      "value": 1
+    },
+    {
+      "source": "foundations/periodicity.md",
+      "target": "domains/rhythm.md",
+      "value": 1
+    },
+    {
+      "source": "foundations/periodicity.md",
+      "target": "domains/pitch.md",
+      "value": 1
+    },
+    {
       "source": "implementations/index.md",
       "target": "applications/component-philosophy.md",
       "value": 1
@@ -1266,63 +1716,203 @@
       "value": 1
     },
     {
-      "source": "pedagogy/axis-fan-pedagogy.md",
-      "target": "tuning/du-fractal-dutri-closure.md",
+      "source": "domains/timbre.md",
+      "target": "foundations/amplitude-time.md",
       "value": 1
     },
     {
-      "source": "pedagogy/axis-fan-pedagogy.md",
+      "source": "domains/timbre.md",
+      "target": "domains/pitch.md",
+      "value": 1
+    },
+    {
+      "source": "domains/timbre.md",
       "target": "foundations/prime-families.md",
       "value": 1
     },
     {
-      "source": "pedagogy/cross-domain-transfer.md",
-      "target": "foundations/prime-families.md",
-      "value": 1
-    },
-    {
-      "source": "pedagogy/cross-domain-transfer.md",
-      "target": "foundations/periodicity.md",
-      "value": 1
-    },
-    {
-      "source": "pedagogy/cross-domain-transfer.md",
-      "target": "domains/rhythmic-overtone-series.md",
-      "value": 1
-    },
-    {
-      "source": "pedagogy/cross-domain-transfer.md",
+      "source": "domains/dynamics.md",
       "target": "domains/timbre.md",
       "value": 1
     },
     {
-      "source": "pedagogy/cross-domain-transfer.md",
-      "target": "pedagogy/ear-first.md",
+      "source": "domains/dynamics.md",
+      "target": "reference/metric-duperiod.md",
       "value": 1
     },
     {
-      "source": "pedagogy/ear-first.md",
-      "target": "applications/transcription.md",
+      "source": "domains/dynamics.md",
+      "target": "extended/geometric-amplitude-ratios.md",
       "value": 1
     },
     {
-      "source": "pedagogy/ear-first.md",
-      "target": "related/chromatic-clock.md",
+      "source": "domains/rhythmic-undertone-series.md",
+      "target": "domains/rhythmic-overtone-series.md",
       "value": 1
     },
     {
-      "source": "pedagogy/ear-first.md",
+      "source": "domains/rhythmic-undertone-series.md",
+      "target": "foundations/periodicity.md",
+      "value": 1
+    },
+    {
+      "source": "domains/rhythmic-overtone-series.md",
+      "target": "foundations/periodicity.md",
+      "value": 1
+    },
+    {
+      "source": "domains/rhythmic-overtone-series.md",
+      "target": "perception/temporal-place-limen.md",
+      "value": 1
+    },
+    {
+      "source": "domains/rhythmic-overtone-series.md",
+      "target": "ppd/index.md",
+      "value": 1
+    },
+    {
+      "source": "domains/rhythmic-overtone-series.md",
+      "target": "uniform-solfege/diacritic-system.md",
+      "value": 1
+    },
+    {
+      "source": "domains/rhythmic-overtone-series.md",
+      "target": "foundations/prime-families.md",
+      "value": 1
+    },
+    {
+      "source": "domains/rhythmic-overtone-series.md",
+      "target": "reference/metric-duperiod.md",
+      "value": 1
+    },
+    {
+      "source": "domains/rhythmic-overtone-series.md",
+      "target": "domains/rhythm.md",
+      "value": 1
+    },
+    {
+      "source": "domains/rhythmic-overtone-series.md",
+      "target": "structure/rhythmic-grammar.md",
+      "value": 1
+    },
+    {
+      "source": "domains/rhythmic-overtone-series.md",
+      "target": "domains/timbre.md",
+      "value": 1
+    },
+    {
+      "source": "domains/polymetric-phase-equivalence.md",
+      "target": "perception/temporal-place-limen.md",
+      "value": 1
+    },
+    {
+      "source": "domains/polymetric-phase-equivalence.md",
+      "target": "domains/rhythm.md",
+      "value": 1
+    },
+    {
+      "source": "domains/rhythmic-phase-coherence.md",
+      "target": "reference/metric-duperiod.md",
+      "value": 1
+    },
+    {
+      "source": "domains/rhythmic-phase-coherence.md",
+      "target": "structure/rhythmic-grammar.md",
+      "value": 1
+    },
+    {
+      "source": "domains/rhythmic-phase-coherence.md",
+      "target": "domains/rhythmic-overtone-series.md",
+      "value": 1
+    },
+    {
+      "source": "domains/rhythmic-phase-coherence.md",
+      "target": "ppd/index.md",
+      "value": 1
+    },
+    {
+      "source": "domains/rhythmic-phase-coherence.md",
+      "target": "uniform-solfege/diacritic-system.md",
+      "value": 1
+    },
+    {
+      "source": "domains/rhythmic-phase-coherence.md",
+      "target": "perception/temporal-place-limen.md",
+      "value": 1
+    },
+    {
+      "source": "domains/rhythm.md",
+      "target": "foundations/periodicity.md",
+      "value": 1
+    },
+    {
+      "source": "domains/rhythm.md",
+      "target": "foundations/prime-families.md",
+      "value": 1
+    },
+    {
+      "source": "domains/rhythm.md",
+      "target": "specifications/period-declaration.md",
+      "value": 1
+    },
+    {
+      "source": "domains/rhythm.md",
+      "target": "structure/rhythmic-grammar.md",
+      "value": 1
+    },
+    {
+      "source": "domains/rhythm.md",
+      "target": "uniform-solfege/diacritic-system.md",
+      "value": 1
+    },
+    {
+      "source": "domains/rhythm.md",
+      "target": "domains/rhythmic-overtone-series.md",
+      "value": 1
+    },
+    {
+      "source": "domains/rhythm.md",
+      "target": "domains/pitch.md",
+      "value": 1
+    },
+    {
+      "source": "domains/pitch.md",
+      "target": "foundations/amplitude-time.md",
+      "value": 1
+    },
+    {
+      "source": "domains/pitch.md",
+      "target": "uniform-solfege/base-12-algebra.md",
+      "value": 1
+    },
+    {
+      "source": "domains/pitch.md",
+      "target": "structure/melodic-grammar.md",
+      "value": 1
+    },
+    {
+      "source": "domains/pitch.md",
+      "target": "domains/rhythm.md",
+      "value": 1
+    },
+    {
+      "source": "context/tenets.md",
+      "target": "foundations/amplitude-time.md",
+      "value": 1
+    },
+    {
+      "source": "context/tenets.md",
+      "target": "foundations/prime-families.md",
+      "value": 1
+    },
+    {
+      "source": "context/tenets.md",
+      "target": "perception/temporal-place-limen.md",
+      "value": 1
+    },
+    {
+      "source": "context/tenets.md",
       "target": "context/music-as-language.md",
-      "value": 1
-    },
-    {
-      "source": "pedagogy/ear-first.md",
-      "target": "pedagogy/cross-domain-transfer.md",
-      "value": 1
-    },
-    {
-      "source": "pedagogy/ear-first.md",
-      "target": "uniform-solfege/index.md",
       "value": 1
     },
     {
@@ -1371,653 +1961,63 @@
       "value": 1
     },
     {
-      "source": "perception/auditory-horizon.md",
-      "target": "perception/temporal-place-limen.md",
-      "value": 1
-    },
-    {
-      "source": "perception/auditory-horizon.md",
-      "target": "foundations/periodicity.md",
-      "value": 1
-    },
-    {
-      "source": "perception/auditory-horizon.md",
+      "source": "pedagogy/cross-domain-transfer.md",
       "target": "foundations/prime-families.md",
       "value": 1
     },
     {
-      "source": "perception/auditory-horizon.md",
-      "target": "perception/information-and-expectation.md",
+      "source": "pedagogy/cross-domain-transfer.md",
+      "target": "foundations/periodicity.md",
       "value": 1
     },
     {
-      "source": "perception/auditory-horizon.md",
-      "target": "domains/rhythm.md",
-      "value": 1
-    },
-    {
-      "source": "perception/auditory-horizon.md",
-      "target": "domains/pitch.md",
-      "value": 1
-    },
-    {
-      "source": "perception/coarse-graining-and-grid-reduction.md",
-      "target": "perception/temporal-place-limen.md",
-      "value": 1
-    },
-    {
-      "source": "perception/coarse-graining-and-grid-reduction.md",
-      "target": "reference/metric-duperiod.md",
-      "value": 1
-    },
-    {
-      "source": "perception/coarse-graining-and-grid-reduction.md",
-      "target": "ppd/index.md",
-      "value": 1
-    },
-    {
-      "source": "perception/coarse-graining-and-grid-reduction.md",
-      "target": "structure/melodic-grammar.md",
-      "value": 1
-    },
-    {
-      "source": "perception/duperiod-window-stack.md",
-      "target": "reference/metric-duperiod.md",
-      "value": 1
-    },
-    {
-      "source": "perception/duperiod-window-stack.md",
-      "target": "perception/temporal-place-limen.md",
-      "value": 1
-    },
-    {
-      "source": "perception/duperiod-window-stack.md",
+      "source": "pedagogy/cross-domain-transfer.md",
       "target": "domains/rhythmic-overtone-series.md",
       "value": 1
     },
     {
-      "source": "perception/duperiod-window-stack.md",
-      "target": "perception/self-adjusting-pipeline.md",
+      "source": "pedagogy/cross-domain-transfer.md",
+      "target": "domains/timbre.md",
       "value": 1
     },
     {
-      "source": "perception/information-and-expectation.md",
-      "target": "foundations/amplitude-time.md",
+      "source": "pedagogy/cross-domain-transfer.md",
+      "target": "pedagogy/ear-first.md",
       "value": 1
     },
     {
-      "source": "perception/information-and-expectation.md",
-      "target": "foundations/periodicity.md",
+      "source": "pedagogy/axis-fan-pedagogy.md",
+      "target": "tuning/du-fractal-dutri-closure.md",
       "value": 1
     },
     {
-      "source": "perception/local-closure.md",
-      "target": "perception/temporal-place-limen.md",
-      "value": 1
-    },
-    {
-      "source": "perception/temporal-place-limen.md",
-      "target": "perception/local-closure.md",
-      "value": 1
-    },
-    {
-      "source": "perception/temporal-place-limen.md",
-      "target": "reference/metric-duperiod.md",
-      "value": 1
-    },
-    {
-      "source": "perception/temporal-place-limen.md",
-      "target": "foundations/amplitude-time.md",
-      "value": 1
-    },
-    {
-      "source": "perception/temporal-place-limen.md",
-      "target": "foundations/periodicity.md",
-      "value": 1
-    },
-    {
-      "source": "perception/temporal-place-limen.md",
-      "target": "extended/metric-duperiod-extended.md",
-      "value": 1
-    },
-    {
-      "source": "ppd/index.md",
-      "target": "foundations/prime-lattice.md",
-      "value": 1
-    },
-    {
-      "source": "ppd/index.md",
-      "target": "specifications/midi-solfege-input.md",
-      "value": 1
-    },
-    {
-      "source": "ppd/index.md",
-      "target": "ppd/glyph-forms.md",
-      "value": 1
-    },
-    {
-      "source": "reference/amplitude-notation.md",
-      "target": "uniform-solfege/index.md",
-      "value": 1
-    },
-    {
-      "source": "reference/amplitude-notation.md",
-      "target": "extended/geometric-amplitude-ratios.md",
-      "value": 1
-    },
-    {
-      "source": "reference/metric-duperiod.md",
-      "target": "foundations/period.md",
-      "value": 1
-    },
-    {
-      "source": "reference/metric-duperiod.md",
-      "target": "perception/temporal-place-limen.md",
-      "value": 1
-    },
-    {
-      "source": "reference/metric-duperiod.md",
-      "target": "foundations/periodicity.md",
-      "value": 1
-    },
-    {
-      "source": "reference/metric-duperiod.md",
+      "source": "pedagogy/axis-fan-pedagogy.md",
       "target": "foundations/prime-families.md",
       "value": 1
     },
     {
-      "source": "reference/metric-duperiod.md",
-      "target": "domains/rhythm.md",
+      "source": "pedagogy/ear-first.md",
+      "target": "applications/transcription.md",
       "value": 1
     },
     {
-      "source": "reference/metric-duperiod.md",
-      "target": "uniform-solfege/index.md",
-      "value": 1
-    },
-    {
-      "source": "reference/metric-duperiod.md",
-      "target": "structure/rhythmic-grammar.md",
-      "value": 1
-    },
-    {
-      "source": "reference/metric-duperiod.md",
-      "target": "extended/metric-duperiod-extended.md",
-      "value": 1
-    },
-    {
-      "source": "related/chromatic-clock.md",
-      "target": "related/tone-atlas.md",
-      "value": 1
-    },
-    {
-      "source": "related/chromatic-clock.md",
-      "target": "uniform-solfege/base-12-algebra.md",
-      "value": 1
-    },
-    {
-      "source": "related/chromatic-clock.md",
-      "target": "uniform-solfege/geometric-basis.md",
-      "value": 1
-    },
-    {
-      "source": "related/tone-atlas.md",
-      "target": "uniform-solfege/base-12-algebra.md",
-      "value": 1
-    },
-    {
-      "source": "related/tone-atlas.md",
+      "source": "pedagogy/ear-first.md",
       "target": "related/chromatic-clock.md",
       "value": 1
     },
     {
-      "source": "related/tone-atlas.md",
-      "target": "uniform-solfege/index.md",
-      "value": 1
-    },
-    {
-      "source": "specifications/midi-solfege-input.md",
-      "target": "specifications/midi-solfege-mapping.md",
-      "value": 1
-    },
-    {
-      "source": "specifications/midi-solfege-input.md",
-      "target": "ppd/index.md",
-      "value": 1
-    },
-    {
-      "source": "specifications/midi-solfege-input.md",
-      "target": "foundations/prime-lattice.md",
-      "value": 1
-    },
-    {
-      "source": "specifications/midi-solfege-input.md",
-      "target": "specifications/prime-lattice-boundary-routing.md",
-      "value": 1
-    },
-    {
-      "source": "specifications/midi-solfege-input.md",
-      "target": "applications/notation-input.md",
-      "value": 1
-    },
-    {
-      "source": "specifications/midi-solfege-input.md",
-      "target": "uniform-solfege/index.md",
-      "value": 1
-    },
-    {
-      "source": "specifications/midi-solfege-mapping.md",
-      "target": "specifications/midi-solfege-input.md",
-      "value": 1
-    },
-    {
-      "source": "specifications/midi-solfege-mapping.md",
-      "target": "foundations/prime-lattice.md",
-      "value": 1
-    },
-    {
-      "source": "specifications/midi-solfege-mapping.md",
-      "target": "ppd/glyph-forms.md",
-      "value": 1
-    },
-    {
-      "source": "specifications/midi-solfege-mapping.md",
-      "target": "applications/notation-input.md",
-      "value": 1
-    },
-    {
-      "source": "specifications/period-declaration.md",
-      "target": "foundations/period.md",
-      "value": 1
-    },
-    {
-      "source": "specifications/prime-lattice-boundary-routing.md",
-      "target": "foundations/period.md",
-      "value": 1
-    },
-    {
-      "source": "specifications/prime-lattice-boundary-routing.md",
-      "target": "foundations/prime-lattice.md",
-      "value": 1
-    },
-    {
-      "source": "structure/coil-notation.md",
-      "target": "structure/melodic-grammar.md",
-      "value": 1
-    },
-    {
-      "source": "structure/coil-notation.md",
-      "target": "structure/rhythmic-grammar.md",
-      "value": 1
-    },
-    {
-      "source": "structure/coil-notation.md",
-      "target": "structure/musicoil.md",
-      "value": 1
-    },
-    {
-      "source": "structure/coil-notation.md",
-      "target": "uniform-solfege/index.md",
-      "value": 1
-    },
-    {
-      "source": "structure/coil-notation.md",
-      "target": "foundations/prime-families.md",
-      "value": 1
-    },
-    {
-      "source": "structure/melodic-grammar.md",
-      "target": "structure/coil-notation.md",
-      "value": 1
-    },
-    {
-      "source": "structure/melodic-grammar.md",
-      "target": "structure/rhythmic-grammar.md",
-      "value": 1
-    },
-    {
-      "source": "structure/melodic-grammar.md",
-      "target": "uniform-solfege/index.md",
-      "value": 1
-    },
-    {
-      "source": "structure/melodic-grammar.md",
-      "target": "ppd/index.md",
-      "value": 1
-    },
-    {
-      "source": "structure/melodic-grammar.md",
-      "target": "structure/musicoil.md",
-      "value": 1
-    },
-    {
-      "source": "structure/melodic-grammar.md",
-      "target": "domains/pitch.md",
-      "value": 1
-    },
-    {
-      "source": "structure/musicoil.md",
-      "target": "structure/coil-notation.md",
-      "value": 1
-    },
-    {
-      "source": "structure/musicoil.md",
-      "target": "structure/spatial-harmony.md",
-      "value": 1
-    },
-    {
-      "source": "structure/musicoil.md",
-      "target": "context/tenets.md",
-      "value": 1
-    },
-    {
-      "source": "structure/musicoil.md",
-      "target": "reference/metric-duperiod.md",
-      "value": 1
-    },
-    {
-      "source": "structure/musicoil.md",
-      "target": "reference/emergent-analysis.md",
-      "value": 1
-    },
-    {
-      "source": "structure/musicoil.md",
-      "target": "pedagogy/index.md",
-      "value": 1
-    },
-    {
-      "source": "structure/musicoil.md",
-      "target": "applications/play-along.md",
-      "value": 1
-    },
-    {
-      "source": "structure/musicoil.md",
-      "target": "structure/melodic-grammar.md",
-      "value": 1
-    },
-    {
-      "source": "structure/musicoil.md",
-      "target": "uniform-solfege/index.md",
-      "value": 1
-    },
-    {
-      "source": "structure/musicoil.md",
-      "target": "applications/component-philosophy.md",
-      "value": 1
-    },
-    {
-      "source": "structure/musicoil.md",
-      "target": "implementations/ppt-components.md",
-      "value": 1
-    },
-    {
-      "source": "structure/rhythmic-grammar.md",
-      "target": "specifications/midi-solfege-input.md",
-      "value": 1
-    },
-    {
-      "source": "structure/rhythmic-grammar.md",
-      "target": "uniform-solfege/diacritic-system.md",
-      "value": 1
-    },
-    {
-      "source": "structure/rhythmic-grammar.md",
-      "target": "domains/rhythm.md",
-      "value": 1
-    },
-    {
-      "source": "structure/rhythmic-grammar.md",
-      "target": "foundations/prime-families.md",
-      "value": 1
-    },
-    {
-      "source": "structure/rhythmic-grammar.md",
-      "target": "uniform-solfege/index.md",
-      "value": 1
-    },
-    {
-      "source": "structure/rhythmic-grammar.md",
-      "target": "structure/coil-notation.md",
-      "value": 1
-    },
-    {
-      "source": "structure/rhythmic-grammar.md",
-      "target": "structure/melodic-grammar.md",
-      "value": 1
-    },
-    {
-      "source": "structure/rhythmic-grammar.md",
-      "target": "structure/musicoil.md",
-      "value": 1
-    },
-    {
-      "source": "structure/tapestry.md",
-      "target": "structure/coil-notation.md",
-      "value": 1
-    },
-    {
-      "source": "structure/tapestry.md",
-      "target": "uniform-solfege/index.md",
-      "value": 1
-    },
-    {
-      "source": "structure/tapestry.md",
-      "target": "structure/rhythmic-grammar.md",
-      "value": 1
-    },
-    {
-      "source": "structure/tapestry.md",
-      "target": "foundations/anchors.md",
-      "value": 1
-    },
-    {
-      "source": "structure/tapestry.md",
-      "target": "structure/musicoil.md",
-      "value": 1
-    },
-    {
-      "source": "structure/tapestry.md",
-      "target": "structure/melodic-grammar.md",
-      "value": 1
-    },
-    {
-      "source": "tuning/du-fractal-dutri-closure.md",
-      "target": "foundations/prime-families.md",
-      "value": 1
-    },
-    {
-      "source": "tuning/du-fractal-dutri-closure.md",
-      "target": "tuning/12-tet.md",
-      "value": 1
-    },
-    {
-      "source": "tuning/du-fractal-dutri-closure.md",
-      "target": "tuning/just-intonation.md",
-      "value": 1
-    },
-    {
-      "source": "tuning/pentatonic-heptatonic.md",
-      "target": "tuning/tetrachord-pairs.md",
-      "value": 1
-    },
-    {
-      "source": "tuning/pentatonic-heptatonic.md",
-      "target": "tuning/just-intonation.md",
-      "value": 1
-    },
-    {
-      "source": "tuning/pentatonic-heptatonic.md",
-      "target": "uniform-solfege/index.md",
-      "value": 1
-    },
-    {
-      "source": "tuning/temporal-place-limen-reference-tuning.md",
-      "target": "perception/temporal-place-limen.md",
-      "value": 1
-    },
-    {
-      "source": "tuning/temporal-place-limen-reference-tuning.md",
-      "target": "reference/metric-duperiod.md",
-      "value": 1
-    },
-    {
-      "source": "tuning/temporal-place-limen-reference-tuning.md",
-      "target": "tuning/just-intonation.md",
-      "value": 1
-    },
-    {
-      "source": "tuning/temporal-place-limen-reference-tuning.md",
-      "target": "tuning/31-edo.md",
-      "value": 1
-    },
-    {
-      "source": "tuning/temporal-place-limen-reference-tuning.md",
-      "target": "tuning/72-edo-grid.md",
-      "value": 1
-    },
-    {
-      "source": "tuning/temporal-place-limen-reference-tuning.md",
-      "target": "uniform-solfege/index.md",
-      "value": 1
-    },
-    {
-      "source": "tuning/tetrachord-pairs.md",
-      "target": "tuning/pentatonic-heptatonic.md",
-      "value": 1
-    },
-    {
-      "source": "tuning/tetrachord-pairs.md",
-      "target": "uniform-solfege/index.md",
-      "value": 1
-    },
-    {
-      "source": "tuning/tetrachord-pairs.md",
-      "target": "foundations/periodicity.md",
-      "value": 1
-    },
-    {
-      "source": "tuning/tetrachord-pairs.md",
-      "target": "context/tenets.md",
-      "value": 1
-    },
-    {
-      "source": "tuning/tetrachord-pairs.md",
+      "source": "pedagogy/ear-first.md",
       "target": "context/music-as-language.md",
       "value": 1
     },
     {
-      "source": "tuning/tetrachord-pairs.md",
-      "target": "uniform-solfege/base-12-algebra.md",
+      "source": "pedagogy/ear-first.md",
+      "target": "pedagogy/cross-domain-transfer.md",
       "value": 1
     },
     {
-      "source": "tuning/tetrachord-pairs.md",
-      "target": "structure/melodic-grammar.md",
-      "value": 1
-    },
-    {
-      "source": "tuning/tetrachord-pairs.md",
-      "target": "tuning/just-intonation.md",
-      "value": 1
-    },
-    {
-      "source": "uniform-solfege/base-12-algebra.md",
-      "target": "uniform-solfege/geometric-basis.md",
-      "value": 1
-    },
-    {
-      "source": "uniform-solfege/base-12-algebra.md",
-      "target": "related/tone-atlas.md",
-      "value": 1
-    },
-    {
-      "source": "uniform-solfege/base-12-algebra.md",
-      "target": "foundations/periodicity.md",
-      "value": 1
-    },
-    {
-      "source": "uniform-solfege/diacritic-system.md",
-      "target": "ppd/index.md",
-      "value": 1
-    },
-    {
-      "source": "uniform-solfege/diacritic-system.md",
-      "target": "foundations/prime-lattice.md",
-      "value": 1
-    },
-    {
-      "source": "uniform-solfege/diacritic-system.md",
-      "target": "ppd/glyph-forms.md",
-      "value": 1
-    },
-    {
-      "source": "uniform-solfege/diacritic-system.md",
-      "target": "uniform-solfege/geometric-basis.md",
-      "value": 1
-    },
-    {
-      "source": "uniform-solfege/geometric-basis.md",
-      "target": "foundations/prime-families.md",
-      "value": 1
-    },
-    {
-      "source": "uniform-solfege/geometric-basis.md",
-      "target": "foundations/amplitude-time.md",
-      "value": 1
-    },
-    {
-      "source": "uniform-solfege/geometric-basis.md",
-      "target": "uniform-solfege/diacritic-system.md",
-      "value": 1
-    },
-    {
-      "source": "uniform-solfege/geometric-basis.md",
+      "source": "pedagogy/ear-first.md",
       "target": "uniform-solfege/index.md",
-      "value": 1
-    },
-    {
-      "source": "uniform-solfege/geometric-basis.md",
-      "target": "foundations/periodicity.md",
-      "value": 1
-    },
-    {
-      "source": "uniform-solfege/index.md",
-      "target": "uniform-solfege/geometric-basis.md",
-      "value": 1
-    },
-    {
-      "source": "uniform-solfege/index.md",
-      "target": "ppd/index.md",
-      "value": 1
-    },
-    {
-      "source": "uniform-solfege/index.md",
-      "target": "uniform-solfege/diacritic-system.md",
-      "value": 1
-    },
-    {
-      "source": "uniform-solfege/index.md",
-      "target": "structure/coil-notation.md",
-      "value": 1
-    },
-    {
-      "source": "uniform-solfege/index.md",
-      "target": "structure/melodic-grammar.md",
-      "value": 1
-    },
-    {
-      "source": "uniform-solfege/index.md",
-      "target": "uniform-solfege/base-12-algebra.md",
-      "value": 1
-    },
-    {
-      "source": "uniform-solfege/index.md",
-      "target": "tuning/31-edo.md",
-      "value": 1
-    },
-    {
-      "source": "uniform-solfege/index.md",
-      "target": "foundations/prime-families.md",
       "value": 1
     }
   ]
