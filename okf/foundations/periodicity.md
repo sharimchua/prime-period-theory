@@ -14,7 +14,7 @@ tags:
   - overtone
   - prime-period-theory
 status: stable
-timestamp: 2026-07-13
+timestamp: 2026-07-23
 used_by:
   - foundations/amplitude-time.md
   - domains/timbre.md
@@ -22,6 +22,7 @@ used_by:
   - foundations/period.md
   - domains/rhythm.md
   - domains/pitch.md
+pedagogically_precedes: [foundations/period.md]
 ---
 
 # Periodicity

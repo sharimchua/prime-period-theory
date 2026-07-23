@@ -138,11 +138,13 @@ amplitude or effect envelopes.
 - [Local Closure & Residue Triangulation](perception/local-closure.md) — a method for deriving a period's anchor from empirical edge behaviour of child periods
 - [Coarse-Graining and Grid Reduction](perception/coarse-graining-and-grid-reduction.md) — snapping coordinates from a finer lattice onto a coarser one, enharmonic collapse, and reduction origins
 - [DuPeriod Window Stack](perception/duperiod-window-stack.md) — an analytical framework and perceptual model defining prime-coherent analysis windows anchored by a rhythmic fundamental
+- [Self Adjusting Pipeline](perception/self-adjusting-pipeline.md) — Stub concept page
 
 ### Reference
 - [Metric DuPeriod](reference/metric-duperiod.md) — the coordinate system for logarithmic period mapping
 - [Envelopes and Amplitude Shaping](reference/envelopes.md) — ADSR scaling from macro crescendos to micro transients
 - [Amplitude Notation](reference/amplitude-notation.md) — extending PPT notation for dynamic amplitude
+- [Emergent Analysis](reference/emergent-analysis.md) — Stub concept page
 
 ### Context
 - [Core Tenets](context/tenets.md) — the five foundational principles and methodological commitments of the framework
@@ -196,6 +198,7 @@ amplitude or effect envelopes.
 - [Rhythmic Grammar](structure/rhythmic-grammar.md) — formal encoding system for rhythmic grouping structure
 - [Melodic Grammar](structure/melodic-grammar.md) — the melodic layer convention for Three-Layer Coil Notation, encoding absolute or intervallic pitch movement
 - [MusiCoil](structure/musicoil.md) — spatial notation system; visual representation of PPT
+- [Spatial Harmony](structure/spatial-harmony.md) — Stub concept page
 
 ### Related systems
 - [Tone Atlas](related/tone-atlas.md) — clock-face pitch relationship diagram
@@ -222,6 +225,7 @@ amplitude or effect envelopes.
   patterns; generative MIDI input; design principles for consuming tools
 - [Song Sphere Instrument](applications/song-sphere.md) — concept note and design rationale for a self-powered chorded digital instrument
 - [Song Stick Instrument](applications/song-stick.md) — concept note and design rationale for a guitar-shaped variant of the self-powered chorded instrument
+- [Three-Layer Coil Editor — Component Architecture](applications/three-layer-coil-editor.md) — component design for a MIDI- and text-driven editor
 
 ### Implementations
 - [Register](implementations/index.md) — all existing tools and their PPT coverage

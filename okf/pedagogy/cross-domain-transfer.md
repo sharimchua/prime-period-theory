@@ -14,13 +14,14 @@ tags:
   - transfer
   - prime-period-theory
 status: stable
-timestamp: 2026-06-30
+timestamp: 2026-07-23
 used_by:
   - foundations/prime-families.md
   - foundations/periodicity.md
   - domains/rhythmic-overtone-series.md
   - domains/timbre.md
   - pedagogy/ear-first.md
+pedagogically_precedes: [pedagogy/axis-fan-pedagogy.md]
 ---
 
 # Cross-Domain Transfer

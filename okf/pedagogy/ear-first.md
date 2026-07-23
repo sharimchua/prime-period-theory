@@ -13,13 +13,14 @@ tags:
   - notation
   - prime-period-theory
 status: stable
-timestamp: 2026-07-01
+timestamp: 2026-07-23
 used_by:
   - applications/transcription.md
   - related/chromatic-clock.md
   - context/music-as-language.md
   - pedagogy/cross-domain-transfer.md
   - uniform-solfege/index.md
+pedagogically_precedes: [pedagogy/cross-domain-transfer.md, pedagogy/progressive-complexity.md]
 ---
 
 # Ear-First Pedagogy

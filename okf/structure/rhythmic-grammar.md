@@ -15,7 +15,7 @@ tags:
   - solkattu
   - prime-period-theory
 status: stable
-timestamp: 2026-07-08
+timestamp: 2026-07-23
 used_by:
   - specifications/midi-solfege-input.md
   - uniform-solfege/diacritic-system.md
@@ -25,6 +25,7 @@ used_by:
   - structure/coil-notation.md
   - structure/melodic-grammar.md
   - structure/musicoil.md
+implemented_by: [applications/three-layer-coil-editor.md]
 ---
 
 # Rhythmic Grammar

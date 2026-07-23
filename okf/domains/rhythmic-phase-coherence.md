@@ -18,7 +18,7 @@ tags:
   - temporal-place-limen
   - prime-period-theory
 status: stable
-timestamp: 2026-07-08
+timestamp: 2026-07-23
 used_by:
   - reference/metric-duperiod.md
   - structure/rhythmic-grammar.md
@@ -26,6 +26,7 @@ used_by:
   - ppd/index.md
   - uniform-solfege/diacritic-system.md
   - perception/temporal-place-limen.md
+implemented_by: [applications/play-along.md]
 ---
 
 # Rhythmic Phase Coherence

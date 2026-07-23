@@ -18,13 +18,14 @@ tags:
   - cast
   - metric-duperiod
 status: stable
-timestamp: 2026-07-10
+timestamp: 2026-07-23
 used_by:
   - foundations/anchors.md
   - foundations/periodicity.md
   - foundations/prime-families.md
   - foundations/prime-lattice.md
   - reference/metric-duperiod.md
+pedagogically_precedes: [foundations/prime-families.md]
 ---
 
 # Period

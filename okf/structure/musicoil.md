@@ -27,7 +27,7 @@ related:
   - domains/form.md
   - applications/component-philosophy.md
 status: stable
-timestamp: 2026-07-08
+timestamp: 2026-07-23
 used_by:
   - structure/coil-notation.md
   - structure/spatial-harmony.md
@@ -40,6 +40,7 @@ used_by:
   - uniform-solfege/index.md
   - applications/component-philosophy.md
   - implementations/ppt-components.md
+implemented_by: [applications/three-layer-coil-editor.md, implementations/ppt-components.md]
 ---
 
 # MusiCoil
