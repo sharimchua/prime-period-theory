@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { isValidSolfegeToken, parseSolfegeToken, tokenizePhrase, expandRhythmPhrase } from '../solfegeUtils.js';
+import { isValidSolfegeToken, parseSolfegeToken, tokenizePhrase, expandRhythmPhrase, mapTokensToRatios, TuningConfig } from '../solfegeUtils.js';
 
 describe('solfegeUtils', () => {
   describe('isValidSolfegeToken', () => {
@@ -256,6 +256,132 @@ describe('solfegeUtils', () => {
        const tokens = tokenizePhrase('Re Mi');
        const expanded = expandRhythmPhrase(tokens);
        expect(expanded).toEqual(tokens);
+    });
+  });
+
+  describe('mapTokensToRatios', () => {
+    const baseConfig: TuningConfig = {
+      thirds: 'Qui',
+      sevenths: 'Tri',
+      tritone: 'Qui'
+    };
+
+    it('should return empty array for empty tokens', () => {
+      expect(mapTokensToRatios([], baseConfig)).toEqual([]);
+    });
+
+    it('should map origin (Do/Di) to 1/1', () => {
+      const tokens = tokenizePhrase('Do Di');
+      const ratios = mapTokensToRatios(tokens, baseConfig);
+      expect(ratios).toEqual([
+        { label: 'Do', rmult: { num: 1, den: 1 } },
+        { label: 'Di', rmult: { num: 1, den: 1 } }
+      ]);
+    });
+
+    it('should map seconds', () => {
+      const tokens = tokenizePhrase('Ra Re Ri');
+      const ratios = mapTokensToRatios(tokens, baseConfig);
+      expect(ratios).toEqual([
+        { label: 'Ra', rmult: { num: 16, den: 15 } },
+        { label: 'Re', rmult: { num: 9, den: 8 } },
+        { label: 'Ri', rmult: { num: 75, den: 64 } }
+      ]);
+    });
+
+    it('should handle thirds according to config', () => {
+      const tokens = tokenizePhrase('Me Mi');
+
+      // Qui config (Ptolemaic)
+      const ratiosQui = mapTokensToRatios(tokens, { ...baseConfig, thirds: 'Qui' });
+      expect(ratiosQui).toEqual([
+        { label: 'Me', rmult: { num: 6, den: 5 } },
+        { label: 'Mi', rmult: { num: 5, den: 4 } }
+      ]);
+
+      // Tri config (Pythagorean)
+      const ratiosTri = mapTokensToRatios(tokens, { ...baseConfig, thirds: 'Tri' });
+      expect(ratiosTri).toEqual([
+        { label: 'Me', rmult: { num: 32, den: 27 } },
+        { label: 'Mi', rmult: { num: 81, den: 64 } }
+      ]);
+    });
+
+    it('should map perfect 4th and 5th', () => {
+      const tokens = tokenizePhrase('Fa So');
+      const ratios = mapTokensToRatios(tokens, baseConfig);
+      expect(ratios).toEqual([
+        { label: 'Fa', rmult: { num: 4, den: 3 } },
+        { label: 'So', rmult: { num: 3, den: 2 } }
+      ]);
+    });
+
+    it('should handle tritones according to config', () => {
+      const tokens = tokenizePhrase('Fi');
+
+      // Du config
+      const ratiosDu = mapTokensToRatios(tokens, { ...baseConfig, tritone: 'Du' });
+      expect(ratiosDu[0].rmult.num).toBeCloseTo(1.4142135623730951);
+      expect(ratiosDu[0].rmult.den).toBe(1);
+
+      // Undec config
+      const ratiosUndec = mapTokensToRatios(tokens, { ...baseConfig, tritone: 'Undec' });
+      expect(ratiosUndec[0].rmult).toEqual({ num: 11, den: 8 });
+
+      // Qui config
+      const ratiosQui = mapTokensToRatios(tokens, { ...baseConfig, tritone: 'Qui' });
+      expect(ratiosQui[0].rmult).toEqual({ num: 45, den: 32 });
+    });
+
+    it('should handle sixths according to config', () => {
+      const tokens = tokenizePhrase('Le La');
+
+      // Qui config
+      const ratiosQui = mapTokensToRatios(tokens, { ...baseConfig, thirds: 'Qui' });
+      expect(ratiosQui).toEqual([
+        { label: 'Le', rmult: { num: 8, den: 5 } },
+        { label: 'La', rmult: { num: 5, den: 3 } }
+      ]);
+
+      // Tri config
+      const ratiosTri = mapTokensToRatios(tokens, { ...baseConfig, thirds: 'Tri' });
+      expect(ratiosTri).toEqual([
+        { label: 'Le', rmult: { num: 128, den: 81 } },
+        { label: 'La', rmult: { num: 27, den: 16 } }
+      ]);
+    });
+
+    it('should handle sevenths according to config', () => {
+      const tokens = tokenizePhrase('Te Ti');
+
+      // Sep config
+      const ratiosSep = mapTokensToRatios(tokens, { ...baseConfig, sevenths: 'Sep' });
+      expect(ratiosSep).toEqual([
+        { label: 'Te', rmult: { num: 7, den: 4 } },
+        { label: 'Ti', rmult: { num: 15, den: 8 } }
+      ]);
+
+      // Tri config
+      const ratiosTri = mapTokensToRatios(tokens, { ...baseConfig, sevenths: 'Tri' });
+      expect(ratiosTri).toEqual([
+        { label: 'Te', rmult: { num: 16, den: 9 } },
+        { label: 'Ti', rmult: { num: 243, den: 128 } }
+      ]);
+    });
+
+    it('should apply positive and negative octave offsets', () => {
+      const tokens = tokenizePhrase('Do^Ra Do^Ti');
+      const ratios = mapTokensToRatios(tokens, baseConfig);
+      expect(ratios).toEqual([
+        { label: 'Do^Ra', rmult: { num: 2, den: 1 } },
+        { label: 'Do^Ti', rmult: { num: 1, den: 2 } }
+      ]);
+    });
+
+    it('should ignore non-glyph tokens', () => {
+      const tokens = tokenizePhrase('Do . -');
+      const ratios = mapTokensToRatios(tokens, baseConfig);
+      expect(ratios).toEqual([{ label: 'Do', rmult: { num: 1, den: 1 } }]);
     });
   });
 });
