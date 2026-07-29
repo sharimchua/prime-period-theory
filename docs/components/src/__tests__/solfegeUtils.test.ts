@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { isValidSolfegeToken, parseSolfegeToken, tokenizePhrase, expandRhythmPhrase } from '../solfegeUtils.js';
+import { isValidSolfegeToken, parseSolfegeToken, tokenizePhrase, expandRhythmPhrase, mapTokensToRatios } from '../solfegeUtils.js';
 
 describe('solfegeUtils', () => {
   describe('isValidSolfegeToken', () => {
@@ -234,10 +234,7 @@ describe('solfegeUtils', () => {
     });
 
     it('should expand Dox shorthand', () => {
-      // Shorthand: Dox La -> Dox La Re So
       const tokens = tokenizePhrase('Dox La');
-      // For testing, mock Dox manually since tokenizer might not add axis unless token is exactly Dox
-      // actually tokenizePhrase will see Dox as Do + x -> axis
       const expanded = expandRhythmPhrase(tokens);
 
       expect(expanded).toEqual([
@@ -256,6 +253,79 @@ describe('solfegeUtils', () => {
        const tokens = tokenizePhrase('Re Mi');
        const expanded = expandRhythmPhrase(tokens);
        expect(expanded).toEqual(tokens);
+    });
+  });
+
+  describe('mapTokensToRatios', () => {
+    it('should map standard solfege tokens with Ptolemaic tunings', () => {
+      const tokens = tokenizePhrase('Do Re Mi Fa So La Ti');
+      const config = { thirds: 'Qui', sevenths: 'Qui', tritone: 'Qui' } as any;
+      const ratios = mapTokensToRatios(tokens as any, config);
+
+      expect(ratios).toEqual([
+        { label: 'Do', rmult: { num: 1, den: 1 } },
+        { label: 'Re', rmult: { num: 9, den: 8 } },
+        { label: 'Mi', rmult: { num: 5, den: 4 } },
+        { label: 'Fa', rmult: { num: 4, den: 3 } },
+        { label: 'So', rmult: { num: 3, den: 2 } },
+        { label: 'La', rmult: { num: 5, den: 3 } },
+        { label: 'Ti', rmult: { num: 15, den: 8 } },
+      ]);
+    });
+
+    it('should map solfege tokens with Pythagorean tunings', () => {
+      const tokens = tokenizePhrase('Do Me Mi Le La Te Ti');
+      const config = { thirds: 'Tri', sevenths: 'Tri', tritone: 'Tri' } as any;
+      const ratios = mapTokensToRatios(tokens as any, config);
+
+      expect(ratios).toEqual([
+        { label: 'Do', rmult: { num: 1, den: 1 } },
+        { label: 'Me', rmult: { num: 32, den: 27 } },
+        { label: 'Mi', rmult: { num: 81, den: 64 } },
+        { label: 'Le', rmult: { num: 128, den: 81 } },
+        { label: 'La', rmult: { num: 27, den: 16 } },
+        { label: 'Te', rmult: { num: 16, den: 9 } },
+        { label: 'Ti', rmult: { num: 243, den: 128 } },
+      ]);
+    });
+
+    it('should map other variants', () => {
+      const tokens = tokenizePhrase('Di Ra Ri Fi Se Si');
+      const config = { thirds: 'Qui', sevenths: 'Sep', tritone: 'Du' } as any;
+      const ratios = mapTokensToRatios(tokens as any, config);
+
+      expect(ratios).toEqual([
+        { label: 'Di', rmult: { num: 1, den: 1 } },
+        { label: 'Ra', rmult: { num: 16, den: 15 } },
+        { label: 'Ri', rmult: { num: 75, den: 64 } },
+        { label: 'Fi', rmult: { num: 1.4142135623730951, den: 1 } },
+        { label: 'Se', rmult: { num: 7, den: 4 } },
+        { label: 'Si', rmult: { num: 15, den: 8 } },
+      ]);
+
+      // Undecimal Fi
+      const tokensUndec = tokenizePhrase('Fi');
+      const configUndec = { tritone: 'Undec' } as any;
+      const ratiosUndec = mapTokensToRatios(tokensUndec as any, configUndec);
+      expect(ratiosUndec[0].rmult).toEqual({ num: 11, den: 8 });
+    });
+
+    it('should handle octave offsets correctly', () => {
+      const tokens = tokenizePhrase('Do^Ra Do^Ti');
+      const config = { thirds: 'Qui', sevenths: 'Qui', tritone: 'Qui' } as any;
+      const ratios = mapTokensToRatios(tokens as any, config);
+
+      expect(ratios[0].rmult).toEqual({ num: 2, den: 1 }); // Do up an octave
+      expect(ratios[1].rmult).toEqual({ num: 1, den: 2 }); // Do down an octave
+    });
+
+    it('should ignore non-glyph tokens', () => {
+        const tokens = tokenizePhrase('Do - ..');
+        const config = { thirds: 'Qui', sevenths: 'Qui', tritone: 'Qui' } as any;
+        const ratios = mapTokensToRatios(tokens as any, config);
+
+        expect(ratios.length).toBe(1);
+        expect(ratios[0].label).toBe('Do');
     });
   });
 });
