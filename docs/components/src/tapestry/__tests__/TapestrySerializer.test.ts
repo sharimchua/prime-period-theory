@@ -8,7 +8,10 @@ import {
   clearLocalStorage,
   createWelcomeDocument,
   scheduleAutoSave,
-  downloadDocument
+  downloadDocument,
+  loadDocumentFromFile,
+  encodePayload,
+  decodePayload
 } from '../TapestrySerializer';
 import { createDocument, createCoilNode } from '../TapestryModel';
 
@@ -38,6 +41,13 @@ describe('TapestrySerializer', () => {
       const coil = createCoilNode('Test Coil');
       doc.nodes.push(coil);
 
+      doc.threads.push({
+          id: 'th1',
+          kind: 'coil-inherit',
+          sourceNodeId: 'n1',
+          targetNodeId: 'n2'
+      } as any);
+
       const json = serialiseDocument(doc);
       expect(typeof json).toBe('string');
 
@@ -46,6 +56,20 @@ describe('TapestrySerializer', () => {
       expect(parsed.nodes).toHaveLength(1);
       expect(parsed.nodes[0].label).toBe('Test Coil');
       expect(parsed.version).toBe(2);
+      expect(parsed.threads[0].repeatCount).toBe(1); // line 45-46 branch coverage
+    });
+
+    it('should assign default thread kind', () => {
+        const v1Json = JSON.stringify({
+            id: '123',
+            title: 'V1 Doc',
+            nodes: [],
+            threads: [{ sourceNodeId: 'n1', targetNodeId: 'n2' }], // missing kind
+            globalKnot: { doPitch: 'C4', bpm: 120 }
+        });
+
+        const parsed = deserialiseDocument(v1Json);
+        expect(parsed.threads[0].kind).toBe('weave-compose');
     });
 
     it('should migrate v1 to v2 format during deserialization', () => {
@@ -121,6 +145,12 @@ describe('TapestrySerializer', () => {
       expect(newRecents).toHaveLength(10); // MAX_RECENT
     });
 
+    it('should return empty array if local storage for recent list has invalid JSON', () => {
+      localStorage.setItem('ppt-tapestry-recent', 'invalid json');
+      const loaded = loadRecentList();
+      expect(loaded).toEqual([]); // line 84 coverage
+    });
+
     it('should return null if local storage has invalid JSON', () => {
       localStorage.setItem('ppt-tapestry-document', 'invalid json');
       const loaded = loadFromLocalStorage();
@@ -134,6 +164,16 @@ describe('TapestrySerializer', () => {
 
       clearLocalStorage();
       expect(loadFromLocalStorage()).toBeNull();
+    });
+
+    it('should catch error when localstorage is full/unavailable', () => {
+       vi.stubGlobal('localStorage', {
+         setItem: vi.fn(() => { throw new Error('Storage Full'); }),
+         getItem: vi.fn(() => null)
+       });
+
+       const doc = createDocument('Save Test');
+       expect(() => saveToLocalStorage(doc)).not.toThrow();
     });
   });
 
@@ -165,7 +205,7 @@ describe('TapestrySerializer', () => {
     });
   });
 
-  describe('DOM downloads (mocked)', () => {
+  describe('DOM downloads and file loading', () => {
     it('should trigger a download using DOM API', () => {
       // Mock document and URL
       const aMock = {
@@ -195,5 +235,148 @@ describe('TapestrySerializer', () => {
       expect(aMock.click).toHaveBeenCalled();
       expect(revokeObjectURLSpy).toHaveBeenCalled();
     });
+
+    it('should reject file loading when no file is selected', async () => {
+        const inputMock = {
+            type: '',
+            accept: '',
+            click: vi.fn(),
+            onchange: null as any,
+            files: [] as any[]
+        };
+        vi.spyOn(document, 'createElement').mockReturnValue(inputMock as any);
+
+        const promise = loadDocumentFromFile();
+
+        expect(inputMock.click).toHaveBeenCalled();
+
+        // Trigger onchange
+        inputMock.onchange();
+
+        await expect(promise).rejects.toThrow('No file selected');
+    });
+
+    it('should load a document from file', async () => {
+        const inputMock = {
+            type: '',
+            accept: '',
+            click: vi.fn(),
+            onchange: null as any,
+            files: [new Blob(['{"version":2,"id":"123","title":"Loaded Doc"}'])] as any[]
+        };
+        vi.spyOn(document, 'createElement').mockReturnValue(inputMock as any);
+
+        // Mock FileReader as a class
+        class MockFileReaderAuto {
+            onload: any;
+            onerror: any;
+            result = '{"version":2,"id":"123","title":"Loaded Doc"}';
+            readAsText() {
+                setTimeout(() => {
+                    if (this.onload) this.onload();
+                }, 0);
+            }
+        }
+        vi.stubGlobal('FileReader', MockFileReaderAuto);
+
+        const promise2 = loadDocumentFromFile();
+        inputMock.onchange();
+
+        const doc = await promise2;
+        expect(doc.title).toBe('Loaded Doc');
+    });
+
+    it('should reject file loading when JSON is invalid', async () => {
+        const inputMock = {
+            type: '',
+            accept: '',
+            click: vi.fn(),
+            onchange: null as any,
+            files: [new Blob(['invalid json'])] as any[]
+        };
+        vi.spyOn(document, 'createElement').mockReturnValue(inputMock as any);
+
+        class MockFileReaderAutoInvalid {
+            onload: any;
+            onerror: any;
+            result = 'invalid json';
+            readAsText() {
+                setTimeout(() => {
+                    if (this.onload) this.onload();
+                }, 0);
+            }
+        }
+        vi.stubGlobal('FileReader', MockFileReaderAutoInvalid);
+
+        const promise = loadDocumentFromFile();
+
+        inputMock.onchange();
+
+        await expect(promise).rejects.toThrow();
+    });
+
+    it('should reject file loading on file reader error', async () => {
+        const inputMock = {
+            type: '',
+            accept: '',
+            click: vi.fn(),
+            onchange: null as any,
+            files: [new Blob(['valid json but read fails'])] as any[]
+        };
+        vi.spyOn(document, 'createElement').mockReturnValue(inputMock as any);
+
+        class MockFileReaderAutoError {
+            onload: any;
+            onerror: any;
+            error = new Error('Read failed');
+            readAsText() {
+                setTimeout(() => {
+                    if (this.onerror) this.onerror();
+                }, 0);
+            }
+        }
+        vi.stubGlobal('FileReader', MockFileReaderAutoError);
+
+        const promise = loadDocumentFromFile();
+
+        inputMock.onchange();
+
+        await expect(promise).rejects.toThrow('Read failed');
+    });
+  });
+
+  describe('encode/decode payload', () => {
+      it('should encode and decode a document correctly', async () => {
+          const doc = createDocument('Encoded Doc');
+
+          class MockCompressionStream {
+              readable = new ReadableStream({
+                  start(controller) {
+                      controller.enqueue(new Uint8Array([1, 2, 3]));
+                      controller.close();
+                  }
+              });
+              writable = new WritableStream();
+          }
+
+          class MockDecompressionStream {
+              readable = new ReadableStream({
+                  start(controller) {
+                      controller.enqueue(new TextEncoder().encode(serialiseDocument(doc)));
+                      controller.close();
+                  }
+              });
+              writable = new WritableStream();
+          }
+
+          vi.stubGlobal('CompressionStream', MockCompressionStream);
+          vi.stubGlobal('DecompressionStream', MockDecompressionStream);
+
+          const payload = await encodePayload(doc);
+          expect(payload).toBeTypeOf('string');
+
+          const decoded = await decodePayload(payload);
+          expect(decoded.title).toBe('Encoded Doc');
+      });
   });
 });
