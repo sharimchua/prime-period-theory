@@ -45,11 +45,21 @@ describe('pitchUtils', () => {
     };
 
     it('should map pitches to ratios with Du tuning', () => {
-      const results = mapPitchesToRatios('Do Re Mi Fa So La Ti', config);
-      expect(results.length).toBe(7);
+      const results = mapPitchesToRatios('Do Di Re Ri Mi Fa Fi So Le La Te Ti Do2', config);
+      expect(results.length).toBe(13);
       expect(results[0].rmult.toKey()).toBe('1/1');
-      expect(results[1].rmult.toNumber()).toBeCloseTo(Math.pow(2, 2/12));
-      expect(results[2].rmult.toNumber()).toBeCloseTo(Math.pow(2, 4/12));
+      expect(results[1].rmult.toNumber()).toBeCloseTo(Math.pow(2, 1/12)); // m2
+      expect(results[2].rmult.toNumber()).toBeCloseTo(Math.pow(2, 2/12)); // M2
+      expect(results[3].rmult.toNumber()).toBeCloseTo(Math.pow(2, 3/12)); // m3
+      expect(results[4].rmult.toNumber()).toBeCloseTo(Math.pow(2, 4/12)); // M3
+      expect(results[5].rmult.toNumber()).toBeCloseTo(Math.pow(2, 5/12)); // P4
+      expect(results[6].rmult.toNumber()).toBeCloseTo(Math.pow(2, 6/12)); // TT
+      expect(results[7].rmult.toNumber()).toBeCloseTo(Math.pow(2, 7/12)); // P5
+      expect(results[8].rmult.toNumber()).toBeCloseTo(Math.pow(2, 8/12)); // m6
+      expect(results[9].rmult.toNumber()).toBeCloseTo(Math.pow(2, 9/12)); // M6
+      expect(results[10].rmult.toNumber()).toBeCloseTo(Math.pow(2, 10/12)); // m7
+      expect(results[11].rmult.toNumber()).toBeCloseTo(Math.pow(2, 11/12)); // M7
+      expect(results[12].rmult.toKey()).toBe('2/1'); // Octave
     });
 
     it('should map pitches to ratios with Tri/Qui/Sep tuning', () => {
@@ -105,7 +115,18 @@ describe('pitchUtils', () => {
       expect(results[0].rmult.toKey()).toBe('1/1');
 
       const results2 = mapPitchesToRatios('Do Do-1', config);
-      expect(results2[1].rmult.toKey()).toBe('1/1');
+      expect(results2[1].rmult.toKey()).toBe('1/1'); // For Do to Do-1, the octave delta calculation works via absolute semitone difference.
+    });
+
+    it('should handle descending intervals that wrap around octaves correctly', () => {
+       const results = mapPitchesToRatios('So Do', config);
+       expect(results[1].rmult.toNumber()).toBeCloseTo(Math.pow(2, 5/12));
+    });
+
+    it('should handle Tri tuning for minor 7th (fallback)', () => {
+       const triConfig2 = { ...triConfig, m7: 'Tri' as any };
+       const results = mapPitchesToRatios('Do Te', triConfig2);
+       expect(results[1].rmult.toKey()).toBe('16/9'); // fallback for m7
     });
   });
 });
