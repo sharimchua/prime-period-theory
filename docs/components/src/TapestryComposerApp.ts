@@ -70,6 +70,15 @@ interface PortInfo {
 // ── App shell ─────────────────────────────────────────────────────────────────
 
 export class TapestryComposerApp extends BasePPTComponent {
+  static get componentDef() {
+    return {
+      displayName: 'TapestryComposerApp',
+      familyColor: '#888888',
+      acceptsChildren: ['*'],
+      canNestIn: ['*']
+    };
+  }
+
   private _isRendered = false;
   private _doc: TapestryDocument = createWelcomeDocument();
 
