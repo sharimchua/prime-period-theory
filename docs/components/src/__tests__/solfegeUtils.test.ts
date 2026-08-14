@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { isValidSolfegeToken, parseSolfegeToken, tokenizePhrase, expandRhythmPhrase } from '../solfegeUtils.js';
+import { isValidSolfegeToken, parseSolfegeToken, tokenizePhrase, expandRhythmPhrase, mapTokensToRatios, TuningConfig } from '../solfegeUtils.js';
 
 describe('solfegeUtils', () => {
   describe('isValidSolfegeToken', () => {
@@ -256,6 +256,106 @@ describe('solfegeUtils', () => {
        const tokens = tokenizePhrase('Re Mi');
        const expanded = expandRhythmPhrase(tokens);
        expect(expanded).toEqual(tokens);
+    });
+  });
+
+  describe('mapTokensToRatios', () => {
+    it('should skip non-glyph tokens', () => {
+      const tokens = tokenizePhrase('.. -');
+      const ratios = mapTokensToRatios(tokens, { thirds: 'Qui', sevenths: 'Sep', tritone: 'Qui' });
+      expect(ratios.length).toBe(0);
+    });
+
+    it('should map base syllables correctly (Qui/Sep tunings)', () => {
+      const config: TuningConfig = { thirds: 'Qui', sevenths: 'Sep', tritone: 'Qui' };
+      const tokens = tokenizePhrase('Do Ra Re Ri Me Mi Fa Fi So Le La Te Ti Se Si');
+      const ratios = mapTokensToRatios(tokens, config);
+
+      const expected = [
+        { label: 'Do', num: 1, den: 1 },
+        { label: 'Ra', num: 16, den: 15 },
+        { label: 'Re', num: 9, den: 8 },
+        { label: 'Ri', num: 75, den: 64 },
+        { label: 'Me', num: 6, den: 5 },
+        { label: 'Mi', num: 5, den: 4 },
+        { label: 'Fa', num: 4, den: 3 },
+        { label: 'Fi', num: 45, den: 32 },
+        { label: 'So', num: 3, den: 2 },
+        { label: 'Le', num: 8, den: 5 },
+        { label: 'La', num: 5, den: 3 },
+        { label: 'Te', num: 7, den: 4 },
+        { label: 'Ti', num: 15, den: 8 },
+        { label: 'Se', num: 7, den: 4 }, // Se maps to Septimal minor 7th here
+        { label: 'Si', num: 15, den: 8 }, // Si maps to Major 7th here
+      ];
+
+      expect(ratios.length).toBe(expected.length);
+      ratios.forEach((r, i) => {
+        expect(r.label).toBe(expected[i].label);
+        expect(r.rmult.num).toBeCloseTo(expected[i].num);
+        expect(r.rmult.den).toBeCloseTo(expected[i].den);
+      });
+    });
+
+    it('should map Tri tunings correctly', () => {
+      const config: TuningConfig = { thirds: 'Tri', sevenths: 'Tri', tritone: 'Undec' }; // Use Undec for Fi to hit that branch
+      const tokens = tokenizePhrase('Me Mi Fi Le La Te Ti');
+      const ratios = mapTokensToRatios(tokens, config);
+
+      const expected = [
+        { label: 'Me', num: 32, den: 27 },
+        { label: 'Mi', num: 81, den: 64 },
+        { label: 'Fi', num: 11, den: 8 },
+        { label: 'Le', num: 128, den: 81 },
+        { label: 'La', num: 27, den: 16 },
+        { label: 'Te', num: 16, den: 9 },
+        { label: 'Ti', num: 243, den: 128 },
+      ];
+
+      expect(ratios.length).toBe(expected.length);
+      ratios.forEach((r, i) => {
+        expect(r.label).toBe(expected[i].label);
+        expect(r.rmult.num).toBeCloseTo(expected[i].num);
+        expect(r.rmult.den).toBeCloseTo(expected[i].den);
+      });
+    });
+
+    it('should map Du tuning correctly for Tritone', () => {
+      const config: TuningConfig = { thirds: 'Qui', sevenths: 'Sep', tritone: 'Du' };
+      const tokens = tokenizePhrase('Fi');
+      const ratios = mapTokensToRatios(tokens, config);
+
+      expect(ratios.length).toBe(1);
+      expect(ratios[0].rmult.num).toBeCloseTo(Math.SQRT2);
+      expect(ratios[0].rmult.den).toBeCloseTo(1);
+    });
+
+    it('should handle octave offsets via superscript parsing properly', () => {
+      const config: TuningConfig = { thirds: 'Qui', sevenths: 'Sep', tritone: 'Qui' };
+      // Do^Ra means Do with octave offset +1 (num * 2)
+      // Do^Ti means Do with octave offset -1 (den * 2)
+      const tokens = tokenizePhrase('Do^Ra Do^Ti');
+      const ratios = mapTokensToRatios(tokens, config);
+
+      expect(ratios.length).toBe(2);
+      expect(ratios[0].label).toBe('Do^Ra');
+      expect(ratios[0].rmult.num).toBeCloseTo(2);
+      expect(ratios[0].rmult.den).toBeCloseTo(1);
+
+      expect(ratios[1].label).toBe('Do^Ti');
+      expect(ratios[1].rmult.num).toBeCloseTo(1);
+      expect(ratios[1].rmult.den).toBeCloseTo(2);
+    });
+
+    it('should fallback gracefully for unknown syllable formats', () => {
+       const config: TuningConfig = { thirds: 'Qui', sevenths: 'Sep', tritone: 'Qui' };
+       // valid structure but unknown to the ratio mapper switch
+       const tokens = [{ type: 'glyph', solfege: 'Za', raw: 'Za' } as any];
+       const ratios = mapTokensToRatios(tokens, config);
+
+       expect(ratios.length).toBe(1);
+       expect(ratios[0].rmult.num).toBeCloseTo(1);
+       expect(ratios[0].rmult.den).toBeCloseTo(1);
     });
   });
 });
