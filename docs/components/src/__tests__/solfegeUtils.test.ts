@@ -1,7 +1,69 @@
 import { describe, it, expect } from 'vitest';
-import { isValidSolfegeToken, parseSolfegeToken, tokenizePhrase, expandRhythmPhrase } from '../solfegeUtils.js';
+import { isValidSolfegeToken, parseSolfegeToken, tokenizePhrase, expandRhythmPhrase, mapTokensToRatios } from '../solfegeUtils.js';
 
 describe('solfegeUtils', () => {
+  describe('mapTokensToRatios', () => {
+    it('should map standard tokens with Ptolemaic tuning correctly', () => {
+      const tokens = tokenizePhrase('Do Me Mi Fi Le La Te Ti');
+      const ratios = mapTokensToRatios(tokens, { thirds: 'Ptol', tritone: 'Qui', sevenths: 'Ptol' });
+
+      expect(ratios[0].rmult).toEqual({ num: 1, den: 1 });
+      expect(ratios[1].rmult).toEqual({ num: 6, den: 5 }); // Ptolemaic minor 3rd
+      expect(ratios[2].rmult).toEqual({ num: 5, den: 4 }); // Ptolemaic major 3rd
+      expect(ratios[3].rmult).toEqual({ num: 45, den: 32 }); // Qui
+      expect(ratios[4].rmult).toEqual({ num: 8, den: 5 }); // Ptolemaic minor 6th
+      expect(ratios[5].rmult).toEqual({ num: 5, den: 3 }); // Ptolemaic major 6th
+      expect(ratios[6].rmult).toEqual({ num: 16, den: 9 }); // Default minor 7th
+      expect(ratios[7].rmult).toEqual({ num: 15, den: 8 }); // Standard major 7th
+    });
+
+    it('should map standard tokens with Pythagorean (Tri) tuning correctly', () => {
+      const tokens = tokenizePhrase('Me Mi Le La Ti');
+      const ratios = mapTokensToRatios(tokens, { thirds: 'Tri', tritone: 'Qui', sevenths: 'Tri' });
+
+      expect(ratios[0].rmult).toEqual({ num: 32, den: 27 }); // Pythagorean minor 3rd
+      expect(ratios[1].rmult).toEqual({ num: 81, den: 64 }); // Pythagorean major 3rd
+      expect(ratios[2].rmult).toEqual({ num: 128, den: 81 }); // Pythagorean minor 6th
+      expect(ratios[3].rmult).toEqual({ num: 27, den: 16 }); // Pythagorean major 6th
+      expect(ratios[4].rmult).toEqual({ num: 243, den: 128 }); // Pythagorean major 7th
+    });
+
+    it('should map septimal sevenths correctly', () => {
+      const tokens = tokenizePhrase('Te');
+      const ratios = mapTokensToRatios(tokens, { thirds: 'Ptol', tritone: 'Qui', sevenths: 'Sep' });
+
+      expect(ratios[0].rmult).toEqual({ num: 7, den: 4 }); // Septimal minor 7th
+    });
+
+    it('should map Du and Undec tritones correctly', () => {
+      const duTokens = tokenizePhrase('Fi');
+      const duRatios = mapTokensToRatios(duTokens, { thirds: 'Ptol', tritone: 'Du', sevenths: 'Ptol' });
+      expect(duRatios[0].rmult.num).toBeCloseTo(1.4142135623730951, 10);
+      expect(duRatios[0].rmult.den).toEqual(1);
+
+      const undecTokens = tokenizePhrase('Fi');
+      const undecRatios = mapTokensToRatios(undecTokens, { thirds: 'Ptol', tritone: 'Undec', sevenths: 'Ptol' });
+      expect(undecRatios[0].rmult).toEqual({ num: 11, den: 8 });
+    });
+
+    it('should apply octave offsets for ^Ra and ^Ti superscripts', () => {
+      const tokens = tokenizePhrase('Do^Ra Re^Ti');
+      const ratios = mapTokensToRatios(tokens, { thirds: 'Ptol', tritone: 'Qui', sevenths: 'Ptol' });
+
+      expect(ratios[0].rmult).toEqual({ num: 2, den: 1 }); // ^Ra = +1 octave
+      expect(ratios[1].rmult).toEqual({ num: 9, den: 16 }); // ^Ti = -1 octave (9/8 / 2)
+    });
+
+    it('should ignore non-glyph tokens', () => {
+      const tokens = tokenizePhrase('Do [ - Re');
+      const ratios = mapTokensToRatios(tokens, { thirds: 'Ptol', tritone: 'Qui', sevenths: 'Ptol' });
+
+      expect(ratios.length).toBe(2);
+      expect(ratios[0].label).toBe('Do');
+      expect(ratios[1].label).toBe('Re');
+    });
+  });
+
   describe('isValidSolfegeToken', () => {
     it('should return true for valid base solfege tokens', () => {
       expect(isValidSolfegeToken('Do')).toBe(true);
