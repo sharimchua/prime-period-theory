@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { isValidSolfegeToken, parseSolfegeToken, tokenizePhrase, expandRhythmPhrase } from '../solfegeUtils.js';
+import { isValidSolfegeToken, parseSolfegeToken, tokenizePhrase, expandRhythmPhrase, mapTokensToRatios } from '../solfegeUtils.js';
 
 describe('solfegeUtils', () => {
   describe('isValidSolfegeToken', () => {
@@ -256,6 +256,116 @@ describe('solfegeUtils', () => {
        const tokens = tokenizePhrase('Re Mi');
        const expanded = expandRhythmPhrase(tokens);
        expect(expanded).toEqual(tokens);
+    });
+  });
+
+  describe('mapTokensToRatios', () => {
+    it('should correctly map perfect intervals (Do, Fa, So)', () => {
+      const tokens = tokenizePhrase('Do Fa So');
+      const ratios = mapTokensToRatios(tokens, { thirds: 'Ptolemaic', sevenths: 'Ptolemaic', tritone: 'Qui' });
+      expect(ratios).toHaveLength(3);
+      expect(ratios[0].rmult.num).toBe(1);
+      expect(ratios[0].rmult.den).toBe(1);
+      expect(ratios[1].rmult.num).toBe(4);
+      expect(ratios[1].rmult.den).toBe(3);
+      expect(ratios[2].rmult.num).toBe(3);
+      expect(ratios[2].rmult.den).toBe(2);
+    });
+
+    it('should correctly apply Ptolemaic thirds (Me, Mi, Le, La)', () => {
+      const tokens = tokenizePhrase('Me Mi Le La');
+      const ratios = mapTokensToRatios(tokens, { thirds: 'Ptolemaic', sevenths: 'Ptolemaic', tritone: 'Qui' });
+      expect(ratios[0].rmult.num).toBe(6);
+      expect(ratios[0].rmult.den).toBe(5);
+      expect(ratios[1].rmult.num).toBe(5);
+      expect(ratios[1].rmult.den).toBe(4);
+      expect(ratios[2].rmult.num).toBe(8);
+      expect(ratios[2].rmult.den).toBe(5);
+      expect(ratios[3].rmult.num).toBe(5);
+      expect(ratios[3].rmult.den).toBe(3);
+    });
+
+    it('should correctly apply Pythagorean thirds (Me, Mi, Le, La) when Tri config used', () => {
+      const tokens = tokenizePhrase('Me Mi Le La');
+      const ratios = mapTokensToRatios(tokens, { thirds: 'Tri', sevenths: 'Ptolemaic', tritone: 'Qui' });
+      expect(ratios[0].rmult.num).toBe(32);
+      expect(ratios[0].rmult.den).toBe(27);
+      expect(ratios[1].rmult.num).toBe(81);
+      expect(ratios[1].rmult.den).toBe(64);
+      expect(ratios[2].rmult.num).toBe(128);
+      expect(ratios[2].rmult.den).toBe(81);
+      expect(ratios[3].rmult.num).toBe(27);
+      expect(ratios[3].rmult.den).toBe(16);
+    });
+
+    it('should correctly map minor and major seconds (Ra, Re, Ri)', () => {
+      const tokens = tokenizePhrase('Ra Re Ri');
+      const ratios = mapTokensToRatios(tokens, { thirds: 'Ptolemaic', sevenths: 'Ptolemaic', tritone: 'Qui' });
+      expect(ratios[0].rmult.num).toBe(16);
+      expect(ratios[0].rmult.den).toBe(15);
+      expect(ratios[1].rmult.num).toBe(9);
+      expect(ratios[1].rmult.den).toBe(8);
+      expect(ratios[2].rmult.num).toBe(75);
+      expect(ratios[2].rmult.den).toBe(64);
+    });
+
+    it('should handle different tritones correctly (Fi)', () => {
+      let tokens = tokenizePhrase('Fi');
+      let ratios = mapTokensToRatios(tokens, { thirds: 'Ptolemaic', sevenths: 'Ptolemaic', tritone: 'Du' });
+      expect(ratios[0].rmult.num).toBeCloseTo(1.41421356);
+      expect(ratios[0].rmult.den).toBe(1);
+
+      ratios = mapTokensToRatios(tokens, { thirds: 'Ptolemaic', sevenths: 'Ptolemaic', tritone: 'Undec' });
+      expect(ratios[0].rmult.num).toBe(11);
+      expect(ratios[0].rmult.den).toBe(8);
+
+      ratios = mapTokensToRatios(tokens, { thirds: 'Ptolemaic', sevenths: 'Ptolemaic', tritone: 'Qui' });
+      expect(ratios[0].rmult.num).toBe(45);
+      expect(ratios[0].rmult.den).toBe(32);
+    });
+
+    it('should apply octave offsets for positive values', () => {
+      const tokens = tokenizePhrase('Do^Ra So^Ra'); // using ^Ra for positive octave offset
+      const ratios = mapTokensToRatios(tokens, { thirds: 'Ptolemaic', sevenths: 'Ptolemaic', tritone: 'Qui' });
+      expect(ratios[0].rmult.num).toBe(2);
+      expect(ratios[0].rmult.den).toBe(1);
+
+      expect(ratios[1].rmult.num).toBe(3 * 2); // 3 * 2^1
+      expect(ratios[1].rmult.den).toBe(2);
+    });
+
+    it('should apply octave offsets for negative values', () => {
+      const tokens = tokenizePhrase('Do^Ti So^Ti'); // using ^Ti for negative octave offset
+      const ratios = mapTokensToRatios(tokens, { thirds: 'Ptolemaic', sevenths: 'Ptolemaic', tritone: 'Qui' });
+      expect(ratios[0].rmult.num).toBe(1);
+      expect(ratios[0].rmult.den).toBe(2);
+
+      expect(ratios[1].rmult.num).toBe(3);
+      expect(ratios[1].rmult.den).toBe(2 * 2); // 2 * 2^1
+    });
+
+    it('should handle different sevenths configs (Te, Se, Ti, Si)', () => {
+      const tokens = tokenizePhrase('Te Se Ti Si');
+
+      let ratios = mapTokensToRatios(tokens, { thirds: 'Ptolemaic', sevenths: 'Sep', tritone: 'Qui' });
+      expect(ratios[0].rmult.num).toBe(7);
+      expect(ratios[0].rmult.den).toBe(4);
+      expect(ratios[1].rmult.num).toBe(7);
+      expect(ratios[1].rmult.den).toBe(4);
+      expect(ratios[2].rmult.num).toBe(15);
+      expect(ratios[2].rmult.den).toBe(8);
+      expect(ratios[3].rmult.num).toBe(15);
+      expect(ratios[3].rmult.den).toBe(8);
+
+      ratios = mapTokensToRatios(tokens, { thirds: 'Ptolemaic', sevenths: 'Tri', tritone: 'Qui' });
+      expect(ratios[0].rmult.num).toBe(16);
+      expect(ratios[0].rmult.den).toBe(9);
+      expect(ratios[1].rmult.num).toBe(16);
+      expect(ratios[1].rmult.den).toBe(9);
+      expect(ratios[2].rmult.num).toBe(243);
+      expect(ratios[2].rmult.den).toBe(128);
+      expect(ratios[3].rmult.num).toBe(243);
+      expect(ratios[3].rmult.den).toBe(128);
     });
   });
 });
