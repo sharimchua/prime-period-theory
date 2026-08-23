@@ -2,6 +2,7 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import {
   serialiseDocument,
   deserialiseDocument,
+  loadDocumentFromFile,
   saveToLocalStorage,
   loadFromLocalStorage,
   loadRecentList,
@@ -83,6 +84,18 @@ describe('TapestrySerializer', () => {
 
       const parsed = deserialiseDocument(v1Json);
       expect(parsed.nodes[0].position).toEqual({ x: 80, y: 80 });
+    });
+
+    it('should add missing default thread properties', () => {
+       const raw = JSON.stringify({
+          version: 2,
+          threads: [
+             { id: 't1' } // missing repeatCount and kind
+          ]
+       });
+       const parsed = deserialiseDocument(raw);
+       expect(parsed.threads[0].repeatCount).toBe(1);
+       expect(parsed.threads[0].kind).toBe('weave-compose');
     });
   });
 
@@ -166,6 +179,16 @@ describe('TapestrySerializer', () => {
   });
 
   describe('DOM downloads (mocked)', () => {
+    it('should handle loadRecentList catch block gracefully', () => {
+       // Mock localStorage to throw
+       vi.stubGlobal('localStorage', {
+         getItem: vi.fn(() => { throw new Error('Storage error'); })
+       });
+
+       const recents = loadRecentList();
+       expect(recents).toEqual([]);
+    });
+
     it('should trigger a download using DOM API', () => {
       // Mock document and URL
       const aMock = {
@@ -194,6 +217,204 @@ describe('TapestrySerializer', () => {
       // note: it doesn't do document.body.appendChild, it just calls .click() on detached element
       expect(aMock.click).toHaveBeenCalled();
       expect(revokeObjectURLSpy).toHaveBeenCalled();
+    });
+
+    it('should load a document from file using DOM API', async () => {
+      // Mock File, FileReader, document.createElement('input')
+      const mockDoc = createDocument('Loaded File');
+      const json = serialiseDocument(mockDoc);
+
+      const mockFile = { name: 'test.json' };
+
+      const fileReaderMock = {
+        result: json,
+        onload: null as any,
+        onerror: null as any,
+        readAsText: vi.fn(function(this: any) {
+          setTimeout(() => {
+             if (this.onload) this.onload();
+          }, 0);
+        })
+      };
+
+      vi.stubGlobal('FileReader', function() { return fileReaderMock; });
+
+      const inputMock = {
+        type: '',
+        accept: '',
+        files: [mockFile],
+        click: vi.fn(function(this: any) {
+           setTimeout(() => {
+              if (this.onchange) this.onchange();
+           }, 0);
+        }),
+        onchange: null as any
+      };
+
+      const createElementSpy = vi.spyOn(document, 'createElement').mockReturnValue(inputMock as any);
+
+      const loadedPromise = loadDocumentFromFile();
+      const loaded = await loadedPromise;
+
+      expect(createElementSpy).toHaveBeenCalledWith('input');
+      expect(inputMock.type).toBe('file');
+      expect(inputMock.accept).toBe('.json,.tapestry.json');
+      expect(inputMock.click).toHaveBeenCalled();
+      expect(fileReaderMock.readAsText).toHaveBeenCalledWith(mockFile);
+      expect(loaded.title).toBe('Loaded File');
+    });
+
+    it('should handle rejection if no file selected', async () => {
+      const inputMock = {
+        type: '',
+        accept: '',
+        files: [], // Empty files
+        click: vi.fn(function(this: any) {
+           setTimeout(() => {
+              if (this.onchange) this.onchange();
+           }, 0);
+        }),
+        onchange: null as any
+      };
+
+      vi.spyOn(document, 'createElement').mockReturnValue(inputMock as any);
+
+      await expect(loadDocumentFromFile()).rejects.toThrow('No file selected');
+    });
+
+    it('should handle reader error', async () => {
+      const mockFile = { name: 'test.json' };
+
+      const fileReaderMock = {
+        error: new Error('Read error'),
+        onload: null as any,
+        onerror: null as any,
+        readAsText: vi.fn(function(this: any) {
+          setTimeout(() => {
+             if (this.onerror) this.onerror();
+          }, 0);
+        })
+      };
+
+      vi.stubGlobal('FileReader', function() { return fileReaderMock; });
+      vi.stubGlobal('FileReader', class {
+        constructor() { return fileReaderMock; }
+      });
+
+      const inputMock = {
+        type: '',
+        accept: '',
+        files: [mockFile],
+        click: vi.fn(function(this: any) {
+           setTimeout(() => {
+              if (this.onchange) this.onchange();
+           }, 0);
+        }),
+        onchange: null as any
+      };
+
+      vi.spyOn(document, 'createElement').mockReturnValue(inputMock as any);
+
+      await expect(loadDocumentFromFile()).rejects.toThrow('Read error');
+    });
+
+    it('should handle deserialization error', async () => {
+      const mockFile = { name: 'test.json' };
+
+      const fileReaderMock = {
+        result: 'invalid json',
+        onload: null as any,
+        onerror: null as any,
+        readAsText: vi.fn(function(this: any) {
+          setTimeout(() => {
+             if (this.onload) this.onload();
+          }, 0);
+        })
+      };
+
+      vi.stubGlobal('FileReader', class {
+        constructor() { return fileReaderMock; }
+      });
+
+      const inputMock = {
+        type: '',
+        accept: '',
+        files: [mockFile],
+        click: vi.fn(function(this: any) {
+           setTimeout(() => {
+              if (this.onchange) this.onchange();
+           }, 0);
+        }),
+        onchange: null as any
+      };
+
+      vi.spyOn(document, 'createElement').mockReturnValue(inputMock as any);
+
+      await expect(loadDocumentFromFile()).rejects.toThrow();
+    });
+  });
+
+  describe('Payload Encoding / Decoding', () => {
+    it('should encode and decode a document correctly', async () => {
+      // Vitest node environment doesn't have CompressionStream by default sometimes?
+      // Happy-dom might not. If they don't exist, we must mock them or skip. Let's mock them.
+      const mockEncoder = {
+         encode: vi.fn().mockReturnValue(new Uint8Array([1, 2, 3]))
+      };
+      const mockDecoder = {
+         decode: vi.fn().mockReturnValue(JSON.stringify({
+            title: 'Mock Payload',
+            nodes: [],
+            threads: [],
+            globalKnot: { doPitch: 'C4', bpm: 120 }
+         }))
+      };
+
+      vi.stubGlobal('TextEncoder', function() { return mockEncoder; });
+      vi.stubGlobal('TextDecoder', function() { return mockDecoder; });
+
+      class MockCompressionStream {
+         writable = {
+            getWriter: () => ({
+               write: vi.fn(),
+               close: vi.fn()
+            })
+         };
+         readable = {};
+      }
+
+      class MockDecompressionStream {
+         writable = {
+            getWriter: () => ({
+               write: vi.fn(),
+               close: vi.fn()
+            })
+         };
+         readable = {};
+      }
+
+      vi.stubGlobal('CompressionStream', MockCompressionStream);
+      vi.stubGlobal('DecompressionStream', MockDecompressionStream);
+
+      // Mock Response for arrayBuffer
+      class MockResponse {
+         constructor() {}
+         arrayBuffer() {
+            return Promise.resolve(new Uint8Array([97, 98, 99]).buffer); // 'abc'
+         }
+      }
+      vi.stubGlobal('Response', MockResponse);
+
+      const { encodePayload, decodePayload } = await import('../TapestrySerializer');
+
+      const doc = createDocument('Test Encoding');
+
+      const encoded = await encodePayload(doc);
+      // 'abc' string encoded to base64 is 'YWJj'
+      expect(encoded).toBe('YWJj');
+
+      const decoded = await decodePayload(encoded);
+      expect(decoded.title).toBe('Mock Payload');
     });
   });
 });
