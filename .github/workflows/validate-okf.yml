@@ -43,5 +43,7 @@ jobs:
           path: reports/
       - name: Comment PR with summary
         uses: marocchino/sticky-pull-request-comment@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           path: reports/okf-analysis-summary.md
