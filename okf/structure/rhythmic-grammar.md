@@ -15,7 +15,7 @@ tags:
   - solkattu
   - prime-period-theory
 status: stable
-timestamp: 2026-07-23
+timestamp: 2026-08-28
 used_by:
   - specifications/midi-solfege-input.md
   - uniform-solfege/diacritic-system.md
@@ -25,6 +25,8 @@ used_by:
   - structure/coil-notation.md
   - structure/melodic-grammar.md
   - structure/musicoil.md
+  - piano-triangles/index.md
+  - piano-triangles/fretboard-leaps.md
 implemented_by: [applications/three-layer-coil-editor.md]
 ---
 
@@ -364,6 +366,11 @@ The **Axis diacritic** is the sole point of contact between the two systems:
 semantic role in the diacritic system) rather than a +3-step microtonal
 inflection (its pitch-space role). The two uses are contextually distinct.
 
+This precedent — using bare structural tokens to flag boundary crossings without
+modifying internal content — directly extends into [Piano Triangle Notation](../piano-triangles/index.md)
+as an octave-skip marker, and into [Fretboard Leaps and Seam Crossing](../piano-triangles/fretboard-leaps.md)
+as a guitar tuning seam-crossing indicator.
+
 ## Applications
 
 **Metronome / practice tool**: A metronome implementing Rhythmic Grammar
@@ -389,3 +396,5 @@ rhythm feel has no compact natural-language vocabulary.
 - [Three-Layer Coil Notation](coil-notation.md) — paper-writable surface syntax representing rhythmic layers
 - [Melodic Grammar](melodic-grammar.md) — parallel grammar system for the melody layer
 - [MusiCoil](musicoil.md) — the spatial notation layer; Rhythmic Grammar as a companion rhythmic encoding
+- [Piano Triangle Notation](../piano-triangles/index.md) — ergonomic keyboard notation adopting the skip-marker boundary convention
+- [Fretboard Leaps and Seam Crossing](../piano-triangles/fretboard-leaps.md) — extending skip-marker grammar to guitar string crossings

@@ -14,7 +14,7 @@ tags:
   - microtonality
   - 31-edo
 status: stable
-timestamp: 2026-07-13
+timestamp: 2026-08-28
 ---
 
 # Prime Period Theory
@@ -181,6 +181,10 @@ amplitude or effect envelopes.
 - [Overview](ppd/index.md) — the writing system rendering of prime lattice
   comma values; glyph forms as visual approximations of ordered comma sequences
 - [Glyph Forms](ppd/glyph-forms.md) — visual specification for all prime families
+
+### Piano Triangle Notation
+- [Overview](piano-triangles/index.md) — an ergonomic base-3 keyboard notation system and tetrachord scale encoding
+- [Fretboard Leaps and Seam Crossing](piano-triangles/fretboard-leaps.md) — extending triangle skip-marker grammar to guitar fretboard intervals and tuning seams
 
 ### Tuning Systems
 - [Temporal-Place Limen Reference Tuning](tuning/temporal-place-limen-reference-tuning.md) — absolute pitch anchors derived from the Temporal-Place Limen

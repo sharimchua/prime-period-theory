@@ -18,7 +18,7 @@ tags:
   - melakarta
   - prime-period-theory
 status: stable
-timestamp: 2026-07-08
+timestamp: 2026-08-28
 used_by:
   - tuning/pentatonic-heptatonic.md
   - uniform-solfege/index.md
@@ -28,6 +28,7 @@ used_by:
   - uniform-solfege/base-12-algebra.md
   - structure/melodic-grammar.md
   - tuning/just-intonation.md
+  - piano-triangles/index.md
 ---
 
 # Tetrachord-Pair Generation of Heptatonic Scales
@@ -273,8 +274,13 @@ tetrachord-pair structure to [Music as Language](../context/music-as-language.md
 broader case for PPT as a vocabulary that supports ear-first rather than
 notation-first learning.
 
+In keyboard ergonomics, this tetrachord-chaining structure (`[5,6,7] + [1] + [2,3,4]`)
+serves as the foundational generative syntax for [Piano Triangle Notation](../piano-triangles/index.md),
+translating theoretical tetrachord compositions directly into ergonomic keyboard segment strings.
+
 ## See also
 
+- [Piano Triangle Notation](../piano-triangles/index.md) — renders tetrachord-pair scale structures into physical keyboard segment strings
 - [Pentatonic and Heptatonic Structures](pentatonic-heptatonic.md) — the
   3-limit fifth-stacking generative method; the complementary derivation
   this page extends

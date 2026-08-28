@@ -11,11 +11,13 @@ tags:
   - tone-atlas
   - prime-period-theory
 status: stable
-timestamp: 2026-06-26
+timestamp: 2026-08-28
 used_by:
   - related/tone-atlas.md
   - uniform-solfege/base-12-algebra.md
   - uniform-solfege/geometric-basis.md
+  - piano-triangles/index.md
+  - pedagogy/default-do.md
 ---
 
 # Chromatic Clock Geometry
@@ -77,8 +79,14 @@ The chromatic clock reveals deep structural symmetries within diatonic modes. Th
 - The mode reflects perfectly across an axis drawn through **Re (2)** and **Le (8)**. 
 - When played on a piano, Dorian starting on D uses only white keys and pivots perfectly around the physical symmetry of the D key itself. 
 
+## Four-triangle geometric partition
+
+Dividing the chromatic clock into four contiguous 3-step quadrants along the vertical Do–Fi axis and horizontal Me–La axis partitions the twelve pitch classes into four ergonomic groups: **Down**, **Left**, **Up**, and **Right**. This geometric partition forms the foundation of [Piano Triangle Notation](../piano-triangles/index.md), mapping clock rotations directly to keyboard topography.
+
 ## See also
 
+- [Piano Triangle Notation](../piano-triangles/index.md) — ergonomic keyboard notation built on four-triangle clock partitioning
 - [Tone Atlas](tone-atlas.md) — the comprehensive map of the chromatic clock space
 - [Base-12 Algebra](../uniform-solfege/base-12-algebra.md) — the arithmetic that powers this geometry
 - [Geometric Basis](../uniform-solfege/geometric-basis.md) — how the Uniform Solfège symbols are derived from this clock
+- [Default Do (12TET Keyboard)](../pedagogy/default-do.md) — the pedagogical foundation for D-centred keyboard symmetry
