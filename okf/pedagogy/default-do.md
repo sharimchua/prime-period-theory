@@ -4,7 +4,15 @@ title: "Default Do: The Case for D on 12TET Keyboards"
 description: A proposal to use D, rather than C, as the default pitch-class anchor for Do when teaching Uniform Solfège on 12TET keyboard instruments — grounded in the unique black/white key symmetry around D and its alignment with the A440 tuning standard.
 tags: [pedagogy, uniform-solfege, keyboard, default-do, mnemonics]
 status: stable
-timestamp: 2026-07-18
+timestamp: 2026-08-28
+depends_on:
+  - uniform-solfege/index.md
+  - related/chromatic-clock.md
+used_by:
+  - piano-triangles/index.md
+  - pedagogy/axis-fan-pedagogy.md
+  - pedagogy/ear-first.md
+  - piano-triangles/fretboard-leaps.md
 ---
 
 # Default Do: The Case for D on 12TET Keyboards
@@ -148,6 +156,9 @@ they connect to structures defined elsewhere in the framework:
   ISO 16 / A440 international tuning reference. Do = D gives Uniform Solfège
   a non-arbitrary bridge to that universally recognised physical anchor — a
   genuine coincidence of the ±5 semitone position, not a designed feature.
+- **Four-triangle partition** — Anchoring on D partitions the twelve chromatic
+  keys into four three-key groups (Down, Left, Up, Right), forming the basis of
+  [Piano Triangle Notation](../piano-triangles/index.md).
 
 ## Scope
 
@@ -165,3 +176,12 @@ choice is already equivalent by construction.
 - Whether the keyboard component in `docs/components/keyboard/` should
   support a togglable Do anchor to let students see both symmetric and
   asymmetric framings directly.
+
+## See also
+
+- [Piano Triangle Notation](../piano-triangles/index.md) — the ergonomic keyboard notation system built from this D-centred symmetry
+- [Uniform Solfège — Overview](../uniform-solfege/index.md) — the parent notation system and interval syllable layer
+- [Chromatic Clock Geometry](../related/chromatic-clock.md) — the 12-tone circle and axis reflections
+- [Axis-Fan Pedagogy](axis-fan-pedagogy.md) — tritone-first harmonic pedagogy
+- [Ear-First Pedagogy](ear-first.md) — perceptual grounding before symbolic representation
+

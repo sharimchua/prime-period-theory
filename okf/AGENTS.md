@@ -38,6 +38,8 @@ navigating the graph. Make it precise and specific, not generic.
 | `specifications/` | System-level specifications and formal definitions | Active |
 | `extended/` | Extended ranges and abstract concepts | Partially written |
 | `uniform-solfege/` | Notation system | Partially written |
+| `ppd/` | Prime Period Diacritics microtonal notation | Active |
+| `piano-triangles/` | Ergonomic keyboard and fretboard notation | Active |
 | `domains/` | Pitch, rhythm, timbre | Stub only |
 | `tuning/` | JI, 31 EDO, 72 EDO | Partially written |
 | `pedagogy/` | Learning paths and pedagogy principles | Active |

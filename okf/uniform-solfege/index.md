@@ -14,7 +14,7 @@ tags:
   - clock-arithmetic
   - prime-period-theory
 status: stable
-timestamp: 2026-07-23
+timestamp: 2026-08-28
 used_by:
   - uniform-solfege/geometric-basis.md
   - ppd/index.md
@@ -24,6 +24,8 @@ used_by:
   - uniform-solfege/base-12-algebra.md
   - tuning/31-edo.md
   - foundations/prime-families.md
+contrasts_with:
+  - piano-triangles/index.md
 pedagogically_precedes: [uniform-solfege/diacritic-system.md, structure/coil-notation.md]
 ---
 
@@ -204,8 +206,21 @@ generalisation. It is designed to be recognisable to practitioners of:
 The algebraic properties work in either mode; the choice is a matter of
 context and preference.
 
+## Isomorphism vs. Keyboard Ergonomics
+
+Uniform Solfège is fundamentally **isomorphic**: rotating a single glyph family
+encodes intervals identically across pitch, rhythm, and timbre. This algebraic
+purity prioritises structural cross-domain unity over physical instrument topography.
+
+By contrast, [Piano Triangle Notation](../piano-triangles/index.md) addresses the
+practical non-isomorphism of the 12TET keyboard layout (the 2-and-3 black-key grouping),
+trading abstract algebraic symmetry for immediate physical hand-shape legibility.
+The two systems represent complementary tools designed for distinct analytical
+and performance tasks.
+
 ## See also
 
+- [Piano Triangle Notation](../piano-triangles/index.md) — keyboard-ergonomic notation layer contrasted with Uniform Solfège's algebraic isomorphism
 - [Three-Layer Coil Notation](../structure/coil-notation.md) — paper-writable surface syntax for the full PPT framework
 - [Melodic Grammar](../structure/melodic-grammar.md) — absolute vs intervallic melodic navigation in Uniform Solfège
 - [Diacritic System](diacritic-system.md) — microtonal inflection

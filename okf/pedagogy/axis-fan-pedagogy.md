@@ -9,10 +9,12 @@ tags:
   - tritone
   - axis-fan
 status: stable
-timestamp: 2026-07-20
+timestamp: 2026-08-28
 used_by:
   - tuning/du-fractal-dutri-closure.md
   - foundations/prime-families.md
+  - piano-triangles/index.md
+  - pedagogy/default-do.md
 ---
 
 # Axis-Fan Pedagogy: A Tritone-First Harmony Sequence
@@ -176,5 +178,7 @@ own tuning rather than an interval to fear crossing.
 
 ## See also
 
+- [Piano Triangle Notation](../piano-triangles/index.md) — ergonomic keyboard system anchored along the vertical tritone axis
 - [Du-Fractal DuTri Closure](../tuning/du-fractal-dutri-closure.md)
 - [Prime Families](../foundations/prime-families.md)
+- [Default Do (12TET Keyboard)](default-do.md) — keyboard topographical symmetry around D

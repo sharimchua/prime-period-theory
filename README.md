@@ -32,6 +32,8 @@ okf/                    # The Open Knowledge Format bundle (AI-readable semantic
 ├── index.md            # Entry point and concept map
 ├── foundations/        # Core theoretical claims (periodicity, prime families, etc.)
 ├── uniform-solfege/    # The base-12 notation layer
+├── ppd/                # Prime Period Diacritics microtonal notation
+├── piano-triangles/    # Piano Triangle Notation & fretboard leaps
 ├── domains/            # Application domains (pitch, rhythm, timbre)
 ├── tuning/             # Tuning systems (31 EDO, 72 EDO, just intonation)
 ├── pedagogy/           # Pedagogy and learning paths

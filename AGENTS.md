@@ -36,6 +36,8 @@ okf/                    OKF knowledge bundle — see okf/AGENTS.md
 ├── index.md            Master entry point and concept map (always update this)
 ├── foundations/        Core theoretical claims — see okf/foundations/AGENTS.md
 ├── uniform-solfege/    Notation system — see okf/uniform-solfege/AGENTS.md
+├── ppd/                Prime Period Diacritics — see okf/ppd/AGENTS.md
+├── piano-triangles/    Piano Triangle Notation — see okf/piano-triangles/AGENTS.md
 ├── domains/            Three application domains — see okf/domains/AGENTS.md
 ├── tuning/             Tuning system specs — see okf/tuning/AGENTS.md
 ├── pedagogy/           Pedagogy and learning paths — see okf/pedagogy/AGENTS.md
