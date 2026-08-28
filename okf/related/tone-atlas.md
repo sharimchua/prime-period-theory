@@ -11,11 +11,12 @@ tags:
   - interval
   - prime-period-theory
 status: stable
-timestamp: 2026-07-01
+timestamp: 2026-08-28
 used_by:
   - uniform-solfege/base-12-algebra.md
   - related/chromatic-clock.md
   - uniform-solfege/index.md
+  - related/tritone-pitch-naming.md
 ---
 
 # Tone Atlas
@@ -54,6 +55,8 @@ As you move around the clock, you inevitably encounter positions where the stand
 
 The preference for `Le` over `Si` at position 8 ensures that the perfect 5th phoneme ('S' for `So`) remains unique within the primary naming set, providing a clearer phonetic landscape when reading the clock aloud.
 
+In contexts requiring unambiguous absolute pitch-class identification on the subclocks without enharmonic doubling, [Tri Pitch-Class Notation](tritone-pitch-naming.md) provides a parallel, closed letter-naming layer for the five accidentals (`Tri-C`, `Tri-D`, `Tri-E`, `Tri-G`, `Tri-A`) derived from their tritone natural partners.
+
 ## The Fractal Clock Property
 
 The Tone Atlas exhibits a fractal-like self-similarity. Reading the same clock position provides the notes in the scale (where the note at Do is the tonic), while simultaneously revealing the absolute pitch names within the corresponding subclock. 
@@ -72,6 +75,7 @@ The visual geometry of the Tone Atlas allows you to navigate this arithmetic spa
 
 ## See also
 
+- [Tri Pitch-Class Notation](tritone-pitch-naming.md) — tritone-based absolute pitch-class naming for chromatic accidentals
 - [Chromatic Clock Geometry](chromatic-clock.md) — the mathematical properties of the circle
 - [Base-12 Algebra](../uniform-solfege/base-12-algebra.md) — the arithmetic rules governing interval combination
 - [Uniform Solfège](../uniform-solfege/index.md) — the syllable and symbol system mapping the 12 positions

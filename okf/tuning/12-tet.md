@@ -9,7 +9,13 @@ tags:
   - 12-tet
   - temperament
 status: stable
-timestamp: 2026-06-28
+timestamp: 2026-08-28
+used_by:
+  - related/tritone-pitch-naming.md
+  - uniform-solfege/index.md
+  - ppd/index.md
+  - tuning/31-edo.md
+  - related/chromatic-clock.md
 ---
 
 # 12-Tone Equal Temperament (12TET)
@@ -31,5 +37,14 @@ PPT acknowledges that 12TET is the dominant acoustic environment of the modern w
 1. **The Uniform Solfège Anchor:** The core 12-tone layer of Uniform Solfège (the base-12 notation system) maps directly onto 12TET. The solfège syllables (Do, Di, Re, Ri, etc.) act as the primary coordinate addresses.
 2. **A 3-Limit Approximation:** 12TET is fundamentally a 3-limit tuning system masquerading as a 5-limit one. Its fifths are excellent, making it a highly structurally stable grid for 3-prime (Pythagorean) geometry.
 3. **The Diacritic Base:** When exploring higher prime families (like the 5, 7, and 11-limits), PPT does not abandon the 12-tone grid. Instead, it treats 12TET as the "Base" state (0 cents of deviation) and uses the **Prime Period Diacritic** system (Sub, HalfSub, HalfSup, Sup, Axis) to explicitly measure how far a pure interval deviates from its nearest 12TET anchor.
+4. **Absolute Pitch-Class Layer (Tri Notation):** The 12TET partition into 7 natural notes and 5 accidentals allows each accidental to pair with a unique natural tritone partner, establishing [Tri Pitch-Class Notation](../related/tritone-pitch-naming.md) as a closed, unambiguous letter-naming layer for absolute pitches on the 12-tone grid.
 
 By framing 12TET as a coarse scaffolding rather than a rigid cage, PPT allows musicians to navigate complex microtonal and just-intonation spaces while retaining the familiar landmarks of the 12-tone chromatic clock.
+
+## See also
+
+- [Tri Pitch-Class Notation](../related/tritone-pitch-naming.md) — tritone-based absolute pitch-class naming for 12TET accidentals
+- [Uniform Solfège Overview](../uniform-solfege/index.md) — base-12 relational interval notation
+- [Prime Period Diacritics (PPD)](../ppd/index.md) — microtonal extensions tiling the 12TET grid
+- [31 EDO](31-edo.md) — primary microtonal system with superior 5-limit thirds
+- [Chromatic Clock Geometry](../related/chromatic-clock.md) — geometric properties of the 12-tone circle

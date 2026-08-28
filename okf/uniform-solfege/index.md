@@ -26,6 +26,7 @@ used_by:
   - foundations/prime-families.md
 contrasts_with:
   - piano-triangles/index.md
+  - related/tritone-pitch-naming.md
 pedagogically_precedes: [uniform-solfege/diacritic-system.md, structure/coil-notation.md]
 ---
 
@@ -218,8 +219,18 @@ trading abstract algebraic symmetry for immediate physical hand-shape legibility
 The two systems represent complementary tools designed for distinct analytical
 and performance tasks.
 
+## Relationship to Tri Pitch-Class Notation
+
+Uniform Solfège must not be conflated with [Tri Pitch-Class Notation](../related/tritone-pitch-naming.md):
+
+- **Uniform Solfège** is a **relative interval and scale-degree numeral system** (`Do`, `Ra`, `Re`...) operating in base-12 arithmetic to model relational harmonic, rhythmic, and spectral intervals.
+- **Tri Pitch-Class Notation** is a **separate, complementary absolute pitch-class letter naming system** (`Tri-C`, `Tri-D`, `Tri-E`, `Tri-G`, `Tri-A`) that assigns closed nouns to the five 12TET accidentals based on their tritone distance from natural letters.
+
+The two systems address different tasks: Uniform Solfège provides cross-domain structural calculation, while Tri notation eliminates sharp/flat ambiguity when naming absolute pitches on 12TET instruments.
+
 ## See also
 
+- [Tri Pitch-Class Notation](../related/tritone-pitch-naming.md) — complementary absolute pitch-class naming for 12TET accidentals
 - [Piano Triangle Notation](../piano-triangles/index.md) — keyboard-ergonomic notation layer contrasted with Uniform Solfège's algebraic isomorphism
 - [Three-Layer Coil Notation](../structure/coil-notation.md) — paper-writable surface syntax for the full PPT framework
 - [Melodic Grammar](../structure/melodic-grammar.md) — absolute vs intervallic melodic navigation in Uniform Solfège

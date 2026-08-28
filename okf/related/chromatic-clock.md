@@ -18,6 +18,7 @@ used_by:
   - uniform-solfege/geometric-basis.md
   - piano-triangles/index.md
   - pedagogy/default-do.md
+  - related/tritone-pitch-naming.md
 ---
 
 # Chromatic Clock Geometry
@@ -44,6 +45,7 @@ The tritone (Fi, position 6) is the exact midpoint of the octave. Geometrically,
 - It divides the clock face into two equal halves (6 steps + 6 steps).
 - A 180-degree rotation from any pitch class results in its tritone. 
 - Because of this unique position, the tritone acts as an axis of symmetry for the entire system.
+- This antipodal property forms the structural foundation of [Tri Pitch-Class Notation](tritone-pitch-naming.md), which pairs the five chromatic accidentals with their natural diametric opposites (e.g. C and Tri-C).
 
 ## Complement pairs as reflections
 
@@ -85,6 +87,7 @@ Dividing the chromatic clock into four contiguous 3-step quadrants along the ver
 
 ## See also
 
+- [Tri Pitch-Class Notation](tritone-pitch-naming.md) — tritone-based absolute pitch-class naming for chromatic accidentals
 - [Piano Triangle Notation](../piano-triangles/index.md) — ergonomic keyboard notation built on four-triangle clock partitioning
 - [Tone Atlas](tone-atlas.md) — the comprehensive map of the chromatic clock space
 - [Base-12 Algebra](../uniform-solfege/base-12-algebra.md) — the arithmetic that powers this geometry

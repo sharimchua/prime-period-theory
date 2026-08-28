@@ -10,6 +10,7 @@ This directory contains concept pages for visual and analytical tools that inter
 |---|---|---|
 |`tone-atlas.md`|Complete|Clock-face pitch relationship diagram and navigation system.|
 |`chromatic-clock.md`|Complete|The 12-tone chromatic circle as a geometric navigation tool.|
+|`tritone-pitch-naming.md`|Draft|Tri pitch-class notation: tritone-based letter naming for the 5 chromatic accidentals.|
 
 ## Tone guidance
 
