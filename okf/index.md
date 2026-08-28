@@ -207,6 +207,7 @@ amplitude or effect envelopes.
 ### Related systems
 - [Tone Atlas](related/tone-atlas.md) — clock-face pitch relationship diagram
 - [Chromatic Clock Geometry](related/chromatic-clock.md) — the 12-tone chromatic circle as a geometric navigation tool
+- [Tri Pitch-Class Notation](related/tritone-pitch-naming.md) — tritone-based letter naming for the five chromatic accidentals
 
 ### Pedagogy
 - [Overview](pedagogy/index.md) — learning path map and core pedagogical principles

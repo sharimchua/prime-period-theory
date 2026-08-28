@@ -15,6 +15,7 @@ used_by:
   - foundations/prime-families.md
   - piano-triangles/index.md
   - pedagogy/default-do.md
+  - related/tritone-pitch-naming.md
 ---
 
 # Axis-Fan Pedagogy: A Tritone-First Harmony Sequence
@@ -55,7 +56,7 @@ not metaphorical.
 ### Stage 1 — The Axis: Octave and Tritone
 
 Only two pitch classes: Do (tonic) and Fi (tritone). With D as Do, this is
-D and Ab.
+D and Ab (named `Tri-D` in [Tri Pitch-Class Notation](../related/tritone-pitch-naming.md)).
 
 - Introduces **tension and duality** without any scale context to resolve
   into.
@@ -65,6 +66,7 @@ D and Ab.
   same-string 6-fret span, or a single-fret diagonal to the adjacent
   string. It also bisects the octave shape on a single string (6 frets to
   tritone, 12 to octave) — alternating pitch classes every 6 frets.
+- Absolute pitch naming is simplified by [Tri Pitch-Class Notation](../related/tritone-pitch-naming.md): the student encounters the five chromatic notes not as altered sharps/flats of absent diatonic scales, but as direct tritone partners (`Tri-D`, `Tri-C`, etc.) of the white keys.
 - Practical effect: with only two notes and no scale to noodle inside,
   students are pushed toward register exploration (spread voicings, moving
   along the instrument) rather than staying clustered in one hand position
@@ -178,6 +180,7 @@ own tuning rather than an interval to fear crossing.
 
 ## See also
 
+- [Tri Pitch-Class Notation](../related/tritone-pitch-naming.md) — absolute tritone-paired pitch-class naming layer supporting tritone-first pedagogy
 - [Piano Triangle Notation](../piano-triangles/index.md) — ergonomic keyboard system anchored along the vertical tritone axis
 - [Du-Fractal DuTri Closure](../tuning/du-fractal-dutri-closure.md)
 - [Prime Families](../foundations/prime-families.md)
