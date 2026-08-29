@@ -59,5 +59,5 @@ The **Pitch Clock** is an atomic Custom Element rendering the 12 pitch classes a
 
 ### Custom Events
 - `ppt-pitch-selected`: Dispatched on node click with `{ pitchClass, pitchName, solfege, degree, semitoneFromTonic, isTonic }`.
-- `ppt-tonic-changed`: Dispatched on center hub click or node double-click with `{ tonicIndex, tonicName }`.
+- `ppt-tonic-changed`: Dispatched on centre hub click or node double-click with `{ tonicIndex, tonicName }`.
 
