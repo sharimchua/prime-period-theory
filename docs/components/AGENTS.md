@@ -37,3 +37,27 @@ When building or modifying components in this directory, agents must strictly ad
 ### 6. Composer Compatibility
 - **Non-Destructive Rendering:** Components MUST protect their `attributeChangedCallback` and `slotchange` handlers to prevent destructive Shadow DOM recreation. If a component resets its entire innerHTML every time an attribute changes, it acts as a "kill switch" for any programmatically injected child slots and event listeners inside the Component Composer. Use an `_isRendered` flag to ensure the core Shadow DOM structure is built only once in `connectedCallback`.
 - **Metadata:** Define `pptMetadata` as a static getter to expose customizable properties (e.g., colours, enums, booleans) to the Component Composer's Properties Panel. Specify property `type`, `options`, `default`, and `description`.
+
+---
+
+## Pitch Clock Component (`<ppt-pitch-clock>`)
+
+The **Pitch Clock** is an atomic Custom Element rendering the 12 pitch classes arranged radially in $30^\circ$ steps around a unit circle.
+
+### Supported Attributes & Properties
+- `tonic`: Root pitch class (`0`..`11`, note names `'C'`, `'D'`, `'F#'`, or solfège `'Do'`).
+- `representations`: Comma-separated list of enabled layers: `pitch-names`, `solfege`, `scale-degrees`, `solfege-glyphs`, `piano-triangles`.
+- `display-mode`: `'stacked'` or `'concentric'`.
+- `active-pitches`: Comma/space-separated pitch classes to highlight (e.g., `0,4,7`).
+- `scale`: Preset scale or chord to activate (e.g., `major`, `minor`, `dorian`, `phrygian`, `lydian`, `mixolydian`, `locrian`, `harmonic_minor`, `pentatonic_major`, `whole_tone`, `diminished`, `triad_major`, `dom7`, `maj7`).
+- `orientation`: `'tonic-top'` (selected tonic at 12 o'clock) or `'c-top'` (fixed C at 12 o'clock).
+- `show-polygon`: Boolean flag connecting active pitches with an SVG polygon.
+- `show-tritone-axis`: Boolean flag toggling the vertical Do–Fi tritone axis line.
+- `show-quadrants`: Boolean flag toggling Piano Triangle Down/Left/Up/Right partition lines.
+- `accidental-style`: `'dual'` (`C♯/D♭`), `'sharp'` (`C♯`), `'flat'` (`D♭`), or `'tri'` (`Tri-F♯`).
+- `interactive`: Boolean flag enabling click and double-click node selection.
+
+### Custom Events
+- `ppt-pitch-selected`: Dispatched on node click with `{ pitchClass, pitchName, solfege, degree, semitoneFromTonic, isTonic }`.
+- `ppt-tonic-changed`: Dispatched on center hub click or node double-click with `{ tonicIndex, tonicName }`.
+
