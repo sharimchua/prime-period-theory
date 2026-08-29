@@ -24,6 +24,7 @@ export * from './ControlIntegerComponent.js';
 export * from './ControlTextComponent.js';
 export * from './EventBindingComponent.js';
 export * from './UniformSolfegeComponent.js';
+export * from './PitchClockComponent.js';
 export * from './playback/ToneVoiceComponent.js';
 export * from './playback/CoilTransportComponent.js';
 export * from './playback/PlaybackSchedulerComponent.js';
