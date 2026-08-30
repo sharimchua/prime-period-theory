@@ -1,7 +1,108 @@
 import { describe, it, expect } from 'vitest';
-import { isValidSolfegeToken, parseSolfegeToken, tokenizePhrase, expandRhythmPhrase } from '../solfegeUtils.js';
+import { isValidSolfegeToken, parseSolfegeToken, tokenizePhrase, expandRhythmPhrase, mapTokensToRatios, type TuningConfig } from '../solfegeUtils.js';
 
 describe('solfegeUtils', () => {
+  describe('mapTokensToRatios', () => {
+    it('should map standard tokens with Tri config', () => {
+      const config: TuningConfig = { thirds: 'Tri', sevenths: 'Tri', tritone: 'Du' };
+      const tokens = [
+        { type: 'glyph', solfege: 'Do', raw: 'Do' } as any,
+        { type: 'glyph', solfege: 'Mi', raw: 'Mi' } as any,
+        { type: 'glyph', solfege: 'Fa', raw: 'Fa' } as any,
+        { type: 'glyph', solfege: 'So', raw: 'So' } as any,
+        { type: 'glyph', solfege: 'Ti', raw: 'Ti' } as any,
+        { type: 'glyph', solfege: 'Le', raw: 'Le' } as any,
+        { type: 'glyph', solfege: 'Me', raw: 'Me' } as any,
+        { type: 'glyph', solfege: 'Te', raw: 'Te' } as any,
+        { type: 'glyph', solfege: 'La', raw: 'La' } as any,
+        { type: 'glyph', solfege: 'Fi', raw: 'Fi' } as any
+      ];
+
+      const ratios = mapTokensToRatios(tokens, config);
+      expect(ratios).toEqual([
+        { label: 'Do', rmult: { num: 1, den: 1 } },
+        { label: 'Mi', rmult: { num: 81, den: 64 } },
+        { label: 'Fa', rmult: { num: 4, den: 3 } },
+        { label: 'So', rmult: { num: 3, den: 2 } },
+        { label: 'Ti', rmult: { num: 243, den: 128 } },
+        { label: 'Le', rmult: { num: 128, den: 81 } },
+        { label: 'Me', rmult: { num: 32, den: 27 } },
+        { label: 'Te', rmult: { num: 16, den: 9 } },
+        { label: 'La', rmult: { num: 27, den: 16 } },
+        { label: 'Fi', rmult: { num: 1.4142135623730951, den: 1 } },
+      ]);
+    });
+
+    it('should map standard tokens with Ptolemaic/Sep/Qui config', () => {
+      const config: TuningConfig = { thirds: 'Pto', sevenths: 'Sep', tritone: 'Qui' } as unknown as TuningConfig; // Hack to allow 'Pto' which seems omitted in type
+      const tokens = [
+        { type: 'glyph', solfege: 'Di', raw: 'Di' } as any,
+        { type: 'glyph', solfege: 'Mi', raw: 'Mi' } as any,
+        { type: 'glyph', solfege: 'Fi', raw: 'Fi' } as any,
+        { type: 'glyph', solfege: 'Si', raw: 'Si' } as any,
+        { type: 'glyph', solfege: 'Le', raw: 'Le' } as any,
+        { type: 'glyph', solfege: 'Me', raw: 'Me' } as any,
+        { type: 'glyph', solfege: 'Se', raw: 'Se' } as any,
+        { type: 'glyph', solfege: 'La', raw: 'La' } as any,
+      ];
+
+      const ratios = mapTokensToRatios(tokens, config);
+      expect(ratios).toEqual([
+        { label: 'Di', rmult: { num: 1, den: 1 } },
+        { label: 'Mi', rmult: { num: 5, den: 4 } },
+        { label: 'Fi', rmult: { num: 45, den: 32 } },
+        { label: 'Si', rmult: { num: 15, den: 8 } },
+        { label: 'Le', rmult: { num: 8, den: 5 } },
+        { label: 'Me', rmult: { num: 6, den: 5 } },
+        { label: 'Se', rmult: { num: 7, den: 4 } },
+        { label: 'La', rmult: { num: 5, den: 3 } },
+      ]);
+    });
+
+    it('should map additional non-configured intervals', () => {
+      const config: TuningConfig = { thirds: 'Tri', sevenths: 'Tri', tritone: 'Undec' };
+      const tokens = [
+        { type: 'glyph', solfege: 'Ra', raw: 'Ra' } as any,
+        { type: 'glyph', solfege: 'Re', raw: 'Re' } as any,
+        { type: 'glyph', solfege: 'Ri', raw: 'Ri' } as any,
+        { type: 'glyph', solfege: 'Fi', raw: 'Fi' } as any, // Undec
+      ];
+      const ratios = mapTokensToRatios(tokens, config);
+      expect(ratios).toEqual([
+        { label: 'Ra', rmult: { num: 16, den: 15 } },
+        { label: 'Re', rmult: { num: 9, den: 8 } },
+        { label: 'Ri', rmult: { num: 75, den: 64 } },
+        { label: 'Fi', rmult: { num: 11, den: 8 } },
+      ]);
+    });
+
+    it('should apply octave offsets', () => {
+      const config: TuningConfig = { thirds: 'Tri', sevenths: 'Tri', tritone: 'Du' };
+      const tokens = [
+        { type: 'glyph', solfege: 'Do', octaveOffset: 1, raw: 'DoSup' } as any, // +1 octave
+        { type: 'glyph', solfege: 'Re', octaveOffset: -1, raw: 'ReSub' } as any,  // -1 octave
+      ];
+      const ratios = mapTokensToRatios(tokens, config);
+      expect(ratios).toEqual([
+        { label: 'DoSup', rmult: { num: 2, den: 1 } },
+        { label: 'ReSub', rmult: { num: 9, den: 16 } },
+      ]);
+    });
+
+    it('should handle octave offset superscripts', () => {
+      const config: TuningConfig = { thirds: 'Tri', sevenths: 'Tri', tritone: 'Du' };
+      const tokens = [
+        { type: 'glyph', solfege: 'Do', octaveOffset: 2, diacritic: '', modifiers: [] }, // +2
+        { type: 'glyph', solfege: 'So', octaveOffset: -2, diacritic: '', modifiers: [] } // -2
+      ] as any;
+      const ratios = mapTokensToRatios(tokens, config);
+      expect(ratios).toEqual([
+        { label: 'Do', rmult: { num: 4, den: 1 } },
+        { label: 'So', rmult: { num: 3, den: 8 } },
+      ]);
+    });
+  });
+
   describe('isValidSolfegeToken', () => {
     it('should return true for valid base solfege tokens', () => {
       expect(isValidSolfegeToken('Do')).toBe(true);
