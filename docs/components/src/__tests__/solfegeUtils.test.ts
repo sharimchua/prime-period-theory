@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { isValidSolfegeToken, parseSolfegeToken, tokenizePhrase, expandRhythmPhrase } from '../solfegeUtils.js';
+import { isValidSolfegeToken, parseSolfegeToken, tokenizePhrase, expandRhythmPhrase, mapTokensToRatios } from '../solfegeUtils.js';
 
 describe('solfegeUtils', () => {
   describe('isValidSolfegeToken', () => {
@@ -256,6 +256,57 @@ describe('solfegeUtils', () => {
        const tokens = tokenizePhrase('Re Mi');
        const expanded = expandRhythmPhrase(tokens);
        expect(expanded).toEqual(tokens);
+    });
+  });
+
+  describe('mapTokensToRatios', () => {
+    it('should map standard tokens to correct ratios with Tri/Du configs', () => {
+      const tokens = tokenizePhrase('Do Me Mi Fi La Te Ti');
+      const config = { thirds: 'Tri', tritone: 'Du', sevenths: 'Tri' } as any;
+      const ratios = mapTokensToRatios(tokens, config);
+      expect(ratios).toEqual([
+        { label: 'Do', rmult: { num: 1, den: 1 } },
+        { label: 'Me', rmult: { num: 32, den: 27 } },
+        { label: 'Mi', rmult: { num: 81, den: 64 } },
+        { label: 'Fi', rmult: { num: 1.4142135623730951, den: 1 } },
+        { label: 'La', rmult: { num: 27, den: 16 } },
+        { label: 'Te', rmult: { num: 16, den: 9 } },
+        { label: 'Ti', rmult: { num: 243, den: 128 } }
+      ]);
+    });
+
+    it('should map standard tokens to correct ratios with alternative configs', () => {
+      const tokens = tokenizePhrase('Do Me Mi Fi La Te Ti');
+      const config = { thirds: 'Pto', tritone: 'Qui', sevenths: 'Sep' } as any;
+      const ratios = mapTokensToRatios(tokens, config);
+      expect(ratios).toEqual([
+        { label: 'Do', rmult: { num: 1, den: 1 } },
+        { label: 'Me', rmult: { num: 6, den: 5 } },
+        { label: 'Mi', rmult: { num: 5, den: 4 } },
+        { label: 'Fi', rmult: { num: 45, den: 32 } },
+        { label: 'La', rmult: { num: 5, den: 3 } },
+        { label: 'Te', rmult: { num: 7, den: 4 } },
+        { label: 'Ti', rmult: { num: 15, den: 8 } }
+      ]);
+    });
+
+    it('should map standard tokens to correct ratios with Undec tritone config', () => {
+      const tokens = tokenizePhrase('Fi');
+      const config = { thirds: 'Pto', tritone: 'Undec', sevenths: 'Sep' } as any;
+      const ratios = mapTokensToRatios(tokens, config);
+      expect(ratios).toEqual([
+        { label: 'Fi', rmult: { num: 11, den: 8 } },
+      ]);
+    });
+
+    it('should handle octave offsets correctly', () => {
+      const tokens = tokenizePhrase('Do^Ra Do^Ti');
+      const config = { thirds: 'Pto', tritone: 'Qui', sevenths: 'Sep' } as any;
+      const ratios = mapTokensToRatios(tokens, config);
+      expect(ratios).toEqual([
+        { label: 'Do^Ra', rmult: { num: 2, den: 1 } },
+        { label: 'Do^Ti', rmult: { num: 1, den: 2 } }
+      ]);
     });
   });
 });
