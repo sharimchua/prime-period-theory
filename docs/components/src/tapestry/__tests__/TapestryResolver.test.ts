@@ -12,6 +12,23 @@ describe('TapestryResolver', () => {
       expect(result.primaryNodeLabel).toBe('(none)');
     });
 
+    it('should resolve with provided explicit node ID', () => {
+      const doc = createDocument('Doc');
+      const coil1 = createCoilNode('Coil 1');
+      const coil2 = createCoilNode('Coil 2');
+      doc.nodes.push(coil1, coil2);
+
+      const result = resolve(doc, coil2.id);
+      expect(result.primaryNodeLabel).toBe('Coil 2');
+    });
+
+    it('should handle explicit missing node gracefully', () => {
+      const doc = createDocument('Doc');
+      const result = resolve(doc, 'missing-id');
+      expect(result.sections).toHaveLength(0);
+      expect(result.primaryNodeLabel).toBe('(none)');
+    });
+
     it('should resolve a single coil', () => {
       const doc = createDocument('Doc');
       const coil = createCoilNode('My Coil');
@@ -26,6 +43,17 @@ describe('TapestryResolver', () => {
       expect(result.sections[0].resolvedBpm).toBe(120);
       expect(result.sections[0].resolvedDoPitch).toBe('C4');
       expect(result.sections[0].repeatCount).toBe(1);
+    });
+
+    it('should handle unresolvable node types gracefully', () => {
+      const doc = createDocument('Doc');
+      const invalidNode = { id: 'invalid', kind: 'unknown', label: '?' } as any;
+      doc.nodes.push(invalidNode);
+      doc.primaryNodeId = invalidNode.id;
+
+      const result = resolve(doc);
+      expect(result.sections).toHaveLength(0);
+      expect(result.primaryNodeLabel).toBe('?');
     });
   });
 
