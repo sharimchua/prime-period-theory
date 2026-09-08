@@ -41,6 +41,7 @@ export function deserialiseDocument(json: string): TapestryDocument {
     if (node.kind === 'coil' && !node.inheritanceOrder) node.inheritanceOrder = [];
     if (node.kind === 'weave' && !node.compositionOrder) node.compositionOrder = [];
   }
+  if (!raw.threads) raw.threads = [];
   for (const thread of raw.threads ?? []) {
     if (thread.repeatCount === undefined) thread.repeatCount = 1;
     if (!thread.kind) thread.kind = 'weave-compose';
