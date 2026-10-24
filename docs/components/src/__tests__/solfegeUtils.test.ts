@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { isValidSolfegeToken, parseSolfegeToken, tokenizePhrase, expandRhythmPhrase } from '../solfegeUtils.js';
+import { isValidSolfegeToken, parseSolfegeToken, tokenizePhrase, expandRhythmPhrase, mapTokensToRatios, TuningConfig } from '../solfegeUtils.js';
 
 describe('solfegeUtils', () => {
   describe('isValidSolfegeToken', () => {
@@ -256,6 +256,105 @@ describe('solfegeUtils', () => {
        const tokens = tokenizePhrase('Re Mi');
        const expanded = expandRhythmPhrase(tokens);
        expect(expanded).toEqual(tokens);
+    });
+  });
+
+  describe('mapTokensToRatios', () => {
+    const config: TuningConfig = {
+      thirds: 'Pto',
+      sevenths: 'Pto',
+      tritone: 'Qui'
+    };
+
+    const triConfig: TuningConfig = {
+      thirds: 'Tri',
+      sevenths: 'Tri',
+      tritone: 'Du'
+    };
+
+    it('should map base syllables correctly', () => {
+      const tokens = tokenizePhrase('Do Re Mi Fa So La Ti');
+      const results = mapTokensToRatios(tokens, config);
+      expect(results.length).toBe(7);
+
+      expect(results[0].rmult).toEqual({ num: 1, den: 1 });
+      expect(results[1].rmult).toEqual({ num: 9, den: 8 });
+      expect(results[2].rmult).toEqual({ num: 5, den: 4 });
+      expect(results[3].rmult).toEqual({ num: 4, den: 3 });
+      expect(results[4].rmult).toEqual({ num: 3, den: 2 });
+      expect(results[5].rmult).toEqual({ num: 5, den: 3 });
+      expect(results[6].rmult).toEqual({ num: 15, den: 8 });
+    });
+
+    it('should handle Tri and Du tunings', () => {
+      const tokens = tokenizePhrase('Me Mi Fi Le La Te Ti');
+      const results = mapTokensToRatios(tokens, triConfig);
+
+      expect(results[0].rmult).toEqual({ num: 32, den: 27 }); // Me Tri
+      expect(results[1].rmult).toEqual({ num: 81, den: 64 }); // Mi Tri
+      expect(results[2].rmult).toEqual({ num: 1.4142135623730951, den: 1 }); // Fi Du
+      expect(results[3].rmult).toEqual({ num: 128, den: 81 }); // Le Tri
+      expect(results[4].rmult).toEqual({ num: 27, den: 16 }); // La Tri
+      expect(results[5].rmult).toEqual({ num: 16, den: 9 }); // Te Tri
+      expect(results[6].rmult).toEqual({ num: 243, den: 128 }); // Ti Tri
+    });
+
+    it('should handle Undec tuning for Tritone', () => {
+      const tokens = tokenizePhrase('Fi');
+      const results = mapTokensToRatios(tokens, { ...config, tritone: 'Undec' });
+      expect(results[0].rmult).toEqual({ num: 11, den: 8 });
+    });
+
+    it('should handle Sep tuning for sevenths', () => {
+      const tokens = tokenizePhrase('Te');
+      const results = mapTokensToRatios(tokens, { ...config, sevenths: 'Sep' });
+      expect(results[0].rmult).toEqual({ num: 7, den: 4 });
+    });
+
+    it('should apply positive octave offsets', () => {
+      const tokens = tokenizePhrase('Do^Ra'); // tokenizePhrase sets octaveOffset = 1 for Ra superscript
+      const results = mapTokensToRatios(tokens, config);
+      expect(results[0].rmult).toEqual({ num: 2, den: 1 });
+    });
+
+    it('should apply negative octave offsets', () => {
+      const tokens = tokenizePhrase('Do^Ti'); // tokenizePhrase sets octaveOffset = -1 for Ti superscript
+      const results = mapTokensToRatios(tokens, config);
+      expect(results[0].rmult).toEqual({ num: 1, den: 2 });
+
+      // Test larger offsets via mock token array
+      const mockTokens2 = [
+        { type: 'glyph', solfege: 'Do', diacritic: '', modifiers: [], raw: 'Do-2', octaveOffset: -2 }
+      ] as any;
+      const results2 = mapTokensToRatios(mockTokens2, config);
+      expect(results2[0].rmult).toEqual({ num: 1, den: 4 });
+    });
+
+    it('should handle missing solfege and skip non-glyph tokens', () => {
+      const mockTokens = [
+        { type: 'hold' },
+        { type: 'glyph', solfege: '', diacritic: '', modifiers: [], raw: '' }
+      ] as any;
+      const results = mapTokensToRatios(mockTokens, config);
+      expect(results.length).toBe(0);
+    });
+
+    it('should handle unmapped syllables', () => {
+      const mockTokens = [
+        { type: 'glyph', solfege: 'Za', diacritic: '', modifiers: [], raw: 'Za' }
+      ] as any;
+      const results = mapTokensToRatios(mockTokens, config);
+      expect(results[0].rmult).toEqual({ num: 1, den: 1 });
+    });
+
+    it('should handle other mapped syllables', () => {
+      const tokens = tokenizePhrase('Di Ra Ri Se Si');
+      const results = mapTokensToRatios(tokens, config);
+      expect(results[0].rmult).toEqual({ num: 1, den: 1 }); // Di
+      expect(results[1].rmult).toEqual({ num: 16, den: 15 }); // Ra
+      expect(results[2].rmult).toEqual({ num: 75, den: 64 }); // Ri
+      expect(results[3].rmult).toEqual({ num: 16, den: 9 }); // Se (uses Te fallback, Pto)
+      expect(results[4].rmult).toEqual({ num: 15, den: 8 }); // Si (uses Ti fallback, Pto)
     });
   });
 });
