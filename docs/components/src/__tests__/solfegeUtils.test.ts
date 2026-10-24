@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { isValidSolfegeToken, parseSolfegeToken, tokenizePhrase, expandRhythmPhrase } from '../solfegeUtils.js';
+import { isValidSolfegeToken, parseSolfegeToken, tokenizePhrase, expandRhythmPhrase, mapTokensToRatios } from '../solfegeUtils.js';
 
 describe('solfegeUtils', () => {
   describe('isValidSolfegeToken', () => {
@@ -258,4 +258,126 @@ describe('solfegeUtils', () => {
        expect(expanded).toEqual(tokens);
     });
   });
+
+  describe('mapTokensToRatios', () => {
+    const defaultConfig = {
+      thirds: 'Pto',
+      sevenths: 'Pto',
+      tritone: 'Qui'
+    } as any;
+
+    it('should map base tokens correctly', () => {
+      const tokens: any[] = [
+        { type: 'glyph', solfege: 'Do', raw: 'Do' },
+        { type: 'glyph', solfege: 'Ra', raw: 'Ra' },
+        { type: 'glyph', solfege: 'Re', raw: 'Re' },
+        { type: 'glyph', solfege: 'Me', raw: 'Me' },
+        { type: 'glyph', solfege: 'Mi', raw: 'Mi' },
+        { type: 'glyph', solfege: 'Fa', raw: 'Fa' },
+        { type: 'glyph', solfege: 'Fi', raw: 'Fi' },
+        { type: 'glyph', solfege: 'So', raw: 'So' },
+        { type: 'glyph', solfege: 'Le', raw: 'Le' },
+        { type: 'glyph', solfege: 'La', raw: 'La' },
+        { type: 'glyph', solfege: 'Te', raw: 'Te' },
+        { type: 'glyph', solfege: 'Ti', raw: 'Ti' },
+        { type: 'padding', paddingLength: 1 } // Ignored
+      ];
+
+      const mapped = mapTokensToRatios(tokens, defaultConfig);
+
+      expect(mapped).toEqual([
+        { label: 'Do', rmult: { num: 1, den: 1 } },
+        { label: 'Ra', rmult: { num: 16, den: 15 } },
+        { label: 'Re', rmult: { num: 9, den: 8 } },
+        { label: 'Me', rmult: { num: 6, den: 5 } },
+        { label: 'Mi', rmult: { num: 5, den: 4 } },
+        { label: 'Fa', rmult: { num: 4, den: 3 } },
+        { label: 'Fi', rmult: { num: 45, den: 32 } }, // Qui by default
+        { label: 'So', rmult: { num: 3, den: 2 } },
+        { label: 'Le', rmult: { num: 8, den: 5 } },
+        { label: 'La', rmult: { num: 5, den: 3 } },
+        { label: 'Te', rmult: { num: 16, den: 9 } },
+        { label: 'Ti', rmult: { num: 15, den: 8 } },
+      ]);
+    });
+
+    it('should apply Pythagorean tuning (Tri) when configured', () => {
+      const pythagoreanConfig = {
+        thirds: 'Tri',
+        sevenths: 'Tri',
+        tritone: 'Qui'
+      } as any;
+
+      const tokens: any[] = [
+        { type: 'glyph', solfege: 'Me', raw: 'Me' },
+        { type: 'glyph', solfege: 'Mi', raw: 'Mi' },
+        { type: 'glyph', solfege: 'Le', raw: 'Le' },
+        { type: 'glyph', solfege: 'La', raw: 'La' },
+        { type: 'glyph', solfege: 'Te', raw: 'Te' },
+        { type: 'glyph', solfege: 'Ti', raw: 'Ti' },
+      ];
+
+      const mapped = mapTokensToRatios(tokens, pythagoreanConfig);
+
+      expect(mapped).toEqual([
+        { label: 'Me', rmult: { num: 32, den: 27 } },
+        { label: 'Mi', rmult: { num: 81, den: 64 } },
+        { label: 'Le', rmult: { num: 128, den: 81 } },
+        { label: 'La', rmult: { num: 27, den: 16 } },
+        { label: 'Te', rmult: { num: 16, den: 9 } },
+        { label: 'Ti', rmult: { num: 243, den: 128 } },
+      ]);
+    });
+
+    it('should apply Septimal minor 7th when configured', () => {
+      const config = {
+        thirds: 'Pto',
+        sevenths: 'Sep',
+        tritone: 'Qui'
+      } as any;
+      const tokens: any[] = [{ type: 'glyph', solfege: 'Te', raw: 'Te' }];
+      expect(mapTokensToRatios(tokens, config)[0].rmult).toEqual({ num: 7, den: 4 });
+    });
+
+    it('should handle alternative spellings like Se and Si', () => {
+       const mapped = mapTokensToRatios([
+         { type: 'glyph', solfege: 'Se', raw: 'Se' },
+         { type: 'glyph', solfege: 'Si', raw: 'Si' },
+         { type: 'glyph', solfege: 'Di', raw: 'Di' },
+         { type: 'glyph', solfege: 'Ri', raw: 'Ri' }
+       ], defaultConfig);
+
+       expect(mapped).toEqual([
+         { label: 'Se', rmult: { num: 16, den: 9 } },
+         { label: 'Si', rmult: { num: 15, den: 8 } },
+         { label: 'Di', rmult: { num: 1, den: 1 } },
+         { label: 'Ri', rmult: { num: 75, den: 64 } },
+       ]);
+    });
+
+    it('should apply Du and Undecimal tritone tuning', () => {
+       let mapped = mapTokensToRatios([{ type: 'glyph', solfege: 'Fi', raw: 'Fi' }], { ...defaultConfig, tritone: 'Du' });
+       expect(mapped[0].rmult).toEqual({ num: Math.SQRT2, den: 1 });
+
+       mapped = mapTokensToRatios([{ type: 'glyph', solfege: 'Fi', raw: 'Fi' }], { ...defaultConfig, tritone: 'Undec' });
+       expect(mapped[0].rmult).toEqual({ num: 11, den: 8 });
+    });
+
+    it('should apply positive and negative octave offsets', () => {
+       const tokens: any[] = [
+         { type: 'glyph', solfege: 'Do', raw: 'DoSup', octaveOffset: 1 },
+         { type: 'glyph', solfege: 'So', raw: 'SoSub', octaveOffset: -1 },
+         { type: 'glyph', solfege: 'Mi', raw: 'MiSup2', octaveOffset: 2 },
+       ];
+
+       const mapped = mapTokensToRatios(tokens, defaultConfig);
+
+       expect(mapped).toEqual([
+         { label: 'DoSup', rmult: { num: 2, den: 1 } }, // 1/1 * 2 = 2/1
+         { label: 'SoSub', rmult: { num: 3, den: 4 } }, // 3/2 / 2 = 3/4
+         { label: 'MiSup2', rmult: { num: 20, den: 4 } }, // 5/4 * 4 = 20/4 = 5
+       ]);
+    });
+  });
+
 });
