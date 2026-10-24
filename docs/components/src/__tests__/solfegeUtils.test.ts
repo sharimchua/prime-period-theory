@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { isValidSolfegeToken, parseSolfegeToken, tokenizePhrase, expandRhythmPhrase } from '../solfegeUtils.js';
+import { isValidSolfegeToken, parseSolfegeToken, tokenizePhrase, expandRhythmPhrase, mapTokensToRatios, TuningConfig } from '../solfegeUtils.js';
 
 describe('solfegeUtils', () => {
   describe('isValidSolfegeToken', () => {
@@ -256,6 +256,99 @@ describe('solfegeUtils', () => {
        const tokens = tokenizePhrase('Re Mi');
        const expanded = expandRhythmPhrase(tokens);
        expect(expanded).toEqual(tokens);
+    });
+  });
+
+  describe('mapTokensToRatios', () => {
+    const configQuiTriTri: TuningConfig = { thirds: 'Qui', tritone: 'Qui', sevenths: 'Tri' };
+    const configTriDuSep: TuningConfig = { thirds: 'Tri', tritone: 'Du', sevenths: 'Sep' };
+    const configQuiUndecTri: TuningConfig = { thirds: 'Qui', tritone: 'Undec', sevenths: 'Tri' };
+
+    it('should handle basic tokens correctly with Qui/Qui/Tri config', () => {
+      const tokens = tokenizePhrase('Do Re Mi Fa So La Ti');
+      const ratios = mapTokensToRatios(tokens, configQuiTriTri);
+
+      expect(ratios).toEqual([
+        { label: 'Do', rmult: { num: 1, den: 1 } },
+        { label: 'Re', rmult: { num: 9, den: 8 } },
+        { label: 'Mi', rmult: { num: 5, den: 4 } },
+        { label: 'Fa', rmult: { num: 4, den: 3 } },
+        { label: 'So', rmult: { num: 3, den: 2 } },
+        { label: 'La', rmult: { num: 5, den: 3 } },
+        { label: 'Ti', rmult: { num: 243, den: 128 } } // sevenths: 'Tri'
+      ]);
+    });
+
+    it('should handle basic tokens correctly with Tri/Du/Sep config', () => {
+      const tokens = tokenizePhrase('Do Re Mi Fa So La Ti');
+      const ratios = mapTokensToRatios(tokens, configTriDuSep);
+
+      expect(ratios).toEqual([
+        { label: 'Do', rmult: { num: 1, den: 1 } },
+        { label: 'Re', rmult: { num: 9, den: 8 } },
+        { label: 'Mi', rmult: { num: 81, den: 64 } }, // thirds: 'Tri'
+        { label: 'Fa', rmult: { num: 4, den: 3 } },
+        { label: 'So', rmult: { num: 3, den: 2 } },
+        { label: 'La', rmult: { num: 27, den: 16 } }, // thirds: 'Tri'
+        { label: 'Ti', rmult: { num: 15, den: 8 } } // sevenths is not 'Tri'
+      ]);
+    });
+
+    it('should handle accidental tokens correctly', () => {
+      const tokens = tokenizePhrase('Di Ra Ri Me Fi Le Te Se Si');
+      const ratiosTriDuSep = mapTokensToRatios(tokens, configTriDuSep);
+
+      expect(ratiosTriDuSep).toEqual([
+        { label: 'Di', rmult: { num: 1, den: 1 } },
+        { label: 'Ra', rmult: { num: 16, den: 15 } },
+        { label: 'Ri', rmult: { num: 75, den: 64 } },
+        { label: 'Me', rmult: { num: 32, den: 27 } }, // thirds: 'Tri'
+        { label: 'Fi', rmult: { num: 1.4142135623730951, den: 1 } }, // tritone: 'Du'
+        { label: 'Le', rmult: { num: 128, den: 81 } }, // thirds: 'Tri'
+        { label: 'Te', rmult: { num: 7, den: 4 } }, // sevenths: 'Sep'
+        { label: 'Se', rmult: { num: 7, den: 4 } }, // sevenths: 'Sep'
+        { label: 'Si', rmult: { num: 15, den: 8 } }
+      ]);
+
+      const ratiosQuiUndecTri = mapTokensToRatios(tokens, configQuiUndecTri);
+
+      expect(ratiosQuiUndecTri).toEqual([
+        { label: 'Di', rmult: { num: 1, den: 1 } },
+        { label: 'Ra', rmult: { num: 16, den: 15 } },
+        { label: 'Ri', rmult: { num: 75, den: 64 } },
+        { label: 'Me', rmult: { num: 6, den: 5 } }, // thirds: 'Qui'
+        { label: 'Fi', rmult: { num: 11, den: 8 } }, // tritone: 'Undec'
+        { label: 'Le', rmult: { num: 8, den: 5 } }, // thirds: 'Qui'
+        { label: 'Te', rmult: { num: 16, den: 9 } }, // sevenths is not 'Sep'
+        { label: 'Se', rmult: { num: 16, den: 9 } }, // sevenths is not 'Sep'
+        { label: 'Si', rmult: { num: 243, den: 128 } } // sevenths: 'Tri'
+      ]);
+    });
+
+    it('should handle Fi with Qui tritone', () => {
+      const tokens = tokenizePhrase('Fi');
+      const ratios = mapTokensToRatios(tokens, configQuiTriTri);
+      expect(ratios).toEqual([
+        { label: 'Fi', rmult: { num: 45, den: 32 } } // tritone: 'Qui'
+      ]);
+    });
+
+    it('should handle octave offsets correctly', () => {
+      // tokenizePhrase handles Do^Ra as octaveOffset: 1 and Do^Ti as -1
+      const tokens = tokenizePhrase('Do^Ra Do^Ti');
+      const ratios = mapTokensToRatios(tokens, configQuiTriTri);
+      expect(ratios).toEqual([
+        { label: 'Do^Ra', rmult: { num: 2, den: 1 } },
+        { label: 'Do^Ti', rmult: { num: 1, den: 2 } }
+      ]);
+    });
+
+    it('should ignore non-glyph tokens and tokens without solfege', () => {
+      const tokens = tokenizePhrase('Do - ..');
+      const ratios = mapTokensToRatios(tokens, configQuiTriTri);
+      expect(ratios).toEqual([
+        { label: 'Do', rmult: { num: 1, den: 1 } }
+      ]);
     });
   });
 });
