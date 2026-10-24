@@ -65,10 +65,13 @@ describe('parseComponents', () => {
     });
 
     it('should return empty array if srcDir does not exist', () => {
+      const consoleWarnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
       vi.mocked(fs.default.existsSync).mockReturnValue(false);
 
       const components = getPPTComponents();
       expect(components).toEqual([]);
+
+      consoleWarnSpy.mockRestore();
     });
 
     it('should parse files and extract component metadata successfully', () => {
