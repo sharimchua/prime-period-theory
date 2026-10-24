@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { isValidSolfegeToken, parseSolfegeToken, tokenizePhrase, expandRhythmPhrase } from '../solfegeUtils.js';
+import { isValidSolfegeToken, parseSolfegeToken, tokenizePhrase, expandRhythmPhrase, mapTokensToRatios, TuningConfig, ParsedToken } from '../solfegeUtils.js';
 
 describe('solfegeUtils', () => {
   describe('isValidSolfegeToken', () => {
@@ -256,6 +256,152 @@ describe('solfegeUtils', () => {
        const tokens = tokenizePhrase('Re Mi');
        const expanded = expandRhythmPhrase(tokens);
        expect(expanded).toEqual(tokens);
+    });
+  });
+
+  describe('mapTokensToRatios', () => {
+    const defaultConfig: TuningConfig = { thirds: 'Qui', sevenths: 'Sep', tritone: 'Qui' };
+
+    it('should map origin notes correctly', () => {
+      const tokens: ParsedToken[] = [
+        { type: 'glyph', solfege: 'Do', raw: 'Do' },
+        { type: 'glyph', solfege: 'Di', raw: 'Di' }
+      ];
+      const result = mapTokensToRatios(tokens, defaultConfig);
+      expect(result).toEqual([
+        { label: 'Do', rmult: { num: 1, den: 1 } },
+        { label: 'Di', rmult: { num: 1, den: 1 } }
+      ]);
+    });
+
+    it('should map minor/major 2nd and augmented 2nd correctly', () => {
+      const tokens: ParsedToken[] = [
+        { type: 'glyph', solfege: 'Ra', raw: 'Ra' },
+        { type: 'glyph', solfege: 'Re', raw: 'Re' },
+        { type: 'glyph', solfege: 'Ri', raw: 'Ri' }
+      ];
+      const result = mapTokensToRatios(tokens, defaultConfig);
+      expect(result).toEqual([
+        { label: 'Ra', rmult: { num: 16, den: 15 } },
+        { label: 'Re', rmult: { num: 9, den: 8 } },
+        { label: 'Ri', rmult: { num: 75, den: 64 } }
+      ]);
+    });
+
+    it('should map 3rds and 6ths depending on thirds configuration', () => {
+      const tokens: ParsedToken[] = [
+        { type: 'glyph', solfege: 'Me', raw: 'Me' },
+        { type: 'glyph', solfege: 'Mi', raw: 'Mi' },
+        { type: 'glyph', solfege: 'Le', raw: 'Le' },
+        { type: 'glyph', solfege: 'La', raw: 'La' }
+      ];
+
+      const triResult = mapTokensToRatios(tokens, { ...defaultConfig, thirds: 'Tri' });
+      expect(triResult).toEqual([
+        { label: 'Me', rmult: { num: 32, den: 27 } },
+        { label: 'Mi', rmult: { num: 81, den: 64 } },
+        { label: 'Le', rmult: { num: 128, den: 81 } },
+        { label: 'La', rmult: { num: 27, den: 16 } }
+      ]);
+
+      const quiResult = mapTokensToRatios(tokens, { ...defaultConfig, thirds: 'Qui' });
+      expect(quiResult).toEqual([
+        { label: 'Me', rmult: { num: 6, den: 5 } },
+        { label: 'Mi', rmult: { num: 5, den: 4 } },
+        { label: 'Le', rmult: { num: 8, den: 5 } },
+        { label: 'La', rmult: { num: 5, den: 3 } }
+      ]);
+    });
+
+    it('should map 4th and 5th correctly', () => {
+      const tokens: ParsedToken[] = [
+        { type: 'glyph', solfege: 'Fa', raw: 'Fa' },
+        { type: 'glyph', solfege: 'So', raw: 'So' }
+      ];
+      const result = mapTokensToRatios(tokens, defaultConfig);
+      expect(result).toEqual([
+        { label: 'Fa', rmult: { num: 4, den: 3 } },
+        { label: 'So', rmult: { num: 3, den: 2 } }
+      ]);
+    });
+
+    it('should map tritone (Fi) depending on tritone configuration', () => {
+      const tokens: ParsedToken[] = [{ type: 'glyph', solfege: 'Fi', raw: 'Fi' }];
+
+      const quiResult = mapTokensToRatios(tokens, { ...defaultConfig, tritone: 'Qui' });
+      expect(quiResult).toEqual([{ label: 'Fi', rmult: { num: 45, den: 32 } }]);
+
+      const undecResult = mapTokensToRatios(tokens, { ...defaultConfig, tritone: 'Undec' });
+      expect(undecResult).toEqual([{ label: 'Fi', rmult: { num: 11, den: 8 } }]);
+
+      const duResult = mapTokensToRatios(tokens, { ...defaultConfig, tritone: 'Du' });
+      expect(duResult).toEqual([{ label: 'Fi', rmult: { num: 1.4142135623730951, den: 1 } }]);
+    });
+
+    it('should map 7ths depending on sevenths configuration', () => {
+      const tokens: ParsedToken[] = [
+        { type: 'glyph', solfege: 'Te', raw: 'Te' },
+        { type: 'glyph', solfege: 'Se', raw: 'Se' },
+        { type: 'glyph', solfege: 'Ti', raw: 'Ti' },
+        { type: 'glyph', solfege: 'Si', raw: 'Si' }
+      ];
+
+      const sepResult = mapTokensToRatios(tokens, { ...defaultConfig, sevenths: 'Sep' });
+      expect(sepResult).toEqual([
+        { label: 'Te', rmult: { num: 7, den: 4 } },
+        { label: 'Se', rmult: { num: 7, den: 4 } },
+        { label: 'Ti', rmult: { num: 15, den: 8 } },
+        { label: 'Si', rmult: { num: 15, den: 8 } }
+      ]);
+
+      const triResult = mapTokensToRatios(tokens, { ...defaultConfig, sevenths: 'Tri' });
+      expect(triResult).toEqual([
+        { label: 'Te', rmult: { num: 16, den: 9 } },
+        { label: 'Se', rmult: { num: 16, den: 9 } },
+        { label: 'Ti', rmult: { num: 243, den: 128 } },
+        { label: 'Si', rmult: { num: 243, den: 128 } }
+      ]);
+    });
+
+    it('should apply octave offsets', () => {
+      const tokens: ParsedToken[] = [
+        { type: 'glyph', solfege: 'Do', raw: 'Do^Ra', octaveOffset: 1 },
+        { type: 'glyph', solfege: 'Do', raw: 'Do^Ti', octaveOffset: -1 },
+        { type: 'glyph', solfege: 'Do', raw: 'Do^Ra^Ra', octaveOffset: 2 },
+        { type: 'glyph', solfege: 'Do', raw: 'Do^Ti^Ti', octaveOffset: -2 }
+      ];
+      const result = mapTokensToRatios(tokens, defaultConfig);
+      expect(result).toEqual([
+        { label: 'Do^Ra', rmult: { num: 2, den: 1 } },
+        { label: 'Do^Ti', rmult: { num: 1, den: 2 } },
+        { label: 'Do^Ra^Ra', rmult: { num: 4, den: 1 } },
+        { label: 'Do^Ti^Ti', rmult: { num: 1, den: 4 } }
+      ]);
+    });
+
+    it('should apply octave offsets to non-origin notes', () => {
+      const tokens: ParsedToken[] = [
+        { type: 'glyph', solfege: 'So', raw: 'So^Ra', octaveOffset: 1 },
+        { type: 'glyph', solfege: 'Fa', raw: 'Fa^Ti', octaveOffset: -1 }
+      ];
+      const result = mapTokensToRatios(tokens, defaultConfig);
+      expect(result).toEqual([
+        { label: 'So^Ra', rmult: { num: 6, den: 2 } },
+        { label: 'Fa^Ti', rmult: { num: 4, den: 6 } }
+      ]);
+    });
+
+    it('should ignore non-glyph tokens and tokens without solfege', () => {
+      const tokens: ParsedToken[] = [
+        { type: 'padding', paddingLength: 2 },
+        { type: 'hold' },
+        { type: 'glyph', solfege: undefined, raw: '???' },
+        { type: 'glyph', solfege: 'Do', raw: 'Do' }
+      ];
+      const result = mapTokensToRatios(tokens, defaultConfig);
+      expect(result).toEqual([
+        { label: 'Do', rmult: { num: 1, den: 1 } }
+      ]);
     });
   });
 });
