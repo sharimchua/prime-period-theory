@@ -1,23 +1,82 @@
 ---
 interface Props {
   title: string;
+  rawTitle?: boolean;
+  description?: string;
   maxWidth?: string;
   hideHeader?: boolean;
 }
 
-const { title, maxWidth = '800px', hideHeader = false } = Astro.props;
+const {
+  title,
+  rawTitle = false,
+  description = 'Prime Period Theory (PPT) — a descriptive framework unifying pitch, rhythm, and timbre through prime-generated periodicity.',
+  maxWidth = '800px',
+  hideHeader = false,
+} = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '') + '/';
+const fullTitle = rawTitle ? title : `${title} | Prime Period Theory`;
+const siteOrigin = Astro.site ?? new URL('https://ppt.midlifemuso.com');
+const pathname = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : `${Astro.url.pathname}/`;
+const canonicalURL = new URL(pathname, siteOrigin).toString();
+const ogImageURL = 'https://midlifemuso.com/images/resources/prime-period-theory.webp';
+const siteJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Prime Period Theory',
+  url: 'https://ppt.midlifemuso.com/',
+  description: 'A descriptive framework unifying pitch, rhythm, and timbre through prime-generated periodicity.',
+  author: {
+    '@type': 'Person',
+    name: 'Sharim Chua',
+    url: 'https://midlifemuso.com/about-me/',
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Midlife Muso',
+    url: 'https://midlifemuso.com/',
+  },
+};
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en-AU">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Prime Period Theory Documentation" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Sharim Chua — Midlife Muso" />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Prime Period Theory" />
+    <meta property="og:locale" content="en_AU" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageURL} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
+
     <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
     <meta name="generator" content={Astro.generator} />
-    <title>{title} | Prime Period Theory</title>
+
+    <!-- Google Analytics 4 (gtag.js) -->
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-FXS2Y4S4RT"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-FXS2Y4S4RT');
+    </script>
+
+    <script type="application/ld+json" set:html={JSON.stringify(siteJsonLd)} />
   </head>
   <body>
     {!hideHeader && (

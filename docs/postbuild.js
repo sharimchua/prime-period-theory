@@ -59,8 +59,36 @@ function processHtmlFiles(dir) {
   }
 }
 
+function generateSitemap(dir, siteUrl = 'https://ppt.midlifemuso.com') {
+  const urls = [];
+  function walk(currentDir) {
+    for (const entry of fs.readdirSync(currentDir)) {
+      const fullPath = path.join(currentDir, entry);
+      if (fs.statSync(fullPath).isDirectory()) {
+        walk(fullPath);
+      } else if (entry === 'index.html') {
+        const relDir = path.relative(dir, currentDir).replace(/\\/g, '/');
+        const urlPath = relDir ? `/${relDir}/` : '/';
+        urls.push(`${siteUrl}${urlPath}`);
+      }
+    }
+  }
+  walk(dir);
+  urls.sort();
+  const xml = [
+    '<?xml version="1.0" encoding="UTF-8"?>',
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+    ...urls.map((u) => `  <url><loc>${u}</loc></url>`),
+    '</urlset>',
+    '',
+  ].join('\n');
+  fs.writeFileSync(path.join(dir, 'sitemap.xml'), xml, 'utf-8');
+  console.log(`Generated sitemap.xml with ${urls.length} URLs.`);
+}
+
 const distDir = path.join(__dirname, 'dist');
 if (fs.existsSync(distDir)) {
   processHtmlFiles(distDir);
+  generateSitemap(distDir);
   console.log('Post-build link check completed.');
 }
